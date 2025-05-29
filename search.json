@@ -1,0 +1,1276 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Modelling Life",
+    "section": "",
+    "text": "Modelling life\nWelcome to the course Modelling Life. Blabla. New book.\nCheck out the next chapter to see what Quarto can do.",
+    "crumbs": [
+      "Course information",
+      "Modelling life"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Quarto examples",
+    "section": "",
+    "text": "1.1 Equations\nHere’s an equation:\n\\[\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN(1 - \\frac{N}{K})\n\\tag{1.1}\\]\nAnd Equation A.1 is a reference to the equation above.",
+    "crumbs": [
+      "Course information",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Quarto examples</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#references",
+    "href": "intro.html#references",
+    "title": "1  Quarto examples",
+    "section": "1.2 References",
+    "text": "1.2 References\nSee Knuth (1984) for additional discussion of literate programming.",
+    "crumbs": [
+      "Course information",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Quarto examples</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#syntax-highlighting",
+    "href": "intro.html#syntax-highlighting",
+    "title": "1  Quarto examples",
+    "section": "1.3 Syntax highlighting",
+    "text": "1.3 Syntax highlighting\nHere’s some python code:\nimport numpy as np\nnp.random.seed(42)\na = 1 + 2\nb = a + 3\nprint(\"Hello\")",
+    "crumbs": [
+      "Course information",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Quarto examples</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#visualising-data-r",
+    "href": "intro.html#visualising-data-r",
+    "title": "1  Quarto examples",
+    "section": "1.4 Visualising data (R)",
+    "text": "1.4 Visualising data (R)\nHere’s an interactive plot generated with R:",
+    "crumbs": [
+      "Course information",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Quarto examples</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#a-youtube-clip",
+    "href": "intro.html#a-youtube-clip",
+    "title": "1  Quarto examples",
+    "section": "1.5 A youtube clip:",
+    "text": "1.5 A youtube clip:",
+    "crumbs": [
+      "Course information",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Quarto examples</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "href": "intro.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "title": "1  Quarto examples",
+    "section": "1.6 An ‘iframe’ to a different page (e.g. my simulations)",
+    "text": "1.6 An ‘iframe’ to a different page (e.g. my simulations)\n\n\nMermaid\nDiagrams (Mermaid syntax):\n\n\n\n\n\n\nflowchart TB\nA(Models) --&gt; C(\"Analytical (mathematical)\")\nA --&gt; B(\"Numerical (computational)\")\nB --&gt; F(Individual-based model)\nB --&gt; G(Cellular automaton)\nC --&gt; E(Differential equation)\nC --&gt; D(MAPs)\n\n\n\n\nFigure 1.1: Types of models\n\n\n\n\n\nWhich can be referred to Figure A.1.\n\n\nCallouts\nCall-outs can organise information and highlight important points.\n\n\n\n\n\n\nNote\n\n\n\nNote that there are five types of callouts, including: note, warning, important, tip, and caution.\n\n\n\n\n\n\n\n\nTip with Title\n\n\n\nThis is an example of a callout with a title.\n\n\n\n\n\n\n\n\nExpand To Learn About Collapse\n\n\n\n\n\nThis is an example of a ‘folded’ caution callout that can be expanded by the user. You can use collapse=\"true\" to collapse it by default or collapse=\"false\" to make a collapsible callout that is expanded by default.\n\n\n\n\n\n\n\n\n\nTip 1.1: Cross-Referencing a Tip\n\n\n\nAdd an ID starting with #tip- to reference a tip.\n\n\nSee Tip A.1…\n\n\nHow to format questions/problem sets\n\nExercise 1.1 (Test 1) The equation of any straight line, called a linear equation, can be written as:\n\\[\ny = mx + b\n\\tag{1.2}\\]\nRefer to the equation like this Equation A.2 or like Customlabel A.2.\na. Blabla?\nb. Of blablabla?\n\n\n\nSharing data tables:\n\n\n\n\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "Course information",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Quarto examples</span>"
+    ]
+  },
+  {
+    "objectID": "general.html",
+    "href": "general.html",
+    "title": "2  General course info",
+    "section": "",
+    "text": "Our names, email addresses, an overview of the course content, learning goals, tips, grading, group formation, usage of Brightspace, materials they need, required attendencee, and feedback is welcome blabla.",
+    "crumbs": [
+      "Course information",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>General course info</span>"
+    ]
+  },
+  {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "3  Schedule",
+    "section": "",
+    "text": "The schedule of the course and important deadlines are outlined below. The course is divided into blabla modules, each with its own set of topics and blabla. The schedule is subject to change, and any updates will be communicated in advance. Blabla.\n(paste below is the schedule of Kwanti/BioMS as an example)",
+    "crumbs": [
+      "Course information",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Schedule</span>"
+    ]
+  },
+  {
+    "objectID": "pattern_intro_text.html",
+    "href": "pattern_intro_text.html",
+    "title": "4  Pattern formation",
+    "section": "",
+    "text": "4.1 Equations\nHere’s an equation:\n\\[\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN(1 - \\frac{N}{K})\n\\tag{4.1}\\]\nAnd Equation A.1 is a reference to the equation above.",
+    "crumbs": [
+      "I) Pattern formation",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Pattern formation</span>"
+    ]
+  },
+  {
+    "objectID": "pattern_intro_text.html#references",
+    "href": "pattern_intro_text.html#references",
+    "title": "4  Pattern formation",
+    "section": "4.2 References",
+    "text": "4.2 References\nSee Knuth (1984) for additional discussion of literate programming.",
+    "crumbs": [
+      "I) Pattern formation",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Pattern formation</span>"
+    ]
+  },
+  {
+    "objectID": "pattern_intro_text.html#syntax-highlighting",
+    "href": "pattern_intro_text.html#syntax-highlighting",
+    "title": "4  Pattern formation",
+    "section": "4.3 Syntax highlighting",
+    "text": "4.3 Syntax highlighting\nHere’s some python code:\nimport numpy as np\nnp.random.seed(42)\na = 1 + 2\nb = a + 3\nprint(\"Hello\")",
+    "crumbs": [
+      "I) Pattern formation",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Pattern formation</span>"
+    ]
+  },
+  {
+    "objectID": "pattern_intro_text.html#visualising-data-r",
+    "href": "pattern_intro_text.html#visualising-data-r",
+    "title": "4  Pattern formation",
+    "section": "4.4 Visualising data (R)",
+    "text": "4.4 Visualising data (R)\nHere’s an interactive plot generated with R:",
+    "crumbs": [
+      "I) Pattern formation",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Pattern formation</span>"
+    ]
+  },
+  {
+    "objectID": "pattern_intro_text.html#a-youtube-clip",
+    "href": "pattern_intro_text.html#a-youtube-clip",
+    "title": "4  Pattern formation",
+    "section": "4.5 A youtube clip:",
+    "text": "4.5 A youtube clip:",
+    "crumbs": [
+      "I) Pattern formation",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Pattern formation</span>"
+    ]
+  },
+  {
+    "objectID": "pattern_intro_text.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "href": "pattern_intro_text.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "title": "4  Pattern formation",
+    "section": "4.6 An ‘iframe’ to a different page (e.g. my simulations)",
+    "text": "4.6 An ‘iframe’ to a different page (e.g. my simulations)\n\n\nMermaid\nDiagrams (Mermaid syntax):\n\n\n\n\n\n\nflowchart TB\nA(Models) --&gt; C(\"Analytical (mathematical)\")\nA --&gt; B(\"Numerical (computational)\")\nB --&gt; F(Individual-based model)\nB --&gt; G(Cellular automaton)\nC --&gt; E(Differential equation)\nC --&gt; D(MAPs)\n\n\n\n\nFigure 4.1: Types of models\n\n\n\n\n\nWhich can be referred to Figure A.1.\n\n\nCallouts\nCall-outs can organise information and highlight important points.\n\n\n\n\n\n\nNote\n\n\n\nNote that there are five types of callouts, including: note, warning, important, tip, and caution.\n\n\n\n\n\n\n\n\nTip with Title\n\n\n\nThis is an example of a callout with a title.\n\n\n\n\n\n\n\n\nExpand To Learn About Collapse\n\n\n\n\n\nThis is an example of a ‘folded’ caution callout that can be expanded by the user. You can use collapse=\"true\" to collapse it by default or collapse=\"false\" to make a collapsible callout that is expanded by default.\n\n\n\n\n\n\n\n\n\nTip 4.1: Cross-Referencing a Tip\n\n\n\nAdd an ID starting with #tip- to reference a tip.\n\n\nSee Tip A.1…\n\n\nHow to format questions/problem sets\n\nExercise 4.1 (Test 1) The equation of any straight line, called a linear equation, can be written as:\n\\[\ny = mx + b\n\\tag{4.2}\\]\nRefer to the equation like this Equation A.2 or like Customlabel A.2.\na. Blabla?\nb. Of blablabla?\n\n\n\nSharing data tables:\n\n\n\n\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "I) Pattern formation",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Pattern formation</span>"
+    ]
+  },
+  {
+    "objectID": "pattern_practical_1.html",
+    "href": "pattern_practical_1.html",
+    "title": "5  Practical 1",
+    "section": "",
+    "text": "5.1 Equations\nHere’s an equation:\n\\[\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN(1 - \\frac{N}{K})\n\\tag{5.1}\\]\nAnd Equation A.1 is a reference to the equation above.",
+    "crumbs": [
+      "I) Pattern formation",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Practical 1</span>"
+    ]
+  },
+  {
+    "objectID": "pattern_practical_1.html#references",
+    "href": "pattern_practical_1.html#references",
+    "title": "5  Practical 1",
+    "section": "5.2 References",
+    "text": "5.2 References\nSee Knuth (1984) for additional discussion of literate programming.",
+    "crumbs": [
+      "I) Pattern formation",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Practical 1</span>"
+    ]
+  },
+  {
+    "objectID": "pattern_practical_1.html#syntax-highlighting",
+    "href": "pattern_practical_1.html#syntax-highlighting",
+    "title": "5  Practical 1",
+    "section": "5.3 Syntax highlighting",
+    "text": "5.3 Syntax highlighting\nHere’s some python code:\nimport numpy as np\nnp.random.seed(42)\na = 1 + 2\nb = a + 3\nprint(\"Hello\")",
+    "crumbs": [
+      "I) Pattern formation",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Practical 1</span>"
+    ]
+  },
+  {
+    "objectID": "pattern_practical_1.html#visualising-data-r",
+    "href": "pattern_practical_1.html#visualising-data-r",
+    "title": "5  Practical 1",
+    "section": "5.4 Visualising data (R)",
+    "text": "5.4 Visualising data (R)\nHere’s an interactive plot generated with R:",
+    "crumbs": [
+      "I) Pattern formation",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Practical 1</span>"
+    ]
+  },
+  {
+    "objectID": "pattern_practical_1.html#a-youtube-clip",
+    "href": "pattern_practical_1.html#a-youtube-clip",
+    "title": "5  Practical 1",
+    "section": "5.5 A youtube clip:",
+    "text": "5.5 A youtube clip:",
+    "crumbs": [
+      "I) Pattern formation",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Practical 1</span>"
+    ]
+  },
+  {
+    "objectID": "pattern_practical_1.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "href": "pattern_practical_1.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "title": "5  Practical 1",
+    "section": "5.6 An ‘iframe’ to a different page (e.g. my simulations)",
+    "text": "5.6 An ‘iframe’ to a different page (e.g. my simulations)\n\n\nMermaid\nDiagrams (Mermaid syntax):\n\n\n\n\n\n\nflowchart TB\nA(Models) --&gt; C(\"Analytical (mathematical)\")\nA --&gt; B(\"Numerical (computational)\")\nB --&gt; F(Individual-based model)\nB --&gt; G(Cellular automaton)\nC --&gt; E(Differential equation)\nC --&gt; D(MAPs)\n\n\n\n\nFigure 5.1: Types of models\n\n\n\n\n\nWhich can be referred to Figure A.1.\n\n\nCallouts\nCall-outs can organise information and highlight important points.\n\n\n\n\n\n\nNote\n\n\n\nNote that there are five types of callouts, including: note, warning, important, tip, and caution.\n\n\n\n\n\n\n\n\nTip with Title\n\n\n\nThis is an example of a callout with a title.\n\n\n\n\n\n\n\n\nExpand To Learn About Collapse\n\n\n\n\n\nThis is an example of a ‘folded’ caution callout that can be expanded by the user. You can use collapse=\"true\" to collapse it by default or collapse=\"false\" to make a collapsible callout that is expanded by default.\n\n\n\n\n\n\n\n\n\nTip 5.1: Cross-Referencing a Tip\n\n\n\nAdd an ID starting with #tip- to reference a tip.\n\n\nSee Tip A.1…\n\n\nHow to format questions/problem sets\n\nExercise 5.1 (Test 1) The equation of any straight line, called a linear equation, can be written as:\n\\[\ny = mx + b\n\\tag{5.2}\\]\nRefer to the equation like this Equation A.2 or like Customlabel A.2.\na. Blabla?\nb. Of blablabla?\n\n\n\nSharing data tables:\n\n\n\n\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "I) Pattern formation",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Practical 1</span>"
+    ]
+  },
+  {
+    "objectID": "pattern_practical_2.html",
+    "href": "pattern_practical_2.html",
+    "title": "6  Practical 2",
+    "section": "",
+    "text": "6.1 Equations\nHere’s an equation:\n\\[\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN(1 - \\frac{N}{K})\n\\tag{6.1}\\]\nAnd Equation A.1 is a reference to the equation above.",
+    "crumbs": [
+      "I) Pattern formation",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Practical 2</span>"
+    ]
+  },
+  {
+    "objectID": "pattern_practical_2.html#references",
+    "href": "pattern_practical_2.html#references",
+    "title": "6  Practical 2",
+    "section": "6.2 References",
+    "text": "6.2 References\nSee Knuth (1984) for additional discussion of literate programming.",
+    "crumbs": [
+      "I) Pattern formation",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Practical 2</span>"
+    ]
+  },
+  {
+    "objectID": "pattern_practical_2.html#syntax-highlighting",
+    "href": "pattern_practical_2.html#syntax-highlighting",
+    "title": "6  Practical 2",
+    "section": "6.3 Syntax highlighting",
+    "text": "6.3 Syntax highlighting\nHere’s some python code:\nimport numpy as np\nnp.random.seed(42)\na = 1 + 2\nb = a + 3\nprint(\"Hello\")",
+    "crumbs": [
+      "I) Pattern formation",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Practical 2</span>"
+    ]
+  },
+  {
+    "objectID": "pattern_practical_2.html#visualising-data-r",
+    "href": "pattern_practical_2.html#visualising-data-r",
+    "title": "6  Practical 2",
+    "section": "6.4 Visualising data (R)",
+    "text": "6.4 Visualising data (R)\nHere’s an interactive plot generated with R:",
+    "crumbs": [
+      "I) Pattern formation",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Practical 2</span>"
+    ]
+  },
+  {
+    "objectID": "pattern_practical_2.html#a-youtube-clip",
+    "href": "pattern_practical_2.html#a-youtube-clip",
+    "title": "6  Practical 2",
+    "section": "6.5 A youtube clip:",
+    "text": "6.5 A youtube clip:",
+    "crumbs": [
+      "I) Pattern formation",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Practical 2</span>"
+    ]
+  },
+  {
+    "objectID": "pattern_practical_2.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "href": "pattern_practical_2.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "title": "6  Practical 2",
+    "section": "6.6 An ‘iframe’ to a different page (e.g. my simulations)",
+    "text": "6.6 An ‘iframe’ to a different page (e.g. my simulations)\n\n\nMermaid\nDiagrams (Mermaid syntax):\n\n\n\n\n\n\nflowchart TB\nA(Models) --&gt; C(\"Analytical (mathematical)\")\nA --&gt; B(\"Numerical (computational)\")\nB --&gt; F(Individual-based model)\nB --&gt; G(Cellular automaton)\nC --&gt; E(Differential equation)\nC --&gt; D(MAPs)\n\n\n\n\nFigure 6.1: Types of models\n\n\n\n\n\nWhich can be referred to Figure A.1.\n\n\nCallouts\nCall-outs can organise information and highlight important points.\n\n\n\n\n\n\nNote\n\n\n\nNote that there are five types of callouts, including: note, warning, important, tip, and caution.\n\n\n\n\n\n\n\n\nTip with Title\n\n\n\nThis is an example of a callout with a title.\n\n\n\n\n\n\n\n\nExpand To Learn About Collapse\n\n\n\n\n\nThis is an example of a ‘folded’ caution callout that can be expanded by the user. You can use collapse=\"true\" to collapse it by default or collapse=\"false\" to make a collapsible callout that is expanded by default.\n\n\n\n\n\n\n\n\n\nTip 6.1: Cross-Referencing a Tip\n\n\n\nAdd an ID starting with #tip- to reference a tip.\n\n\nSee Tip A.1…\n\n\nHow to format questions/problem sets\n\nExercise 6.1 (Test 1) The equation of any straight line, called a linear equation, can be written as:\n\\[\ny = mx + b\n\\tag{6.2}\\]\nRefer to the equation like this Equation A.2 or like Customlabel A.2.\na. Blabla?\nb. Of blablabla?\n\n\n\nSharing data tables:\n\n\n\n\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "I) Pattern formation",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Practical 2</span>"
+    ]
+  },
+  {
+    "objectID": "pattern_practical_3.html",
+    "href": "pattern_practical_3.html",
+    "title": "7  Practical 3",
+    "section": "",
+    "text": "7.1 Equations\nHere’s an equation:\n\\[\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN(1 - \\frac{N}{K})\n\\tag{7.1}\\]\nAnd Equation A.1 is a reference to the equation above.",
+    "crumbs": [
+      "I) Pattern formation",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Practical 3</span>"
+    ]
+  },
+  {
+    "objectID": "pattern_practical_3.html#references",
+    "href": "pattern_practical_3.html#references",
+    "title": "7  Practical 3",
+    "section": "7.2 References",
+    "text": "7.2 References\nSee Knuth (1984) for additional discussion of literate programming.",
+    "crumbs": [
+      "I) Pattern formation",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Practical 3</span>"
+    ]
+  },
+  {
+    "objectID": "pattern_practical_3.html#syntax-highlighting",
+    "href": "pattern_practical_3.html#syntax-highlighting",
+    "title": "7  Practical 3",
+    "section": "7.3 Syntax highlighting",
+    "text": "7.3 Syntax highlighting\nHere’s some python code:\nimport numpy as np\nnp.random.seed(42)\na = 1 + 2\nb = a + 3\nprint(\"Hello\")",
+    "crumbs": [
+      "I) Pattern formation",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Practical 3</span>"
+    ]
+  },
+  {
+    "objectID": "pattern_practical_3.html#visualising-data-r",
+    "href": "pattern_practical_3.html#visualising-data-r",
+    "title": "7  Practical 3",
+    "section": "7.4 Visualising data (R)",
+    "text": "7.4 Visualising data (R)\nHere’s an interactive plot generated with R:",
+    "crumbs": [
+      "I) Pattern formation",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Practical 3</span>"
+    ]
+  },
+  {
+    "objectID": "pattern_practical_3.html#a-youtube-clip",
+    "href": "pattern_practical_3.html#a-youtube-clip",
+    "title": "7  Practical 3",
+    "section": "7.5 A youtube clip:",
+    "text": "7.5 A youtube clip:",
+    "crumbs": [
+      "I) Pattern formation",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Practical 3</span>"
+    ]
+  },
+  {
+    "objectID": "pattern_practical_3.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "href": "pattern_practical_3.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "title": "7  Practical 3",
+    "section": "7.6 An ‘iframe’ to a different page (e.g. my simulations)",
+    "text": "7.6 An ‘iframe’ to a different page (e.g. my simulations)\n\n\nMermaid\nDiagrams (Mermaid syntax):\n\n\n\n\n\n\nflowchart TB\nA(Models) --&gt; C(\"Analytical (mathematical)\")\nA --&gt; B(\"Numerical (computational)\")\nB --&gt; F(Individual-based model)\nB --&gt; G(Cellular automaton)\nC --&gt; E(Differential equation)\nC --&gt; D(MAPs)\n\n\n\n\nFigure 7.1: Types of models\n\n\n\n\n\nWhich can be referred to Figure A.1.\n\n\nCallouts\nCall-outs can organise information and highlight important points.\n\n\n\n\n\n\nNote\n\n\n\nNote that there are five types of callouts, including: note, warning, important, tip, and caution.\n\n\n\n\n\n\n\n\nTip with Title\n\n\n\nThis is an example of a callout with a title.\n\n\n\n\n\n\n\n\nExpand To Learn About Collapse\n\n\n\n\n\nThis is an example of a ‘folded’ caution callout that can be expanded by the user. You can use collapse=\"true\" to collapse it by default or collapse=\"false\" to make a collapsible callout that is expanded by default.\n\n\n\n\n\n\n\n\n\nTip 7.1: Cross-Referencing a Tip\n\n\n\nAdd an ID starting with #tip- to reference a tip.\n\n\nSee Tip A.1…\n\n\nHow to format questions/problem sets\n\nExercise 7.1 (Test 1) The equation of any straight line, called a linear equation, can be written as:\n\\[\ny = mx + b\n\\tag{7.2}\\]\nRefer to the equation like this Equation A.2 or like Customlabel A.2.\na. Blabla?\nb. Of blablabla?\n\n\n\nSharing data tables:\n\n\n\n\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "I) Pattern formation",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Practical 3</span>"
+    ]
+  },
+  {
+    "objectID": "morpho_intro_text.html",
+    "href": "morpho_intro_text.html",
+    "title": "8  What is morphogenesis?",
+    "section": "",
+    "text": "8.1 Equations\nHere’s an equation:\n\\[\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN(1 - \\frac{N}{K})\n\\tag{8.1}\\]\nAnd Equation A.1 is a reference to the equation above.",
+    "crumbs": [
+      "II) Morphogenesis",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>What is morphogenesis?</span>"
+    ]
+  },
+  {
+    "objectID": "morpho_intro_text.html#references",
+    "href": "morpho_intro_text.html#references",
+    "title": "8  What is morphogenesis?",
+    "section": "8.2 References",
+    "text": "8.2 References\nSee Knuth (1984) for additional discussion of literate programming.",
+    "crumbs": [
+      "II) Morphogenesis",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>What is morphogenesis?</span>"
+    ]
+  },
+  {
+    "objectID": "morpho_intro_text.html#syntax-highlighting",
+    "href": "morpho_intro_text.html#syntax-highlighting",
+    "title": "8  What is morphogenesis?",
+    "section": "8.3 Syntax highlighting",
+    "text": "8.3 Syntax highlighting\nHere’s some python code:\nimport numpy as np\nnp.random.seed(42)\na = 1 + 2\nb = a + 3\nprint(\"Hello\")",
+    "crumbs": [
+      "II) Morphogenesis",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>What is morphogenesis?</span>"
+    ]
+  },
+  {
+    "objectID": "morpho_intro_text.html#visualising-data-r",
+    "href": "morpho_intro_text.html#visualising-data-r",
+    "title": "8  What is morphogenesis?",
+    "section": "8.4 Visualising data (R)",
+    "text": "8.4 Visualising data (R)\nHere’s an interactive plot generated with R:",
+    "crumbs": [
+      "II) Morphogenesis",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>What is morphogenesis?</span>"
+    ]
+  },
+  {
+    "objectID": "morpho_intro_text.html#a-youtube-clip",
+    "href": "morpho_intro_text.html#a-youtube-clip",
+    "title": "8  What is morphogenesis?",
+    "section": "8.5 A youtube clip:",
+    "text": "8.5 A youtube clip:",
+    "crumbs": [
+      "II) Morphogenesis",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>What is morphogenesis?</span>"
+    ]
+  },
+  {
+    "objectID": "morpho_intro_text.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "href": "morpho_intro_text.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "title": "8  What is morphogenesis?",
+    "section": "8.6 An ‘iframe’ to a different page (e.g. my simulations)",
+    "text": "8.6 An ‘iframe’ to a different page (e.g. my simulations)\n\n\nMermaid\nDiagrams (Mermaid syntax):\n\n\n\n\n\n\nflowchart TB\nA(Models) --&gt; C(\"Analytical (mathematical)\")\nA --&gt; B(\"Numerical (computational)\")\nB --&gt; F(Individual-based model)\nB --&gt; G(Cellular automaton)\nC --&gt; E(Differential equation)\nC --&gt; D(MAPs)\n\n\n\n\nFigure 8.1: Types of models\n\n\n\n\n\nWhich can be referred to Figure A.1.\n\n\nCallouts\nCall-outs can organise information and highlight important points.\n\n\n\n\n\n\nNote\n\n\n\nNote that there are five types of callouts, including: note, warning, important, tip, and caution.\n\n\n\n\n\n\n\n\nTip with Title\n\n\n\nThis is an example of a callout with a title.\n\n\n\n\n\n\n\n\nExpand To Learn About Collapse\n\n\n\n\n\nThis is an example of a ‘folded’ caution callout that can be expanded by the user. You can use collapse=\"true\" to collapse it by default or collapse=\"false\" to make a collapsible callout that is expanded by default.\n\n\n\n\n\n\n\n\n\nTip 8.1: Cross-Referencing a Tip\n\n\n\nAdd an ID starting with #tip- to reference a tip.\n\n\nSee Tip A.1…\n\n\nHow to format questions/problem sets\n\nExercise 8.1 (Test 1) The equation of any straight line, called a linear equation, can be written as:\n\\[\ny = mx + b\n\\tag{8.2}\\]\nRefer to the equation like this Equation A.2 or like Customlabel A.2.\na. Blabla?\nb. Of blablabla?\n\n\n\nSharing data tables:\n\n\n\n\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "II) Morphogenesis",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>What is morphogenesis?</span>"
+    ]
+  },
+  {
+    "objectID": "morpho_practical_1.html",
+    "href": "morpho_practical_1.html",
+    "title": "9  Practical 1",
+    "section": "",
+    "text": "9.1 Equations\nHere’s an equation:\n\\[\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN(1 - \\frac{N}{K})\n\\tag{9.1}\\]\nAnd Equation A.1 is a reference to the equation above.",
+    "crumbs": [
+      "II) Morphogenesis",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Practical 1</span>"
+    ]
+  },
+  {
+    "objectID": "morpho_practical_1.html#references",
+    "href": "morpho_practical_1.html#references",
+    "title": "9  Practical 1",
+    "section": "9.2 References",
+    "text": "9.2 References\nSee Knuth (1984) for additional discussion of literate programming.",
+    "crumbs": [
+      "II) Morphogenesis",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Practical 1</span>"
+    ]
+  },
+  {
+    "objectID": "morpho_practical_1.html#syntax-highlighting",
+    "href": "morpho_practical_1.html#syntax-highlighting",
+    "title": "9  Practical 1",
+    "section": "9.3 Syntax highlighting",
+    "text": "9.3 Syntax highlighting\nHere’s some python code:\nimport numpy as np\nnp.random.seed(42)\na = 1 + 2\nb = a + 3\nprint(\"Hello\")",
+    "crumbs": [
+      "II) Morphogenesis",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Practical 1</span>"
+    ]
+  },
+  {
+    "objectID": "morpho_practical_1.html#visualising-data-r",
+    "href": "morpho_practical_1.html#visualising-data-r",
+    "title": "9  Practical 1",
+    "section": "9.4 Visualising data (R)",
+    "text": "9.4 Visualising data (R)\nHere’s an interactive plot generated with R:",
+    "crumbs": [
+      "II) Morphogenesis",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Practical 1</span>"
+    ]
+  },
+  {
+    "objectID": "morpho_practical_1.html#a-youtube-clip",
+    "href": "morpho_practical_1.html#a-youtube-clip",
+    "title": "9  Practical 1",
+    "section": "9.5 A youtube clip:",
+    "text": "9.5 A youtube clip:",
+    "crumbs": [
+      "II) Morphogenesis",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Practical 1</span>"
+    ]
+  },
+  {
+    "objectID": "morpho_practical_1.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "href": "morpho_practical_1.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "title": "9  Practical 1",
+    "section": "9.6 An ‘iframe’ to a different page (e.g. my simulations)",
+    "text": "9.6 An ‘iframe’ to a different page (e.g. my simulations)\n\n\nMermaid\nDiagrams (Mermaid syntax):\n\n\n\n\n\n\nflowchart TB\nA(Models) --&gt; C(\"Analytical (mathematical)\")\nA --&gt; B(\"Numerical (computational)\")\nB --&gt; F(Individual-based model)\nB --&gt; G(Cellular automaton)\nC --&gt; E(Differential equation)\nC --&gt; D(MAPs)\n\n\n\n\nFigure 9.1: Types of models\n\n\n\n\n\nWhich can be referred to Figure A.1.\n\n\nCallouts\nCall-outs can organise information and highlight important points.\n\n\n\n\n\n\nNote\n\n\n\nNote that there are five types of callouts, including: note, warning, important, tip, and caution.\n\n\n\n\n\n\n\n\nTip with Title\n\n\n\nThis is an example of a callout with a title.\n\n\n\n\n\n\n\n\nExpand To Learn About Collapse\n\n\n\n\n\nThis is an example of a ‘folded’ caution callout that can be expanded by the user. You can use collapse=\"true\" to collapse it by default or collapse=\"false\" to make a collapsible callout that is expanded by default.\n\n\n\n\n\n\n\n\n\nTip 9.1: Cross-Referencing a Tip\n\n\n\nAdd an ID starting with #tip- to reference a tip.\n\n\nSee Tip A.1…\n\n\nHow to format questions/problem sets\n\nExercise 9.1 (Test 1) The equation of any straight line, called a linear equation, can be written as:\n\\[\ny = mx + b\n\\tag{9.2}\\]\nRefer to the equation like this Equation A.2 or like Customlabel A.2.\na. Blabla?\nb. Of blablabla?\n\n\n\nSharing data tables:\n\n\n\n\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "II) Morphogenesis",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Practical 1</span>"
+    ]
+  },
+  {
+    "objectID": "morpho_practical_2.html",
+    "href": "morpho_practical_2.html",
+    "title": "10  Practical 2",
+    "section": "",
+    "text": "10.1 Equations\nHere’s an equation:\n\\[\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN(1 - \\frac{N}{K})\n\\tag{10.1}\\]\nAnd Equation A.1 is a reference to the equation above.",
+    "crumbs": [
+      "II) Morphogenesis",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Practical 2</span>"
+    ]
+  },
+  {
+    "objectID": "morpho_practical_2.html#references",
+    "href": "morpho_practical_2.html#references",
+    "title": "10  Practical 2",
+    "section": "10.2 References",
+    "text": "10.2 References\nSee Knuth (1984) for additional discussion of literate programming.",
+    "crumbs": [
+      "II) Morphogenesis",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Practical 2</span>"
+    ]
+  },
+  {
+    "objectID": "morpho_practical_2.html#syntax-highlighting",
+    "href": "morpho_practical_2.html#syntax-highlighting",
+    "title": "10  Practical 2",
+    "section": "10.3 Syntax highlighting",
+    "text": "10.3 Syntax highlighting\nHere’s some python code:\nimport numpy as np\nnp.random.seed(42)\na = 1 + 2\nb = a + 3\nprint(\"Hello\")",
+    "crumbs": [
+      "II) Morphogenesis",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Practical 2</span>"
+    ]
+  },
+  {
+    "objectID": "morpho_practical_2.html#visualising-data-r",
+    "href": "morpho_practical_2.html#visualising-data-r",
+    "title": "10  Practical 2",
+    "section": "10.4 Visualising data (R)",
+    "text": "10.4 Visualising data (R)\nHere’s an interactive plot generated with R:",
+    "crumbs": [
+      "II) Morphogenesis",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Practical 2</span>"
+    ]
+  },
+  {
+    "objectID": "morpho_practical_2.html#a-youtube-clip",
+    "href": "morpho_practical_2.html#a-youtube-clip",
+    "title": "10  Practical 2",
+    "section": "10.5 A youtube clip:",
+    "text": "10.5 A youtube clip:",
+    "crumbs": [
+      "II) Morphogenesis",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Practical 2</span>"
+    ]
+  },
+  {
+    "objectID": "morpho_practical_2.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "href": "morpho_practical_2.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "title": "10  Practical 2",
+    "section": "10.6 An ‘iframe’ to a different page (e.g. my simulations)",
+    "text": "10.6 An ‘iframe’ to a different page (e.g. my simulations)\n\n\nMermaid\nDiagrams (Mermaid syntax):\n\n\n\n\n\n\nflowchart TB\nA(Models) --&gt; C(\"Analytical (mathematical)\")\nA --&gt; B(\"Numerical (computational)\")\nB --&gt; F(Individual-based model)\nB --&gt; G(Cellular automaton)\nC --&gt; E(Differential equation)\nC --&gt; D(MAPs)\n\n\n\n\nFigure 10.1: Types of models\n\n\n\n\n\nWhich can be referred to Figure A.1.\n\n\nCallouts\nCall-outs can organise information and highlight important points.\n\n\n\n\n\n\nNote\n\n\n\nNote that there are five types of callouts, including: note, warning, important, tip, and caution.\n\n\n\n\n\n\n\n\nTip with Title\n\n\n\nThis is an example of a callout with a title.\n\n\n\n\n\n\n\n\nExpand To Learn About Collapse\n\n\n\n\n\nThis is an example of a ‘folded’ caution callout that can be expanded by the user. You can use collapse=\"true\" to collapse it by default or collapse=\"false\" to make a collapsible callout that is expanded by default.\n\n\n\n\n\n\n\n\n\nTip 10.1: Cross-Referencing a Tip\n\n\n\nAdd an ID starting with #tip- to reference a tip.\n\n\nSee Tip A.1…\n\n\nHow to format questions/problem sets\n\nExercise 10.1 (Test 1) The equation of any straight line, called a linear equation, can be written as:\n\\[\ny = mx + b\n\\tag{10.2}\\]\nRefer to the equation like this Equation A.2 or like Customlabel A.2.\na. Blabla?\nb. Of blablabla?\n\n\n\nSharing data tables:\n\n\n\n\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "II) Morphogenesis",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Practical 2</span>"
+    ]
+  },
+  {
+    "objectID": "differentiation_intro_text.html",
+    "href": "differentiation_intro_text.html",
+    "title": "11  Differentiation introduction",
+    "section": "",
+    "text": "11.1 Equations\nHere’s an equation:\n\\[\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN(1 - \\frac{N}{K})\n\\tag{11.1}\\]\nAnd Equation A.1 is a reference to the equation above.",
+    "crumbs": [
+      "III) Cell differentiation",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Differentiation introduction</span>"
+    ]
+  },
+  {
+    "objectID": "differentiation_intro_text.html#references",
+    "href": "differentiation_intro_text.html#references",
+    "title": "11  Differentiation introduction",
+    "section": "11.2 References",
+    "text": "11.2 References\nSee Knuth (1984) for additional discussion of literate programming.",
+    "crumbs": [
+      "III) Cell differentiation",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Differentiation introduction</span>"
+    ]
+  },
+  {
+    "objectID": "differentiation_intro_text.html#syntax-highlighting",
+    "href": "differentiation_intro_text.html#syntax-highlighting",
+    "title": "11  Differentiation introduction",
+    "section": "11.3 Syntax highlighting",
+    "text": "11.3 Syntax highlighting\nHere’s some python code:\nimport numpy as np\nnp.random.seed(42)\na = 1 + 2\nb = a + 3\nprint(\"Hello\")",
+    "crumbs": [
+      "III) Cell differentiation",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Differentiation introduction</span>"
+    ]
+  },
+  {
+    "objectID": "differentiation_intro_text.html#visualising-data-r",
+    "href": "differentiation_intro_text.html#visualising-data-r",
+    "title": "11  Differentiation introduction",
+    "section": "11.4 Visualising data (R)",
+    "text": "11.4 Visualising data (R)\nHere’s an interactive plot generated with R:",
+    "crumbs": [
+      "III) Cell differentiation",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Differentiation introduction</span>"
+    ]
+  },
+  {
+    "objectID": "differentiation_intro_text.html#a-youtube-clip",
+    "href": "differentiation_intro_text.html#a-youtube-clip",
+    "title": "11  Differentiation introduction",
+    "section": "11.5 A youtube clip:",
+    "text": "11.5 A youtube clip:",
+    "crumbs": [
+      "III) Cell differentiation",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Differentiation introduction</span>"
+    ]
+  },
+  {
+    "objectID": "differentiation_intro_text.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "href": "differentiation_intro_text.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "title": "11  Differentiation introduction",
+    "section": "11.6 An ‘iframe’ to a different page (e.g. my simulations)",
+    "text": "11.6 An ‘iframe’ to a different page (e.g. my simulations)\n\n\nMermaid\nDiagrams (Mermaid syntax):\n\n\n\n\n\n\nflowchart TB\nA(Models) --&gt; C(\"Analytical (mathematical)\")\nA --&gt; B(\"Numerical (computational)\")\nB --&gt; F(Individual-based model)\nB --&gt; G(Cellular automaton)\nC --&gt; E(Differential equation)\nC --&gt; D(MAPs)\n\n\n\n\nFigure 11.1: Types of models\n\n\n\n\n\nWhich can be referred to Figure A.1.\n\n\nCallouts\nCall-outs can organise information and highlight important points.\n\n\n\n\n\n\nNote\n\n\n\nNote that there are five types of callouts, including: note, warning, important, tip, and caution.\n\n\n\n\n\n\n\n\nTip with Title\n\n\n\nThis is an example of a callout with a title.\n\n\n\n\n\n\n\n\nExpand To Learn About Collapse\n\n\n\n\n\nThis is an example of a ‘folded’ caution callout that can be expanded by the user. You can use collapse=\"true\" to collapse it by default or collapse=\"false\" to make a collapsible callout that is expanded by default.\n\n\n\n\n\n\n\n\n\nTip 11.1: Cross-Referencing a Tip\n\n\n\nAdd an ID starting with #tip- to reference a tip.\n\n\nSee Tip A.1…\n\n\nHow to format questions/problem sets\n\nExercise 11.1 (Test 1) The equation of any straight line, called a linear equation, can be written as:\n\\[\ny = mx + b\n\\tag{11.2}\\]\nRefer to the equation like this Equation A.2 or like Customlabel A.2.\na. Blabla?\nb. Of blablabla?\n\n\n\nSharing data tables:\n\n\n\n\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "III) Cell differentiation",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Differentiation introduction</span>"
+    ]
+  },
+  {
+    "objectID": "differentiation_practical_1.html",
+    "href": "differentiation_practical_1.html",
+    "title": "12  Practical 1",
+    "section": "",
+    "text": "12.1 Equations\nHere’s an equation:\n\\[\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN(1 - \\frac{N}{K})\n\\tag{12.1}\\]\nAnd Equation A.1 is a reference to the equation above.",
+    "crumbs": [
+      "III) Cell differentiation",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Practical 1</span>"
+    ]
+  },
+  {
+    "objectID": "differentiation_practical_1.html#references",
+    "href": "differentiation_practical_1.html#references",
+    "title": "12  Practical 1",
+    "section": "12.2 References",
+    "text": "12.2 References\nSee Knuth (1984) for additional discussion of literate programming.",
+    "crumbs": [
+      "III) Cell differentiation",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Practical 1</span>"
+    ]
+  },
+  {
+    "objectID": "differentiation_practical_1.html#syntax-highlighting",
+    "href": "differentiation_practical_1.html#syntax-highlighting",
+    "title": "12  Practical 1",
+    "section": "12.3 Syntax highlighting",
+    "text": "12.3 Syntax highlighting\nHere’s some python code:\nimport numpy as np\nnp.random.seed(42)\na = 1 + 2\nb = a + 3\nprint(\"Hello\")",
+    "crumbs": [
+      "III) Cell differentiation",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Practical 1</span>"
+    ]
+  },
+  {
+    "objectID": "differentiation_practical_1.html#visualising-data-r",
+    "href": "differentiation_practical_1.html#visualising-data-r",
+    "title": "12  Practical 1",
+    "section": "12.4 Visualising data (R)",
+    "text": "12.4 Visualising data (R)\nHere’s an interactive plot generated with R:",
+    "crumbs": [
+      "III) Cell differentiation",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Practical 1</span>"
+    ]
+  },
+  {
+    "objectID": "differentiation_practical_1.html#a-youtube-clip",
+    "href": "differentiation_practical_1.html#a-youtube-clip",
+    "title": "12  Practical 1",
+    "section": "12.5 A youtube clip:",
+    "text": "12.5 A youtube clip:",
+    "crumbs": [
+      "III) Cell differentiation",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Practical 1</span>"
+    ]
+  },
+  {
+    "objectID": "differentiation_practical_1.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "href": "differentiation_practical_1.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "title": "12  Practical 1",
+    "section": "12.6 An ‘iframe’ to a different page (e.g. my simulations)",
+    "text": "12.6 An ‘iframe’ to a different page (e.g. my simulations)\n\n\nMermaid\nDiagrams (Mermaid syntax):\n\n\n\n\n\n\nflowchart TB\nA(Models) --&gt; C(\"Analytical (mathematical)\")\nA --&gt; B(\"Numerical (computational)\")\nB --&gt; F(Individual-based model)\nB --&gt; G(Cellular automaton)\nC --&gt; E(Differential equation)\nC --&gt; D(MAPs)\n\n\n\n\nFigure 12.1: Types of models\n\n\n\n\n\nWhich can be referred to Figure A.1.\n\n\nCallouts\nCall-outs can organise information and highlight important points.\n\n\n\n\n\n\nNote\n\n\n\nNote that there are five types of callouts, including: note, warning, important, tip, and caution.\n\n\n\n\n\n\n\n\nTip with Title\n\n\n\nThis is an example of a callout with a title.\n\n\n\n\n\n\n\n\nExpand To Learn About Collapse\n\n\n\n\n\nThis is an example of a ‘folded’ caution callout that can be expanded by the user. You can use collapse=\"true\" to collapse it by default or collapse=\"false\" to make a collapsible callout that is expanded by default.\n\n\n\n\n\n\n\n\n\nTip 12.1: Cross-Referencing a Tip\n\n\n\nAdd an ID starting with #tip- to reference a tip.\n\n\nSee Tip A.1…\n\n\nHow to format questions/problem sets\n\nExercise 12.1 (Test 1) The equation of any straight line, called a linear equation, can be written as:\n\\[\ny = mx + b\n\\tag{12.2}\\]\nRefer to the equation like this Equation A.2 or like Customlabel A.2.\na. Blabla?\nb. Of blablabla?\n\n\n\nSharing data tables:\n\n\n\n\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "III) Cell differentiation",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Practical 1</span>"
+    ]
+  },
+  {
+    "objectID": "differentiation_practical_2.html",
+    "href": "differentiation_practical_2.html",
+    "title": "13  Practical 2",
+    "section": "",
+    "text": "13.1 Equations\nHere’s an equation:\n\\[\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN(1 - \\frac{N}{K})\n\\tag{13.1}\\]\nAnd Equation A.1 is a reference to the equation above.",
+    "crumbs": [
+      "III) Cell differentiation",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Practical 2</span>"
+    ]
+  },
+  {
+    "objectID": "differentiation_practical_2.html#references",
+    "href": "differentiation_practical_2.html#references",
+    "title": "13  Practical 2",
+    "section": "13.2 References",
+    "text": "13.2 References\nSee Knuth (1984) for additional discussion of literate programming.",
+    "crumbs": [
+      "III) Cell differentiation",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Practical 2</span>"
+    ]
+  },
+  {
+    "objectID": "differentiation_practical_2.html#syntax-highlighting",
+    "href": "differentiation_practical_2.html#syntax-highlighting",
+    "title": "13  Practical 2",
+    "section": "13.3 Syntax highlighting",
+    "text": "13.3 Syntax highlighting\nHere’s some python code:\nimport numpy as np\nnp.random.seed(42)\na = 1 + 2\nb = a + 3\nprint(\"Hello\")",
+    "crumbs": [
+      "III) Cell differentiation",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Practical 2</span>"
+    ]
+  },
+  {
+    "objectID": "differentiation_practical_2.html#visualising-data-r",
+    "href": "differentiation_practical_2.html#visualising-data-r",
+    "title": "13  Practical 2",
+    "section": "13.4 Visualising data (R)",
+    "text": "13.4 Visualising data (R)\nHere’s an interactive plot generated with R:",
+    "crumbs": [
+      "III) Cell differentiation",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Practical 2</span>"
+    ]
+  },
+  {
+    "objectID": "differentiation_practical_2.html#a-youtube-clip",
+    "href": "differentiation_practical_2.html#a-youtube-clip",
+    "title": "13  Practical 2",
+    "section": "13.5 A youtube clip:",
+    "text": "13.5 A youtube clip:",
+    "crumbs": [
+      "III) Cell differentiation",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Practical 2</span>"
+    ]
+  },
+  {
+    "objectID": "differentiation_practical_2.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "href": "differentiation_practical_2.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "title": "13  Practical 2",
+    "section": "13.6 An ‘iframe’ to a different page (e.g. my simulations)",
+    "text": "13.6 An ‘iframe’ to a different page (e.g. my simulations)\n\n\nMermaid\nDiagrams (Mermaid syntax):\n\n\n\n\n\n\nflowchart TB\nA(Models) --&gt; C(\"Analytical (mathematical)\")\nA --&gt; B(\"Numerical (computational)\")\nB --&gt; F(Individual-based model)\nB --&gt; G(Cellular automaton)\nC --&gt; E(Differential equation)\nC --&gt; D(MAPs)\n\n\n\n\nFigure 13.1: Types of models\n\n\n\n\n\nWhich can be referred to Figure A.1.\n\n\nCallouts\nCall-outs can organise information and highlight important points.\n\n\n\n\n\n\nNote\n\n\n\nNote that there are five types of callouts, including: note, warning, important, tip, and caution.\n\n\n\n\n\n\n\n\nTip with Title\n\n\n\nThis is an example of a callout with a title.\n\n\n\n\n\n\n\n\nExpand To Learn About Collapse\n\n\n\n\n\nThis is an example of a ‘folded’ caution callout that can be expanded by the user. You can use collapse=\"true\" to collapse it by default or collapse=\"false\" to make a collapsible callout that is expanded by default.\n\n\n\n\n\n\n\n\n\nTip 13.1: Cross-Referencing a Tip\n\n\n\nAdd an ID starting with #tip- to reference a tip.\n\n\nSee Tip A.1…\n\n\nHow to format questions/problem sets\n\nExercise 13.1 (Test 1) The equation of any straight line, called a linear equation, can be written as:\n\\[\ny = mx + b\n\\tag{13.2}\\]\nRefer to the equation like this Equation A.2 or like Customlabel A.2.\na. Blabla?\nb. Of blablabla?\n\n\n\nSharing data tables:\n\n\n\n\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "III) Cell differentiation",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Practical 2</span>"
+    ]
+  },
+  {
+    "objectID": "evo_intro_text.html",
+    "href": "evo_intro_text.html",
+    "title": "14  Introduction to evolution",
+    "section": "",
+    "text": "14.1 Evolution: Life’s most clever algorithm\nEvolution is the process by which populations change over generations through variation, inheritance, and differential survival. This idea, famously championed by Darwin and Wallace, explains the diversity of life on Earth. It describes how species adapt to their environments, how new species arise, and how complex traits evolve. Today, the concept of evolution has expanded beyond biology, it’s recognised as a powerful algorithm that drives adaptation in systems ranging from bacteria (genes) to ideas (memes), from DNA (nucleotides) to computer code (bits).\nIn this part of the course, we’ll bring these ingredients to life by writing our own simulations and watching evolution unfold on the screen. And while our digital creatures aren’t made of flesh and blood, the evolutionary battles they fight, the strategies they discover, and the adaptations they evolve are as real, and often as surprising, as anything found in nature itself.",
+    "crumbs": [
+      "IV) Evolution",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Introduction to evolution</span>"
+    ]
+  },
+  {
+    "objectID": "evo_intro_text.html#three-ingredients",
+    "href": "evo_intro_text.html#three-ingredients",
+    "title": "14  Introduction to evolution",
+    "section": "14.2 Three ingredients",
+    "text": "14.2 Three ingredients\nAs briefly mentioned above, we just need three ingredients to have evolution by means of natural selection:\n\nvariation (differences between individuals),\ninheritance (the passing on of traits),\nselection (some variants performing better than others).\n\nThe last ingredient is self-evident. Evolution by means of natural selection requires selection. It is especially the first two that are a little more tricky to really understand, as they are not always as obvious as they seem.",
+    "crumbs": [
+      "IV) Evolution",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Introduction to evolution</span>"
+    ]
+  },
+  {
+    "objectID": "evo_intro_text.html#balancing-change-and-stability",
+    "href": "evo_intro_text.html#balancing-change-and-stability",
+    "title": "14  Introduction to evolution",
+    "section": "14.3 Balancing change and stability",
+    "text": "14.3 Balancing change and stability\nTo evolve, a system needs enough variation—if everyone is the same, there’s nothing for selection to act on. But this variation can’t just be noise; it needs to be passed on. That means inheritance can’t be perfect—there must be room for change, such as through mutations—but it also can’t be too sloppy. If traits aren’t reliably transmitted to the next generation, then even the best adaptations will vanish before they can take hold. Evolution lives in the sweet spot: not too rigid, not too chaotic, just enough memory and just enough change. To make this a little more tangible, let us make our very first simulation.",
+    "crumbs": [
+      "IV) Evolution",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Introduction to evolution</span>"
+    ]
+  },
+  {
+    "objectID": "evo_intro_text.html#a-simple-evolutionary-algorithm",
+    "href": "evo_intro_text.html#a-simple-evolutionary-algorithm",
+    "title": "14  Introduction to evolution",
+    "section": "14.4 A simple evolutionary algorithm",
+    "text": "14.4 A simple evolutionary algorithm\nOne simple way to simulate evolution is with a Moran process, a classic model from population genetics. Imagine a population of 100 individuals, each with a single gene that determines its fitness. This gene can have all values from 0 to 1 (let’s call this value \\(\\phi\\)). At each time step, one individual is chosen to reproduce with a probability proportional to \\(\\phi\\), producing 1 offspring. This offspring inherits their parents gene (so the same \\(\\phi\\)), but with a probability \\(\\mu\\), the value changes by a small amount (a mutation). The population size will now be 101, which could be interesting if we want to study population growth. However, in a Moran process we keep it simple: one random individual is removed by the new offspring, so the population size is constant while still allowing fitter individuals to spread over time.\nHere’s a minimal Python example:\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nnp.random.seed(5)\n\nN = 100 # Population size \nfitnesses = np.full(N, 0.85)\nmu = 0.01\n# Updated parameters\nsteps = 10000\navg_fitness = []\n\n# Moran process with mutation (logging every 10 steps)\nfor step in range(steps):\n    probs = fitnesses / fitnesses.sum()\n    parent = np.random.choice(N, p=probs)\n    dead = np.random.choice(N)\n\n    # Copy with mutation\n    new_fit = fitnesses[parent]\n    if np.random.rand() &lt; mutation_rate:\n        new_fit = np.clip(new_fit + np.random.normal(0, 1), 0, 1)\n            \n    fitnesses[dead] = new_fit\n\n    # Save average fitness every 10 steps\n    if step % 10 == 0:\n        avg_fitness.append(fitnesses.mean())\n\n# Plotting\nplt.plot(np.arange(0, steps, 10), avg_fitness)\nplt.xlabel(\"Step\")\nplt.ylabel(\"Average fitness\")\nplt.title(\"Evolution of Fitness in a Moran Process\")\nplt.grid(True)\nplt.tight_layout()\nplt.show()\n\nExercise 14.1 (Moran process simulation) \nStudy the Python code for the evolutionary algorithm given above. Answer the following questions:\n\nHow “well adapted” is the initial population?\nHow are mutations implemented in the code? Can you think of other ways?\nCan the parent be replaced by its own offspring? Why/why not?\nInvestigate which value of \\(\\mu\\) works best if you want to achieve maximum fitness in the shortest amount of steps.",
+    "crumbs": [
+      "IV) Evolution",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Introduction to evolution</span>"
+    ]
+  },
+  {
+    "objectID": "evo_intro_text.html#what-this-part-of-the-course-is-about",
+    "href": "evo_intro_text.html#what-this-part-of-the-course-is-about",
+    "title": "14  Introduction to evolution",
+    "section": "14.5 What this part of the course is about",
+    "text": "14.5 What this part of the course is about\nThe above simulation is fun, but not really… biologically relevant. While some simplifications are necessary to make models feasible, we will investigate a few evolutionary models that are somewhat more interesting. We will discuss how to model spatial structure and local competition, how genotypes (where mutations happen) get translated into phenotypes (where selection happens), and how the environment can change over time and lead to niche construction and interactions.",
+    "crumbs": [
+      "IV) Evolution",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Introduction to evolution</span>"
+    ]
+  },
+  {
+    "objectID": "evo_practical_1.html",
+    "href": "evo_practical_1.html",
+    "title": "15  Practical 1",
+    "section": "",
+    "text": "15.1 Sticking together\nIn this practical, you will practice building your own model of collective behaviour, based on the one you saw at the end of the lecture:\nThe example above is a implemented in Javascript, a programming language that is widely used for web development. It is easy to share with others, and surprisingly fast. But, it’s not the most “professional” programming language. So we are going to make our very own version of this, in Python.",
+    "crumbs": [
+      "IV) Evolution",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Practical 1</span>"
+    ]
+  },
+  {
+    "objectID": "evo_practical_1.html#sticking-together",
+    "href": "evo_practical_1.html#sticking-together",
+    "title": "15  Practical 1",
+    "section": "",
+    "text": "Cacatoo examples",
+    "crumbs": [
+      "IV) Evolution",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Practical 1</span>"
+    ]
+  },
+  {
+    "objectID": "evo_practical_1.html#final-code",
+    "href": "evo_practical_1.html#final-code",
+    "title": "15  Practical 1",
+    "section": "15.3 Final code",
+    "text": "15.3 Final code\n\n\n\n\n\n\nFinal code\n\n\n\n\n\n###\n# PRACTICAL 1 | \"Every cell for themselves?\"\n# What you were supposed to do yourself:\n# 1. Implement collision avoidance\n# 2. Implement reproduction\n# 3. Implement a Gaussian grid\n# 4. Implement \"run and tumble\"\n# 5. Add noise to Gaussian, what happens?\n# 5.5 Modify collision into STICKING\n# 5. Try it out with 100 cells... \n###\n\n###\n# PRACTICAL 1 | Nabespreking\n# What you were supposed to do yourself:\n# 1. Why grids are popular\n# 2. Tessellation of space\n# 3. Quad tree explanation\n# 4. Show that the second part (JS model) uses a quad tree\n###\n\n# 1. IMPORTS AND PARAMETERS\n# Libraries\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom matplotlib.widgets import Slider\n\n# Parameters for simulation\nGRID_SIZE = 100  # Resolution of the grid\nMAX_VELOCITY = 0.02  # Maximum velocity magnitude\nMAX_FORCE = 0.02  # Maximum force magnitude\nBOID_SPEED = 1  # SPEED OF BOIDS, CAN BE VARIABLE\nTARGET_REACHED_THRESHOLD = 0.05  # Distance threshold to consider the target reached\nDRAG_COEFFICIENT = 0.1  # Friction to slow down the cell naturally\n\n# 2. MAIN LOOP (using functions and classes defined below)\ndef main():\n    \"\"\"Main function to set up and run the simulation.\"\"\"\n    # Initialise simulation\n    num_cells = 100\n    sim = Simulation(num_cells)\n\n    # Enable interactive mode\n    plt.ion()\n    fig, ax = plt.subplots(figsize=(6, 6))\n    plt.subplots_adjust(bottom=0.2)\n\n    # Add a slider for selecting the number of cells\n    ax_slider = plt.axes([0.2, 0.05, 0.6, 0.03])\n    slider = Slider(ax_slider, 'Cells', 1, 50, valinit=num_cells, valstep=1)\n\n    def update_cells(val):\n        sim.initialise_cells(int(slider.val))\n\n    slider.on_changed(update_cells)\n\n    # Run simulation\n    for t in range(1, 10000):\n        sim.simulate_step()\n\n        # Clear the plot\n        ax.clear()\n\n        # Plot the Gaussian grid as a background\n        ax.imshow(sim.grid, extent=(0, 1, 0, 1), origin='lower', cmap='viridis', alpha=0.5)\n\n        # Plot the target as an orange dot\n        ax.scatter(sim.target_position[0], sim.target_position[1], c='orange', s=50, edgecolor='white')\n\n        # Plot each cell as a blue dot and add a quiver to show the velocity direction\n        for cell in sim.cells:\n            ax.scatter(cell.x, cell.y, c='blue', s=100, edgecolor='black')\n            ax.quiver(cell.x, cell.y, cell.vx * 0.35, cell.vy * 0.35, angles='xy', scale_units='xy', scale=0.05, color='darkblue')\n\n        # Set plot limits and labels\n        ax.set_xlim(0, 1)\n        ax.set_ylim(0, 1)\n        ax.set_aspect('equal', adjustable='box')\n        ax.set_title(f\"Timestep: {t}\")\n        ax.set_xlabel(\"X\")\n        ax.set_ylabel(\"Y\")\n\n        plt.pause(0.01)\n\n    # Keep the final plot open\n    plt.ioff()\n    plt.show()\n\n# 3. SIMULATION CLASS\nclass Simulation:\n    \"\"\"Manages the grid, cells, target, and simulation logic.\"\"\"\n    def __init__(self, num_cells):\n        self.grid = np.zeros((GRID_SIZE, GRID_SIZE))  # Initialise an empty grid\n        self.cells = []\n        self.target_position = [np.random.uniform(0, 1), np.random.uniform(0, 1)]\n        self.create_gaussian(self.grid, 0.5, 0.5, 0.1)  # Create Gaussian grid\n        self.initialise_cells(num_cells)\n\n    def simulate_step(self):\n        \"\"\"Simulate one timestep of the simulation.\"\"\"\n        for cell in self.cells:\n            # Reset acceleration at the start of each step\n            cell.ax = 0\n            cell.ay = 0\n\n            # Apply steering behaviours\n            #self.steer_towards_dot(cell)  \n            \n            self.avoid_collision(cell)\n            self.stick_to_close(cell)\n            self.find_peak(cell)\n            self.check_target_reached(cell)\n\n            # Apply drag force to acceleration\n            cell.ax += -DRAG_COEFFICIENT * cell.vx\n            cell.ay += -DRAG_COEFFICIENT * cell.vy\n\n            # Apply forces and update position\n            cell.apply_forces()\n            cell.update_position()\n\n            # Limit velocity to the maximum allowed\n            cell.vx = np.clip(cell.vx, -MAX_VELOCITY, MAX_VELOCITY)\n            cell.vy = np.clip(cell.vy, -MAX_VELOCITY, MAX_VELOCITY)\n\n    def initialise_cells(self, num_cells):\n        \"\"\"Initialise the cells with random positions and velocities.\"\"\"\n        self.cells = []\n        for _ in range(num_cells):\n            x = np.random.uniform(0, 1)\n            y = np.random.uniform(0, 1)\n            vx = 0\n            vy = 0\n            speed = 0.1 + 0.9 * np.random.uniform(0, 1) * BOID_SPEED\n            speed = 1\n            self.cells.append(Cell(x, y, vx, vy, speed))\n        self.target_position = [np.random.uniform(0, 1), np.random.uniform(0, 1)]\n\n    def create_gaussian(self, grid, mean_x, mean_y, std_dev):\n        \"\"\"Create a Gaussian distribution on the grid.\"\"\"\n        for i in range(GRID_SIZE):\n            for j in range(GRID_SIZE):\n                x = i / (GRID_SIZE - 1)\n                y = j / (GRID_SIZE - 1)\n                distance_squared = (x - mean_x)**2 + (y - mean_y)**2\n                grid[i, j] = np.exp(-distance_squared / (2 * std_dev**2)) #* np.random.uniform(0.5, 1.5)\n                grid[i, j] = np.exp(-distance_squared / (2 * std_dev**2)) * np.random.uniform(0.0, 2.0)\n\n        # Normalize the grid to keep the total resource concentration the same\n        grid /= np.sum(grid)\n    \n    def find_peak(self, cell):\n        \"\"\"Make the cell move towards the peak of the resource gradient with a random walk.\"\"\"\n        # Convert cell position to grid indices\n        grid_x = int(cell.x * (GRID_SIZE - 1))\n        grid_y = int(cell.y * (GRID_SIZE - 1))\n\n        # Ensure indices are within bounds\n        grid_x = np.clip(grid_x, 1, GRID_SIZE - 2)\n        grid_y = np.clip(grid_y, 1, GRID_SIZE - 2)\n\n        # Calculate the gradient of the grid at the cell's position\n        grad_x = self.grid[grid_x + 1, grid_y] - self.grid[grid_x - 1, grid_y]\n        grad_y = self.grid[grid_x, grid_y + 1] - self.grid[grid_x, grid_y - 1]\n\n        # Normalize the gradient to get the direction\n        grad_magnitude = np.sqrt(grad_x**2 + grad_y**2)\n        if grad_magnitude &gt; 0:\n            grad_x /= grad_magnitude\n            grad_y /= grad_magnitude\n\n        # Check if the cell is moving in the right direction\n        dot_product = grad_x * cell.vx + grad_y * cell.vy  # Dot product of gradient and velocity\n        if dot_product &gt; 0:\n            # Moving in the right direction: small random adjustment\n            angle = np.random.uniform(-np.pi / 8, np.pi / 8)  # Small angle change\n        else:\n            # Moving in the wrong direction: large random adjustment\n            angle = np.random.uniform(-np.pi / 2, np.pi / 2)  # Large angle change\n\n        # Rotate the velocity vector by the random angle\n        cos_angle = np.cos(angle)\n        sin_angle = np.sin(angle)\n        new_vx = cell.vx * cos_angle - cell.vy * sin_angle\n        new_vy = cell.vx * sin_angle + cell.vy * cos_angle\n\n        # Update the velocity with the new direction\n        cell.vx = new_vx\n        cell.vy = new_vy\n\n        # Apply a small force in the direction of the gradient\n        cell.ax += grad_x * cell.speed / 1000\n        cell.ay += grad_y * cell.speed / 1000\n        \n    \n    def avoid_collision(self, cell):\n        \"\"\"Calculate avoidance forces to prevent cells from colliding.\"\"\"\n        for other_cell in self.cells:\n            if other_cell is not cell:\n                # Calculate the distance between the two cells\n                dx = cell.x - other_cell.x\n                dy = cell.y - other_cell.y\n                distance = np.sqrt(dx**2 + dy**2)\n\n                # If the cells are too close, apply a repulsion force\n                if distance &lt; 0.035 and distance &gt; 0:  # Threshold for \"too close\"\n                    # Calculate the repulsion force proportional to the inverse of the distance\n                    force_magnitude = (0.035 - distance) / distance\n                    cell.x += force_magnitude * dx\n                    cell.y += force_magnitude * dy\n                    \n    def stick_to_close(self, cell):\n        \"\"\"Stick to closeby cells.\"\"\"\n        for other_cell in self.cells:\n            if other_cell is not cell:\n                # Calculate the distance between the two cells\n                dx = cell.x - other_cell.x\n                dy = cell.y - other_cell.y\n                distance = np.sqrt(dx**2 + dy**2)\n\n                # If the cells are too close, apply a repulsion force\n                if distance &lt; 0.05 and distance &gt; 0:  # Threshold for \"close\"\n                    # Calculate the repulsion force proportional to the inverse of the distance\n                    force_magnitude = 0.35*(0.05 - distance) / distance\n                    cell.x -= force_magnitude * dx\n                    cell.y -= force_magnitude * dy                    \n    \n    def steer_towards_dot(self, cell):\n        \"\"\"Steer the cell towards the target position.\"\"\"\n        # Calculate the direction vector to the target\n        dx = self.target_position[0] - cell.x\n        dy = self.target_position[1] - cell.y\n        dist_to_target = np.sqrt(dx**2 + dy**2)\n\n        if dist_to_target &gt; 0:\n            # Normalise the direction vector\n            norm_dx = dx / dist_to_target\n            norm_dy = dy / dist_to_target\n\n            # Scale the acceleration by the cell's speed\n            cell.ax += norm_dx * cell.speed / 1000\n            cell.ay += norm_dy * cell.speed / 1000\n    \n    def check_target_reached(self, cell):\n        distance_to_target = np.sqrt((cell.x - self.target_position[0])**2 +\n                                         (cell.y - self.target_position[1])**2)\n        if distance_to_target &lt; TARGET_REACHED_THRESHOLD:\n            # Reproduce: Create a new cell with the same properties as the current cell\n            angle = np.random.uniform(0, 2 * np.pi)\n            radius = np.random.uniform(0.01, 0.05)\n            new_x = cell.x + radius * np.cos(angle)\n            new_y = cell.y + radius * np.sin(angle)\n            new_cell = Cell(new_x, new_y, cell.vx, cell.vy, cell.speed)\n            self.cells.append(new_cell)\n\n            # Kill a random other cell (if there are more than 10 cells)\n            if len(self.cells) &gt; 15:\n                random_cell = np.random.choice(self.cells)\n                #while random_cell is cell:  # Ensure we don't remove the reproducing cell\n                #    random_cell = np.random.choice(self.cells)\n                self.cells.remove(random_cell)\n\n            # Set a new target position\n            self.target_position = [np.random.uniform(0, 1), np.random.uniform(0, 1)]\n            print(f\"Target reached! New target position: {self.target_position}\")\n            return\n        \n        \n# 4. CELL CLASS\nclass Cell:\n    \"\"\"Represents an individual cell in the simulation.\"\"\"\n    def __init__(self, x, y, vx, vy, speed):\n        self.x = x\n        self.y = y\n        self.vx = vx\n        self.vy = vy\n        self.ax = 0\n        self.ay = 0\n        self.speed = speed\n\n    def update_position(self):\n        \"\"\"Update the cell's position based on its velocity.\"\"\"\n        self.x += self.vx\n        self.y += self.vy\n\n    def apply_forces(self):\n        \"\"\"Apply a force to the cell, updating its velocity.\"\"\"\n        self.vx += self.ax\n        self.vy += self.ay\n\n        # Limit velocity to the maximum allowed\n        self.vx = np.clip(self.vx, -MAX_VELOCITY, MAX_VELOCITY)\n        self.vy = np.clip(self.vy, -MAX_VELOCITY, MAX_VELOCITY)\n        self.ax = 0\n        self.ay = 0\n\n\n\n            \n\n# 5. Execute the main loop\nif __name__ == \"__main__\":\n    main()\n\n\n\nHere’s an equation:\n\\[\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN(1 - \\frac{N}{K})\n\\tag{15.1}\\]\nAnd Equation A.1 is a reference to the equation above.",
+    "crumbs": [
+      "IV) Evolution",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Practical 1</span>"
+    ]
+  },
+  {
+    "objectID": "evo_practical_1.html#references",
+    "href": "evo_practical_1.html#references",
+    "title": "15  Practical 1",
+    "section": "15.4 References",
+    "text": "15.4 References\nSee Knuth (1984) for additional discussion of literate programming.",
+    "crumbs": [
+      "IV) Evolution",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Practical 1</span>"
+    ]
+  },
+  {
+    "objectID": "evo_practical_1.html#syntax-highlighting",
+    "href": "evo_practical_1.html#syntax-highlighting",
+    "title": "15  Practical 1",
+    "section": "15.5 Syntax highlighting",
+    "text": "15.5 Syntax highlighting\nHere’s some python code:\nimport numpy as np\nnp.random.seed(42)\na = 1 + 2\nb = a + 3\nprint(\"Hello\")",
+    "crumbs": [
+      "IV) Evolution",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Practical 1</span>"
+    ]
+  },
+  {
+    "objectID": "evo_practical_1.html#visualising-data-r",
+    "href": "evo_practical_1.html#visualising-data-r",
+    "title": "15  Practical 1",
+    "section": "15.6 Visualising data (R)",
+    "text": "15.6 Visualising data (R)\nHere’s an interactive plot generated with R:",
+    "crumbs": [
+      "IV) Evolution",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Practical 1</span>"
+    ]
+  },
+  {
+    "objectID": "evo_practical_1.html#a-youtube-clip",
+    "href": "evo_practical_1.html#a-youtube-clip",
+    "title": "15  Practical 1",
+    "section": "15.7 A youtube clip:",
+    "text": "15.7 A youtube clip:",
+    "crumbs": [
+      "IV) Evolution",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Practical 1</span>"
+    ]
+  },
+  {
+    "objectID": "evo_practical_1.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "href": "evo_practical_1.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "title": "15  Practical 1",
+    "section": "15.8 An ‘iframe’ to a different page (e.g. my simulations)",
+    "text": "15.8 An ‘iframe’ to a different page (e.g. my simulations)\n\n\nMermaid\nDiagrams (Mermaid syntax):\n\n\n\n\n\n\nflowchart TB\nA(Models) --&gt; C(\"Analytical (mathematical)\")\nA --&gt; B(\"Numerical (computational)\")\nB --&gt; F(Individual-based model)\nB --&gt; G(Cellular automaton)\nC --&gt; E(Differential equation)\nC --&gt; D(MAPs)\n\n\n\n\nFigure 15.1: Types of models\n\n\n\n\n\nWhich can be referred to Figure A.1.\n\n\nCallouts\nCall-outs can organise information and highlight important points.\n\n\n\n\n\n\nNote\n\n\n\nNote that there are five types of callouts, including: note, warning, important, tip, and caution.\n\n\n\n\n\n\n\n\nTip with Title\n\n\n\nThis is an example of a callout with a title.\n\n\n\n\n\n\n\n\nExpand To Learn About Collapse\n\n\n\n\n\nThis is an example of a ‘folded’ caution callout that can be expanded by the user. You can use collapse=\"true\" to collapse it by default or collapse=\"false\" to make a collapsible callout that is expanded by default.\n\n\n\n\n\n\n\n\n\nTip 15.1: Cross-Referencing a Tip\n\n\n\nAdd an ID starting with #tip- to reference a tip.\n\n\nSee Tip A.1…\n\n\nHow to format questions/problem sets\n\nExercise 15.1 (Test 1) The equation of any straight line, called a linear equation, can be written as:\n\\[\ny = mx + b\n\\tag{15.2}\\]\nRefer to the equation like this Equation A.2 or like Customlabel A.2.\na. Blabla?\nb. Of blablabla?\n\n\n\nSharing data tables:\n\n\n\n\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "IV) Evolution",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Practical 1</span>"
+    ]
+  },
+  {
+    "objectID": "evo_practical_2.html",
+    "href": "evo_practical_2.html",
+    "title": "16  Practical 2",
+    "section": "",
+    "text": "16.1 Equations\nHere’s an equation:\n\\[\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN(1 - \\frac{N}{K})\n\\tag{16.1}\\]\nAnd Equation A.1 is a reference to the equation above.",
+    "crumbs": [
+      "IV) Evolution",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Practical 2</span>"
+    ]
+  },
+  {
+    "objectID": "evo_practical_2.html#references",
+    "href": "evo_practical_2.html#references",
+    "title": "16  Practical 2",
+    "section": "16.2 References",
+    "text": "16.2 References\nSee Knuth (1984) for additional discussion of literate programming.",
+    "crumbs": [
+      "IV) Evolution",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Practical 2</span>"
+    ]
+  },
+  {
+    "objectID": "evo_practical_2.html#syntax-highlighting",
+    "href": "evo_practical_2.html#syntax-highlighting",
+    "title": "16  Practical 2",
+    "section": "16.3 Syntax highlighting",
+    "text": "16.3 Syntax highlighting\nHere’s some python code:\nimport numpy as np\nnp.random.seed(42)\na = 1 + 2\nb = a + 3\nprint(\"Hello\")",
+    "crumbs": [
+      "IV) Evolution",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Practical 2</span>"
+    ]
+  },
+  {
+    "objectID": "evo_practical_2.html#visualising-data-r",
+    "href": "evo_practical_2.html#visualising-data-r",
+    "title": "16  Practical 2",
+    "section": "16.4 Visualising data (R)",
+    "text": "16.4 Visualising data (R)\nHere’s an interactive plot generated with R:",
+    "crumbs": [
+      "IV) Evolution",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Practical 2</span>"
+    ]
+  },
+  {
+    "objectID": "evo_practical_2.html#a-youtube-clip",
+    "href": "evo_practical_2.html#a-youtube-clip",
+    "title": "16  Practical 2",
+    "section": "16.5 A youtube clip:",
+    "text": "16.5 A youtube clip:",
+    "crumbs": [
+      "IV) Evolution",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Practical 2</span>"
+    ]
+  },
+  {
+    "objectID": "evo_practical_2.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "href": "evo_practical_2.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "title": "16  Practical 2",
+    "section": "16.6 An ‘iframe’ to a different page (e.g. my simulations)",
+    "text": "16.6 An ‘iframe’ to a different page (e.g. my simulations)\n\n\nMermaid\nDiagrams (Mermaid syntax):\n\n\n\n\n\n\nflowchart TB\nA(Models) --&gt; C(\"Analytical (mathematical)\")\nA --&gt; B(\"Numerical (computational)\")\nB --&gt; F(Individual-based model)\nB --&gt; G(Cellular automaton)\nC --&gt; E(Differential equation)\nC --&gt; D(MAPs)\n\n\n\n\nFigure 16.1: Types of models\n\n\n\n\n\nWhich can be referred to Figure A.1.\n\n\nCallouts\nCall-outs can organise information and highlight important points.\n\n\n\n\n\n\nNote\n\n\n\nNote that there are five types of callouts, including: note, warning, important, tip, and caution.\n\n\n\n\n\n\n\n\nTip with Title\n\n\n\nThis is an example of a callout with a title.\n\n\n\n\n\n\n\n\nExpand To Learn About Collapse\n\n\n\n\n\nThis is an example of a ‘folded’ caution callout that can be expanded by the user. You can use collapse=\"true\" to collapse it by default or collapse=\"false\" to make a collapsible callout that is expanded by default.\n\n\n\n\n\n\n\n\n\nTip 16.1: Cross-Referencing a Tip\n\n\n\nAdd an ID starting with #tip- to reference a tip.\n\n\nSee Tip A.1…\n\n\nHow to format questions/problem sets\n\nExercise 16.1 (Test 1) The equation of any straight line, called a linear equation, can be written as:\n\\[\ny = mx + b\n\\tag{16.2}\\]\nRefer to the equation like this Equation A.2 or like Customlabel A.2.\na. Blabla?\nb. Of blablabla?\n\n\n\nSharing data tables:\n\n\n\n\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "IV) Evolution",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Practical 2</span>"
+    ]
+  },
+  {
+    "objectID": "evo_slides.html",
+    "href": "evo_slides.html",
+    "title": "17  Slides",
+    "section": "",
+    "text": "17.1 Day 1 - Individual-based modelling, collective behaviour, the evolution of multicellularity.",
+    "crumbs": [
+      "IV) Evolution",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Slides</span>"
+    ]
+  },
+  {
+    "objectID": "evo_slides.html#day-2---genotypes-phenotypes-and-fitness",
+    "href": "evo_slides.html#day-2---genotypes-phenotypes-and-fitness",
+    "title": "17  Slides",
+    "section": "17.2 Day 2 - Genotypes, phenotypes, and fitness",
+    "text": "17.2 Day 2 - Genotypes, phenotypes, and fitness",
+    "crumbs": [
+      "IV) Evolution",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Slides</span>"
+    ]
+  },
+  {
+    "objectID": "evo_slides.html#day-3---growth-structure-and-horizontal-gene-transfer",
+    "href": "evo_slides.html#day-3---growth-structure-and-horizontal-gene-transfer",
+    "title": "17  Slides",
+    "section": "17.3 Day 3 - Growth, structure and horizontal gene transfer",
+    "text": "17.3 Day 3 - Growth, structure and horizontal gene transfer",
+    "crumbs": [
+      "IV) Evolution",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Slides</span>"
+    ]
+  },
+  {
+    "objectID": "project_1.html",
+    "href": "project_1.html",
+    "title": "18  Differentiation introduction",
+    "section": "",
+    "text": "18.1 Equations\nHere’s an equation:\n\\[\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN(1 - \\frac{N}{K})\n\\tag{18.1}\\]\nAnd Equation A.1 is a reference to the equation above.",
+    "crumbs": [
+      "Mini-projects",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Differentiation introduction</span>"
+    ]
+  },
+  {
+    "objectID": "project_1.html#references",
+    "href": "project_1.html#references",
+    "title": "18  Differentiation introduction",
+    "section": "18.2 References",
+    "text": "18.2 References\nSee Knuth (1984) for additional discussion of literate programming.",
+    "crumbs": [
+      "Mini-projects",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Differentiation introduction</span>"
+    ]
+  },
+  {
+    "objectID": "project_1.html#syntax-highlighting",
+    "href": "project_1.html#syntax-highlighting",
+    "title": "18  Differentiation introduction",
+    "section": "18.3 Syntax highlighting",
+    "text": "18.3 Syntax highlighting\nHere’s some python code:\nimport numpy as np\nnp.random.seed(42)\na = 1 + 2\nb = a + 3\nprint(\"Hello\")",
+    "crumbs": [
+      "Mini-projects",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Differentiation introduction</span>"
+    ]
+  },
+  {
+    "objectID": "project_1.html#visualising-data-r",
+    "href": "project_1.html#visualising-data-r",
+    "title": "18  Differentiation introduction",
+    "section": "18.4 Visualising data (R)",
+    "text": "18.4 Visualising data (R)\nHere’s an interactive plot generated with R:",
+    "crumbs": [
+      "Mini-projects",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Differentiation introduction</span>"
+    ]
+  },
+  {
+    "objectID": "project_1.html#a-youtube-clip",
+    "href": "project_1.html#a-youtube-clip",
+    "title": "18  Differentiation introduction",
+    "section": "18.5 A youtube clip:",
+    "text": "18.5 A youtube clip:",
+    "crumbs": [
+      "Mini-projects",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Differentiation introduction</span>"
+    ]
+  },
+  {
+    "objectID": "project_1.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "href": "project_1.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "title": "18  Differentiation introduction",
+    "section": "18.6 An ‘iframe’ to a different page (e.g. my simulations)",
+    "text": "18.6 An ‘iframe’ to a different page (e.g. my simulations)\n\n\nMermaid\nDiagrams (Mermaid syntax):\n\n\n\n\n\n\nflowchart TB\nA(Models) --&gt; C(\"Analytical (mathematical)\")\nA --&gt; B(\"Numerical (computational)\")\nB --&gt; F(Individual-based model)\nB --&gt; G(Cellular automaton)\nC --&gt; E(Differential equation)\nC --&gt; D(MAPs)\n\n\n\n\nFigure 18.1: Types of models\n\n\n\n\n\nWhich can be referred to Figure A.1.\n\n\nCallouts\nCall-outs can organise information and highlight important points.\n\n\n\n\n\n\nNote\n\n\n\nNote that there are five types of callouts, including: note, warning, important, tip, and caution.\n\n\n\n\n\n\n\n\nTip with Title\n\n\n\nThis is an example of a callout with a title.\n\n\n\n\n\n\n\n\nExpand To Learn About Collapse\n\n\n\n\n\nThis is an example of a ‘folded’ caution callout that can be expanded by the user. You can use collapse=\"true\" to collapse it by default or collapse=\"false\" to make a collapsible callout that is expanded by default.\n\n\n\n\n\n\n\n\n\nTip 18.1: Cross-Referencing a Tip\n\n\n\nAdd an ID starting with #tip- to reference a tip.\n\n\nSee Tip A.1…\n\n\nHow to format questions/problem sets\n\nExercise 18.1 (Test 1) The equation of any straight line, called a linear equation, can be written as:\n\\[\ny = mx + b\n\\tag{18.2}\\]\nRefer to the equation like this Equation A.2 or like Customlabel A.2.\na. Blabla?\nb. Of blablabla?\n\n\n\nSharing data tables:\n\n\n\n\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "Mini-projects",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Differentiation introduction</span>"
+    ]
+  },
+  {
+    "objectID": "project_2.html",
+    "href": "project_2.html",
+    "title": "19  Maintaining a healthy microbiome",
+    "section": "",
+    "text": "19.1 Introduction\nMicrobes often form intricate relationships, not only amongst each other, but also with larger organisms from all kingdoms: plants, animals, and fungi. While they often provide useful services, microbes typically evolve much faster than these hosts. What stops a microbe from taking advantage of its host, taking more resources than it provides, or even damaging the host tissue to gain access to even more resources? The latter scenario, we would call a pathogen, and the likelyhood of this transition from occuring could be called the disease pressure.\nUnderstanding the fundamental principles behind disease pressure can help mitigating disease outbreaks. For example, if we understand the conditions under which a microbe is likely to become a pathogen, we can take steps to prevent this from happening.\nIn summary, the microbes in our gut or in the soil of our favourite crops, are constantly evolving on a parasitism-mutualism continuum (see Figure 19.1). In this mini project, you will investigate the dynamics of microbiomes evolving on such a continuum. We will particularly focus on how the properties of the host (plant, animals, etc.) shape the likelyhood of disease outbreaks. To that end, here are a few key questions to get you started, but you don’t need to focus on each and every one of them at the same time. Plus, more (better!) questions will likely emerge as you work on the project. That’s science.",
+    "crumbs": [
+      "Mini-projects",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Maintaining a healthy microbiome</span>"
+    ]
+  },
+  {
+    "objectID": "project_2.html#introduction",
+    "href": "project_2.html#introduction",
+    "title": "19  Maintaining a healthy microbiome",
+    "section": "",
+    "text": "Figure 19.1: Parasitism-mutualism continuum of host-associated microbes\n\n\n\n\n\nDo mobile hosts (e.g. animals) experience different disease pressures than sessile hosts (e.g. plants)?\nAre mutualistic microbes easier to maintain in short- or long-lived hosts?\nDoes extremely non-local reproduction (e.g. fungal spore dispersal) change these patterns?\nHow does an adaptive immune system (animals) affect the evolution of microbiomes, compared to plants, who don’t have an adaptive immune system?",
+    "crumbs": [
+      "Mini-projects",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Maintaining a healthy microbiome</span>"
+    ]
+  },
+  {
+    "objectID": "project_2.html#getting-started-a-simple-model-by-van2019role.",
+    "href": "project_2.html#getting-started-a-simple-model-by-van2019role.",
+    "title": "19  Maintaining a healthy microbiome",
+    "section": "19.2 Getting started: a simple model by Van Vliet and Doebeli (2019).",
+    "text": "19.2 Getting started: a simple model by Van Vliet and Doebeli (2019).\nMaintaining self-sacrifical microbiomes isn’t easy, as shown by the work of Van Vliet and Doebeli (2019). They show that the evolution of self-sacrificing microbes (which they call “helpers”) is highly sensitive to the host’s longevity and transmission of microbes in between hosts (horizontal transmission). To understand why, start by reading their paper. If you have read it, unfold the text below to see my summary of their methods.\n\n\n\n\n\n\nMy summary of the model by van Vliet et al.\n\n\n\n\n\nIn this model, the birth rate of the host depends on the frequency of allies in the microbiome:\n\\[\nB_i = \\frac{r}{G_H}(1+s_b\\cdot \\frac{A}{A+N})\n\\]\nWhere \\(G_H\\) scales the host generation time w.r.t. the microbiomes, with \\(G_H \\gg r\\), the parameter \\(s_b\\) determines the benefit that hosts get from carrying the ally strain, and the term \\(\\frac{A}{A+N}\\) calculating the frequency \\(f_A\\) of allies in the host, which ensures that the benefit of allies stays bounded. The death rate increases linearly with the density of hosts, and is given by:\n\\[\nD_i = \\frac{r}{G_H} \\frac{H(t)}{K_H}\n\\]\nWhere \\(H(t)\\) gives the number of hosts at a given time, and \\(K_H\\) denotes the basal carrying capacity in the absence of allies. Note that the true carrying capacity can be higher, as helpers increase the birth rate of hosts.\nWhenever a host reproduces, the microbiome is transmitted vertically to their offspring. The frequency of allies in the offspring is sampled from a normal distribution with mean $f_A$:\n\\[\nf_{offspring}  = \\mathcal{N} (f_{A},\\sigma^2)\n\\]\ntruncated such that \\(0&lt;A_{offspring}&lt;1\\). The total density in the newborn is set by \\(n_0\\).\n\nThe simulation loop\nThen, the simulation progresses as follows:\n\nThe birth and death rates of all hosts is calculated\nCalculate the probability of a host-level event (birth/death) occuring\nIf an event occurs, draw a random event proportional to its probability.\nExecute the event sampled in step 3\nUpdate all the microbiomes. The microbiomes are updated in step 5 according to the model where allies can mutate into neutral strains, but not the other way around.\n\n\n\n\n\nTo start the project, we will first replicate their results in Python. As a guideline, use my model summary above. I am ready to help where needed, but at this point in the course your experience should go a long way! If the simulation works, see if you can reproduce the following two figures:\n\n\n\n\n\n\n\n\n\n\n\n(a) Helpers are maintained within a population of hosts (black line shows the average), despite each individual host (green thinner lines) constantly decreasing in helper types. This can be explained by selection at the level of the host.\n\n\n\n\n\n\n\n\n\n\n\n(b) Helpers are not maintained within a population of hosts (black line shows the average) when transmission of microbiomes is horizontal (in between random individuals).\n\n\n\n\n\n\n\nFigure 19.2: Helper maintenance in hosts with different transmission modes",
+    "crumbs": [
+      "Mini-projects",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Maintaining a healthy microbiome</span>"
+    ]
+  },
+  {
+    "objectID": "project_2.html#extending-the-model",
+    "href": "project_2.html#extending-the-model",
+    "title": "19  Maintaining a healthy microbiome",
+    "section": "19.3 Extending the model",
+    "text": "19.3 Extending the model\nNow that you have a working base-line model, let’s extend it to address the questions we phrased earlier: how does mobility of the host affect the evolution of microbiomes, and what about non-locally reproducing fungi? How do these host-level traits affect the likelyhood of “disease” outbreaks? Note that so far, we have only discussed “helpers” and “neutral” microbes, but the same principles apply to pathogens but perhaps a little more extreme. For example, the microbes may evolve such high levels of nastiness, that hosts do not only replicate slower, but die. Think about ways to extend the model that allows you to tune these distinctions.",
+    "crumbs": [
+      "Mini-projects",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Maintaining a healthy microbiome</span>"
+    ]
+  },
+  {
+    "objectID": "project_2.html#equations",
+    "href": "project_2.html#equations",
+    "title": "19  Maintaining a healthy microbiome",
+    "section": "19.4 Equations",
+    "text": "19.4 Equations\nHere’s an equation:\n\\[\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN(1 - \\frac{N}{K})\n\\tag{19.1}\\]\nAnd Equation A.1 is a reference to the equation above.",
+    "crumbs": [
+      "Mini-projects",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Maintaining a healthy microbiome</span>"
+    ]
+  },
+  {
+    "objectID": "project_2.html#references",
+    "href": "project_2.html#references",
+    "title": "19  Maintaining a healthy microbiome",
+    "section": "19.5 References",
+    "text": "19.5 References\nSee Knuth (1984) for additional discussion of literate programming.",
+    "crumbs": [
+      "Mini-projects",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Maintaining a healthy microbiome</span>"
+    ]
+  },
+  {
+    "objectID": "project_2.html#syntax-highlighting",
+    "href": "project_2.html#syntax-highlighting",
+    "title": "19  Maintaining a healthy microbiome",
+    "section": "19.6 Syntax highlighting",
+    "text": "19.6 Syntax highlighting\nHere’s some python code:\nimport numpy as np\nnp.random.seed(42)\na = 1 + 2\nb = a + 3\nprint(\"Hello\")",
+    "crumbs": [
+      "Mini-projects",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Maintaining a healthy microbiome</span>"
+    ]
+  },
+  {
+    "objectID": "project_2.html#visualising-data-r",
+    "href": "project_2.html#visualising-data-r",
+    "title": "19  Maintaining a healthy microbiome",
+    "section": "19.7 Visualising data (R)",
+    "text": "19.7 Visualising data (R)\nHere’s an interactive plot generated with R:",
+    "crumbs": [
+      "Mini-projects",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Maintaining a healthy microbiome</span>"
+    ]
+  },
+  {
+    "objectID": "project_2.html#a-youtube-clip",
+    "href": "project_2.html#a-youtube-clip",
+    "title": "19  Maintaining a healthy microbiome",
+    "section": "19.8 A youtube clip:",
+    "text": "19.8 A youtube clip:",
+    "crumbs": [
+      "Mini-projects",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Maintaining a healthy microbiome</span>"
+    ]
+  },
+  {
+    "objectID": "project_2.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "href": "project_2.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "title": "19  Maintaining a healthy microbiome",
+    "section": "19.9 An ‘iframe’ to a different page (e.g. my simulations)",
+    "text": "19.9 An ‘iframe’ to a different page (e.g. my simulations)\n\n\nMermaid\nDiagrams (Mermaid syntax):\n\n\n\n\n\n\nflowchart TB\nA(Models) --&gt; C(\"Analytical (mathematical)\")\nA --&gt; B(\"Numerical (computational)\")\nB --&gt; F(Individual-based model)\nB --&gt; G(Cellular automaton)\nC --&gt; E(Differential equation)\nC --&gt; D(MAPs)\n\n\n\n\nFigure 19.3: Types of models\n\n\n\n\n\nWhich can be referred to Figure A.1.\n\n\nCallouts\nCall-outs can organise information and highlight important points.\n\n\n\n\n\n\nNote\n\n\n\nNote that there are five types of callouts, including: note, warning, important, tip, and caution.\n\n\n\n\n\n\n\n\nTip with Title\n\n\n\nThis is an example of a callout with a title.\n\n\n\n\n\n\n\n\nExpand To Learn About Collapse\n\n\n\n\n\nThis is an example of a ‘folded’ caution callout that can be expanded by the user. You can use collapse=\"true\" to collapse it by default or collapse=\"false\" to make a collapsible callout that is expanded by default.\n\n\n\n\n\n\n\n\n\nTip 19.1: Cross-Referencing a Tip\n\n\n\nAdd an ID starting with #tip- to reference a tip.\n\n\nSee Tip A.1…\n\n\nHow to format questions/problem sets\n\nExercise 19.1 (Test 1) The equation of any straight line, called a linear equation, can be written as:\n\\[\ny = mx + b\n\\tag{19.2}\\]\nRefer to the equation like this Equation A.2 or like Customlabel A.2.\na. Blabla?\nb. Of blablabla?\n\n\n\nSharing data tables:\n\n\n\n\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.\n\n\nVan Vliet, Simon, and Michael Doebeli. 2019. “The Role of Multilevel Selection in Host Microbiome Evolution.” Proceedings of the National Academy of Sciences 116 (41): 20591–97.",
+    "crumbs": [
+      "Mini-projects",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Maintaining a healthy microbiome</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "20  Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.\n1 + 1 = 2",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.\n\n\nVan Vliet, Simon, and Michael Doebeli. 2019. “The Role of\nMultilevel Selection in Host Microbiome Evolution.”\nProceedings of the National Academy of Sciences 116 (41):\n20591–97.",
+    "crumbs": [
+      "References"
+    ]
+  },
+  {
+    "objectID": "answers.html",
+    "href": "answers.html",
+    "title": "Appendix A — Quarto examples",
+    "section": "",
+    "text": "A.1 Equations\nHere’s an equation:\n\\[\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN(1 - \\frac{N}{K})\n\\tag{A.1}\\]\nAnd Equation A.1 is a reference to the equation above.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Quarto examples</span>"
+    ]
+  },
+  {
+    "objectID": "answers.html#references",
+    "href": "answers.html#references",
+    "title": "Appendix A — Quarto examples",
+    "section": "A.2 References",
+    "text": "A.2 References\nSee Knuth (1984) for additional discussion of literate programming.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Quarto examples</span>"
+    ]
+  },
+  {
+    "objectID": "answers.html#syntax-highlighting",
+    "href": "answers.html#syntax-highlighting",
+    "title": "Appendix A — Quarto examples",
+    "section": "A.3 Syntax highlighting",
+    "text": "A.3 Syntax highlighting\nHere’s some python code:\nimport numpy as np\nnp.random.seed(42)\na = 1 + 2\nb = a + 3\nprint(\"Hello\")",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Quarto examples</span>"
+    ]
+  },
+  {
+    "objectID": "answers.html#visualising-data-r",
+    "href": "answers.html#visualising-data-r",
+    "title": "Appendix A — Quarto examples",
+    "section": "A.4 Visualising data (R)",
+    "text": "A.4 Visualising data (R)\nHere’s an interactive plot generated with R:",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Quarto examples</span>"
+    ]
+  },
+  {
+    "objectID": "answers.html#a-youtube-clip",
+    "href": "answers.html#a-youtube-clip",
+    "title": "Appendix A — Quarto examples",
+    "section": "A.5 A youtube clip:",
+    "text": "A.5 A youtube clip:",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Quarto examples</span>"
+    ]
+  },
+  {
+    "objectID": "answers.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "href": "answers.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "title": "Appendix A — Quarto examples",
+    "section": "A.6 An ‘iframe’ to a different page (e.g. my simulations)",
+    "text": "A.6 An ‘iframe’ to a different page (e.g. my simulations)\n\n\nMermaid\nDiagrams (Mermaid syntax):\n\n\n\n\n\n\nflowchart TB\nA(Models) --&gt; C(\"Analytical (mathematical)\")\nA --&gt; B(\"Numerical (computational)\")\nB --&gt; F(Individual-based model)\nB --&gt; G(Cellular automaton)\nC --&gt; E(Differential equation)\nC --&gt; D(MAPs)\n\n\n\n\nFigure A.1: Types of models\n\n\n\n\n\nWhich can be referred to Figure A.1.\n\n\nCallouts\nCall-outs can organise information and highlight important points.\n\n\n\n\n\n\nNote\n\n\n\nNote that there are five types of callouts, including: note, warning, important, tip, and caution.\n\n\n\n\n\n\n\n\nTip with Title\n\n\n\nThis is an example of a callout with a title.\n\n\n\n\n\n\n\n\nExpand To Learn About Collapse\n\n\n\n\n\nThis is an example of a ‘folded’ caution callout that can be expanded by the user. You can use collapse=\"true\" to collapse it by default or collapse=\"false\" to make a collapsible callout that is expanded by default.\n\n\n\n\n\n\n\n\n\nTip A.1: Cross-Referencing a Tip\n\n\n\nAdd an ID starting with #tip- to reference a tip.\n\n\nSee Tip A.1…\n\n\nHow to format questions/problem sets\n\nExercise A.1 (Test 1) The equation of any straight line, called a linear equation, can be written as:\n\\[\ny = mx + b\n\\tag{A.2}\\]\nRefer to the equation like this Equation A.2 or like Customlabel A.2.\na. Blabla?\nb. Of blablabla?\n\n\n\nSharing data tables:\n\n\n\n\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Quarto examples</span>"
+    ]
+  },
+  {
+    "objectID": "evo_practical_1.html#steering",
+    "href": "evo_practical_1.html#steering",
+    "title": "15  Practical 1",
+    "section": "15.2 Steering",
+    "text": "15.2 Steering\nWe can represent a moving individual in space as a point with a position and a velocity. The position is represented by two coordinates, \\(x\\) and \\(y\\), and the velocity is represented by two components, \\(v_x\\) and \\(v_y\\).\n\n\n\n  \n  \n  Vector Visualisation\n  \n\n\n  \n\n  \n    ← \n    → \n    ↑ \n    ↓ \n    ⟲ \n    ⟳",
+    "crumbs": [
+      "IV) Evolution",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Practical 1</span>"
+    ]
+  }
+]

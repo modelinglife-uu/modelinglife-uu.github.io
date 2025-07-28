@@ -334,8 +334,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./evo_practical_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Practical 3</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./evo_slides.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Slides</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Slides</span></span></a>
   </div>
 </li>
       </ul>
@@ -352,13 +358,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./project_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Differentiation introduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Differentiation introduction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./project_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Maintaining a healthy microbiome</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Miniproject: maintaining a healthy microbiome</span></span></a>
   </div>
 </li>
       </ul>
@@ -366,7 +372,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -449,7 +455,7 @@ window.Quarto = {
 </section>
 <section id="balancing-change-and-stability" class="level2" data-number="14.3">
 <h2 data-number="14.3" class="anchored" data-anchor-id="balancing-change-and-stability"><span class="header-section-number">14.3</span> Balancing change and stability</h2>
-<p>To evolve, a system needs enough variation—if everyone is the same, there’s nothing for selection to act on. But this variation can’t just be noise; it needs to be passed on. That means inheritance can’t be perfect—there must be room for change, such as through mutations—but it also can’t be too sloppy. If traits aren’t reliably transmitted to the next generation, then even the best adaptations will vanish before they can take hold. Evolution lives in the sweet spot: not too rigid, not too chaotic, just enough memory and just enough change. To make this a little more tangible, let us make our very first simulation.</p>
+<p>To evolve, a system needs enough variation – if everyone is the same, there’s nothing for selection to act on. But this variation can’t just be noise; it needs to be passed on. That means inheritance can’t be perfect – there must be room for change, such as through mutations – but it also can’t be too sloppy. If traits aren’t reliably transmitted to the next generation, then even the best adaptations will vanish before they can take hold. Evolution lives in the sweet spot: not too rigid, not too chaotic, just enough memory and just enough change. To make this a little more tangible, let us make our very first simulation.</p>
 </section>
 <section id="a-simple-evolutionary-algorithm" class="level2" data-number="14.4">
 <h2 data-number="14.4" class="anchored" data-anchor-id="a-simple-evolutionary-algorithm"><span class="header-section-number">14.4</span> A simple evolutionary algorithm</h2>
@@ -461,10 +467,10 @@ window.Quarto = {
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">5</span>)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">100</span> <span class="co"># Population size </span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>fitnesses <span class="op">=</span> np.full(N, <span class="fl">0.85</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>fitnesses <span class="op">=</span> np.full(N, <span class="fl">0.05</span>)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> <span class="fl">0.01</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Updated parameters</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>steps <span class="op">=</span> <span class="dv">10000</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>steps <span class="op">=</span> <span class="dv">50000</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>avg_fitness <span class="op">=</span> []</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Moran process with mutation (logging every 10 steps)</span></span>
@@ -475,8 +481,8 @@ window.Quarto = {
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Copy with mutation</span></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    new_fit <span class="op">=</span> fitnesses[parent]</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> mutation_rate:</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        new_fit <span class="op">=</span> np.clip(new_fit <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>), <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> mu:</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        new_fit <span class="op">=</span> np.clip(new_fit <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="fl">0.05</span>), <span class="dv">0</span>, <span class="dv">1</span>)</span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>            </span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    fitnesses[dead] <span class="op">=</span> new_fit</span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>

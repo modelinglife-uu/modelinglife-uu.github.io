@@ -785,7 +785,7 @@
     "href": "evo_intro_text.html#balancing-change-and-stability",
     "title": "14  Introduction to evolution",
     "section": "14.3 Balancing change and stability",
-    "text": "14.3 Balancing change and stability\nTo evolve, a system needs enough variation—if everyone is the same, there’s nothing for selection to act on. But this variation can’t just be noise; it needs to be passed on. That means inheritance can’t be perfect—there must be room for change, such as through mutations—but it also can’t be too sloppy. If traits aren’t reliably transmitted to the next generation, then even the best adaptations will vanish before they can take hold. Evolution lives in the sweet spot: not too rigid, not too chaotic, just enough memory and just enough change. To make this a little more tangible, let us make our very first simulation.",
+    "text": "14.3 Balancing change and stability\nTo evolve, a system needs enough variation – if everyone is the same, there’s nothing for selection to act on. But this variation can’t just be noise; it needs to be passed on. That means inheritance can’t be perfect – there must be room for change, such as through mutations – but it also can’t be too sloppy. If traits aren’t reliably transmitted to the next generation, then even the best adaptations will vanish before they can take hold. Evolution lives in the sweet spot: not too rigid, not too chaotic, just enough memory and just enough change. To make this a little more tangible, let us make our very first simulation.",
     "crumbs": [
       "IV) Evolution",
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>Introduction to evolution</span>"
@@ -796,7 +796,7 @@
     "href": "evo_intro_text.html#a-simple-evolutionary-algorithm",
     "title": "14  Introduction to evolution",
     "section": "14.4 A simple evolutionary algorithm",
-    "text": "14.4 A simple evolutionary algorithm\nOne simple way to simulate evolution is with a Moran process, a classic model from population genetics. Imagine a population of 100 individuals, each with a single gene that determines its fitness. This gene can have all values from 0 to 1 (let’s call this value \\(\\phi\\)). At each time step, one individual is chosen to reproduce with a probability proportional to \\(\\phi\\), producing 1 offspring. This offspring inherits their parents gene (so the same \\(\\phi\\)), but with a probability \\(\\mu\\), the value changes by a small amount (a mutation). The population size will now be 101, which could be interesting if we want to study population growth. However, in a Moran process we keep it simple: one random individual is removed by the new offspring, so the population size is constant while still allowing fitter individuals to spread over time.\nHere’s a minimal Python example:\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nnp.random.seed(5)\n\nN = 100 # Population size \nfitnesses = np.full(N, 0.85)\nmu = 0.01\n# Updated parameters\nsteps = 10000\navg_fitness = []\n\n# Moran process with mutation (logging every 10 steps)\nfor step in range(steps):\n    probs = fitnesses / fitnesses.sum()\n    parent = np.random.choice(N, p=probs)\n    dead = np.random.choice(N)\n\n    # Copy with mutation\n    new_fit = fitnesses[parent]\n    if np.random.rand() &lt; mutation_rate:\n        new_fit = np.clip(new_fit + np.random.normal(0, 1), 0, 1)\n            \n    fitnesses[dead] = new_fit\n\n    # Save average fitness every 10 steps\n    if step % 10 == 0:\n        avg_fitness.append(fitnesses.mean())\n\n# Plotting\nplt.plot(np.arange(0, steps, 10), avg_fitness)\nplt.xlabel(\"Step\")\nplt.ylabel(\"Average fitness\")\nplt.title(\"Evolution of Fitness in a Moran Process\")\nplt.grid(True)\nplt.tight_layout()\nplt.show()\n\nExercise 14.1 (Moran process simulation) \nStudy the Python code for the evolutionary algorithm given above. Answer the following questions:\n\nHow “well adapted” is the initial population?\nHow are mutations implemented in the code? Can you think of other ways?\nCan the parent be replaced by its own offspring? Why/why not?\nInvestigate which value of \\(\\mu\\) works best if you want to achieve maximum fitness in the shortest amount of steps.",
+    "text": "14.4 A simple evolutionary algorithm\nOne simple way to simulate evolution is with a Moran process, a classic model from population genetics. Imagine a population of 100 individuals, each with a single gene that determines its fitness. This gene can have all values from 0 to 1 (let’s call this value \\(\\phi\\)). At each time step, one individual is chosen to reproduce with a probability proportional to \\(\\phi\\), producing 1 offspring. This offspring inherits their parents gene (so the same \\(\\phi\\)), but with a probability \\(\\mu\\), the value changes by a small amount (a mutation). The population size will now be 101, which could be interesting if we want to study population growth. However, in a Moran process we keep it simple: one random individual is removed by the new offspring, so the population size is constant while still allowing fitter individuals to spread over time.\nHere’s a minimal Python example:\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nnp.random.seed(5)\n\nN = 100 # Population size \nfitnesses = np.full(N, 0.05)\nmu = 0.01\n# Updated parameters\nsteps = 50000\navg_fitness = []\n\n# Moran process with mutation (logging every 10 steps)\nfor step in range(steps):\n    probs = fitnesses / fitnesses.sum()\n    parent = np.random.choice(N, p=probs)\n    dead = np.random.choice(N)\n\n    # Copy with mutation\n    new_fit = fitnesses[parent]\n    if np.random.rand() &lt; mu:\n        new_fit = np.clip(new_fit + np.random.normal(0, 0.05), 0, 1)\n            \n    fitnesses[dead] = new_fit\n\n    # Save average fitness every 10 steps\n    if step % 10 == 0:\n        avg_fitness.append(fitnesses.mean())\n\n# Plotting\nplt.plot(np.arange(0, steps, 10), avg_fitness)\nplt.xlabel(\"Step\")\nplt.ylabel(\"Average fitness\")\nplt.title(\"Evolution of Fitness in a Moran Process\")\nplt.grid(True)\nplt.tight_layout()\nplt.show()\n\nExercise 14.1 (Moran process simulation) \nStudy the Python code for the evolutionary algorithm given above. Answer the following questions:\n\nHow “well adapted” is the initial population?\nHow are mutations implemented in the code? Can you think of other ways?\nCan the parent be replaced by its own offspring? Why/why not?\nInvestigate which value of \\(\\mu\\) works best if you want to achieve maximum fitness in the shortest amount of steps.",
     "crumbs": [
       "IV) Evolution",
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>Introduction to evolution</span>"
@@ -818,84 +818,117 @@
     "href": "evo_practical_1.html",
     "title": "15  Practical 1",
     "section": "",
-    "text": "15.1 Sticking together\nIn this practical, you will practice building your own model of collective behaviour, based on the one you saw at the end of the lecture:\nThe example above is a implemented in Javascript, a programming language that is widely used for web development. It is easy to share with others, and surprisingly fast. But, it’s not the most “professional” programming language. So we are going to make our very own version of this, in Python.",
+    "text": "15.1 Sticking together\nIn this practical, you will practice building your own model of collective behaviour, based on the one you saw at the end of the lecture:\nThe example above is a implemented in Javascript, a programming language that is widely used for web development. It is easy to share with others, interactive, and surprisingly fast. But, it’s not the most “professional” programming language. Plus, at this stage of the course there is no point in learning yet another programming language, as you are here to learn about modelling biology. So we will stick to Python.\nFirst, let’s discuss how we can let individuals walk around in space.",
     "crumbs": [
       "IV) Evolution",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Practical 1</span>"
     ]
   },
   {
-    "objectID": "evo_practical_1.html#sticking-together",
-    "href": "evo_practical_1.html#sticking-together",
+    "objectID": "evo_practical_1.html#steering",
+    "href": "evo_practical_1.html#steering",
     "title": "15  Practical 1",
-    "section": "",
-    "text": "Cacatoo examples",
+    "section": "15.2 Steering",
+    "text": "15.2 Steering\nWe can represent a moving individual in space as a point with a position and a velocity. The position is represented by two coordinates, \\(x\\) and \\(y\\), and the velocity is represented by two components, \\(v_x\\) and \\(v_y\\). All movement that this individual can do, will be a matter of repeatedly updating its position based on their velocity:\n\n\n\n  \n  \n  Vector Visualisation\n  \n\n\n  \n\n  \n    ← \n    → \n    ↑ \n    ↓ \n    ⟲ \n    ⟳ \n  \n\n  \n\n\n\n\nTo model such a vector in python, we can simply define a base point with an x- and y-coordinate, and a velocity vector with an x- and y-component. The position of the individual can then be updated by adding the velocity to the position. Combining that with a function that draws an arrow in Python, we get the following code:\n\n\n\n\n\n\nCODE FOR “moving vector in Python”\n\n\n\n\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# Enable interactive mode for matplotlib\nplt.ion()\n\n# Setup figure and axis for plotting the arrow \nfig, ax = plt.subplots(figsize=(8, 4))\nax.set_xlim(0, 600)\nax.set_ylim(0, 250)\nax.set_aspect('equal')\nax.set_facecolor('#f0f0f0')\nax.set_title(\"A moving vector with an arrowhead\")\n\n# Initial state of the vector\nbase = np.array([250.0, 180.0]) # Starting point of the vector\nangle = np.pi / 4 # Initial angle of the vector (45 degrees)\nlength = 70 # Length of the vector\nheadlen = 20 # Length of the arrowhead\n\n# Function to draw the vector with arrowhead and text at the base and velocity components\ndef draw_vector(base, angle, length):\n    ax.clear()\n    ax.set_xlim(0, 600)\n    ax.set_ylim(0, 250)\n    ax.set_aspect('equal')\n    ax.set_facecolor('#f0f0f0')\n    ax.set_title(\"A moving vector with an arrowhead\")\n    # Compute components\n    vx = length * np.cos(angle)\n    vy = length * np.sin(angle)\n    end = base + np.array([vx, vy])\n    shaft_end = base + (length - 0.5 * headlen) * np.array([np.cos(angle), np.sin(angle)])\n\n    # Arrowhead\n    angle_offset = np.pi / 7\n    hx1 = end - headlen * np.array([np.cos(angle - angle_offset), np.sin(angle - angle_offset)])\n    hx2 = end - headlen * np.array([np.cos(angle + angle_offset), np.sin(angle + angle_offset)])\n    arrowhead = np.array([end, hx1, hx2])\n\n    # Draw shaft and head\n    ax.plot([base[0], shaft_end[0]], [base[1], shaft_end[1]], color='#007acc', linewidth=4)\n    ax.fill(arrowhead[:, 0], arrowhead[:, 1], color='#007acc')\n    ax.plot(base[0], base[1], 'o', color='#333')\n\n    # Labels\n    ax.text(base[0] + 10, base[1] - 10, f\"x = {base[0]:.2f}\")\n    ax.text(base[0] + 10, base[1] + 10, f\"y = {base[1]:.2f}\")\n    ax.text(end[0] + 10, end[1] - 20, f\"vₓ = {vx:.2f}\")\n    ax.text(end[0] + 10, end[1], f\"vᵧ = {vy:.2f}\")\n\n    plt.draw()\n    plt.pause(0.03)\n\n# Loop to move the vector base\nfor i in range(1000):\n    vx = length * np.cos(angle)\n    vy = length * np.sin(angle)\n    base += 0.02 * np.array([vx, vy])\n\n    # Wrap around edges\n    base[0] %= 600\n    base[1] %= 250\n\n    draw_vector(base, angle, length)\n\nplt.ioff()\n\n\n\n\n\nExercise 15.1 (Playing with steering arrows) \nCopy-paste the code above and run it.\n\nWhat can you do to make the arrow accelerate?\nHow can you make it move in a circle? Can you make it “wander” randomly?\nModelling 1 individual is not very exciting. Think about what the code above would look like if you had more than 1 individual. Discuss this with other students and/or Bram.",
     "crumbs": [
       "IV) Evolution",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Practical 1</span>"
     ]
   },
   {
-    "objectID": "evo_practical_1.html#final-code",
-    "href": "evo_practical_1.html#final-code",
+    "objectID": "evo_practical_1.html#moving-cells",
+    "href": "evo_practical_1.html#moving-cells",
     "title": "15  Practical 1",
-    "section": "15.3 Final code",
-    "text": "15.3 Final code\n\n\n\n\n\n\nFinal code\n\n\n\n\n\n###\n# PRACTICAL 1 | \"Every cell for themselves?\"\n# What you were supposed to do yourself:\n# 1. Implement collision avoidance\n# 2. Implement reproduction\n# 3. Implement a Gaussian grid\n# 4. Implement \"run and tumble\"\n# 5. Add noise to Gaussian, what happens?\n# 5.5 Modify collision into STICKING\n# 5. Try it out with 100 cells... \n###\n\n###\n# PRACTICAL 1 | Nabespreking\n# What you were supposed to do yourself:\n# 1. Why grids are popular\n# 2. Tessellation of space\n# 3. Quad tree explanation\n# 4. Show that the second part (JS model) uses a quad tree\n###\n\n# 1. IMPORTS AND PARAMETERS\n# Libraries\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom matplotlib.widgets import Slider\n\n# Parameters for simulation\nGRID_SIZE = 100  # Resolution of the grid\nMAX_VELOCITY = 0.02  # Maximum velocity magnitude\nMAX_FORCE = 0.02  # Maximum force magnitude\nBOID_SPEED = 1  # SPEED OF BOIDS, CAN BE VARIABLE\nTARGET_REACHED_THRESHOLD = 0.05  # Distance threshold to consider the target reached\nDRAG_COEFFICIENT = 0.1  # Friction to slow down the cell naturally\n\n# 2. MAIN LOOP (using functions and classes defined below)\ndef main():\n    \"\"\"Main function to set up and run the simulation.\"\"\"\n    # Initialise simulation\n    num_cells = 100\n    sim = Simulation(num_cells)\n\n    # Enable interactive mode\n    plt.ion()\n    fig, ax = plt.subplots(figsize=(6, 6))\n    plt.subplots_adjust(bottom=0.2)\n\n    # Add a slider for selecting the number of cells\n    ax_slider = plt.axes([0.2, 0.05, 0.6, 0.03])\n    slider = Slider(ax_slider, 'Cells', 1, 50, valinit=num_cells, valstep=1)\n\n    def update_cells(val):\n        sim.initialise_cells(int(slider.val))\n\n    slider.on_changed(update_cells)\n\n    # Run simulation\n    for t in range(1, 10000):\n        sim.simulate_step()\n\n        # Clear the plot\n        ax.clear()\n\n        # Plot the Gaussian grid as a background\n        ax.imshow(sim.grid, extent=(0, 1, 0, 1), origin='lower', cmap='viridis', alpha=0.5)\n\n        # Plot the target as an orange dot\n        ax.scatter(sim.target_position[0], sim.target_position[1], c='orange', s=50, edgecolor='white')\n\n        # Plot each cell as a blue dot and add a quiver to show the velocity direction\n        for cell in sim.cells:\n            ax.scatter(cell.x, cell.y, c='blue', s=100, edgecolor='black')\n            ax.quiver(cell.x, cell.y, cell.vx * 0.35, cell.vy * 0.35, angles='xy', scale_units='xy', scale=0.05, color='darkblue')\n\n        # Set plot limits and labels\n        ax.set_xlim(0, 1)\n        ax.set_ylim(0, 1)\n        ax.set_aspect('equal', adjustable='box')\n        ax.set_title(f\"Timestep: {t}\")\n        ax.set_xlabel(\"X\")\n        ax.set_ylabel(\"Y\")\n\n        plt.pause(0.01)\n\n    # Keep the final plot open\n    plt.ioff()\n    plt.show()\n\n# 3. SIMULATION CLASS\nclass Simulation:\n    \"\"\"Manages the grid, cells, target, and simulation logic.\"\"\"\n    def __init__(self, num_cells):\n        self.grid = np.zeros((GRID_SIZE, GRID_SIZE))  # Initialise an empty grid\n        self.cells = []\n        self.target_position = [np.random.uniform(0, 1), np.random.uniform(0, 1)]\n        self.create_gaussian(self.grid, 0.5, 0.5, 0.1)  # Create Gaussian grid\n        self.initialise_cells(num_cells)\n\n    def simulate_step(self):\n        \"\"\"Simulate one timestep of the simulation.\"\"\"\n        for cell in self.cells:\n            # Reset acceleration at the start of each step\n            cell.ax = 0\n            cell.ay = 0\n\n            # Apply steering behaviours\n            #self.steer_towards_dot(cell)  \n            \n            self.avoid_collision(cell)\n            self.stick_to_close(cell)\n            self.find_peak(cell)\n            self.check_target_reached(cell)\n\n            # Apply drag force to acceleration\n            cell.ax += -DRAG_COEFFICIENT * cell.vx\n            cell.ay += -DRAG_COEFFICIENT * cell.vy\n\n            # Apply forces and update position\n            cell.apply_forces()\n            cell.update_position()\n\n            # Limit velocity to the maximum allowed\n            cell.vx = np.clip(cell.vx, -MAX_VELOCITY, MAX_VELOCITY)\n            cell.vy = np.clip(cell.vy, -MAX_VELOCITY, MAX_VELOCITY)\n\n    def initialise_cells(self, num_cells):\n        \"\"\"Initialise the cells with random positions and velocities.\"\"\"\n        self.cells = []\n        for _ in range(num_cells):\n            x = np.random.uniform(0, 1)\n            y = np.random.uniform(0, 1)\n            vx = 0\n            vy = 0\n            speed = 0.1 + 0.9 * np.random.uniform(0, 1) * BOID_SPEED\n            speed = 1\n            self.cells.append(Cell(x, y, vx, vy, speed))\n        self.target_position = [np.random.uniform(0, 1), np.random.uniform(0, 1)]\n\n    def create_gaussian(self, grid, mean_x, mean_y, std_dev):\n        \"\"\"Create a Gaussian distribution on the grid.\"\"\"\n        for i in range(GRID_SIZE):\n            for j in range(GRID_SIZE):\n                x = i / (GRID_SIZE - 1)\n                y = j / (GRID_SIZE - 1)\n                distance_squared = (x - mean_x)**2 + (y - mean_y)**2\n                grid[i, j] = np.exp(-distance_squared / (2 * std_dev**2)) #* np.random.uniform(0.5, 1.5)\n                grid[i, j] = np.exp(-distance_squared / (2 * std_dev**2)) * np.random.uniform(0.0, 2.0)\n\n        # Normalize the grid to keep the total resource concentration the same\n        grid /= np.sum(grid)\n    \n    def find_peak(self, cell):\n        \"\"\"Make the cell move towards the peak of the resource gradient with a random walk.\"\"\"\n        # Convert cell position to grid indices\n        grid_x = int(cell.x * (GRID_SIZE - 1))\n        grid_y = int(cell.y * (GRID_SIZE - 1))\n\n        # Ensure indices are within bounds\n        grid_x = np.clip(grid_x, 1, GRID_SIZE - 2)\n        grid_y = np.clip(grid_y, 1, GRID_SIZE - 2)\n\n        # Calculate the gradient of the grid at the cell's position\n        grad_x = self.grid[grid_x + 1, grid_y] - self.grid[grid_x - 1, grid_y]\n        grad_y = self.grid[grid_x, grid_y + 1] - self.grid[grid_x, grid_y - 1]\n\n        # Normalize the gradient to get the direction\n        grad_magnitude = np.sqrt(grad_x**2 + grad_y**2)\n        if grad_magnitude &gt; 0:\n            grad_x /= grad_magnitude\n            grad_y /= grad_magnitude\n\n        # Check if the cell is moving in the right direction\n        dot_product = grad_x * cell.vx + grad_y * cell.vy  # Dot product of gradient and velocity\n        if dot_product &gt; 0:\n            # Moving in the right direction: small random adjustment\n            angle = np.random.uniform(-np.pi / 8, np.pi / 8)  # Small angle change\n        else:\n            # Moving in the wrong direction: large random adjustment\n            angle = np.random.uniform(-np.pi / 2, np.pi / 2)  # Large angle change\n\n        # Rotate the velocity vector by the random angle\n        cos_angle = np.cos(angle)\n        sin_angle = np.sin(angle)\n        new_vx = cell.vx * cos_angle - cell.vy * sin_angle\n        new_vy = cell.vx * sin_angle + cell.vy * cos_angle\n\n        # Update the velocity with the new direction\n        cell.vx = new_vx\n        cell.vy = new_vy\n\n        # Apply a small force in the direction of the gradient\n        cell.ax += grad_x * cell.speed / 1000\n        cell.ay += grad_y * cell.speed / 1000\n        \n    \n    def avoid_collision(self, cell):\n        \"\"\"Calculate avoidance forces to prevent cells from colliding.\"\"\"\n        for other_cell in self.cells:\n            if other_cell is not cell:\n                # Calculate the distance between the two cells\n                dx = cell.x - other_cell.x\n                dy = cell.y - other_cell.y\n                distance = np.sqrt(dx**2 + dy**2)\n\n                # If the cells are too close, apply a repulsion force\n                if distance &lt; 0.035 and distance &gt; 0:  # Threshold for \"too close\"\n                    # Calculate the repulsion force proportional to the inverse of the distance\n                    force_magnitude = (0.035 - distance) / distance\n                    cell.x += force_magnitude * dx\n                    cell.y += force_magnitude * dy\n                    \n    def stick_to_close(self, cell):\n        \"\"\"Stick to closeby cells.\"\"\"\n        for other_cell in self.cells:\n            if other_cell is not cell:\n                # Calculate the distance between the two cells\n                dx = cell.x - other_cell.x\n                dy = cell.y - other_cell.y\n                distance = np.sqrt(dx**2 + dy**2)\n\n                # If the cells are too close, apply a repulsion force\n                if distance &lt; 0.05 and distance &gt; 0:  # Threshold for \"close\"\n                    # Calculate the repulsion force proportional to the inverse of the distance\n                    force_magnitude = 0.35*(0.05 - distance) / distance\n                    cell.x -= force_magnitude * dx\n                    cell.y -= force_magnitude * dy                    \n    \n    def steer_towards_dot(self, cell):\n        \"\"\"Steer the cell towards the target position.\"\"\"\n        # Calculate the direction vector to the target\n        dx = self.target_position[0] - cell.x\n        dy = self.target_position[1] - cell.y\n        dist_to_target = np.sqrt(dx**2 + dy**2)\n\n        if dist_to_target &gt; 0:\n            # Normalise the direction vector\n            norm_dx = dx / dist_to_target\n            norm_dy = dy / dist_to_target\n\n            # Scale the acceleration by the cell's speed\n            cell.ax += norm_dx * cell.speed / 1000\n            cell.ay += norm_dy * cell.speed / 1000\n    \n    def check_target_reached(self, cell):\n        distance_to_target = np.sqrt((cell.x - self.target_position[0])**2 +\n                                         (cell.y - self.target_position[1])**2)\n        if distance_to_target &lt; TARGET_REACHED_THRESHOLD:\n            # Reproduce: Create a new cell with the same properties as the current cell\n            angle = np.random.uniform(0, 2 * np.pi)\n            radius = np.random.uniform(0.01, 0.05)\n            new_x = cell.x + radius * np.cos(angle)\n            new_y = cell.y + radius * np.sin(angle)\n            new_cell = Cell(new_x, new_y, cell.vx, cell.vy, cell.speed)\n            self.cells.append(new_cell)\n\n            # Kill a random other cell (if there are more than 10 cells)\n            if len(self.cells) &gt; 15:\n                random_cell = np.random.choice(self.cells)\n                #while random_cell is cell:  # Ensure we don't remove the reproducing cell\n                #    random_cell = np.random.choice(self.cells)\n                self.cells.remove(random_cell)\n\n            # Set a new target position\n            self.target_position = [np.random.uniform(0, 1), np.random.uniform(0, 1)]\n            print(f\"Target reached! New target position: {self.target_position}\")\n            return\n        \n        \n# 4. CELL CLASS\nclass Cell:\n    \"\"\"Represents an individual cell in the simulation.\"\"\"\n    def __init__(self, x, y, vx, vy, speed):\n        self.x = x\n        self.y = y\n        self.vx = vx\n        self.vy = vy\n        self.ax = 0\n        self.ay = 0\n        self.speed = speed\n\n    def update_position(self):\n        \"\"\"Update the cell's position based on its velocity.\"\"\"\n        self.x += self.vx\n        self.y += self.vy\n\n    def apply_forces(self):\n        \"\"\"Apply a force to the cell, updating its velocity.\"\"\"\n        self.vx += self.ax\n        self.vy += self.ay\n\n        # Limit velocity to the maximum allowed\n        self.vx = np.clip(self.vx, -MAX_VELOCITY, MAX_VELOCITY)\n        self.vy = np.clip(self.vy, -MAX_VELOCITY, MAX_VELOCITY)\n        self.ax = 0\n        self.ay = 0\n\n\n\n            \n\n# 5. Execute the main loop\nif __name__ == \"__main__\":\n    main()\n\n\n\nHere’s an equation:\n\\[\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN(1 - \\frac{N}{K})\n\\tag{15.1}\\]\nAnd Equation A.1 is a reference to the equation above.",
+    "section": "15.3 Moving “cells”",
+    "text": "15.3 Moving “cells”\nIn this practical, you will practice with modelling individuals in space by modifying a Python code based on the foraging cells shown at the beginning. To accomodate for many cells, we will define a new Cell class, embedded in a Simulation class.\nFirst read the code yourself, and see if you can get it running on your own laptop.\n\n\n\n\n\n\nCODE FOR “moving cells”\n\n\n\n\n\n# 1. IMPORTS AND PARAMETERS\n# Libraries\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom matplotlib.widgets import Slider\n\n# Parameters for simulation\nWORLD_SIZE = 100  # Width / height of the world (size of grid and possible coordinates for cells)\nMAX_VELOCITY = 1  # Maximum velocity magnitude\nMAX_FORCE = 0.01  # Maximum force magnitude\nDRAG_COEFFICIENT = 0.1  # Friction to slow down the cell naturally\nRANDOM_MOVEMENT  = 0.01 # Random movement factor to add some noise to the cell's movement\n\n# 1. THE MAIN LOOP (using functions and classes defined below)\ndef main():\n    \"\"\"Main function to set up and run the simulation.\"\"\"\n    # Initialise simulation\n    num_cells = 15\n    sim = Simulation(num_cells)\n\n    # Enable interactive mode\n    plt.ion()\n    fig, ax = plt.subplots(figsize=(6, 6))\n    plt.subplots_adjust(bottom=0.2)\n\n    # Add a slider for selecting the number of cells\n    ax_slider = plt.axes([0.2, 0.05, 0.6, 0.03])\n    slider = Slider(ax_slider, 'Cells', 1, 100, valinit=num_cells, valstep=1)\n    def update_cells(val):\n        sim.initialise_cells(int(slider.val))\n    slider.on_changed(update_cells)\n\n    # Run simulation\n    for t in range(1, 10000):\n        sim.simulate_step()\n\n        # Clear the plot\n        ax.clear()\n\n        # Plot the Gaussian grid as a background\n        ax.imshow(sim.grid, extent=(0, WORLD_SIZE, 0, WORLD_SIZE), origin='lower', cmap='viridis', alpha=0.5)\n\n        # Plot the target as an orange dot\n        ax.scatter(sim.target_position[0], sim.target_position[1], c='orange', s=50, edgecolor='white')\n\n        # Plot each cell as a blue dot and add a quiver to show the velocity direction\n        for cell in sim.cells:\n            ax.scatter(cell.x, cell.y, c='blue', s=100, edgecolor='black')\n            ax.quiver(cell.x, cell.y, cell.vx * 0.15, cell.vy * 0.15, angles='xy', scale_units='xy', scale=0.02, color='darkblue')\n\n        # Set plot limits and labels\n        ax.set_xlim(0, WORLD_SIZE)\n        ax.set_ylim(0, WORLD_SIZE)\n        ax.set_aspect('equal', adjustable='box')\n        ax.set_title(f\"Timestep: {t}\")\n        ax.set_xlabel(\"X\")\n        ax.set_ylabel(\"Y\")\n\n        plt.pause(0.01)\n\n    # Keep the final plot open\n    plt.ioff()\n    plt.show()\n\n# 2. SIMULATION CLASS\nclass Simulation:\n    \"\"\"Manages the grid, cells, target, and simulation logic.\"\"\"\n    def __init__(self, num_cells):\n        self.grid = np.zeros((WORLD_SIZE, WORLD_SIZE))  # Initialise an empty grid\n        self.cells = []\n        self.target_position = [WORLD_SIZE/3, WORLD_SIZE/3]  # Initial target position at the center\n        self.create_gaussian(self.grid, 0.5, 0.5, 0.1)  # Create Gaussian grid\n        self.initialise_cells(num_cells)\n\n    def simulate_step(self):\n        \"\"\"Simulate one timestep of the simulation.\"\"\"\n        for cell in self.cells:\n            # Actions taken by each cell. Most of them are still undefined, so you can implement them yourself.\n            self.move_towards_dot(cell)  \n            if self.check_target_reached(cell):\n                print(f\"Target reached! New target position: {self.target_position}\")\n                self.reproduce_cell(cell) \n            \n            self.avoid_collision(cell)\n            self.stick_to_close(cell)\n            self.find_peak(cell)\n            \n            # Apply drag force to acceleration\n            cell.ax += -DRAG_COEFFICIENT * cell.vx\n            cell.ay += -DRAG_COEFFICIENT * cell.vy\n\n            # Apply forces and update position\n            cell.apply_forces()\n            cell.update_position()\n\n            # Limit velocity to the maximum allowed\n            cell.vx = np.clip(cell.vx, -MAX_VELOCITY, MAX_VELOCITY)\n            cell.vy = np.clip(cell.vy, -MAX_VELOCITY, MAX_VELOCITY)\n\n    def initialise_cells(self, num_cells):\n        \"\"\"Initialise the cells with random positions and velocities.\"\"\"\n        self.cells = []\n        for _ in range(num_cells):\n            x = np.random.uniform(0, WORLD_SIZE)\n            y = np.random.uniform(0, WORLD_SIZE)\n            vx = 0\n            vy = 0\n            speed = 1\n            self.cells.append(Cell(x, y, vx, vy, speed))\n    \n    def move_towards_dot(self, cell):\n        \"\"\"Apply forces in the direction of the dot.\"\"\"\n        # Calculate the angle to the target and rotate the velocity a bit towards it\n        dx = self.target_position[0] - cell.x\n        dy = self.target_position[1] - cell.y\n        distance = np.sqrt(dx**2 + dy**2)\n        if distance &gt; 0:\n            # Normalize direction\n            dx /= distance\n            dy /= distance\n            # Apply a small force towards the target\n            cell.ax += dx * 0.1\n            cell.ay += dy * 0.1\n    \n    def check_target_reached(self, cell):\n        # To be implemented by you. I already gave you the distance calculation.\n        distance_to_target = np.sqrt((cell.x - self.target_position[0])**2 +\n                                         (cell.y - self.target_position[1])**2)\n        return False # Hint: this shouldn't always return False ;)\n    \n    def reproduce_cell(self, cell):\n        \"\"\"To be implemented by you.\"\"\"\n\n\n    def stick_to_close(self, cell):\n        \"\"\"To be implemented by you.\"\"\"\n\n\n        \n    def create_gaussian(self, grid, mean_x, mean_y, std_dev):\n        \"\"\"To be futher implemented by you.\"\"\"\n        for i in range(WORLD_SIZE):\n            for j in range(WORLD_SIZE):\n                grid[i, j] = 1\n                \n        \n\n    \n    def find_peak(self, cell):\n        \"\"\"To be implemented by you.\"\"\"\n        # To be implemented by you. This is the challenging bit! (ask for help if you need it, but think first! :)) \n    \n    def avoid_collision(self, cell):\n        \"\"\"To be implemented by you.\"\"\"\n        \n        \n        \n# 3. CELL CLASS\nclass Cell:\n    \"\"\"Represents an individual cell in the simulation.\"\"\"\n    def __init__(self, x, y, vx, vy, speed):\n        self.x = x\n        self.y = y\n        self.vx = vx\n        self.vy = vy\n        self.ax = 0\n        self.ay = 0\n        self.speed = speed\n\n    def update_position(self):\n        \"\"\"Update the cell's position based on its velocity.\"\"\"\n        self.x += self.vx \n        self.y += self.vy \n        self.x = (self.x + WORLD_SIZE) % WORLD_SIZE  # Wrap around the world\n        self.y = (self.y + WORLD_SIZE) % WORLD_SIZE  # Wrap around the world\n\n    def apply_forces(self):\n        \"\"\"Apply a force to the cell, updating its velocity.\"\"\"\n        self.vx += self.ax + RANDOM_MOVEMENT * np.random.uniform(-1, 1)\n        self.vy += self.ay + RANDOM_MOVEMENT * np.random.uniform(-1, 1)\n        self.ax = 0\n        self.ay = 0\n\n\n\n            \n\n# 4. Execute the main loop\nif __name__ == \"__main__\":\n    main()\n\n\n\nAfter you have made sense of the program above, answer the following questions:\n\nWrite down a list of all properties that “cells” have.\nSketch a flowchart of everything that happens. What are the initial conditions? What is the main loop that is repeated?\n\nAs you can see, many functions are left empty in the code above. You will start filling these with your own code.",
     "crumbs": [
       "IV) Evolution",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Practical 1</span>"
     ]
   },
   {
-    "objectID": "evo_practical_1.html#references",
-    "href": "evo_practical_1.html#references",
+    "objectID": "evo_practical_1.html#moving-the-target",
+    "href": "evo_practical_1.html#moving-the-target",
     "title": "15  Practical 1",
-    "section": "15.4 References",
-    "text": "15.4 References\nSee Knuth (1984) for additional discussion of literate programming.",
+    "section": "15.4 Moving the target",
+    "text": "15.4 Moving the target\nThe orange dot in the simulation may represent a “target”. In this case it may represent a resource patch for bacteria, but it could also be a piece of fruit for a monkey (at this point, the model is still very abstract). Either way, let’s make the target move around. After an individual touches the orange dot, let’s move it somewhere else.\nTo help you on your way, answer the following question:\n\nHow can you calculate the distance between an individual and the orange dot?\nWhen is an individual close enough to the orange dot?\nHow can we assign a random position to the dot?\n\nFirst try it yourself. If you get stuck, ask Bram for help.",
     "crumbs": [
       "IV) Evolution",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Practical 1</span>"
     ]
   },
   {
-    "objectID": "evo_practical_1.html#syntax-highlighting",
-    "href": "evo_practical_1.html#syntax-highlighting",
+    "objectID": "evo_practical_1.html#reproduction",
+    "href": "evo_practical_1.html#reproduction",
     "title": "15  Practical 1",
-    "section": "15.5 Syntax highlighting",
-    "text": "15.5 Syntax highlighting\nHere’s some python code:\nimport numpy as np\nnp.random.seed(42)\na = 1 + 2\nb = a + 3\nprint(\"Hello\")",
+    "section": "15.5 Reproduction",
+    "text": "15.5 Reproduction\nLet’s reward the individual that found the target. To do this, we can call the ‘Cell’ constructor to make a new cell, and add it to the list of cells:\nnew_cell = Cell(new_x, new_y, new_vx, new_vy, new_speed)\nself.cells.append(new_cell)\nConsider which properties of the parent cell get inherited to the child:\n\nDoes the exact position get inherited?\nDoes the approximate position get inherited?\nDoes the velocity get inherited?",
     "crumbs": [
       "IV) Evolution",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Practical 1</span>"
     ]
   },
   {
-    "objectID": "evo_practical_1.html#visualising-data-r",
-    "href": "evo_practical_1.html#visualising-data-r",
+    "objectID": "evo_practical_1.html#collision-detection",
+    "href": "evo_practical_1.html#collision-detection",
     "title": "15  Practical 1",
-    "section": "15.6 Visualising data (R)",
-    "text": "15.6 Visualising data (R)\nHere’s an interactive plot generated with R:",
+    "section": "15.6 Collision detection",
+    "text": "15.6 Collision detection\nAss the cells move towards the dot, you may notice that cells start overlapping quite a lot. Let’s implement collision detection, where overlap is resolved by pushing cells away from eachother. Answer the following questions:\n\nHow can you calculate the distance between two cells?\nWhen are two points overlapping?\nWhat can we do when two points overlap?\n\nAfter you have implemented collision, we can also study the individual mechanisms:\n\nWhat happens if there is only collision detection, and no reproduction/target detection?\nWhat happens if you increase the number of cells?",
     "crumbs": [
       "IV) Evolution",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Practical 1</span>"
     ]
   },
   {
-    "objectID": "evo_practical_1.html#a-youtube-clip",
-    "href": "evo_practical_1.html#a-youtube-clip",
+    "objectID": "evo_practical_1.html#run-and-tumble",
+    "href": "evo_practical_1.html#run-and-tumble",
     "title": "15  Practical 1",
-    "section": "15.7 A youtube clip:",
-    "text": "15.7 A youtube clip:",
+    "section": "16.1 Run and tumble",
+    "text": "16.1 Run and tumble\n\n\n\n“Test”\n\n\nBacterial cells are so small, that they cannot detect a gradient directly (in other words, they don’t know in which direction resources are higher!). Instead, bacteria often use a “run and tumble” strategy. When they are currently not detecting an increase in the concentration (over time), they tumble. If they do detect an increase, they keep moving in the same direction. This is a very simple strategy, but it can be very effective mechanism for chemotaxis.\nIn our earlier code of a single, moving vector, we rotated the arrow by changing the ‘angle’ variable. However, these cells do not have an angle parameters, but only a velocity vector with components \\(v_x\\) and \\(v_y\\). If we want to rotate the velocity vector, we can use the following equation (rooted in basic trigonometry):\n\\[\nv_x' = v_x \\cdot cos(\\theta) - v_y \\cdot sin(\\theta) \\\\\nv_y' = v_x \\cdot sin(\\theta) + v_y \\cdot cos(\\theta)\n\\]\nWhere \\(\\theta\\) is the angle we want the vector to rotate (in radians, not degrees!), and \\(v_x\\) and \\(v_y\\) are the components of the vector. With this in mind, let’s try and model chemotaxis. Do it in the following way:\n\nDetermine the concentration of the position of the cell, AND the predicted position of the cell after a small timestep (hint: use \\(v_x\\) and \\(v_y\\) to predict the future position! ask Bram if you get stuck)\nMake sure the future position is not outside of the grid! (hint: use Google, ChatGPT, or Copilot and figure out how the “modulo” operator works)\nIf the future position has a higher concentration than the current position, keep moving in more or less the same direction, with a very small change.\nIf the future position is a lower concentration, rotate the velocity vector a lot.\n\nStudy if your individuals can find the resource peak. Notice that depending on your implementation, cells may or may not work. Make sure to carefully investigate why it does or does not work.",
     "crumbs": [
       "IV) Evolution",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Practical 1</span>"
     ]
   },
   {
-    "objectID": "evo_practical_1.html#an-iframe-to-a-different-page-e.g.-my-simulations",
-    "href": "evo_practical_1.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "objectID": "evo_practical_1.html#sticking-together-1",
+    "href": "evo_practical_1.html#sticking-together-1",
     "title": "15  Practical 1",
-    "section": "15.8 An ‘iframe’ to a different page (e.g. my simulations)",
-    "text": "15.8 An ‘iframe’ to a different page (e.g. my simulations)\n\n\nMermaid\nDiagrams (Mermaid syntax):\n\n\n\n\n\n\nflowchart TB\nA(Models) --&gt; C(\"Analytical (mathematical)\")\nA --&gt; B(\"Numerical (computational)\")\nB --&gt; F(Individual-based model)\nB --&gt; G(Cellular automaton)\nC --&gt; E(Differential equation)\nC --&gt; D(MAPs)\n\n\n\n\nFigure 15.1: Types of models\n\n\n\n\n\nWhich can be referred to Figure A.1.\n\n\nCallouts\nCall-outs can organise information and highlight important points.\n\n\n\n\n\n\nNote\n\n\n\nNote that there are five types of callouts, including: note, warning, important, tip, and caution.\n\n\n\n\n\n\n\n\nTip with Title\n\n\n\nThis is an example of a callout with a title.\n\n\n\n\n\n\n\n\nExpand To Learn About Collapse\n\n\n\n\n\nThis is an example of a ‘folded’ caution callout that can be expanded by the user. You can use collapse=\"true\" to collapse it by default or collapse=\"false\" to make a collapsible callout that is expanded by default.\n\n\n\n\n\n\n\n\n\nTip 15.1: Cross-Referencing a Tip\n\n\n\nAdd an ID starting with #tip- to reference a tip.\n\n\nSee Tip A.1…\n\n\nHow to format questions/problem sets\n\nExercise 15.1 (Test 1) The equation of any straight line, called a linear equation, can be written as:\n\\[\ny = mx + b\n\\tag{15.2}\\]\nRefer to the equation like this Equation A.2 or like Customlabel A.2.\na. Blabla?\nb. Of blablabla?\n\n\n\nSharing data tables:\n\n\n\n\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "section": "16.2 Sticking together",
+    "text": "16.2 Sticking together\nCells sticking together can be implemented in multiple ways. Cells could be connected by a Newtonian spring, or we could simple make sure that cells that are close to each other are attracted to one another. In this case, we will use the latter method. Note that this is not very different from collision avoidance, but it is the other way around. In fact, we now have two opposing forces: cells are attracted to one another but do not want to overlap. This can be a bit finicky to get right, so feel free to explore. Ask for help if you get stuck.",
+    "crumbs": [
+      "IV) Evolution",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Practical 1</span>"
+    ]
+  },
+  {
+    "objectID": "evo_practical_1.html#cells",
+    "href": "evo_practical_1.html#cells",
+    "title": "15  Practical 1",
+    "section": "16.3 100 cells?",
+    "text": "16.3 100 cells?\nTry to run the model with 100 cells.\n\nWhat happens? Can you explain this?\nTest how long it takes to run 1000 time steps for 10 cells, 100 cells, and 1000 cells.\nRun the test in b. again, but this time do not update the graph showing the cells. Does this make a large difference?\n\nThis is far as this introduction to IBMs in python goes. Simple IBMs can be efficiently implemented in basic Python, but for more complex models, it is better to i) use numpy operations to speed up your Python code, or ii) use a faster programming language like C, Rust, or Javascript.",
+    "crumbs": [
+      "IV) Evolution",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Practical 1</span>"
+    ]
+  },
+  {
+    "objectID": "evo_practical_1.html#final-python-code-for-interested-students",
+    "href": "evo_practical_1.html#final-python-code-for-interested-students",
+    "title": "15  Practical 1",
+    "section": "16.4 Final Python code (for interested students)",
+    "text": "16.4 Final Python code (for interested students)\nBelow is the final python code that I ended up with. This combination of individuals moving in continuous space, combined with a grid (e.g. with resources, or other environmental states) is a very useful way to make a spatially structured model.\n\n\n\n\n\n\nFinal code\n\n\n\n\n\n###\n# PRACTICAL 1 | \"Every cell for themselves?\"\n# Things in this model that you have tried to implement yourself:\n# 1. Implement collision avoidance\n# 2. Implement reproduction\n# 3. Implement a Gaussian grid\n# 4. Implement \"run and tumble\"\n# 5. Add noise to Gaussian, what happens?\n# 5. Modify collision into STICKING (a little finicky)\n# 6. Try it out with 100 cells... \n###\n\n###\n# PRACTICAL 1 | PLENARY DISCUSSION\n# What else was discussed in the plenary?\n# 1. Why are grids so popular in modelling?\n# 2. Solution of scaled: tessellation of space\n# 3. Automatic tessellation of space: quad tree\n# 4. Int he full model (javascript/Cacatoo), a quad tree is present\n###\n\n# 1. IMPORTS AND PARAMETERS\n# Libraries\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom matplotlib.widgets import Slider\n\n# Parameters for simulation\nWORLD_SIZE = 100  # Width / height of the world (size of grid and possible coordinates for cells)\nMAX_VELOCITY = 1  # Maximum velocity magnitude\nMAX_FORCE = 0.01  # Maximum force magnitude\nDRAG_COEFFICIENT = 0.1  # Friction to slow down the cell naturally\nRANDOM_MOVEMENT  = 0.01 # Random movement factor to add some noise to the cell's movement\n\n# 1. MAIN LOOP (using functions and classes defined below)\ndef main():\n    \"\"\"Main function to set up and run the simulation.\"\"\"\n    # Initialise simulation\n    num_cells = 15\n    sim = Simulation(num_cells)\n\n    # Enable interactive mode\n    plt.ion()\n    fig, ax = plt.subplots(figsize=(6, 6))\n    plt.subplots_adjust(bottom=0.2)\n\n    # Add a slider for selecting the number of cells\n    ax_slider = plt.axes([0.2, 0.05, 0.6, 0.03])\n    slider = Slider(ax_slider, 'Cells', 1, 100, valinit=num_cells, valstep=1)\n\n    def update_cells(val):\n        sim.initialise_cells(int(slider.val))\n\n    slider.on_changed(update_cells)\n\n    # Run simulation\n    for t in range(1, 10000):\n        sim.simulate_step()\n\n        # Clear the plot\n        ax.clear()\n\n        # Plot the Gaussian grid as a background\n        ax.imshow(sim.grid, extent=(0, WORLD_SIZE, 0, WORLD_SIZE), origin='lower', cmap='viridis', alpha=0.5)\n\n        # Plot the target as an orange dot\n        ax.scatter(sim.target_position[0], sim.target_position[1], c='orange', s=50, edgecolor='white')\n\n        # Plot each cell as a blue dot and add a quiver to show the velocity direction\n        for cell in sim.cells:\n            ax.scatter(cell.x, cell.y, c='blue', s=100, edgecolor='black')\n            ax.quiver(cell.x, cell.y, cell.vx * 0.15, cell.vy * 0.15, angles='xy', scale_units='xy', scale=0.02, color='darkblue')\n\n        # Set plot limits and labels\n        ax.set_xlim(0, WORLD_SIZE)\n        ax.set_ylim(0, WORLD_SIZE)\n        ax.set_aspect('equal', adjustable='box')\n        ax.set_title(f\"Timestep: {t}\")\n        ax.set_xlabel(\"X\")\n        ax.set_ylabel(\"Y\")\n\n        plt.pause(0.01)\n\n    # Keep the final plot open\n    plt.ioff()\n    plt.show()\n\n# 2. SIMULATION CLASS\nclass Simulation:\n    \"\"\"Manages the grid, cells, target, and simulation logic.\"\"\"\n    def __init__(self, num_cells):\n        self.grid = np.zeros((WORLD_SIZE, WORLD_SIZE))  # Initialise an empty grid\n        self.cells = []\n        self.target_position = [WORLD_SIZE/3, WORLD_SIZE/3]  # Initial target position at the center\n        self.create_gaussian(self.grid, 0.5, 0.5, 0.1)  # Create Gaussian grid\n        self.initialise_cells(num_cells)\n\n    def simulate_step(self):\n        \"\"\"Simulate one timestep of the simulation.\"\"\"\n        for cell in self.cells:\n            # Actions taken by each cell. Most of them are still undefined, so you can implement them yourself.\n            #self.move_towards_dot(cell)  \n            #if self.check_target_reached(cell):\n            #    print(f\"Target reached! New target position: {self.target_position}\")\n            #    self.reproduce_cell(cell) \n            \n            self.avoid_collision(cell)\n            self.stick_to_close(cell)\n            self.find_peak(cell)\n            \n            # Apply drag force to acceleration\n            cell.ax += -DRAG_COEFFICIENT * cell.vx\n            cell.ay += -DRAG_COEFFICIENT * cell.vy\n\n            # Apply forces and update position\n            cell.apply_forces()\n            cell.update_position()\n\n            # Limit velocity to the maximum allowed\n            cell.vx = np.clip(cell.vx, -MAX_VELOCITY, MAX_VELOCITY)\n            cell.vy = np.clip(cell.vy, -MAX_VELOCITY, MAX_VELOCITY)\n\n    def initialise_cells(self, num_cells):\n        \"\"\"Initialise the cells with random positions and velocities.\"\"\"\n        self.cells = []\n        for _ in range(num_cells):\n            x = np.random.uniform(0, WORLD_SIZE)\n            y = np.random.uniform(0, WORLD_SIZE)\n            vx = 0\n            vy = 0\n            speed = 1\n            self.cells.append(Cell(x, y, vx, vy, speed))\n\n    def create_gaussian(self, grid, mean_x, mean_y, std_dev):\n        \"\"\"Create a Gaussian distribution on the grid.\"\"\"\n        for i in range(WORLD_SIZE):\n            for j in range(WORLD_SIZE):\n                x = i / (WORLD_SIZE - 1)\n                y = j / (WORLD_SIZE - 1)\n                distance_squared = (x - mean_x)**2 + (y - mean_y)**2\n                grid[i, j] = np.exp(-distance_squared / (2 * std_dev**2)) * np.random.uniform(0.0, 1.0)\n\n        # Normalize the grid to keep the total resource concentration the same\n        grid /= np.sum(grid)\n    \n    def find_peak(self, cell):\n        \"\"\"Make the cell move towards the peak of the resource gradient with a random walk.\"\"\"\n        # Convert cell position to grid indices, as well as the previous position\n        grid_x = int(cell.x) % WORLD_SIZE\n        grid_y = int(cell.y) % WORLD_SIZE\n        prev_x = (int(cell.x - cell.vx) + WORLD_SIZE) % WORLD_SIZE \n        prev_y = (int(cell.y - cell.vy) + WORLD_SIZE) % WORLD_SIZE \n        # Get the resource value at the cell's position, as well as the previous position\n        resource_value = self.grid[grid_x, grid_y]\n        resource_future = self.grid[prev_x, prev_y]\n        \n        # Check if the cell is moving in the right direction\n        if resource_value &gt; resource_future:\n            # Moving in the right direction: small random adjustment\n            angle = np.random.uniform(-0.5, 0.5)  # Small angle change\n        else:\n            # Moving in the wrong direction: large random adjustment\n            angle = np.random.uniform(-3, 3)  # Large angle change\n        \n        # Rotate the velocity vector by the random angle according to trigonometric rotation formulas\n        new_vx = cell.vx * np.cos(angle) - cell.vy * np.sin(angle)\n        new_vy = cell.vx * np.sin(angle) + cell.vy * np.cos(angle)\n\n        # Update the acceleration with the new velocity vector, such that the cell moves towards the peak\n        cell.ax += 0.5*new_vx\n        cell.ay += 0.5*new_vy \n         \n    \n    def avoid_collision(self, cell):\n        \"\"\"Calculate avoidance forces to prevent cells from colliding.\"\"\"\n        for other_cell in self.cells:\n            if other_cell is not cell:\n                # Calculate the distance between the two cells\n                dx = cell.x - other_cell.x\n                dy = cell.y - other_cell.y\n                distance = np.sqrt(dx**2 + dy**2)\n\n                # If the cells are too close, apply a repulsion force\n                if distance &lt; 4 and distance &gt; 0:  # Threshold for \"too close\"\n                    # Calculate the repulsion force proportional to the inverse of the distance\n                    force_magnitude = (4 - distance) / distance\n                    cell.x += force_magnitude * dx * 0.5\n                    cell.y += force_magnitude * dy * 0.5\n                    \n    def stick_to_close(self, cell):\n        \"\"\"Stick to closeby cells.\"\"\"\n        for other_cell in self.cells:\n            if other_cell is not cell:\n                # Calculate the distance between the two cells\n                dx = cell.x - other_cell.x\n                dy = cell.y - other_cell.y\n                distance = np.sqrt(dx**2 + dy**2)\n\n                # If the cells are too close, apply a repulsion force\n                if distance &lt; 7:  # Threshold for \"close\"\n                    # Calculate the repulsion force proportional to the inverse of the distance\n                    cell.x -= 0.1 * dx \n                    cell.y -= 0.1 * dy \n    \n    def move_towards_dot(self, cell):\n        \"\"\"Apply forces in the direction of the dot.\"\"\"\n        # Calculate the angle to the target and rotate the velocity a bit towards it\n        dx = self.target_position[0] - cell.x\n        dy = self.target_position[1] - cell.y\n        distance = np.sqrt(dx**2 + dy**2)\n        if distance &gt; 0:\n            # Normalize direction\n            dx /= distance\n            dy /= distance\n            # Apply a small force towards the target\n            cell.ax += dx * 0.1\n            cell.ay += dy * 0.1\n    \n    def check_target_reached(self, cell):\n        distance_to_target = np.sqrt((cell.x - self.target_position[0])**2 +\n                                         (cell.y - self.target_position[1])**2)\n        if distance_to_target &lt; 3:\n            # Set a new target position\n            self.target_position = [np.random.uniform(0, WORLD_SIZE), np.random.uniform(0, WORLD_SIZE)]\n            return(True)\n        return(False)\n    \n    def reproduce_cell(self, cell):\n        # Reproduce: Create a new cell with the same properties as the current cell\n        angle = np.random.uniform(0, 2 * np.pi)\n        radius = np.random.uniform(0.05, 1.5)\n        new_x = cell.x + radius * np.cos(angle)\n        new_y = cell.y + radius * np.sin(angle)\n        new_cell = Cell(new_x, new_y, cell.vx, cell.vy, cell.speed)\n        self.cells.append(new_cell)\n\n        # Kill a random other cell (if there are more than 10 cells)\n        if len(self.cells) &gt; 15:\n            random_cell = np.random.choice(self.cells)\n            #while random_cell is cell:  # Ensure we don't remove the reproducing cell\n            #    random_cell = np.random.choice(self.cells)\n            self.cells.remove(random_cell)\n\n        \n        \n        \n# 3. CELL CLASS\nclass Cell:\n    \"\"\"Represents an individual cell in the simulation.\"\"\"\n    def __init__(self, x, y, vx, vy, speed):\n        self.x = x\n        self.y = y\n        self.vx = vx\n        self.vy = vy\n        self.ax = 0\n        self.ay = 0\n        self.speed = speed\n\n    def update_position(self):\n        \"\"\"Update the cell's position based on its velocity.\"\"\"\n        self.x += self.vx \n        self.y += self.vy \n        self.x = (self.x + WORLD_SIZE) % WORLD_SIZE  # Wrap around the world\n        self.y = (self.y + WORLD_SIZE) % WORLD_SIZE  # Wrap around the world\n\n    def apply_forces(self):\n        \"\"\"Apply a force to the cell, updating its velocity.\"\"\"\n        self.vx += self.ax + RANDOM_MOVEMENT * np.random.uniform(-1, 1)\n        self.vy += self.ay + RANDOM_MOVEMENT * np.random.uniform(-1, 1)\n        self.ax = 0\n        self.ay = 0\n\n\n\n            \n\n# 4. Execute the main loop\nif __name__ == \"__main__\":\n    main()",
+    "crumbs": [
+      "IV) Evolution",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Practical 1</span>"
+    ]
+  },
+  {
+    "objectID": "evo_practical_1.html#exploring-the-full-javascript-model",
+    "href": "evo_practical_1.html#exploring-the-full-javascript-model",
+    "title": "15  Practical 1",
+    "section": "16.5 Exploring the full Javascript model",
+    "text": "16.5 Exploring the full Javascript model\nThe full model is implemented in Javascript, and can be found here.\nIn this model, the stickiness of cells is an evolvable property: how much each cell is attracted to nearby cells depends on an internal “stickiness” parameter. As you can see in this simulation, cells evolve to be more sticky over time, as it helps them to i) navigate towards the resource peak, and ii) be at the center of the resource peak.\n\nCan you identify any downsides to stickiness?",
     "crumbs": [
       "IV) Evolution",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Practical 1</span>"
@@ -906,284 +939,284 @@
     "href": "evo_practical_2.html",
     "title": "16  Practical 2",
     "section": "",
-    "text": "16.1 Equations\nHere’s an equation:\n\\[\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN(1 - \\frac{N}{K})\n\\tag{16.1}\\]\nAnd Equation A.1 is a reference to the equation above.",
+    "text": "16.1 Genotypes, phenotypes, and evolutionary algorithms",
     "crumbs": [
       "IV) Evolution",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>Practical 2</span>"
     ]
   },
   {
-    "objectID": "evo_practical_2.html#references",
-    "href": "evo_practical_2.html#references",
+    "objectID": "evo_practical_2.html#note-grns-are-encoded-on-the-genome-too-add-to-lecture",
+    "href": "evo_practical_2.html#note-grns-are-encoded-on-the-genome-too-add-to-lecture",
     "title": "16  Practical 2",
-    "section": "16.2 References",
-    "text": "16.2 References\nSee Knuth (1984) for additional discussion of literate programming.",
+    "section": "16.2 Note: GRNs are encoded on the genome too!! (add to lecture )",
+    "text": "16.2 Note: GRNs are encoded on the genome too!! (add to lecture )\nNear the end of the lecture, we discussed the differences between the genotype (that which mutates) and the phenotype (that which is selected). Although you have likely already heard about these concepts, how can we study them in evolutionary models? During this practical, you will write your own evolutionary algorithms of increasing complexity, in order to learn about these topics.",
     "crumbs": [
       "IV) Evolution",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>Practical 2</span>"
     ]
   },
   {
-    "objectID": "evo_practical_2.html#syntax-highlighting",
-    "href": "evo_practical_2.html#syntax-highlighting",
+    "objectID": "evo_practical_2.html#simple-model-where-fitness-as-a-number",
+    "href": "evo_practical_2.html#simple-model-where-fitness-as-a-number",
     "title": "16  Practical 2",
-    "section": "16.3 Syntax highlighting",
-    "text": "16.3 Syntax highlighting\nHere’s some python code:\nimport numpy as np\nnp.random.seed(42)\na = 1 + 2\nb = a + 3\nprint(\"Hello\")",
+    "section": "16.3 Simple model where fitness as a number",
+    "text": "16.3 Simple model where fitness as a number\nIn the introduction of this course part on evolution, we have already looked at as simple “Moran process”:\n\nStart with a population of individuals, each with a fitness value.\nSelect individuals based on their fitness to reproduce.\nReplace a random individual with this newly generate offspring.\n\nAnd so on.\nWith a Moran process, competition between individuals is modelled in a very indirect (“implicit”) way. By always selecting fit individuals, and removing a random other, one could say that “everyone is competing with everyone”. A different method, especially in spatially structured models, is to have only a subset of individuals compete at the same time, and sample who of those competitors wins from an imaginary roulette wheel:\n\nAs can be seen, not all individual have the same size on the roulette wheel. That depicts differences in their fitness. Also, the roulette wheel contains an area (shown in black) that shapes the chance that nobody reproduces. We will try and implement this rule to let individuals reproduce based on their fitness, but with only 10 competitors at a time. Let’s start with a code where individuals have a “fitness” value, but it not yet used for selection (see below). Read/test this code thoroughly before you move on to the next section.\n\n\n\n\n\n\nCODE FOR “fitness without fitness”\n\n\n\n\n\nimport random\nimport math\nimport matplotlib.pyplot as plt\n\n# Set the random number seed for reproducibility\nrandom.seed(0)\n\nplt.ion()  # Enable interactive plotting\n\n# --- PARAMETERS ---\ninitial_fitness = 0.1            # Starting fitness for all individuals\npopulation_size = 500             # Number of individuals (should be a square number for grid mode)\ngenerations = 20000               # Number of generations to simulate\nmutation_rate = 0.005            # Probability of mutation per reproduction event\nsample_interval = 5               # How often to sample and plot data\n\n# --- INITIALIZATION ---\n# Create initial population: all individuals start with the same fitness\npopulation = [initial_fitness for _ in range(population_size)]\n\n# Lists to track average fitness and diversity over time\navg_fitness = []\ndiversity_over_time = []\n\n# --- CORE FUNCTIONS ---\n\ndef mutate(fitness, rate=mutation_rate):\n    \"\"\"Mutate the fitness value with a given probability.\"\"\"\n    if random.random() &lt; rate:\n        # Fitness changes by a random value in [-0.1, 0.1], clipped to [0, 1]\n        return min(1.0, max(0.0, fitness + random.uniform(-0.1, 0.1)))\n    return fitness\n\ndef calculate_diversity(population):\n    \"\"\"NOT YET IMPLEMENTED! Calculate diversity as the standard deviation of fitness values.\"\"\"\n    return 0 \n\n# --- PLOTTING SETUP ---\nfig, ax1 = plt.subplots(figsize=(12, 8))\nax1.set_xlabel(\"Generation\")\nax1.set_ylabel(\"Average Fitness\", color='tab:blue')\nax1.set_ylim(0, 1)\nline1, = ax1.plot([], [], color='tab:blue', linewidth=2, label='Fitness')\nax1.tick_params(axis='y', labelcolor='tab:blue')\n\n# Second y-axis for diversity\nax2 = ax1.twinx()\nax2.set_ylabel(\"Diversity\", color='tab:green')\nline2, = ax2.plot([], [], color='tab:green', linestyle=':', linewidth=2, label='Diversity')\nax2.tick_params(axis='y', labelcolor='tab:green')\n\nfig.suptitle(\"Evolution Toward Fitness 1\")\nfig.tight_layout()\nfig.legend(loc='upper right')\nplt.grid(True)\nplt.draw()\n\n# --- EVOLUTION LOOP ---\nbest_fitness = -1\nfound = False\n\nfor gen in range(generations):\n    total_fit = sum(population)\n    best = max(population)\n    # Print when a perfect solution is found\n    if best == 1 and not found:\n        found = True\n        print(\"Found perfect solution at generation\", gen)\n        \n    # Sample and plot data at intervals\n    if gen % sample_interval == 0:\n        avg_fitness.append(total_fit / population_size)\n        diversity_over_time.append(calculate_diversity(population))\n        x_vals = [i * sample_interval for i in range(len(avg_fitness))]\n        line1.set_data(x_vals, avg_fitness)\n        line2.set_data(x_vals, diversity_over_time)\n        ax1.relim(); ax1.autoscale_view()\n        ax2.relim(); ax2.autoscale_view()\n        fig.suptitle(f\"Best Fitness: {best:.2f}\", fontsize=14)\n        plt.pause(0.01)\n        \n\n    # --- MORAN PROCESS ---\n    # For each individual, perform a reproduction event\n    for _ in range(100):  # 100 competition events per generation\n        # Select 1 random individual for replication\n        probs = [1 for fit in population] # All probability weights are equal (1.0)\n        parent_idx = random.choices(range(len(population)), weights=probs)[0] # Grab one random individual based on an unweighted list...\n        # Select individual to be replaced (uniform random)\n        dead_idx = random.randrange(len(population))\n        # Copy population for next generation\n        new_pop = population.copy()\n        # Offspring replaces the dead individual (with possible mutation)\n        new_pop[dead_idx] = mutate(population[parent_idx])\n        population = new_pop\n\ninput(\"\\nSimulation complete. Press Enter to exit plot window...\")",
     "crumbs": [
       "IV) Evolution",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>Practical 2</span>"
     ]
   },
   {
-    "objectID": "evo_practical_2.html#visualising-data-r",
-    "href": "evo_practical_2.html#visualising-data-r",
+    "objectID": "evo_practical_2.html#making-a-roulette-wheel-with-everyone-in-it",
+    "href": "evo_practical_2.html#making-a-roulette-wheel-with-everyone-in-it",
     "title": "16  Practical 2",
-    "section": "16.4 Visualising data (R)",
-    "text": "16.4 Visualising data (R)\nHere’s an interactive plot generated with R:",
+    "section": "16.4 Making a roulette wheel with everyone in it",
+    "text": "16.4 Making a roulette wheel with everyone in it\nIf you have read the code, you will see that we can pass a list of weights to the function random.choices, to determine who is most likely to be sampled. Currently, all the weights are set to 1:\nprobs = [1 for fit in population] # All probability weights are equal (1.0)\n\nRun the code with the current (all equal) weights. What happens?\nModify this line of code to take the fitness values as the weight, rather than 1. (hint: this is a VERY small change in the code).",
     "crumbs": [
       "IV) Evolution",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>Practical 2</span>"
     ]
   },
   {
-    "objectID": "evo_practical_2.html#a-youtube-clip",
-    "href": "evo_practical_2.html#a-youtube-clip",
+    "objectID": "evo_practical_2.html#a-roulette-wheel-of-a-subset-of-individuals",
+    "href": "evo_practical_2.html#a-roulette-wheel-of-a-subset-of-individuals",
     "title": "16  Practical 2",
-    "section": "16.5 A youtube clip:",
-    "text": "16.5 A youtube clip:",
+    "section": "16.5 A roulette wheel of a subset of individuals",
+    "text": "16.5 A roulette wheel of a subset of individuals\nInstead of letting everyone reproduce, let us modify the code to only sample from a smaller list of ‘competitors’, and spin a virtual roulette wheel to determine who wins. There are many ways to implement this, but here’s how we will do it. We will sample N individuals from the population, and implement the following algorithm:\n\nCollect the N competitors in a list\nAdd a “dummy” competitor to that list, representing the black area in the roulette wheel\nMake a weighted list of probabilities that competitors and/or the dummy wins\nSelect a winner (which may be the dummy too!)\nIf the winner is not the dummy, the winner replicates with mutations\n\nBelow, there’s a small snippet of code doing what is explained above:\n\n\n\n\n\n\nRoulette wheel algorithm\n\n\n\n\n\n # Tournament selection (as in evolving_fitness_final.py)\n    new_pop = []\n    tournament_size = 10  # can be adjusted\n\n    for _ in range(population_size):\n        # Select tournament_size individuals randomly\n        competitors = random.sample(population, tournament_size)\n        # Pick the one with highest fitness\n        fitness_values = [fitness(ind) for ind in competitors]\n        total = sum(fitness_values)\n        # Add a \"no reproduction\" dummy competitor with fitness = 0\n        competitors_with_dummy = competitors + [None]\n        probs = [f / total for f in fitness_values] + [no_reproduction_chance / total]\n        winner = random.choices(competitors_with_dummy, weights=probs, k=1)[0]\n        if winner is not None:\n            # Mutate winner to produce offspring\n            offspring = mutate(winner)\n            new_pop.append(offspring)\n        else:\n            # No reproduction: keep a random individual (or skip, or add a placeholder)\n            new_pop.append(random.choice(population))\n        \n\n    population = new_pop\n\n\n\nNote, like the earlier Moran model, the algorithm above still replaces a random individual in the population, NOT one of the competitors. Let’s make the ‘death’ (removing an individual after reproduction) still apply to anyone in the entire population.\n\nStudy the effect of how many competitors are sampled at once. Try 100, 10, and 2 competitors. What do you notice?\nSpatially structured populations are often placed on a grid. Describe how you could implement a roulette wheel to resolve local competition, e.g. when an empty grid point is competed for by neighbours.",
     "crumbs": [
       "IV) Evolution",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>Practical 2</span>"
     ]
   },
   {
-    "objectID": "evo_practical_2.html#an-iframe-to-a-different-page-e.g.-my-simulations",
-    "href": "evo_practical_2.html#an-iframe-to-a-different-page-e.g.-my-simulations",
+    "objectID": "evo_practical_2.html#diversity-patterns",
+    "href": "evo_practical_2.html#diversity-patterns",
     "title": "16  Practical 2",
-    "section": "16.6 An ‘iframe’ to a different page (e.g. my simulations)",
-    "text": "16.6 An ‘iframe’ to a different page (e.g. my simulations)\n\n\nMermaid\nDiagrams (Mermaid syntax):\n\n\n\n\n\n\nflowchart TB\nA(Models) --&gt; C(\"Analytical (mathematical)\")\nA --&gt; B(\"Numerical (computational)\")\nB --&gt; F(Individual-based model)\nB --&gt; G(Cellular automaton)\nC --&gt; E(Differential equation)\nC --&gt; D(MAPs)\n\n\n\n\nFigure 16.1: Types of models\n\n\n\n\n\nWhich can be referred to Figure A.1.\n\n\nCallouts\nCall-outs can organise information and highlight important points.\n\n\n\n\n\n\nNote\n\n\n\nNote that there are five types of callouts, including: note, warning, important, tip, and caution.\n\n\n\n\n\n\n\n\nTip with Title\n\n\n\nThis is an example of a callout with a title.\n\n\n\n\n\n\n\n\nExpand To Learn About Collapse\n\n\n\n\n\nThis is an example of a ‘folded’ caution callout that can be expanded by the user. You can use collapse=\"true\" to collapse it by default or collapse=\"false\" to make a collapsible callout that is expanded by default.\n\n\n\n\n\n\n\n\n\nTip 16.1: Cross-Referencing a Tip\n\n\n\nAdd an ID starting with #tip- to reference a tip.\n\n\nSee Tip A.1…\n\n\nHow to format questions/problem sets\n\nExercise 16.1 (Test 1) The equation of any straight line, called a linear equation, can be written as:\n\\[\ny = mx + b\n\\tag{16.2}\\]\nRefer to the equation like this Equation A.2 or like Customlabel A.2.\na. Blabla?\nb. Of blablabla?\n\n\n\nSharing data tables:\n\n\n\n\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "section": "16.6 Diversity patterns",
+    "text": "16.6 Diversity patterns\nModify the function calculate_diversity to calculate the diversity of the population as the standard deviation of the fitness values.\n\nUse a low mutation rate and study the dynamics of diversity. Describe the pattern verbally.",
     "crumbs": [
       "IV) Evolution",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>Practical 2</span>"
+    ]
+  },
+  {
+    "objectID": "evo_practical_2.html#evolving-a-dna-sequence",
+    "href": "evo_practical_2.html#evolving-a-dna-sequence",
+    "title": "16  Practical 2",
+    "section": "16.7 Evolving a DNA sequence",
+    "text": "16.7 Evolving a DNA sequence\nThe problem with the previous model is there is no true distinction between genotype (that which mutates) and phenotype (that which is selected). Let us try and adapt the model to be more biologically meaningful, by making each individual represented by a DNA sequence. Copy the following code:\n\n\n\n\n\n\nStarting code for “evolving a DNA sequence”\n\n\n\n\n\nimport random\nimport math\nimport matplotlib.pyplot as plt\nfrom collections import Counter\n\n# set the random number seed\nrandom.seed(0)\n\nplt.ion()  # Enable interactive mode\n\n# Parameters\nalphabet = \"ATCG\"\ntarget_sequence = \"GATGCGCGCTGGATTAAC\"  # Example target sequence\ndna_length = len(target_sequence)\ntarget_length = len(target_sequence)\n\n# Simulation settings\npopulation_size = 500  # must be a square number for grid mode\ngenerations = 20000\nmutation_rate = 0.001\nsample_interval = 5\nsample_size = population_size\nno_reproduction_chance = 0.1\n\n# Core functions\ndef fitness(dna):\n    return 1 - sum(a != b for a, b in zip(dna, target_sequence)) / target_length\n\ndef mutate(dna, rate=mutation_rate):\n    return ''.join(\n        random.choice([b for b in alphabet if b != base]) if random.random() &lt; rate else base\n        for base in dna\n    )\n\ndef count_beneficial_mutations(dna):\n    f0 = fitness(dna)\n    count = 0\n    for i in range(len(dna)):\n        for b in alphabet:\n            if b != dna[i]:\n                mutant = dna[:i] + b + dna[i+1:]\n                if fitness(mutant) &gt; f0:\n                    count += 1\n    return count\n\ndef diversity(pop):\n    counts = {}\n    for ind in pop:\n        counts[ind] = counts.get(ind, 0) + 1\n    total = len(pop)\n    return -sum((c/total) * math.log(c/total + 1e-9) for c in counts.values()) if total &gt; 0 else 0\n\n# Initialize population\ninitial_sequence = \"GATAGCGAAGTTTAGCCG\" # far from target (only first 3 are correct)\npopulation = [initial_sequence for _ in range(population_size)]\n\navg_fitness = []\navg_beneficial = []\ndiversity_over_time = []\nbest_individuals = []\n\ndef get_neighbors(i, j):\n    return [(x % side, y % side)\n            for x in range(i-1, i+2)\n            for y in range(j-1, j+2)]\n\n# Initialize interactive plot\nfig, ax1 = plt.subplots(figsize=(12, 8))\nax1.set_xlabel(\"Generation\")\nax1.set_ylabel(\"Average Fitness\", color='tab:blue')\nax1.set_ylim(0, 1)\nline1, = ax1.plot([], [], color='tab:blue', linewidth=2, label='Fitness')\nax1.tick_params(axis='y', labelcolor='tab:blue')\n\nax2 = ax1.twinx()\nax2.set_ylabel(\"Beneficial Mutations / Diversity\", color='tab:purple')\nline2, = ax2.plot([], [], color='tab:purple', linestyle='--', linewidth=2, label='Beneficial Mutations')\nline3, = ax2.plot([], [], color='tab:green', linestyle=':', linewidth=2, label='Diversity')\nax2.tick_params(axis='y', labelcolor='tab:purple')\nfig.suptitle(\"Evolution Toward Target Sequence\")\nfig.tight_layout()\nax2.set_ylim(0, 20)\nfig.legend(loc='upper right')\nplt.grid(True)\nplt.draw()\n\nbest_seq = \"\"\nbest_score = -1\nfound = False\n\n# Evolution loop\nfor gen in range(generations):\n    fitnesses = [fitness(ind) for ind in population]\n    total_fit = sum(fitnesses)\n    best = max(fitnesses)\n    if(best == 1 and not found):\n        found = True\n        print(\"Found perfect solution at generation\", gen)\n        \n    if gen % sample_interval == 0:\n        sample = random.sample(population, sample_size)\n        avg_beneficial.append(sum(count_beneficial_mutations(ind) for ind in sample) / sample_size)\n        diversity_over_time.append(diversity(population))\n\n        # Update plot data\n        line1.set_data(range(len(avg_fitness)+1), avg_fitness + [sum(fitnesses)/population_size])\n        line2.set_data(range(len(avg_beneficial)), avg_beneficial)\n        line3.set_data(range(len(diversity_over_time)), diversity_over_time)\n        ax1.relim(); ax1.autoscale_view()\n        ax2.relim(); ax2.autoscale_view()\n        best = max(population, key=fitness)\n        fig.suptitle(f\"Best: {best} (target: {target_sequence})\", fontsize=14)\n        plt.pause(0.01)\n\n    else:\n        avg_beneficial.append(avg_beneficial[-1])\n        diversity_over_time.append(diversity_over_time[-1])\n\n    # Tournament selection (as in evolving_fitness_final.py)\n    new_pop = []\n    tournament_size = 10  # can be adjusted\n\n    for _ in range(population_size):\n        # Select tournament_size individuals randomly\n        competitors = random.sample(population, tournament_size)\n        # Pick the one with highest fitness\n        fitness_values = [fitness(ind) for ind in competitors]\n        total = sum(fitness_values)\n        \n        probs = [f / total for f in fitness_values]\n        winner = random.choices(competitors, weights=probs, k=1)[0]\n        # Mutate winner to produce offspring\n        offspring = mutate(winner)\n        new_pop.append(offspring)\n\n    population = new_pop\n\n    avg_fitness.append(sum(fitness(ind) for ind in population) / population_size)\n    if gen % 250 == 0:\n        best = max(population, key=fitness)\n        best_individuals.append((gen, best))\n\ninput(\"\\nSimulation complete. Press Enter to exit plot window...\")\n\n\n\nAnswer the following questions using the options available in the model:\n\nRun the code. What does the new (dashed blue) line represent? Do you understand how is changes over time?\n\nThe program reports after how many generations it manages to find the target sequence. With default settings this can take a long time… (default: 429 generations)\n\nModify the mutation rate to see how it affects the time to find the target sequence. Visualise your results. What do you observe?\nModify the tournament size (how many competitors are in the roulette wheel).\nEvaluate how fitness is calculated in this model. Is there a distinction between genotype en phenotype? Why/why not?",
+    "crumbs": [
+      "IV) Evolution",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Practical 2</span>"
+    ]
+  },
+  {
+    "objectID": "evo_practical_2.html#evolving-a-protein-sequence",
+    "href": "evo_practical_2.html#evolving-a-protein-sequence",
+    "title": "16  Practical 2",
+    "section": "16.8 Evolving a protein sequence",
+    "text": "16.8 Evolving a protein sequence\nNext we will extend the simulation a little more. Not only do individuals have a DNA sequence, they will also have a protein sequence. To do so, the code first defines the codon table (which we of course all know by heart =)), and then translates the DNA sequence into a protein sequence. The protein sequence is then used to calculate the fitness of the individual, which is based on how well the protein sequence matches a target protein sequence. The code is as follows:\n\n\n\n\n\n\nStarting code for evolving a protein sequence\n\n\n\n\n\nimport random\nimport math\nimport matplotlib.pyplot as plt\nfrom collections import Counter\n\n# set the random number seed\nrandom.seed(0)\n\nplt.ion()  # Enable interactive mode\n\n# Codon table\ncodon_table = {\n    'TTT': 'F', 'TTC': 'F', 'TTA': 'L', 'TTG': 'L', 'CTT': 'L', 'CTC': 'L', 'CTA': 'L', 'CTG': 'L',\n    'ATT': 'I', 'ATC': 'I', 'ATA': 'I', 'ATG': 'M',\n    'GTT': 'V', 'GTC': 'V', 'GTA': 'V', 'GTG': 'V',\n    'TCT': 'S', 'TCC': 'S', 'TCA': 'S', 'TCG': 'S', 'AGT': 'S', 'AGC': 'S',\n    'CCT': 'P', 'CCC': 'P', 'CCA': 'P', 'CCG': 'P',\n    'ACT': 'T', 'ACC': 'T', 'ACA': 'T', 'ACG': 'T',\n    'GCT': 'A', 'GCC': 'A', 'GCA': 'A', 'GCG': 'A',\n    'TAT': 'Y', 'TAC': 'Y', 'CAT': 'H', 'CAC': 'H',\n    'CAA': 'Q', 'CAG': 'Q', 'AAT': 'N', 'AAC': 'N',\n    'AAA': 'K', 'AAG': 'K', 'GAT': 'D', 'GAC': 'D',\n    'GAA': 'E', 'GAG': 'E', 'TGT': 'C', 'TGC': 'C',\n    'TGG': 'W', 'CGT': 'R', 'CGC': 'R', 'CGA': 'R', 'CGG': 'R', 'AGA': 'R', 'AGG': 'R',\n    'GGT': 'G', 'GGC': 'G', 'GGA': 'G', 'GGG': 'G',\n    'TAA': '*', 'TAG': '*', 'TGA': '*'\n}\n\n# Parameters\nalphabet = \"ATCG\"\ntarget_protein = \"DARWIN\"\ndna_length = len(target_protein)*3\ntarget_length = len(target_protein)\n\n# Simulation settings\npopulation_size = 625  # must be a square number for grid mode\ngenerations = 20000\nmutation_rate = 0.0005   \nsample_interval = 5\nsample_size = population_size\nno_reproduction_chance = 0.01\n\n# Core functions\ndef translate(dna):\n    return ''.join(codon_table.get(dna[i:i+3], '?') for i in range(0, len(dna), 3))\n\ndef fitness(dna):\n    protein = translate(dna)\n    return 1 - sum(a != b for a, b in zip(protein, target_protein)) / target_length\n\ndef mutate(dna, rate=mutation_rate):\n    return ''.join(\n        random.choice([b for b in alphabet if b != base]) if random.random() &lt; rate else base\n        for base in dna\n    )\n\ndef count_beneficial_mutations(dna):\n    f0 = fitness(dna)\n    count = 0\n    for i in range(len(dna)):\n        for b in alphabet:\n            if b != dna[i]:\n                mutant = dna[:i] + b + dna[i+1:]\n                if fitness(mutant) &gt; f0:\n                    count += 1\n    return count\n\ndef diversity(pop):\n    counts = Counter(pop)\n    total = len(pop)\n    return -sum((c/total) * math.log(c/total + 1e-9) for c in counts.values()) if total &gt; 0 else 0\n\n# Initialize population\ninitial_sequence = ''.join(random.choice(alphabet) for _ in range(dna_length))\npopulation = [initial_sequence for _ in range(population_size)]\n\navg_fitness = []\navg_beneficial = []\ndiversity_over_time = []\nbest_individuals = []\n\n# Grid setup\nside = int(math.sqrt(population_size))\nassert side * side == population_size, \"Population size must be a square number for grid mode\"\n\ndef get_neighbors(i, j):\n    return [(x % side, y % side)\n            for x in range(i-1, i+2)\n            for y in range(j-1, j+2)]\n\n# Initialize interactive plot\nfig, ax1 = plt.subplots(figsize=(12, 8))\nax1.set_xlabel(\"Generation\")\nax1.set_ylabel(\"Average Fitness\", color='tab:blue')\nax1.set_ylim(0, 1)\nline0, = ax1.plot([], [], color='black', linewidth=1, label='Max fitness')\nline1, = ax1.plot([], [], color='tab:blue', linewidth=2, label='Fitness')\nax1.tick_params(axis='y', labelcolor='tab:blue')\n\nax2 = ax1.twinx()\nax2.set_ylabel(\"Beneficial Mutations / Diversity\", color='tab:purple')\nline2, = ax2.plot([], [], color='tab:purple', linestyle='--', linewidth=2, label='Beneficial Mutations')\nline3, = ax2.plot([], [], color='tab:green', linestyle=':', linewidth=2, label='Diversity')\nax2.tick_params(axis='y', labelcolor='tab:purple')\nfig.suptitle(\"Evolution Toward \" + str(target_protein))\nfig.tight_layout()\nax2.set_ylim(0, 5)\nfig.legend(loc='upper right')\nplt.grid(True)\nplt.draw()\n\nbest_seq = \"\"\nbest_score = -1\nbest_fitnesses = []\nfound = False\n\n# Evolution loop\nfor gen in range(generations):\n    fitnesses = [fitness(ind) for ind in population]\n    total_fit = sum(fitnesses)\n    best = max(fitnesses)\n    best_fitnesses.append(best)\n    if(best == 1 and not found):\n        found = True\n        print(\"Found perfect solution at generation\", gen)\n        \n    if gen % sample_interval == 0:\n        sample = random.sample(population, sample_size)\n        avg_beneficial.append(sum(count_beneficial_mutations(ind) for ind in sample) / sample_size)\n        diversity_over_time.append(diversity(population))\n\n        # Update plot data\n        line0.set_data(range(len(avg_fitness)+1), best_fitnesses)\n        line1.set_data(range(len(avg_fitness)+1), avg_fitness + [sum(fitnesses)/population_size])\n        line2.set_data(range(len(avg_beneficial)), avg_beneficial)\n        line3.set_data(range(len(diversity_over_time)), diversity_over_time)\n        ax1.relim(); ax1.autoscale_view()\n        ax2.relim(); ax2.autoscale_view()\n        best = max(population, key=fitness)\n        fig.suptitle(f\"Best: {translate(best)} (target: {target_protein})\", fontsize=14)\n        plt.pause(0.01)\n\n    else:\n        avg_beneficial.append(avg_beneficial[-1])\n        diversity_over_time.append(diversity_over_time[-1])\n\n    new_pop = []\n    tournament_size = 10  # can be adjusted\n    \n    for _ in range(population_size):\n        # Select tournament_size individuals randomly\n        competitors = random.sample(population, tournament_size)\n        # Pick the one with highest fitness\n        fitness_values = [fitness(ind) for ind in competitors]\n        total = sum(fitness_values)\n        \n        probs = [f / total for f in fitness_values]\n        winner = random.choices(competitors, weights=probs, k=1)[0]\n        # Mutate winner to produce offspring\n        offspring = mutate(winner)\n        new_pop.append(offspring)\n\n    population = new_pop\n\n\n    avg_fitness.append(sum(fitness(ind) for ind in population) / population_size)\n    if gen % 250 == 0:\n        best = max(population, key=fitness)\n        best_individuals.append((gen, translate(best)))\n\ninput(\"\\nSimulation complete. Press Enter to exit plot window...\")\n\n\n\nAnswer the following questions about the model\n\nAnother line was added to the model. What new information can you obtain from analysing this line?\nStudy carefully how the other lines (also present in previous models) change over time. What do you observe? Try and capture what you see into words.\nIn biology, multiple genotypes can translate to the same phenotype (this is called a many-to-one genotype-phenotype map), or alternatively, one genotype can produce multiple phenotype (this is called phenotypic plasticity, or a one-to-may genotype-phenotype map). Which genotype-phenotype (GP) mapping applies to this model? Why?\nBonus question for motivated students modify the code to include a second target protein sequence, and alternate between the two targets. If you see something interesting, please share it with the class!",
+    "crumbs": [
+      "IV) Evolution",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Practical 2</span>"
+    ]
+  },
+  {
+    "objectID": "evo_practical_3.html",
+    "href": "evo_practical_3.html",
+    "title": "17  Practical 3",
+    "section": "",
+    "text": "17.1 Building a model from scratch\nOver the last weeks you have been given many model of biology, and you have modified or extended upon them. For this practical, I will give you a only a description. Your challenge will be to see how far you get in trying to get this model working yourself. I advice you use AI-assisted programming only to solve small steps, otherwise you have no clue what you are doing. But if you try and do everything yourself, it may take a little long.\nAt the end of the pratical, we will compare different implementations by students, as well as my implementation. Hopefully, we will see some generic patterns, because the model description should be good enough to give “similar models”. The description should be “vague enough” to lead to some differences, but “precise enough” to yield similar results. This is an experiment in and of itself. So let’s see :’)\nNote that I also do not yet know exactly what will happen in this simulation (although I have tried it out), so I’m hoping we will learn some cool stuff together!",
+    "crumbs": [
+      "IV) Evolution",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Practical 3</span>"
+    ]
+  },
+  {
+    "objectID": "evo_practical_3.html#simulating-a-simple-microbial-ecosystem-with-public-goods",
+    "href": "evo_practical_3.html#simulating-a-simple-microbial-ecosystem-with-public-goods",
+    "title": "17  Practical 3",
+    "section": "17.2 Simulating a simple microbial ecosystem with “public goods”",
+    "text": "17.2 Simulating a simple microbial ecosystem with “public goods”\n\nModel description\nMicrobes often produce public goods, from which surrounding microbes can benefit. This can lead to interesting dynamics, such as cooperation and competition. Most models however consider on 1 public good at a time, which leads to limited diversity (a producer, and a non-producer may or may not coexist). Here, we will an ecosystem with many public goods, and simulate them on a grid.\nAn individual microbe will carry a “genome” that is represented by a binary string (101010010011). Each position in the string represents a public good, and whether the individual can produce it (1) or not (0). The individual can rely on other individuals to produce public goods.\nWe will simulate individuals (microbial cells) reproducing and dying on a grid. A grid point either contains an individual, or it is empty. Every empty point, will be competed for by individuals that are in that neighbourhood. The neighbourhood is defined as the 8 surrounding grid points (this is called the “Moore” neighbourhood). The cells can only replicate if they have all the public goods they need, which means that they can rely on other individuals in their neighbourhood to produce them. If they do not have all public goods available, they cannot replicate. The “winner” from these (max) 8 viable competitors will be determined by a roulette wheel selection, where the relative probability is determined by their fitness:\n\\[\nF_i = 1 - c \\cdot \\sum({bitstring})\n\\]\nIn other words, fitness goes down as the number of public goods produced increases, and there is a cost \\(c\\) associated with producing each public good. Make sure this roulette wheel contains a probability that nobody wins, such that highly unfit individuals are less likely to replicate than highly fit individuals (also see earlier practicals).\nThe individual that replicates, can undergo mutations in the bitstring (gene loss and gene gain). Assume gene loss is more likely than gene gain (initial parameters to explore are summarised below)\nFinally, implement a function that allows you to mix the grid (all individuals are placed in a random position).\n\n\nModel output\nThe model will have the following output: a grid that is coloured by the number of public goods produced (for consistency, let’s all use a ‘viridis’ scale), and a line graph that plots the total population sizes, as well as the population sizes of species producing 0 public goods, 1 public good, 2 public goods, etc.\n\n\nParameters to start out with\n\nGrid size: 50 x 50\nInitial population: produces all public goods (1111…1)\nDeath rate: 0.1\nCost (c): 0.05\nBitstring 1 to 0 mutation (losing a gene): 0.01\nBitstring 0 to 1 mutation (gaining a gene): 0.001\nNumber of public goods (i.e. bitstring length): 10\n“No-event” size of roulette wheel: 1\n\n\n\nProposed experiments\nTry investigating how the model behaves with different values of \\(c\\) (the cost of producing public goods). Can you explain what happens at \\(c=0.0\\)?\nTry studying the effect of mixing the whole grid every timestep, such that neighbourhoods are constantly “randomised”. Look at the population size, as well as the distribution of different types. Can you explain the observations in biological terms?\nTry studying what happens at different mutation rates.",
+    "crumbs": [
+      "IV) Evolution",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Practical 3</span>"
     ]
   },
   {
     "objectID": "evo_slides.html",
     "href": "evo_slides.html",
-    "title": "17  Slides",
+    "title": "18  Slides",
     "section": "",
-    "text": "17.1 Day 1 - Individual-based modelling, collective behaviour, the evolution of multicellularity.",
+    "text": "18.1 Day 1 - Individual-based modelling, collective behaviour, the evolution of multicellularity.",
     "crumbs": [
       "IV) Evolution",
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Slides</span>"
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Slides</span>"
     ]
   },
   {
     "objectID": "evo_slides.html#day-2---genotypes-phenotypes-and-fitness",
     "href": "evo_slides.html#day-2---genotypes-phenotypes-and-fitness",
-    "title": "17  Slides",
-    "section": "17.2 Day 2 - Genotypes, phenotypes, and fitness",
-    "text": "17.2 Day 2 - Genotypes, phenotypes, and fitness",
+    "title": "18  Slides",
+    "section": "18.2 Day 2 - Genotypes, phenotypes, and fitness",
+    "text": "18.2 Day 2 - Genotypes, phenotypes, and fitness",
     "crumbs": [
       "IV) Evolution",
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Slides</span>"
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Slides</span>"
     ]
   },
   {
     "objectID": "evo_slides.html#day-3---growth-structure-and-horizontal-gene-transfer",
     "href": "evo_slides.html#day-3---growth-structure-and-horizontal-gene-transfer",
-    "title": "17  Slides",
-    "section": "17.3 Day 3 - Growth, structure and horizontal gene transfer",
-    "text": "17.3 Day 3 - Growth, structure and horizontal gene transfer",
+    "title": "18  Slides",
+    "section": "18.3 Day 3 - Growth, structure and horizontal gene transfer",
+    "text": "18.3 Day 3 - Growth, structure and horizontal gene transfer",
     "crumbs": [
       "IV) Evolution",
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Slides</span>"
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Slides</span>"
     ]
   },
   {
     "objectID": "project_1.html",
     "href": "project_1.html",
-    "title": "18  Differentiation introduction",
+    "title": "19  Differentiation introduction",
     "section": "",
-    "text": "18.1 Equations\nHere’s an equation:\n\\[\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN(1 - \\frac{N}{K})\n\\tag{18.1}\\]\nAnd Equation A.1 is a reference to the equation above.",
+    "text": "19.1 Equations\nHere’s an equation:\n\\[\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN(1 - \\frac{N}{K})\n\\tag{19.1}\\]\nAnd Equation A.1 is a reference to the equation above.",
     "crumbs": [
       "Mini-projects",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Differentiation introduction</span>"
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Differentiation introduction</span>"
     ]
   },
   {
     "objectID": "project_1.html#references",
     "href": "project_1.html#references",
-    "title": "18  Differentiation introduction",
-    "section": "18.2 References",
-    "text": "18.2 References\nSee Knuth (1984) for additional discussion of literate programming.",
+    "title": "19  Differentiation introduction",
+    "section": "19.2 References",
+    "text": "19.2 References\nSee Knuth (1984) for additional discussion of literate programming.",
     "crumbs": [
       "Mini-projects",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Differentiation introduction</span>"
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Differentiation introduction</span>"
     ]
   },
   {
     "objectID": "project_1.html#syntax-highlighting",
     "href": "project_1.html#syntax-highlighting",
-    "title": "18  Differentiation introduction",
-    "section": "18.3 Syntax highlighting",
-    "text": "18.3 Syntax highlighting\nHere’s some python code:\nimport numpy as np\nnp.random.seed(42)\na = 1 + 2\nb = a + 3\nprint(\"Hello\")",
+    "title": "19  Differentiation introduction",
+    "section": "19.3 Syntax highlighting",
+    "text": "19.3 Syntax highlighting\nHere’s some python code:\nimport numpy as np\nnp.random.seed(42)\na = 1 + 2\nb = a + 3\nprint(\"Hello\")",
     "crumbs": [
       "Mini-projects",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Differentiation introduction</span>"
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Differentiation introduction</span>"
     ]
   },
   {
     "objectID": "project_1.html#visualising-data-r",
     "href": "project_1.html#visualising-data-r",
-    "title": "18  Differentiation introduction",
-    "section": "18.4 Visualising data (R)",
-    "text": "18.4 Visualising data (R)\nHere’s an interactive plot generated with R:",
+    "title": "19  Differentiation introduction",
+    "section": "19.4 Visualising data (R)",
+    "text": "19.4 Visualising data (R)\nHere’s an interactive plot generated with R:",
     "crumbs": [
       "Mini-projects",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Differentiation introduction</span>"
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Differentiation introduction</span>"
     ]
   },
   {
     "objectID": "project_1.html#a-youtube-clip",
     "href": "project_1.html#a-youtube-clip",
-    "title": "18  Differentiation introduction",
-    "section": "18.5 A youtube clip:",
-    "text": "18.5 A youtube clip:",
+    "title": "19  Differentiation introduction",
+    "section": "19.5 A youtube clip:",
+    "text": "19.5 A youtube clip:",
     "crumbs": [
       "Mini-projects",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Differentiation introduction</span>"
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Differentiation introduction</span>"
     ]
   },
   {
     "objectID": "project_1.html#an-iframe-to-a-different-page-e.g.-my-simulations",
     "href": "project_1.html#an-iframe-to-a-different-page-e.g.-my-simulations",
-    "title": "18  Differentiation introduction",
-    "section": "18.6 An ‘iframe’ to a different page (e.g. my simulations)",
-    "text": "18.6 An ‘iframe’ to a different page (e.g. my simulations)\n\n\nMermaid\nDiagrams (Mermaid syntax):\n\n\n\n\n\n\nflowchart TB\nA(Models) --&gt; C(\"Analytical (mathematical)\")\nA --&gt; B(\"Numerical (computational)\")\nB --&gt; F(Individual-based model)\nB --&gt; G(Cellular automaton)\nC --&gt; E(Differential equation)\nC --&gt; D(MAPs)\n\n\n\n\nFigure 18.1: Types of models\n\n\n\n\n\nWhich can be referred to Figure A.1.\n\n\nCallouts\nCall-outs can organise information and highlight important points.\n\n\n\n\n\n\nNote\n\n\n\nNote that there are five types of callouts, including: note, warning, important, tip, and caution.\n\n\n\n\n\n\n\n\nTip with Title\n\n\n\nThis is an example of a callout with a title.\n\n\n\n\n\n\n\n\nExpand To Learn About Collapse\n\n\n\n\n\nThis is an example of a ‘folded’ caution callout that can be expanded by the user. You can use collapse=\"true\" to collapse it by default or collapse=\"false\" to make a collapsible callout that is expanded by default.\n\n\n\n\n\n\n\n\n\nTip 18.1: Cross-Referencing a Tip\n\n\n\nAdd an ID starting with #tip- to reference a tip.\n\n\nSee Tip A.1…\n\n\nHow to format questions/problem sets\n\nExercise 18.1 (Test 1) The equation of any straight line, called a linear equation, can be written as:\n\\[\ny = mx + b\n\\tag{18.2}\\]\nRefer to the equation like this Equation A.2 or like Customlabel A.2.\na. Blabla?\nb. Of blablabla?\n\n\n\nSharing data tables:\n\n\n\n\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "title": "19  Differentiation introduction",
+    "section": "19.6 An ‘iframe’ to a different page (e.g. my simulations)",
+    "text": "19.6 An ‘iframe’ to a different page (e.g. my simulations)\n\n\nMermaid\nDiagrams (Mermaid syntax):\n\n\n\n\n\n\nflowchart TB\nA(Models) --&gt; C(\"Analytical (mathematical)\")\nA --&gt; B(\"Numerical (computational)\")\nB --&gt; F(Individual-based model)\nB --&gt; G(Cellular automaton)\nC --&gt; E(Differential equation)\nC --&gt; D(MAPs)\n\n\n\n\nFigure 19.1: Types of models\n\n\n\n\n\nWhich can be referred to Figure A.1.\n\n\nCallouts\nCall-outs can organise information and highlight important points.\n\n\n\n\n\n\nNote\n\n\n\nNote that there are five types of callouts, including: note, warning, important, tip, and caution.\n\n\n\n\n\n\n\n\nTip with Title\n\n\n\nThis is an example of a callout with a title.\n\n\n\n\n\n\n\n\nExpand To Learn About Collapse\n\n\n\n\n\nThis is an example of a ‘folded’ caution callout that can be expanded by the user. You can use collapse=\"true\" to collapse it by default or collapse=\"false\" to make a collapsible callout that is expanded by default.\n\n\n\n\n\n\n\n\n\nTip 19.1: Cross-Referencing a Tip\n\n\n\nAdd an ID starting with #tip- to reference a tip.\n\n\nSee Tip A.1…\n\n\nHow to format questions/problem sets\n\nExercise 19.1 (Test 1) The equation of any straight line, called a linear equation, can be written as:\n\\[\ny = mx + b\n\\tag{19.2}\\]\nRefer to the equation like this Equation A.2 or like Customlabel A.2.\na. Blabla?\nb. Of blablabla?\n\n\n\nSharing data tables:\n\n\n\n\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
     "crumbs": [
       "Mini-projects",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Differentiation introduction</span>"
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Differentiation introduction</span>"
     ]
   },
   {
     "objectID": "project_2.html",
     "href": "project_2.html",
-    "title": "19  Maintaining a healthy microbiome",
+    "title": "20  Miniproject: maintaining a healthy microbiome",
     "section": "",
-    "text": "19.1 Introduction\nMicrobes often form intricate relationships, not only amongst each other, but also with larger organisms from all kingdoms: plants, animals, and fungi. While they often provide useful services, microbes typically evolve much faster than these hosts. What stops a microbe from taking advantage of its host, taking more resources than it provides, or even damaging the host tissue to gain access to even more resources? The latter scenario, we would call a pathogen, and the likelyhood of this transition from occuring could be called the disease pressure.\nUnderstanding the fundamental principles behind disease pressure can help mitigating disease outbreaks. For example, if we understand the conditions under which a microbe is likely to become a pathogen, we can take steps to prevent this from happening.\nIn summary, the microbes in our gut or in the soil of our favourite crops, are constantly evolving on a parasitism-mutualism continuum (see Figure 19.1). In this mini project, you will investigate the dynamics of microbiomes evolving on such a continuum. We will particularly focus on how the properties of the host (plant, animals, etc.) shape the likelyhood of disease outbreaks. To that end, here are a few key questions to get you started, but you don’t need to focus on each and every one of them at the same time. Plus, more (better!) questions will likely emerge as you work on the project. That’s science.",
+    "text": "20.1 Mini description\nMicrobes often form intricate relationships, not only amongst each other, but also with larger organisms from all kingdoms: plants, animals, and fungi. While they often provide useful services, microbes typically evolve much faster than these hosts. What stops a microbe from taking advantage of its host, taking more resources than it provides, or even damaging the host tissue to gain access to even more resources? The latter scenario, we would call a pathogen, and the likelyhood of this transition from occuring could be called the disease pressure.\nUnderstanding the fundamental principles behind disease pressure can help mitigating disease outbreaks. For example, if we understand the conditions under which a microbe is likely to become a pathogen, we can take steps to prevent this from happening.\nTo phrase the above story a little differently: the microbes in our gut or in the soil of our favourite crops, are constantly evolving on a parasitism-mutualism continuum (see Figure 20.1). In this mini project, you will investigate the dynamics of microbiomes evolving on such a continuum. We will particularly focus on how the properties of the host (plant, animals, etc.) shape the likelihood of disease outbreaks. To that end, here are a few key questions to get you started, but you don’t need to focus on each and every one of them at the same time. Plus, more (better!) questions will likely emerge as you work on the project. That’s science.",
     "crumbs": [
       "Mini-projects",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Maintaining a healthy microbiome</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Miniproject: maintaining a healthy microbiome</span>"
     ]
   },
   {
-    "objectID": "project_2.html#introduction",
-    "href": "project_2.html#introduction",
-    "title": "19  Maintaining a healthy microbiome",
+    "objectID": "project_2.html#mini-description",
+    "href": "project_2.html#mini-description",
+    "title": "20  Miniproject: maintaining a healthy microbiome",
     "section": "",
-    "text": "Figure 19.1: Parasitism-mutualism continuum of host-associated microbes\n\n\n\n\n\nDo mobile hosts (e.g. animals) experience different disease pressures than sessile hosts (e.g. plants)?\nAre mutualistic microbes easier to maintain in short- or long-lived hosts?\nDoes extremely non-local reproduction (e.g. fungal spore dispersal) change these patterns?\nHow does an adaptive immune system (animals) affect the evolution of microbiomes, compared to plants, who don’t have an adaptive immune system?",
+    "text": "Figure 20.1: Parasitism-mutualism continuum of host-associated microbes. Note that this is a cartoon, and that nature is in almost all cases more complicated than this.",
     "crumbs": [
       "Mini-projects",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Maintaining a healthy microbiome</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Miniproject: maintaining a healthy microbiome</span>"
     ]
   },
   {
-    "objectID": "project_2.html#getting-started-a-simple-model-by-van2019role.",
-    "href": "project_2.html#getting-started-a-simple-model-by-van2019role.",
-    "title": "19  Maintaining a healthy microbiome",
-    "section": "19.2 Getting started: a simple model by Van Vliet and Doebeli (2019).",
-    "text": "19.2 Getting started: a simple model by Van Vliet and Doebeli (2019).\nMaintaining self-sacrifical microbiomes isn’t easy, as shown by the work of Van Vliet and Doebeli (2019). They show that the evolution of self-sacrificing microbes (which they call “helpers”) is highly sensitive to the host’s longevity and transmission of microbes in between hosts (horizontal transmission). To understand why, start by reading their paper. If you have read it, unfold the text below to see my summary of their methods.\n\n\n\n\n\n\nMy summary of the model by van Vliet et al.\n\n\n\n\n\nIn this model, the birth rate of the host depends on the frequency of allies in the microbiome:\n\\[\nB_i = \\frac{r}{G_H}(1+s_b\\cdot \\frac{A}{A+N})\n\\]\nWhere \\(G_H\\) scales the host generation time w.r.t. the microbiomes, with \\(G_H \\gg r\\), the parameter \\(s_b\\) determines the benefit that hosts get from carrying the ally strain, and the term \\(\\frac{A}{A+N}\\) calculating the frequency \\(f_A\\) of allies in the host, which ensures that the benefit of allies stays bounded. The death rate increases linearly with the density of hosts, and is given by:\n\\[\nD_i = \\frac{r}{G_H} \\frac{H(t)}{K_H}\n\\]\nWhere \\(H(t)\\) gives the number of hosts at a given time, and \\(K_H\\) denotes the basal carrying capacity in the absence of allies. Note that the true carrying capacity can be higher, as helpers increase the birth rate of hosts.\nWhenever a host reproduces, the microbiome is transmitted vertically to their offspring. The frequency of allies in the offspring is sampled from a normal distribution with mean $f_A$:\n\\[\nf_{offspring}  = \\mathcal{N} (f_{A},\\sigma^2)\n\\]\ntruncated such that \\(0&lt;A_{offspring}&lt;1\\). The total density in the newborn is set by \\(n_0\\).\n\nThe simulation loop\nThen, the simulation progresses as follows:\n\nThe birth and death rates of all hosts is calculated\nCalculate the probability of a host-level event (birth/death) occuring\nIf an event occurs, draw a random event proportional to its probability.\nExecute the event sampled in step 3\nUpdate all the microbiomes. The microbiomes are updated in step 5 according to the model where allies can mutate into neutral strains, but not the other way around.\n\n\n\n\n\nTo start the project, we will first replicate their results in Python. As a guideline, use my model summary above. I am ready to help where needed, but at this point in the course your experience should go a long way! If the simulation works, see if you can reproduce the following two figures:\n\n\n\n\n\n\n\n\n\n\n\n(a) Helpers are maintained within a population of hosts (black line shows the average), despite each individual host (green thinner lines) constantly decreasing in helper types. This can be explained by selection at the level of the host.\n\n\n\n\n\n\n\n\n\n\n\n(b) Helpers are not maintained within a population of hosts (black line shows the average) when transmission of microbiomes is horizontal (in between random individuals).\n\n\n\n\n\n\n\nFigure 19.2: Helper maintenance in hosts with different transmission modes",
+    "objectID": "project_2.html#key-references",
+    "href": "project_2.html#key-references",
+    "title": "20  Miniproject: maintaining a healthy microbiome",
+    "section": "20.2 Key references",
+    "text": "20.2 Key references\n\nVan Vliet and Doebeli (2019): a model of self-sacrificing microbes in hosts with different transmission modes.\nKoskella and Bergelson (2020): an opinion piece on host-microbe (co)evolution and levels of selection",
     "crumbs": [
       "Mini-projects",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Maintaining a healthy microbiome</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Miniproject: maintaining a healthy microbiome</span>"
+    ]
+  },
+  {
+    "objectID": "project_2.html#guiding-questions",
+    "href": "project_2.html#guiding-questions",
+    "title": "20  Miniproject: maintaining a healthy microbiome",
+    "section": "20.3 Guiding questions:",
+    "text": "20.3 Guiding questions:\n\nDo motile hosts (e.g. animals) experience different disease pressures than non-motile hosts (e.g. plants)?\nAre mutualistic microbes easier to maintain in short- or long-lived hosts?\nDoes non-local reproduction (e.g. seed/spore dispersal) change these patterns?\nHow does an adaptive immune system (animals) affect the evolution of microbiomes, compared to plants, who don’t have an adaptive immune system?",
+    "crumbs": [
+      "Mini-projects",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Miniproject: maintaining a healthy microbiome</span>"
+    ]
+  },
+  {
+    "objectID": "project_2.html#getting-started",
+    "href": "project_2.html#getting-started",
+    "title": "20  Miniproject: maintaining a healthy microbiome",
+    "section": "20.4 Getting started",
+    "text": "20.4 Getting started\nMaintaining self-sacrificial microbiomes isn’t easy, as shown by the work of Van Vliet and Doebeli (2019). They show that the evolution of self-sacrificing microbes (which they call “helpers”) is highly sensitive to the host’s longevity and transmission of microbes in between hosts (horizontal transmission). To understand why, start by reading their paper. If you have read it, unfold the text below to see my summary of their methods.\n\n\n\n\n\n\nMy summary of the model by van Vliet et al.\n\n\n\n\n\nThis model studies the maintanance of self-sacrificial “helper” microbes. Here, I will refer to helpers as “allies” (A), as to clearly differentiate it from “hosts” (H). Microbes that are not allies are referred to as neutral (N).\nAllies provide a benefit to their host, while neutral microbes do not. The microbes are modelled with simple ordinary differential equations (ODEs):\n\\[\n\\begin{aligned}\n\\color{#555}{\n\\frac{dN}{dt} =\n\\underbrace{rN}_{\\textrm{Growth N}} -\n\\underbrace{\\delta N(A+N)}_{\\textrm{Density-dependent death}}\n}\\\\\n\\color{green}{\n  \\frac{dA}{dt} =\n  \\underbrace{rA(1-\\gamma)}_{\\textrm{Growth A}} -\n  \\underbrace{\\delta A(A+N)}_{\\textrm{Density-dependent death}}\n}\\\\\n\\end{aligned}\n\\tag{1}\n\\] As you can see, allies grow slower than neutral microbes and are therefore at a competitive disadvantage, and will eventually be outcompeted. To counter-act the loss of allies, van Vliet’s model considers selection at the level of the host. To achieve this, the birth rate of hosts (\\(B_i\\)) depends on the frequency of allies A in the microbiome:\n\\[\nB_i = \\frac{r}{G_H}(1+s_b\\cdot \\frac{A}{A+N})\n\\]\nHere, \\(G_H\\) is a parameter that scales the host generation time w.r.t. the growth rate of microbes (\\(r\\)), with \\(G_H \\gg r\\) ensuring hosts are long-lived compared to microbes. The term \\(s_b\\) is the maximum benefit that hosts get from carrying the ally strain.\nThe death rate of hosts (\\(D_i\\)) increases linearly with the density of hosts at any given time (\\(H(t)\\)), and is given by:\n\\[\nD_i = \\frac{r}{G_H} \\frac{H(t)}{K_H}\n\\]\nWhere \\(H(t)\\) gives the number of hosts at a given time, and \\(K_H\\) denotes the basal carrying capacity in the absence of allies. Note that the true carrying capacity can be higher, as helpers increase the birth rate of hosts.\nWhenever a host reproduces, the microbiome is transmitted vertically to their offspring. The frequency of allies in the offspring is sampled from a normal distribution with mean \\(f_A\\):\n\\[\nf_{offspring}  = \\mathcal{N} (f_{A},\\sigma^2),\n\\\\\\text{with } f_A = \\frac{A}{A+N}\n\\]\nTo avoid negative ally frequencies, this number is truncated such that \\(0&lt;A_{offspring}&lt;1\\). The total density in the newborn is set by another parameter \\(n_0\\). The model by van Vliet also considers “horizontal” transmission of microbiomes, where \\(f_A\\) is not the ally frequency in the parent, but the frequency of allies in the microbiome of a random individual.\nSo far so good with all the math. Now the simulation…\n\nThe simulation loop\n\nThe birth and death rates of all hosts is calculated\nCalculate the probability of a host-level event (birth/death) occurring\nIf an event occurs, draw a random event proportional to its probability.\nExecute the event sampled in step 3\nUpdate all the microbiome ODEs.\n\n\n\n\n\nTo start the project, we will first replicate van Vliet’s results in Python. As a guideline, use my model summary above. I am ready to help where needed, but at this point in the course your experience should go a long way! If the simulation works, see if you can reproduce the following two figures:\n\n\n\n\n\n\n\n\n\n\n\n(a) Allies are maintained within a population of hosts (black line shows the average), despite each individual host (green thinner lines) constantly decreasing in ally types. This can be explained by selection at the level of the host.\n\n\n\n\n\n\n\n\n\n\n\n(b) Allies are not maintained within a population of hosts (black line shows the average) when transmission of microbiomes is horizontal (in between random individuals).\n\n\n\n\n\n\n\nFigure 20.2: Helper maintenance in hosts with different transmission modes",
+    "crumbs": [
+      "Mini-projects",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Miniproject: maintaining a healthy microbiome</span>"
     ]
   },
   {
     "objectID": "project_2.html#extending-the-model",
     "href": "project_2.html#extending-the-model",
-    "title": "19  Maintaining a healthy microbiome",
-    "section": "19.3 Extending the model",
-    "text": "19.3 Extending the model\nNow that you have a working base-line model, let’s extend it to address the questions we phrased earlier: how does mobility of the host affect the evolution of microbiomes, and what about non-locally reproducing fungi? How do these host-level traits affect the likelyhood of “disease” outbreaks? Note that so far, we have only discussed “helpers” and “neutral” microbes, but the same principles apply to pathogens but perhaps a little more extreme. For example, the microbes may evolve such high levels of nastiness, that hosts do not only replicate slower, but die. Think about ways to extend the model that allows you to tune these distinctions.",
+    "title": "20  Miniproject: maintaining a healthy microbiome",
+    "section": "20.5 Extending the model",
+    "text": "20.5 Extending the model\nNow that you have a working base-line model, let’s extend it to address the questions we phrased earlier: how does mobility of the host affect the evolution of microbiomes, and what about non-locally reproducing fungi? How do these host-level traits affect the likelyhood of “disease” outbreaks? Note that so far, we have only discussed “helpers” and “neutral” microbes, but the same principles apply to pathogens but perhaps a little more extreme. For example, the microbes may evolve such high levels of nastiness, that hosts do not only replicate slower, but die. Think about ways to extend the model that allows you to tune these distinctions.\n\n\n\n\nKoskella, Britt, and Joy Bergelson. 2020. “The Study of Host–Microbiome (Co) Evolution Across Levels of Selection.” Philosophical Transactions of the Royal Society B 375 (1808): 20190604.\n\n\nVan Vliet, Simon, and Michael Doebeli. 2019. “The Role of Multilevel Selection in Host Microbiome Evolution.” Proceedings of the National Academy of Sciences 116 (41): 20591–97.",
     "crumbs": [
       "Mini-projects",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Maintaining a healthy microbiome</span>"
-    ]
-  },
-  {
-    "objectID": "project_2.html#equations",
-    "href": "project_2.html#equations",
-    "title": "19  Maintaining a healthy microbiome",
-    "section": "19.4 Equations",
-    "text": "19.4 Equations\nHere’s an equation:\n\\[\n\\frac{\\mathrm{d}N}{\\mathrm{d}t} = rN(1 - \\frac{N}{K})\n\\tag{19.1}\\]\nAnd Equation A.1 is a reference to the equation above.",
-    "crumbs": [
-      "Mini-projects",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Maintaining a healthy microbiome</span>"
-    ]
-  },
-  {
-    "objectID": "project_2.html#references",
-    "href": "project_2.html#references",
-    "title": "19  Maintaining a healthy microbiome",
-    "section": "19.5 References",
-    "text": "19.5 References\nSee Knuth (1984) for additional discussion of literate programming.",
-    "crumbs": [
-      "Mini-projects",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Maintaining a healthy microbiome</span>"
-    ]
-  },
-  {
-    "objectID": "project_2.html#syntax-highlighting",
-    "href": "project_2.html#syntax-highlighting",
-    "title": "19  Maintaining a healthy microbiome",
-    "section": "19.6 Syntax highlighting",
-    "text": "19.6 Syntax highlighting\nHere’s some python code:\nimport numpy as np\nnp.random.seed(42)\na = 1 + 2\nb = a + 3\nprint(\"Hello\")",
-    "crumbs": [
-      "Mini-projects",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Maintaining a healthy microbiome</span>"
-    ]
-  },
-  {
-    "objectID": "project_2.html#visualising-data-r",
-    "href": "project_2.html#visualising-data-r",
-    "title": "19  Maintaining a healthy microbiome",
-    "section": "19.7 Visualising data (R)",
-    "text": "19.7 Visualising data (R)\nHere’s an interactive plot generated with R:",
-    "crumbs": [
-      "Mini-projects",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Maintaining a healthy microbiome</span>"
-    ]
-  },
-  {
-    "objectID": "project_2.html#a-youtube-clip",
-    "href": "project_2.html#a-youtube-clip",
-    "title": "19  Maintaining a healthy microbiome",
-    "section": "19.8 A youtube clip:",
-    "text": "19.8 A youtube clip:",
-    "crumbs": [
-      "Mini-projects",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Maintaining a healthy microbiome</span>"
-    ]
-  },
-  {
-    "objectID": "project_2.html#an-iframe-to-a-different-page-e.g.-my-simulations",
-    "href": "project_2.html#an-iframe-to-a-different-page-e.g.-my-simulations",
-    "title": "19  Maintaining a healthy microbiome",
-    "section": "19.9 An ‘iframe’ to a different page (e.g. my simulations)",
-    "text": "19.9 An ‘iframe’ to a different page (e.g. my simulations)\n\n\nMermaid\nDiagrams (Mermaid syntax):\n\n\n\n\n\n\nflowchart TB\nA(Models) --&gt; C(\"Analytical (mathematical)\")\nA --&gt; B(\"Numerical (computational)\")\nB --&gt; F(Individual-based model)\nB --&gt; G(Cellular automaton)\nC --&gt; E(Differential equation)\nC --&gt; D(MAPs)\n\n\n\n\nFigure 19.3: Types of models\n\n\n\n\n\nWhich can be referred to Figure A.1.\n\n\nCallouts\nCall-outs can organise information and highlight important points.\n\n\n\n\n\n\nNote\n\n\n\nNote that there are five types of callouts, including: note, warning, important, tip, and caution.\n\n\n\n\n\n\n\n\nTip with Title\n\n\n\nThis is an example of a callout with a title.\n\n\n\n\n\n\n\n\nExpand To Learn About Collapse\n\n\n\n\n\nThis is an example of a ‘folded’ caution callout that can be expanded by the user. You can use collapse=\"true\" to collapse it by default or collapse=\"false\" to make a collapsible callout that is expanded by default.\n\n\n\n\n\n\n\n\n\nTip 19.1: Cross-Referencing a Tip\n\n\n\nAdd an ID starting with #tip- to reference a tip.\n\n\nSee Tip A.1…\n\n\nHow to format questions/problem sets\n\nExercise 19.1 (Test 1) The equation of any straight line, called a linear equation, can be written as:\n\\[\ny = mx + b\n\\tag{19.2}\\]\nRefer to the equation like this Equation A.2 or like Customlabel A.2.\na. Blabla?\nb. Of blablabla?\n\n\n\nSharing data tables:\n\n\n\n\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.\n\n\nVan Vliet, Simon, and Michael Doebeli. 2019. “The Role of Multilevel Selection in Host Microbiome Evolution.” Proceedings of the National Academy of Sciences 116 (41): 20591–97.",
-    "crumbs": [
-      "Mini-projects",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Maintaining a healthy microbiome</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Miniproject: maintaining a healthy microbiome</span>"
     ]
   },
   {
     "objectID": "summary.html",
     "href": "summary.html",
-    "title": "20  Summary",
+    "title": "21  Summary",
     "section": "",
     "text": "In summary, this book has no content whatsoever.\n1 + 1 = 2",
     "crumbs": [
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Summary</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Summary</span>"
     ]
   },
   {
@@ -1191,7 +1224,7 @@
     "href": "references.html",
     "title": "References",
     "section": "",
-    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.\n\n\nVan Vliet, Simon, and Michael Doebeli. 2019. “The Role of\nMultilevel Selection in Host Microbiome Evolution.”\nProceedings of the National Academy of Sciences 116 (41):\n20591–97.",
+    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.\n\n\nKoskella, Britt, and Joy Bergelson. 2020. “The Study of\nHost–Microbiome (Co) Evolution Across Levels of Selection.”\nPhilosophical Transactions of the Royal Society B 375 (1808):\n20190604.\n\n\nVan Vliet, Simon, and Michael Doebeli. 2019. “The Role of\nMultilevel Selection in Host Microbiome Evolution.”\nProceedings of the National Academy of Sciences 116 (41):\n20591–97.",
     "crumbs": [
       "References"
     ]
@@ -1260,17 +1293,6 @@
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>A</span>  <span class='chapter-title'>Quarto examples</span>"
-    ]
-  },
-  {
-    "objectID": "evo_practical_1.html#steering",
-    "href": "evo_practical_1.html#steering",
-    "title": "15  Practical 1",
-    "section": "15.2 Steering",
-    "text": "15.2 Steering\nWe can represent a moving individual in space as a point with a position and a velocity. The position is represented by two coordinates, \\(x\\) and \\(y\\), and the velocity is represented by two components, \\(v_x\\) and \\(v_y\\).\n\n\n\n  \n  \n  Vector Visualisation\n  \n\n\n  \n\n  \n    ← \n    → \n    ↑ \n    ↓ \n    ⟲ \n    ⟳",
-    "crumbs": [
-      "IV) Evolution",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Practical 1</span>"
     ]
   }
 ]

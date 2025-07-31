@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>16&nbsp; Practical 2 – Modelling Life</title>
+<title>16&nbsp; Practical 2 – Modeling Life</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -163,7 +163,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Modelling life</span></a>
+ <span class="menu-text">Modeling life</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -314,8 +314,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./evo_slides.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Slides</span></span></a>
+  <a href="./evo_answers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Answers exercises</span></span></a>
   </div>
 </li>
       </ul>
@@ -383,13 +383,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul class="collapse">
   <li><a href="#genotypes-phenotypes-and-evolutionary-algorithms" id="toc-genotypes-phenotypes-and-evolutionary-algorithms" class="nav-link active" data-scroll-target="#genotypes-phenotypes-and-evolutionary-algorithms"><span class="header-section-number">16.1</span> Genotypes, phenotypes, and evolutionary algorithms</a></li>
-  <li><a href="#note-grns-are-encoded-on-the-genome-too-add-to-lecture" id="toc-note-grns-are-encoded-on-the-genome-too-add-to-lecture" class="nav-link" data-scroll-target="#note-grns-are-encoded-on-the-genome-too-add-to-lecture"><span class="header-section-number">16.2</span> Note: GRNs are encoded on the genome too!! (add to lecture )</a></li>
-  <li><a href="#simple-model-where-fitness-as-a-number" id="toc-simple-model-where-fitness-as-a-number" class="nav-link" data-scroll-target="#simple-model-where-fitness-as-a-number"><span class="header-section-number">16.3</span> Simple model where fitness as a number</a></li>
-  <li><a href="#making-a-roulette-wheel-with-everyone-in-it" id="toc-making-a-roulette-wheel-with-everyone-in-it" class="nav-link" data-scroll-target="#making-a-roulette-wheel-with-everyone-in-it"><span class="header-section-number">16.4</span> Making a roulette wheel with everyone in it</a></li>
-  <li><a href="#a-roulette-wheel-of-a-subset-of-individuals" id="toc-a-roulette-wheel-of-a-subset-of-individuals" class="nav-link" data-scroll-target="#a-roulette-wheel-of-a-subset-of-individuals"><span class="header-section-number">16.5</span> A roulette wheel of a subset of individuals</a></li>
-  <li><a href="#diversity-patterns" id="toc-diversity-patterns" class="nav-link" data-scroll-target="#diversity-patterns"><span class="header-section-number">16.6</span> Diversity patterns</a></li>
-  <li><a href="#evolving-a-dna-sequence" id="toc-evolving-a-dna-sequence" class="nav-link" data-scroll-target="#evolving-a-dna-sequence"><span class="header-section-number">16.7</span> Evolving a DNA sequence</a></li>
-  <li><a href="#evolving-a-protein-sequence" id="toc-evolving-a-protein-sequence" class="nav-link" data-scroll-target="#evolving-a-protein-sequence"><span class="header-section-number">16.8</span> Evolving a protein sequence</a></li>
+  <li><a href="#simple-model-where-fitness-as-a-number" id="toc-simple-model-where-fitness-as-a-number" class="nav-link" data-scroll-target="#simple-model-where-fitness-as-a-number"><span class="header-section-number">16.2</span> Simple model where fitness as a number</a></li>
+  <li><a href="#making-a-roulette-wheel-with-everyone-in-it" id="toc-making-a-roulette-wheel-with-everyone-in-it" class="nav-link" data-scroll-target="#making-a-roulette-wheel-with-everyone-in-it"><span class="header-section-number">16.3</span> Making a roulette wheel with everyone in it</a></li>
+  <li><a href="#a-roulette-wheel-of-a-subset-of-individuals" id="toc-a-roulette-wheel-of-a-subset-of-individuals" class="nav-link" data-scroll-target="#a-roulette-wheel-of-a-subset-of-individuals"><span class="header-section-number">16.4</span> A roulette wheel of a subset of individuals</a></li>
+  <li><a href="#diversity-patterns" id="toc-diversity-patterns" class="nav-link" data-scroll-target="#diversity-patterns"><span class="header-section-number">16.5</span> Diversity patterns</a></li>
+  <li><a href="#evolving-a-dna-sequence" id="toc-evolving-a-dna-sequence" class="nav-link" data-scroll-target="#evolving-a-dna-sequence"><span class="header-section-number">16.6</span> Evolving a DNA sequence</a></li>
+  <li><a href="#evolving-a-protein-sequence" id="toc-evolving-a-protein-sequence" class="nav-link" data-scroll-target="#evolving-a-protein-sequence"><span class="header-section-number">16.7</span> Evolving a protein sequence</a></li>
   </ul>
 </nav>
     </div>
@@ -417,23 +416,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="genotypes-phenotypes-and-evolutionary-algorithms" class="level2" data-number="16.1">
 <h2 data-number="16.1" class="anchored" data-anchor-id="genotypes-phenotypes-and-evolutionary-algorithms"><span class="header-section-number">16.1</span> Genotypes, phenotypes, and evolutionary algorithms</h2>
+<p>Near the end of the lecture, we discussed the differences between the genotype (that which mutates) and the phenotype (that which is selected). Although you have likely already heard about these concepts, how can we study them in evolutionary models? During this practical, you will write your own evolutionary algorithms of increasing complexity, in order to learn about these topics. By the end of this practical, you should understand why the translation from genotype to phenotype (often referred to as the genotype-phenotype map) is such an important concept in evolutionary biology.</p>
 </section>
-<section id="note-grns-are-encoded-on-the-genome-too-add-to-lecture" class="level2" data-number="16.2">
-<h2 data-number="16.2" class="anchored" data-anchor-id="note-grns-are-encoded-on-the-genome-too-add-to-lecture"><span class="header-section-number">16.2</span> Note: GRNs are encoded on the genome too!! (add to lecture )</h2>
-<p>Near the end of the lecture, we discussed the differences between the genotype (that which mutates) and the phenotype (that which is selected). Although you have likely already heard about these concepts, how can we study them in evolutionary models? During this practical, you will write your own evolutionary algorithms of increasing complexity, in order to learn about these topics.</p>
-</section>
-<section id="simple-model-where-fitness-as-a-number" class="level2" data-number="16.3">
-<h2 data-number="16.3" class="anchored" data-anchor-id="simple-model-where-fitness-as-a-number"><span class="header-section-number">16.3</span> Simple model where fitness as a number</h2>
+<section id="simple-model-where-fitness-as-a-number" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="simple-model-where-fitness-as-a-number"><span class="header-section-number">16.2</span> Simple model where fitness as a number</h2>
 <p>In the introduction of this course part on evolution, we have already looked at as simple “Moran process”:</p>
 <ol type="1">
 <li>Start with a population of individuals, each with a fitness value.</li>
 <li>Select individuals based on their fitness to reproduce.</li>
 <li>Replace a random individual with this newly generate offspring.</li>
+<li>With a small probability, modify the ‘fitness’ value of the newborn.</li>
 </ol>
 <p>And so on.</p>
-<p>With a Moran process, competition between individuals is modelled in a very indirect (“implicit”) way. By always selecting fit individuals, and removing a random other, one could say that “everyone is competing with everyone”. A different method, especially in spatially structured models, is to have only a subset of individuals compete at the same time, and sample who of those competitors wins from an imaginary roulette wheel:</p>
+<p>With a Moran process, competition between individuals is modelled in a very indirect (“implicit”) way. By always selecting fit individuals, and removing a random other, any individual in the populations could be replaced by another individual, which statistically is a fitter individual. One could thus say that “everyone is competing with everyone”. A different method is often applied in spatially structured models, as in this case only nearby individuals are competing. Then, we could sample who wins from an imaginary roulette wheel:</p>
 <p><a href="images/roulette.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/roulette.png" class="img-fluid"></a></p>
-<p>As can be seen, not all individual have the same size on the roulette wheel. That depicts differences in their fitness. Also, the roulette wheel contains an area (shown in black) that shapes the chance that nobody reproduces. We will try and implement this rule to let individuals reproduce based on their fitness, but with only 10 competitors at a time. Let’s start with a code where individuals have a “fitness” value, but it not yet used for selection (see below). <strong>Read/test this code thoroughly before you move on to the next section</strong>.</p>
+<p>As can be seen, not all individual have the same size on the roulette wheel. That depicts differences in their growth rates, biomass, or other approximations of “fitness”. Also, the roulette wheel contains an area (shown in black) that shapes the chance that nobody reproduces. We will try and implement this rule to let individuals reproduce based on their fitness, but with only 10 competitors at a time. Let’s start with a code where individuals have a “fitness” value, but it not yet used for selection (see below). <strong>Read/test this code thoroughly before you move on to the next section</strong>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -547,8 +544,8 @@ CODE FOR “fitness without fitness”
 </div>
 </div>
 </section>
-<section id="making-a-roulette-wheel-with-everyone-in-it" class="level2" data-number="16.4">
-<h2 data-number="16.4" class="anchored" data-anchor-id="making-a-roulette-wheel-with-everyone-in-it"><span class="header-section-number">16.4</span> Making a roulette wheel with everyone in it</h2>
+<section id="making-a-roulette-wheel-with-everyone-in-it" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="making-a-roulette-wheel-with-everyone-in-it"><span class="header-section-number">16.3</span> Making a roulette wheel with everyone in it</h2>
 <p>If you have read the code, you will see that we can pass a list of weights to the function <code>random.choices</code>, to determine who is most likely to be sampled. Currently, all the weights are set to 1:</p>
 <p><code>probs = [1 for fit in population] # All probability weights are equal (1.0)</code></p>
 <ol type="a">
@@ -556,19 +553,19 @@ CODE FOR “fitness without fitness”
 <li>Modify this line of code to take the fitness values as the weight, rather than 1. (hint: this is a VERY small change in the code).</li>
 </ol>
 </section>
-<section id="a-roulette-wheel-of-a-subset-of-individuals" class="level2" data-number="16.5">
-<h2 data-number="16.5" class="anchored" data-anchor-id="a-roulette-wheel-of-a-subset-of-individuals"><span class="header-section-number">16.5</span> A roulette wheel of a subset of individuals</h2>
+<section id="a-roulette-wheel-of-a-subset-of-individuals" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="a-roulette-wheel-of-a-subset-of-individuals"><span class="header-section-number">16.4</span> A roulette wheel of a subset of individuals</h2>
 <p>Instead of letting everyone reproduce, let us modify the code to only sample from a smaller list of ‘competitors’, and spin a virtual roulette wheel to determine who wins. There are many ways to implement this, but here’s how we will do it. We will sample N individuals from the population, and implement the following algorithm:</p>
 <ol type="1">
-<li>Collect the N competitors in a list</li>
-<li>Add a “dummy” competitor to that list, representing the black area in the roulette wheel</li>
-<li>Make a weighted list of probabilities that competitors and/or the dummy wins</li>
-<li>Select a winner (which may be the dummy too!)</li>
-<li>If the winner is <strong>not</strong> the dummy, the winner replicates with mutations</li>
+<li>Select a random subset of N individuals from the population.</li>
+<li>Take/compute the fitness of each selected individual.</li>
+<li>Add a reproduction-skip option with a fixed weight.</li>
+<li>Choose one individual or the skip option using weighted random selection.</li>
+<li>If an individual was chosen, mutate it and replace a random individual in the population.</li>
 </ol>
-<p>Below, there’s a small snippet of code doing what is explained above:</p>
+<p>Below, there’s a small snippet of code doing what is explained above<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. The variable <code>no_reproduction_chance</code> is the fixed weight that nobody gets to reproduce:</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -577,51 +574,53 @@ Roulette wheel algorithm
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> <span class="co"># Tournament selection (as in evolving_fitness_final.py)</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    new_pop <span class="op">=</span> []</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    tournament_size <span class="op">=</span> <span class="dv">10</span>  <span class="co"># can be adjusted</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(population_size):</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Select tournament_size individuals randomly</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        competitors <span class="op">=</span> random.sample(population, tournament_size)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Pick the one with highest fitness</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        fitness_values <span class="op">=</span> [fitness(ind) <span class="cf">for</span> ind <span class="kw">in</span> competitors]</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        total <span class="op">=</span> <span class="bu">sum</span>(fitness_values)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Add a "no reproduction" dummy competitor with fitness = 0</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        competitors_with_dummy <span class="op">=</span> competitors <span class="op">+</span> [<span class="va">None</span>]</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        probs <span class="op">=</span> [f <span class="op">/</span> total <span class="cf">for</span> f <span class="kw">in</span> fitness_values] <span class="op">+</span> [no_reproduction_chance <span class="op">/</span> total]</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        winner <span class="op">=</span> random.choices(competitors_with_dummy, weights<span class="op">=</span>probs, k<span class="op">=</span><span class="dv">1</span>)[<span class="dv">0</span>]</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> winner <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Mutate winner to produce offspring</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>            offspring <span class="op">=</span> mutate(winner)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>            new_pop.append(offspring)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>            <span class="co"># No reproduction: keep a random individual (or skip, or add a placeholder)</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>            new_pop.append(random.choice(population))</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    population <span class="op">=</span> new_pop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>  tournament_size <span class="op">=</span> <span class="dv">10</span>  </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  no_reproduction_chance <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  competitors <span class="op">=</span> random.sample(population, tournament_size)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Make a list of their fitness values</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  fitness_values <span class="op">=</span> [fit <span class="cf">for</span> fit <span class="kw">in</span> competitors]</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  total <span class="op">=</span> <span class="bu">sum</span>(fitness_values)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add a "no reproduction" dummy competitor with fitness = 0</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  competitors_with_dummy <span class="op">=</span> competitors <span class="op">+</span> [<span class="va">None</span>]</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  probs <span class="op">=</span> [f <span class="op">/</span> total <span class="cf">for</span> f <span class="kw">in</span> fitness_values] <span class="op">+</span> [no_reproduction_chance]</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  winner <span class="op">=</span> random.choices(competitors_with_dummy, weights<span class="op">=</span>probs, k<span class="op">=</span><span class="dv">1</span>)[<span class="dv">0</span>]</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> winner <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Mutate winner to produce offspring</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>      offspring <span class="op">=</span> mutate(winner)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>      remove_idx <span class="op">=</span> random.randrange(<span class="bu">len</span>(population))</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>      population[remove_idx] <span class="op">=</span> offspring  </span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
-<p>Note, like the earlier Moran model, the algorithm above still replaces a random individual in the population, NOT one of the competitors. Let’s make the ‘death’ (removing an individual after reproduction) still apply to anyone in the entire population.</p>
+<p>After you understand the roulette wheel algorithm, do the following exercise:</p>
+<div id="exr-roulette" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 16.1 (Questions about the roulette wheel)</strong></span> <br></p>
 <ol type="a">
-<li>Study the effect of how many competitors are sampled at once. Try 100, 10, and 2 competitors. What do you notice?</li>
-<li>Spatially structured populations are often placed on a grid. Describe how you could implement a roulette wheel to resolve <em>local</em> competition, <em>e.g.</em> when an empty grid point is competed for by neighbours.</li>
+<li>Let’s imagine a moment where the roulette wheel contains only 10 highly unfit individuals (e.g.&nbsp;all fitness values are 0.01). What is the chance that someone will reproduce? (you don’t have to calculate it, but give your reasoning)</li>
+<li>Answer the same question as in <strong>a.</strong>, but now imagine that all 10 individuals have a fitness value of 1.</li>
+<li>Answer question b. and c.&nbsp;again, but now assume that <code>no_reproduction_chance</code> is equal to 0.</li>
+<li>Describe what the <code>no_reproduction_chance</code> parameter does in biological terms.</li>
+<li>Spatially structured populations are often placed on a grid. <strong>Describe</strong> how you could implement a roulette wheel to resolve <em>local</em> competition, <em>e.g.</em> when an empty grid point is competed for by the neighbours.</li>
 </ol>
+</div>
 </section>
-<section id="diversity-patterns" class="level2" data-number="16.6">
-<h2 data-number="16.6" class="anchored" data-anchor-id="diversity-patterns"><span class="header-section-number">16.6</span> Diversity patterns</h2>
+<section id="diversity-patterns" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="diversity-patterns"><span class="header-section-number">16.5</span> Diversity patterns</h2>
 <p>Modify the function <code>calculate_diversity</code> to calculate the diversity of the population as the standard deviation of the fitness values.</p>
+<div id="exr-diversitydynamics" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 16.2 (Questions about the roulette wheel)</strong></span> <br></p>
 <ol type="a">
 <li>Use a low mutation rate and study the dynamics of diversity. Describe the pattern verbally.</li>
 </ol>
+</div>
 </section>
-<section id="evolving-a-dna-sequence" class="level2" data-number="16.7">
-<h2 data-number="16.7" class="anchored" data-anchor-id="evolving-a-dna-sequence"><span class="header-section-number">16.7</span> Evolving a DNA sequence</h2>
-<p>The problem with the previous model is there is no true distinction between genotype (that which mutates) and phenotype (that which is selected). Let us try and adapt the model to be more biologically meaningful, by making each individual represented by a DNA sequence. Copy the following code:</p>
+<section id="evolving-a-dna-sequence" class="level2" data-number="16.6">
+<h2 data-number="16.6" class="anchored" data-anchor-id="evolving-a-dna-sequence"><span class="header-section-number">16.6</span> Evolving a DNA sequence</h2>
+<p>A big problem with the previous model is there is no true distinction between genotype (that which mutates) and phenotype (that which is selected). Let us try and adapt the model to be more biologically meaningful, by making each individual represented by a DNA sequence. Copy the following code:</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -781,19 +780,22 @@ Starting code for “evolving a DNA sequence”
 </div>
 </div>
 <p>Answer the following questions using the options available in the model:</p>
+<div id="exr-evolving-dna" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 16.3 (Evolving DNA)</strong></span> &nbsp;</p>
 <ol type="a">
 <li>Run the code. What does the new (dashed blue) line represent? Do you understand how is changes over time?</li>
 </ol>
-<p>The program reports after how many generations it manages to find the target sequence. With default settings this can take a long time… (default: 429 generations)</p>
+<p>The program reports after how many generations it manages to find the target sequence. With default settings this can take a long time… (default: 4633 generations)</p>
 <ol start="2" type="a">
-<li>Modify the mutation rate to see how it affects the time to find the target sequence. Visualise your results. What do you observe?</li>
-<li>Modify the tournament size (how many competitors are in the roulette wheel).</li>
-<li>Evaluate how fitness is calculated in this model. Is there a distinction between genotype en phenotype? Why/why not?</li>
+<li>Modify the mutation rate to see how it affects the time to find the target sequence. Try different mutation rates between 0.0001 and 0.1. Keep track of both how long (number of generations) it takes to find the target, and how fit the population is once the target is found. What do you observe?</li>
+<li>Diversity is no longer calculated as the standard deviation in fitness, but as the Shannon diversity of all present sequences (although it is not super complex, you do not need to fully understand this function). Because of this, the exact number (quantities) cannot be compared to our ealrier model. Do you see a <em>qualitative</em> differences?</li>
+<li>Study how fitness is calculated in this model. Is there a distinction between genotype en phenotype? Why/why not?</li>
 </ol>
+</div>
 </section>
-<section id="evolving-a-protein-sequence" class="level2" data-number="16.8">
-<h2 data-number="16.8" class="anchored" data-anchor-id="evolving-a-protein-sequence"><span class="header-section-number">16.8</span> Evolving a protein sequence</h2>
-<p>Next we will extend the simulation a little more. Not only do individuals have a DNA sequence, they will also have a protein sequence. To do so, the code first defines the codon table (which we of course all know by heart =)), and then translates the DNA sequence into a protein sequence. The protein sequence is then used to calculate the fitness of the individual, which is based on how well the protein sequence matches a target protein sequence. The code is as follows:</p>
+<section id="evolving-a-protein-sequence" class="level2" data-number="16.7">
+<h2 data-number="16.7" class="anchored" data-anchor-id="evolving-a-protein-sequence"><span class="header-section-number">16.7</span> Evolving a protein sequence</h2>
+<p>Next we will extend the simulation a little more. The individual genotypes will still be represented as a DNA sequence, but before evaluating fitness this will be translated into a <strong>protein</strong> sequence. To do so, the code first defines the codon table (which we of course all know by heart =)), and then translates the DNA sequence into a protein sequence. The protein sequence is then used to calculate the fitness of the individual, which is based on how well the protein sequence matches a target protein sequence. The code is as follows:</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -980,15 +982,24 @@ Starting code for evolving a protein sequence
 </div>
 </div>
 </div>
-<p>Answer the following questions about the model</p>
+<p>Answer the following question about the model:</p>
+<div id="exr-evolving-proteins" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 16.4 (Evolving protein sequences)</strong></span> &nbsp;</p>
 <ol type="a">
 <li>Another line was added to the model. What new information can you obtain from analysing this line?</li>
 <li>Study carefully how the other lines (also present in previous models) change over time. What do you observe? Try and capture what you see into words.</li>
-<li>In biology, multiple genotypes can translate to the same phenotype (this is called a many-to-one genotype-phenotype map), or alternatively, one genotype can produce multiple phenotype (this is called phenotypic plasticity, or a one-to-may genotype-phenotype map). Which genotype-phenotype (GP) mapping applies to this model? Why?</li>
+<li>In biology, multiple genotypes can translate to the same phenotype (this is called a many-to-one genotype-phenotype map), or alternatively, one genotype can produce multiple phenotype (this is called phenotypic plasticity, or a one-to-many genotype-phenotype map). Which genotype-phenotype (GP) mapping applies to this model? Why?</li>
 <li><strong>Bonus question for motivated students</strong> modify the code to include a second target protein sequence, and alternate between the two targets. If you see something interesting, please share it with the class!</li>
 </ol>
+</div>
 
 
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Note that this is from the full code, so this code does not work stand-alone<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
@@ -1589,7 +1600,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":false});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":false,"selector":".lightbox","openEffect":"zoom","descPosition":"bottom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

@@ -1,0 +1,147 @@
+# Differentiation introduction
+
+## Equations 
+
+Here's an equation: 
+
+$$ 
+\frac{\mathrm{d}N}{\mathrm{d}t} = rN(1 - \frac{N}{K}) 
+$$ {#eq-log}
+
+And @eq-log is a reference to the equation above. 
+
+## References
+
+See @knuth84 for additional discussion of literate programming.
+
+## Syntax highlighting
+
+Here's some python code: 
+
+```python
+import numpy as np
+np.random.seed(42)
+a = 1 + 2
+b = a + 3
+print("Hello")
+```
+
+## Visualising data (R)
+
+Here's an interactive plot generated with R:
+
+```{r}
+#| echo: false
+#| eval: true
+#| warning: false
+library(ggplot2)
+library(plotly)
+library(dplyr)
+data <- data.frame(
+  x = c(1, 5, 3, 4, 5),
+  y = c(1, 2, 2, 4.1, 10)
+)
+
+myplot <- data %>% ggplot(aes(x=x,y=y)) +
+  geom_point() +
+  geom_line() +
+  labs(title = "My Plot", x = "X-axis", y = "Y-axis") +
+  theme_minimal()
+
+ggplotly(myplot)
+```
+
+## A youtube clip:
+
+{{< video https://www.youtube.com/embed/wo9vZccmqwc >}}
+
+## An 'iframe' to a different page (e.g. my simulations)
+
+
+```{=html}
+<iframe width="780" height="550" src="https://tbb.bio.uu.nl/bvd/simulations/australia/" title="Simulation"></iframe>
+```
+
+
+### Mermaid
+  
+Diagrams (Mermaid syntax):
+  
+```{mermaid}
+%%| label: fig-variables
+%%| fig-cap: "Types of models"
+flowchart TB
+A(Models) --> C("Analytical (mathematical)")
+A --> B("Numerical (computational)")
+B --> F(Individual-based model)
+B --> G(Cellular automaton)
+C --> E(Differential equation)
+C --> D(MAPs)
+```
+
+Which can be referred to @fig-variables.
+
+### Callouts
+
+Call-outs can organise information and highlight important points.
+  
+::: callout-note
+Note that there are five types of callouts, including: `note`,
+`warning`, `important`, `tip`, and `caution`.
+:::
+  
+::: callout-tip
+## Tip with Title
+
+This is an example of a callout with a title.
+:::
+  
+::: {.callout-caution collapse="true"}
+## Expand To Learn About Collapse
+
+This is an example of a 'folded' caution callout that can be expanded by
+the user. You can use `collapse="true"` to collapse it by default or
+`collapse="false"` to make a collapsible callout that is expanded by
+default.
+:::
+  
+::: {#tip-example .callout-tip}
+## Cross-Referencing a Tip
+    
+Add an ID starting with `#tip-` to reference a tip.
+:::
+      
+See @tip-example...
+    
+### How to format questions/problem sets
+    
+::: {#exr-test1}
+## Test 1
+      
+The equation of any straight line, called a linear equation, can be written as:
+        
+$$ 
+y = mx + b
+$$ {#eq-line}
+      
+Refer to the equation like this @eq-line or like [Customlabel @eq-line].
+        
+**a.** Blabla?
+          
+**b.** Of blablabla?
+:::
+          
+### Sharing data tables:
+          
+```{r}
+#| label: tab-anscombe
+#| warning: false
+#| code-fold: true
+#| code-summary: "Show the code"
+#| 
+
+library(DT)
+library(datasets)
+datatable(anscombe, options = list(pageLength = 5))
+```
+

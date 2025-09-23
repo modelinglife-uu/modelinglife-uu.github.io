@@ -1,0 +1,85 @@
+# Introduction to evolution
+
+## Evolution: Life's most clever algorithm 
+
+Evolution is the process by which populations change over generations through variation, inheritance, and differential survival. This idea, famously championed by Darwin and Wallace, explains the diversity of life on Earth. It describes how species adapt to their environments, how new species arise, and how complex traits evolve. Today, the concept of evolution has expanded beyond biology, it's recognised as a powerful algorithm that drives adaptation in systems ranging from bacteria (genes) to ideas (memes), from DNA (nucleotides) to computer code (bits).
+
+In this part of the course, we’ll bring these ingredients to life by writing our own simulations and watching evolution unfold on the screen. And while our digital creatures aren’t made of flesh and blood, the evolutionary battles they fight, the strategies they discover, and the adaptations they evolve are as real, and often as surprising, as anything found in nature itself.
+
+## Three ingredients
+
+As briefly mentioned above, we just need three ingredients to have evolution by means of natural selection: 
+
+* **variation** (differences between individuals),
+* **inheritance** (the passing on of traits), 
+* **selection** (some variants performing better than others).
+
+The last ingredient is self-evident. Evolution by means of natural selection requires selection. It is especially the first two that are a little more tricky to really understand, as they are not always as obvious as they seem. 
+
+## Balancing change and stability
+
+To evolve, a system needs enough variation -- if everyone is the same, there’s nothing for selection to act on. But this variation can’t just be noise; it needs to be passed on. That means inheritance can’t be perfect -- there must be room for change, such as through mutations -- but it also can’t be too sloppy. If traits aren’t reliably transmitted to the next generation, then even the best adaptations will vanish before they can take hold. Evolution lives in the sweet spot: not too rigid, not too chaotic, just enough memory and just enough change. To make this a little more tangible, let us make our very first simulation. 
+
+## A simple evolutionary algorithm 
+
+One simple way to simulate evolution is with a Moran process, a classic model from population genetics. Imagine a population of 100 individuals, each with a single gene that determines its fitness. This gene can have all values from 0 to 1 (let's call this value $\phi$). At each time step, one individual is chosen to reproduce with a probability proportional to $\phi$, producing 1 offspring. This offspring inherits their parents gene (so the same $\phi$), but with a probability $\mu$, the value changes by a small amount (a mutation). The population size will now be 101, which could be interesting if we want to study population growth. However, in a Moran process we keep it simple: one random individual is removed by the new offspring, so the population size is constant while still allowing fitter individuals to spread over time.
+
+Here’s a minimal Python example:
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+np.random.seed(5)
+
+N = 100 # Population size 
+fitnesses = np.full(N, 0.05)
+mu = 0.01
+# Updated parameters
+steps = 50000
+avg_fitness = []
+
+# Moran process with mutation (logging every 10 steps)
+for step in range(steps):
+    probs = fitnesses / fitnesses.sum()
+    parent = np.random.choice(N, p=probs)
+    dead = np.random.choice(N)
+
+    # Copy with mutation
+    new_fit = fitnesses[parent]
+    if np.random.rand() < mu:
+        new_fit = np.clip(new_fit + np.random.normal(0, 0.05), 0, 1)
+            
+    fitnesses[dead] = new_fit
+
+    # Save average fitness every 10 steps
+    if step % 10 == 0:
+        avg_fitness.append(fitnesses.mean())
+
+# Plotting
+plt.plot(np.arange(0, steps, 10), avg_fitness)
+plt.xlabel("Step")
+plt.ylabel("Average fitness")
+plt.title("Evolution of Fitness in a Moran Process")
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+```
+
+:::{#exr-moran}
+## Moran process simulation
+<br>
+
+Study the Python code for the evolutionary algorithm given above. Answer the following questions:
+
+a. How "well adapted" is the initial population?
+b. How are mutations implemented in the code? Can you think of other ways?
+c. Can the parent be replaced by its own offspring? Why/why not?
+d. Investigate which value of $\mu$ works best if you want to achieve maximum fitness in the shortest amount of steps.
+:::
+
+## What this part of the course is about
+
+The above simulation is fun, but not really... biologically relevant. While some simplifications are necessary to make models feasible, we will investigate a few evolutionary models that are somewhat more interesting. We will discuss how to model spatial structure and local competition, how genotypes (where mutations happen) get translated into phenotypes (where selection happens), and how the environment can change over time and lead to niche construction and interactions. 
+
+

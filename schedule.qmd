@@ -1,0 +1,20 @@
+# Schedule {#modelling}
+
+The schedule of the course and important deadlines are outlined below. The course is divided into blabla modules, each with its own set of topics and blabla. The schedule is subject to change, and any updates will be communicated in advance. Blabla.
+
+(paste below is the schedule of Kwanti/BioMS as an example)
+
+
+```{r}
+#| code-fold: true
+#| echo: false
+#| cache: false
+library(DT)
+library(datasets)
+
+planning <- read.csv("https://tbb.bio.uu.nl/hermsen/studieplanning_2025.txt",sep="\t", header=T)
+#planning <- planning[planning$Wk==1,]
+planning <- planning[planning$Wk>0,]
+datatable(planning, rownames=F, options=list(pageLength=10))%>% formatStyle(columns = c(1:8), fontSize = '9pt')
+```
+

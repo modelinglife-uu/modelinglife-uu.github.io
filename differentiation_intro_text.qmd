@@ -1,0 +1,5 @@
+# Differentiation introduction
+
+### TODO
+
+- Write a brief intro to the differentiation practicals

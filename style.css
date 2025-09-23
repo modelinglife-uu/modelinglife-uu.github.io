@@ -1,0 +1,194 @@
+/*-- scss:defaults --*/
+
+/*$primary: #637238 !default;*/
+$primary:  #0094c9 !default;
+$font-size-root: 18px !default;
+
+/*-- scss:rules --*/
+
+body {
+  line-height: 1.6;  
+}
+
+img {
+  width: 80%;
+}
+
+figcaption {
+    max-width: 75%; /* Adjust the percentage as needed */
+    margin: 0 auto; /* Centers the caption */
+}
+
+li::marker {
+  font-weight: bold;
+}
+
+@media print {
+  body {
+    line-height: 1.3;  
+    font-size: 0.9em;
+    column-count: 2;
+    column-gap: 0.0em; /* optional: space between columns */
+  }
+  .interactive_content {
+    border: 1px dashed black;
+    padding: "15px";
+    margin: "15px";
+    fontStyle: "italic";
+  }
+  img {
+  width: 70%;
+  }
+}
+        
+.interactive_content {
+  padding: "0px";
+  margin: "0px";
+}
+       
+.img-right {
+    float: right;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    max-width: 50%; /* Adjust size as needed */
+}         
+                
+.sidebar-title {
+/* color: #637238;*/
+  color: #0094c9;
+}
+.sidebar-logo {
+  padding-left: 15%;
+  padding-right: 15%;
+}
+
+div.sidebar-item-container .active {
+  font-weight: bold;
+  color: #0094c9;
+}
+
+.sidebar nav[role=doc-toc] ul>li>a.active, .sidebar nav[role=doc-toc] ul>li>ul>li>a.active{
+  font-weight: bold;
+}
+
+img.quarto-cover-image {
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+
+/* Headings ------------------------------------------------------ */
+
+#title-block-header.quarto-title-block.default .quarto-title h1.title {
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+h3 { margin-top: 1.5em; font-size: 1.2rem; font-weight: 500; }
+h4 { margin-top: 1.5em; font-size: 1.1rem; }
+h5 { margin-top: 1.5em; font-size: 1rem; }
+
+.quarto-section-identifier {
+/*  color: #6C6C6C; */
+  color: #0094c9;
+  font-weight: normal;
+}
+
+/* Code ------------------------------------------------ */
+
+
+pre {
+  border-left: 2px dashed #bed4f7;
+  color: #4f7cc9;
+  padding-left: 10px;
+  margin-left: 15px;
+}
+.sourceCode {
+  background-image: linear-gradient(160deg,#f6f6f8 0,#f8f8f8 100%);
+  border-radius: 0px;
+}
+code {
+/*  color: #373a3c;*/
+  color: #0094c9;
+}
+
+code a:any-link {
+  text-decoration: underline;
+/*  text-decoration-color: #ccc;*/
+  text-decoration-color:  #0094c9;
+}
+
+
+/*
+section#footnotes {
+  display: none !important;
+}
+*/
+
+#quarto-appendix.default {
+    border-top: none !important;
+}
+
+/* Add background color and padding to example sections */
+#exm-1, .example {
+    background-color: #F4F6F6 ; /* light gray background */
+    padding: 8px;
+    margin-bottom: 15px;
+}
+
+/* Add background color and padding to exercise sections */
+#exc-1, .exercise {
+    background-color: #0094c915; /* light gray background */
+    border-left: 2px solid #0094c9; /* blue border */
+/*   border-top: 1px solid #b4b4b4;  orange border */ 
+/*    border-bottom: 2px solid #0094c9;  orange border */
+    padding: 8px;
+    margin-bottom: 15px;
+}
+
+.Rexr {
+  border-left: 2px solid #75aadb;
+  padding: 8 px;
+  margin-bottom: 15px;
+  background-color: #75aadb25;
+  /*background-image: url('figuren/iconR.png'); /* Path to your PNG icon */
+  background-repeat: no-repeat; /* Prevent the background from repeating */
+  background-position: calc(100% - 5px) 5px; /* Place the icon in the top-left corner */
+  background-size: 35px 35px;
+}
+
+.pepexr {
+  background-color: #ffd23b11; /* light gray background */
+  border-left: 2px solid #ffd23b; /* blue border */
+  padding: 8 px;
+  margin-bottom: 15px;
+  /*background-image: url('figuren/iconpep.png'); /* Path to your PNG icon */
+  background-repeat: no-repeat; /* Prevent the background from repeating */
+  background-position: calc(100% - 5px) 5px; /* Place the icon in the top-left corner */
+  background-size: 35px 35px;
+}
+
+.mixedexr {
+  background-color: #75db8433; /* light gray background */
+  border-left: 2px solid #75db84ff; /* blue border */
+  padding: 8 px;
+  margin-bottom: 15px;
+  /*background-image: url('figuren/iconboth.png'); /* Path to your PNG icon */
+  background-repeat: no-repeat; /* Prevent the background from repeating */
+  background-position: calc(100% - 5px) 5px; /* Place the icon in the top-left corner */
+  background-size: 35px 35px;
+}
+
+/* TO DO boxes in text */
+
+#todo, .todo-box {
+    border: 2px solid #0094c9; /* Tomato color */
+    background-color: #FFE4E1; /* Light pink background */
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 5px;
+    color: #333;
+}

@@ -1,0 +1,97 @@
+project:
+  type: book
+
+execute:
+  engine: knitr  # This avoids trying to use Jupyter
+  echo: false     # show code
+  eval: true    # do not run code
+  
+book:
+  title: "Modeling Life"
+  author: "Theoretical Biology Group, Utrecht University"
+  date: "4/24/2025"
+  page-footer:
+    left: |
+      Theoretical Biology, Utrecht University.
+    right: |
+      This book was made with <a href="https://quarto.org/">Quarto</a>.
+  #cover-image: "figuren/cover.png"
+  favicon: "images/favicon.ico"
+  sidebar:
+    logo: 'images/android-chrome-512x512.png'
+    logo-alt: 'Course website Modeling life'
+    type: "dark"
+    collapse-level: 1
+    style: "floating" #"floating/docked"
+    pinned: true
+    title: "Modelling life"
+  chapters: 
+    - part: "Course information"
+      chapters:
+        - index.qmd
+        - intro.qmd
+        - general.qmd
+        - schedule.qmd
+    - part: "I) Pattern formation"
+      chapters:
+            - pattern_intro_text.qmd
+            - pattern_practical_1.qmd
+            - pattern_practical_2.qmd
+            - pattern_practical_3.qmd
+    - part: "II) Morphogenesis"
+      chapters:
+            - morpho_intro_text.qmd
+            - morpho_practical_1.qmd
+            - morpho_practical_2.qmd
+    - part: "III) Cell differentiation"
+      chapters:
+            - differentiation_intro_text.qmd
+            - differentiation_practical_1.qmd
+            - differentiation_practical_2.qmd
+    - part: "IV) Evolution"
+      chapters:
+            - evo_intro_text.qmd
+            - evo_practical_1.qmd
+            - evo_practical_2.qmd
+            - evo_practical_3.qmd
+            - evo_answers.qmd
+    - part: "Mini-projects"
+      chapters:
+            - project_1.qmd
+            - project_2.qmd
+    - references.qmd
+  appendices:
+      - answers.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    number-depth: 2
+    code-line-numbers: false
+    code-overflow: wrap
+    lightbox: true
+    footnotes-hover: true
+    crossrefs-hover: true
+    theme:
+      light: 
+        - style.css
+      dark: 
+        - styledark.css
+    toc: true
+    toc-depth: 2
+    toc-location: right
+    toc-expand: false
+    link-external-icon: true
+    link-external-newwindow: true
+    #mainfont: 'Georgia'
+    fontsize: '6'
+    #standalone: true
+    #smooth-scroll: true
+    #embed-resources: false
+    linestretch: 1.5
+  pdf:
+    documentclass: scrreprt
+
+
+

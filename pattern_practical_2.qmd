@@ -1,0 +1,69 @@
+# Practical 2 
+
+### TODO
+
+- This text is very rough still. Waiting for input. 
+
+## Turing patterns, repetitive patterning 
+
+Conceptual thinking: The model proposed by Raspopovic et al. for generating Turing patterns underlying limb bone modeling consists of 3 instead of 2 interacting variables. Simplify the given interaction scheme and diffusion constants to a 2D system to identify the relevant Turing constraints 
+
+ 
+
+Algorithmic thinking: Compare the code used here to implement diffusion (lines …) with the code used in the exercise on the French Flag. What do you think this code is doing? What kind of boundary conditions do you think are implemented 
+
+ 
+
+ 
+
+Biology: First we are going to work with a code simulating the model in a 2D constant tissue, this can be considered as a petri dish in which the mesenchymal cells have been plated with the correct chemicals to undergo bone formation (Fig .. in the paper). Play with the reaction parameters and diffusion constants to study their effects on the wavelength of the patterns 
+
+ 
+
+Biology: Now we are going to add tissue growth in the proximo-distal (body to limb) direction. Growth is controlled by a growth rate vi. Play with this rate and study what happens. Explain why this happens. 
+
+ 
+
+If the growth rate is large enough the induced anisotropy causes the orientation of Turing stripes along the growth axis. This can be understood from the directional expansion of the growth and hence diffusion domain, with the activator mostly spreading in this growth direction, leading to stripe formation. 
+
+Biology: In reality the paddle shaped limb growth in both the proximo-distal and anterior-posterior direction, implemented with growth rates vi and vj. Play with the relative size of these growth rates and study what happens. Also study the order of appearance of digits and how this compares to the experimental data. Does the pattern fully resemble experimental observations? 
+
+To not loose the anisotropy vi>>vj. Middle digits appear first and as expansion occurs in the anterior-posterior plane more digits appear. No, digits do not come closer together at proximal end 
+
+Biology: In reality digits are patterned further apart at the distal end then at the proximal end, where they need to converge on a hand and wrist. This implies that the wavelength of the Turing pattern should not be constant. If all is well you found that the k7 and k4 parameters impact the wavelength of the Turing pattern. The authors speculate that the FGF and Hox gene gradients observed in the limb bud excert an effect on the Sox9-BMP-Wnt patterning module through these parameters. Implement a gradient of increasing k7 and decreasing k4 from the proximal to the distal end of the growing limb and try if you can get closer to a realistic limb patterning. 
+
+ 
+
+## Biology: polydactyly? Evolution? 
+
+## Python code
+ 
+ 
+:::{.callout-note collapse=true}
+
+## Starting code for this practical
+
+There are several sources for this practical. 
+
+...
+
+:::
+
+
+If two days: phyllotaxis model. 
+
+ 
+
+Good to do after clock and wavefront a general overview: 
+
+What happens if more growth/tissue in 
+
+-gradient (rear extends if no scaling) 
+
+-Turing (more stripes) 
+
+-clock and wavefront (bigger stripes) 
+
+ 
+
+ 

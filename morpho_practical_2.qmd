@@ -1,0 +1,33 @@
+# Practical 5
+
+### TODO
+
+- Complete the text on this page. 
+
+## Gene regulatory interactions
+
+In this practical you will get hands on experience on building models of gene regulatory interactions. Today you will:
+
+- make logical functions and ODE to describe gene regulation examples
+- use a Boolean network of a *relatively* large network to find the attractors
+- use an ODE model based on the boolean model to predict how to jump from one attractor to other (cell fate changes!) 
+
+## Gene regulation Examples
+
+*Add an overview of genetic regulation and its importance in biological systems.*
+
+## Boolean network model
+
+*Summarize key concepts and terminology related to gene regulation.*
+
+## Boolean-network
+
+*Describe mathematical and computational models used to study gene regulation over time.*
+
+## UMAP
+
+*Provide practical examples or case studies.*
+
+## References
+
+*List relevant literature and resources.*

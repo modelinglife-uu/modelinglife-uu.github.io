@@ -268,13 +268,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./morpho_practical_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Practical 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Practical 4</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./morpho_practical_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Practical 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Practical 5</span></span></a>
   </div>
 </li>
       </ul>
@@ -297,13 +297,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./differentiation_practical_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Practical 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Practical 6</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./differentiation_practical_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Practical 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Practical 7</span></span></a>
   </div>
 </li>
       </ul>
@@ -372,12 +372,6 @@ window.Quarto = {
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
-  </div>
-</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -470,14 +464,13 @@ window.Quarto = {
 let sim;
 
 
-
 var birth = 0.1
-var num_startboids = 400
+var num_startboids = 500
 var mycohesion = 0.00
 var mycollision = 0.5
-var resource_width = 60
-var resource_noise = 4
-var nr_peaks = 3
+var resource_width = 70
+var resource_noise = 3
+var nr_peaks = 1
 var time_between = 5000
 var speed = 10
 var disperse = false
@@ -496,7 +489,8 @@ function cacatoo() {
     sleep: 0,
         seed: 2,
     wrap: [true,true],
-   noheader: true,
+    graph_update: 10,
+    graph_interval: 10,
     fpsmeter: false
   }
 
@@ -508,11 +502,11 @@ function cacatoo() {
     num_boids: 0,            // Starting number of boids (flocking individuals)
     shape: 'dot',            // Shape of the boids drawn (options: bird, arrow, line, rect, dot, ant)
     click: 'repel',          // Clicking the boids pushes them away from the mouse
-    max_speed: 0.6,          // Maximum velocity of boids
-    max_force: 0.6,          // Maximum steering force applied to boids (separation/cohesion/alignment rules)
+    max_speed: 1.0,          // Maximum velocity of boids
+    max_force: 1.0,          // Maximum steering force applied to boids (separation/cohesion/alignment rules)
     init_velocity:0,
     friction: 0.1,           // Them ants are darn slippery :)
-    brownian: 0.02,
+    brownian: 0.05,
     // Mouse parameters
     mouse_radius: 20,        // Radius of boids captured by the mouse overlay
     draw_mouse_radius: 'true',    // Show a circle where the mouse is
@@ -520,7 +514,7 @@ function cacatoo() {
     // Collision behaviour
     collision_force: 1.0,
         cohesion: {strength:0.5, radius: 4.5},
-    size: 4,                // Size of the boids (scales drawing and colision detection)
+    size: 3,                // Size of the boids (scales drawing and colision detection)
 
     // Optimalisation (speed) parameters
     //qt_colour: "white",       // Show quadtree (optimalisation by automatically tessalating the space)
@@ -2398,7 +2392,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","descPosition":"bottom","loop":false});
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","loop":false,"openEffect":"zoom","closeEffect":"zoom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

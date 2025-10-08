@@ -243,14 +243,14 @@ decayM =0.01 # Decay rate in 1/s
 if D * dt / dx**2 > 0.5:
     raise ValueError("Stability criterion not met")
 
-# Initial condition
-u = np.zeros((nx, ny))
-u[0, :] = 100
-
 # A, B and C are required for later exercises.
 A = np.zeros((nx, ny))
 B = np.zeros((nx, ny))
 C = np.zeros((nx, ny))
+
+# Initial condition
+u = np.zeros((nx, ny))
+u[0, :] = 100
 
 # Reaction-diffusion equation
 def reaction_diffusion_step(u, D, dt, dx, decay):
@@ -263,12 +263,14 @@ def reaction_diffusion_step(u, D, dt, dx, decay):
     #     for j in range(1, ny-1):
     #         u[i, j] = (un[i, j] +
     #                    D * dt / dx**2 * (un[i+1, j] + un[i-1, j] - 2 * un[i, j] +
-    #                    un[i, j+1] + un[i, j-1] - 4 * un[i, j]) -
-    #                    decay * un[i, j] * dt)
-    
-
+    #                    un[i, j+1] + un[i, j-1] - 4 * un[i, j]) - decay * un[i, j] * dt)
     #boundary conditions
     u[-1, :] = (u[-2, :]/u[-3, :])*u[-2, :]  if sum(u[-3, :]) != 0 else np.zeros(ny)
+    #to understand this line:
+    #if sum(u[-3, :]) != 0:
+    #    u[-1, :] = (u[-2, :]/u[-3, :])*u[-2, :]#extrapolate from third to last row
+    #else:
+    #    u[-1, :] = np.zeros(ny) #if already zero in third to last row, also zero in last row
     u[:, 0] = u[:, 1]
     u[:, -1] = u[:, -2]
 
@@ -296,7 +298,7 @@ def reaction_diffusion_gradient(t, u, D, dx, decay, switch_time = None, noise = 
             u[i, :] = np.maximum(100 * np.exp(-i*dx/np.sqrt(D/decay))+added_noise[i, :], 0)
         return u
     if t > switch_time:
-        ...# TODO Q7: implement a different gradient that decays over time, otherwise return the original u array
+        ...# TODO Q7: implement a gradient that decays over time, otherwise return the original u array
         return u
     # In all other cases, return the original u array        
     return u

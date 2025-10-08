@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Theoretical Biology Group, Utrecht University">
-<meta name="dcterms.date" content="2025-04-24">
 
-<title>Modeling Life</title>
+<title>10&nbsp; Practical 4 – Modeling Life</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -31,7 +63,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intro.html" rel="next">
+<link href="./morpho_practical_2.html" rel="next">
+<link href="./morpho_intro_text.html" rel="prev">
 <link href="./images/favicon.ico" rel="icon">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -84,7 +117,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Course information</a></li><li class="breadcrumb-item"><a href="./index.html">Modeling life</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./morpho_intro_text.html">II) Morphogenesis</a></li><li class="breadcrumb-item"><a href="./morpho_practical_1.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Practical 4</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -117,16 +150,16 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Course information</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Modeling life</span></a>
   </div>
 </li>
@@ -193,13 +226,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">II) Morphogenesis</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./morpho_intro_text.html" class="sidebar-item-text sidebar-link">
@@ -208,7 +241,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./morpho_practical_1.html" class="sidebar-item-text sidebar-link">
+  <a href="./morpho_practical_1.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Practical 4</span></span></a>
   </div>
 </li>
@@ -352,35 +385,26 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#modeling" id="toc-modeling" class="nav-link active" data-scroll-target="#modeling">Modeling life</a></li>
+  <li><a href="#gene-regulation-in-time" id="toc-gene-regulation-in-time" class="nav-link active" data-scroll-target="#gene-regulation-in-time"><span class="header-section-number">10.1</span> Gene regulation in time</a></li>
+  <li><a href="#part-i---encoding-regulatory-interactions" id="toc-part-i---encoding-regulatory-interactions" class="nav-link" data-scroll-target="#part-i---encoding-regulatory-interactions"><span class="header-section-number">10.2</span> Part I - Encoding regulatory interactions</a></li>
+  <li><a href="#part-ii-gene-regulatory-network" id="toc-part-ii-gene-regulatory-network" class="nav-link" data-scroll-target="#part-ii-gene-regulatory-network"><span class="header-section-number">10.3</span> Part II – Gene regulatory network</a></li>
+  <li><a href="#part-iii-cell-differentiation-jumping-from-one-attractor-to-another" id="toc-part-iii-cell-differentiation-jumping-from-one-attractor-to-another" class="nav-link" data-scroll-target="#part-iii-cell-differentiation-jumping-from-one-attractor-to-another"><span class="header-section-number">10.4</span> Part III – Cell differentiation – jumping from one attractor to another</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Course information</a></li><li class="breadcrumb-item"><a href="./index.html">Modeling life</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./morpho_intro_text.html">II) Morphogenesis</a></li><li class="breadcrumb-item"><a href="./morpho_practical_1.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Practical 4</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Modeling Life</h1>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Practical 4</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Theoretical Biology Group, Utrecht University </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">April 24, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -390,9 +414,140 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="modeling" class="level1 unnumbered">
-<h1 class="unnumbered">Modeling life</h1>
-<p>Welcome to the course Modeling Life.</p>
+<section id="gene-regulation-in-time" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="gene-regulation-in-time"><span class="header-section-number">10.1</span> Gene regulation in time</h2>
+<p>In this practical you will get hands on experience into making gene regulatory networks models. First you will practice how to encode regulatory interactions into ordinary differential equations and logical rules. Next you will study how many interactions produce self-sustained activity configurations (attractors) in a Boolean network model. Lastly, you will learn how to predict the genes that cause cell fate transitions (attractor changes).</p>
+<p>Today we will use the following python file: circuitsfunctions.py. In this file you will find the code of the functions we use throughout the practical, have a quick look at it. Look at the name of the functions, inputs and outputs.</p>
+</section>
+<section id="part-i---encoding-regulatory-interactions" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="part-i---encoding-regulatory-interactions"><span class="header-section-number">10.2</span> Part I - Encoding regulatory interactions</h2>
+<p>Open Boolean_practical.py and familiarize yourself with the functions <code>ODEgeneRegulation()</code> and <code>logicalRule()</code>.</p>
+<p>Both functions model an AND gate where nodeA and nodeB positively regulate nodeC. This could represent that A and B are transcription factors that form a protein complex, and that is via this complex that they can regulate the expression of C. While ODEgeneRegulation() encodes this regulation with an ordinary differential equation that requires several parameters, logicalRule() only needs the logical operator relating the input genes.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ODEgeneRegulation(a,t,parameters): </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    prod<span class="op">=</span>parameters[<span class="st">'prod'</span>]</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    decay<span class="op">=</span>parameters[<span class="st">'decay'</span>]</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    Ksat<span class="op">=</span>parameters[<span class="st">'Ksat'</span>]</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    nodeA<span class="op">=</span>parameters[<span class="st">'nodeA'</span>]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    nodeB<span class="op">=</span>parameters[<span class="st">'nodeB'</span>]</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    n<span class="op">=</span>parameters[<span class="st">'n'</span>]</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    outputC<span class="op">=</span>a[<span class="dv">0</span>]</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    doutputC<span class="op">=</span>prod<span class="op">*</span>nodeA<span class="op">**</span>n<span class="op">/</span>(Ksat<span class="op">**</span>n<span class="op">+</span>nodeA<span class="op">**</span>n)<span class="op">*</span>nodeB<span class="op">**</span>n<span class="op">/</span>(Ksat<span class="op">**</span>n<span class="op">+</span>nodeB<span class="op">**</span>n)<span class="op">-</span>decay<span class="op">*</span>outputC  </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(doutputC)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> logicalRule(nodeA,nodeB):</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(nodeA <span class="kw">and</span> nodeB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Q1</strong> What is the minimum information you need to encode a regulatory interaction with either function? In what cases would you prefer to use an ODE or a logical rule for a model?</p>
+<p>Let’s run the model to simulate what happens if nodeA and nodeB are both active/expressed. Do this for the ODE and the Boolean logic code model using the following lines inside the main().</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ODE model - see the parameters used in circuitsfunctions.py</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ODErun has three arguments: model, geneA, geneB</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>A<span class="op">=</span><span class="dv">10</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>B<span class="op">=</span><span class="dv">10</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>ODErun(ODEgeneRegulation,A,B) </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Boolean model</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># look at the terminal for the result:</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>A<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>B<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"the boolean operation of nodeA "</span>,A,<span class="st">" AND nodeB"</span>,B,<span class="st">" is:"</span>, logicalRule(A,B))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now, let’s explore the output of each function using different values of nodeA and nodeB. We are going to use the code below to plot the output of the ODE and the Boolean model in a 2D heatmap.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, Boolean network simulation - AND gate</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>explorationvalue<span class="op">=</span><span class="dv">2</span> <span class="co"># a Boolean model assumes there is only 2 possible states: 0 or 1</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>bool_output <span class="op">=</span> np.zeros((explorationvalue, explorationvalue))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> nodeA <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, explorationvalue):</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> nodeB <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, explorationvalue):</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        bool_output[nodeA, nodeB] <span class="op">=</span> nodeA <span class="kw">and</span> nodeB <span class="co">#AND # CHANGE THIS</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Now, ODE model simulation</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>explorationvalue <span class="op">=</span> <span class="dv">11</span> <span class="co"># an ODE model allows us to explore more values than a boolean model</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>ode_output <span class="op">=</span> np.zeros((explorationvalue, explorationvalue))</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> nodeA <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, explorationvalue):</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> nodeB <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, explorationvalue):</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        parameters <span class="op">=</span> {<span class="st">'prod'</span>: <span class="fl">0.01</span>, <span class="st">'decay'</span>: <span class="fl">0.001</span>,<span class="st">'Ksat'</span>: <span class="dv">4</span>, <span class="st">'n'</span>: <span class="dv">2</span>,<span class="st">'nodeA'</span>:nodeA,<span class="st">'nodeB'</span>:nodeB} <span class="co"># prod, decay, Ksat, n, and initial values for A and B</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        cells <span class="op">=</span> odeint(ODEgeneRegulation, <span class="dv">0</span>, np.arange(<span class="dv">0</span>, <span class="fl">1000.1</span> , <span class="fl">0.1</span>), args<span class="op">=</span>(parameters,)) <span class="co">#np.shape</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        ode_output[nodeA, nodeB] <span class="op">=</span> cells[<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>]</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># use this code to see your ode and boolean results side by side</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>ODEBooleanPlot(ode_output, bool_output)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Q2</strong> What differences do you see in each case?</p>
+<p>Now let’s compare how ODE and Boolean logic represent different logical gates. You can use the same code in the previous box. Remember to modify the logical operator in the Boolean section, and to modify the doutputC equation in ODEgeneRegulation:</p>
+<ol type="1">
+<li>either nodeA or nodeB can activate outputC (OR gate)</li>
+<li>that nodeA represses outputC (NOT gate)</li>
+<li>that both nodeA and nodeB repress outputC (NOT nodeA &amp; NOT nodeB )</li>
+<li>that nodeA represses outputC but nodeB activates it (NOT nodeA, yes nodeB)</li>
+<li>that nodeA or nodeB can activate outputC, but not both at the same time (XOR gate)</li>
+<li>any other biological scenario yon can think of!</li>
+</ol>
+<ul>
+<li>tip: include an extra input node, and make a 3-node logical gate.</li>
+</ul>
+<p><strong>Q3</strong> Is there a logical gate that can be better represented with an ODE than with Boolean logic? Think of examples of biological regulatory interactions that can be described with each logical gate?</p>
+</section>
+<section id="part-ii-gene-regulatory-network" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="part-ii-gene-regulatory-network"><span class="header-section-number">10.3</span> Part II – Gene regulatory network</h2>
+<p>Now let’s move to a network model made of many individual regulatory interactions. This model includes regulatory interactions experimentally determined in the cells of plant roots, here they encoded as logical rules. The model consists of 18 nodes representing transcription factors, hormones, peptides, and multitude regulatory interactions among them. Look at the rootNetwork() function in the circuitFunctions.py file. See how the activity of each node is determined by the state of its regulators using and combining the logical operators AND, OR and NOT. Find the model here: https://www.nature.com/articles/s41598-020-60251-8</p>
+<p>Let’s define a random initial condition for each of these 18 nodes, and the timesteps to solve the system using the logical functions. To find the state of the nodes in the network the next timestep, we need to give the state of our nodes to the rootNetwork() function, and then save the output of this function. We will save in matrix the initial condition, and how these 18 nodes change in the timesteps defined. At the end the function plotBooleanTimecourse() will show us the network changes in the simulated timesteps. * tip: 100 timesteps is enough to reach the attractors. For the initial condition you can also use that of one of the attractors reported in the paper and check what happens when you update them.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>timesteps<span class="op">=</span><span class="dv">20</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>nodes<span class="op">=</span><span class="dv">18</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>matrix <span class="op">=</span> np.zeros((timesteps<span class="op">+</span><span class="dv">1</span>, nodes), dtype<span class="op">=</span><span class="bu">int</span>) </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>matrix[<span class="dv">0</span>,:] <span class="op">=</span> np.random.randint(<span class="dv">0</span>, <span class="dv">2</span>, size<span class="op">=</span>nodes) <span class="co">#Random initial condition</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(timesteps):</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    parameters<span class="op">=</span> {<span class="st">'CK'</span>: matrix[i,<span class="dv">0</span>], <span class="st">'ARR1'</span>: matrix[i,<span class="dv">1</span>], <span class="st">'SHY2'</span>: matrix[i,<span class="dv">2</span>], <span class="st">'AUXIAAR'</span>: matrix[i,<span class="dv">3</span>], <span class="st">'ARFR'</span>: matrix[i,<span class="dv">4</span>], <span class="st">'ARF10'</span>: matrix[i,<span class="dv">5</span>], <span class="st">'ARF5'</span>: matrix[i,<span class="dv">6</span>], <span class="st">'XAL1'</span>: matrix[i,<span class="dv">7</span>], <span class="st">'PLT'</span>: matrix[i,<span class="dv">8</span>], <span class="st">'AUX'</span>: matrix[i,<span class="dv">9</span>], <span class="st">'SCR'</span>: matrix[i,<span class="dv">10</span>], <span class="st">'SHR'</span>: matrix[i,<span class="dv">11</span>], <span class="st">'MIR165'</span>: matrix[i,<span class="dv">12</span>], <span class="st">'PHB'</span>: matrix[i,<span class="dv">13</span>], <span class="st">'JKD'</span>: matrix[i,<span class="dv">14</span>], <span class="st">'MGP'</span>: matrix[i,<span class="dv">15</span>], <span class="st">'WOX5'</span>: matrix[i,<span class="dv">16</span>], <span class="st">'CLE40'</span>: matrix[i,<span class="dv">17</span>]}</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    matrix[i<span class="op">+</span><span class="dv">1</span>, :] <span class="op">=</span> rootNetwork(parameters)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>plotBooleanTimecourse(matrix,timesteps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Instead of a random initial condition try this one:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>matrix[<span class="dv">0</span>,:]<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Use the asynchronous updating scheme by changing the function to rootNetworkAsynchronous() and see what happens to this initial condition.</p>
+<p><strong>Q4</strong> What happens now and why? What does an asyncrhonous update is doing?</p>
+<p>This network has 18 nodes, and then 218 = 262,144 possible states. We can either solve each of these conditions, or instead explore just a subset of them. Using the previous code, add for loop to solve 100 random initial conditions, and then save the final activity configurations (attractors) in the attractors matrix. *tip: 100 initial conditons is a good number to start with. # The attractors matrix should have the shape (initial_conditions, nodes) so that you can plot the results using the function plotBooleanAttractors.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ICs<span class="op">=</span><span class="dv">100</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>attractors <span class="op">=</span> np.zeros((ICs, <span class="bu">len</span>(parameters))) <span class="co"># new</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># your code</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>plotBooleanAttractors(attractors) <span class="co"># it takes as argument your matrix of attractors</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You probably found many different attractors. First, let’s use a multidimensional reduction technique to see if each of initial conditions form groups of similar cells.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>UMAPBoolean(attractors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Q5</strong> Why do you see clearly defined groups and not a continuous distribution of attractors?</p>
+<p>Now let’s analyse the attractors you found. First, let’s group similar attractors:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>attractors_sorted <span class="op">=</span> np.array(<span class="bu">sorted</span>(attractors.tolist()))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>plotBooleanAttractors(attractors_sorted) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Q6</strong> Do some attractors occur more frequently than others. Do they all have the same basin size of attraction? Why is this?</p>
+<p><strong>Q6.1</strong> Some nodes are active (1) in most attractors, others in half, and others in very few. In how many of them is the node SHR active? What does this suggest about their regulation?</p>
+<p>Now let’s remove the repeated rows (duplicate attractor states) to see unique attractors:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>_, unique_indices <span class="op">=</span> np.unique(attractors, axis<span class="op">=</span><span class="dv">0</span>, return_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>attractors_unique <span class="op">=</span> attractors[np.sort(unique_indices)]</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>plotBooleanAttractors(attractors_unique) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Q7</strong> How many unique attractors did you find? Compare them with the ones reported in the paper. Are they all fixed points?</p>
+</section>
+<section id="part-iii-cell-differentiation-jumping-from-one-attractor-to-another" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="part-iii-cell-differentiation-jumping-from-one-attractor-to-another"><span class="header-section-number">10.4</span> Part III – Cell differentiation – jumping from one attractor to another</h2>
+<p>Depending on what we want to answer a continuous or discrete model may be more appropriate for a model. To study the role of many genes in cell differentiation, a Boolean model might be better particularly if we lack details of the parameters underlying each reaction. If we want to study how cells jump from one state to another, a continuous model might be more appropriate.</p>
+<p>Here we will see how we can convert the Boolean model to a continuous one and use it to predict which regulators are able of causing a change in the state of the system (changes in cell fate!)</p>
+<p>Compare the code of the functions rootNetwork() and rootNetworkODE(). Notice how in rootNetworkODE() the logical rules are represented with min and max functions, and then used in a sigmoidal function to create a continuous ODE model. * AND operator is a min function, OR operator is a max function, and NOT operator is 1-x. Use the code below to run a random initial condition for the 18 nodes (IC) and see how the system behaves.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>timerunning<span class="op">=</span><span class="fl">10.1</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> np.arange(<span class="dv">0</span>, timerunning, <span class="fl">0.1</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>IC <span class="op">=</span> np.random.randint(<span class="dv">0</span>, <span class="dv">2</span>, size<span class="op">=</span><span class="dv">18</span>).tolist() <span class="co">#random initial condition</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>parameters <span class="op">=</span> {<span class="st">'decayrate'</span>: <span class="dv">1</span>, <span class="st">'h'</span>: <span class="dv">50</span>} </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>cells <span class="op">=</span> odeint(rootNetworkODE, IC, times, args<span class="op">=</span>(parameters,)) </span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>plotODEroot(cells,times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Q8</strong> Do the attractors match those recovered with the Boolean network?</p>
+<p>Now let’s use the model to study cell differentiation. Let’s start in the following initial condition (IC vector), and find a change in a node that produce a jump to another attractor (end). For this you can simply flip the activity of a gene in the initial condition (from 0 -&gt;1 or 1-&gt;0) and see the final attractor matches the desired end state.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We start here: </span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>IC<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>]</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># We want to end here. </span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>end<span class="op">=</span>[<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>]</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># node order</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># CK, ARR1, SHY2, AUXIAAR, ARFR, ARF10, ARF5, XAL1, PLT, AUX, SCR, SHR, MIR165, PHB, JKD, MGP, WOX5, CLE40</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># your code </span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>plotODErootTransition(cells,times) <span class="co"># use this function to plot your result</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Q9</strong> What regulator causes the transition between these attractors? How many nodes change their activity between the initial and final state? what could be the biological meaning of this switch? how would you test this experimentally?</p>
+<p><strong>Q10</strong> Finally, use the model to predict the rest of the attractor transitions because of single node changes. Are all attractor transitions possible, or are there preferred differentiation routes?</p>
 
 
 </section>
@@ -971,10 +1126,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./morpho_intro_text.html" class="pagination-link" aria-label="What is morphogenesis?">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">What is morphogenesis?</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro.html" class="pagination-link" aria-label="Quarto examples">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Quarto examples</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./morpho_practical_2.html" class="pagination-link" aria-label="Practical 5">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Practical 5</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

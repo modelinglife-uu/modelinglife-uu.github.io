@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Theoretical Biology Group, Utrecht University">
-<meta name="dcterms.date" content="2025-04-24">
 
-<title>Modeling Life</title>
+<title>22&nbsp; Miniproject: maintaining a healthy microbiome – Modeling Life</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -31,7 +49,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intro.html" rel="next">
+<link href="./references.html" rel="next">
+<link href="./project_1.html" rel="prev">
 <link href="./images/favicon.ico" rel="icon">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -44,6 +63,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -72,6 +94,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -84,7 +135,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Course information</a></li><li class="breadcrumb-item"><a href="./index.html">Modeling life</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./project_1.html">Mini-projects</a></li><li class="breadcrumb-item"><a href="./project_2.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Miniproject: maintaining a healthy microbiome</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -117,16 +168,16 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Course information</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Modeling life</span></a>
   </div>
 </li>
@@ -298,13 +349,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
  <span class="menu-text">Mini-projects</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./project_1.html" class="sidebar-item-text sidebar-link">
@@ -313,7 +364,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./project_2.html" class="sidebar-item-text sidebar-link">
+  <a href="./project_2.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Miniproject: maintaining a healthy microbiome</span></span></a>
   </div>
 </li>
@@ -352,35 +403,27 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#modeling" id="toc-modeling" class="nav-link active" data-scroll-target="#modeling">Modeling life</a></li>
+  <li><a href="#mini-description" id="toc-mini-description" class="nav-link active" data-scroll-target="#mini-description"><span class="header-section-number">22.1</span> Mini description</a></li>
+  <li><a href="#key-references" id="toc-key-references" class="nav-link" data-scroll-target="#key-references"><span class="header-section-number">22.2</span> Key references</a></li>
+  <li><a href="#guiding-questions" id="toc-guiding-questions" class="nav-link" data-scroll-target="#guiding-questions"><span class="header-section-number">22.3</span> Guiding questions:</a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started"><span class="header-section-number">22.4</span> Getting started</a></li>
+  <li><a href="#extending-the-model" id="toc-extending-the-model" class="nav-link" data-scroll-target="#extending-the-model"><span class="header-section-number">22.5</span> Extending the model</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Course information</a></li><li class="breadcrumb-item"><a href="./index.html">Modeling life</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./project_1.html">Mini-projects</a></li><li class="breadcrumb-item"><a href="./project_2.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Miniproject: maintaining a healthy microbiome</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Modeling Life</h1>
+<h1 class="title"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Miniproject: maintaining a healthy microbiome</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Theoretical Biology Group, Utrecht University </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">April 24, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -390,11 +433,149 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="modeling" class="level1 unnumbered">
-<h1 class="unnumbered">Modeling life</h1>
-<p>Welcome to the course Modeling Life.</p>
+<section id="mini-description" class="level2" data-number="22.1">
+<h2 data-number="22.1" class="anchored" data-anchor-id="mini-description"><span class="header-section-number">22.1</span> Mini description</h2>
+<p>Microbes often form intricate relationships, not only amongst each other, but also with larger organisms from all kingdoms: plants, animals, and fungi. While they often provide useful services, microbes typically evolve much faster than these hosts. What stops a microbe from taking advantage of its host, taking more resources than it provides, or even damaging the host tissue to gain access to even more resources? The latter scenario, we would call a pathogen, and the likelyhood of this transition from occuring could be called the <strong>disease pressure</strong>.</p>
+<p>Understanding the fundamental principles behind disease pressure can help mitigating disease outbreaks. For example, if we understand the conditions under which a microbe is likely to become a pathogen, we can take steps to prevent this from happening.</p>
+<div id="fig-parmut" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-parmut-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/mutpar_continuum.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;22.1: Parasitism-mutualism continuum of host-associated microbes. Note that this is a cartoon, and that nature is in almost all cases more complicated than this."><img src="images/mutpar_continuum.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-parmut-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;22.1: Parasitism-mutualism continuum of host-associated microbes. Note that this is a cartoon, and that nature is in almost all cases more complicated than this.
+</figcaption>
+</figure>
+</div>
+<p>To phrase the above story a little differently: the microbes in our gut or in the soil of our favourite crops, are constantly evolving on a parasitism-mutualism continuum (see <a href="#fig-parmut" class="quarto-xref">Figure&nbsp;<span>22.1</span></a>). In this mini project, you will investigate the dynamics of microbiomes evolving on such a continuum. We will particularly focus on how the properties of the <em>host</em> (plant, animals, etc.) shape the likelihood of disease outbreaks. To that end, here are a few key questions to get you started, but you don’t need to focus on each and every one of them at the same time. Plus, more (better!) questions will likely emerge as you work on the project. That’s science.</p>
+</section>
+<section id="key-references" class="level2" data-number="22.2">
+<h2 data-number="22.2" class="anchored" data-anchor-id="key-references"><span class="header-section-number">22.2</span> Key references</h2>
+<ul>
+<li><span class="citation" data-cites="van2019role">Van Vliet and Doebeli (<a href="references.html#ref-van2019role" role="doc-biblioref">2019</a>)</span>: a model of self-sacrificing microbes in hosts with different transmission modes.</li>
+<li><span class="citation" data-cites="koskella2020study">Koskella and Bergelson (<a href="references.html#ref-koskella2020study" role="doc-biblioref">2020</a>)</span>: an opinion piece on host-microbe (co)evolution and levels of selection</li>
+</ul>
+</section>
+<section id="guiding-questions" class="level2" data-number="22.3">
+<h2 data-number="22.3" class="anchored" data-anchor-id="guiding-questions"><span class="header-section-number">22.3</span> Guiding questions:</h2>
+<ul>
+<li>Do motile hosts (e.g.&nbsp;animals) experience different disease pressures than non-motile hosts (e.g.&nbsp;plants)?</li>
+<li>Are mutualistic microbes easier to maintain in short- or long-lived hosts?</li>
+<li>Does non-local reproduction (e.g.&nbsp;seed/spore dispersal) change these patterns?</li>
+<li>How does an adaptive immune system (animals) affect the evolution of microbiomes, compared to plants, who don’t have an adaptive immune system?</li>
+</ul>
+</section>
+<section id="getting-started" class="level2" data-number="22.4">
+<h2 data-number="22.4" class="anchored" data-anchor-id="getting-started"><span class="header-section-number">22.4</span> Getting started</h2>
+<p>Maintaining self-sacrificial microbiomes isn’t easy, as shown by the work of <span class="citation" data-cites="van2019role">Van Vliet and Doebeli (<a href="references.html#ref-van2019role" role="doc-biblioref">2019</a>)</span>. They show that the evolution of self-sacrificing microbes (which they call “helpers”) is highly sensitive to the host’s longevity and transmission of microbes in between hosts (horizontal transmission). To understand why, start by reading their paper. If you have read it, unfold the text below to see my summary of their methods.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+My summary of the model by van Vliet et al.
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>This model studies the maintanance of self-sacrificial “helper” microbes. Here, I will refer to helpers as “allies” (A), as to clearly differentiate it from “hosts” (H). Microbes that are not allies are referred to as neutral (N).</p>
+<p>Allies provide a benefit to their host, while neutral microbes do not. The microbes are modelled with simple ordinary differential equations (ODEs):</p>
+<p><span class="math display">\[
+\begin{aligned}
+\color{#555}{
+\frac{dN}{dt} =
+\underbrace{rN}_{\textrm{Growth N}} -
+\underbrace{\delta N(A+N)}_{\textrm{Density-dependent death}}
+}\\
+\color{green}{
+  \frac{dA}{dt} =
+  \underbrace{rA(1-\gamma)}_{\textrm{Growth A}} -
+  \underbrace{\delta A(A+N)}_{\textrm{Density-dependent death}}
+}\\
+\end{aligned}
+\tag{1}
+\]</span> As you can see, allies grow slower than neutral microbes and are therefore at a competitive disadvantage, and will eventually be outcompeted. To counter-act the loss of allies, van Vliet’s model considers selection at the level of the host. To achieve this, the birth rate of hosts (<span class="math inline">\(B_i\)</span>) depends on the frequency of allies A in the microbiome:</p>
+<p><span class="math display">\[
+B_i = \frac{r}{G_H}(1+s_b\cdot \frac{A}{A+N})
+\]</span></p>
+<p>Here, <span class="math inline">\(G_H\)</span> is a parameter that scales the host generation time w.r.t. the growth rate of microbes (<span class="math inline">\(r\)</span>), with <span class="math inline">\(G_H \gg r\)</span> ensuring hosts are long-lived compared to microbes. The term <span class="math inline">\(s_b\)</span> is the maximum benefit that hosts get from carrying the ally strain.</p>
+<p>The death rate of hosts (<span class="math inline">\(D_i\)</span>) increases linearly with the density of hosts at any given time (<span class="math inline">\(H(t)\)</span>), and is given by:</p>
+<p><span class="math display">\[
+D_i = \frac{r}{G_H} \frac{H(t)}{K_H}
+\]</span></p>
+<p>Where <span class="math inline">\(H(t)\)</span> gives the number of hosts at a given time, and <span class="math inline">\(K_H\)</span> denotes the basal carrying capacity in the absence of allies. Note that the true carrying capacity can be higher, as helpers increase the birth rate of hosts.</p>
+<p>Whenever a host reproduces, the microbiome is transmitted vertically to their offspring. The frequency of allies in the offspring is sampled from a normal distribution with mean <span class="math inline">\(f_A\)</span>:</p>
+<p><span class="math display">\[
+f_{offspring}  = \mathcal{N} (f_{A},\sigma^2),
+\\\text{with } f_A = \frac{A}{A+N}
+\]</span></p>
+<p>To avoid negative ally frequencies, this number is truncated such that <span class="math inline">\(0&lt;A_{offspring}&lt;1\)</span>. The total density in the newborn is set by another parameter <span class="math inline">\(n_0\)</span>. The model by van Vliet also considers “horizontal” transmission of microbiomes, where <span class="math inline">\(f_A\)</span> is not the ally frequency in the parent, but the frequency of allies in the microbiome of a <strong>random</strong> individual.</p>
+<p>So far so good with all the math. Now the simulation…</p>
+<section id="the-simulation-loop" class="level3">
+<h3 class="anchored" data-anchor-id="the-simulation-loop">The simulation loop</h3>
+<ol type="1">
+<li><p>The birth and death rates of all hosts is calculated</p></li>
+<li><p>Calculate the probability of a host-level event (birth/death) occurring</p></li>
+<li><p>If an event occurs, draw a random event proportional to its probability.</p></li>
+<li><p>Execute the event sampled in step 3</p></li>
+<li><p>Update all the microbiome ODEs.</p></li>
+</ol>
+</section>
+</div>
+</div>
+</div>
+<p>To start the project, we will first replicate van Vliet’s results in Python. As a guideline, use my model summary above. I am ready to help where needed, but at this point in the course your experience should go a long way! If the simulation works, see if you can reproduce the following two figures:</p>
+<div id="fig-vliet" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-vliet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-vliet" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-vliet1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-vliet1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/vliet1.png" class="lightbox" data-gallery="fig-vliet" title="Figure&nbsp;22.2&nbsp;(a): Allies are maintained within a population of hosts (black line shows the average), despite each individual host (green thinner lines) constantly decreasing in ally types. This can be explained by selection at the level of the host."><img src="images/vliet1.png" class="img-fluid figure-img" data-ref-parent="fig-vliet"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-vliet1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Allies are maintained within a population of hosts (black line shows the average), despite each individual host (green thinner lines) constantly decreasing in ally types. This can be explained by selection at the level of the host.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-vliet" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-vliet2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-vliet2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/vliet2.png" class="lightbox" data-gallery="fig-vliet" title="Figure&nbsp;22.2&nbsp;(b): Allies are not maintained within a population of hosts (black line shows the average) when transmission of microbiomes is horizontal (in between random individuals)."><img src="images/vliet2.png" class="img-fluid figure-img" data-ref-parent="fig-vliet"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-vliet2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Allies are <em>not</em> maintained within a population of hosts (black line shows the average) when transmission of microbiomes is horizontal (in between random individuals).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vliet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;22.2: Helper maintenance in hosts with different transmission modes
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="extending-the-model" class="level2" data-number="22.5">
+<h2 data-number="22.5" class="anchored" data-anchor-id="extending-the-model"><span class="header-section-number">22.5</span> Extending the model</h2>
+<p>Now that you have a working base-line model, let’s extend it to address the questions we phrased earlier: how does mobility of the host affect the evolution of microbiomes, and what about non-locally reproducing fungi? How do these host-level traits affect the likelyhood of “disease” outbreaks? Note that so far, we have only discussed “helpers” and “neutral” microbes, but the same principles apply to pathogens but perhaps a little more extreme. For example, the microbes may evolve such high levels of nastiness, that hosts do not only replicate slower, but die. Think about ways to extend the model that allows you to tune these distinctions.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-koskella2020study" class="csl-entry" role="listitem">
+Koskella, Britt, and Joy Bergelson. 2020. <span>“The Study of Host–Microbiome (Co) Evolution Across Levels of Selection.”</span> <em>Philosophical Transactions of the Royal Society B</em> 375 (1808): 20190604.
+</div>
+<div id="ref-van2019role" class="csl-entry" role="listitem">
+Van Vliet, Simon, and Michael Doebeli. 2019. <span>“The Role of Multilevel Selection in Host Microbiome Evolution.”</span> <em>Proceedings of the National Academy of Sciences</em> 116 (41): 20591–97.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -971,10 +1152,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./project_1.html" class="pagination-link" aria-label="Differentiation introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Differentiation introduction</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro.html" class="pagination-link" aria-label="Quarto examples">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Quarto examples</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -992,6 +1176,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":false,"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

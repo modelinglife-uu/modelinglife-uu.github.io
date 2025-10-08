@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Theoretical Biology Group, Utrecht University">
-<meta name="dcterms.date" content="2025-04-24">
 
-<title>Modeling Life</title>
+<title>16&nbsp; Introduction to evolution – Modeling Life</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -31,7 +63,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intro.html" rel="next">
+<link href="./evo_practical_1.html" rel="next">
+<link href="./differentiation_practical_2.html" rel="prev">
 <link href="./images/favicon.ico" rel="icon">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -72,6 +105,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -84,7 +146,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Course information</a></li><li class="breadcrumb-item"><a href="./index.html">Modeling life</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./evo_intro_text.html">IV) Evolution</a></li><li class="breadcrumb-item"><a href="./evo_intro_text.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to evolution</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -117,16 +179,16 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Course information</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Modeling life</span></a>
   </div>
 </li>
@@ -257,16 +319,16 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">IV) Evolution</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./evo_intro_text.html" class="sidebar-item-text sidebar-link">
+  <a href="./evo_intro_text.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to evolution</span></span></a>
   </div>
 </li>
@@ -352,35 +414,27 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#modeling" id="toc-modeling" class="nav-link active" data-scroll-target="#modeling">Modeling life</a></li>
+  <li><a href="#evolution-lifes-most-clever-algorithm" id="toc-evolution-lifes-most-clever-algorithm" class="nav-link active" data-scroll-target="#evolution-lifes-most-clever-algorithm"><span class="header-section-number">16.1</span> Evolution: Life’s most clever algorithm</a></li>
+  <li><a href="#three-ingredients" id="toc-three-ingredients" class="nav-link" data-scroll-target="#three-ingredients"><span class="header-section-number">16.2</span> Three ingredients</a></li>
+  <li><a href="#balancing-change-and-stability" id="toc-balancing-change-and-stability" class="nav-link" data-scroll-target="#balancing-change-and-stability"><span class="header-section-number">16.3</span> Balancing change and stability</a></li>
+  <li><a href="#a-simple-evolutionary-algorithm" id="toc-a-simple-evolutionary-algorithm" class="nav-link" data-scroll-target="#a-simple-evolutionary-algorithm"><span class="header-section-number">16.4</span> A simple evolutionary algorithm</a></li>
+  <li><a href="#what-this-part-of-the-course-is-about" id="toc-what-this-part-of-the-course-is-about" class="nav-link" data-scroll-target="#what-this-part-of-the-course-is-about"><span class="header-section-number">16.5</span> What this part of the course is about</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Course information</a></li><li class="breadcrumb-item"><a href="./index.html">Modeling life</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./evo_intro_text.html">IV) Evolution</a></li><li class="breadcrumb-item"><a href="./evo_intro_text.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to evolution</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Modeling Life</h1>
+<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to evolution</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Theoretical Biology Group, Utrecht University </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">April 24, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -390,9 +444,80 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="modeling" class="level1 unnumbered">
-<h1 class="unnumbered">Modeling life</h1>
-<p>Welcome to the course Modeling Life.</p>
+<section id="evolution-lifes-most-clever-algorithm" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="evolution-lifes-most-clever-algorithm"><span class="header-section-number">16.1</span> Evolution: Life’s most clever algorithm</h2>
+<p>Evolution is the process by which populations change over generations through variation, inheritance, and differential survival. This idea, famously championed by Darwin and Wallace, explains the diversity of life on Earth. It describes how species adapt to their environments, how new species arise, and how complex traits evolve. Today, the concept of evolution has expanded beyond biology, it’s recognised as a powerful algorithm that drives adaptation in systems ranging from bacteria (genes) to ideas (memes), from DNA (nucleotides) to computer code (bits).</p>
+<p>In this part of the course, we’ll bring these ingredients to life by writing our own simulations and watching evolution unfold on the screen. And while our digital creatures aren’t made of flesh and blood, the evolutionary battles they fight, the strategies they discover, and the adaptations they evolve are as real, and often as surprising, as anything found in nature itself.</p>
+</section>
+<section id="three-ingredients" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="three-ingredients"><span class="header-section-number">16.2</span> Three ingredients</h2>
+<p>As briefly mentioned above, we just need three ingredients to have evolution by means of natural selection:</p>
+<ul>
+<li><strong>variation</strong> (differences between individuals),</li>
+<li><strong>inheritance</strong> (the passing on of traits),</li>
+<li><strong>selection</strong> (some variants performing better than others).</li>
+</ul>
+<p>The last ingredient is self-evident. Evolution by means of natural selection requires selection. It is especially the first two that are a little more tricky to really understand, as they are not always as obvious as they seem.</p>
+</section>
+<section id="balancing-change-and-stability" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="balancing-change-and-stability"><span class="header-section-number">16.3</span> Balancing change and stability</h2>
+<p>To evolve, a system needs enough variation – if everyone is the same, there’s nothing for selection to act on. But this variation can’t just be noise; it needs to be passed on. That means inheritance can’t be perfect – there must be room for change, such as through mutations – but it also can’t be too sloppy. If traits aren’t reliably transmitted to the next generation, then even the best adaptations will vanish before they can take hold. Evolution lives in the sweet spot: not too rigid, not too chaotic, just enough memory and just enough change. To make this a little more tangible, let us make our very first simulation.</p>
+</section>
+<section id="a-simple-evolutionary-algorithm" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="a-simple-evolutionary-algorithm"><span class="header-section-number">16.4</span> A simple evolutionary algorithm</h2>
+<p>One simple way to simulate evolution is with a Moran process, a classic model from population genetics. Imagine a population of 100 individuals, each with a single gene that determines its fitness. This gene can have all values from 0 to 1 (let’s call this value <span class="math inline">\(\phi\)</span>). At each time step, one individual is chosen to reproduce with a probability proportional to <span class="math inline">\(\phi\)</span>, producing 1 offspring. This offspring inherits their parents gene (so the same <span class="math inline">\(\phi\)</span>), but with a probability <span class="math inline">\(\mu\)</span>, the value changes by a small amount (a mutation). The population size will now be 101, which could be interesting if we want to study population growth. However, in a Moran process we keep it simple: one random individual is removed by the new offspring, so the population size is constant while still allowing fitter individuals to spread over time.</p>
+<p>Here’s a minimal Python example:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">5</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">100</span> <span class="co"># Population size </span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>fitnesses <span class="op">=</span> np.full(N, <span class="fl">0.05</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Updated parameters</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>steps <span class="op">=</span> <span class="dv">50000</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>avg_fitness <span class="op">=</span> []</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Moran process with mutation (logging every 10 steps)</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> step <span class="kw">in</span> <span class="bu">range</span>(steps):</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    probs <span class="op">=</span> fitnesses <span class="op">/</span> fitnesses.<span class="bu">sum</span>()</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    parent <span class="op">=</span> np.random.choice(N, p<span class="op">=</span>probs)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    dead <span class="op">=</span> np.random.choice(N)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Copy with mutation</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    new_fit <span class="op">=</span> fitnesses[parent]</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> mu:</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        new_fit <span class="op">=</span> np.clip(new_fit <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="fl">0.05</span>), <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    fitnesses[dead] <span class="op">=</span> new_fit</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Save average fitness every 10 steps</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> step <span class="op">%</span> <span class="dv">10</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>        avg_fitness.append(fitnesses.mean())</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>plt.plot(np.arange(<span class="dv">0</span>, steps, <span class="dv">10</span>), avg_fitness)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Step"</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Average fitness"</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Evolution of Fitness in a Moran Process"</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="exr-moran" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 16.1 (Moran process simulation)</strong></span> <br></p>
+<p>Study the Python code for the evolutionary algorithm given above. Answer the following questions:</p>
+<ol type="a">
+<li>How “well adapted” is the initial population?</li>
+<li>How are mutations implemented in the code? Can you think of other ways?</li>
+<li>Can the parent be replaced by its own offspring? Why/why not?</li>
+<li>Investigate which value of <span class="math inline">\(\mu\)</span> works best if you want to achieve maximum fitness in the shortest amount of steps.</li>
+</ol>
+</div>
+</section>
+<section id="what-this-part-of-the-course-is-about" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="what-this-part-of-the-course-is-about"><span class="header-section-number">16.5</span> What this part of the course is about</h2>
+<p>The above simulation is fun, but not really… biologically relevant. While some simplifications are necessary to make models feasible, we will investigate a few evolutionary models that are somewhat more interesting. We will discuss how to model spatial structure and local competition, how genotypes (where mutations happen) get translated into phenotypes (where selection happens), and how the environment can change over time and lead to niche construction and interactions.</p>
 
 
 </section>
@@ -971,10 +1096,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./differentiation_practical_2.html" class="pagination-link" aria-label="Practical 7">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Practical 7</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro.html" class="pagination-link" aria-label="Quarto examples">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Quarto examples</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./evo_practical_1.html" class="pagination-link" aria-label="Practical 1">
+        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Practical 1</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

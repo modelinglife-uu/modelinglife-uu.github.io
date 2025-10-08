@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Theoretical Biology Group, Utrecht University">
-<meta name="dcterms.date" content="2025-04-24">
 
-<title>Modeling Life</title>
+<title>19&nbsp; Practical 3 – Modeling Life</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +29,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intro.html" rel="next">
+<link href="./evo_answers.html" rel="next">
+<link href="./evo_practical_2.html" rel="prev">
 <link href="./images/favicon.ico" rel="icon">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -44,6 +43,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -72,6 +74,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -84,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Course information</a></li><li class="breadcrumb-item"><a href="./index.html">Modeling life</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./evo_intro_text.html">IV) Evolution</a></li><li class="breadcrumb-item"><a href="./evo_practical_3.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Practical 3</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -117,16 +148,16 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Course information</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Modeling life</span></a>
   </div>
 </li>
@@ -257,13 +288,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">IV) Evolution</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./evo_intro_text.html" class="sidebar-item-text sidebar-link">
@@ -284,7 +315,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./evo_practical_3.html" class="sidebar-item-text sidebar-link">
+  <a href="./evo_practical_3.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Practical 3</span></span></a>
   </div>
 </li>
@@ -352,35 +383,24 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#modeling" id="toc-modeling" class="nav-link active" data-scroll-target="#modeling">Modeling life</a></li>
+  <li><a href="#building-a-model-from-scratch" id="toc-building-a-model-from-scratch" class="nav-link active" data-scroll-target="#building-a-model-from-scratch"><span class="header-section-number">19.1</span> Building a model from scratch</a></li>
+  <li><a href="#simulating-a-simple-microbial-ecosystem-with-public-goods" id="toc-simulating-a-simple-microbial-ecosystem-with-public-goods" class="nav-link" data-scroll-target="#simulating-a-simple-microbial-ecosystem-with-public-goods"><span class="header-section-number">19.2</span> Simulating a simple microbial ecosystem with “public goods”</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Course information</a></li><li class="breadcrumb-item"><a href="./index.html">Modeling life</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./evo_intro_text.html">IV) Evolution</a></li><li class="breadcrumb-item"><a href="./evo_practical_3.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Practical 3</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Modeling Life</h1>
+<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Practical 3</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Theoretical Biology Group, Utrecht University </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">April 24, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -390,11 +410,61 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="modeling" class="level1 unnumbered">
-<h1 class="unnumbered">Modeling life</h1>
-<p>Welcome to the course Modeling Life.</p>
+<section id="building-a-model-from-scratch" class="level2" data-number="19.1">
+<h2 data-number="19.1" class="anchored" data-anchor-id="building-a-model-from-scratch"><span class="header-section-number">19.1</span> Building a model from scratch</h2>
+<p>Over the last weeks you have been given many model of biology, and you have modified or extended upon them. For this practical, I will give you a only a description. Your challenge will be to see how far you get in trying to get this model working yourself. I advice you use AI-assisted programming only to solve small steps, otherwise you have no clue what you are doing. But if you try and do everything yourself, it may take a little long.</p>
+<p>At the end of the pratical, we will compare different implementations by students, as well as my implementation. Hopefully, we will see some generic patterns, because the model description should be good enough to give “similar models”. The description should be “vague enough” to lead to some differences, but “precise enough” to yield similar results. This is an experiment in and of itself. So let’s see :’)</p>
+<p>Note that I also do not yet know exactly what will happen in this simulation (although I have tried it out), so I’m hoping we will learn some cool stuff together!</p>
+</section>
+<section id="simulating-a-simple-microbial-ecosystem-with-public-goods" class="level2" data-number="19.2">
+<h2 data-number="19.2" class="anchored" data-anchor-id="simulating-a-simple-microbial-ecosystem-with-public-goods"><span class="header-section-number">19.2</span> Simulating a simple microbial ecosystem with “public goods”</h2>
+<section id="model-description" class="level3">
+<h3 class="anchored" data-anchor-id="model-description">Model description</h3>
+<p>Microbes often produce public goods, from which surrounding microbes can benefit. This can lead to interesting dynamics, such as cooperation and competition. Most models however consider on 1 public good at a time, which leads to limited diversity (a producer, and a non-producer may or may not coexist). Here, we will an ecosystem with many public goods, and simulate them on a grid.</p>
+<p>An individual microbe will carry a “genome” that is represented by a binary string (101010010011). Each position in the string represents a public good, and whether the individual can produce it (1) or not (0). The individual can rely on other individuals to produce public goods.</p>
+<p>We will simulate individuals (microbial cells) reproducing and dying on a grid. A grid point either contains an individual, or it is empty. Every empty point, will be competed for by individuals that are in that neighbourhood. The neighbourhood is defined as the 8 surrounding grid points (this is called the “Moore” neighbourhood). The cells can only replicate if they have all the public goods they need, which means that they can rely on other individuals in their neighbourhood to produce them. If they do not have all public goods available, they cannot replicate. The “winner” from these (max) 8 viable competitors will be determined by a roulette wheel selection, where the relative probability is determined by their fitness:</p>
+<p><span class="math display">\[
+F_i = 1 - c \cdot \sum({bitstring})
+\]</span></p>
+<p>In other words, fitness goes down as the number of public goods produced increases, and there is a cost <span class="math inline">\(c\)</span> associated with producing each public good. Make sure this roulette wheel contains a probability that nobody wins, such that highly unfit individuals are less likely to replicate than highly fit individuals (also see earlier practicals).</p>
+<p>The individual that replicates, can undergo mutations in the bitstring (gene loss and gene gain). Assume gene loss is more likely than gene gain (initial parameters to explore are summarised below)</p>
+<p>Finally, implement a function that allows you to mix the grid (all individuals are placed in a random position).</p>
+</section>
+<section id="model-output" class="level3">
+<h3 class="anchored" data-anchor-id="model-output">Model output</h3>
+<p>The model will have the following output: a grid that is coloured by the number of public goods produced (for consistency, let’s all use a ‘viridis’ scale), and a line graph that plots the total population sizes, as well as the population sizes of species producing 0 public goods, 1 public good, 2 public goods, etc. (see <a href="#fig-examplegrid" class="quarto-xref">Figure&nbsp;<span>19.1</span></a>)</p>
+</section>
+<section id="parameters-to-start-out-with" class="level3">
+<h3 class="anchored" data-anchor-id="parameters-to-start-out-with">Parameters to start out with</h3>
+<ul>
+<li>Grid size: 50 x 50</li>
+<li>Initial population: produces all public goods (1111…1)</li>
+<li>Death rate: 0.1</li>
+<li>Cost (c): 0.05</li>
+<li>Bitstring 1 to 0 mutation (losing a gene): 0.01</li>
+<li>Bitstring 0 to 1 mutation (gaining a gene): 0.001</li>
+<li>Number of public goods (i.e.&nbsp;bitstring length): 10</li>
+<li>“No-event” size of roulette wheel: 1</li>
+</ul>
+<div id="fig-examplegrid" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-examplegrid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/evo_pract3_example.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;19.1: Example of what the simulation could look like"><img src="images/evo_pract3_example.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-examplegrid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;19.1: Example of what the simulation could look like
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="proposed-experiments" class="level3">
+<h3 class="anchored" data-anchor-id="proposed-experiments">Proposed experiments</h3>
+<p>Try investigating how the model behaves with different values of <span class="math inline">\(c\)</span> (the cost of producing public goods). Can you explain what happens at <span class="math inline">\(c=0.0\)</span>?</p>
+<p>Try studying the effect of mixing the whole grid every timestep, such that neighbourhoods are constantly “randomised”. Look at the population size, as well as the distribution of different types. Can you explain the observations in biological terms?</p>
+<p>Try studying what happens at different mutation rates.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -971,10 +1041,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./evo_practical_2.html" class="pagination-link" aria-label="Practical 2">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Practical 2</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro.html" class="pagination-link" aria-label="Quarto examples">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Quarto examples</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./evo_answers.html" class="pagination-link" aria-label="Answers exercises">
+        <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Answers exercises</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -992,6 +1065,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom","openEffect":"zoom"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

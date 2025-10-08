@@ -1,0 +1,45 @@
+# Answers exercises
+
+## Answers practical 4 (gene regulation in time)
+
+**Q1**
+To make an ODE model it is needed: the two nodes interacting interaction, direction and effect, and several parameters (4: prod, decay, Ksat, n). For Boolean you need the two nodes interacting interaction, direction and effect; no parameters needed.
+
+**Q2**
+Quantitative differences in output (continuous can have values between 0 and 1, but also over 1).
+
+**Q3**
+All logical gates can be modelled correctly with either approach. With Boolean models we look quantitative resolution, with ODE we can model many more values than 0 and 1. 
+Biological examples that can be modelled with the logical gates: 
+- AND gate can be that both genes form a protein complex that binds promoter. 
+- OR is that either TF can bind promoter and activate transcription. 
+- NOT is that a TF blocks the promoter so that activating TF cannot bind. 
+- NOT A & NOT B is that both TFs are repressors of the same gene. 
+- NOT A, yes B is that A is a repressor and B is an activator. 
+- XOR gate can be a promoter where either A or B can bind, the complex AB cannot bind. 
+
+**Q4**
+The initial condition now converges to a fixed point attractor; the cyclic behaviour recovered with the synchronous updating scheme was an artifact of updating all the nodes at the same time. 
+
+**Q5**
+We see clearly defined groups because we are doing the UMAP with the cells in the final attractors, and not while they are in their trajectory towards the attractor.
+
+**Q6**
+Yes, some attractors occur more often than others, and this is a consequence of the regulatory interactions integrated in the model. The number of initial conditions you found in each attractor is a reflection of the size of their basin of attraction. Indeed, the basins of attraction (all conditions that converge to an attractor) are shaped by the AND, OR, and NOT gates in each of the modelled nodes. Imagine cells are moving in a multidimensional landscape (as many dimensions as nodes in the model), such that the regulatory interactions define the “rolling” direction until eventually they land in different basins. 
+
+**Q6.1**
+This is defined by their logical rules, and how many regulators they have. For example, SHR logical rule is SHR = SHR. This splits the state space perfectly in two halves: one with SHR active and another with SHR inactive.
+
+**Q7**
+This depends on how many initial conditions you test. The more initial conditions, the more likely you will find the maximum of 6 fixed point attractors this model can produce. 
+
+**Q8**
+Yes. The ODE model is built with the same regulatory interactions from the Boolean model. The difference is that this model allows us to describe quantitative differences in the activity of the nodes. 
+
+**Q9**
+SHR OFF (0) causes the transition between the specified activity configurations. We can interpret this change between attractors as a cell fate change, in which the decrease in SHR activity triggers changes in other nodes of the network resulting in the differentiation of the cells. 
+
+**Q10**
+Finally, use the model to predict the rest of the attractor transitions because of single node changes. Are all attractor transitions possible, or are there preferred differentiation routes?
+Not all attractor transitions are possible by single node changes. This is because the regulatory interactions in the model constrain how this perturbation is interpreted, and with it the differentiation trajectories.
+

@@ -1,29 +1,38 @@
+---
+editor: 
+  markdown: 
+    wrap: 72
+---
+
 # Practical 1
 
 ### TODO
 
-- Move the answers to a separate page
-- Links to github for the code
-- 
+-   Links to github for the code
 
-## Goal
+## Morphogen Gradients and Patterning
 
 In this practical, we a going to look at how an organism can form
-segments from basic principles like morphogen gradients and gene expression.
+segments along its body axis . The mathematical model that we will
+implement and study is an implementation of the so-called French flag
+conceptual model first proposed by Lewis Wolpert
+[@wolpert1969positional]. It assumes the spatially graded expression of
+a morphogen “M” that influences the expression of some downstream genes
+A, B and C. Their expression is often visualized by red, white and blue
+and the arising pattern resembles the French flag, hence the name (see
+the power of visualization).
 
-## Model system
-
-One of the most well-studied organisms when it comes to segmentation is
-the development of fruit fly *Drosophila melanogaster*.
-
--   Details about bicoid gradient and the genes getting expressed
--   Bicoid gradient equations
-
-The mathematical model that we will implement and study today is a so
-called French flag model. It starts with a morphogen M that influences
-the expression of the genes A, B and C. Their expression is often
-visualized by red, white and blue and the arising pattern resembles the
-French flag, hence the name (see the power of visualization).
+One of the most well-studied organisms when it comes to body axis
+segmentation (although its segmentation mechanism is evolutionary
+derived and a-typical!) is the development of the fruit fly Drosophila
+melanogaster. Supporting the ideas of Wolpert, it was found that through
+tethering maternal Bicoid mRNA to one side of the embryo, Bicoid protein
+can form a gradient extending along the anterior-posterior axis, with so
+called gap genes as a first tier in the segmentation hierarchy
+differentially responding to different Bicoid protein levels
+[@driever1988bicoid]. Later it was found that often at least two
+opposing morphogen gradients drive downstream gene expression and genes
+typically respond to multiple inputs.
 
 ## Mathematical modeling - integrating multiple signals
 
@@ -33,29 +42,183 @@ factors. An OR gate can be implemented mathematically with a sum of the
 effect of the transcription factors, while an AND can be implemented
 mathematically with a product. Some examples:
 
--   $\frac{dX}{dt} = a(\text{tf1}) + b(\text{tf2})$: Gene X is induced by transcription factor
-    1 and 2 in an OR fashion, either $a(\text{tf1})$ or $b(\text{tf2})$ needs to be high
-    to give high transcription of X.
--   $\frac{dY}{dt} = a(\text{tf1})\cdot b(\text{tf2})$: Gene Y is induced by transcription factor 1
-    and 2 in an AND fashion, both $a(\text{tf1})$ and $b(\text{tf2})$, which are being multiplied, need to be high to
-    give high transcription of X.
+-   $\frac{dX}{dt} = a(\text{tf1}) + b(\text{tf2})$: Gene X is induced
+    by transcription factor 1 and 2 in an OR fashion, either
+    $a(\text{tf1})$ or $b(\text{tf2})$ needs to be high to give high
+    transcription of X.
+-   $\frac{dY}{dt} = a(\text{tf1})\cdot b(\text{tf2})$: Gene Y is
+    induced by transcription factor 1 and 2 in an AND fashion, both
+    $a(\text{tf1})$ and $b(\text{tf2})$, which are being multiplied,
+    need to be high to give high transcription of X.
 
-Note that the shape of $a(\text{tf1})$ and $b(\text{tf2})$ (increasing or decreasing
-function of the transcription factor) determines whether tf1 and tf2 are
-repressing or activating.
+Note that the shape of $a(\text{tf1})$ and $b(\text{tf2})$ (increasing
+or decreasing function of the transcription factor) determines whether
+tf1 and tf2 are repressing or activating.
 
-## Relevant literature
+## Questions
 
-French flag -\> morphogen induced regionalization
+**Q1. (Algorithmic thinking)** Have a look at the reaction-diffusion
+equation for the morphogen and the implementation of it in the file
+`morphogengradient_to_segments.py` in the reaction_diffusion_step
+function, as well as at the initialization of the array u. How is this
+different from the gradient formation modeling we discussed during the
+lecture? What is done at the terminal boundary in the length direction
+and why does this make sense? (hint: outcommented we provided code doing
+essentially the same but not using numpy arrays and hence written in a
+less compact matter to help you understand what is happening)
+
+**Q2. (Important concept)** Play with the morphogen diffusion rate and
+the morphogen decay rate and describe what happens. What happens in
+terms of dynamics and steady state if you change both, but the ratio
+stays the same? Hint: it might help to draw a horizontal line at a
+certain height to ease comparison.
+
+**Q3 (Biology & mathematical thinking)** Next, we are going to introduce
+the genes A, B and C in the model. We want these genes to be expressed
+dependent on M, and in the head, trunk and tail respectively, so A on
+the left, B in the middle and C on the right. Think of what conditions
+in terms of M should lead to expression of A/B/C. What Hill functions
+(normal/inverse/any combination) corresponds to those conditions? Write
+down (pen and paper, not in code) full equations for the genes, do we
+need any other terms than just Hill functions, would we need specific
+parameter conditions?
+
+**Q4 (Biology & algorithmic/mathematical thinking)** From hereon we
+assume that the morphogen gradient reaches steady state very quickly,
+and no longer use the numerical implementation of the diffusion equation
+and instead work with a superimposed morphogen profile defined by
+`reaction_diffusion_gradient` to save time. (Hint: to not call the
+function any more use \# in front of where it is called) Change the
+simulation loop such that it computes the morphogen gradient once. What
+type of function is the superimposed morphogen profile and how does this
+relate to question 2.
+
+**Q5 (Biology & algorithmic/mathematical thinking)**
+
+a.  Now create functions to update A, B and C according to your
+    equations from the previous question. You may use the predefined
+    hill and ihill functions that are provided in the code. For
+    simplicity, you may keep most of the parameters the same across
+    genes, but some have to be different to ensure the right location of
+    the genes (see your reasoning to the previous question). (Hint:
+    using array properties to update A/B/C, like in the
+    reaction_diffusion_step function, makes your code run a lot faster
+    than using for-loops)
+b.  Also make sure that the levels of A, B and C are updated in the
+    simulation loop. (Hint: using array properties to update A/B/C, like
+    in the reaction_diffusion_step function, makes your code run a lot
+    faster than using for-loops)
+c.  Next, ensure A, B and C are visualized in the bottom plot axis (copy
+    and adapt the code for the visualization of M). You can add an extra
+    third axis to the plot to visualize the (French) flag pattern, by
+    getting which of the three genes is maximal at each location with
+    np.argmax(np.array(\[A, B, C\]), axis=0)and turning that into an
+    array of RGB colors of choice.
+d.  Do you get the expected “French flag” pattern? If not, think of why
+    not and improve your equations from previous question, parameters or
+    your code.
+
+**Q6 (Biology)** At some point in development, the morphogen gradient
+will disappear, for example in the case of the Drosophila Bicoid
+gradient because the maternal mRNA is degraded. Predict what will happen
+to the expression of A,B and C (and hence the French flag pattern) if
+the morphogen gradient disappears over time and assume A, B, and C are
+regulated by our equations (first try think about this without actually
+simulating this).
+
+**Q7 (Algorithmic/mathematical thinking)** Now write the code in
+reaction_diffusion_gradient that updates the morphogen concentration,
+such that after the time point A, B and C have gotten close to
+equilibrium, the morphogen gradient gradually disappears. Adapt the
+simulation loop where necessary and run your code: was your prediction
+on A/B/C from the previous question correct? Why/why not? Hint: you
+might need to increase the duration of your simulation, especially if it
+takes a long time for A, B and C to reach equilibrium (or you can change
+the parameters to speed things up by using same production/degradation
+rate ratio yet higher absolute values of the individual parameters).
+
+**Q8 Biological & mathematical thinking** A, B and C cannot remain in a
+stable pattern if they are only influenced by M. How can we stabilize
+the pattern in absence of M? Test your ideas by creating new update
+functions for A, B and C and let these new ‘rules’ kick in at the same
+time when M starts to decline. Again, you may find Hill functions useful
+and perhaps also the before/after switch time structure used in
+reaction_diffusion_gradient for M. (Hint: think about how the genes
+should affect each other, and assume that in this new phase, when genes
+have already been initialized in absence of repression the genes will be
+expressed). Can you maintain the expression domains of A, B and C and
+does their shape change?
+
+**Q9 (Biology & algorithmic/mathematical thinking)** A sudden switch
+from phase 1 (stable M gradient) to phase 2 (decaying M gradient)
+resulting in the genes following different differential equations is
+biologically implausible. In reality, genes have complex promotors and
+enhancers integrating different inputs that arise in different
+developmental stages. Try to come up with one integrated expression for
+each gene, incorporating simultaneous input from the morphogen gradient
+and the other genes. Create new update functions for A/B/C and test your
+ideas. Can you get a stable pattern before and after the decline in M? A
+couple of things you could consider: a. Think of how positively and
+negatively M regulated expression behave once the gradient starts
+declining: what is the best way to combine (AND/OR) that with the
+regulation by the genes? a. Consider splitting up the M regulated
+expression of middle gene B into a positive and negatively regulated
+morphogen part before integrating the other genes inputs. a. It is also
+possible to give certain genes a bit of a constant boost to prevent
+their takeover by other genes due to timing issues
+
+**Q10. Biology & algorithmic/mathematical thinking** Write code to get
+noise in the morphogen gradient, both in its steady state and decaying
+phase. During which phase do the expression domains of A, B and C suffer
+more from the noise. Explain why? How could we make the system more
+robust in a manner that is also likely occurring in nature?
+
+#### [**Extra questions for if you're done early/ for master students. These questions need not be made in the order they are provided, you can choose what you would like to investigate.**]{.smallcaps}
+
+**Q11 (Biological thinking)** Play with the size of the domain to see
+what happens to the gene expression domains. What would this mean for an
+organism?
+
+**Q12 (Biological & algorithmic thinking)** Various mechanisms have been
+proposed to ensure that the domains of the morphogen controlled genes
+scale with the size of the domain. One proposed mechanism suggests the
+existence of an also diffusible “expander” molecule which expression is
+repressed by the morphogen but which itself either represses the
+degradation of the morphogen or enhances its diffusion (see e.g.
+<https://www.pnas.org/doi/full/10.1073/pnas.0912734107> and
+<https://onlinelibrary.wiley.com/doi/10.1111/dgd.12337>).
+
+For the expander we can write:
+
+$$
+∂E/∂t=p K^h/(K^h+M^h )-dE+D_E ∆E
+$$
+
+Assume E reduces degradation of M (easier to implement than enhancement
+of diffusion) and study the effect of scaling. (Hint, vary the size of
+the domain in the length direction but plot domains as a function of
+relative instead of absolute domain size to compare domain sizes).
+
+**Q13 (Algorithmic thinking)** In b, we can also implement other
+boundary conditions, especially for the right boundary. What happens to
+the profile if we make a no-flux boundary by copying the value at n-2 to
+n-1? And what if we set it to a sink (force concentration to zero)?
+
+**Q14** From question 4 onwards, how do things change if we do not
+assume a quasi-steady-state for the morphogen gradient (i.e. keep the
+morphogen dynamics instead of replacing it by the superimposed
+exponential)? How would you implement a disappearing gradient and how
+does it shape change the outcomes of the flag?
+
+**Q15** Implement your solution to make the system more robust for noise
+from question 10. Did it work?
 
 ## Python code
 
-
-:::{.callout-note collapse=true}
-
+::: {.callout-note collapse="true"}
 ## Starting code for this practical
 
-```python
+``` python
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -196,254 +359,157 @@ for n in range(nt):
 
 # Or close the plot window when done
 plt.close(fig)
-
 ```
-
 :::
 
-## Exercises
-1.  **Purely algorithmic thinking**
-    Have a look at the
-    reaction-diffusion equation for the morphogen and the implementation
-    of it in the file `morphogengradient_to_segments.py` in the
-    `reaction_diffusion_step` function. Which terms in the function
-    correspond to reaction and which to diffusion? How is the diffusion
-    term discretized in the function and can you relate each of these
-    terms? (You can also look at the double `for` loop in the
-    commented-out code: this works exactly the same, but doesn't use the
-    properties of numpy arrays, and hence is slower in runtime.)
-
-    >**Answer** *We have a decay term, which is only multiplied by $dt$ to get a
-numerical integral. And we have the diffusion term, multiplied by both
-$dt$ and $dx$ to get the numerical integral. This term consists of the
-differences in concentration between a grid point and its two adjacent
-grid point and hence contains the concentration of the grid point itself
-twice.*
-
-2.  **Boundary conditions**
-    The tissue is represented as an array, but
-    the `reaction_diffusion_step` function only updates the "inner" grid
-    points of the array with the reaction diffusion equation. The
-    left-most, right-most, top and bottom sides of the array are updated
-    differently and represent boundary conditions. What are those, and
-    what do they ensure in terms of values or fluxes at the boundary?
-
-    >**Answer** *Top and bottom have a no flux boundary, making sure that no
-concentration is lost on the top and bottom of the tissue. The leftmost
-boundary is not updated at all, meaning that it does not change, so it
-keeps its initial value set at 100. The rightmost boundary makes sure
-that the ratio between that boundary and the previous column is the same
-as the ratio between the two previous columns. **(If we keep it this way
-to ensure the theoretical exponential gradient)***
-
-3.  **Important concept**
-    Play with the morphogen diffusion rate and
-    the morphogen decay rate and describe what happens. What happens in
-    terms of dynamics and steady state if you change both, but the ratio
-    stays the same? _Hint_: it might help to draw a horizontal line at a
-    certain height to ease comparison.
-
-    >**Answer** Diffusion length concept $=\sqrt{D/d}$. And faster rates lead to faster
-    to steady state.
-
-4.  **Biology & mathematical thinking**
-    Next, we are going to introduce
-    the genes $A$, $B$ and $C$ in the model. We want these genes to be
-    expressed dependent on $M$, and in the head, trunk and tail
-    respectively, so $A$ on the left, $B$ in the middle and $C$ on the right.
-    Think of what conditions in terms of M should lead to expression of
-    $A$/ $B$ /$C$. What Hill functions (normal/inverse/any combination)
-    corresponds to those conditions? Write down full equations for the
-    genes, do we need any other terms than just Hill functions?
-
-    >**Answer**
-    > $$\begin{align}
-    > \frac{dA}{dt} = \text{normal hill}(M)- \text{decay term}$$,\\
-    > \frac{dB}{dt} = \text{normal hill}(M) \cdot \text{inverse hill}(M) - \text{decay term},\\
-    > \frac{dC}{dt} = \text{inverse hill}(M) - \text{decay term}.
-    > \end{align}$$
-    > *Furthermore, $k_A=k_B_1<k_B_2<k_C$ to ensure the switches happen at the right
-    > places.*
-
-5.  **Biology & algorithmic/mathematical thinking**
-    From hereon we
-    assume that the morphogen gradient reaches steady state very
-    quickly, and no longer use the numerical
-    implementation of the diffusion equation and instead work with the
-    exponential morphogen profile defined by `reaction_diffusion_gradient`
-    to save time.
-
-    -   Change the simulation loop such that it computes the morphogen
-        gradient once.
-    -   Now create functions to update `A`, `B` and `C` according to your
-        equations from previous question. You may use the `hill` and `ihill`
-        functions defined. For simplicity, you may keep most of the
-        parameters the same for each gene, but some *have to be
-        different* to ensure the right location of the genes.
-    -   Also make sure that the levels of `A`, `B` and `C` are updated in the
-        simulation loop, and that they are visualized in the bottom plot
-        axis (copy and adapt the code for the visualization of `M`). You
-        can add an extra third axis to the plot to visualize the
-        (French) flag pattern, by getting which of the three genes is
-        maximal at each location with `np.argmax(np.array([A, B, C]),
-        axis=0)` and turning that into an array of RGB colors of choice.
-    -   Do you get the expected "French flag" pattern? If not, think of
-        why not and improve your equations from previous question,
-        parameters or your code.
-    -   *Hint*: using array properties to update `A`/`B`/`C`, like in the
-        `reaction_diffusion_step` function, makes your code run a lot
-        faster than using `for` loops.
-
-    >**Answer** *They will find gene $C$ needs to be induced by low and repressed by
-    high $M$*
-
-6.  **Biology**
-    At some point in development, the morphogen gradient
-    will disappear. Predict what will happen to the expression of $A$, $B$
-    and $C$ (and hence the French flag pattern) if the morphogen gradient
-    disappears over time.
-
-    >**Answer** *As $M$ decays, $A$ and $B$ will no longer be activated and $C$ no longer
-repressed, hence the takeover by $C$. The French flag pattern disappears.*
-
-7.  **Algorithmic/mathematical thinking**
-    Now write the code in
-    `reaction_diffusion_gradient` that updates the morphogen
-    concentration, such that after the time point $A$, $B$ and $C$ have gotten
-    close to equilibrium, the morphogen gradient gradually disappears.
-    Adapt the simulation loop where necessary and run your code: was
-    your prediction on $A$/ $B$/ $C$ from the previous question correct? Why/why
-    not? *Hint*: you might need to increase the duration of your
-    simulation, especially if it takes a long time for $A$, $B$ and $C$ to
-    reach equilibrium (or you can change the parameters to speed things
-    up).
-
-    >**Answer** *It should always result in C taking over.*
-
-8.  **Biological mathematical thinking**
-    $A$, $B$ and $C$ cannot remain in a
-    stable pattern if they are only influenced by $M$. How can we
-    stabilize the pattern in absence of $M$? Test your ideas by creating
-    new update functions, or adapt the exisiting ones for `A`, `B` and `C` and
-    let the new 'rules' kick in when `M` starts to decline. Again, you may
-    find Hill functions useful and perhaps also the logical structure
-    used in `reaction_diffusion_gradient`.
-
-    >**Answer** As $M$ decays, $A$ and $B$ will no longer be activated and $C$ no longer
-repressed, hence the takeover by $C$. They will find mutual repression
-with only your neighbor gene is not enough, you need it with both 2
-other genes
-
-9.  **Biology & algorithmic/mathematical thinking**
-    A sudden switch from phase 1 (stable $M$ gradient) to phase 2 (decaying $M$ gradient)
-    resulting in the genes following completely different differential equations is
-    biologically implausible. Instead, come up with one integrated
-    expression for each gene, incorporating simultaneous input from the
-    morphogen gradient and the other genes. Create new update functions
-    for `A`/`B`/`C` and test your ideas. Can you get a stable pattern before
-    and after the decline in $M$? A couple of things you could consider:
-
-    -   Think of how positively and negatively $M$ regulated expression
-        behave once the gradient starts declining: what is the best way
-        to combine (AND/OR) that with the regulation by the genes?
-    -   Consider splitting up the $M$ regulated expression of middle gene
-        $B$ into a positive and negatively regulated morphogen part before
-        integrating the other genes inputs.
-    -   How can you make regulation more, or less, tightly regulated by
-        small differences in $M$ or gene expression?
-    -   It is also possible to give certain genes a bit of a constant
-        boost or break
-
-    >**Answer** This is highly non-trivial. It requires that for genes (or part of
-    their input) being positively dependent on M that there is an OR
-    gate (sum) (so they stay on once $M$ is absent as long as the mutual
-    repressors are absent) while for genes (or part of their input)
-    being negatively dependent on $M$ that there is an AND gate (so they
-    do not expand once $M$ is absent but require both $M$ absent and mutual
-    repressors absent). Some system that might work:
-
-    TODO: insert equations of systems with desired behavior.
-
-10.  **Biology & algorithmic/mathematical thinking**
-    Write code in the `reaction_diffusion_gradient` function to get
-    noise in the morphogen gradient, both in its steady state and
-    decaying phase. During which phase do the expression domains of $A$, $B$
-    and $C$ suffer more from the noise. Explain why? Which boundary is
-    more affected by the noise and why? How could we make the system
-    more robust in a manner that is also likely occurring in nature?
-
-    > **Answer**
-    > - *The noise has more effect in the initial phase when mostly morphogen
-        is driving the expression domains, as gene expression becomes
-        established and morphogen levels decay the mutual repression ensures
-        stability against the noise*
-    > - *The noise has more effect on the $B$-$C$ than $A$-$B$ boundary, if we use
-        the same amplitude of noise percentage wise this is much more at the
-        lower end of the morphogen boundary, indeed difference between the
-        front and back boundary in vulnerability to noise disappears if
-        noise is made proportionate to max local amplitude*
-    > - *Diffusion of $A$, $B$ and $C$, in the lateral direction this evens out
-        differences*
+## Answers to the exercises
 
 
-## Extra questions if you're done early
+**Answer Q1**
 
-1.  **Biological thinking: **Play with the size of the domain to see
-    what happens to the gene expression domains. What would this mean
-    for an organism?
+An important difference relative to the lecture is that instead of
+implementing a production term at the x=0 position, we instead fixed the
+concentration of u at x=0 at 100 and have nowhere a production term.
+This implies that we assume that production is very high and different D
+and d values have negligible effects on the level at x=0. The advantage
+of this approach is that we can easily study what different D and d
+does, as it only affects the shape of the gradient but not the maximum.
 
-    >**Answer** *They will find that if the domain expands the C domain expands
-    and that if the domain shrinks the C domain disappears*
+Instead of using if/else to check for boundary conditions, we only
+compute the Laplacian in the inner, non-boundary points. For the x=0
+boundary we already set a constant value. For y=0 and y=n−1 we copy the
+values from y=1 and y=n−2 as the patterning is identical in that
+direction. For x=n−1 we use a special approach: if n−3=0 we assume it is
+zero; otherwise, we calculate the ratio of x at n−2 and n−3 to
+approximate the decay and multiply this with the value at x=n−2 to
+estimate x at n−1. Simply copying x at n−2 would add matter to the
+system and prevent the gradient from reaching a steady state.
 
-2.  **Linking to modern big data approaches**
-    Write code to store the
-    expression of genes `A`, `B` and `C` over time and space. First plot this
-    for all time and space points in a 3D plot. Next use a [PCA](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html)
-    to project the points to a 2D space. Make three different versions
-    of this plot, where you color the points according to time, $x$ and $y$
-    coordinate respectively. Note how this is similar to applying UMAP
-    dimensionality reduction that is often used on single cell gene
-    expression dynamics (where of course the number of genes is much
-    larger) and applying a pseudotime algorithm to determine in this
-    plots the temporal order in which gene** expression patterns
-    develop. What do you see happening?**
+**Answer Q2**
 
-    >**Answer** *If all goes well they should see the divergence into a A, B and C
-    celltype*
+The imposed morphogen profile is an exponential gradient. The negative
+sign indicates a decline, the term i·dx converts the grid index to
+spatial distance, and the division by √(D/d) ensures that if i·dx = λ =
+√(D/d), we have e⁻¹ = 1/e, meaning an e-fold decay — as expected for a
+steady-state diffusion gradient.
 
-    TODO: insert image
--   ![](media/image1.png){width="3.3125in" height="5.76042in"}
+**Answer Q3**
 
-## Further (open) questions:
-Feel free to pick one of these questions if you still have time remaining to further explore the model of this tutorial.
+The relevant concept is the diffusion length, √(D/d). It is the ratio
+between these parameters that determines the characteristic length scale
+λ over which the morphogen concentration decays e-fold. Changing both D
+and d while keeping the ratio constant preserves the shape of the
+steady-state gradient, but faster rates lead to a quicker approach to
+steady state.
 
--   In 2, we can also implement other boundary conditions, especially
-    for the right boundary. What happens to the profile if we make a
-    no-flux boundary? And what if we set it to a sink?
-    >**Answer**
-    For a no-flux boundary, the level at the rightmost will increase, as it gets trapped there, and hence we get overall slightly higher levels. For a sink boundary, the level rightmost will always be zero, and hence overall levels will be lower.
+**Answer Q4**
 
--   From 5 onwards, how do things change if we do not assume a
-    quasi-steady-state for the morphogen gradient? How would you
-    implement a disappearing gradient and how does it shape change the
-    outcomes of the flag?
-    > **Answer**
-    We could let the level at the left-most boundary decay, but this will cause
-    a bit of a bump at low $x$, as the decay needs to move through space. Or we
-    could set it to 0 immediatly. Expected effects are some shifts in the
-    locations of A/B/C, but not huge effects.
+dA/dt = normal hill(M) − decay term
 
--   Implement your solution to make the system more robust for noise
-    from question 10. Did it work?
-    > I haven't tried this.
+dB/dt = normal hill(M) × inverse hill(M) − decay term
 
--   What type of mechanism could help in maintaining scaling, a similar
-    relative size of the gene $A$, $B$ and $C$ domains if the size of the
-    overall domain is changing.
+dC/dt = inverse hill(M) − decay term
 
-    >**Answer** * NOT SO TRIVIAL, NEED TO READ UP ON THIS,
-    PERHAPS FUN TO HAVE DIFFERENT GROUPS OF PEOPLE TRY OUT DIFFERENT
-    PROPOSED MECHANISMS*
+Furthermore, kA = kB₁ \< kB₂ \< kC to ensure the switches happen at the
+correct positions.
+
+**Answer Q5**
+
+Gene C needs to be induced by low M and repressed by high M. Together
+with kA = kB₁ \< kB₂ \< kC, this generates the expected “French flag”
+pattern with distinct domains for A, B, and C.
+
+**Answer Q6**
+
+As M decays, A and B will no longer be activated and C will no longer be
+repressed, leading to a takeover by C. Consequently, the French flag
+pattern disappears.
+
+**Answer Q7**
+
+When the morphogen gradient gradually disappears, C always takes over.
+This confirms the prediction that as M declines, C dominates due to loss
+of repression on its expression domain.
+
+**Answer Q8**
+
+As M decays, A and B lose activation and C loses repression, again
+leading to takeover by C. They will find that mutual repression with
+only one neighboring gene is insufficient — stability requires each gene
+to repress both others (A repressed by B and C, B by A and C, and C by A
+and B). This maintains A at the beginning, B in the middle, and C at the
+end, although expression domains become sharper.
+
+**Answer Q9**
+
+Achieving a smooth transition between the stable and decaying phases of
+M requires integrated gene regulation.
+
+-   
+
+    For genes (or parts thereof) that are positively dependent on M, use
+    an OR gate (sum): this keeps them on once M disappears, provided
+    mutual repressors are absent.
+
+-   
+
+    For genes (or parts thereof) that are negatively dependent on M, use
+    an AND gate (product): this prevents them from expanding when M
+    vanishes, requiring both low M and absence of repression.
+
+    Such combined formulations better represent biological promoter
+    logic and yield stability before and after the morphogen decline.
+
+**Answer Q10**
+
+Noise has the strongest effect during the initial phase when morphogen
+levels dominate, since mutual repression has not yet stabilized the
+pattern. As gene expression becomes established and M decays, the system
+becomes more robust.
+
+Diffusion of A, B, and C in the lateral direction would further smooth
+out local variations and enhance robustness (not implemented in the
+current version).
+
+**Answer Q11 (Extra)**
+
+If the domain expands, the C domain enlarges; if the domain contracts,
+the C domain disappears. In biological terms, this would mean losing or
+gaining posterior body regions (“butt” part).
+
+**Answer Q12 (Extra)**
+
+Introducing a diffusible “expander” molecule E that is repressed by M
+but reduces M’s degradation can create scaling of gene domains with
+overall tissue size. For example:
+
+∂E/∂t = p·Kʰ/(Kʰ + Mʰ) − dE + D_E·ΔE
+
+Varying the domain length while plotting results against relative
+position (x/L) should show improved scaling of A/B/C domains.
+
+**Answer Q13 (Extra)**
+
+Copying n−2 to n−1 introduces artificial accumulation at the boundary
+and prevents steady state. Setting it to zero (sink) has not been tested
+but is expected to lower concentrations and possibly speed up
+stabilization.
+
+**Answer Q14 (Extra)**
+
+Without assuming quasi–steady-state for M, one can simulate a dynamic
+morphogen gradient by allowing production at x=0 to decay over time or
+by letting the exponential decline parameter itself vary. This will
+likely lead to different transient shapes and small shifts in A/B/C
+domains compared to a static exponential.
+
+**Answer Q15 (Extra)**
+
+Implementing diffusion of A, B, and C is expected to smooth out local
+noise effects and enhance robustness of the spatial pattern, consistent
+with what is observed in natural systems.
+
+## Relevant literature / further reading
 
 <https://www.nature.com/articles/ncomms6077>
 

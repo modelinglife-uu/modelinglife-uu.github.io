@@ -1,6 +1,197 @@
 # Practical 4
 
-### TODO
+## Gene regulation in time 
 
-- Couldn't find text (yet)?
+In this practical you will get hands on experience into making gene regulatory networks models. First you will practice how to encode regulatory interactions into ordinary differential equations and logical rules. Next you will study how many interactions produce self-sustained activity configurations (attractors) in a Boolean network model. Lastly, you will learn how to predict the genes that cause cell fate transitions (attractor changes). 
+
+Today we will use the following python file: circuitsfunctions.py.  In this file you will find the code of the functions we use throughout the practical, have a quick look at it. Look at the name of the functions, inputs and outputs. 
+
+## Part I - Encoding regulatory interactions
+
+Open Boolean_practical.py and familiarize yourself with the functions `ODEgeneRegulation()` and `logicalRule()`.
+
+Both functions model an AND gate where nodeA and nodeB positively regulate nodeC. This could represent that A and B are transcription factors that form a protein complex, and that is via this complex that they can regulate the expression of C. While ODEgeneRegulation() encodes this regulation with an ordinary differential equation that requires several parameters, logicalRule() only needs the logical operator relating the input genes. 
+
+```python
+def ODEgeneRegulation(a,t,parameters): 
+    prod=parameters['prod']
+    decay=parameters['decay']
+    Ksat=parameters['Ksat']
+    nodeA=parameters['nodeA']
+    nodeB=parameters['nodeB']
+    n=parameters['n']
+    outputC=a[0]
+    doutputC=prod*nodeA**n/(Ksat**n+nodeA**n)*nodeB**n/(Ksat**n+nodeB**n)-decay*outputC  
+    return(doutputC)
+
+def logicalRule(nodeA,nodeB):
+    return(nodeA and nodeB)
+```
+
+**Q1** What is the minimum information you need to encode a regulatory interaction with either function? In what cases would you prefer to use an ODE or a logical rule for a model?
+
+Let's run the model to simulate what happens if nodeA and nodeB are both active/expressed. Do this for the ODE and the Boolean logic code model using the following lines inside the main().
+
+```python
+# ODE model - see the parameters used in circuitsfunctions.py
+# ODErun has three arguments: model, geneA, geneB
+A=10
+B=10
+ODErun(ODEgeneRegulation,A,B) 
+
+# Boolean model
+# look at the terminal for the result:
+A=1
+B=1
+print("the boolean operation of nodeA ",A," AND nodeB",B," is:", logicalRule(A,B))
+```
+
+Now, let’s explore the output of each function using different values of nodeA and nodeB. We are going to use the code below to plot the output of the ODE and the Boolean model in a 2D heatmap.
+
+```python
+# First, Boolean network simulation - AND gate
+explorationvalue=2 # a Boolean model assumes there is only 2 possible states: 0 or 1
+bool_output = np.zeros((explorationvalue, explorationvalue))
+for nodeA in range(0, explorationvalue):
+    for nodeB in range(0, explorationvalue):
+        bool_output[nodeA, nodeB] = nodeA and nodeB #AND # CHANGE THIS
+
+# Now, ODE model simulation
+explorationvalue = 11 # an ODE model allows us to explore more values than a boolean model
+ode_output = np.zeros((explorationvalue, explorationvalue))
+for nodeA in range(0, explorationvalue):
+    for nodeB in range(0, explorationvalue):
+        parameters = {'prod': 0.01, 'decay': 0.001,'Ksat': 4, 'n': 2,'nodeA':nodeA,'nodeB':nodeB} # prod, decay, Ksat, n, and initial values for A and B
+        cells = odeint(ODEgeneRegulation, 0, np.arange(0, 1000.1 , 0.1), args=(parameters,)) #np.shape
+        ode_output[nodeA, nodeB] = cells[-1, 0]
+
+# use this code to see your ode and boolean results side by side
+ODEBooleanPlot(ode_output, bool_output)
+```
+
+**Q2** What differences do you see in each case? 
+
+Now let's compare how ODE and Boolean logic represent different logical gates. You can use the same code in the previous box. Remember to modify the logical operator in the Boolean section, and to modify the doutputC equation in ODEgeneRegulation: 
+
+1. either nodeA or nodeB can activate outputC (OR gate) 
+2. that nodeA represses outputC (NOT gate) 
+3. that both nodeA and nodeB repress outputC (NOT nodeA & NOT nodeB ) 
+4. that nodeA represses outputC but nodeB activates it (NOT nodeA, yes nodeB) 
+5. that nodeA or nodeB can activate outputC, but not both at the same time (XOR gate) 
+6. any other biological scenario yon can think of! 
+* tip: include an extra input node, and make a 3-node logical gate. 
+
+**Q3** Is there a logical gate that can be better represented with an ODE than with Boolean logic? Think of examples of biological regulatory interactions that can be described with each logical gate? 
+
+## Part II – Gene regulatory network
+
+Now let's move to a network model made of many individual regulatory interactions. This model includes regulatory interactions experimentally determined in the cells of plant roots, here they encoded as logical rules. The model consists of 18 nodes representing transcription factors, hormones, peptides, and multitude regulatory interactions among them. Look at the rootNetwork() function in the circuitFunctions.py file. See how the activity of each node is determined by the state of its regulators using and combining the logical operators AND, OR and NOT. Find the model here: https://www.nature.com/articles/s41598-020-60251-8
+
+Let’s define a random initial condition for each of these 18 nodes, and the timesteps to solve the system using the logical functions. To find the state of the nodes in the network the next timestep, we need to give the state of our nodes to the rootNetwork() function, and then save the output of this function. We will save in matrix the initial condition, and how these 18 nodes change in the timesteps defined. At the end the function plotBooleanTimecourse() will show us the network changes in the simulated timesteps.
+* tip: 100 timesteps is enough to reach the attractors. For the initial condition you can also use that of one of the attractors reported in the paper and check what happens when you update them.
+
+```python
+timesteps=20
+nodes=18
+matrix = np.zeros((timesteps+1, nodes), dtype=int) 
+matrix[0,:] = np.random.randint(0, 2, size=nodes) #Random initial condition
+for i in range(timesteps):
+    parameters= {'CK': matrix[i,0], 'ARR1': matrix[i,1], 'SHY2': matrix[i,2], 'AUXIAAR': matrix[i,3], 'ARFR': matrix[i,4], 'ARF10': matrix[i,5], 'ARF5': matrix[i,6], 'XAL1': matrix[i,7], 'PLT': matrix[i,8], 'AUX': matrix[i,9], 'SCR': matrix[i,10], 'SHR': matrix[i,11], 'MIR165': matrix[i,12], 'PHB': matrix[i,13], 'JKD': matrix[i,14], 'MGP': matrix[i,15], 'WOX5': matrix[i,16], 'CLE40': matrix[i,17]}
+    matrix[i+1, :] = rootNetwork(parameters)
+
+plotBooleanTimecourse(matrix,timesteps)
+```
+
+Instead of a random initial condition try this one: 
+
+```python
+matrix[0,:]=[0,1,1,0,1,1,0,0,1,0,1,1,1,1,1,0,1,0]
+```
+
+Use the asynchronous updating scheme by changing the function to rootNetworkAsynchronous() and see what happens to this initial condition. 
+
+**Q4** What happens now and why? What does an asyncrhonous update is doing?
+
+This network has 18 nodes, and then 218 = 262,144 possible states. We can either solve each of these conditions, or instead explore just a subset of them. Using the previous code, add for loop to solve 100 random initial conditions, and then save the final activity configurations (attractors) in the attractors matrix. 
+*tip: 100 initial conditons is a good number to start with. 
+# The attractors matrix should have the shape (initial_conditions, nodes) so that you can plot the results using the function plotBooleanAttractors.
+
+```python
+ICs=100
+attractors = np.zeros((ICs, len(parameters))) # new
+
+# your code
+
+plotBooleanAttractors(attractors) # it takes as argument your matrix of attractors
+```
+
+You probably found many different attractors. First, let's use a multidimensional reduction technique to see if each of initial conditions form groups of similar cells.
+
+```python
+UMAPBoolean(attractors)
+```
+
+**Q5** Why do you see clearly defined groups and not a continuous distribution of attractors? 
+
+Now let's analyse the attractors you found. First, let's group similar attractors:
+
+```python
+attractors_sorted = np.array(sorted(attractors.tolist()))
+plotBooleanAttractors(attractors_sorted) 
+```
+
+**Q6** Do some attractors occur more frequently than others. Do they all have the same basin size of attraction? Why is this? 
+
+**Q6.1** Some nodes are active (1) in most attractors, others in half, and others in very few. In how many of them is the node SHR active? What does this suggest about their regulation?
+
+Now let's remove the repeated rows (duplicate attractor states) to see unique attractors: 
+
+```python
+_, unique_indices = np.unique(attractors, axis=0, return_index=True)
+attractors_unique = attractors[np.sort(unique_indices)]
+plotBooleanAttractors(attractors_unique) 
+```
+
+**Q7** How many unique attractors did you find? Compare them with the ones reported in the paper. Are they all fixed points? 
+
+## Part III – Cell differentiation – jumping from one attractor to another
+
+Depending on what we want to answer a continuous or discrete model may be more appropriate for a model. To study the role of many genes in cell differentiation, a Boolean model might be better particularly if we lack details of the parameters underlying each reaction. If we want to study how cells jump from one state to another, a continuous model might be more appropriate. 
+
+Here we will see how we can convert the Boolean model to a continuous one and use it to predict which regulators are able of causing a change in the state of the system (changes in cell fate!)
+
+Compare the code of the functions rootNetwork() and rootNetworkODE(). Notice how in rootNetworkODE() the logical rules are represented with min and max functions, and then used in a sigmoidal function to create a continuous ODE model. 
+* AND operator is a min function, OR operator is a max function, and NOT operator is 1-x. Use the code below to run a random initial condition for the 18 nodes (IC) and see how the system behaves.
+
+```python
+timerunning=10.1 
+times = np.arange(0, timerunning, 0.1)
+
+IC = np.random.randint(0, 2, size=18).tolist() #random initial condition
+parameters = {'decayrate': 1, 'h': 50} 
+cells = odeint(rootNetworkODE, IC, times, args=(parameters,)) 
+
+plotODEroot(cells,times)
+```
+
+**Q8** Do the attractors match those recovered with the Boolean network?
+
+Now let’s use the model to study cell differentiation. Let’s start in the following initial condition (IC vector), and find a change in a node that produce a jump to another attractor (end). For this you can simply flip the activity of a gene in the initial condition (from 0 ->1 or 1->0) and see the final attractor matches the desired end state. 
+
+```python
+# We start here: 
+IC=[0,0,0,0,1,0,1,1,1,1,1,1,1,0,1,0,1,0]
+# We want to end here. 
+end=[1,1,0,0,1,1,1,1,1,1,0,0,1,0,0,0,0,1]
+# node order
+# CK, ARR1, SHY2, AUXIAAR, ARFR, ARF10, ARF5, XAL1, PLT, AUX, SCR, SHR, MIR165, PHB, JKD, MGP, WOX5, CLE40
+
+# your code 
+
+plotODErootTransition(cells,times) # use this function to plot your result
+```
+
+**Q9** What regulator causes the transition between these attractors? How many nodes change their activity between the initial and final state? what could be the biological meaning of this switch? how would you test this experimentally?
+
+**Q10** Finally, use the model to predict the rest of the attractor transitions because of single node changes. Are all attractor transitions possible, or are there preferred differentiation routes?
 

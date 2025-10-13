@@ -1,10 +1,4 @@
----
-editor: 
-  markdown: 
-    wrap: 72
----
-
-# Morphogen gradients
+# Pattern formation I <br> Gradients and segments
 
 ## Morphogen Gradients and Patterning 
 

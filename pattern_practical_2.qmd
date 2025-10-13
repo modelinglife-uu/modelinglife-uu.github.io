@@ -1,4 +1,4 @@
-# Turing patterns
+# Pattern formation II <br> Turing digit patterns
   
 ## {.unnumbered}
 A foundational work in Theoretical Biology is Alan Turing's paper *"The Chemical Basis of Morphogenesis"* \[1\]. In this work, Turing mathematically demonstrates a plausible mechanism whereby a reaction-diffusion system can lead to the formation of a spatially-patterned solution in steady state. Mathematically and conceptually, Turing’s key innovation was considering diffusion-driven instability. That is: An unpatterned steady state solution becomes unstable in the presence of diffusion, leading to the formation of a spatially patterned state.

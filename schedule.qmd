@@ -1,20 +1,56 @@
-# Schedule {#modelling}
-
-The schedule of the course and important deadlines are outlined below. The course is divided into blabla modules, each with its own set of topics and blabla. The schedule is subject to change, and any updates will be communicated in advance. Blabla.
-
-(paste below is the schedule of Kwanti/BioMS as an example)
+# Schedule
 
 
-```{r}
-#| code-fold: true
-#| echo: false
-#| cache: false
-library(DT)
-library(datasets)
+## WEEK 1 {.unnumbered}
 
-planning <- read.csv("https://tbb.bio.uu.nl/hermsen/studieplanning_2025.txt",sep="\t", header=T)
-#planning <- planning[planning$Wk==1,]
-planning <- planning[planning$Wk>0,]
-datatable(planning, rownames=F, options=list(pageLength=10))%>% formatStyle(columns = c(1:8), fontSize = '9pt')
-```
+Nov 10, 2025 – Welcome and Intro to Python (**HC** 13:15-17:00). 
 
+Nov 11, 2025 – Pattern formation I: Gradients and segments (**HC** 10:00-12:45 and **WC1** 13:15-17:00).
+
+Nov 13, 2025 – Pattern formation II: Turing Digit patterning (**HC** 10:00-12:45 and **WC2** 13:15-17:00).
+
+## WEEK 2 {.unnumbered}
+
+Nov 17, 2025 – Guest lecture: Max Rietkerk, Ecosystem’s spatial patterns (**HC** 13:15-17:00).
+
+Nov 18, 2025 – Pattern formation III: Clock and Wavefront (**HC** 10:00-12:45 and **WC3** 13:15-17:00).
+
+Nov 20, 2025 – Morphogenesis: Cell sorting (**HC** 10:00-12:45 and **WC4** 13:15-17:00).
+
+## WEEK 3 {.unnumbered}
+
+Nov 24, 2025 – Guest lecture: Ina Sonnen, Signal encoding in multicellular systems (**HC** 13:15-17:00).
+
+Nov 25, 2025 – Cell differentiation: gene regulation in time (**HC** 10:00-12:45 and **WC5** 13:15-17:00).
+
+Nov 27, 2025 – Cell differentiation: gene regulation in space (**HC** 10:00-12:45 and **WC6** 13:15-17:00).
+
+## WEEK 4 {.unnumbered}
+
+Dec 1, 2025 – Guest lectures: Vivek Bhardwak and Kaisa Kajala, What is a cell type? genomic and functional perspectives (**HC** 13:15-17:00).
+
+Dec 2, 2025 – Environment and Development (**HC** 10:00-12:45 and **WC7** 13:15-17:00). 
+
+Dec 4, 2025 – Evolving populations I: Sticky cells (**HC** 10:00-12:45 and **WC8** 13:15-17:00).
+
+## WEEK 5 {.unnumbered}
+
+Dec 8, 2025 – Guest lecture: Rutger Hermsen (**HC** 13:15-17:00).
+
+Dec 9, 2025 - Evolving populations II: Genotype-phenotype map (**HC** 10:00-12:45 and **WC9** 13:15-17:00).
+
+Dec 11, 2025 - Evolving populations III: Microbial communities (**HC** 10:00-12:45 and **WC10** 13:15-17:00). 
+
+## WEEK 6 (self-study and exam) {.unnumbered}
+
+Dec 18, 2025 –Exam
+
+## WEEK 7-9 (mini projects) {.unnumbered}
+
+Jan 6, 2026 - Miniprojects presentation and making teams
+
+Following weeks you will have classrooms to work on your miniprojects (13:15-17:00). Also, you should schedule meetings with your supervisor to discuss progress of your miniproject.
+
+## WEEK 10 (mini symposium) {.unnumbered}
+
+Jan 29, 2026 - Miniprojects final presentation

@@ -1,11 +1,4 @@
-# Clock-and-wavefront
-
-
-### TODO
-
-- Move the answers to a separate page
-- Links to github for the code
-- Kirsten still working on this?
+# Pattern formation III <br> Clock-and-wavefront
 
 ## Goal of the tutorial:
 
@@ -77,14 +70,14 @@ decay rate of FGF and the division rate of the cells. How does this
 affect the gradient?
 :::
 
-  > **Answer** *If growth rate goes up cell volumes increase faster, causing more
-  > dilution of FGF and hence a lower maximum of the gradient as due to
-  > the stable protein quite some time is needed to compensate for this
-  > decrease by more production, at the same time the gradient is less
-  > steep as cell division follow up faster and hence less time has passed
-  > and less day has taken place. If decay rate goes up, maximum goes down
-  > but gradient become steeper and shorter as for same time between
-  > divisions more decay takes place*
+  <!-- > **Answer** *If growth rate goes up cell volumes increase faster, causing more -->
+  <!-- > dilution of FGF and hence a lower maximum of the gradient as due to -->
+  <!-- > the stable protein quite some time is needed to compensate for this -->
+  <!-- > decrease by more production, at the same time the gradient is less -->
+  <!-- > steep as cell division follow up faster and hence less time has passed -->
+  <!-- > and less day has taken place. If decay rate goes up, maximum goes down -->
+  <!-- > but gradient become steeper and shorter as for same time between -->
+  <!-- > divisions more decay takes place* -->
 
 2.  **Conceptual thinking** When would this type of gradient formation
     be more applicable than the earlier studied production, diffusion,

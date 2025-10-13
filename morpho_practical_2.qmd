@@ -1,33 +1,212 @@
-# Practical 5
+# Gene regulation in space
 
-### TODO
+## TODO FOR
+- @Monica, check labels for questions ('mathematical thinking', 'biology', etc)
+- @Monica, figure out how/where to share the files and answers
 
-- Complete the text on this page. 
+## {.unnumbered}
+<center>
+*How wonderful that we have met with a paradox. <br>
+Now we have some hope of making progress – Niehls Bohr*
+</center>
 
-## Gene regulatory interactions
+## Introduction 
 
-In this practical you will get hands on experience on building models of gene regulatory interactions. Today you will:
+In this practical you will study the effects of auxin, a plant hormone,
+on gene regulation in the root. Auxin is a hormone virtually involved in
+all developmental processes in plants, from embryo patterning and floral
+organ determination to leaf disposition and root growth. In each
+context, auxin triggers specific responses, which can be explained by
+the underlying regulatory networks—namely by the redundancy of molecular
+players in the auxin signalling pathway (the auxin response factors,
+ARFs), and how they are expressed in different tissues.
 
-- make logical functions and ODE to describe gene regulation examples
-- use a Boolean network of a *relatively* large network to find the attractors
-- use an ODE model based on the boolean model to predict how to jump from one attractor to other (cell fate changes!) 
+In the root, researchers have found an auxin–WOX5 paradox: some
+experiments show that auxin promotes the expression of WOX5 (a root
+stem cell transcription factor), while others found WOX5 repression.
+This opposite auxin regulation is mediated by different ARFs—ARF5 and
+ARF10—posing the possibility that accounting for both ARF5 and ARF10
+regulatory networks can reconcile the results. To this end, you will use
+an in silico root model to address this paradox and propose an
+explanation.
 
-## Gene regulation Examples
+## Biological background 
 
-*Add an overview of genetic regulation and its importance in biological systems.*
+Plant roots grow thanks to the presence of stem cells housed in a niche
+at the root tip. A subset of these cells expresses WOX5, maintaining
+the surrounding cells as stem cells. WOX5 is regulated by several
+factors, and network models help us understand how.
 
-## Boolean network model
+The Boolean network used last week describes the gene and hormonal
+activity configurations of the cells in the root apex. In this model
+WOX5 is regulated positively by ARF5 and negatively by ARF10 and
+CLE40. Auxin regulates stem cell activity in the roots, and multiple
+links exist between auxin and the regulators in the Boolean network.
+Both ARF5 and ARF10 are auxin response factors activated by auxin.
+Moreover, root transcription factors control ARF5 and ARF10
+expression such that they are not expressed in every cell of the root
+apex. This regulation is included in the Boolean model we studied last
+week. Whether this is relevant to understanding the auxin–WOX5 paradox
+is unclear. Here, each cell of the in silico root model carries a copy
+of the Boolean network, which allows us to test hypotheses and find an
+explanation.
 
-*Summarize key concepts and terminology related to gene regulation.*
+## The model 
 
-## Boolean-network
+The model simulates a root apex, showing the stem cell niche at the apex
+(lime green cells in the cell graphics; purple cells in the WOX5
+visualization). The different tissues of the root are spatially
+organized. Each cell has a different set of expressed genes, which we
+account for by initializing each cell’s Boolean network in the QC,
+Vascular, Endodermis, and Columella attractors. (Cortex and epidermis
+are not modeled.) Multiple grids store different cell properties:
+cell-type, auxin levels, and expression of each gene.
 
-*Describe mathematical and computational models used to study gene regulation over time.*
+You can visualize ARF10, ARF5, MGP, and WOX5 expression using
+the provided plotting function.
 
-## UMAP
+## Files 
 
-*Provide practical examples or case studies.*
+`Rootfunctions.py` – contains model functions. You do not need to
+modify them but should understand what they do.
 
-## References
+`Root-model-Auxin.py` – code to simulate the in silico root.
 
-*List relevant literature and resources.*
+`auxin_grid.npy` – initial auxin levels in each cell.
+
+## Questions 
+
+:::{#exr-tur}
+
+Algorithmic thinking
+
+Familiarize yourself with the model. Examine Rootfunctions.py to see
+how each process is modeled and how they are coupled.
+:::
+
+:::{#exr-tur}
+
+Biology
+
+What happens if you update the network every timestep? Does that make
+biological sense? Where in the code can you make this modification?
+:::
+
+:::{#exr-tur}
+
+Biology & algorithmic thinking
+
+Simulate an auxin treatment by changing the AuxinTreatment parameter.
+Try values of 10 and 750. This increases auxin levels in all cells by
+the given amount.
+
+How does auxin treatment affect gene expression in the root? (You can
+visualize different genes by changing the grid provided to
+plotGrids().)
+
+Does the model output correspond to the transcriptional reporter of
+WOX5 shown in Figure 1? Do you see activation or repression as
+reported experimentally?
+:::
+
+:::{#exr-tur}
+
+Biology & algorithmic/mathematical thinking
+
+The model does not yet reproduce the experiments. To account for
+quantitative effects of auxin, implement two hypotheses based on the
+literature:
+
+Auxin represses MGP expression.
+
+Extremely high auxin levels (unrealistic in vivo) repress WOX5
+expression.
+
+Modify the equations for MGP and WOX5 in rootNetwork accordingly.
+
+For MGP, retain its logical rule but multiply its production term by a
+saturation function of auxin (Km = 45):
+
+dMGP = (45/(45+auxininput))*((-np.exp(0.5 * h) + np.exp(-h * w_MGP)) / ((1 - np.exp(0.5 * h)) * (1 + np.exp(-h * (w_MGP - 0.5))))) - (lambda_ * MGP)
+
+Similarly, add a negative regulation by auxin to the WOX5 equation
+(Km = 1000).
+
+Run control and auxin treatments with (i) updated MGP, (ii) updated
+WOX5, and (iii) both updates.
+
+Do you now see the differences reported by experimentalists?
+:::
+
+:::{#exr-tur}
+
+Biological interpretation
+
+You should observe that WOX5 expression gradually expands into the
+endodermis and disappears from QC cells when both equations are updated.
+This matches experimental microscopy. To explain repression:
+
+Why do different parts of the root respond differently to auxin? Why
+does induction occur mainly in upper cells and repression in basal
+cells?
+:::
+
+:::{#exr-tur}
+
+Algorithmic thinking
+
+Experimental repression of WOX5 was detected by RT-PCR at the very
+apex. Reproduce this in silico by saving the average WOX5 levels of
+cells at the apex (y < 40) at the end of the simulation for all three
+treatments. Plot them.
+
+What is the root apex response to auxin treatments? Considering that
+the root contains mixed cell types, which cells best represent your
+plotted values?
+:::
+
+:::{#exr-tur}
+
+Biology & algorithmic thinking
+
+Repeat the analysis for all cells, for QC cells, and for endodermis
+cells. Compare WOX5 regulation across tissues.
+
+Do you see a difference between your observations and the simulated
+RT-PCR plot? Why?
+:::
+
+:::{#exr-tur}
+
+Biology & algorithmic thinking
+
+Changes in WOX5 expression depend on tissue context and auxin dosage.
+Simulate a range of auxin treatments from 0 to 750 (choose your step
+size).
+
+Can you now explain the auxin–WOX5 paradox? What mechanism do you
+propose?
+:::
+
+:::{#exr-tur}
+
+Biology & conceptual thinking
+
+Perform an in silico intervention to alter WOX5 dosage
+responsiveness. For example, enforce continuous induction or block its
+induction in the endodermis. How would you test these model predictions
+experimentally?
+:::
+
+:::{#exr-tur}
+
+Biological thinking
+
+All models are wrong, but some are useful. The model should offer
+mechanistic insight into paradoxical auxin responses. Yet the original
+experiments used different auxin analogs: NAA (transported
+independently of PINs), IAA (PIN-transported), and NPA (blocks PINs,
+increasing auxin in the apex). How does this information change your
+conclusions? What extensions to the model would account for these
+differences?
+:::

@@ -1,4 +1,4 @@
-# Practical 3
+# Public goods
 
 ## Building a model from scratch
 

@@ -1,4 +1,4 @@
-# Practical 2
+# What gets selected?
 
 ## Genotypes, phenotypes, and evolutionary algorithms
 
@@ -177,7 +177,9 @@ the fixed weight that nobody gets to reproduce:
 After you understand the roulette wheel algorithm, do the following exercise:
 
 :::{#exr-roulette}
-## Questions about the roulette wheel 
+
+## Questions about the roulette wheel - Algorithmic thinking
+
 <br>
 
 a. Let's imagine a moment where the roulette wheel contains only 10 highly unfit individuals (e.g. all fitness values are 0.01). What is the chance that someone will reproduce? (you don't have to calculate it, but give your reasoning)
@@ -192,7 +194,7 @@ e. Spatially structured populations are often placed on a grid. **Describe** how
 Modify the function `calculate_diversity` to calculate the diversity of the population as the standard deviation of the fitness values.
 
 :::{#exr-diversitydynamics}
-## Questions about the roulette wheel 
+## The dynamics of diversity - Biology
 <br>
 
 a. Use a low mutation rate and study the dynamics of diversity. Describe the pattern verbally. 
@@ -356,7 +358,8 @@ input("\nSimulation complete. Press Enter to exit plot window...")
 Answer the following questions using the options available in the model:
 
 :::{#exr-evolving-dna}
-## Evolving DNA
+
+## Evolving DNA - Biology / abstract thinking
    a. Run the code. What does the new (dashed blue) line represent? Do you understand how is changes over time?
 
    The program reports after how many generations it manages to find the target sequence. With default settings this can take a long time... (default: 4633 generations)
@@ -554,7 +557,9 @@ input("\nSimulation complete. Press Enter to exit plot window...")
 Answer the following question about the model:
 
 :::{#exr-evolving-proteins}
-## Evolving protein sequences
+
+## Evolving protein sequences - Biology / abstract thinking
+
 a. Another line was added to the model. What new information can you obtain from analysing this line?
 b. Study carefully how the other lines (also present in previous models) change over time. What do you observe? Try and capture what you see into words. 
 c. In biology, multiple genotypes can translate to the same phenotype (this is called a many-to-one genotype-phenotype map), or alternatively, one genotype can produce multiple phenotype (this is called phenotypic plasticity, or a one-to-many genotype-phenotype map). Which genotype-phenotype (GP) mapping applies to this model? Why?

@@ -38,13 +38,11 @@ book:
             - pattern_practical_1.qmd
             - pattern_practical_2.qmd
             - pattern_practical_3.qmd
-            - pattern_answers.qmd
     - part: "II) Morphogenesis"
       chapters:
             - morpho_intro_text.qmd
             - morpho_practical_1.qmd
             - morpho_practical_2.qmd
-            - morpho_answers.qmd
     - part: "III) Cell differentiation"
       chapters:
             - differentiation_intro_text.qmd

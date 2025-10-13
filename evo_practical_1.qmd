@@ -1,6 +1,6 @@
-# Practical 1
+# Sticking together
 
-## Sticking together
+## Sticking together {.unnumbered}
 
 In this practical, you will practice building your own model of collective behaviour, based on the one you saw at the end of the lecture:
 
@@ -285,7 +285,7 @@ The example above is a implemented in Javascript, a programming language that is
 
 First, let's discuss how we can let individuals walk around in space. 
 
-## Steering 
+## Steering {#sec-steering}
 
 We can represent a moving individual in space as a point with a position and a velocity. The position is represented by two coordinates, $x$ and $y$, and the velocity is represented by two components, $v_x$ and $v_y$. All movement that this individual can do, will be a matter of repeatedly updating its position based on their velocity: 
 
@@ -536,7 +536,8 @@ plt.ioff()
 
 
 :::{#exr-steering}
-## Playing with steering arrows
+## Playing with steering arrows - Mathematical thinking
+
 <br>
 
 Copy-paste the code above, study it for a few minutes, and run it. 
@@ -551,7 +552,6 @@ x_{new} = x \cdot cos(\theta) - y \cdot sin(\theta) \newline
 y_{new} = x \cdot sin(\theta) + y \cdot cos(\theta)
 \end{aligned}
 $$
-
 b. Use the equation above to rotate the **velocity vector** in the code by a small angle every timestep. What happens?
 c. Modelling 1 individual is not very exciting. Think about what the code above would look like if you had more than 1 individual. Discuss this with other students and/or Bram.
 
@@ -559,7 +559,7 @@ c. Modelling 1 individual is not very exciting. Think about what the code above 
 
 
 
-## Moving "cells"
+## Moving "cells" {.unnumbered}
 
 In this practical, you will practice with modelling individuals in space by modifying a Python code based on the foraging cells shown at the beginning. To accommodate for many cells, we will define a new `Cell` class, embedded in a `Simulation` class.^[The code also contains a `Visualisation` class that uses the `matplotlib` library to draw the cells and their movement, which we have tuned to speed things up a bit. You do not need to understand this part of the code, but if you are interested feel free to check it out.] 
 
@@ -895,11 +895,15 @@ As you can see if you inspected the code properly, many functions are left empty
 
 If you run the code, you will see a purple dot (with a red outline). This may represent a "target". It could represent a resource patch for bacteria, but it could also be a piece of fruit for a monkey (at this point, the model is still very abstract, so both could be true). Let's make the target change position around after an individual touches it. 
 
+:::{#exr-steering}
+
+## Playing with steering arrows - Algorithmic/mathematical thinking
 To help you on your way, first answer the following questions for yourself:
 
 a. How can you calculate the distance between an individual and the orange dot?
 b. When is an individual close enough to the orange dot?
 c. How can we assign a random position to the dot?
+:::
 
 *First try it yourself. If you get stuck, ask Bram for help.*
 
@@ -912,11 +916,15 @@ new_cell = Cell(new_x, new_y, new_vx, new_vy, new_speed)
 self.cells.append(new_cell)
 ```
 
+:::{#exr-steering}
+## The birth of an arrow - Biological / algorithmic thinking
+
 Consider which properties of the parent cell get inherited to the child:
 
 a. Should the exact position be inherited to offspring? (yes/no)
 b. Should the offspring be placed nearby its parent? (yes/no)
 c. Does the velocity get inherited? 
+:::
 
 Note that depending on the scenario, the above questions may change. When a planktonic algea reproduces the daughter cells may inherit the velocity of the mother cell, but if a monkey gives birth, it does not make a lot of sense to talk about the 'velocity' of the mother. If we consider plants, we should not even consider velocity of the individuals at any stage of their life. 
 
@@ -924,9 +932,13 @@ Note that depending on the scenario, the above questions may change. When a plan
 
 As the cells move towards the dot, you may notice that cells start overlapping quite a bit. Let's implement a simple form of collision detection, where overlap is resolved by pushing cells away from each other. Answer the following questions to get on your way:
 
+:::{#exr-steering}
+## Overlapping circles - Algorithmic/mathematical thinking
 a. How can you calculate the distance between two cells?
 b. When are two points overlapping?
 c. What can we do when two points overlap?
+:::
+
 
 Now that we have implemented both target-finding, reproduction, and collision, we can study these individual mechanisms by commenting one or the other out. This is an important process in understanding a model. Try it for yourself!
 
@@ -944,15 +956,19 @@ for i in range(WORLD_SIZE):
 
 
 The above function loops over all the grid points, and set the value of each grid point to 1. Let's use the function `np.exp` to calculate a Gaussian that we will place in the center of the grid. The `fill_grid` already takes as arguments the grid, a relative x-coordinate (0-1), a relative y-coordinate (0-1), and a standard deviation (0-1). 
+Get started by answering the question below.
 
-Get started by answering the following questions:
+
+:::{#exr-steering}
+## Bell curves in space - Mathematical thinking
 
 a. The function $e^{-x^2}$ gives a bell-curve centered around zero. How can you make it centered around a different value?
 b. Combined with the numpy function `np.exp`, how can we use the equation in question *a* to create a Gaussian that is at the center of the grid?
+:::
 
 ## Run and tumble {#sec-runandtumble}
 
-!["Test"](https://upload.wikimedia.org/wikipedia/commons/0/0c/Tumbling_and_running_modes_associated_with_Escherichia_coli_and_Salmonella_typhimurium.png)
+!["Run and tumble"](https://upload.wikimedia.org/wikipedia/commons/0/0c/Tumbling_and_running_modes_associated_with_Escherichia_coli_and_Salmonella_typhimurium.png)
 
 Bacterial cells are so small, that they cannot detect a gradient directly (in other words, they don't know in which direction resources are higher!). Instead, bacteria often use a "run and tumble" strategy. When they are currently not detecting an increase in the concentration (over time), they tumble. If they do detect an increase, they keep moving in the same direction. This is a very simple strategy, but it can be very effective mechanism for chemotaxis. 
 
@@ -963,24 +979,33 @@ v_x' = v_x \cdot cos(\theta) - v_y \cdot sin(\theta) \\
 v_y' = v_x \cdot sin(\theta) + v_y \cdot cos(\theta)
 $$
 
-Where $\theta$ is the angle we want the vector to rotate (in radians, not degrees!), and $v_x$ and $v_y$ are the components of the vector. With this in mind, let's try and model chemotaxis. Do it in the following way: 
+Where $\theta$ is the angle we want the vector to rotate (in radians, not degrees!), and $v_x$ and $v_y$ are the components of the vector. With this in mind, let's try and model chemotaxis. 
 
-a. Determine the concentration of the position of the cell, AND the predicted position of the cell after a small timestep (hint: use $v_x$ and $v_y$ to predict the future position! **ask Bram if you get stuck**)
+:::{#exr-steering}
+
+## Run and tumble - Biology / algorithmic thinking
+
+a. Determine the concentration at the position of the cell, AND the predicted position of the cell after a small timestep (hint: use $v_x$ and $v_y$ to predict the future position! **ask Bram if you get stuck**)
 b. Make sure the future position is not outside of the grid! (hint: use Google, ChatGPT, or Copilot and figure out how the "modulo" operator works)
 c. If the future position has a higher concentration than the current position, keep moving in more or less the same direction, with a very small change. 
 d. If the future position is a lower concentration, rotate the velocity vector a lot. 
+:::
 
 Study if your individuals can find the resource peak. Notice that depending on your implementation, cells may or may not work. Make sure to carefully investigate why it does or does not work. 
 
 ## Sticking together {#sec-sticking}
 
-Cells sticking together can be implemented in multiple ways. Cells could be connected by a Newtonian spring, or we could simple make sure that cells that are close to each other are attracted to one another. In this case, we will use the latter method. Note that this is not very different from collision avoidance, but it is the other way around. In fact, we now have two opposing forces: cells are attracted to one another but do not want to overlap. This can be a bit finicky to get right, so feel free to explore. Ask for help if you get stuck. 
+Cells sticking together can be implemented in multiple ways. Cells could be connected by a Newtonian spring, or we could simple make sure that cells that are close to each other are attracted to one another. In this case, we will use the latter method. Note that this is not very different from collision avoidance, but it is the other way around. In fact, we now have two opposing forces: cells are attracted to one another but do not want to overlap. This can be a bit finicky to get right, so feel free to explore. Ask for help if you get stuck.
 
 ## 500 cells?
 
 Try to run the model with 500 cells. Also go back to the starting code again (without all the additions), and run this code with 500 cells too. 
 
+:::{#exr-steering}
+
+## Algorithmic / computational thinking
 a. What happens? Can you explain this?
+:::
 
 This is far as this introduction to IBMs in python goes. Simple IBMs can be efficiently implemented in basic Python, but for more complex models, it is better to i) use `numpy` operations to speed up your Python code, or ii) use a faster programming language like C, Rust, or Javascript. For the last part of this pratical, we will study the Javascript version of this model. But before that, here is the final code that I ended up with:
 
@@ -1354,8 +1379,7 @@ The full model is implemented in Javascript, and can be found [here](https://tbb
 In this full model, cells also reproduce every once in a while (when a "season" ends). Their reproductive success is shaped by the amount of resources at that position. Every time a cell reproduces there it inherits the parents stickiness, but it can also change this value a bit. This way, stickiness is an "evolvable" property on which natural selection will act. How much each cell is attracted to nearby cells depends on an internal "stickiness" parameter. Let the simulation run for some time. 
 
 :::{#exr-jsmodel}
-## The evolution of stickiness
-<br>
+## The evolution of stickiness - Biology
 
 a. What happens to the evolution of stickiness? 
 b. Identify multiple advantages and disadvantages of stickiness.

@@ -1,12 +1,11 @@
-# Practical 3
+# Clock-and-wavefront
 
-## Clock-and-wavefront patterning
 
 ### TODO
 
 - Move the answers to a separate page
 - Links to github for the code
-- 
+- Kirsten still working on this?
 
 ## Goal of the tutorial:
 
@@ -61,25 +60,22 @@ as there are plenty of examples to copy-paste from, but feel free to
 read up on these concepts here at [this online
 tutorial](https://www.datacamp.com/tutorial/python-oop-tutorial)
 
-## Relevant literature
 
-If you want to know more about the model system and previous models,
-have a look at the following (after the tutorial):
 
-[Lewis (2003) _Autoinhibition with Transcriptional Delay
-A Simple Mechanism for the Zebrafish Somitogenesis Oscillator](https://doi.org/10.1016/S0960-9822(03)00534-7)
+## Questions
 
-## Exercises
+:::{#exr-test}
 
-1.  In practical 1 we saw how gradients can be created through local
-    production, diffusion and decay. However, other mechanisms for
-    gradient formation are possible, such as cell lineage transport.
-    Here we work with a model for the FGF gradient
-    (`fgfgradientfromgrowth.py`) where only the rightmost/posterior cell
-    produces FGF and grows, and in which cells upon division inherit
-    this FGF from their mother cell. Play with the model by varying the
-    decay rate of FGF and the division rate of the cells. How does this
-    affect the gradient?
+In practical 1 we saw how gradients can be created through local
+production, diffusion and decay. However, other mechanisms for
+gradient formation are possible, such as cell lineage transport.
+Here we work with a model for the FGF gradient
+(`fgfgradientfromgrowth.py`) where only the rightmost/posterior cell
+produces FGF and grows, and in which cells upon division inherit
+this FGF from their mother cell. Play with the model by varying the
+decay rate of FGF and the division rate of the cells. How does this
+affect the gradient?
+:::
 
   > **Answer** *If growth rate goes up cell volumes increase faster, causing more
   > dilution of FGF and hence a lower maximum of the gradient as due to
@@ -332,3 +328,12 @@ the way:
 8.  Once you're done, check if your
     model behaves as it should with the teacher/assistant or the file
     `clockplusfgf.py` directly.
+    
+    
+## Relevant literature
+
+If you want to know more about the model system and previous models,
+have a look at the following (after the tutorial):
+
+[Lewis (2003) _Autoinhibition with Transcriptional Delay
+A Simple Mechanism for the Zebrafish Somitogenesis Oscillator](https://doi.org/10.1016/S0960-9822(03)00534-7)

@@ -2,7 +2,7 @@
 
 ## Answers to Evolution Practical 1 
 
-### Questions @exr-steering
+### Answer (@sec-steering)
 
 a. For this, you can simply multiply the velocity components every timestep by a value > 1. For example:
     

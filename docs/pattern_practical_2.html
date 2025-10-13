@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Practical 2 – Modeling Life</title>
+<title>6&nbsp; Turing patterns – Modeling Life</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -43,6 +43,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -71,6 +74,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -83,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pattern_intro_text.html">I) Pattern formation</a></li><li class="breadcrumb-item"><a href="./pattern_practical_2.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Practical 2</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pattern_intro_text.html">I) Pattern formation</a></li><li class="breadcrumb-item"><a href="./pattern_practical_2.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Turing patterns</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -167,25 +199,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pattern_practical_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Practical 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Morphogen gradients</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pattern_practical_2.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Practical 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Turing patterns</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pattern_practical_3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Practical 3</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./pattern_answers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Answers</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Clock-and-wavefront</span></span></a>
   </div>
 </li>
       </ul>
@@ -202,25 +228,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./morpho_intro_text.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">What is morphogenesis?</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">What is morphogenesis?</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./morpho_practical_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Practical 4</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Gene regulation in time</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./morpho_practical_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Practical 5</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./morpho_answers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Answers exercises</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Gene regulation in space</span></span></a>
   </div>
 </li>
       </ul>
@@ -237,19 +257,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./differentiation_intro_text.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Differentiation introduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Differentiation introduction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./differentiation_practical_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Practical 6</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Practical 6</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./differentiation_practical_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Practical 7</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Practical 7</span></span></a>
   </div>
 </li>
       </ul>
@@ -266,31 +286,31 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./evo_intro_text.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to evolution</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Introduction to evolution</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./evo_practical_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Practical 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Sticking together</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./evo_practical_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Practical 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">What gets selected?</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./evo_practical_3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Practical 3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Public goods</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./evo_answers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Answers exercises</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Answers exercises</span></span></a>
   </div>
 </li>
       </ul>
@@ -307,13 +327,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./project_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Differentiation introduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Differentiation introduction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./project_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Miniproject: maintaining a healthy microbiome</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Miniproject: maintaining a healthy microbiome</span></span></a>
   </div>
 </li>
       </ul>
@@ -351,18 +371,26 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#turing-patterns-repetitive-patterning" id="toc-turing-patterns-repetitive-patterning" class="nav-link active" data-scroll-target="#turing-patterns-repetitive-patterning"><span class="header-section-number">6.1</span> Turing patterns, repetitive patterning</a></li>
-  <li><a href="#biology-polydactyly-evolution" id="toc-biology-polydactyly-evolution" class="nav-link" data-scroll-target="#biology-polydactyly-evolution"><span class="header-section-number">6.2</span> Biology: polydactyly? Evolution?</a></li>
-  <li><a href="#python-code" id="toc-python-code" class="nav-link" data-scroll-target="#python-code"><span class="header-section-number">6.3</span> Python code</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"></a></li>
+  <li><a href="#equivalence-of-turing-models" id="toc-equivalence-of-turing-models" class="nav-link" data-scroll-target="#equivalence-of-turing-models"><span class="header-section-number">6.1</span> Equivalence of Turing models</a></li>
+  <li><a href="#patterning-in-a-fixed-domain-size" id="toc-patterning-in-a-fixed-domain-size" class="nav-link" data-scroll-target="#patterning-in-a-fixed-domain-size"><span class="header-section-number">6.2</span> Patterning in a fixed domain size</a></li>
+  <li><a href="#the-homogenous-steady-state-in-turing-models" id="toc-the-homogenous-steady-state-in-turing-models" class="nav-link" data-scroll-target="#the-homogenous-steady-state-in-turing-models"><span class="header-section-number">6.3</span> The homogenous steady state in Turing models</a></li>
+  <li><a href="#patterning-in-a-growing-domain-size" id="toc-patterning-in-a-growing-domain-size" class="nav-link" data-scroll-target="#patterning-in-a-growing-domain-size"><span class="header-section-number">6.4</span> Patterning in a growing domain size</a></li>
+  <li><a href="#patterning-along-two-growth-axes" id="toc-patterning-along-two-growth-axes" class="nav-link" data-scroll-target="#patterning-along-two-growth-axes"><span class="header-section-number">6.5</span> Patterning along two growth axes</a></li>
+  <li><a href="#making-a-virtual-tissue-grow" id="toc-making-a-virtual-tissue-grow" class="nav-link" data-scroll-target="#making-a-virtual-tissue-grow"><span class="header-section-number">6.6</span> Making a virtual tissue grow</a></li>
+  <li><a href="#spatial-modulation-of-parameters-k4-and-k7" id="toc-spatial-modulation-of-parameters-k4-and-k7" class="nav-link" data-scroll-target="#spatial-modulation-of-parameters-k4-and-k7"><span class="header-section-number">6.7</span> Spatial modulation of parameters k4 and k7</a></li>
+  <li><a href="#hoxd13-and-fgf" id="toc-hoxd13-and-fgf" class="nav-link" data-scroll-target="#hoxd13-and-fgf"><span class="header-section-number">6.8</span> Hoxd13 and FGF</a></li>
+  <li><a href="#shape-makes-the-tissue" id="toc-shape-makes-the-tissue" class="nav-link" data-scroll-target="#shape-makes-the-tissue"><span class="header-section-number">6.9</span> Shape makes the tissue</a></li>
+  <li><a href="#master-students-exercise" id="toc-master-students-exercise" class="nav-link" data-scroll-target="#master-students-exercise"><span class="header-section-number">6.10</span> Master students exercise</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pattern_intro_text.html">I) Pattern formation</a></li><li class="breadcrumb-item"><a href="./pattern_practical_2.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Practical 2</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pattern_intro_text.html">I) Pattern formation</a></li><li class="breadcrumb-item"><a href="./pattern_practical_2.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Turing patterns</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Practical 2</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Turing patterns</span></h1>
 </div>
 
 
@@ -379,51 +407,166 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="todo" class="level3">
-<h3 class="anchored" data-anchor-id="todo">TODO</h3>
+<section id="section" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="section"></h2>
+<p>A foundational work in Theoretical Biology is Alan Turing’s paper <em>“The Chemical Basis of Morphogenesis”</em> [1]. In this work, Turing mathematically demonstrates a plausible mechanism whereby a reaction-diffusion system can lead to the formation of a spatially-patterned solution in steady state. Mathematically and conceptually, Turing’s key innovation was considering diffusion-driven instability. That is: An unpatterned steady state solution becomes unstable in the presence of diffusion, leading to the formation of a spatially patterned state.</p>
+<p>Turing-type patterns emerge when a system exhibits short-ranged activation and long-ranged inhibition. The most well-known realization of a Turing reaction-diffusion system is the combination of a slow-diffusing activator and fast-diffusing inhibitor. Many more examples exist which can be reduced to a mathematically equivalent form. In this practical, we will explore a 3-component Turing system developed by Raspopovic and coauthors to explain the patterning of fingers on the paws of mice [2].</p>
+<p>In this practical you will work with a total of 6 different python codes. Please note that each code simply differs by an extension or modification from the previous code, so that in the end you will have a long script that performs all the steps in one go.</p>
+<ol type="1">
+<li>Turing, A. M. “The Chemical Basis of Morphogenesis.” <em>Philosophical Transactions of the Royal Society of London. Series B, Biological Sciences</em> 237.641 (1952): 37–72.<br>
+</li>
+<li>Raspopovic, Jelena, et al.&nbsp;“Digit patterning is controlled by a Bmp-Sox9-Wnt Turing network modulated by morphogen gradients.” <em>Science</em> 345.6196 (2014): 566-570.</li>
+</ol>
+<hr>
+</section>
+<section id="equivalence-of-turing-models" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="equivalence-of-turing-models"><span class="header-section-number">6.1</span> Equivalence of Turing models</h2>
+<p>The model proposed by Raspopovic et al.&nbsp;for generating Turing patterns underlying limb bone modeling consists of 3 instead of 2 interacting variables. We will refer to this model as “BSW” model, as it represents interactions between Bmp, Sox9, and Wnt.</p>
+<div id="exr-tur" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6.1 (Conceptual thinking)</strong></span> Study the schemes below. The arrows represent activating or inhibiting interactions, while the wavy lines represent diffusion of components. Simplify the BSW model scheme to a 2-component system and explain why the relevant Turing constraints apply to the BSW model. In your answer, think about the logic of the interactions in the system conceptually; we do not expect you to answer by writing down equations.</p>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div id="fig-turing" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-turing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/two_component_turing.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;6.1: Schemes and numerical solutions of two prototypical 2-component Turing models"><img src="images/two_component_turing.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-turing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.1: Schemes and numerical solutions of two prototypical 2-component Turing models
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:60%;">
+<div id="fig-wntbmpsox" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-wntbmpsox-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/wntbmpsox.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;6.2: Scheme of the BSW model"><img src="images/wntbmpsox.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wntbmpsox-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.2: Scheme of the BSW model
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="patterning-in-a-fixed-domain-size" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="patterning-in-a-fixed-domain-size"><span class="header-section-number">6.2</span> Patterning in a fixed domain size</h2>
+<p>The code in the script <code>01__digits_squarehomogeneoustissue.py</code> simulates the model in a 2D square tissue of constant size. This setup can be considered as a small region of a large Petri dish in which mesenchymal cells have been plated with the correct chemicals to undergo bone formation (Supplementary Figure S3 in the paper).</p>
+<div id="exr-tur" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6.2 (Biology)</strong></span> Play with the reaction parameters and diffusion constants to study their effects on the wavelength of the patterns. Note down the following:</p>
 <ul>
-<li>This text is very rough still. Waiting for input.</li>
+<li>Which parameter changes lead to a pattern with thicker/thinner stripes?</li>
+<li>Which parameter changes lead to a pattern with spots?</li>
 </ul>
+<p><strong>Note:</strong> To make things easier on yourself, only change one parameter at a time. Use a narrow range around the reference value to stay in the numerically stable regime of the forward Euler solver. If the solution becomes blank or wildly oscillating, you’re likely in the numerically unstable regime and you should try a smaller change of values. When increasing diffusion constants, you may need to reduce the time stepping <code>dt</code>.</p>
+<p><strong>(only Master students)</strong> Based on the BSW interaction scheme, give a short interpretation of why the following parameter alterations change the spatial pattern:</p>
+<ul>
+<li>Parameters of Sox9-BMP interaction <code>k2</code> and <code>k4</code></li>
+<li>Parameters of Sox9-Wnt interaction <code>k3</code> and <code>k7</code></li>
+<li>Fold change difference in BMP diffusion compared to Wnt diffusion</li>
+</ul>
+<p><em>Hint:</em> Use the maximum and minimum values of the variables to guide your thinking.</p>
+</div>
+<hr>
 </section>
-<section id="turing-patterns-repetitive-patterning" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="turing-patterns-repetitive-patterning"><span class="header-section-number">6.1</span> Turing patterns, repetitive patterning</h2>
-<p>Conceptual thinking: The model proposed by Raspopovic et al.&nbsp;for generating Turing patterns underlying limb bone modeling consists of 3 instead of 2 interacting variables. Simplify the given interaction scheme and diffusion constants to a 2D system to identify the relevant Turing constraints</p>
-<p>Algorithmic thinking: Compare the code used here to implement diffusion (lines …) with the code used in the exercise on the French Flag. What do you think this code is doing? What kind of boundary conditions do you think are implemented</p>
-<p>Biology: First we are going to work with a code simulating the model in a 2D constant tissue, this can be considered as a petri dish in which the mesenchymal cells have been plated with the correct chemicals to undergo bone formation (Fig .. in the paper). Play with the reaction parameters and diffusion constants to study their effects on the wavelength of the patterns</p>
-<p>Biology: Now we are going to add tissue growth in the proximo-distal (body to limb) direction. Growth is controlled by a growth rate vi. Play with this rate and study what happens. Explain why this happens.</p>
-<p>If the growth rate is large enough the induced anisotropy causes the orientation of Turing stripes along the growth axis. This can be understood from the directional expansion of the growth and hence diffusion domain, with the activator mostly spreading in this growth direction, leading to stripe formation.</p>
-<p>Biology: In reality the paddle shaped limb growth in both the proximo-distal and anterior-posterior direction, implemented with growth rates vi and vj. Play with the relative size of these growth rates and study what happens. Also study the order of appearance of digits and how this compares to the experimental data. Does the pattern fully resemble experimental observations?</p>
-<p>To not loose the anisotropy vi&gt;&gt;vj. Middle digits appear first and as expansion occurs in the anterior-posterior plane more digits appear. No, digits do not come closer together at proximal end</p>
-<p>Biology: In reality digits are patterned further apart at the distal end then at the proximal end, where they need to converge on a hand and wrist. This implies that the wavelength of the Turing pattern should not be constant. If all is well you found that the k7 and k4 parameters impact the wavelength of the Turing pattern. The authors speculate that the FGF and Hox gene gradients observed in the limb bud excert an effect on the Sox9-BMP-Wnt patterning module through these parameters. Implement a gradient of increasing k7 and decreasing k4 from the proximal to the distal end of the growing limb and try if you can get closer to a realistic limb patterning.</p>
+<section id="the-homogenous-steady-state-in-turing-models" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="the-homogenous-steady-state-in-turing-models"><span class="header-section-number">6.3</span> The homogenous steady state in Turing models</h2>
+<p>In a system exhibiting Turing instability, the spatially unpatterned steady state is unstable in the presence of diffusion.</p>
+<div id="exr-tur" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6.3 (Conceptual thinking)</strong></span> Modify the initial condition in the script <code>01__digits_squarehomogeneoustissue.py</code> to be exactly in this state (Sox9, BMP, Wnt should be all zero everywhere) and run the simulation. Explain the simulation result.</p>
+</div>
+<hr>
 </section>
-<section id="biology-polydactyly-evolution" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="biology-polydactyly-evolution"><span class="header-section-number">6.2</span> Biology: polydactyly? Evolution?</h2>
+<section id="patterning-in-a-growing-domain-size" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="patterning-in-a-growing-domain-size"><span class="header-section-number">6.4</span> Patterning in a growing domain size</h2>
+<p>Besides parameter values, the pattern that emerges from a Turing system is also strongly influenced by initial conditions and the size and shape of the domain where reactions and diffusion happen.</p>
+<p>In the script <code>02__digits_growingsquare_PD.py</code> we added tissue growth in the proximo-distal (body to limb) direction. Growth is controlled by a growth rate <code>vi</code>.</p>
+<div id="exr-tur" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6.4 (Biology)</strong></span> &nbsp;</p>
+<ul>
+<li>Study the code to understand what it does.<br>
+</li>
+<li>Increase the horizontal growth rate <code>vi</code> in small increments (try: 0.01, 0.05, 0.1, 0.2, 0.5) and study what happens to the pattern. Explain why you think this happens.</li>
+</ul>
+<p><strong>Note:</strong> Increase the <code>totaltime</code> parameter to 5000 when using growth rate of 0.01.</p>
+</div>
+<hr>
 </section>
-<section id="python-code" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="python-code"><span class="header-section-number">6.3</span> Python code</h2>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<section id="patterning-along-two-growth-axes" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="patterning-along-two-growth-axes"><span class="header-section-number">6.5</span> Patterning along two growth axes</h2>
+<p>In reality, the limb bud grows in both the proximo-distal and anterior-posterior direction. In the script <code>03__digits_growingsquare.py</code> this is implemented with growth rates <code>vi</code> for proximo-distal growth and <code>vj</code> for anterior-posterior growth.</p>
+<div id="exr-tur" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6.5 (Biology)</strong></span> Play with the relative size of these growth rates and study what happens. Compare the order of appearance of stripes to the experimental data in the paper (see Figure 3F in the Raspopovic paper).</p>
 </div>
-<div class="callout-title-container flex-fill">
-Starting code for this practical
+<hr>
+</section>
+<section id="making-a-virtual-tissue-grow" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="making-a-virtual-tissue-grow"><span class="header-section-number">6.6</span> Making a virtual tissue grow</h2>
+<p>Think about how tissue growth is implemented in the script <code>03__digits_growingsquare.py</code>.</p>
+<div id="exr-tur" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6.6 (Algorithmic and conceptual thinking)</strong></span> What is the default value of the newly added tissue when it grows? Is the concentration elsewhere in the tissue changed?</p>
+<p>Do you think this approach is reasonable to model biological growth of a tissue? Explain why/why not.</p>
+<p><em>Hint:</em> Think about it from the perspective of a growing cell containing a number of molecules “X”.<br>
+If the cell increases in volume and does not produce/degrade X, what happens to the concentration of X?<br>
+What would be the concentration of X in the two daughter cells if the cell divides?<br>
+How would the situation change if X is constantly produced and degraded?</p>
+<p>In the paper, Raspopovic et al.&nbsp;create a “tissue growth map” (see Figure 3A), which they use to map concentration values from one timepoint to the next using interpolation-based transformations.</p>
+<p>Inspired by this approach, the script <code>04__digits_growingsquare.py</code> implements a different growth function that uses bilinear interpolation to expand the tissue. Play around with the growth rate parameters and compare the results to what you found earlier. Do the patterns differ? If yes, how do they differ?</p>
+<p><em>Hint:</em> Try the supplementary script <code>supp_g__bilinear_interpolation.py</code> to understand how interpolation-based growth works.</p>
+<p><strong>For master students:</strong> yet another way of implementing tissue growth would be to take cell division and inheritance of maternal state by the two daughter cells literal and implement this by new boundary cells copying the state of their direct neighbors. Implement this alternative growth and see how this affects your results.</p>
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+<hr>
+</section>
+<section id="spatial-modulation-of-parameters-k4-and-k7" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="spatial-modulation-of-parameters-k4-and-k7"><span class="header-section-number">6.7</span> Spatial modulation of parameters k4 and k7</h2>
+<p>Let us now ignore growth and its role on orienting stripes for a while and explore once again the influence of parameters on the patterns. In reality, digits are patterned further apart at the distal end than at the proximal end, where they need to converge on a hand and wrist. This implies that the wavelength of the Turing pattern should not be constant. In a previous question you probably found that the <code>k7</code> and <code>k4</code> parameters impact the wavelength of the Turing pattern. The authors speculate that the FGF and Hox gene gradients observed in the limb bud exert an effect on the Sox9-BMP-Wnt patterning module through these parameters.</p>
+<div id="exr-tur" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6.7 (Biology)</strong></span> The script <code>05__digits_squarek4k7gradient.py</code> allows you to implement exponential gradients of <code>k4</code> and <code>k7</code> across the tissue. You can set the minimum and maximum values, axis (x=horizontal, y=vertical) and direction (0=decreasing, 1=increasing). Look in the supplement of the Raspopovic paper, page 48 Fig 2C, left for the estimated change of <code>k4</code> and <code>k7</code> across the tissue and try to reproduce (not exactly but similarly) Figure 2C, right side, by playing with the parameters affecting the <code>k4</code> and <code>k7</code> gradients. Describe along which axis, in which direction and to what extent <code>k4</code> and <code>k7</code> are changing. Estimate the change in Turing pattern wavelength this results in.</p>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>There are several sources for this practical.</p>
-<p>…</p>
+<hr>
+</section>
+<section id="hoxd13-and-fgf" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="hoxd13-and-fgf"><span class="header-section-number">6.8</span> Hoxd13 and FGF</h2>
+<p>As mentioned above, the biological factors thought to underly the variation in the <code>k4</code> and <code>k7</code> parameters are Hoxd13 and FGF. Hoxd13 is highly expressed in the distal domain of the paddle and not expressed elsewhere, and this expression domain is growing as the paddle grows. FGF is expressed from the distal edge of the paddle and spreads through diffusion. For an illustration see Fig S8A of the supplement of the Raspopovic paper (page 10). Experimental data furthermore suggest that Hoxd13 and FGF together affect <code>k4</code> and <code>k7</code>, which the authors decided to model using the following equations:</p>
+<p><span class="math display">\[
+k4^* = k4 - k_{HF_{bmp}} * fgf(i,j) * hox(i,j)
+\]</span></p>
+<p><span class="math display">\[
+k7^* = k7 + k_{HF_{wnt}} * fgf(i,j) * hox(i,j)
+\]</span></p>
+<div id="exr-tur" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6.8 (Algorithmic and biological thinking)</strong></span> The script <code>06__digits_squarehoxdfgf.py</code> implements how <code>k4</code> and <code>k7</code> are a function of local FGF and Hox values, but does not yet include Hox and FGF spatial patterns and how these develop over time. Adjust the code to incorporate the observed Hoxd13 and FGF patterns and study how the digit patterns compare to what you found under question 7. Note that arrays for <code>hox</code> and <code>fgf</code> are included, and decay and diffusion values for <code>fgf</code> are provided already in the code. Also note that <code>hox</code> and <code>fgf</code> each have a maximum value of 1.</p>
 </div>
+<hr>
+</section>
+<section id="shape-makes-the-tissue" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="shape-makes-the-tissue"><span class="header-section-number">6.9</span> Shape makes the tissue</h2>
+<p>Having studied the effects of growth and genetic factors modulating the Turing pattern now it is time for the final step. So far, we’ve approximated the limb bud very crudely with a rectangle. As you probably noticed in your parameter exploration, the tissue boundary can bias stripe orientation. Therefore it is interesting to study the interplay between the shape of the “paddle” or limb bud in which the digits develop and how it grows with the temporal development of the hox and fgf patterns. In the script <code>07__digits_growingpaddle.py</code> we implemented two different tissue geometries: An ellipse and a “paddle” that imitates the shape of the limb bud. Note that to implement Hox and FGF domains on a complex growing shape, quite a bit of complex code involving masks describing the tissue domain and angles to control the Hox and FGF domains was needed. At first, we are going to ignore these technical details.</p>
+<div id="exr-tur" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6.9 (Biology)</strong></span> Switching between geometries is easily done by changing the value of the parameter <code>geometry</code> on line 78 of the script. Start with the “ellipse” geometry. What do you observe with regards to the FGF gradient? What consequences does this have? Why would this be “a smart thing to do”?</p>
+<p>Play around with <code>vi/vj</code> and <code>Lx0</code> to investigate the effect of ellipse shape and development over time on the number, shape and robustness of digits that form.</p>
+<p>Now switch to the paddle geometry. Observe the patterns that emerge and compare these to the simulated and experimentally observed patterns in Figure 3E and 3F of the Raspopovic article. According to you what does and what doesn’t the model explain well?</p>
+<p>The model explains the formation and positioning of the 4 digits, and how the distance between these digits increases along the limb bud. However, the model clearly does not simulate/explain the formation of the wrist bones that is observed experimentally. Interestingly the experimental data suggest that while digits may form from the “right to the left”, the “leftmost” bones of the wrist are there the earliest, suggesting there locally different conditions apply allowing earlier Turing patterning but with a very large wavelength happening there.</p>
+<p>To implement non-square geometries, the script uses “masks”. Study how these masks are created in the functions <code>create_ellipse_mask</code> and <code>create_tissue_mask</code>.</p>
+<p><em>Hint:</em> Try the supplementary script <code>supp_i__geometries.py</code>.</p>
+<p><em>Note:</em> For computational convenience, we use the “Class” data structure to implement common functions shared by the masks. This is a somewhat more advanced programming concept, so it’s ok if you don’t understand what it does yet. For the extra curious and motivated, feel free to check out the supplementary script <code>supp_i__class_data_structure.py</code>.</p>
 </div>
+<hr>
+</section>
+<section id="master-students-exercise" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="master-students-exercise"><span class="header-section-number">6.10</span> Master students exercise</h2>
+<div id="exr-tur" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6.10 (Poly and oligodactyly)</strong></span> Above we played with ellipse size and growth rates, however in addition to mutations affecting tissue size and growth, also mutations in genes affecting the Hox and FGF morphogens may occur. Play with parameters that determine Hox and FGF expression zones on the paddle geometry. Which parameter changes lead to the formation of supernumerary fingers (polydactyly)? Which parameters lead to too few fingers (oligodactyly)?</p>
+<p><em>Hint:</em> The following supplementary scripts will be helpful to understand how the FGF and Hox domains were coded:</p>
+<ul>
+<li><code>supp_i__ellipse_slice.py</code> visualizes the usefulness of masks based on the example of selecting a slice of an ellipse;</li>
+<li><code>supp_i__smooth_function.py</code> visualizes the function <code>smooth_function()</code>;</li>
+<li><code>supp_i__morphological_operations.py</code> visualizes morphological operations (binary dilate/erode and Gaussian blur) which are used for mask operations, calculating the Laplacian on the irregular domain, and to select pixels to generate the FGF and Hox pattern;</li>
+<li><code>supp_i__maskDifference.py</code> visualizes the difference of masks, which is how the function <code>single_step_growth()</code> checks if the tissue domain is growing or shrinking.</li>
+</ul>
 </div>
-<p>If two days: phyllotaxis model.</p>
-<p>Good to do after clock and wavefront a general overview:</p>
-<p>What happens if more growth/tissue in</p>
-<p>-gradient (rear extends if no scaling)</p>
-<p>-Turing (more stripes)</p>
-<p>-clock and wavefront (bigger stripes)</p>
 
 
 </section>
@@ -1002,13 +1145,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./pattern_practical_1.html" class="pagination-link" aria-label="Practical 1">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Practical 1</span></span>
+      <a href="./pattern_practical_1.html" class="pagination-link" aria-label="Morphogen gradients">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Morphogen gradients</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./pattern_practical_3.html" class="pagination-link" aria-label="Practical 3">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Practical 3</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./pattern_practical_3.html" class="pagination-link" aria-label="Clock-and-wavefront">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Clock-and-wavefront</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1026,6 +1169,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":false,"descPosition":"bottom","closeEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

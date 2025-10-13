@@ -1,6 +1,6 @@
-# Practical 4
+# Gene regulation in time 
 
-## Gene regulation in time 
+## Introduction
 
 In this practical you will get hands on experience into making gene regulatory networks models. First you will practice how to encode regulatory interactions into ordinary differential equations and logical rules. Next you will study how many interactions produce self-sustained activity configurations (attractors) in a Boolean network model. Lastly, you will learn how to predict the genes that cause cell fate transitions (attractor changes). 
 
@@ -28,7 +28,11 @@ def logicalRule(nodeA,nodeB):
     return(nodeA and nodeB)
 ```
 
-**Q1** What is the minimum information you need to encode a regulatory interaction with either function? In what cases would you prefer to use an ODE or a logical rule for a model?
+:::{#exr-non}
+## Mathematical thinking
+
+What is the minimum information you need to encode a regulatory interaction with either function? In what cases would you prefer to use an ODE or a logical rule for a model?
+:::
 
 Let's run the model to simulate what happens if nodeA and nodeB are both active/expressed. Do this for the ODE and the Boolean logic code model using the following lines inside the main().
 
@@ -69,7 +73,11 @@ for nodeA in range(0, explorationvalue):
 ODEBooleanPlot(ode_output, bool_output)
 ```
 
-**Q2** What differences do you see in each case? 
+:::{#exr-non}
+## Biology
+
+ What differences do you see in each case? (differences in what?!) Discuss x, y, and z (question is a little short otherwise)
+:::
 
 Now let's compare how ODE and Boolean logic represent different logical gates. You can use the same code in the previous box. Remember to modify the logical operator in the Boolean section, and to modify the doutputC equation in ODEgeneRegulation: 
 
@@ -81,7 +89,13 @@ Now let's compare how ODE and Boolean logic represent different logical gates. Y
 6. any other biological scenario yon can think of! 
 * tip: include an extra input node, and make a 3-node logical gate. 
 
+:::{#exr-non}
+
+## Algorithmic thinking
+
 **Q3** Is there a logical gate that can be better represented with an ODE than with Boolean logic? Think of examples of biological regulatory interactions that can be described with each logical gate? 
+
+:::
 
 ## Part II – Gene regulatory network
 
@@ -110,7 +124,11 @@ matrix[0,:]=[0,1,1,0,1,1,0,0,1,0,1,1,1,1,1,0,1,0]
 
 Use the asynchronous updating scheme by changing the function to rootNetworkAsynchronous() and see what happens to this initial condition. 
 
-**Q4** What happens now and why? What does an asyncrhonous update is doing?
+:::{#exr-non}
+
+## Algorithmic thinking
+**Q4** What happens now and why? What does an asyncrhonous update do?
+:::
 
 This network has 18 nodes, and then 218 = 262,144 possible states. We can either solve each of these conditions, or instead explore just a subset of them. Using the previous code, add for loop to solve 100 random initial conditions, and then save the final activity configurations (attractors) in the attractors matrix. 
 *tip: 100 initial conditons is a good number to start with. 
@@ -131,7 +149,11 @@ You probably found many different attractors. First, let's use a multidimensiona
 UMAPBoolean(attractors)
 ```
 
+:::{#exr-non}
+
+## Biology / abstract thinking
 **Q5** Why do you see clearly defined groups and not a continuous distribution of attractors? 
+:::
 
 Now let's analyse the attractors you found. First, let's group similar attractors:
 
@@ -140,9 +162,17 @@ attractors_sorted = np.array(sorted(attractors.tolist()))
 plotBooleanAttractors(attractors_sorted) 
 ```
 
-**Q6** Do some attractors occur more frequently than others. Do they all have the same basin size of attraction? Why is this? 
+:::{#exr-non}
 
-**Q6.1** Some nodes are active (1) in most attractors, others in half, and others in very few. In how many of them is the node SHR active? What does this suggest about their regulation?
+## Biology / abstract thinking
+**Q6** Do some attractors occur more frequently than others. Do they all have the same basin size of attraction? Why is this? 
+:::
+
+:::{#exr-non}
+
+## Biology
+Some nodes are active (1) in most attractors, others in half, and others in very few. In how many of them is the node SHR active? What does this suggest about their regulation?
+:::
 
 Now let's remove the repeated rows (duplicate attractor states) to see unique attractors: 
 
@@ -152,7 +182,11 @@ attractors_unique = attractors[np.sort(unique_indices)]
 plotBooleanAttractors(attractors_unique) 
 ```
 
-**Q7** How many unique attractors did you find? Compare them with the ones reported in the paper. Are they all fixed points? 
+:::{#exr-non}
+
+## Biology / abstract thinking
+How many unique attractors did you find? Compare them with the ones reported in the paper. Are they all fixed points? 
+:::
 
 ## Part III – Cell differentiation – jumping from one attractor to another
 
@@ -174,7 +208,11 @@ cells = odeint(rootNetworkODE, IC, times, args=(parameters,))
 plotODEroot(cells,times)
 ```
 
-**Q8** Do the attractors match those recovered with the Boolean network?
+:::{#exr-non}
+
+## Modeling choices
+Do the attractors match those recovered with the Boolean network?
+:::
 
 Now let’s use the model to study cell differentiation. Let’s start in the following initial condition (IC vector), and find a change in a node that produce a jump to another attractor (end). For this you can simply flip the activity of a gene in the initial condition (from 0 ->1 or 1->0) and see the final attractor matches the desired end state. 
 
@@ -191,7 +229,14 @@ end=[1,1,0,0,1,1,1,1,1,1,0,0,1,0,0,0,0,1]
 plotODErootTransition(cells,times) # use this function to plot your result
 ```
 
-**Q9** What regulator causes the transition between these attractors? How many nodes change their activity between the initial and final state? what could be the biological meaning of this switch? how would you test this experimentally?
+:::{#exr-non}
 
-**Q10** Finally, use the model to predict the rest of the attractor transitions because of single node changes. Are all attractor transitions possible, or are there preferred differentiation routes?
+## Algorithmic thinking / biology
+What regulator causes the transition between these attractors? How many nodes change their activity between the initial and final state? what could be the biological meaning of this switch? how would you test this experimentally?
+:::
 
+:::{#exr-non}
+
+## Biology
+Finally, use the model to predict the rest of the attractor transitions because of single node changes. Are all attractor transitions possible, or are there preferred differentiation routes?
+:::

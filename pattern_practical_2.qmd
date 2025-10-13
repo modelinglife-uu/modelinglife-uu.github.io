@@ -1,69 +1,216 @@
-# Practical 2 
+# Turing patterns
+  
+## {.unnumbered}
+A foundational work in Theoretical Biology is Alan Turing's paper *"The Chemical Basis of Morphogenesis"* \[1\]. In this work, Turing mathematically demonstrates a plausible mechanism whereby a reaction-diffusion system can lead to the formation of a spatially-patterned solution in steady state. Mathematically and conceptually, Turing’s key innovation was considering diffusion-driven instability. That is: An unpatterned steady state solution becomes unstable in the presence of diffusion, leading to the formation of a spatially patterned state.
 
-### TODO
+Turing-type patterns emerge when a system exhibits short-ranged activation and long-ranged inhibition. The most well-known realization of a Turing reaction-diffusion system is the combination of a slow-diffusing activator and fast-diffusing inhibitor. Many more examples exist which can be reduced to a mathematically equivalent form. In this practical, we will explore a 3-component Turing system developed by Raspopovic and coauthors to explain the patterning of fingers on the paws of mice \[2\].
 
-- This text is very rough still. Waiting for input. 
+In this practical you will work with a total of 6 different python codes. Please note that each code simply differs by an extension or modification from the previous code, so that in the end you will have a long script that performs all the steps in one go.
 
-## Turing patterns, repetitive patterning 
+1.  Turing, A. M. “The Chemical Basis of Morphogenesis.” *Philosophical Transactions of the Royal Society of London. Series B, Biological Sciences* 237.641 (1952): 37–72.\
+2.  Raspopovic, Jelena, et al. "Digit patterning is controlled by a Bmp-Sox9-Wnt Turing network modulated by morphogen gradients." *Science* 345.6196 (2014): 566-570.
 
-Conceptual thinking: The model proposed by Raspopovic et al. for generating Turing patterns underlying limb bone modeling consists of 3 instead of 2 interacting variables. Simplify the given interaction scheme and diffusion constants to a 2D system to identify the relevant Turing constraints 
+------------------------------------------------------------------------
 
- 
+## Equivalence of Turing models
 
-Algorithmic thinking: Compare the code used here to implement diffusion (lines …) with the code used in the exercise on the French Flag. What do you think this code is doing? What kind of boundary conditions do you think are implemented 
+The model proposed by Raspopovic et al. for generating Turing patterns underlying limb bone modeling consists of 3 instead of 2 interacting variables. We will refer to this model as “BSW” model, as it represents interactions between Bmp, Sox9, and Wnt.
 
- 
+:::{#exr-tur}
 
- 
+## Conceptual thinking 
 
-Biology: First we are going to work with a code simulating the model in a 2D constant tissue, this can be considered as a petri dish in which the mesenchymal cells have been plated with the correct chemicals to undergo bone formation (Fig .. in the paper). Play with the reaction parameters and diffusion constants to study their effects on the wavelength of the patterns 
+Study the schemes below. The arrows represent activating or inhibiting interactions, while the wavy lines represent diffusion of components. Simplify the BSW model scheme to a 2-component system and explain why the relevant Turing constraints apply to the BSW model. In your answer, think about the logic of the interactions in the system conceptually; we do not expect you to answer by writing down equations.
 
- 
 
-Biology: Now we are going to add tissue growth in the proximo-distal (body to limb) direction. Growth is controlled by a growth rate vi. Play with this rate and study what happens. Explain why this happens. 
+::: {.columns}
 
- 
+::: {.column width="40%"}
+![Schemes and numerical solutions of two prototypical 2-component Turing models](images/two_component_turing.png){#fig-turing}
+:::
 
-If the growth rate is large enough the induced anisotropy causes the orientation of Turing stripes along the growth axis. This can be understood from the directional expansion of the growth and hence diffusion domain, with the activator mostly spreading in this growth direction, leading to stripe formation. 
-
-Biology: In reality the paddle shaped limb growth in both the proximo-distal and anterior-posterior direction, implemented with growth rates vi and vj. Play with the relative size of these growth rates and study what happens. Also study the order of appearance of digits and how this compares to the experimental data. Does the pattern fully resemble experimental observations? 
-
-To not loose the anisotropy vi>>vj. Middle digits appear first and as expansion occurs in the anterior-posterior plane more digits appear. No, digits do not come closer together at proximal end 
-
-Biology: In reality digits are patterned further apart at the distal end then at the proximal end, where they need to converge on a hand and wrist. This implies that the wavelength of the Turing pattern should not be constant. If all is well you found that the k7 and k4 parameters impact the wavelength of the Turing pattern. The authors speculate that the FGF and Hox gene gradients observed in the limb bud excert an effect on the Sox9-BMP-Wnt patterning module through these parameters. Implement a gradient of increasing k7 and decreasing k4 from the proximal to the distal end of the growing limb and try if you can get closer to a realistic limb patterning. 
-
- 
-
-## Biology: polydactyly? Evolution? 
-
-## Python code
- 
- 
-:::{.callout-note collapse=true}
-
-## Starting code for this practical
-
-There are several sources for this practical. 
-
-...
+::: {.column width="60%"}
+![Scheme of the BSW model](images/wntbmpsox.png){#fig-wntbmpsox }
+:::
 
 :::
 
+:::
 
-If two days: phyllotaxis model. 
+## Patterning in a fixed domain size
 
- 
+The code in the script `01__digits_squarehomogeneoustissue.py` simulates the model in a 2D square tissue of constant size. This setup can be considered as a small region of a large Petri dish in which mesenchymal cells have been plated with the correct chemicals to undergo bone formation (Supplementary Figure S3 in the paper).
 
-Good to do after clock and wavefront a general overview: 
+:::{#exr-tur}
 
-What happens if more growth/tissue in 
+## Biology
 
--gradient (rear extends if no scaling) 
 
--Turing (more stripes) 
+Play with the reaction parameters and diffusion constants to study their effects on the wavelength of the patterns. Note down the following:
 
--clock and wavefront (bigger stripes) 
+-   Which parameter changes lead to a pattern with thicker/thinner stripes?
+-   Which parameter changes lead to a pattern with spots?
 
- 
+**Note:** To make things easier on yourself, only change one parameter at a time. Use a narrow range around the reference value to stay in the numerically stable regime of the forward Euler solver. If the solution becomes blank or wildly oscillating, you’re likely in the numerically unstable regime and you should try a smaller change of values. When increasing diffusion constants, you may need to reduce the time stepping `dt`.
 
- 
+**(only Master students)** Based on the BSW interaction scheme, give a short interpretation of why the following parameter alterations change the spatial pattern:
+
+-   Parameters of Sox9-BMP interaction `k2` and `k4`
+-   Parameters of Sox9-Wnt interaction `k3` and `k7`
+-   Fold change difference in BMP diffusion compared to Wnt diffusion
+
+*Hint:* Use the maximum and minimum values of the variables to guide your thinking.
+
+:::
+
+------------------------------------------------------------------------
+
+## The homogenous steady state in Turing models
+
+In a system exhibiting Turing instability, the spatially unpatterned steady state is unstable in the presence of diffusion.
+
+:::{#exr-tur}
+
+## Conceptual thinking 
+
+ Modify the initial condition in the script `01__digits_squarehomogeneoustissue.py` to be exactly in this state (Sox9, BMP, Wnt should be all zero everywhere) and run the simulation. Explain the simulation result.
+:::
+------------------------------------------------------------------------
+
+## Patterning in a growing domain size
+
+Besides parameter values, the pattern that emerges from a Turing system is also strongly influenced by initial conditions and the size and shape of the domain where reactions and diffusion happen.
+
+In the script `02__digits_growingsquare_PD.py` we added tissue growth in the proximo-distal (body to limb) direction. Growth is controlled by a growth rate `vi`.
+
+:::{#exr-tur}
+
+## Biology
+
+-   Study the code to understand what it does.\
+-   Increase the horizontal growth rate `vi` in small increments (try: 0.01, 0.05, 0.1, 0.2, 0.5) and study what happens to the pattern. Explain why you think this happens.
+
+**Note:** Increase the `totaltime` parameter to 5000 when using growth rate of 0.01.
+:::
+
+------------------------------------------------------------------------
+
+## Patterning along two growth axes
+
+In reality, the limb bud grows in both the proximo-distal and anterior-posterior direction. In the script `03__digits_growingsquare.py` this is implemented with growth rates `vi` for proximo-distal growth and `vj` for anterior-posterior growth.
+
+:::{#exr-tur}
+
+## Biology
+
+Play with the relative size of these growth rates and study what happens. Compare the order of appearance of stripes to the experimental data in the paper (see Figure 3F in the Raspopovic paper).
+
+:::
+
+------------------------------------------------------------------------
+
+## Making a virtual tissue grow
+
+Think about how tissue growth is implemented in the script `03__digits_growingsquare.py`.
+
+:::{#exr-tur}
+
+## Algorithmic and conceptual thinking 
+
+ What is the default value of the newly added tissue when it grows? Is the concentration elsewhere in the tissue changed?
+
+Do you think this approach is reasonable to model biological growth of a tissue? Explain why/why not.
+
+*Hint:* Think about it from the perspective of a growing cell containing a number of molecules “X”.\
+If the cell increases in volume and does not produce/degrade X, what happens to the concentration of X?\
+What would be the concentration of X in the two daughter cells if the cell divides?\
+How would the situation change if X is constantly produced and degraded?
+
+In the paper, Raspopovic et al. create a “tissue growth map” (see Figure 3A), which they use to map concentration values from one timepoint to the next using interpolation-based transformations.
+
+Inspired by this approach, the script `04__digits_growingsquare.py` implements a different growth function that uses bilinear interpolation to expand the tissue. Play around with the growth rate parameters and compare the results to what you found earlier. Do the patterns differ? If yes, how do they differ?
+
+*Hint:* Try the supplementary script `supp_g__bilinear_interpolation.py` to understand how interpolation-based growth works.
+
+**For master students:** yet another way of implementing tissue growth would be to take cell division and inheritance of maternal state by the two daughter cells literal and implement this by new boundary cells copying the state of their direct neighbors. Implement this alternative growth and see how this affects your results.
+
+:::
+
+------------------------------------------------------------------------
+
+## Spatial modulation of parameters k4 and k7
+
+Let us now ignore growth and its role on orienting stripes for a while and explore once again the influence of parameters on the patterns. In reality, digits are patterned further apart at the distal end than at the proximal end, where they need to converge on a hand and wrist. This implies that the wavelength of the Turing pattern should not be constant. In a previous question you probably found that the `k7` and `k4` parameters impact the wavelength of the Turing pattern. The authors speculate that the FGF and Hox gene gradients observed in the limb bud exert an effect on the Sox9-BMP-Wnt patterning module through these parameters.
+
+:::{#exr-tur} 
+
+## Biology 
+
+The script `05__digits_squarek4k7gradient.py` allows you to implement exponential gradients of `k4` and `k7` across the tissue. You can set the minimum and maximum values, axis (x=horizontal, y=vertical) and direction (0=decreasing, 1=increasing). Look in the supplement of the Raspopovic paper, page 48 Fig 2C, left for the estimated change of `k4` and `k7` across the tissue and try to reproduce (not exactly but similarly) Figure 2C, right side, by playing with the parameters affecting the `k4` and `k7` gradients. Describe along which axis, in which direction and to what extent `k4` and `k7` are changing. Estimate the change in Turing pattern wavelength this results in.
+
+:::
+------------------------------------------------------------------------
+
+## Hoxd13 and FGF
+
+As mentioned above, the biological factors thought to underly the variation in the `k4` and `k7` parameters are Hoxd13 and FGF. Hoxd13 is highly expressed in the distal domain of the paddle and not expressed elsewhere, and this expression domain is growing as the paddle grows. FGF is expressed from the distal edge of the paddle and spreads through diffusion. For an illustration see Fig S8A of the supplement of the Raspopovic paper (page 10). Experimental data furthermore suggest that Hoxd13 and FGF together affect `k4` and `k7`, which the authors decided to model using the following equations:
+
+$$
+k4^* = k4 - k_{HF_{bmp}} * fgf(i,j) * hox(i,j)
+$$
+
+$$
+k7^* = k7 + k_{HF_{wnt}} * fgf(i,j) * hox(i,j)
+$$
+
+:::{#exr-tur}
+
+## Algorithmic and biological thinking 
+
+The script `06__digits_squarehoxdfgf.py` implements how `k4` and `k7` are a function of local FGF and Hox values, but does not yet include Hox and FGF spatial patterns and how these develop over time. Adjust the code to incorporate the observed Hoxd13 and FGF patterns and study how the digit patterns compare to what you found under question 7. Note that arrays for `hox` and `fgf` are included, and decay and diffusion values for `fgf` are provided already in the code. Also note that `hox` and `fgf` each have a maximum value of 1.
+:::
+
+------------------------------------------------------------------------
+
+## Shape makes the tissue
+
+Having studied the effects of growth and genetic factors modulating the Turing pattern now it is time for the final step. So far, we’ve approximated the limb bud very crudely with a rectangle. As you probably noticed in your parameter exploration, the tissue boundary can bias stripe orientation. Therefore it is interesting to study the interplay between the shape of the “paddle” or limb bud in which the digits develop and how it grows with the temporal development of the hox and fgf patterns. In the script `07__digits_growingpaddle.py` we implemented two different tissue geometries: An ellipse and a “paddle” that imitates the shape of the limb bud. Note that to implement Hox and FGF domains on a complex growing shape, quite a bit of complex code involving masks describing the tissue domain and angles to control the Hox and FGF domains was needed. At first, we are going to ignore these technical details.
+
+:::{#exr-tur}
+
+## Biology
+
+Switching between geometries is easily done by changing the value of the parameter `geometry` on line 78 of the script. Start with the “ellipse” geometry. What do you observe with regards to the FGF gradient? What consequences does this have? Why would this be “a smart thing to do”?
+
+Play around with `vi/vj` and `Lx0` to investigate the effect of ellipse shape and development over time on the number, shape and robustness of digits that form.
+
+Now switch to the paddle geometry. Observe the patterns that emerge and compare these to the simulated and experimentally observed patterns in Figure 3E and 3F of the Raspopovic article. According to you what does and what doesn’t the model explain well?
+
+The model explains the formation and positioning of the 4 digits, and how the distance between these digits increases along the limb bud. However, the model clearly does not simulate/explain the formation of the wrist bones that is observed experimentally. Interestingly the experimental data suggest that while digits may form from the “right to the left”, the “leftmost” bones of the wrist are there the earliest, suggesting there locally different conditions apply allowing earlier Turing patterning but with a very large wavelength happening there.
+
+To implement non-square geometries, the script uses “masks”. Study how these masks are created in the functions `create_ellipse_mask` and `create_tissue_mask`.
+
+*Hint:* Try the supplementary script `supp_i__geometries.py`.
+
+*Note:* For computational convenience, we use the “Class” data structure to implement common functions shared by the masks. This is a somewhat more advanced programming concept, so it’s ok if you don’t understand what it does yet. For the extra curious and motivated, feel free to check out the supplementary script `supp_i__class_data_structure.py`.
+
+:::
+
+------------------------------------------------------------------------
+
+## Master students exercise 
+
+:::{#exr-tur}
+
+## Poly and oligodactyly
+
+Above we played with ellipse size and growth rates, however in addition to mutations affecting tissue size and growth, also mutations in genes affecting the Hox and FGF morphogens may occur. Play with parameters that determine Hox and FGF expression zones on the paddle geometry. Which parameter changes lead to the formation of supernumerary fingers (polydactyly)? Which parameters lead to too few fingers (oligodactyly)?
+
+*Hint:* The following supplementary scripts will be helpful to understand how the FGF and Hox domains were coded:
+
+-   `supp_i__ellipse_slice.py` visualizes the usefulness of masks based on the example of selecting a slice of an ellipse;
+-   `supp_i__smooth_function.py` visualizes the function `smooth_function()`;
+-   `supp_i__morphological_operations.py` visualizes morphological operations (binary dilate/erode and Gaussian blur) which are used for mask operations, calculating the Laplacian on the irregular domain, and to select pixels to generate the FGF and Hox pattern;
+-   `supp_i__maskDifference.py` visualizes the difference of masks, which is how the function `single_step_growth()` checks if the tissue domain is growing or shrinking.
+
+:::

@@ -12,6 +12,7 @@ find . -type f -name "*.html" | while read -r file; do
     # Use Perl for robust multiline removal
     perl -0777 -pe 's/<!--.*?-->//sg' "$file" > "${file}.tmp" && mv "${file}.tmp" "$file"
 done
+cd ../
 
 echo "Succesfully removed all HTML comments."
 

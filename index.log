@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.12.24)  10 SEP 2025 09:49
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.12.24)  13 OCT 2025 14:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1121,231 +1121,145 @@ No file index.toc.
 part I.
 Package scrkbase Info: You've told me to use the font selection of the element
 (scrkbase)             `partprefix' that is an alias of element `partnumber'
-(scrkbase)              on input line 280.
+(scrkbase)              on input line 306.
 
 
 [4
 
 ]
 chapter 1.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.665pt on input line 288.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.475pt on input line 288.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.95099pt on input line 288.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.66568pt on input line 288.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.4755pt on input line 288.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 10.94882pt on input line 288.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 7.66417pt on input line 288.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 5.47441pt on input line 288.
-
-LaTeX Warning: Reference `eq-log' on page 5 undefined on input line 292.
-
-File: intro_files/figure-pdf/unnamed-chunk-1-1.pdf Graphic file (type pdf)
-<use intro_files/figure-pdf/unnamed-chunk-1-1.pdf>
-
-Overfull \hbox (10.9531pt too wide) in paragraph at lines 316--317
-[][] 
- []
-
 
 
 [5
 
 ]
-
-[6]
-File: intro_files/figure-latex/mermaid-figure-1.png Graphic file (type bmp)
-<intro_files/figure-latex/mermaid-figure-1.png>
-
-Overfull \hbox (92.03307pt too wide) in paragraph at lines 333--334
- [][] 
- []
-
-
-LaTeX Warning: Reference `fig-variables' on page 7 undefined on input line 341.
-
-
-
-[7]
-
-LaTeX Warning: Reference `tip-example' on page 8 undefined on input line 370.
-
-
-LaTeX Warning: Reference `tip-example' on page 8 undefined on input line 378.
-
-
-LaTeX Warning: Reference `eq-line' on page 8 undefined on input line 393.
-
-
-LaTeX Warning: Reference `eq-line' on page 8 undefined on input line 394.
-
-File: intro_files/figure-pdf/tab-anscombe-1.pdf Graphic file (type pdf)
-<use intro_files/figure-pdf/tab-anscombe-1.pdf>
-
-Overfull \hbox (10.9531pt too wide) in paragraph at lines 404--405
-[] 
- []
-
-
-
-[8]
-
-[9]
-Overfull \vbox (24.31499pt too high) has occurred while \output is active []
-
-
-
-[10]
 chapter 2.
 
 
-[11
+[6
+
+]
+
+[7]
+part II.
+Package scrkbase Info: You've told me to use the font selection of the element
+(scrkbase)             `partprefix' that is an alias of element `partnumber'
+(scrkbase)              on input line 411.
+
+
+[8
 
 ]
 chapter 3.
 
-Overfull \hbox (340.81848pt too wide) in paragraph at lines 422--422
-[]\TU/lmtt/m/n/10.95 file:////private/var/folders/22/dvqytf_15mqgwc9rn9l42y5w0000gn/T/RtmpyTgHQy/file7b6f4bc0af09/widget7b6f57239eb9.html screenshot completed[] 
- []
 
-File: schedule_files/figure-pdf/unnamed-chunk-1-1.pdf Graphic file (type pdf)
-<use schedule_files/figure-pdf/unnamed-chunk-1-1.pdf>
+[9
 
-Overfull \hbox (10.9531pt too wide) in paragraph at lines 425--426
-[][] 
- []
+]
+chapter 4.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 7.665pt on input line 463.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 5.475pt on input line 463.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 10.95099pt on input line 463.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 7.66568pt on input line 463.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 5.4755pt on input line 463.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 10.94882pt on input line 463.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 7.66417pt on input line 463.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 5.47441pt on input line 463.
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10.95> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 505.
 
 
-
-[12
+[10
 
 ]
 
-[13]
-part II.
-Package scrkbase Info: You've told me to use the font selection of the element
-(scrkbase)             `partprefix' that is an alias of element `partnumber'
-(scrkbase)              on input line 427.
+[11]
 
+Package tcolorbox Warning: Using nobreak failed. Try to enlarge `lines before break' or set page breaks manually on input line 629.
+
+
+
+[12]
+
+Package tcolorbox Warning: The upper box part has become overfull on input line 629.
+
+
+Overfull \vbox (204.05753pt too high) has occurred while \output is active []
+
+
+
+[13]
 
 [14
 
 ]
-chapter 4.
-
-LaTeX Warning: Reference `eq-log' on page 15 undefined on input line 439.
-
-File: pattern_intro_text_files/figure-pdf/unnamed-chunk-1-1.pdf Graphic file (type pdf)
-<use pattern_intro_text_files/figure-pdf/unnamed-chunk-1-1.pdf>
-
-Overfull \hbox (10.9531pt too wide) in paragraph at lines 463--464
-[][] 
+Underfull \hbox (badness 4084) in paragraph at lines 738--748
+[][]\TU/lmr/bx/n/10.95 Exercise 4.7 \TU/lmr/m/n/10.95 (Algorithmic/mathematical thinking)\TU/lmr/bx/n/10.95 . []\TU/lmr/m/n/10.95 Now write the code in reac-
  []
 
 
 
-[15
+[15]
 
-]
+LaTeX Font Warning: Font shape `TU/lmss/bx/sc' undefined
+(Font)              using `TU/lmss/bx/n' instead on input line 801.
+
+
 
 [16]
-File: pattern_intro_text_files/figure-latex/mermaid-figure-1.png Graphic file (type bmp)
-<pattern_intro_text_files/figure-latex/mermaid-figure-1.png>
-
-Overfull \hbox (92.03307pt too wide) in paragraph at lines 480--481
- [][] 
- []
-
-
-LaTeX Warning: Reference `fig-variables' on page 17 undefined on input line 488.
-
-
 
 [17]
-
-LaTeX Warning: Reference `tip-example' on page 18 undefined on input line 517.
-
-
-LaTeX Warning: Reference `tip-example' on page 18 undefined on input line 525.
-
-
-LaTeX Warning: Reference `eq-line' on page 18 undefined on input line 540.
-
-
-LaTeX Warning: Reference `eq-line' on page 18 undefined on input line 541.
-
-File: pattern_intro_text_files/figure-pdf/tab-anscombe-1.pdf Graphic file (type pdf)
-<use pattern_intro_text_files/figure-pdf/tab-anscombe-1.pdf>
-
-Overfull \hbox (10.9531pt too wide) in paragraph at lines 551--552
-[] 
- []
-
-
-
-[18]
-
-[19]
-Overfull \vbox (24.31499pt too high) has occurred while \output is active []
-
-
-
-[20]
 chapter 5.
 
-LaTeX Warning: Reference `eq-log' on page 21 undefined on input line 563.
+Underfull \hbox (badness 10000) in paragraph at lines 935--939
 
-File: pattern_practical_1_files/figure-pdf/unnamed-chunk-1-1.pdf Graphic file (type pdf)
-<use pattern_practical_1_files/figure-pdf/unnamed-chunk-1-1.pdf>
-
-Overfull \hbox (10.9531pt too wide) in paragraph at lines 587--588
-[][] 
  []
 
 
 
-[21
+[18
 
 ]
+File: images/two_component_turing.png Graphic file (type bmp)
+<images/two_component_turing.png>
+File: images/wntbmpsox.png Graphic file (type bmp)
+<images/wntbmpsox.png>
 
-[22]
-File: pattern_practical_1_files/figure-latex/mermaid-figure-1.png Graphic file (type bmp)
-<pattern_practical_1_files/figure-latex/mermaid-figure-1.png>
-
-Overfull \hbox (92.03307pt too wide) in paragraph at lines 604--605
- [][] 
+Overfull \hbox (135.73567pt too wide) in paragraph at lines 1052--1056
+[][]\TU/lmr/bx/n/10.95 Exercise 5.3 \TU/lmr/m/n/10.95 (Conceptual thinking)\TU/lmr/bx/n/10.95 . []\TU/lmr/m/n/10.95 Modify the initial condition in the script \TU/lmtt/m/n/10.95 01__digits_squarehomogeneoustissue.py
  []
 
 
-LaTeX Warning: Reference `fig-variables' on page 23 undefined on input line 612.
+
+[19]
+
+[20]
+Underfull \hbox (badness 10000) in paragraph at lines 1079--1081
+
+ []
 
 
+
+[21]
+Overfull \hbox (2.28847pt too wide) in paragraph at lines 1115--1117
+\TU/lmr/m/n/10.95 Think about how tissue growth is implemented in the script \TU/lmtt/m/n/10.95 03__digits_growingsquare.py\TU/lmr/m/n/10.95 . 
+ []
+
+
+
+[22]
 
 [23]
-
-LaTeX Warning: Reference `tip-example' on page 24 undefined on input line 641.
-
-
-LaTeX Warning: Reference `tip-example' on page 24 undefined on input line 649.
-
-
-LaTeX Warning: Reference `eq-line' on page 24 undefined on input line 664.
-
-
-LaTeX Warning: Reference `eq-line' on page 24 undefined on input line 665.
-
-File: pattern_practical_1_files/figure-pdf/tab-anscombe-1.pdf Graphic file (type pdf)
-<use pattern_practical_1_files/figure-pdf/tab-anscombe-1.pdf>
-
-Overfull \hbox (10.9531pt too wide) in paragraph at lines 675--676
-[] 
+Overfull \hbox (9.19746pt too wide) in paragraph at lines 1215--1224
+[][]\TU/lmr/bx/n/10.95 Exercise 5.8 \TU/lmr/m/n/10.95 (Algorithmic and biological thinking)\TU/lmr/bx/n/10.95 . []\TU/lmr/m/n/10.95 The script \TU/lmtt/m/n/10.95 06__digits_squarehoxdfgf.py
  []
 
 
@@ -1353,22 +1267,9 @@ Overfull \hbox (10.9531pt too wide) in paragraph at lines 675--676
 [24]
 
 [25]
-Overfull \vbox (24.31499pt too high) has occurred while \output is active []
-
-
 
 [26]
 chapter 6.
-
-LaTeX Warning: Reference `eq-log' on page 27 undefined on input line 687.
-
-File: pattern_practical_2_files/figure-pdf/unnamed-chunk-1-1.pdf Graphic file (type pdf)
-<use pattern_practical_2_files/figure-pdf/unnamed-chunk-1-1.pdf>
-
-Overfull \hbox (10.9531pt too wide) in paragraph at lines 711--712
-[][] 
- []
-
 
 
 [27
@@ -1376,248 +1277,133 @@ Overfull \hbox (10.9531pt too wide) in paragraph at lines 711--712
 ]
 
 [28]
-File: pattern_practical_2_files/figure-latex/mermaid-figure-1.png Graphic file (type bmp)
-<pattern_practical_2_files/figure-latex/mermaid-figure-1.png>
-
-Overfull \hbox (92.03307pt too wide) in paragraph at lines 728--729
- [][] 
- []
-
-
-LaTeX Warning: Reference `fig-variables' on page 29 undefined on input line 736.
-
-
 
 [29]
 
-LaTeX Warning: Reference `tip-example' on page 30 undefined on input line 765.
+[30]
+Overfull \hbox (16.33655pt too wide) in paragraph at lines 1620--1621
+[]\TU/lmr/m/n/10.95 Parameter  
+ []
 
 
-LaTeX Warning: Reference `tip-example' on page 30 undefined on input line 773.
+Overfull \hbox (15.42873pt too wide) in paragraph at lines 1622--1623
+[]\TU/lmr/m/n/10.95 Zebrafish  
+ []
 
 
-LaTeX Warning: Reference `eq-line' on page 30 undefined on input line 788.
+Overfull \hbox (9.63515pt too wide) in paragraph at lines 1634--1634
+[]|\TU/lmr/m/n/10.95 Duration 
+ []
 
 
-LaTeX Warning: Reference `eq-line' on page 30 undefined on input line 789.
+Overfull \hbox (5.21135pt too wide) in paragraph at lines 1635--1635
+[]|\TU/lmr/m/n/10.95 Number 
+ []
 
-File: pattern_practical_2_files/figure-pdf/tab-anscombe-1.pdf Graphic file (type pdf)
-<use pattern_practical_2_files/figure-pdf/tab-anscombe-1.pdf>
 
-Overfull \hbox (10.9531pt too wide) in paragraph at lines 799--800
-[] 
+Overfull \hbox (1.9373pt too wide) in paragraph at lines 1635--1635
+\TU/lmr/m/n/10.95 somites|  
  []
 
 
 
-[30]
-
 [31]
-Overfull \vbox (24.31499pt too high) has occurred while \output is active []
+Overfull \hbox (0.25175pt too wide) in paragraph at lines 1673--1676
+[]\TU/lmr/m/n/10.95 You can test the clock parameters separately with the \TU/lmtt/m/n/10.95 clock.py\TU/lmr/m/n/10.95 /\TU/lmtt/m/n/10.95 rolling_clock.py
+ []
+
+
+Overfull \hbox (42.85811pt too wide) in paragraph at lines 1707--1709
+[][][]\TU/lmr/m/it/10.95 https://anatomypubs.onlinelibrary.wiley.com/doi/10.1002/1097-0177(2000)9999:9999%3C::AID-
+ []
 
 
 
 [32]
-chapter 7.
 
-LaTeX Warning: Reference `eq-log' on page 33 undefined on input line 811.
-
-File: pattern_practical_3_files/figure-pdf/unnamed-chunk-1-1.pdf Graphic file (type pdf)
-<use pattern_practical_3_files/figure-pdf/unnamed-chunk-1-1.pdf>
-
-Overfull \hbox (10.9531pt too wide) in paragraph at lines 835--836
-[][] 
- []
-
-
-
-[33
-
-]
+[33]
 
 [34]
-File: pattern_practical_3_files/figure-latex/mermaid-figure-1.png Graphic file (type bmp)
-<pattern_practical_3_files/figure-latex/mermaid-figure-1.png>
-
-Overfull \hbox (92.03307pt too wide) in paragraph at lines 852--853
- [][] 
- []
-
-
-LaTeX Warning: Reference `fig-variables' on page 35 undefined on input line 860.
-
-
-
-[35]
-
-LaTeX Warning: Reference `tip-example' on page 36 undefined on input line 889.
-
-
-LaTeX Warning: Reference `tip-example' on page 36 undefined on input line 897.
-
-
-LaTeX Warning: Reference `eq-line' on page 36 undefined on input line 912.
-
-
-LaTeX Warning: Reference `eq-line' on page 36 undefined on input line 913.
-
-File: pattern_practical_3_files/figure-pdf/tab-anscombe-1.pdf Graphic file (type pdf)
-<use pattern_practical_3_files/figure-pdf/tab-anscombe-1.pdf>
-
-Overfull \hbox (10.9531pt too wide) in paragraph at lines 923--924
-[] 
- []
-
-
-
-[36]
-
-[37]
-Overfull \vbox (24.31499pt too high) has occurred while \output is active []
-
-
-
-[38]
 part III.
 Package scrkbase Info: You've told me to use the font selection of the element
 (scrkbase)             `partprefix' that is an alias of element `partnumber'
-(scrkbase)              on input line 925.
+(scrkbase)              on input line 1784.
 
 
-[39
+[35
+
+]
+chapter 7.
+
+
+[36
 
 ]
 chapter 8.
 
-LaTeX Warning: Reference `eq-log' on page 40 undefined on input line 937.
 
-File: morpho_intro_text_files/figure-pdf/unnamed-chunk-1-1.pdf Graphic file (type pdf)
-<use morpho_intro_text_files/figure-pdf/unnamed-chunk-1-1.pdf>
-
-Overfull \hbox (10.9531pt too wide) in paragraph at lines 961--962
-[][] 
- []
-
-
-
-[40
+[37
 
 ]
+
+[38]
+
+[39]
+
+[40]
 
 [41]
-File: morpho_intro_text_files/figure-latex/mermaid-figure-1.png Graphic file (type bmp)
-<morpho_intro_text_files/figure-latex/mermaid-figure-1.png>
-
-Overfull \hbox (92.03307pt too wide) in paragraph at lines 978--979
- [][] 
- []
-
-
-LaTeX Warning: Reference `fig-variables' on page 42 undefined on input line 986.
-
-
 
 [42]
-
-LaTeX Warning: Reference `tip-example' on page 43 undefined on input line 1015.
-
-
-LaTeX Warning: Reference `tip-example' on page 43 undefined on input line 1023.
-
-
-LaTeX Warning: Reference `eq-line' on page 43 undefined on input line 1038.
-
-
-LaTeX Warning: Reference `eq-line' on page 43 undefined on input line 1039.
-
-File: morpho_intro_text_files/figure-pdf/tab-anscombe-1.pdf Graphic file (type pdf)
-<use morpho_intro_text_files/figure-pdf/tab-anscombe-1.pdf>
-
-Overfull \hbox (10.9531pt too wide) in paragraph at lines 1049--1050
-[] 
- []
-
-
-
-[43]
-
-[44]
-Overfull \vbox (24.31499pt too high) has occurred while \output is active []
-
-
-
-[45]
 chapter 9.
 
-LaTeX Warning: Reference `eq-log' on page 46 undefined on input line 1061.
 
-File: morpho_practical_1_files/figure-pdf/unnamed-chunk-1-1.pdf Graphic file (type pdf)
-<use morpho_practical_1_files/figure-pdf/unnamed-chunk-1-1.pdf>
-
-Overfull \hbox (10.9531pt too wide) in paragraph at lines 1085--1086
-[][] 
- []
-
-
-
-[46
+[43
 
 ]
 
-[47]
-File: morpho_practical_1_files/figure-latex/mermaid-figure-1.png Graphic file (type bmp)
-<morpho_practical_1_files/figure-latex/mermaid-figure-1.png>
+[44]
 
-Overfull \hbox (92.03307pt too wide) in paragraph at lines 1102--1103
- [][] 
- []
+[45]
 
-
-LaTeX Warning: Reference `fig-variables' on page 48 undefined on input line 1110.
-
+[46]
+part IV.
+Package scrkbase Info: You've told me to use the font selection of the element
+(scrkbase)             `partprefix' that is an alias of element `partnumber'
+(scrkbase)              on input line 2404.
 
 
-[48]
+[47
 
-LaTeX Warning: Reference `tip-example' on page 49 undefined on input line 1139.
-
-
-LaTeX Warning: Reference `tip-example' on page 49 undefined on input line 1147.
-
-
-LaTeX Warning: Reference `eq-line' on page 49 undefined on input line 1162.
-
-
-LaTeX Warning: Reference `eq-line' on page 49 undefined on input line 1163.
-
-File: morpho_practical_1_files/figure-pdf/tab-anscombe-1.pdf Graphic file (type pdf)
-<use morpho_practical_1_files/figure-pdf/tab-anscombe-1.pdf>
-
-Overfull \hbox (10.9531pt too wide) in paragraph at lines 1173--1174
-[] 
- []
-
-
-
-[49]
-
-[50]
-Overfull \vbox (24.31499pt too high) has occurred while \output is active []
-
-
-
-[51]
+]
 chapter 10.
 
-LaTeX Warning: Reference `eq-log' on page 52 undefined on input line 1185.
 
-File: morpho_practical_2_files/figure-pdf/unnamed-chunk-1-1.pdf Graphic file (type pdf)
-<use morpho_practical_2_files/figure-pdf/unnamed-chunk-1-1.pdf>
+[48
 
-Overfull \hbox (10.9531pt too wide) in paragraph at lines 1209--1210
-[][] 
- []
+]
+chapter 11.
 
+
+[49
+
+]
+chapter 12.
+
+
+[50
+
+]
+part V.
+Package scrkbase Info: You've told me to use the font selection of the element
+(scrkbase)             `partprefix' that is an alias of element `partnumber'
+(scrkbase)              on input line 2437.
+
+
+[51
+
+]
+chapter 13.
 
 
 [52
@@ -1625,325 +1411,74 @@ Overfull \hbox (10.9531pt too wide) in paragraph at lines 1209--1210
 ]
 
 [53]
-File: morpho_practical_2_files/figure-latex/mermaid-figure-1.png Graphic file (type bmp)
-<morpho_practical_2_files/figure-latex/mermaid-figure-1.png>
-
-Overfull \hbox (92.03307pt too wide) in paragraph at lines 1226--1227
- [][] 
- []
-
-
-LaTeX Warning: Reference `fig-variables' on page 54 undefined on input line 1234.
-
-
 
 [54]
-
-LaTeX Warning: Reference `tip-example' on page 55 undefined on input line 1263.
-
-
-LaTeX Warning: Reference `tip-example' on page 55 undefined on input line 1271.
+chapter 14.
+Missing character: There is no ₓ (U+2093) in font [lmmono10-regular]:!
+Missing character: There is no ᵧ (U+1D67) in font [lmmono10-regular]:!
 
 
-LaTeX Warning: Reference `eq-line' on page 55 undefined on input line 1286.
+[55
 
-
-LaTeX Warning: Reference `eq-line' on page 55 undefined on input line 1287.
-
-File: morpho_practical_2_files/figure-pdf/tab-anscombe-1.pdf Graphic file (type pdf)
-<use morpho_practical_2_files/figure-pdf/tab-anscombe-1.pdf>
-
-Overfull \hbox (10.9531pt too wide) in paragraph at lines 1297--1298
-[] 
- []
-
-
-
-[55]
+]
 
 [56]
-Overfull \vbox (24.31499pt too high) has occurred while \output is active []
+
+Package tcolorbox Warning: The upper box part has become overfull on input line 2705.
 
 
 
 [57]
-part IV.
-Package scrkbase Info: You've told me to use the font selection of the element
-(scrkbase)             `partprefix' that is an alias of element `partnumber'
-(scrkbase)              on input line 1299.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 9.0pt on input line 2748.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 6.0pt on input line 2748.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 5.0pt on input line 2748.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 9.00082pt on input line 2748.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 6.00055pt on input line 2748.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 5.00046pt on input line 2748.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 8.99904pt on input line 2748.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 5.99936pt on input line 2748.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 4.99947pt on input line 2748.
 
 
 [58
 
 ]
-chapter 11.
 
-LaTeX Warning: Reference `eq-log' on page 59 undefined on input line 1312.
+[59]
 
-File: differentiation_intro_text_files/figure-pdf/unnamed-chunk-1-1.pdf Graphic file (type pdf)
-<use differentiation_intro_text_files/figure-pdf/unnamed-chunk-1-1.pdf>
-
-Overfull \hbox (10.9531pt too wide) in paragraph at lines 1336--1337
-[][] 
- []
-
-
-
-[59
-
-]
-
-[60]
-File: differentiation_intro_text_files/figure-latex/mermaid-figure-1.png Graphic file (type bmp)
-<differentiation_intro_text_files/figure-latex/mermaid-figure-1.png>
-
-Overfull \hbox (92.03307pt too wide) in paragraph at lines 1353--1354
- [][] 
- []
-
-
-LaTeX Warning: Reference `fig-variables' on page 61 undefined on input line 1361.
-
-
-
-[61]
-
-LaTeX Warning: Reference `tip-example' on page 62 undefined on input line 1390.
-
-
-LaTeX Warning: Reference `tip-example' on page 62 undefined on input line 1398.
-
-
-LaTeX Warning: Reference `eq-line' on page 62 undefined on input line 1413.
-
-
-LaTeX Warning: Reference `eq-line' on page 62 undefined on input line 1414.
-
-File: differentiation_intro_text_files/figure-pdf/tab-anscombe-1.pdf Graphic file (type pdf)
-<use differentiation_intro_text_files/figure-pdf/tab-anscombe-1.pdf>
-
-Overfull \hbox (10.9531pt too wide) in paragraph at lines 1424--1425
-[] 
- []
-
-
-
-[62]
-
-[63]
-Overfull \vbox (24.31499pt too high) has occurred while \output is active []
-
-
-
-[64]
-chapter 12.
-
-LaTeX Warning: Reference `eq-log' on page 65 undefined on input line 1436.
-
-File: differentiation_practical_1_files/figure-pdf/unnamed-chunk-1-1.pdf Graphic file (type pdf)
-<use differentiation_practical_1_files/figure-pdf/unnamed-chunk-1-1.pdf>
-
-Overfull \hbox (10.9531pt too wide) in paragraph at lines 1460--1461
-[][] 
- []
-
-
-
-[65
-
-]
-
-[66]
-File: differentiation_practical_1_files/figure-latex/mermaid-figure-1.png Graphic file (type bmp)
-<differentiation_practical_1_files/figure-latex/mermaid-figure-1.png>
-
-Overfull \hbox (92.03307pt too wide) in paragraph at lines 1477--1478
- [][] 
- []
-
-
-LaTeX Warning: Reference `fig-variables' on page 67 undefined on input line 1485.
-
-
-
-[67]
-
-LaTeX Warning: Reference `tip-example' on page 68 undefined on input line 1514.
-
-
-LaTeX Warning: Reference `tip-example' on page 68 undefined on input line 1522.
-
-
-LaTeX Warning: Reference `eq-line' on page 68 undefined on input line 1537.
-
-
-LaTeX Warning: Reference `eq-line' on page 68 undefined on input line 1538.
-
-File: differentiation_practical_1_files/figure-pdf/tab-anscombe-1.pdf Graphic file (type pdf)
-<use differentiation_practical_1_files/figure-pdf/tab-anscombe-1.pdf>
-
-Overfull \hbox (10.9531pt too wide) in paragraph at lines 1548--1549
-[] 
- []
-
-
-
-[68]
-
-[69]
-Overfull \vbox (24.31499pt too high) has occurred while \output is active []
-
-
-
-[70]
-chapter 13.
-
-LaTeX Warning: Reference `eq-log' on page 71 undefined on input line 1560.
-
-File: differentiation_practical_2_files/figure-pdf/unnamed-chunk-1-1.pdf Graphic file (type pdf)
-<use differentiation_practical_2_files/figure-pdf/unnamed-chunk-1-1.pdf>
-
-Overfull \hbox (10.9531pt too wide) in paragraph at lines 1584--1585
-[][] 
- []
-
-
-
-[71
-
-]
-
-[72]
-File: differentiation_practical_2_files/figure-latex/mermaid-figure-1.png Graphic file (type bmp)
-<differentiation_practical_2_files/figure-latex/mermaid-figure-1.png>
-
-Overfull \hbox (92.03307pt too wide) in paragraph at lines 1601--1602
- [][] 
- []
-
-
-LaTeX Warning: Reference `fig-variables' on page 73 undefined on input line 1609.
-
-
-
-[73]
-
-LaTeX Warning: Reference `tip-example' on page 74 undefined on input line 1638.
-
-
-LaTeX Warning: Reference `tip-example' on page 74 undefined on input line 1646.
-
-
-LaTeX Warning: Reference `eq-line' on page 74 undefined on input line 1661.
-
-
-LaTeX Warning: Reference `eq-line' on page 74 undefined on input line 1662.
-
-File: differentiation_practical_2_files/figure-pdf/tab-anscombe-1.pdf Graphic file (type pdf)
-<use differentiation_practical_2_files/figure-pdf/tab-anscombe-1.pdf>
-
-Overfull \hbox (10.9531pt too wide) in paragraph at lines 1672--1673
-[] 
- []
-
-
-
-[74]
-
-[75]
-Overfull \vbox (24.31499pt too high) has occurred while \output is active []
-
-
-
-[76]
-part V.
-Package scrkbase Info: You've told me to use the font selection of the element
-(scrkbase)             `partprefix' that is an alias of element `partnumber'
-(scrkbase)              on input line 1674.
-
-
-[77
-
-]
-chapter 14.
-
-
-[78
-
-]
-LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 1765.
-
-
-[79]
-
-[80]
-chapter 15.
-Missing character: There is no ₓ (U+2093) in font [lmmono10-regular]:!
-Missing character: There is no ᵧ (U+1D67) in font [lmmono10-regular]:!
-
-
-[81
-
-]
-
-[82]
-
-Package tcolorbox Warning: The upper box part has become overfull on input line 1939.
-
-
-
-[83]
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 9.0pt on input line 1988.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 6.0pt on input line 1988.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 1988.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 9.00082pt on input line 1988.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 6.00055pt on input line 1988.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.00046pt on input line 1988.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 8.99904pt on input line 1988.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 5.99936pt on input line 1988.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 1988.
-
-
-[84
-
-]
-
-[85]
-
-Package tcolorbox Warning: The upper box part has become overfull on input line 2312.
+Package tcolorbox Warning: The upper box part has become overfull on input line 3072.
 
 
 Overfull \vbox (2513.61671pt too high) has occurred while \output is active []
 
 
 
-[86]
+[60]
 
-[87
+[61
 
 ]
 ! Unable to load picture or PDF file 'index_files/mediabag/Tumbling_and_running.png'.
 <to be read again> 
                    }
-l.2441 ...files/mediabag/Tumbling_and_running.png}
+l.3223 ...files/mediabag/Tumbling_and_running.png}
                                                    
 Here is how much of TeX's memory you used:
- 38147 strings out of 475837
- 796447 string characters out of 5773864
+ 37759 strings out of 475837
+ 777209 string characters out of 5773864
  1530473 words of memory out of 5000000
- 60460 multiletter control sequences out of 15000+600000
+ 60097 multiletter control sequences out of 15000+600000
  567477 words of font info for 114 fonts, out of 8000000 for 9000
  54 hyphenation exceptions out of 8191
- 108i,8n,123p,10900b,1068s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 108i,8n,123p,10900b,1090s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on index.pdf (87 pages).
+Output written on index.pdf (61 pages).

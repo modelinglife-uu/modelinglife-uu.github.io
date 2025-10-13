@@ -17,8 +17,8 @@ cd ../
 echo "Succesfully removed all HTML comments."
 
 rm -rf docs
-mv _book docs
+cp -a _book docs
 date=$(date '+%Y-%m-%d')
 git add *
 git commit -a -m "Dispatch book $date"
-git push
+git push > /dev/null 2>&1

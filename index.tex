@@ -275,133 +275,35 @@
 
 \markboth{Modeling life}{Modeling life}
 
-Welcome to the course Modeling Life.
+This website accompanies the Modeling Life course at Utrecht University.
+It primarily serves as a central hub for all the practicals
+(werkcolleges), with the necessarily files, links and other resources
+for each day.
+
+Each practical has its own page containing background explanations, code
+snippets, and questions that are designed for you to learn about the
+models. Most of these exercises build directly on the lectures, allowing
+you to explore biological questions---such as how morphogen gradients
+form, how spatial patterns emerge, or how cells evolve to ``stick
+together''.
+
+You can navigate the site using the sidebar or the left. The
+\href{general.qmd}{General Course Info} section outlines the general
+course info (exams, learning goals, etc.). You can also find the
+\href{schedule.qmd}{Schedule} on this website. The individual practicals
+sections provides detailed instructions for each day. In the second part
+of the course you will get even more experience doing things yourself by
+working on a mini-project.
+
+We hope you'll use this website actively. There's lots to read,
+simulate, modify, and explore.
+
+\emph{Note: the Modeling Life course is new. This website is to help
+you, but is by no means perfect. Please let us know if you see any
+mistakes, typo's or other issues. Any constructive feedback on how to
+make things better and easier for you is always welcome.}
 
 \part{Course information}
-
-\chapter{Quarto examples}\label{quarto-examples}
-
-\section{Equations}\label{equations}
-
-Here's an equation:
-
-\begin{equation}\phantomsection\label{eq-log}{ 
-\frac{\mathrm{d}N}{\mathrm{d}t} = rN(1 - \frac{N}{K}) 
-}\end{equation}
-
-And Equation~\ref{eq-log} is a reference to the equation above.
-
-\section{References}\label{references}
-
-See Knuth (1984) for additional discussion of literate programming.
-
-\section{Syntax highlighting}\label{syntax-highlighting}
-
-Here's some python code:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
-\NormalTok{np.random.seed(}\DecValTok{42}\NormalTok{)}
-\NormalTok{a }\OperatorTok{=} \DecValTok{1} \OperatorTok{+} \DecValTok{2}
-\NormalTok{b }\OperatorTok{=}\NormalTok{ a }\OperatorTok{+} \DecValTok{3}
-\BuiltInTok{print}\NormalTok{(}\StringTok{"Hello"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\section{Visualising data (R)}\label{visualising-data-r}
-
-Here's an interactive plot generated with R:
-
-\includegraphics{intro_files/figure-pdf/unnamed-chunk-1-1.pdf}
-
-\section{A youtube clip:}\label{a-youtube-clip}
-
-\url{https://www.youtube.com/embed/wo9vZccmqwc}
-
-\section{An `iframe' to a different page (e.g.~my
-simulations)}\label{an-iframe-to-a-different-page-e.g.-my-simulations}
-
-\subsection{Mermaid}\label{mermaid}
-
-Diagrams (Mermaid syntax):
-
-\begin{figure}
-
-\centering{
-
-\includegraphics[width=7.47in,height=2.27in]{intro_files/figure-latex/mermaid-figure-1.png}
-
-}
-
-\caption{\label{fig-variables}Types of models}
-
-\end{figure}%
-
-Which can be referred to Figure~\ref{fig-variables}.
-
-\subsection{Callouts}\label{callouts}
-
-Call-outs can organise information and highlight important points.
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-Note that there are five types of callouts, including: \texttt{note},
-\texttt{warning}, \texttt{important}, \texttt{tip}, and
-\texttt{caution}.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-tip-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-tip-color-frame, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip with Title}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-This is an example of a callout with a title.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-caution-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-caution-color-frame, title=\textcolor{quarto-callout-caution-color}{\faFire}\hspace{0.5em}{Expand To Learn About Collapse}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-This is an example of a `folded' caution callout that can be expanded by
-the user. You can use \texttt{collapse="true"} to collapse it by default
-or \texttt{collapse="false"} to make a collapsible callout that is
-expanded by default.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-tip-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-tip-color-frame, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip \ref*{tip-example}: Cross-Referencing a Tip}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-\quartocallouttip{tip-example} 
-
-Add an ID starting with \texttt{\#tip-} to reference a tip.
-
-\end{tcolorbox}
-
-See Tip~\ref{tip-example}\ldots{}
-
-\subsection{How to format questions/problem
-sets}\label{how-to-format-questionsproblem-sets}
-
-\begin{exercise}[Test
-1]\protect\hypertarget{exr-test1}{}\label{exr-test1}
-
-The equation of any straight line, called a linear equation, can be
-written as:
-
-\begin{equation}\phantomsection\label{eq-line}{ 
-y = mx + b
-}\end{equation}
-
-Refer to the equation like this Equation~\ref{eq-line} or like
-Customlabel~\ref{eq-line}.
-
-\textbf{a.} Blabla?
-
-\textbf{b.} Of blablabla?
-
-\end{exercise}
-
-\subsection{Sharing data tables:}\label{sharing-data-tables}
-
-\includegraphics{intro_files/figure-pdf/tab-anscombe-1.pdf}
 
 \chapter{General course info}\label{general}
 
@@ -409,1267 +311,2128 @@ Our names, email addresses, an overview of the course content, learning
 goals, tips, grading, group formation, usage of Brightspace, materials
 they need, required attendencee, and feedback is welcome blabla.
 
-\chapter{Schedule}\label{modelling}
+\chapter{Schedule}\label{schedule}
 
-The schedule of the course and important deadlines are outlined below.
-The course is divided into blabla modules, each with its own set of
-topics and blabla. The schedule is subject to change, and any updates
-will be communicated in advance. Blabla.
+\section*{WEEK 1}\label{week-1}
+\addcontentsline{toc}{section}{WEEK 1}
 
-(paste below is the schedule of Kwanti/BioMS as an example)
+\markright{WEEK 1}
 
-\begin{verbatim}
-file:////private/var/folders/22/dvqytf_15mqgwc9rn9l42y5w0000gn/T/RtmpyTgHQy/file7b6f4bc0af09/widget7b6f57239eb9.html screenshot completed
-\end{verbatim}
+Nov 10, 2025 -- Welcome and Intro to Python (\textbf{HC} 13:15-17:00).
 
-\includegraphics{schedule_files/figure-pdf/unnamed-chunk-1-1.pdf}
+Nov 11, 2025 -- Pattern formation I: Gradients and segments (\textbf{HC}
+10:00-12:45 and \textbf{WC1} 13:15-17:00).
+
+Nov 13, 2025 -- Pattern formation II: Turing Digit patterning
+(\textbf{HC} 10:00-12:45 and \textbf{WC2} 13:15-17:00).
+
+\section*{WEEK 2}\label{week-2}
+\addcontentsline{toc}{section}{WEEK 2}
+
+\markright{WEEK 2}
+
+Nov 17, 2025 -- Guest lecture: Max Rietkerk, Ecosystem's spatial
+patterns (\textbf{HC} 13:15-17:00).
+
+Nov 18, 2025 -- Pattern formation III: Clock and Wavefront (\textbf{HC}
+10:00-12:45 and \textbf{WC3} 13:15-17:00).
+
+Nov 20, 2025 -- Morphogenesis: Cell sorting (\textbf{HC} 10:00-12:45 and
+\textbf{WC4} 13:15-17:00).
+
+\section*{WEEK 3}\label{week-3}
+\addcontentsline{toc}{section}{WEEK 3}
+
+\markright{WEEK 3}
+
+Nov 24, 2025 -- Guest lecture: Ina Sonnen, Signal encoding in
+multicellular systems (\textbf{HC} 13:15-17:00).
+
+Nov 25, 2025 -- Cell differentiation: gene regulation in time
+(\textbf{HC} 10:00-12:45 and \textbf{WC5} 13:15-17:00).
+
+Nov 27, 2025 -- Cell differentiation: gene regulation in space
+(\textbf{HC} 10:00-12:45 and \textbf{WC6} 13:15-17:00).
+
+\section*{WEEK 4}\label{week-4}
+\addcontentsline{toc}{section}{WEEK 4}
+
+\markright{WEEK 4}
+
+Dec 1, 2025 -- Guest lectures: Vivek Bhardwak and Kaisa Kajala, What is
+a cell type? genomic and functional perspectives (\textbf{HC}
+13:15-17:00).
+
+Dec 2, 2025 -- Environment and Development (\textbf{HC} 10:00-12:45 and
+\textbf{WC7} 13:15-17:00).
+
+Dec 4, 2025 -- Evolving populations I: Sticky cells (\textbf{HC}
+10:00-12:45 and \textbf{WC8} 13:15-17:00).
+
+\section*{WEEK 5}\label{week-5}
+\addcontentsline{toc}{section}{WEEK 5}
+
+\markright{WEEK 5}
+
+Dec 8, 2025 -- Guest lecture: Rutger Hermsen (\textbf{HC} 13:15-17:00).
+
+Dec 9, 2025 - Evolving populations II: Genotype-phenotype map
+(\textbf{HC} 10:00-12:45 and \textbf{WC9} 13:15-17:00).
+
+Dec 11, 2025 - Evolving populations III: Microbial communities
+(\textbf{HC} 10:00-12:45 and \textbf{WC10} 13:15-17:00).
+
+\section*{WEEK 6 (self-study and
+exam)}\label{week-6-self-study-and-exam}
+\addcontentsline{toc}{section}{WEEK 6 (self-study and exam)}
+
+\markright{WEEK 6 (self-study and exam)}
+
+Dec 18, 2025 --Exam
+
+\section*{WEEK 7-9 (mini projects)}\label{week-7-9-mini-projects}
+\addcontentsline{toc}{section}{WEEK 7-9 (mini projects)}
+
+\markright{WEEK 7-9 (mini projects)}
+
+Jan 6, 2026 - Miniprojects presentation and making teams
+
+Following weeks you will have classrooms to work on your miniprojects
+(13:15-17:00). Also, you should schedule meetings with your supervisor
+to discuss progress of your miniproject.
+
+\section*{WEEK 10 (mini symposium)}\label{week-10-mini-symposium}
+\addcontentsline{toc}{section}{WEEK 10 (mini symposium)}
+
+\markright{WEEK 10 (mini symposium)}
+
+Jan 29, 2026 - Miniprojects final presentation
 
 \part{I) Pattern formation}
 
-\chapter{Pattern formation}\label{pattern-formation}
+\chapter{Introduction}\label{introduction}
 
-\section{Equations}\label{equations-1}
+\subsection{TODO}\label{todo}
 
-Here's an equation:
+\begin{itemize}
+\tightlist
+\item
+  Write a short intro on pattern formation part of the practicals.
+\end{itemize}
 
-\begin{equation}\phantomsection\label{eq-log}{ 
-\frac{\mathrm{d}N}{\mathrm{d}t} = rN(1 - \frac{N}{K}) 
-}\end{equation}
+\chapter{\texorpdfstring{Pattern formation I Gradients and
+segments}{Pattern formation I   Gradients and segments}}\label{pattern-formation-i-gradients-and-segments}
 
-And Equation~\ref{eq-log} is a reference to the equation above.
+\section{Morphogen Gradients and
+Patterning}\label{morphogen-gradients-and-patterning}
 
-\section{References}\label{references-1}
+In this practical, we a going to look at how an organism can form
+segments along its body axis . The mathematical model that we will
+implement and study is an implementation of the so-called French flag
+conceptual model first proposed by Lewis Wolpert (Wolpert 1969). It
+assumes the spatially graded expression of a morphogen ``M'' that
+influences the expression of some downstream genes A, B and C. Their
+expression is often visualized by red, white and blue and the arising
+pattern resembles the French flag, hence the name (see the power of
+visualization).
 
-See Knuth (1984) for additional discussion of literate programming.
+One of the most well-studied organisms when it comes to body axis
+segmentation (although its segmentation mechanism is evolutionary
+derived and a-typical!) is the development of the fruit fly Drosophila
+melanogaster. Supporting the ideas of Wolpert, it was found that through
+tethering maternal Bicoid mRNA to one side of the embryo, Bicoid protein
+can form a gradient extending along the anterior-posterior axis, with so
+called gap genes as a first tier in the segmentation hierarchy
+differentially responding to different Bicoid protein levels (Driever
+and Nüsslein-Volhard 1988). Later it was found that often at least two
+opposing morphogen gradients drive downstream gene expression and genes
+typically respond to multiple inputs.
 
-\section{Syntax highlighting}\label{syntax-highlighting-1}
+\section{Mathematical modeling - integrating multiple
+signals}\label{mathematical-modeling---integrating-multiple-signals}
 
-Here's some python code:
+Promotors/enhancers driving gene expression frequently make use of so
+called OR and AND gates to integrate inputs from different transcription
+factors. An OR gate can be implemented mathematically with a sum of the
+effect of the transcription factors, while an AND can be implemented
+mathematically with a product. Some examples:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\frac{dX}{dt} = a(\text{tf1}) + b(\text{tf2})\): Gene X is induced
+  by transcription factor 1 and 2 in an OR fashion, either
+  \(a(\text{tf1})\) or \(b(\text{tf2})\) needs to be high to give high
+  transcription of X.
+\item
+  \(\frac{dY}{dt} = a(\text{tf1})\cdot b(\text{tf2})\): Gene Y is
+  induced by transcription factor 1 and 2 in an AND fashion, both
+  \(a(\text{tf1})\) and \(b(\text{tf2})\), which are being multiplied,
+  need to be high to give high transcription of X.
+\end{itemize}
+
+Note that the shape of \(a(\text{tf1})\) and \(b(\text{tf2})\)
+(increasing or decreasing function of the transcription factor)
+determines whether tf1 and tf2 are repressing or activating.
+
+\section{Python code}\label{python-code}
+
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, toptitle=1mm, colbacktitle=quarto-callout-note-color!10!white, toprule=.15mm, coltitle=black, colframe=quarto-callout-note-color-frame, opacityback=0, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Starting code for this practical}, breakable, bottomtitle=1mm, rightrule=.15mm, titlerule=0mm, arc=.35mm, leftrule=.75mm, bottomrule=.15mm, colback=white]
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
-\NormalTok{np.random.seed(}\DecValTok{42}\NormalTok{)}
-\NormalTok{a }\OperatorTok{=} \DecValTok{1} \OperatorTok{+} \DecValTok{2}
-\NormalTok{b }\OperatorTok{=}\NormalTok{ a }\OperatorTok{+} \DecValTok{3}
-\BuiltInTok{print}\NormalTok{(}\StringTok{"Hello"}\NormalTok{)}
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+
+\CommentTok{\# Parameters}
+\NormalTok{Lx }\OperatorTok{=} \FloatTok{40.0}  \CommentTok{\# Length of the domain in x in microm}
+\NormalTok{Ly }\OperatorTok{=} \FloatTok{10.0}  \CommentTok{\# Length of the domain in y in microm}
+\NormalTok{T }\OperatorTok{=} \DecValTok{200}  \CommentTok{\# Total time in seconds}
+\NormalTok{dx }\OperatorTok{=} \FloatTok{0.5}  \CommentTok{\# Grid spacing in x}
+\NormalTok{dt }\OperatorTok{=} \FloatTok{0.1}  \CommentTok{\# Time step}
+\NormalTok{nx }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(Lx}\OperatorTok{/}\NormalTok{dx)}\OperatorTok{+}\DecValTok{2}  \CommentTok{\# Number of grid points in x + padding grid points}
+\NormalTok{ny }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(Ly}\OperatorTok{/}\NormalTok{dx)}\OperatorTok{+}\DecValTok{2}  \CommentTok{\# Number of grid points in y + padding grid points}
+\CommentTok{\# Padding grid points to account for boundary conditions}
+\NormalTok{nt }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(T}\OperatorTok{/}\NormalTok{dt)  }\CommentTok{\# Number of time steps}
+\NormalTok{D }\OperatorTok{=} \FloatTok{0.4}  \CommentTok{\# Diffusion coefficient in mm\^{}2/s}
+\NormalTok{decayM }\OperatorTok{=}\FloatTok{0.01} \CommentTok{\# Decay rate in 1/s}
+
+
+\CommentTok{\# Parameters for A, B, C}
+\NormalTok{... }\CommentTok{\# }\AlertTok{TODO}\CommentTok{ create parameters for A, B, C as needed in Q5}
+
+\CommentTok{\# Stability criterion}
+\ControlFlowTok{if}\NormalTok{ D }\OperatorTok{*}\NormalTok{ dt }\OperatorTok{/}\NormalTok{ dx}\OperatorTok{**}\DecValTok{2} \OperatorTok{\textgreater{}} \FloatTok{0.5}\NormalTok{:}
+    \ControlFlowTok{raise} \PreprocessorTok{ValueError}\NormalTok{(}\StringTok{"Stability criterion not met"}\NormalTok{)}
+
+\CommentTok{\# A, B and C are required for later exercises.}
+\NormalTok{A }\OperatorTok{=}\NormalTok{ np.zeros((nx, ny))}
+\NormalTok{B }\OperatorTok{=}\NormalTok{ np.zeros((nx, ny))}
+\NormalTok{C }\OperatorTok{=}\NormalTok{ np.zeros((nx, ny))}
+
+\CommentTok{\# Initial condition}
+\NormalTok{u }\OperatorTok{=}\NormalTok{ np.zeros((nx, ny))}
+\NormalTok{u[}\DecValTok{0}\NormalTok{, :] }\OperatorTok{=} \DecValTok{100}
+
+\CommentTok{\# Reaction{-}diffusion equation}
+\KeywordTok{def}\NormalTok{ reaction\_diffusion\_step(u, D, dt, dx, decay):}
+\NormalTok{    un }\OperatorTok{=}\NormalTok{ u.copy()}
+\NormalTok{    u[}\DecValTok{1}\NormalTok{:}\OperatorTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{:}\OperatorTok{{-}}\DecValTok{1}\NormalTok{] }\OperatorTok{=}\NormalTok{ un[}\DecValTok{1}\NormalTok{:}\OperatorTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{:}\OperatorTok{{-}}\DecValTok{1}\NormalTok{] }\OperatorTok{+}\NormalTok{  D }\OperatorTok{*}\NormalTok{dt }\OperatorTok{/}\NormalTok{ dx}\OperatorTok{**}\DecValTok{2} \OperatorTok{*}\NormalTok{ (un[}\DecValTok{2}\NormalTok{:, }\DecValTok{1}\NormalTok{:}\OperatorTok{{-}}\DecValTok{1}\NormalTok{] }\OperatorTok{+}\NormalTok{ un[:}\OperatorTok{{-}}\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{:}\OperatorTok{{-}}\DecValTok{1}\NormalTok{] }\OperatorTok{+} \OperatorTok{\textbackslash{}}
+\NormalTok{                    un[}\DecValTok{1}\NormalTok{:}\OperatorTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{:]  }\OperatorTok{+}\NormalTok{ un[}\DecValTok{1}\NormalTok{:}\OperatorTok{{-}}\DecValTok{1}\NormalTok{, :}\OperatorTok{{-}}\DecValTok{2}\NormalTok{] }\OperatorTok{{-}} \DecValTok{4} \OperatorTok{*}\NormalTok{ un[}\DecValTok{1}\NormalTok{:}\OperatorTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{:}\OperatorTok{{-}}\DecValTok{1}\NormalTok{]) }\OperatorTok{{-}} \OperatorTok{\textbackslash{}}
+\NormalTok{                    decay }\OperatorTok{*}\NormalTok{ un[}\DecValTok{1}\NormalTok{:}\OperatorTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{:}\OperatorTok{{-}}\DecValTok{1}\NormalTok{] }\OperatorTok{*}\NormalTok{ dt}
+    \CommentTok{\#\# for loop version to understand the equation}
+    \CommentTok{\# for i in range(1, nx{-}1):}
+    \CommentTok{\#     for j in range(1, ny{-}1):}
+    \CommentTok{\#         u[i, j] = (un[i, j] +}
+    \CommentTok{\#                    D * dt / dx**2 * (un[i+1, j] + un[i{-}1, j] {-} 2 * un[i, j] +}
+    \CommentTok{\#                    un[i, j+1] + un[i, j{-}1] {-} 4 * un[i, j]) {-} decay * un[i, j] * dt)}
+    \CommentTok{\#boundary conditions}
+\NormalTok{    u[}\OperatorTok{{-}}\DecValTok{1}\NormalTok{, :] }\OperatorTok{=}\NormalTok{ (u[}\OperatorTok{{-}}\DecValTok{2}\NormalTok{, :]}\OperatorTok{/}\NormalTok{u[}\OperatorTok{{-}}\DecValTok{3}\NormalTok{, :])}\OperatorTok{*}\NormalTok{u[}\OperatorTok{{-}}\DecValTok{2}\NormalTok{, :]  }\ControlFlowTok{if} \BuiltInTok{sum}\NormalTok{(u[}\OperatorTok{{-}}\DecValTok{3}\NormalTok{, :]) }\OperatorTok{!=} \DecValTok{0} \ControlFlowTok{else}\NormalTok{ np.zeros(ny)}
+    \CommentTok{\#to understand this line:}
+    \CommentTok{\#if sum(u[{-}3, :]) != 0:}
+    \CommentTok{\#    u[{-}1, :] = (u[{-}2, :]/u[{-}3, :])*u[{-}2, :]\#extrapolate from third to last row}
+    \CommentTok{\#else:}
+    \CommentTok{\#    u[{-}1, :] = np.zeros(ny) \#if already zero in third to last row, also zero in last row}
+\NormalTok{    u[:, }\DecValTok{0}\NormalTok{] }\OperatorTok{=}\NormalTok{ u[:, }\DecValTok{1}\NormalTok{]}
+\NormalTok{    u[:, }\OperatorTok{{-}}\DecValTok{1}\NormalTok{] }\OperatorTok{=}\NormalTok{ u[:, }\OperatorTok{{-}}\DecValTok{2}\NormalTok{]}
+
+    \ControlFlowTok{return}\NormalTok{ u}
+
+\KeywordTok{def}\NormalTok{ reaction\_diffusion\_gradient(t, u, D, dx, decay, switch\_time }\OperatorTok{=} \VariableTok{None}\NormalTok{, noise }\OperatorTok{=} \VariableTok{False}\NormalTok{):}
+    \CommentTok{\textquotesingle{}\textquotesingle{}\textquotesingle{}}
+\CommentTok{    Function to create a gradient in the u array that could decay after a certain time.}
+\CommentTok{    t: current time step}
+\CommentTok{    u: array to create the gradient in}
+\CommentTok{    D: diffusion coefficient}
+\CommentTok{    dx: grid spacing}
+\CommentTok{    decay: decay rate}
+\CommentTok{    switch\_time: time step after which the gradient decays. If no switch is desired, set to None}
+\CommentTok{    noise: whether to add noise to the gradient}
+\CommentTok{    \textquotesingle{}\textquotesingle{}\textquotesingle{}}
+    \CommentTok{\# }\AlertTok{TODO}\CommentTok{ for student: write code for the noise and the switch.}
+\NormalTok{    added\_noise }\OperatorTok{=}\NormalTok{ np.zeros\_like(u)  }\CommentTok{\# Initialize noise array}
+    \ControlFlowTok{if}\NormalTok{ noise:}
+\NormalTok{        ...  }\CommentTok{\# }\AlertTok{TODO}\CommentTok{: add noise generation code here for Q10}
+    
+    \ControlFlowTok{if}\NormalTok{ switch\_time }\KeywordTok{is} \VariableTok{None} \KeywordTok{or}\NormalTok{ t }\OperatorTok{\textless{}=}\NormalTok{ switch\_time:}
+        \CommentTok{\# define a exponential decay gradient over the array in the x direction with numpy array operations using the index}
+        \ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(u.shape[}\DecValTok{0}\NormalTok{]):}
+\NormalTok{            u[i, :] }\OperatorTok{=}\NormalTok{ np.maximum(}\DecValTok{100} \OperatorTok{*}\NormalTok{ np.exp(}\OperatorTok{{-}}\NormalTok{i}\OperatorTok{*}\NormalTok{dx}\OperatorTok{/}\NormalTok{np.sqrt(D}\OperatorTok{/}\NormalTok{decay))}\OperatorTok{+}\NormalTok{added\_noise[i, :], }\DecValTok{0}\NormalTok{)}
+        \ControlFlowTok{return}\NormalTok{ u}
+    \ControlFlowTok{if}\NormalTok{ t }\OperatorTok{\textgreater{}}\NormalTok{ switch\_time:}
+\NormalTok{        ...}\CommentTok{\# }\AlertTok{TODO}\CommentTok{ Q7: implement a gradient that decays over time, otherwise return the original u array}
+        \ControlFlowTok{return}\NormalTok{ u}
+    \CommentTok{\# In all other cases, return the original u array        }
+    \ControlFlowTok{return}\NormalTok{ u}
+
+\KeywordTok{def}\NormalTok{ hill(x, Km, }\BuiltInTok{pow}\NormalTok{):}
+    \CommentTok{"""Hill function for the reaction kinetics."""}
+    \ControlFlowTok{return}\NormalTok{ (x}\OperatorTok{**}\BuiltInTok{pow}\NormalTok{) }\OperatorTok{/}\NormalTok{ (Km}\OperatorTok{**}\BuiltInTok{pow} \OperatorTok{+}\NormalTok{ x}\OperatorTok{**}\BuiltInTok{pow}\NormalTok{) }
+
+\KeywordTok{def}\NormalTok{ ihill(y, Km, }\BuiltInTok{pow}\NormalTok{):}
+    \CommentTok{"""Inverse Hill function for the reaction kinetics."""}
+    \ControlFlowTok{return}\NormalTok{( (Km}\OperatorTok{**}\BuiltInTok{pow}\NormalTok{) }\OperatorTok{/}\NormalTok{ (y }\OperatorTok{**}\BuiltInTok{pow}  \OperatorTok{+}\NormalTok{ Km}\OperatorTok{**}\BuiltInTok{pow}\NormalTok{))}
+
+\CommentTok{\# }\AlertTok{TODO}\CommentTok{ for student: write update functions for A, B, C as needed in Q5}
+
+
+\CommentTok{\# initilize figure and axes for plotting}
+\CommentTok{\# }\AlertTok{TODO}\CommentTok{ for student: Add a new axis for the ABC flag visualization as suggested in Q5}
+\NormalTok{fig, (ax\_M, ax\_lines) }\OperatorTok{=}\NormalTok{ plt.subplots(}\DecValTok{2}\NormalTok{, figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{8}\NormalTok{), gridspec\_kw}\OperatorTok{=}\NormalTok{\{}\StringTok{\textquotesingle{}height\_ratios\textquotesingle{}}\NormalTok{: [}\DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{]\})  }\CommentTok{\# Make the first graph 3 times the height of the second}
+
+\CommentTok{\# Time{-}stepping simulation loop}
+\ControlFlowTok{for}\NormalTok{ n }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(nt):}
+    \CommentTok{\# Update all variables}
+\NormalTok{    u }\OperatorTok{=}\NormalTok{ reaction\_diffusion\_step(u, D, dt, dx, decayM)}
+    \CommentTok{\# }\AlertTok{TODO}\CommentTok{ for student: use precomputed gradient, update A, B, C as needed in Q5}
+    
+    \ControlFlowTok{if}\NormalTok{ n }\OperatorTok{==} \DecValTok{0}\NormalTok{:  }\CommentTok{\# Initial plot}
+\NormalTok{        imshow\_M\_plot }\OperatorTok{=}\NormalTok{ ax\_M.imshow(u.T, cmap}\OperatorTok{=}\StringTok{\textquotesingle{}viridis\textquotesingle{}}\NormalTok{, origin}\OperatorTok{=}\StringTok{\textquotesingle{}lower\textquotesingle{}}\NormalTok{, aspect}\OperatorTok{=}\StringTok{\textquotesingle{}auto\textquotesingle{}}\NormalTok{)}
+\NormalTok{        ax\_M.set\_title(}\SpecialStringTok{f"Time: }\SpecialCharTok{\{}\NormalTok{n}\OperatorTok{*}\NormalTok{dt}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\NormalTok{        ax\_M.set\_xlabel(}\StringTok{\textquotesingle{}x direction\textquotesingle{}}\NormalTok{)}
+\NormalTok{        ax\_M.set\_ylabel(}\StringTok{\textquotesingle{}y direction\textquotesingle{}}\NormalTok{)}
+\NormalTok{        ax\_M.set\_xticks([])}
+\NormalTok{        ax\_M.set\_yticks([])}
+
+        \CommentTok{\# Plot the concentration at a specific y index (e.g., y=2)    }
+\NormalTok{        line\_plot }\OperatorTok{=}\NormalTok{ ax\_lines.plot([x}\OperatorTok{*}\NormalTok{dx }\ControlFlowTok{for}\NormalTok{ x }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(nx)], u[:, }\DecValTok{2}\NormalTok{], label}\OperatorTok{=}\StringTok{\textquotesingle{}M\textquotesingle{}}\NormalTok{, color}\OperatorTok{=}\StringTok{\textquotesingle{}green\textquotesingle{}}\NormalTok{)}
+        \CommentTok{\# }\AlertTok{TODO}\CommentTok{: Add lines for A, B, C as needed in Q5}
+
+        
+\NormalTok{        ax\_lines.legend(loc}\OperatorTok{=}\StringTok{\textquotesingle{}upper right\textquotesingle{}}\NormalTok{)}
+\NormalTok{        ax\_lines.set\_ylim(}\DecValTok{0}\NormalTok{, }\DecValTok{100}\NormalTok{)}
+\NormalTok{        ax\_lines.tick\_params(axis}\OperatorTok{=}\StringTok{\textquotesingle{}y\textquotesingle{}}\NormalTok{)}
+\NormalTok{        ax\_lines.set\_xlim(}\DecValTok{0}\NormalTok{, dx}\OperatorTok{*}\NormalTok{nx)}
+\NormalTok{        ax\_lines.set\_xlabel(}\StringTok{\textquotesingle{}x\textquotesingle{}}\NormalTok{)}
+\NormalTok{        ax\_lines.set\_ylabel(}\StringTok{\textquotesingle{}Concentration at y=2\textquotesingle{}}\NormalTok{)}
+\NormalTok{        ax\_lines.tick\_params(axis}\OperatorTok{=}\StringTok{\textquotesingle{}x\textquotesingle{}}\NormalTok{)}
+
+    \ControlFlowTok{if}\NormalTok{ n }\OperatorTok{\%} \DecValTok{20} \OperatorTok{==} \DecValTok{0}\NormalTok{:  }\CommentTok{\# Update plot every so many time steps}
+        \CommentTok{\#update the imshow M plot with the new data}
+\NormalTok{        imshow\_M\_plot.set\_data(u.T)}
+\NormalTok{        ax\_M.set\_title(}\SpecialStringTok{f"Time: }\SpecialCharTok{\{}\NormalTok{n}\OperatorTok{*}\NormalTok{dt}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+            
+        \CommentTok{\# Update the line plots with new data}
+\NormalTok{        line\_plot[}\DecValTok{0}\NormalTok{].set\_ydata(u[:, }\DecValTok{2}\NormalTok{])}
+        \CommentTok{\# }\AlertTok{TODO}\CommentTok{: Update A, B, C line plots as needed in Q5}
+
+\NormalTok{    plt.pause(}\FloatTok{0.001}\NormalTok{)  }\CommentTok{\# Pause to refresh the plot}
+
+\CommentTok{\# And keep the last plot open}
+\CommentTok{\# plt.show()}
+
+\CommentTok{\# Or close the plot window when done}
+\NormalTok{plt.close(fig)}
 \end{Highlighting}
 \end{Shaded}
 
-\section{Visualising data (R)}\label{visualising-data-r-1}
+\end{tcolorbox}
 
-Here's an interactive plot generated with R:
+\section{Questions}\label{questions}
 
-\includegraphics{pattern_intro_text_files/figure-pdf/unnamed-chunk-1-1.pdf}
+\begin{exercise}[Algorithmic
+thinking]\protect\hypertarget{exr-test}{}\label{exr-test}
 
-\section{A youtube clip:}\label{a-youtube-clip-1}
+Have a look at the reaction-diffusion equation for the morphogen and the
+implementation of it in the file
+\texttt{morphogengradient\_to\_segments.py} in the
+reaction\_diffusion\_step function, as well as at the initialization of
+the array u. How is this different from the gradient formation modeling
+we discussed during the lecture? What is done at the terminal boundary
+in the length direction and why does this make sense? (hint:
+outcommented we provided code doing essentially the same but not using
+numpy arrays and hence written in a less compact matter to help you
+understand what is happening)
 
-\url{https://www.youtube.com/embed/wo9vZccmqwc}
+\end{exercise}
 
-\section{An `iframe' to a different page (e.g.~my
-simulations)}\label{an-iframe-to-a-different-page-e.g.-my-simulations-1}
+\begin{exercise}[Important
+concept]\protect\hypertarget{exr-plain}{}\label{exr-plain}
 
-\subsection{Mermaid}\label{mermaid-1}
+Play with the morphogen diffusion rate and the morphogen decay rate and
+describe what happens. What happens in terms of dynamics and steady
+state if you change both, but the ratio stays the same? Hint: it might
+help to draw a horizontal line at a certain height to ease comparison.
 
-Diagrams (Mermaid syntax):
+\end{exercise}
+
+\begin{exercise}[Biology \& mathematical
+thinking]\protect\hypertarget{exr-plain}{}\label{exr-plain}
+
+Next, we are going to introduce the genes A, B and C in the model. We
+want these genes to be expressed dependent on M, and in the head, trunk
+and tail respectively, so A on the left, B in the middle and C on the
+right. Think of what conditions in terms of M should lead to expression
+of A/B/C. What Hill functions (normal/inverse/any combination)
+corresponds to those conditions? Write down (pen and paper, not in code)
+full equations for the genes, do we need any other terms than just Hill
+functions, would we need specific parameter conditions?
+
+\end{exercise}
+
+\begin{exercise}[Biology \& algorithmic/mathematical
+thinking]\protect\hypertarget{exr-plain}{}\label{exr-plain}
+
+From hereon we assume that the morphogen gradient reaches steady state
+very quickly, and no longer use the numerical implementation of the
+diffusion equation and instead work with a superimposed morphogen
+profile defined by \texttt{reaction\_diffusion\_gradient} to save time.
+(Hint: to not call the function any more use \# in front of where it is
+called) Change the simulation loop such that it computes the morphogen
+gradient once. What type of function is the superimposed morphogen
+profile and how does this relate to question 2.
+
+\end{exercise}
+
+\begin{exercise}[Biology \& algorithmic/mathematical
+thinking]\protect\hypertarget{exr-plain}{}\label{exr-plain}
+
+~
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Now create functions to update A, B and C according to your equations
+  from the previous question. You may use the predefined hill and ihill
+  functions that are provided in the code. For simplicity, you may keep
+  most of the parameters the same across genes, but some have to be
+  different to ensure the right location of the genes (see your
+  reasoning to the previous question). (Hint: using array properties to
+  update A/B/C, like in the reaction\_diffusion\_step function, makes
+  your code run a lot faster than using for-loops)
+\item
+  Also make sure that the levels of A, B and C are updated in the
+  simulation loop. (Hint: using array properties to update A/B/C, like
+  in the reaction\_diffusion\_step function, makes your code run a lot
+  faster than using for-loops)
+\item
+  Next, ensure A, B and C are visualized in the bottom plot axis (copy
+  and adapt the code for the visualization of M). You can add an extra
+  third axis to the plot to visualize the (French) flag pattern, by
+  getting which of the three genes is maximal at each location with
+  np.argmax(np.array({[}A, B, C{]}), axis=0)and turning that into an
+  array of RGB colors of choice.
+\item
+  Do you get the expected ``French flag'' pattern? If not, think of why
+  not and improve your equations from previous question, parameters or
+  your code.
+\end{enumerate}
+
+\end{exercise}
+
+\begin{exercise}[Biology]\protect\hypertarget{exr-plain}{}\label{exr-plain}
+
+At some point in development, the morphogen gradient will disappear, for
+example in the case of the Drosophila Bicoid gradient because the
+maternal mRNA is degraded. Predict what will happen to the expression of
+A,B and C (and hence the French flag pattern) if the morphogen gradient
+disappears over time and assume A, B, and C are regulated by our
+equations (first try think about this without actually simulating this).
+
+\end{exercise}
+
+\begin{exercise}[Algorithmic/mathematical
+thinking]\protect\hypertarget{exr-plain}{}\label{exr-plain}
+
+Now write the code in reaction\_diffusion\_gradient that updates the
+morphogen concentration, such that after the time point A, B and C have
+gotten close to equilibrium, the morphogen gradient gradually
+disappears. Adapt the simulation loop where necessary and run your code:
+was your prediction on A/B/C from the previous question correct? Why/why
+not? Hint: you might need to increase the duration of your simulation,
+especially if it takes a long time for A, B and C to reach equilibrium
+(or you can change the parameters to speed things up by using same
+production/degradation rate ratio yet higher absolute values of the
+individual parameters).
+
+\end{exercise}
+
+\begin{exercise}[Biological \& mathematical
+thinking]\protect\hypertarget{exr-plain}{}\label{exr-plain}
+
+A, B and C cannot remain in a stable pattern if they are only influenced
+by M. How can we stabilize the pattern in absence of M? Test your ideas
+by creating new update functions for A, B and C and let these new
+`rules' kick in at the same time when M starts to decline. Again, you
+may find Hill functions useful and perhaps also the before/after switch
+time structure used in reaction\_diffusion\_gradient for M. (Hint: think
+about how the genes should affect each other, and assume that in this
+new phase, when genes have already been initialized in absence of
+repression the genes will be expressed). Can you maintain the expression
+domains of A, B and C and does their shape change?
+
+\end{exercise}
+
+\begin{exercise}[Biology \& algorithmic/mathematical
+thinking]\protect\hypertarget{exr-plain}{}\label{exr-plain}
+
+A sudden switch from phase 1 (stable M gradient) to phase 2 (decaying M
+gradient) resulting in the genes following different differential
+equations is biologically implausible. In reality, genes have complex
+promotors and enhancers integrating different inputs that arise in
+different developmental stages. Try to come up with one integrated
+expression for each gene, incorporating simultaneous input from the
+morphogen gradient and the other genes. Create new update functions for
+A/B/C and test your ideas. Can you get a stable pattern before and after
+the decline in M? A couple of things you could consider: a. Think of how
+positively and negatively M regulated expression behave once the
+gradient starts declining: what is the best way to combine (AND/OR) that
+with the regulation by the genes? a. Consider splitting up the M
+regulated expression of middle gene B into a positive and negatively
+regulated morphogen part before integrating the other genes inputs. a.
+It is also possible to give certain genes a bit of a constant boost to
+prevent their takeover by other genes due to timing issues
+
+\end{exercise}
+
+\begin{exercise}[Biology \& algorithmic/mathematical
+thinking]\protect\hypertarget{exr-plain}{}\label{exr-plain}
+
+Write code to get noise in the morphogen gradient, both in its steady
+state and decaying phase. During which phase do the expression domains
+of A, B and C suffer more from the noise. Explain why? How could we make
+the system more robust in a manner that is also likely occurring in
+nature?
+
+\end{exercise}
+
+\section{\texorpdfstring{\textsc{\textbf{Extra
+questions}}}{Extra questions}}\label{extra-questions}
+
+If you're done early or a master student, you can make these extra
+questions. These questions need not be made in the order they are
+provided, you can choose what you would like to investigate.
+
+\begin{exercise}[Biological
+thinking]\protect\hypertarget{exr-plain}{}\label{exr-plain}
+
+Play with the size of the domain to see what happens to the gene
+expression domains. What would this mean for an organism?
+
+\end{exercise}
+
+\begin{exercise}[Biological \& algorithmic
+thinking]\protect\hypertarget{exr-plain}{}\label{exr-plain}
+
+Various mechanisms have been proposed to ensure that the domains of the
+morphogen controlled genes scale with the size of the domain. One
+proposed mechanism suggests the existence of an also diffusible
+``expander'' molecule which expression is repressed by the morphogen but
+which itself either represses the degradation of the morphogen or
+enhances its diffusion (see e.g.
+\url{https://www.pnas.org/doi/full/10.1073/pnas.0912734107} and
+\url{https://onlinelibrary.wiley.com/doi/10.1111/dgd.12337}).
+
+For the expander we can write:
+
+\[
+∂E/∂t=p K^h/(K^h+M^h )-dE+D_E ∆E
+\]
+
+Assume E reduces degradation of M (easier to implement than enhancement
+of diffusion) and study the effect of scaling. (Hint, vary the size of
+the domain in the length direction but plot domains as a function of
+relative instead of absolute domain size to compare domain sizes).
+
+\end{exercise}
+
+\begin{exercise}[Algorithmic
+thinking]\protect\hypertarget{exr-plain}{}\label{exr-plain}
+
+In b, we can also implement other boundary conditions, especially for
+the right boundary. What happens to the profile if we make a no-flux
+boundary by copying the value at n-2 to n-1? And what if we set it to a
+sink (force concentration to zero)?
+
+\end{exercise}
+
+\begin{exercise}[Algorithmic
+thinking]\protect\hypertarget{exr-plain}{}\label{exr-plain}
+
+From question 4 onwards, how do things change if we do not assume a
+quasi-steady-state for the morphogen gradient (i.e.~keep the morphogen
+dynamics instead of replacing it by the superimposed exponential)? How
+would you implement a disappearing gradient and how does it shape change
+the outcomes of the flag?
+
+\end{exercise}
+
+\begin{exercise}[Algorithmic
+thinking]\protect\hypertarget{exr-plain}{}\label{exr-plain}
+
+Implement your solution to make the system more robust for noise from
+question 10. Did it work?
+
+\end{exercise}
+
+\section{Relevant literature / further
+reading}\label{relevant-literature-further-reading}
+
+\url{https://www.nature.com/articles/ncomms6077}
+
+Dagmar Iber group, scaling from non-steady state dynamics and uniform
+growth
+
+\url{https://pmc.ncbi.nlm.nih.gov/articles/PMC3109599/}
+
+\url{https://www.nature.com/articles/ncomms7679}
+
+Bicoid gradient: larger eggs get more Bicoid mRNA so higher production
+rate, when it scales with volume this helps scale the gradient
+
+\url{https://onlinelibrary.wiley.com/doi/10.1111/dgd.12337}
+
+\url{https://www.pnas.org/doi/abs/10.1073/pnas.0912734107}
+
+Expansion repression model
+
+Chordin, Bmp, Sizzled
+
+Chordin represses Bmp which induces Sizzled (which has low decay rate),
+yet Sizzled reduces Chordin decay
+
+Chordin is morphogen
+
+Sizzled is expander (by reducing decay of morphogen)
+
+\chapter{\texorpdfstring{Pattern formation II Turing digit
+patterns}{Pattern formation II   Turing digit patterns}}\label{pattern-formation-ii-turing-digit-patterns}
+
+\section*{}\label{section}
+\addcontentsline{toc}{section}{}
+
+\markright{}
+
+A foundational work in Theoretical Biology is Alan Turing's paper
+\emph{``The Chemical Basis of Morphogenesis''} {[}1{]}. In this work,
+Turing mathematically demonstrates a plausible mechanism whereby a
+reaction-diffusion system can lead to the formation of a
+spatially-patterned solution in steady state. Mathematically and
+conceptually, Turing's key innovation was considering diffusion-driven
+instability. That is: An unpatterned steady state solution becomes
+unstable in the presence of diffusion, leading to the formation of a
+spatially patterned state.
+
+Turing-type patterns emerge when a system exhibits short-ranged
+activation and long-ranged inhibition. The most well-known realization
+of a Turing reaction-diffusion system is the combination of a
+slow-diffusing activator and fast-diffusing inhibitor. Many more
+examples exist which can be reduced to a mathematically equivalent form.
+In this practical, we will explore a 3-component Turing system developed
+by Raspopovic and coauthors to explain the patterning of fingers on the
+paws of mice {[}2{]}.
+
+In this practical you will work with a total of 6 different python
+codes. Please note that each code simply differs by an extension or
+modification from the previous code, so that in the end you will have a
+long script that performs all the steps in one go.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Turing, A. M. ``The Chemical Basis of Morphogenesis.''
+  \emph{Philosophical Transactions of the Royal Society of London.
+  Series B, Biological Sciences} 237.641 (1952): 37--72.\\
+\item
+  Raspopovic, Jelena, et al.~``Digit patterning is controlled by a
+  Bmp-Sox9-Wnt Turing network modulated by morphogen gradients.''
+  \emph{Science} 345.6196 (2014): 566-570.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Equivalence of Turing
+models}\label{equivalence-of-turing-models}
+
+The model proposed by Raspopovic et al.~for generating Turing patterns
+underlying limb bone modeling consists of 3 instead of 2 interacting
+variables. We will refer to this model as ``BSW'' model, as it
+represents interactions between Bmp, Sox9, and Wnt.
+
+\begin{exercise}[Conceptual
+thinking]\protect\hypertarget{exr-tur}{}\label{exr-tur}
+
+Study the schemes below. The arrows represent activating or inhibiting
+interactions, while the wavy lines represent diffusion of components.
+Simplify the BSW model scheme to a 2-component system and explain why
+the relevant Turing constraints apply to the BSW model. In your answer,
+think about the logic of the interactions in the system conceptually; we
+do not expect you to answer by writing down equations.
 
 \begin{figure}
 
 \centering{
 
-\includegraphics[width=7.47in,height=2.27in]{pattern_intro_text_files/figure-latex/mermaid-figure-1.png}
+\includegraphics{images/two_component_turing.png}
 
 }
 
-\caption{\label{fig-variables}Types of models}
+\caption{\label{fig-turing}Schemes and numerical solutions of two
+prototypical 2-component Turing models}
 
 \end{figure}%
-
-Which can be referred to Figure~\ref{fig-variables}.
-
-\subsection{Callouts}\label{callouts-1}
-
-Call-outs can organise information and highlight important points.
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-Note that there are five types of callouts, including: \texttt{note},
-\texttt{warning}, \texttt{important}, \texttt{tip}, and
-\texttt{caution}.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-tip-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-tip-color-frame, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip with Title}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-This is an example of a callout with a title.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-caution-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-caution-color-frame, title=\textcolor{quarto-callout-caution-color}{\faFire}\hspace{0.5em}{Expand To Learn About Collapse}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-This is an example of a `folded' caution callout that can be expanded by
-the user. You can use \texttt{collapse="true"} to collapse it by default
-or \texttt{collapse="false"} to make a collapsible callout that is
-expanded by default.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-tip-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-tip-color-frame, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip \ref*{tip-example}: Cross-Referencing a Tip}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-\quartocallouttip{tip-example} 
-
-Add an ID starting with \texttt{\#tip-} to reference a tip.
-
-\end{tcolorbox}
-
-See Tip~\ref{tip-example}\ldots{}
-
-\subsection{How to format questions/problem
-sets}\label{how-to-format-questionsproblem-sets-1}
-
-\begin{exercise}[Test
-1]\protect\hypertarget{exr-test1}{}\label{exr-test1}
-
-The equation of any straight line, called a linear equation, can be
-written as:
-
-\begin{equation}\phantomsection\label{eq-line}{ 
-y = mx + b
-}\end{equation}
-
-Refer to the equation like this Equation~\ref{eq-line} or like
-Customlabel~\ref{eq-line}.
-
-\textbf{a.} Blabla?
-
-\textbf{b.} Of blablabla?
-
-\end{exercise}
-
-\subsection{Sharing data tables:}\label{sharing-data-tables-1}
-
-\includegraphics{pattern_intro_text_files/figure-pdf/tab-anscombe-1.pdf}
-
-\chapter{Practical 1}\label{practical-1}
-
-\section{Equations}\label{equations-2}
-
-Here's an equation:
-
-\begin{equation}\phantomsection\label{eq-log}{ 
-\frac{\mathrm{d}N}{\mathrm{d}t} = rN(1 - \frac{N}{K}) 
-}\end{equation}
-
-And Equation~\ref{eq-log} is a reference to the equation above.
-
-\section{References}\label{references-2}
-
-See Knuth (1984) for additional discussion of literate programming.
-
-\section{Syntax highlighting}\label{syntax-highlighting-2}
-
-Here's some python code:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
-\NormalTok{np.random.seed(}\DecValTok{42}\NormalTok{)}
-\NormalTok{a }\OperatorTok{=} \DecValTok{1} \OperatorTok{+} \DecValTok{2}
-\NormalTok{b }\OperatorTok{=}\NormalTok{ a }\OperatorTok{+} \DecValTok{3}
-\BuiltInTok{print}\NormalTok{(}\StringTok{"Hello"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\section{Visualising data (R)}\label{visualising-data-r-2}
-
-Here's an interactive plot generated with R:
-
-\includegraphics{pattern_practical_1_files/figure-pdf/unnamed-chunk-1-1.pdf}
-
-\section{A youtube clip:}\label{a-youtube-clip-2}
-
-\url{https://www.youtube.com/embed/wo9vZccmqwc}
-
-\section{An `iframe' to a different page (e.g.~my
-simulations)}\label{an-iframe-to-a-different-page-e.g.-my-simulations-2}
-
-\subsection{Mermaid}\label{mermaid-2}
-
-Diagrams (Mermaid syntax):
 
 \begin{figure}
 
 \centering{
 
-\includegraphics[width=7.47in,height=2.27in]{pattern_practical_1_files/figure-latex/mermaid-figure-1.png}
+\includegraphics{images/wntbmpsox.png}
 
 }
 
-\caption{\label{fig-variables}Types of models}
+\caption{\label{fig-wntbmpsox}Scheme of the BSW model}
 
 \end{figure}%
 
-Which can be referred to Figure~\ref{fig-variables}.
+\end{exercise}
 
-\subsection{Callouts}\label{callouts-2}
+\section{Patterning in a fixed domain
+size}\label{patterning-in-a-fixed-domain-size}
 
-Call-outs can organise information and highlight important points.
+The code in the script \texttt{01\_\_digits\_squarehomogeneoustissue.py}
+simulates the model in a 2D square tissue of constant size. This setup
+can be considered as a small region of a large Petri dish in which
+mesenchymal cells have been plated with the correct chemicals to undergo
+bone formation (Supplementary Figure S3 in the paper).
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
+\begin{exercise}[Biology]\protect\hypertarget{exr-tur}{}\label{exr-tur}
 
-Note that there are five types of callouts, including: \texttt{note},
-\texttt{warning}, \texttt{important}, \texttt{tip}, and
-\texttt{caution}.
+Play with the reaction parameters and diffusion constants to study their
+effects on the wavelength of the patterns. Note down the following:
 
-\end{tcolorbox}
+\begin{itemize}
+\tightlist
+\item
+  Which parameter changes lead to a pattern with thicker/thinner
+  stripes?
+\item
+  Which parameter changes lead to a pattern with spots?
+\end{itemize}
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-tip-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-tip-color-frame, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip with Title}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
+\textbf{Note:} To make things easier on yourself, only change one
+parameter at a time. Use a narrow range around the reference value to
+stay in the numerically stable regime of the forward Euler solver. If
+the solution becomes blank or wildly oscillating, you're likely in the
+numerically unstable regime and you should try a smaller change of
+values. When increasing diffusion constants, you may need to reduce the
+time stepping \texttt{dt}.
 
-This is an example of a callout with a title.
+\textbf{(only Master students)} Based on the BSW interaction scheme,
+give a short interpretation of why the following parameter alterations
+change the spatial pattern:
 
-\end{tcolorbox}
+\begin{itemize}
+\tightlist
+\item
+  Parameters of Sox9-BMP interaction \texttt{k2} and \texttt{k4}
+\item
+  Parameters of Sox9-Wnt interaction \texttt{k3} and \texttt{k7}
+\item
+  Fold change difference in BMP diffusion compared to Wnt diffusion
+\end{itemize}
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-caution-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-caution-color-frame, title=\textcolor{quarto-callout-caution-color}{\faFire}\hspace{0.5em}{Expand To Learn About Collapse}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-This is an example of a `folded' caution callout that can be expanded by
-the user. You can use \texttt{collapse="true"} to collapse it by default
-or \texttt{collapse="false"} to make a collapsible callout that is
-expanded by default.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-tip-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-tip-color-frame, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip \ref*{tip-example}: Cross-Referencing a Tip}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-\quartocallouttip{tip-example} 
-
-Add an ID starting with \texttt{\#tip-} to reference a tip.
-
-\end{tcolorbox}
-
-See Tip~\ref{tip-example}\ldots{}
-
-\subsection{How to format questions/problem
-sets}\label{how-to-format-questionsproblem-sets-2}
-
-\begin{exercise}[Test
-1]\protect\hypertarget{exr-test1}{}\label{exr-test1}
-
-The equation of any straight line, called a linear equation, can be
-written as:
-
-\begin{equation}\phantomsection\label{eq-line}{ 
-y = mx + b
-}\end{equation}
-
-Refer to the equation like this Equation~\ref{eq-line} or like
-Customlabel~\ref{eq-line}.
-
-\textbf{a.} Blabla?
-
-\textbf{b.} Of blablabla?
+\emph{Hint:} Use the maximum and minimum values of the variables to
+guide your thinking.
 
 \end{exercise}
 
-\subsection{Sharing data tables:}\label{sharing-data-tables-2}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\includegraphics{pattern_practical_1_files/figure-pdf/tab-anscombe-1.pdf}
+\section{The homogenous steady state in Turing
+models}\label{the-homogenous-steady-state-in-turing-models}
 
-\chapter{Practical 2}\label{practical-2}
+In a system exhibiting Turing instability, the spatially unpatterned
+steady state is unstable in the presence of diffusion.
 
-\section{Equations}\label{equations-3}
+\begin{exercise}[Conceptual
+thinking]\protect\hypertarget{exr-tur}{}\label{exr-tur}
 
-Here's an equation:
-
-\begin{equation}\phantomsection\label{eq-log}{ 
-\frac{\mathrm{d}N}{\mathrm{d}t} = rN(1 - \frac{N}{K}) 
-}\end{equation}
-
-And Equation~\ref{eq-log} is a reference to the equation above.
-
-\section{References}\label{references-3}
-
-See Knuth (1984) for additional discussion of literate programming.
-
-\section{Syntax highlighting}\label{syntax-highlighting-3}
-
-Here's some python code:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
-\NormalTok{np.random.seed(}\DecValTok{42}\NormalTok{)}
-\NormalTok{a }\OperatorTok{=} \DecValTok{1} \OperatorTok{+} \DecValTok{2}
-\NormalTok{b }\OperatorTok{=}\NormalTok{ a }\OperatorTok{+} \DecValTok{3}
-\BuiltInTok{print}\NormalTok{(}\StringTok{"Hello"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\section{Visualising data (R)}\label{visualising-data-r-3}
-
-Here's an interactive plot generated with R:
-
-\includegraphics{pattern_practical_2_files/figure-pdf/unnamed-chunk-1-1.pdf}
-
-\section{A youtube clip:}\label{a-youtube-clip-3}
-
-\url{https://www.youtube.com/embed/wo9vZccmqwc}
-
-\section{An `iframe' to a different page (e.g.~my
-simulations)}\label{an-iframe-to-a-different-page-e.g.-my-simulations-3}
-
-\subsection{Mermaid}\label{mermaid-3}
-
-Diagrams (Mermaid syntax):
-
-\begin{figure}
-
-\centering{
-
-\includegraphics[width=7.47in,height=2.27in]{pattern_practical_2_files/figure-latex/mermaid-figure-1.png}
-
-}
-
-\caption{\label{fig-variables}Types of models}
-
-\end{figure}%
-
-Which can be referred to Figure~\ref{fig-variables}.
-
-\subsection{Callouts}\label{callouts-3}
-
-Call-outs can organise information and highlight important points.
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-Note that there are five types of callouts, including: \texttt{note},
-\texttt{warning}, \texttt{important}, \texttt{tip}, and
-\texttt{caution}.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-tip-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-tip-color-frame, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip with Title}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-This is an example of a callout with a title.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-caution-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-caution-color-frame, title=\textcolor{quarto-callout-caution-color}{\faFire}\hspace{0.5em}{Expand To Learn About Collapse}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-This is an example of a `folded' caution callout that can be expanded by
-the user. You can use \texttt{collapse="true"} to collapse it by default
-or \texttt{collapse="false"} to make a collapsible callout that is
-expanded by default.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-tip-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-tip-color-frame, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip \ref*{tip-example}: Cross-Referencing a Tip}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-\quartocallouttip{tip-example} 
-
-Add an ID starting with \texttt{\#tip-} to reference a tip.
-
-\end{tcolorbox}
-
-See Tip~\ref{tip-example}\ldots{}
-
-\subsection{How to format questions/problem
-sets}\label{how-to-format-questionsproblem-sets-3}
-
-\begin{exercise}[Test
-1]\protect\hypertarget{exr-test1}{}\label{exr-test1}
-
-The equation of any straight line, called a linear equation, can be
-written as:
-
-\begin{equation}\phantomsection\label{eq-line}{ 
-y = mx + b
-}\end{equation}
-
-Refer to the equation like this Equation~\ref{eq-line} or like
-Customlabel~\ref{eq-line}.
-
-\textbf{a.} Blabla?
-
-\textbf{b.} Of blablabla?
+Modify the initial condition in the script
+\texttt{01\_\_digits\_squarehomogeneoustissue.py} to be exactly in this
+state (Sox9, BMP, Wnt should be all zero everywhere) and run the
+simulation. Explain the simulation result.
 
 \end{exercise}
 
-\subsection{Sharing data tables:}\label{sharing-data-tables-3}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\includegraphics{pattern_practical_2_files/figure-pdf/tab-anscombe-1.pdf}
+\section{Patterning in a growing domain
+size}\label{patterning-in-a-growing-domain-size}
 
-\chapter{Practical 3}\label{practical-3}
+Besides parameter values, the pattern that emerges from a Turing system
+is also strongly influenced by initial conditions and the size and shape
+of the domain where reactions and diffusion happen.
 
-\section{Equations}\label{equations-4}
+In the script \texttt{02\_\_digits\_growingsquare\_PD.py} we added
+tissue growth in the proximo-distal (body to limb) direction. Growth is
+controlled by a growth rate \texttt{vi}.
 
-Here's an equation:
+\begin{exercise}[Biology]\protect\hypertarget{exr-tur}{}\label{exr-tur}
 
-\begin{equation}\phantomsection\label{eq-log}{ 
-\frac{\mathrm{d}N}{\mathrm{d}t} = rN(1 - \frac{N}{K}) 
-}\end{equation}
+~
 
-And Equation~\ref{eq-log} is a reference to the equation above.
+\begin{itemize}
+\tightlist
+\item
+  Study the code to understand what it does.\\
+\item
+  Increase the horizontal growth rate \texttt{vi} in small increments
+  (try: 0.01, 0.05, 0.1, 0.2, 0.5) and study what happens to the
+  pattern. Explain why you think this happens.
+\end{itemize}
 
-\section{References}\label{references-4}
-
-See Knuth (1984) for additional discussion of literate programming.
-
-\section{Syntax highlighting}\label{syntax-highlighting-4}
-
-Here's some python code:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
-\NormalTok{np.random.seed(}\DecValTok{42}\NormalTok{)}
-\NormalTok{a }\OperatorTok{=} \DecValTok{1} \OperatorTok{+} \DecValTok{2}
-\NormalTok{b }\OperatorTok{=}\NormalTok{ a }\OperatorTok{+} \DecValTok{3}
-\BuiltInTok{print}\NormalTok{(}\StringTok{"Hello"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\section{Visualising data (R)}\label{visualising-data-r-4}
-
-Here's an interactive plot generated with R:
-
-\includegraphics{pattern_practical_3_files/figure-pdf/unnamed-chunk-1-1.pdf}
-
-\section{A youtube clip:}\label{a-youtube-clip-4}
-
-\url{https://www.youtube.com/embed/wo9vZccmqwc}
-
-\section{An `iframe' to a different page (e.g.~my
-simulations)}\label{an-iframe-to-a-different-page-e.g.-my-simulations-4}
-
-\subsection{Mermaid}\label{mermaid-4}
-
-Diagrams (Mermaid syntax):
-
-\begin{figure}
-
-\centering{
-
-\includegraphics[width=7.47in,height=2.27in]{pattern_practical_3_files/figure-latex/mermaid-figure-1.png}
-
-}
-
-\caption{\label{fig-variables}Types of models}
-
-\end{figure}%
-
-Which can be referred to Figure~\ref{fig-variables}.
-
-\subsection{Callouts}\label{callouts-4}
-
-Call-outs can organise information and highlight important points.
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-Note that there are five types of callouts, including: \texttt{note},
-\texttt{warning}, \texttt{important}, \texttt{tip}, and
-\texttt{caution}.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-tip-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-tip-color-frame, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip with Title}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-This is an example of a callout with a title.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-caution-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-caution-color-frame, title=\textcolor{quarto-callout-caution-color}{\faFire}\hspace{0.5em}{Expand To Learn About Collapse}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-This is an example of a `folded' caution callout that can be expanded by
-the user. You can use \texttt{collapse="true"} to collapse it by default
-or \texttt{collapse="false"} to make a collapsible callout that is
-expanded by default.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-tip-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-tip-color-frame, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip \ref*{tip-example}: Cross-Referencing a Tip}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-\quartocallouttip{tip-example} 
-
-Add an ID starting with \texttt{\#tip-} to reference a tip.
-
-\end{tcolorbox}
-
-See Tip~\ref{tip-example}\ldots{}
-
-\subsection{How to format questions/problem
-sets}\label{how-to-format-questionsproblem-sets-4}
-
-\begin{exercise}[Test
-1]\protect\hypertarget{exr-test1}{}\label{exr-test1}
-
-The equation of any straight line, called a linear equation, can be
-written as:
-
-\begin{equation}\phantomsection\label{eq-line}{ 
-y = mx + b
-}\end{equation}
-
-Refer to the equation like this Equation~\ref{eq-line} or like
-Customlabel~\ref{eq-line}.
-
-\textbf{a.} Blabla?
-
-\textbf{b.} Of blablabla?
+\textbf{Note:} Increase the \texttt{totaltime} parameter to 5000 when
+using growth rate of 0.01.
 
 \end{exercise}
 
-\subsection{Sharing data tables:}\label{sharing-data-tables-4}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\includegraphics{pattern_practical_3_files/figure-pdf/tab-anscombe-1.pdf}
+\section{Patterning along two growth
+axes}\label{patterning-along-two-growth-axes}
+
+In reality, the limb bud grows in both the proximo-distal and
+anterior-posterior direction. In the script
+\texttt{03\_\_digits\_growingsquare.py} this is implemented with growth
+rates \texttt{vi} for proximo-distal growth and \texttt{vj} for
+anterior-posterior growth.
+
+\begin{exercise}[Biology]\protect\hypertarget{exr-tur}{}\label{exr-tur}
+
+Play with the relative size of these growth rates and study what
+happens. Compare the order of appearance of stripes to the experimental
+data in the paper (see Figure 3F in the Raspopovic paper).
+
+\end{exercise}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Making a virtual tissue
+grow}\label{making-a-virtual-tissue-grow}
+
+Think about how tissue growth is implemented in the script
+\texttt{03\_\_digits\_growingsquare.py}.
+
+\begin{exercise}[Algorithmic and conceptual
+thinking]\protect\hypertarget{exr-tur}{}\label{exr-tur}
+
+What is the default value of the newly added tissue when it grows? Is
+the concentration elsewhere in the tissue changed?
+
+Do you think this approach is reasonable to model biological growth of a
+tissue? Explain why/why not.
+
+\emph{Hint:} Think about it from the perspective of a growing cell
+containing a number of molecules ``X''.\\
+If the cell increases in volume and does not produce/degrade X, what
+happens to the concentration of X?\\
+What would be the concentration of X in the two daughter cells if the
+cell divides?\\
+How would the situation change if X is constantly produced and degraded?
+
+In the paper, Raspopovic et al.~create a ``tissue growth map'' (see
+Figure 3A), which they use to map concentration values from one
+timepoint to the next using interpolation-based transformations.
+
+Inspired by this approach, the script
+\texttt{04\_\_digits\_growingsquare.py} implements a different growth
+function that uses bilinear interpolation to expand the tissue. Play
+around with the growth rate parameters and compare the results to what
+you found earlier. Do the patterns differ? If yes, how do they differ?
+
+\emph{Hint:} Try the supplementary script
+\texttt{supp\_g\_\_bilinear\_interpolation.py} to understand how
+interpolation-based growth works.
+
+\textbf{For master students:} yet another way of implementing tissue
+growth would be to take cell division and inheritance of maternal state
+by the two daughter cells literal and implement this by new boundary
+cells copying the state of their direct neighbors. Implement this
+alternative growth and see how this affects your results.
+
+\end{exercise}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Spatial modulation of parameters k4 and
+k7}\label{spatial-modulation-of-parameters-k4-and-k7}
+
+Let us now ignore growth and its role on orienting stripes for a while
+and explore once again the influence of parameters on the patterns. In
+reality, digits are patterned further apart at the distal end than at
+the proximal end, where they need to converge on a hand and wrist. This
+implies that the wavelength of the Turing pattern should not be
+constant. In a previous question you probably found that the \texttt{k7}
+and \texttt{k4} parameters impact the wavelength of the Turing pattern.
+The authors speculate that the FGF and Hox gene gradients observed in
+the limb bud exert an effect on the Sox9-BMP-Wnt patterning module
+through these parameters.
+
+\begin{exercise}[Biology]\protect\hypertarget{exr-tur}{}\label{exr-tur}
+
+The script \texttt{05\_\_digits\_squarek4k7gradient.py} allows you to
+implement exponential gradients of \texttt{k4} and \texttt{k7} across
+the tissue. You can set the minimum and maximum values, axis
+(x=horizontal, y=vertical) and direction (0=decreasing, 1=increasing).
+Look in the supplement of the Raspopovic paper, page 48 Fig 2C, left for
+the estimated change of \texttt{k4} and \texttt{k7} across the tissue
+and try to reproduce (not exactly but similarly) Figure 2C, right side,
+by playing with the parameters affecting the \texttt{k4} and \texttt{k7}
+gradients. Describe along which axis, in which direction and to what
+extent \texttt{k4} and \texttt{k7} are changing. Estimate the change in
+Turing pattern wavelength this results in.
+
+\end{exercise}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Hoxd13 and FGF}\label{hoxd13-and-fgf}
+
+As mentioned above, the biological factors thought to underly the
+variation in the \texttt{k4} and \texttt{k7} parameters are Hoxd13 and
+FGF. Hoxd13 is highly expressed in the distal domain of the paddle and
+not expressed elsewhere, and this expression domain is growing as the
+paddle grows. FGF is expressed from the distal edge of the paddle and
+spreads through diffusion. For an illustration see Fig S8A of the
+supplement of the Raspopovic paper (page 10). Experimental data
+furthermore suggest that Hoxd13 and FGF together affect \texttt{k4} and
+\texttt{k7}, which the authors decided to model using the following
+equations:
+
+\[
+k4^* = k4 - k_{HF_{bmp}} * fgf(i,j) * hox(i,j)
+\]
+
+\[
+k7^* = k7 + k_{HF_{wnt}} * fgf(i,j) * hox(i,j)
+\]
+
+\begin{exercise}[Algorithmic and biological
+thinking]\protect\hypertarget{exr-tur}{}\label{exr-tur}
+
+The script \texttt{06\_\_digits\_squarehoxdfgf.py} implements how
+\texttt{k4} and \texttt{k7} are a function of local FGF and Hox values,
+but does not yet include Hox and FGF spatial patterns and how these
+develop over time. Adjust the code to incorporate the observed Hoxd13
+and FGF patterns and study how the digit patterns compare to what you
+found under question 7. Note that arrays for \texttt{hox} and
+\texttt{fgf} are included, and decay and diffusion values for
+\texttt{fgf} are provided already in the code. Also note that
+\texttt{hox} and \texttt{fgf} each have a maximum value of 1.
+
+\end{exercise}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Shape makes the tissue}\label{shape-makes-the-tissue}
+
+Having studied the effects of growth and genetic factors modulating the
+Turing pattern now it is time for the final step. So far, we've
+approximated the limb bud very crudely with a rectangle. As you probably
+noticed in your parameter exploration, the tissue boundary can bias
+stripe orientation. Therefore it is interesting to study the interplay
+between the shape of the ``paddle'' or limb bud in which the digits
+develop and how it grows with the temporal development of the hox and
+fgf patterns. In the script \texttt{07\_\_digits\_growingpaddle.py} we
+implemented two different tissue geometries: An ellipse and a ``paddle''
+that imitates the shape of the limb bud. Note that to implement Hox and
+FGF domains on a complex growing shape, quite a bit of complex code
+involving masks describing the tissue domain and angles to control the
+Hox and FGF domains was needed. At first, we are going to ignore these
+technical details.
+
+\begin{exercise}[Biology]\protect\hypertarget{exr-tur}{}\label{exr-tur}
+
+Switching between geometries is easily done by changing the value of the
+parameter \texttt{geometry} on line 78 of the script. Start with the
+``ellipse'' geometry. What do you observe with regards to the FGF
+gradient? What consequences does this have? Why would this be ``a smart
+thing to do''?
+
+Play around with \texttt{vi/vj} and \texttt{Lx0} to investigate the
+effect of ellipse shape and development over time on the number, shape
+and robustness of digits that form.
+
+Now switch to the paddle geometry. Observe the patterns that emerge and
+compare these to the simulated and experimentally observed patterns in
+Figure 3E and 3F of the Raspopovic article. According to you what does
+and what doesn't the model explain well?
+
+The model explains the formation and positioning of the 4 digits, and
+how the distance between these digits increases along the limb bud.
+However, the model clearly does not simulate/explain the formation of
+the wrist bones that is observed experimentally. Interestingly the
+experimental data suggest that while digits may form from the ``right to
+the left'', the ``leftmost'' bones of the wrist are there the earliest,
+suggesting there locally different conditions apply allowing earlier
+Turing patterning but with a very large wavelength happening there.
+
+To implement non-square geometries, the script uses ``masks''. Study how
+these masks are created in the functions \texttt{create\_ellipse\_mask}
+and \texttt{create\_tissue\_mask}.
+
+\emph{Hint:} Try the supplementary script
+\texttt{supp\_i\_\_geometries.py}.
+
+\emph{Note:} For computational convenience, we use the ``Class'' data
+structure to implement common functions shared by the masks. This is a
+somewhat more advanced programming concept, so it's ok if you don't
+understand what it does yet. For the extra curious and motivated, feel
+free to check out the supplementary script
+\texttt{supp\_i\_\_class\_data\_structure.py}.
+
+\end{exercise}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Master students exercise}\label{master-students-exercise}
+
+\begin{exercise}[Poly and
+oligodactyly]\protect\hypertarget{exr-tur}{}\label{exr-tur}
+
+Above we played with ellipse size and growth rates, however in addition
+to mutations affecting tissue size and growth, also mutations in genes
+affecting the Hox and FGF morphogens may occur. Play with parameters
+that determine Hox and FGF expression zones on the paddle geometry.
+Which parameter changes lead to the formation of supernumerary fingers
+(polydactyly)? Which parameters lead to too few fingers (oligodactyly)?
+
+\emph{Hint:} The following supplementary scripts will be helpful to
+understand how the FGF and Hox domains were coded:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{supp\_i\_\_ellipse\_slice.py} visualizes the usefulness of
+  masks based on the example of selecting a slice of an ellipse;
+\item
+  \texttt{supp\_i\_\_smooth\_function.py} visualizes the function
+  \texttt{smooth\_function()};
+\item
+  \texttt{supp\_i\_\_morphological\_operations.py} visualizes
+  morphological operations (binary dilate/erode and Gaussian blur) which
+  are used for mask operations, calculating the Laplacian on the
+  irregular domain, and to select pixels to generate the FGF and Hox
+  pattern;
+\item
+  \texttt{supp\_i\_\_maskDifference.py} visualizes the difference of
+  masks, which is how the function \texttt{single\_step\_growth()}
+  checks if the tissue domain is growing or shrinking.
+\end{itemize}
+
+\end{exercise}
+
+\chapter{\texorpdfstring{Pattern formation III
+Clock-and-wavefront}{Pattern formation III   Clock-and-wavefront}}\label{pattern-formation-iii-clock-and-wavefront}
+
+\section{Goal of the tutorial:}\label{goal-of-the-tutorial}
+
+In this tutorial you will look at gradient formation and patterning
+using different mechanisms than you have seen previously. We will model
+the so called clock-and-wavefront pattern, which stems from oscillations
+in gene and gene products and results in a regularly striped pattern in
+a growing tissue.
+
+\section{The model system}\label{the-model-system}
+
+The clock-and-wavefront model is an important model in describing
+somitogenesis. In this process early in embryo development, the somites,
+a precursor tissue for the vertebrae and other tissues later in
+development, are formed from the pre-somitic mesoderm. This mesodorm
+extends on the posterior end by growth, and the somites bud off
+periodically at the anterior end in the order of a couple of weeks (in
+humans).
+
+Key players in this model system are the protein FGF (fibroblast growth
+factor), and many genes and gene products that have an oscillatory
+pattern that will determine cell fate. However, for this tutorial, we
+simplify this to a single pair of gene mRNA and product, denoted with
+\(m\) and \(p\) for short.
+
+\section{Programming with classes}\label{programming-with-classes}
+
+Because we are going to make a more complex model with a tissue existing
+of multiple cells, and each cell having its own concentrations of FGF,
+\(m\) and \(p\), we are going to use Classes in our code. You have been
+using Classes already: the data types such as \texttt{int}, \texttt{str}
+and \texttt{bool} have their own class, and the \texttt{str} class has
+many \emph{methods} (=functions working on that class) defined, such as
+\texttt{"hello\ world".upper()}, but it is also possible to create
+custom classes. With classes, you can easily make objects, which is part
+of the object-oriented programming paradigm.
+
+Today, we are going to use classes for the different levels of our
+model: 1) tissue, 2) cell, 3) \(m\) \& \(p\) clock and 4) the plotting.
+By using classes, we can separate things that happen on a
+tissue/cellular/clock scale, and seperate the model from the
+visualization of it. You will first work with 1 \& 2 \& 4, then 3 on its
+own and then combine all four yourself into one model.
+
+Important concepts when working with classes are
+
+\begin{itemize}
+\tightlist
+\item
+  Class versus instance
+\item
+  Defining the \texttt{\_\_init\_\_} method and other methods
+\item
+  Class attributes and using the keyword \texttt{self}
+\end{itemize}
+
+This tutorial should be doable without an extensive knowledge of classes
+as there are plenty of examples to copy-paste from, but feel free to
+read up on these concepts here at
+\href{https://www.datacamp.com/tutorial/python-oop-tutorial}{this online
+tutorial}
+
+\section{Questions}\label{questions-1}
+
+\begin{exercise}[]\protect\hypertarget{exr-test}{}\label{exr-test}
+
+In practical 1 we saw how gradients can be created through local
+production, diffusion and decay. However, other mechanisms for gradient
+formation are possible, such as cell lineage transport. Here we work
+with a model for the FGF gradient (\texttt{fgfgradientfromgrowth.py})
+where only the rightmost/posterior cell produces FGF and grows, and in
+which cells upon division inherit this FGF from their mother cell. Play
+with the model by varying the decay rate of FGF and the division rate of
+the cells. How does this affect the gradient?
+
+\end{exercise}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  \textbf{Conceptual thinking} When would this type of gradient
+  formation be more applicable than the earlier studied production,
+  diffusion, decay type of gradient formation? Compare how this model is
+  built-up to a production/diffusion/decay gradient formation model.
+
+  \begin{quote}
+  \textbf{Answer} Diffusion slow, degradation slow. In other words, a
+  mostly stable, immobile compound.
+  \end{quote}
+\item
+  \textbf{Mathematics} Let us now move to the other half of the clock
+  and wavefront model, the clock part (\texttt{clock.py}), in which we
+  implemented one of the earliest models for the somitogenesis
+  oscillator from
+  \href{https://doi.org/10.1016/S0960-9822(03)00534-7}{Lewis (2003)}
+  which models a gene that codes for a mRNA (\(m\)) that encodes a
+  protein (\(p\)) that acts as a repressive transcription factor of this
+  same gene. In class we discussed how for oscillations negative
+  feedbacks, delays and non-linearity are important. Examine the code to
+  find the differential equations governing this model and determine the
+  negative feedback, delay and non-linearities in them.
+\end{enumerate}
+
+\begin{quote}
+\textbf{Answer} Non-linearity is in saturation function with power n,
+negative feedback is because affects own expression negatively, delay is
+here modeled explicitly through a special delay type differential
+equation
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  \textbf{Biology} Play with the parameters of the model. How does the
+  delay (\texttt{tau}/ \(\tau\)) affect oscillations? \textgreater{}
+  \textbf{Answer} \emph{longer period (lower frequency) and higher
+  amplitude. Remember how in class we discussed how removing introns
+  reduced delays and affected oscillator period.}
+\item
+  \textbf{Algorithmic thinking} In the file \texttt{rolling\_clock.py},
+  there is a different implementation of the clock. Compare the two
+  files and find out how they differ. What benefits for studying the
+  model does \texttt{clock.py} have over \texttt{rolling\_clock.py} and
+  vice versa? Ignore the added functions \texttt{\_\_copy\_\_} and
+  \texttt{set\_tau} in this comparison. Some differences become clearer
+  when you run the code too.
+
+  \begin{quote}
+  \textbf{Answer} The rolling clock only remembers a certain time window
+  of the clock state, namely as long as needs to be remembered plus some
+  buffer for when the clock's tau changes. A drawback is that not all
+  history is memorized, but it could still be stored to a file. A big
+  win is clear when we run the code and see that it is much faster,
+  especially at later time points.
+  \end{quote}
+\item
+  Next, we will combine the clock and FGF wavefront into a single model.
+  For this, we offer two options of this exercise: A. reading and
+  interpreting existing code from the file clockplusfgf.py, or B. write
+  your own code to combine the two.
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \item
+    \textbf{Read and interpret existing code:} Read the code of
+    \texttt{clockplusfgf.py} and try to understand the assumptions from
+    this model implementation by answering the following questions:
+
+    \begin{enumerate}
+    \def\labelenumiii{\arabic{enumiii}.}
+    \tightlist
+    \item
+      Each cell has its own clock. What clock states is the tissue
+      initialized with? And what clock states do newly divided cells
+      get?
+    \item
+      The FGF wavefront affects \texttt{tau}: what function is used for
+      that? What are your expectations for the effect of the FGF
+      wavefront on the cells' clocks?
+    \item
+      Does growth affect the clock state?
+    \item
+      What is your opinion on the assumptions from the three questions?
+      \textgreater{} \textbf{Answer} \textgreater{} 1. The cells are
+      initialized with the same state, namely the default with
+      \textgreater{} \texttt{m=0} and \texttt{p=0}, and all clock
+      parameters set to one defined in the file. \textgreater{} Newly
+      divided cells get the same clock as the original cell, so we get
+      \textgreater{} two exact copies. \textgreater{} 2. The function is
+      \[\tau_\text{cell}=\tau_\text{model}(1+0.5\frac{100-\text{FGF}\_\text{cell}}{100}),\]
+      \textgreater{} where \(\tau_\text{cell}\) is the cell's new
+      \(tau\) and \(\tau_\text{model}\) the general ``model'' one's.
+      \textgreater{} So, we would expect tau to become larger, i.e., the
+      clock to become slower as the FGF wavefront \textgreater{} decays
+      the further to the left we get. \textgreater{} 3. No, there is
+      currently no dilution from \(m\) or \(p\) from growth.
+      \textgreater{} 4. If we start with few cells that are likely also
+      each other's sister cells, \textgreater{} the assumption of the
+      same, or at least similar clock states is plausible.
+      \textgreater{} Same for cell division assuming the molecules get
+      evenly distributed. \textgreater{} The current function of FGF on
+      \(\tau\) is imposed, but the idea of slowing down is from
+      \textgreater{} experimental observations. \textgreater{} We could
+      argue about the effect of growth on the clock state, but only few
+      cells are \textgreater{} dividing, so including growth in there
+      would have only a limited effect (but feel free \textgreater{} to
+      test this!).
+    \end{enumerate}
+  \item
+    \textbf{Programming} As to not spoil the beans to students not
+    wanting to code the model extension, since the hints for programming
+    may answer above questions, please see instructions for implementing
+    it yourself at the end of this tutorial.
+  \end{enumerate}
+\item
+  \textbf{Biology} With the existing model, or your own model working,
+  describe how this model behaves. Do we get stable somites?
+
+  \begin{quote}
+  \textbf{Answer} \emph{we get waves of oscillations moving from left to
+  right with increasing amplitudes. Not yet conversion to a stable
+  stripe pattern}
+  \end{quote}
+\item
+  \textbf{Biology \& Programming} What is still missing is a means to
+  transform the temporal oscillations in the posterior of the tissue
+  into a spatial pattern in the anterior. Now, let's implement a model
+  that allows for fixation of the somite states.
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \item
+    We will add an extra `memory' molecule \texttt{M} inside the cell
+    that will be produced depending on the values of FGF and the clock..
+    To do so add a new attribute to the cell Class that will contain the
+    value of a memory molecule. Also, upon division, let cells inherit
+    the memory value from the mother cell.
+  \item
+    Change the \texttt{run\_clocks} function by creating two conditions:
+
+    \begin{enumerate}
+    \def\labelenumiii{\arabic{enumiii}.}
+    \item
+      If the fgf level is between some upper and some lower bound, the
+      clock is updated and simulated after the memory value is updated
+      according to this formula:
+      \[\frac{dM}{dt}=c\max\left(\frac{p^4}{h_p^4+p^4}, \frac{M^4}{h_M^4+M^4}\right)-\delta M.\]
+      Add the new memory parameters as global parameters at the top of
+      the file. For starters, you can give them the following values:
+
+      \begin{enumerate}
+      \def\labelenumiv{\arabic{enumiv}.}
+      \tightlist
+      \item
+        \(\text{FGF upper bound}=10\)
+      \item
+        \(\text{FGF lower bound}=9.75\)
+      \item
+        \(c=0.01\)
+      \item
+        \(h_p=8.5\)
+      \item
+        \(h_M=0.5\)
+      \item
+        \(\delta=0.01\)
+      \end{enumerate}
+    \item
+      Otherwise, the clock is updated and simulated as normal, and
+      nothing changes with the memory molecule of the cell
+    \end{enumerate}
+  \item
+    To visualize the memory, follow the same procedure as for
+    visualizing the \texttt{fgf} and \texttt{p} values: put in a string
+    referring to the new attribute you created for the molecule in step
+    1.
+  \end{enumerate}
+\item
+  \textbf{Biology} Do you get stable somite formation on the
+  left/anterior of the tissue? Is it a regular pattern of somites? What
+  happens if the requirement for updating \(M\) is only that FGF should
+  be below a certain value? What happens if the equation for
+  \(\frac{dM}{dt}\) only depends on \(p\) and not \(M\) itself.
+\end{enumerate}
+
+\begin{quote}
+\textbf{Answer} \emph{They should get somite patterns that are stable,
+but not necessarily regular. If only one threshold all goes to high
+state, because eventually all go through all phases, you need to
+memorize who was within a limited time/space window in a particular
+state. If only P dependent M is activated but does not memorize so it
+will be just as unstable as P before.}
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{9}
+\item
+  \textbf{Biology} Both zebrafish and mice are common model organisms,
+  so we know a lot about the biological parameters of their
+  somitogenesis. See the following list:
+
+  \begin{longtable}[]{@{}
+    >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0839}}
+    >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0714}}
+    >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4658}}
+    >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2329}}
+    >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1460}}@{}}
+  \toprule\noalign{}
+  \begin{minipage}[b]{\linewidth}\raggedright
+  Parameter
+  \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+  Zebrafish
+  \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+  Reference
+  \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+  Mouse
+  \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+  Reference
+  \end{minipage} \\
+  \midrule\noalign{}
+  \endhead
+  \bottomrule\noalign{}
+  \endlastfoot
+  Duration of somitogenesis & 18 h & (a) & 5 days & (b) \\
+  Number of somites & \textasciitilde30 & (a) & 65 & (c) \\
+  Somite size & 50 micron / 30 micron & (d) (a) & 120 micron & (c) \\
+  Cells per somite & \textasciitilde5 cell in diameter & (a) & 5-11
+  (estimated from total cell size in 3D, ranging 1 order of magnitude) &
+  (c) \\
+  Clock period & 25 min /30 min & (d) / (e) / (f) & 2-3 h & (e) \\
+  \end{longtable}
+
+  From these parameters, you can derive a number of desired model
+  inputs/outcomes:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The total size of the tissue at the end of somitogenesis
+  \item
+    The size of a cell
+  \item
+    Speed of division
+  \end{itemize}
+
+  Use the model and try to find suitable model parameters to recreate
+  the development of both zebrafish and mice: is this model able to
+  describe both of these processes? I.e., is this model able to deal
+  with the scale differences between zebrafish and mice?
+
+  A couple of notes:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    You don't have to exactly recreate the biological parameter with
+    100\% precision, except for the number of segments/somites, although
+    it can be a fun challenge to get a complete match.
+  \item
+    You might want to adapt your plotting timestep to have sufficient
+    but not too many plot updates in one simulation.
+  \item
+    You can test the clock parameters separately with the
+    \texttt{clock.py}/\texttt{rolling\_clock.py} script. Don't forget
+    that FGF has an effect on tau!
+  \end{itemize}
+\end{enumerate}
+
+\section{Further (open) questions}\label{further-open-questions}
+
+The model currently has a number of assumptions that we can question.
+Feel free to explore any of these further open questions and study how
+it effects the outcome of the model:
+
+\begin{itemize}
+\tightlist
+\item
+  What if the relationship between FGF and tau is shaped differently?
+  For instance, if the clock runs faster on the left/anterior than on
+  the right/posterior?
+\item
+  What if the clock state of a daughter cell is started fresh rather
+  than being a copy from the mother cell?
+\item
+  What if the clock \(m\) and \(p\) are diluted by growth?
+\item
+  What if tau is unaffected by FGF: can we still get somites fixed in
+  place?
+\end{itemize}
+
+\section{References for biological
+parameters:}\label{references-for-biological-parameters}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  \href{https://anatomypubs.onlinelibrary.wiley.com/doi/10.1002/1097-0177(2000)9999:9999\%3C::AID-DVDY1065\%3E3.0.CO;2-A}{\emph{https://anatomypubs.onlinelibrary.wiley.com/doi/10.1002/1097-0177(2000)9999:9999\%3C::AID-DVDY1065\%3E3.0.CO;2-A}}
+\item
+  \href{https://doi.org/10.1016/j.gde.2012.05.004}{\emph{https://doi.org/10.1016/j.gde.2012.05.004}}
+\item
+  \href{https://doi.org/10.1242/dev.65.Supplement.103}{\emph{https://doi.org/10.1242/dev.65.Supplement.103}}
+\item
+  \href{https://doi.org/10.1242/dev.161257}{\emph{https://doi.org/10.1242/dev.161257}}
+\item
+  \href{https://doi.org/10.3389/fcell.2022.944016}{\emph{https://doi.org/10.3389/fcell.2022.944016}}
+\item
+  \href{https://www.sciencedirect.com/science/article/pii/S0079610718300178}{\emph{https://www.sciencedirect.com/science/article/pii/S0079610718300178}}
+\end{enumerate}
+
+\section{Combining the clock and FGF wavefront model - programming
+instructions}\label{combining-the-clock-and-fgf-wavefront-model---programming-instructions}
+
+Let us now combine the (rolling) clock and the wavefront, and assume
+that the FGF wavefront affects tau such that as FGF levels drop tau goes
+up and oscillations slow. Here are some tips and hints to help you along
+the way:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Try implementing things in steps and run your code in between steps:
+  this is easier to debug than changing everything in one go.
+\item
+  Use the file \texttt{rolling\_clock.py} to import the \texttt{clock}
+  class from. Make sure that every cell gets initialized with a clock by
+  adding a \texttt{clock} as a \texttt{cell} Class attribute.
+\item
+  Of course, we must not forget that a cell inherits the clock from its
+  mother. Use the \texttt{\_\_copy\_\_} method from the \texttt{clock}
+  Class to set the clock of the freshly divided daughter cell the same
+  as the mother's.
+\item
+  There are many ways that FGF could affect tau. For this tutorial,
+  stick to the following relationship:
+  \[\tau_\text{cell}=\tau_\text{model}(1+0.5\frac{100-\text{FGF}\_\text{cell}}{100}),\]
+  where \(\tau_\text{cell}\) is the tau of a specific cell, and
+  \(\tau_\text{model}\) is a global tau set as a model parameter. To
+  implement this, create a method \texttt{update\_clock} for the
+  \texttt{cell} Class, that uses the \texttt{clock} Class's
+  \texttt{set\_tau} method to update the clock of the cell.
+\item
+  Make a method in the \texttt{tissue} class called \texttt{run\_clocks}
+  that simulates the clock of every cell in the tissue. Use the
+  \texttt{Clock}'s \texttt{simulate} method. For simplicity, we assume
+  that growth does not affect the concentrations of \(m\) and \(p\).
+\item
+  Make sure that the tissue method \texttt{run\_clocks} also updates the
+  clock of the cell, and that the \texttt{simulate\_development}
+  function also lets the clocks run.
+\item
+  Visualize the \texttt{p} values of every cell. You can reuse the
+  existing visualisation methods \texttt{initialize\_axis\_cell\_data}
+  and \texttt{update\_plot\_cell\_data} from \texttt{graphics.py}, but
+  now let them display \texttt{p} values instead of \texttt{fgf} values.
+  You can give the name of the attribute as a string to the
+  \texttt{initialize\_axis\_cell\_data} function, so something like
+  \texttt{clock.p\_values{[}-1{]}} instead of \texttt{fgf} might already
+  work depending on your exact implementation of the clock.
+\item
+  Once you're done, check if your model behaves as it should with the
+  teacher/assistant or the file \texttt{clockplusfgf.py} directly.
+\end{enumerate}
+
+\section{Relevant literature}\label{relevant-literature}
+
+If you want to know more about the model system and previous models,
+have a look at the following (after the tutorial):
+
+\href{https://doi.org/10.1016/S0960-9822(03)00534-7}{Lewis (2003)
+\_Autoinhibition with Transcriptional Delay A Simple Mechanism for the
+Zebrafish Somitogenesis Oscillator}
 
 \part{II) Morphogenesis}
 
 \chapter{What is morphogenesis?}\label{what-is-morphogenesis}
 
-\section{Equations}\label{equations-5}
+\subsection{TODO}\label{todo-1}
 
-Here's an equation:
+\begin{itemize}
+\tightlist
+\item
+  Write a brief intro to the morphogenesis practicals
+\end{itemize}
 
-\begin{equation}\phantomsection\label{eq-log}{ 
-\frac{\mathrm{d}N}{\mathrm{d}t} = rN(1 - \frac{N}{K}) 
-}\end{equation}
+\chapter{Gene regulation in time}\label{gene-regulation-in-time}
 
-And Equation~\ref{eq-log} is a reference to the equation above.
+\section{Introduction}\label{introduction-1}
 
-\section{References}\label{references-5}
+In this practical you will get hands on experience into making gene
+regulatory networks models. First you will practice how to encode
+regulatory interactions into ordinary differential equations and logical
+rules. Next you will study how many interactions produce self-sustained
+activity configurations (attractors) in a Boolean network model. Lastly,
+you will learn how to predict the genes that cause cell fate transitions
+(attractor changes).
 
-See Knuth (1984) for additional discussion of literate programming.
+Today we will use the following python file: circuitsfunctions.py. In
+this file you will find the code of the functions we use throughout the
+practical, have a quick look at it. Look at the name of the functions,
+inputs and outputs.
 
-\section{Syntax highlighting}\label{syntax-highlighting-5}
+\section{Part I - Encoding regulatory
+interactions}\label{part-i---encoding-regulatory-interactions}
 
-Here's some python code:
+Open Boolean\_practical.py and familiarize yourself with the functions
+\texttt{ODEgeneRegulation()} and \texttt{logicalRule()}.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
-\NormalTok{np.random.seed(}\DecValTok{42}\NormalTok{)}
-\NormalTok{a }\OperatorTok{=} \DecValTok{1} \OperatorTok{+} \DecValTok{2}
-\NormalTok{b }\OperatorTok{=}\NormalTok{ a }\OperatorTok{+} \DecValTok{3}
-\BuiltInTok{print}\NormalTok{(}\StringTok{"Hello"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\section{Visualising data (R)}\label{visualising-data-r-5}
-
-Here's an interactive plot generated with R:
-
-\includegraphics{morpho_intro_text_files/figure-pdf/unnamed-chunk-1-1.pdf}
-
-\section{A youtube clip:}\label{a-youtube-clip-5}
-
-\url{https://www.youtube.com/embed/wo9vZccmqwc}
-
-\section{An `iframe' to a different page (e.g.~my
-simulations)}\label{an-iframe-to-a-different-page-e.g.-my-simulations-5}
-
-\subsection{Mermaid}\label{mermaid-5}
-
-Diagrams (Mermaid syntax):
-
-\begin{figure}
-
-\centering{
-
-\includegraphics[width=7.47in,height=2.27in]{morpho_intro_text_files/figure-latex/mermaid-figure-1.png}
-
-}
-
-\caption{\label{fig-variables}Types of models}
-
-\end{figure}%
-
-Which can be referred to Figure~\ref{fig-variables}.
-
-\subsection{Callouts}\label{callouts-5}
-
-Call-outs can organise information and highlight important points.
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-Note that there are five types of callouts, including: \texttt{note},
-\texttt{warning}, \texttt{important}, \texttt{tip}, and
-\texttt{caution}.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-tip-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-tip-color-frame, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip with Title}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-This is an example of a callout with a title.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-caution-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-caution-color-frame, title=\textcolor{quarto-callout-caution-color}{\faFire}\hspace{0.5em}{Expand To Learn About Collapse}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-This is an example of a `folded' caution callout that can be expanded by
-the user. You can use \texttt{collapse="true"} to collapse it by default
-or \texttt{collapse="false"} to make a collapsible callout that is
-expanded by default.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-tip-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-tip-color-frame, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip \ref*{tip-example}: Cross-Referencing a Tip}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-\quartocallouttip{tip-example} 
-
-Add an ID starting with \texttt{\#tip-} to reference a tip.
-
-\end{tcolorbox}
-
-See Tip~\ref{tip-example}\ldots{}
-
-\subsection{How to format questions/problem
-sets}\label{how-to-format-questionsproblem-sets-5}
-
-\begin{exercise}[Test
-1]\protect\hypertarget{exr-test1}{}\label{exr-test1}
-
-The equation of any straight line, called a linear equation, can be
-written as:
-
-\begin{equation}\phantomsection\label{eq-line}{ 
-y = mx + b
-}\end{equation}
-
-Refer to the equation like this Equation~\ref{eq-line} or like
-Customlabel~\ref{eq-line}.
-
-\textbf{a.} Blabla?
-
-\textbf{b.} Of blablabla?
-
-\end{exercise}
-
-\subsection{Sharing data tables:}\label{sharing-data-tables-5}
-
-\includegraphics{morpho_intro_text_files/figure-pdf/tab-anscombe-1.pdf}
-
-\chapter{Practical 1}\label{practical-1-1}
-
-\section{Equations}\label{equations-6}
-
-Here's an equation:
-
-\begin{equation}\phantomsection\label{eq-log}{ 
-\frac{\mathrm{d}N}{\mathrm{d}t} = rN(1 - \frac{N}{K}) 
-}\end{equation}
-
-And Equation~\ref{eq-log} is a reference to the equation above.
-
-\section{References}\label{references-6}
-
-See Knuth (1984) for additional discussion of literate programming.
-
-\section{Syntax highlighting}\label{syntax-highlighting-6}
-
-Here's some python code:
+Both functions model an AND gate where nodeA and nodeB positively
+regulate nodeC. This could represent that A and B are transcription
+factors that form a protein complex, and that is via this complex that
+they can regulate the expression of C. While ODEgeneRegulation() encodes
+this regulation with an ordinary differential equation that requires
+several parameters, logicalRule() only needs the logical operator
+relating the input genes.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
-\NormalTok{np.random.seed(}\DecValTok{42}\NormalTok{)}
-\NormalTok{a }\OperatorTok{=} \DecValTok{1} \OperatorTok{+} \DecValTok{2}
-\NormalTok{b }\OperatorTok{=}\NormalTok{ a }\OperatorTok{+} \DecValTok{3}
-\BuiltInTok{print}\NormalTok{(}\StringTok{"Hello"}\NormalTok{)}
+\KeywordTok{def}\NormalTok{ ODEgeneRegulation(a,t,parameters): }
+\NormalTok{    prod}\OperatorTok{=}\NormalTok{parameters[}\StringTok{\textquotesingle{}prod\textquotesingle{}}\NormalTok{]}
+\NormalTok{    decay}\OperatorTok{=}\NormalTok{parameters[}\StringTok{\textquotesingle{}decay\textquotesingle{}}\NormalTok{]}
+\NormalTok{    Ksat}\OperatorTok{=}\NormalTok{parameters[}\StringTok{\textquotesingle{}Ksat\textquotesingle{}}\NormalTok{]}
+\NormalTok{    nodeA}\OperatorTok{=}\NormalTok{parameters[}\StringTok{\textquotesingle{}nodeA\textquotesingle{}}\NormalTok{]}
+\NormalTok{    nodeB}\OperatorTok{=}\NormalTok{parameters[}\StringTok{\textquotesingle{}nodeB\textquotesingle{}}\NormalTok{]}
+\NormalTok{    n}\OperatorTok{=}\NormalTok{parameters[}\StringTok{\textquotesingle{}n\textquotesingle{}}\NormalTok{]}
+\NormalTok{    outputC}\OperatorTok{=}\NormalTok{a[}\DecValTok{0}\NormalTok{]}
+\NormalTok{    doutputC}\OperatorTok{=}\NormalTok{prod}\OperatorTok{*}\NormalTok{nodeA}\OperatorTok{**}\NormalTok{n}\OperatorTok{/}\NormalTok{(Ksat}\OperatorTok{**}\NormalTok{n}\OperatorTok{+}\NormalTok{nodeA}\OperatorTok{**}\NormalTok{n)}\OperatorTok{*}\NormalTok{nodeB}\OperatorTok{**}\NormalTok{n}\OperatorTok{/}\NormalTok{(Ksat}\OperatorTok{**}\NormalTok{n}\OperatorTok{+}\NormalTok{nodeB}\OperatorTok{**}\NormalTok{n)}\OperatorTok{{-}}\NormalTok{decay}\OperatorTok{*}\NormalTok{outputC  }
+    \ControlFlowTok{return}\NormalTok{(doutputC)}
+
+\KeywordTok{def}\NormalTok{ logicalRule(nodeA,nodeB):}
+    \ControlFlowTok{return}\NormalTok{(nodeA }\KeywordTok{and}\NormalTok{ nodeB)}
 \end{Highlighting}
 \end{Shaded}
 
-\section{Visualising data (R)}\label{visualising-data-r-6}
+\begin{exercise}[Mathematical
+thinking]\protect\hypertarget{exr-non}{}\label{exr-non}
 
-Here's an interactive plot generated with R:
-
-\includegraphics{morpho_practical_1_files/figure-pdf/unnamed-chunk-1-1.pdf}
-
-\section{A youtube clip:}\label{a-youtube-clip-6}
-
-\url{https://www.youtube.com/embed/wo9vZccmqwc}
-
-\section{An `iframe' to a different page (e.g.~my
-simulations)}\label{an-iframe-to-a-different-page-e.g.-my-simulations-6}
-
-\subsection{Mermaid}\label{mermaid-6}
-
-Diagrams (Mermaid syntax):
-
-\begin{figure}
-
-\centering{
-
-\includegraphics[width=7.47in,height=2.27in]{morpho_practical_1_files/figure-latex/mermaid-figure-1.png}
-
-}
-
-\caption{\label{fig-variables}Types of models}
-
-\end{figure}%
-
-Which can be referred to Figure~\ref{fig-variables}.
-
-\subsection{Callouts}\label{callouts-6}
-
-Call-outs can organise information and highlight important points.
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-Note that there are five types of callouts, including: \texttt{note},
-\texttt{warning}, \texttt{important}, \texttt{tip}, and
-\texttt{caution}.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-tip-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-tip-color-frame, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip with Title}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-This is an example of a callout with a title.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-caution-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-caution-color-frame, title=\textcolor{quarto-callout-caution-color}{\faFire}\hspace{0.5em}{Expand To Learn About Collapse}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-This is an example of a `folded' caution callout that can be expanded by
-the user. You can use \texttt{collapse="true"} to collapse it by default
-or \texttt{collapse="false"} to make a collapsible callout that is
-expanded by default.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-tip-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-tip-color-frame, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip \ref*{tip-example}: Cross-Referencing a Tip}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-\quartocallouttip{tip-example} 
-
-Add an ID starting with \texttt{\#tip-} to reference a tip.
-
-\end{tcolorbox}
-
-See Tip~\ref{tip-example}\ldots{}
-
-\subsection{How to format questions/problem
-sets}\label{how-to-format-questionsproblem-sets-6}
-
-\begin{exercise}[Test
-1]\protect\hypertarget{exr-test1}{}\label{exr-test1}
-
-The equation of any straight line, called a linear equation, can be
-written as:
-
-\begin{equation}\phantomsection\label{eq-line}{ 
-y = mx + b
-}\end{equation}
-
-Refer to the equation like this Equation~\ref{eq-line} or like
-Customlabel~\ref{eq-line}.
-
-\textbf{a.} Blabla?
-
-\textbf{b.} Of blablabla?
+What is the minimum information you need to encode a regulatory
+interaction with either function? In what cases would you prefer to use
+an ODE or a logical rule for a model?
 
 \end{exercise}
 
-\subsection{Sharing data tables:}\label{sharing-data-tables-6}
-
-\includegraphics{morpho_practical_1_files/figure-pdf/tab-anscombe-1.pdf}
-
-\chapter{Practical 2}\label{practical-2-1}
-
-\section{Equations}\label{equations-7}
-
-Here's an equation:
-
-\begin{equation}\phantomsection\label{eq-log}{ 
-\frac{\mathrm{d}N}{\mathrm{d}t} = rN(1 - \frac{N}{K}) 
-}\end{equation}
-
-And Equation~\ref{eq-log} is a reference to the equation above.
-
-\section{References}\label{references-7}
-
-See Knuth (1984) for additional discussion of literate programming.
-
-\section{Syntax highlighting}\label{syntax-highlighting-7}
-
-Here's some python code:
+Let's run the model to simulate what happens if nodeA and nodeB are both
+active/expressed. Do this for the ODE and the Boolean logic code model
+using the following lines inside the main().
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
-\NormalTok{np.random.seed(}\DecValTok{42}\NormalTok{)}
-\NormalTok{a }\OperatorTok{=} \DecValTok{1} \OperatorTok{+} \DecValTok{2}
-\NormalTok{b }\OperatorTok{=}\NormalTok{ a }\OperatorTok{+} \DecValTok{3}
-\BuiltInTok{print}\NormalTok{(}\StringTok{"Hello"}\NormalTok{)}
+\CommentTok{\# ODE model {-} see the parameters used in circuitsfunctions.py}
+\CommentTok{\# ODErun has three arguments: model, geneA, geneB}
+\NormalTok{A}\OperatorTok{=}\DecValTok{10}
+\NormalTok{B}\OperatorTok{=}\DecValTok{10}
+\NormalTok{ODErun(ODEgeneRegulation,A,B) }
+
+\CommentTok{\# Boolean model}
+\CommentTok{\# look at the terminal for the result:}
+\NormalTok{A}\OperatorTok{=}\DecValTok{1}
+\NormalTok{B}\OperatorTok{=}\DecValTok{1}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"the boolean operation of nodeA "}\NormalTok{,A,}\StringTok{" AND nodeB"}\NormalTok{,B,}\StringTok{" is:"}\NormalTok{, logicalRule(A,B))}
 \end{Highlighting}
 \end{Shaded}
 
-\section{Visualising data (R)}\label{visualising-data-r-7}
+Now, let's explore the output of each function using different values of
+nodeA and nodeB. We are going to use the code below to plot the output
+of the ODE and the Boolean model in a 2D heatmap.
 
-Here's an interactive plot generated with R:
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# First, Boolean network simulation {-} AND gate}
+\NormalTok{explorationvalue}\OperatorTok{=}\DecValTok{2} \CommentTok{\# a Boolean model assumes there is only 2 possible states: 0 or 1}
+\NormalTok{bool\_output }\OperatorTok{=}\NormalTok{ np.zeros((explorationvalue, explorationvalue))}
+\ControlFlowTok{for}\NormalTok{ nodeA }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{0}\NormalTok{, explorationvalue):}
+    \ControlFlowTok{for}\NormalTok{ nodeB }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{0}\NormalTok{, explorationvalue):}
+\NormalTok{        bool\_output[nodeA, nodeB] }\OperatorTok{=}\NormalTok{ nodeA }\KeywordTok{and}\NormalTok{ nodeB }\CommentTok{\#AND \# CHANGE THIS}
 
-\includegraphics{morpho_practical_2_files/figure-pdf/unnamed-chunk-1-1.pdf}
+\CommentTok{\# Now, ODE model simulation}
+\NormalTok{explorationvalue }\OperatorTok{=} \DecValTok{11} \CommentTok{\# an ODE model allows us to explore more values than a boolean model}
+\NormalTok{ode\_output }\OperatorTok{=}\NormalTok{ np.zeros((explorationvalue, explorationvalue))}
+\ControlFlowTok{for}\NormalTok{ nodeA }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{0}\NormalTok{, explorationvalue):}
+    \ControlFlowTok{for}\NormalTok{ nodeB }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{0}\NormalTok{, explorationvalue):}
+\NormalTok{        parameters }\OperatorTok{=}\NormalTok{ \{}\StringTok{\textquotesingle{}prod\textquotesingle{}}\NormalTok{: }\FloatTok{0.01}\NormalTok{, }\StringTok{\textquotesingle{}decay\textquotesingle{}}\NormalTok{: }\FloatTok{0.001}\NormalTok{,}\StringTok{\textquotesingle{}Ksat\textquotesingle{}}\NormalTok{: }\DecValTok{4}\NormalTok{, }\StringTok{\textquotesingle{}n\textquotesingle{}}\NormalTok{: }\DecValTok{2}\NormalTok{,}\StringTok{\textquotesingle{}nodeA\textquotesingle{}}\NormalTok{:nodeA,}\StringTok{\textquotesingle{}nodeB\textquotesingle{}}\NormalTok{:nodeB\} }\CommentTok{\# prod, decay, Ksat, n, and initial values for A and B}
+\NormalTok{        cells }\OperatorTok{=}\NormalTok{ odeint(ODEgeneRegulation, }\DecValTok{0}\NormalTok{, np.arange(}\DecValTok{0}\NormalTok{, }\FloatTok{1000.1}\NormalTok{ , }\FloatTok{0.1}\NormalTok{), args}\OperatorTok{=}\NormalTok{(parameters,)) }\CommentTok{\#np.shape}
+\NormalTok{        ode\_output[nodeA, nodeB] }\OperatorTok{=}\NormalTok{ cells[}\OperatorTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{]}
 
-\section{A youtube clip:}\label{a-youtube-clip-7}
+\CommentTok{\# use this code to see your ode and boolean results side by side}
+\NormalTok{ODEBooleanPlot(ode\_output, bool\_output)}
+\end{Highlighting}
+\end{Shaded}
 
-\url{https://www.youtube.com/embed/wo9vZccmqwc}
+\begin{exercise}[Biology]\protect\hypertarget{exr-non}{}\label{exr-non}
 
-\section{An `iframe' to a different page (e.g.~my
-simulations)}\label{an-iframe-to-a-different-page-e.g.-my-simulations-7}
-
-\subsection{Mermaid}\label{mermaid-7}
-
-Diagrams (Mermaid syntax):
-
-\begin{figure}
-
-\centering{
-
-\includegraphics[width=7.47in,height=2.27in]{morpho_practical_2_files/figure-latex/mermaid-figure-1.png}
-
-}
-
-\caption{\label{fig-variables}Types of models}
-
-\end{figure}%
-
-Which can be referred to Figure~\ref{fig-variables}.
-
-\subsection{Callouts}\label{callouts-7}
-
-Call-outs can organise information and highlight important points.
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-Note that there are five types of callouts, including: \texttt{note},
-\texttt{warning}, \texttt{important}, \texttt{tip}, and
-\texttt{caution}.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-tip-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-tip-color-frame, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip with Title}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-This is an example of a callout with a title.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-caution-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-caution-color-frame, title=\textcolor{quarto-callout-caution-color}{\faFire}\hspace{0.5em}{Expand To Learn About Collapse}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-This is an example of a `folded' caution callout that can be expanded by
-the user. You can use \texttt{collapse="true"} to collapse it by default
-or \texttt{collapse="false"} to make a collapsible callout that is
-expanded by default.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-tip-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-tip-color-frame, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip \ref*{tip-example}: Cross-Referencing a Tip}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-\quartocallouttip{tip-example} 
-
-Add an ID starting with \texttt{\#tip-} to reference a tip.
-
-\end{tcolorbox}
-
-See Tip~\ref{tip-example}\ldots{}
-
-\subsection{How to format questions/problem
-sets}\label{how-to-format-questionsproblem-sets-7}
-
-\begin{exercise}[Test
-1]\protect\hypertarget{exr-test1}{}\label{exr-test1}
-
-The equation of any straight line, called a linear equation, can be
-written as:
-
-\begin{equation}\phantomsection\label{eq-line}{ 
-y = mx + b
-}\end{equation}
-
-Refer to the equation like this Equation~\ref{eq-line} or like
-Customlabel~\ref{eq-line}.
-
-\textbf{a.} Blabla?
-
-\textbf{b.} Of blablabla?
+What differences do you see in each case? (differences in what?!)
+Discuss x, y, and z (question is a little short otherwise)
 
 \end{exercise}
 
-\subsection{Sharing data tables:}\label{sharing-data-tables-7}
+Now let's compare how ODE and Boolean logic represent different logical
+gates. You can use the same code in the previous box. Remember to modify
+the logical operator in the Boolean section, and to modify the doutputC
+equation in ODEgeneRegulation:
 
-\includegraphics{morpho_practical_2_files/figure-pdf/tab-anscombe-1.pdf}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  either nodeA or nodeB can activate outputC (OR gate)
+\item
+  that nodeA represses outputC (NOT gate)
+\item
+  that both nodeA and nodeB repress outputC (NOT nodeA \& NOT nodeB )
+\item
+  that nodeA represses outputC but nodeB activates it (NOT nodeA, yes
+  nodeB)
+\item
+  that nodeA or nodeB can activate outputC, but not both at the same
+  time (XOR gate)
+\item
+  any other biological scenario yon can think of!
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  tip: include an extra input node, and make a 3-node logical gate.
+\end{itemize}
+
+\begin{exercise}[Algorithmic
+thinking]\protect\hypertarget{exr-non}{}\label{exr-non}
+
+\textbf{Q3} Is there a logical gate that can be better represented with
+an ODE than with Boolean logic? Think of examples of biological
+regulatory interactions that can be described with each logical gate?
+
+\end{exercise}
+
+\section{Part II -- Gene regulatory
+network}\label{part-ii-gene-regulatory-network}
+
+Now let's move to a network model made of many individual regulatory
+interactions. This model includes regulatory interactions experimentally
+determined in the cells of plant roots, here they encoded as logical
+rules. The model consists of 18 nodes representing transcription
+factors, hormones, peptides, and multitude regulatory interactions among
+them. Look at the rootNetwork() function in the circuitFunctions.py
+file. See how the activity of each node is determined by the state of
+its regulators using and combining the logical operators AND, OR and
+NOT. Find the model here:
+https://www.nature.com/articles/s41598-020-60251-8
+
+Let's define a random initial condition for each of these 18 nodes, and
+the timesteps to solve the system using the logical functions. To find
+the state of the nodes in the network the next timestep, we need to give
+the state of our nodes to the rootNetwork() function, and then save the
+output of this function. We will save in matrix the initial condition,
+and how these 18 nodes change in the timesteps defined. At the end the
+function plotBooleanTimecourse() will show us the network changes in the
+simulated timesteps. * tip: 100 timesteps is enough to reach the
+attractors. For the initial condition you can also use that of one of
+the attractors reported in the paper and check what happens when you
+update them.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{timesteps}\OperatorTok{=}\DecValTok{20}
+\NormalTok{nodes}\OperatorTok{=}\DecValTok{18}
+\NormalTok{matrix }\OperatorTok{=}\NormalTok{ np.zeros((timesteps}\OperatorTok{+}\DecValTok{1}\NormalTok{, nodes), dtype}\OperatorTok{=}\BuiltInTok{int}\NormalTok{) }
+\NormalTok{matrix[}\DecValTok{0}\NormalTok{,:] }\OperatorTok{=}\NormalTok{ np.random.randint(}\DecValTok{0}\NormalTok{, }\DecValTok{2}\NormalTok{, size}\OperatorTok{=}\NormalTok{nodes) }\CommentTok{\#Random initial condition}
+\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(timesteps):}
+\NormalTok{    parameters}\OperatorTok{=}\NormalTok{ \{}\StringTok{\textquotesingle{}CK\textquotesingle{}}\NormalTok{: matrix[i,}\DecValTok{0}\NormalTok{], }\StringTok{\textquotesingle{}ARR1\textquotesingle{}}\NormalTok{: matrix[i,}\DecValTok{1}\NormalTok{], }\StringTok{\textquotesingle{}SHY2\textquotesingle{}}\NormalTok{: matrix[i,}\DecValTok{2}\NormalTok{], }\StringTok{\textquotesingle{}AUXIAAR\textquotesingle{}}\NormalTok{: matrix[i,}\DecValTok{3}\NormalTok{], }\StringTok{\textquotesingle{}ARFR\textquotesingle{}}\NormalTok{: matrix[i,}\DecValTok{4}\NormalTok{], }\StringTok{\textquotesingle{}ARF10\textquotesingle{}}\NormalTok{: matrix[i,}\DecValTok{5}\NormalTok{], }\StringTok{\textquotesingle{}ARF5\textquotesingle{}}\NormalTok{: matrix[i,}\DecValTok{6}\NormalTok{], }\StringTok{\textquotesingle{}XAL1\textquotesingle{}}\NormalTok{: matrix[i,}\DecValTok{7}\NormalTok{], }\StringTok{\textquotesingle{}PLT\textquotesingle{}}\NormalTok{: matrix[i,}\DecValTok{8}\NormalTok{], }\StringTok{\textquotesingle{}AUX\textquotesingle{}}\NormalTok{: matrix[i,}\DecValTok{9}\NormalTok{], }\StringTok{\textquotesingle{}SCR\textquotesingle{}}\NormalTok{: matrix[i,}\DecValTok{10}\NormalTok{], }\StringTok{\textquotesingle{}SHR\textquotesingle{}}\NormalTok{: matrix[i,}\DecValTok{11}\NormalTok{], }\StringTok{\textquotesingle{}MIR165\textquotesingle{}}\NormalTok{: matrix[i,}\DecValTok{12}\NormalTok{], }\StringTok{\textquotesingle{}PHB\textquotesingle{}}\NormalTok{: matrix[i,}\DecValTok{13}\NormalTok{], }\StringTok{\textquotesingle{}JKD\textquotesingle{}}\NormalTok{: matrix[i,}\DecValTok{14}\NormalTok{], }\StringTok{\textquotesingle{}MGP\textquotesingle{}}\NormalTok{: matrix[i,}\DecValTok{15}\NormalTok{], }\StringTok{\textquotesingle{}WOX5\textquotesingle{}}\NormalTok{: matrix[i,}\DecValTok{16}\NormalTok{], }\StringTok{\textquotesingle{}CLE40\textquotesingle{}}\NormalTok{: matrix[i,}\DecValTok{17}\NormalTok{]\}}
+\NormalTok{    matrix[i}\OperatorTok{+}\DecValTok{1}\NormalTok{, :] }\OperatorTok{=}\NormalTok{ rootNetwork(parameters)}
+
+\NormalTok{plotBooleanTimecourse(matrix,timesteps)}
+\end{Highlighting}
+\end{Shaded}
+
+Instead of a random initial condition try this one:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{matrix[}\DecValTok{0}\NormalTok{,:]}\OperatorTok{=}\NormalTok{[}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+Use the asynchronous updating scheme by changing the function to
+rootNetworkAsynchronous() and see what happens to this initial
+condition.
+
+\begin{exercise}[Algorithmic
+thinking]\protect\hypertarget{exr-non}{}\label{exr-non}
+
+\textbf{Q4} What happens now and why? What does an asyncrhonous update
+do?
+
+\end{exercise}
+
+This network has 18 nodes, and then 218 = 262,144 possible states. We
+can either solve each of these conditions, or instead explore just a
+subset of them. Using the previous code, add for loop to solve 100
+random initial conditions, and then save the final activity
+configurations (attractors) in the attractors matrix. *tip: 100 initial
+conditons is a good number to start with. \# The attractors matrix
+should have the shape (initial\_conditions, nodes) so that you can plot
+the results using the function plotBooleanAttractors.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ICs}\OperatorTok{=}\DecValTok{100}
+\NormalTok{attractors }\OperatorTok{=}\NormalTok{ np.zeros((ICs, }\BuiltInTok{len}\NormalTok{(parameters))) }\CommentTok{\# new}
+
+\CommentTok{\# your code}
+
+\NormalTok{plotBooleanAttractors(attractors) }\CommentTok{\# it takes as argument your matrix of attractors}
+\end{Highlighting}
+\end{Shaded}
+
+You probably found many different attractors. First, let's use a
+multidimensional reduction technique to see if each of initial
+conditions form groups of similar cells.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{UMAPBoolean(attractors)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{exercise}[Biology / abstract
+thinking]\protect\hypertarget{exr-non}{}\label{exr-non}
+
+\textbf{Q5} Why do you see clearly defined groups and not a continuous
+distribution of attractors?
+
+\end{exercise}
+
+Now let's analyse the attractors you found. First, let's group similar
+attractors:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{attractors\_sorted }\OperatorTok{=}\NormalTok{ np.array(}\BuiltInTok{sorted}\NormalTok{(attractors.tolist()))}
+\NormalTok{plotBooleanAttractors(attractors\_sorted) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{exercise}[Biology / abstract
+thinking]\protect\hypertarget{exr-non}{}\label{exr-non}
+
+\textbf{Q6} Do some attractors occur more frequently than others. Do
+they all have the same basin size of attraction? Why is this?
+
+\end{exercise}
+
+\begin{exercise}[Biology]\protect\hypertarget{exr-non}{}\label{exr-non}
+
+Some nodes are active (1) in most attractors, others in half, and others
+in very few. In how many of them is the node SHR active? What does this
+suggest about their regulation?
+
+\end{exercise}
+
+Now let's remove the repeated rows (duplicate attractor states) to see
+unique attractors:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\_, unique\_indices }\OperatorTok{=}\NormalTok{ np.unique(attractors, axis}\OperatorTok{=}\DecValTok{0}\NormalTok{, return\_index}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+\NormalTok{attractors\_unique }\OperatorTok{=}\NormalTok{ attractors[np.sort(unique\_indices)]}
+\NormalTok{plotBooleanAttractors(attractors\_unique) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{exercise}[Biology / abstract
+thinking]\protect\hypertarget{exr-non}{}\label{exr-non}
+
+How many unique attractors did you find? Compare them with the ones
+reported in the paper. Are they all fixed points?
+
+\end{exercise}
+
+\section{Part III -- Cell differentiation -- jumping from one attractor
+to
+another}\label{part-iii-cell-differentiation-jumping-from-one-attractor-to-another}
+
+Depending on what we want to answer a continuous or discrete model may
+be more appropriate for a model. To study the role of many genes in cell
+differentiation, a Boolean model might be better particularly if we lack
+details of the parameters underlying each reaction. If we want to study
+how cells jump from one state to another, a continuous model might be
+more appropriate.
+
+Here we will see how we can convert the Boolean model to a continuous
+one and use it to predict which regulators are able of causing a change
+in the state of the system (changes in cell fate!)
+
+Compare the code of the functions rootNetwork() and rootNetworkODE().
+Notice how in rootNetworkODE() the logical rules are represented with
+min and max functions, and then used in a sigmoidal function to create a
+continuous ODE model. * AND operator is a min function, OR operator is a
+max function, and NOT operator is 1-x. Use the code below to run a
+random initial condition for the 18 nodes (IC) and see how the system
+behaves.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{timerunning}\OperatorTok{=}\FloatTok{10.1} 
+\NormalTok{times }\OperatorTok{=}\NormalTok{ np.arange(}\DecValTok{0}\NormalTok{, timerunning, }\FloatTok{0.1}\NormalTok{)}
+
+\NormalTok{IC }\OperatorTok{=}\NormalTok{ np.random.randint(}\DecValTok{0}\NormalTok{, }\DecValTok{2}\NormalTok{, size}\OperatorTok{=}\DecValTok{18}\NormalTok{).tolist() }\CommentTok{\#random initial condition}
+\NormalTok{parameters }\OperatorTok{=}\NormalTok{ \{}\StringTok{\textquotesingle{}decayrate\textquotesingle{}}\NormalTok{: }\DecValTok{1}\NormalTok{, }\StringTok{\textquotesingle{}h\textquotesingle{}}\NormalTok{: }\DecValTok{50}\NormalTok{\} }
+\NormalTok{cells }\OperatorTok{=}\NormalTok{ odeint(rootNetworkODE, IC, times, args}\OperatorTok{=}\NormalTok{(parameters,)) }
+
+\NormalTok{plotODEroot(cells,times)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{exercise}[Modeling
+choices]\protect\hypertarget{exr-non}{}\label{exr-non}
+
+Do the attractors match those recovered with the Boolean network?
+
+\end{exercise}
+
+Now let's use the model to study cell differentiation. Let's start in
+the following initial condition (IC vector), and find a change in a node
+that produce a jump to another attractor (end). For this you can simply
+flip the activity of a gene in the initial condition (from 0
+-\textgreater1 or 1-\textgreater0) and see the final attractor matches
+the desired end state.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We start here: }
+\NormalTok{IC}\OperatorTok{=}\NormalTok{[}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{]}
+\CommentTok{\# We want to end here. }
+\NormalTok{end}\OperatorTok{=}\NormalTok{[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{]}
+\CommentTok{\# node order}
+\CommentTok{\# CK, ARR1, SHY2, AUXIAAR, ARFR, ARF10, ARF5, XAL1, PLT, AUX, SCR, SHR, MIR165, PHB, JKD, MGP, WOX5, CLE40}
+
+\CommentTok{\# your code }
+
+\NormalTok{plotODErootTransition(cells,times) }\CommentTok{\# use this function to plot your result}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{exercise}[Algorithmic thinking /
+biology]\protect\hypertarget{exr-non}{}\label{exr-non}
+
+What regulator causes the transition between these attractors? How many
+nodes change their activity between the initial and final state? what
+could be the biological meaning of this switch? how would you test this
+experimentally?
+
+\end{exercise}
+
+\begin{exercise}[Biology]\protect\hypertarget{exr-non}{}\label{exr-non}
+
+Finally, use the model to predict the rest of the attractor transitions
+because of single node changes. Are all attractor transitions possible,
+or are there preferred differentiation routes?
+
+\end{exercise}
+
+\chapter{Gene regulation in space}\label{gene-regulation-in-space}
+
+\section{TODO FOR}\label{todo-for}
+
+\begin{itemize}
+\tightlist
+\item
+  (\textbf{Monica?}), check labels for questions (`mathematical
+  thinking', `biology', etc)
+\item
+  (\textbf{Monica?}), figure out how/where to share the files and
+  answers
+\end{itemize}
+
+\section*{}\label{section-1}
+\addcontentsline{toc}{section}{}
+
+\markright{}
+
+\emph{How wonderful that we have met with a paradox. Now we have some
+hope of making progress -- Niehls Bohr}
+
+\section{Introduction}\label{introduction-2}
+
+In this practical you will study the effects of auxin, a plant hormone,
+on gene regulation in the root. Auxin is a hormone virtually involved in
+all developmental processes in plants, from embryo patterning and floral
+organ determination to leaf disposition and root growth. In each
+context, auxin triggers specific responses, which can be explained by
+the underlying regulatory networks---namely by the redundancy of
+molecular players in the auxin signalling pathway (the auxin response
+factors, ARFs), and how they are expressed in different tissues.
+
+In the root, researchers have found an auxin--WOX5 paradox: some
+experiments show that auxin promotes the expression of WOX5 (a root stem
+cell transcription factor), while others found WOX5 repression. This
+opposite auxin regulation is mediated by different ARFs---ARF5 and
+ARF10---posing the possibility that accounting for both ARF5 and ARF10
+regulatory networks can reconcile the results. To this end, you will use
+an in silico root model to address this paradox and propose an
+explanation.
+
+\section{Biological background}\label{biological-background}
+
+Plant roots grow thanks to the presence of stem cells housed in a niche
+at the root tip. A subset of these cells expresses WOX5, maintaining the
+surrounding cells as stem cells. WOX5 is regulated by several factors,
+and network models help us understand how.
+
+The Boolean network used last week describes the gene and hormonal
+activity configurations of the cells in the root apex. In this model
+WOX5 is regulated positively by ARF5 and negatively by ARF10 and CLE40.
+Auxin regulates stem cell activity in the roots, and multiple links
+exist between auxin and the regulators in the Boolean network. Both ARF5
+and ARF10 are auxin response factors activated by auxin. Moreover, root
+transcription factors control ARF5 and ARF10 expression such that they
+are not expressed in every cell of the root apex. This regulation is
+included in the Boolean model we studied last week. Whether this is
+relevant to understanding the auxin--WOX5 paradox is unclear. Here, each
+cell of the in silico root model carries a copy of the Boolean network,
+which allows us to test hypotheses and find an explanation.
+
+\section{The model}\label{the-model}
+
+The model simulates a root apex, showing the stem cell niche at the apex
+(lime green cells in the cell graphics; purple cells in the WOX5
+visualization). The different tissues of the root are spatially
+organized. Each cell has a different set of expressed genes, which we
+account for by initializing each cell's Boolean network in the QC,
+Vascular, Endodermis, and Columella attractors. (Cortex and epidermis
+are not modeled.) Multiple grids store different cell properties:
+cell-type, auxin levels, and expression of each gene.
+
+You can visualize ARF10, ARF5, MGP, and WOX5 expression using the
+provided plotting function.
+
+\section{Files}\label{files}
+
+\texttt{Rootfunctions.py} -- contains model functions. You do not need
+to modify them but should understand what they do.
+
+\texttt{Root-model-Auxin.py} -- code to simulate the in silico root.
+
+\texttt{auxin\_grid.npy} -- initial auxin levels in each cell.
+
+\section{Questions}\label{questions-2}
+
+\begin{exercise}[]\protect\hypertarget{exr-tur}{}\label{exr-tur}
+
+Algorithmic thinking
+
+Familiarize yourself with the model. Examine Rootfunctions.py to see how
+each process is modeled and how they are coupled.
+
+\end{exercise}
+
+\begin{exercise}[]\protect\hypertarget{exr-tur}{}\label{exr-tur}
+
+Biology
+
+What happens if you update the network every timestep? Does that make
+biological sense? Where in the code can you make this modification?
+
+\end{exercise}
+
+\begin{exercise}[]\protect\hypertarget{exr-tur}{}\label{exr-tur}
+
+Biology \& algorithmic thinking
+
+Simulate an auxin treatment by changing the AuxinTreatment parameter.
+Try values of 10 and 750. This increases auxin levels in all cells by
+the given amount.
+
+How does auxin treatment affect gene expression in the root? (You can
+visualize different genes by changing the grid provided to plotGrids().)
+
+Does the model output correspond to the transcriptional reporter of WOX5
+shown in Figure 1? Do you see activation or repression as reported
+experimentally?
+
+\end{exercise}
+
+\begin{exercise}[]\protect\hypertarget{exr-tur}{}\label{exr-tur}
+
+Biology \& algorithmic/mathematical thinking
+
+The model does not yet reproduce the experiments. To account for
+quantitative effects of auxin, implement two hypotheses based on the
+literature:
+
+Auxin represses MGP expression.
+
+Extremely high auxin levels (unrealistic in vivo) repress WOX5
+expression.
+
+Modify the equations for MGP and WOX5 in rootNetwork accordingly.
+
+For MGP, retain its logical rule but multiply its production term by a
+saturation function of auxin (Km = 45):
+
+dMGP = (45/(45+auxininput))\emph{((-np.exp(0.5 } h) + np.exp(-h *
+w\_MGP)) / ((1 - np.exp(0.5 * h)) * (1 + np.exp(-h * (w\_MGP - 0.5)))))
+- (lambda\_ * MGP)
+
+Similarly, add a negative regulation by auxin to the WOX5 equation (Km =
+1000).
+
+Run control and auxin treatments with (i) updated MGP, (ii) updated
+WOX5, and (iii) both updates.
+
+Do you now see the differences reported by experimentalists?
+
+\end{exercise}
+
+\begin{exercise}[]\protect\hypertarget{exr-tur}{}\label{exr-tur}
+
+Biological interpretation
+
+You should observe that WOX5 expression gradually expands into the
+endodermis and disappears from QC cells when both equations are updated.
+This matches experimental microscopy. To explain repression:
+
+Why do different parts of the root respond differently to auxin? Why
+does induction occur mainly in upper cells and repression in basal
+cells?
+
+\end{exercise}
+
+\begin{exercise}[]\protect\hypertarget{exr-tur}{}\label{exr-tur}
+
+Algorithmic thinking
+
+Experimental repression of WOX5 was detected by RT-PCR at the very apex.
+Reproduce this in silico by saving the average WOX5 levels of cells at
+the apex (y \textless{} 40) at the end of the simulation for all three
+treatments. Plot them.
+
+What is the root apex response to auxin treatments? Considering that the
+root contains mixed cell types, which cells best represent your plotted
+values?
+
+\end{exercise}
+
+\begin{exercise}[]\protect\hypertarget{exr-tur}{}\label{exr-tur}
+
+Biology \& algorithmic thinking
+
+Repeat the analysis for all cells, for QC cells, and for endodermis
+cells. Compare WOX5 regulation across tissues.
+
+Do you see a difference between your observations and the simulated
+RT-PCR plot? Why?
+
+\end{exercise}
+
+\begin{exercise}[]\protect\hypertarget{exr-tur}{}\label{exr-tur}
+
+Biology \& algorithmic thinking
+
+Changes in WOX5 expression depend on tissue context and auxin dosage.
+Simulate a range of auxin treatments from 0 to 750 (choose your step
+size).
+
+Can you now explain the auxin--WOX5 paradox? What mechanism do you
+propose?
+
+\end{exercise}
+
+\begin{exercise}[]\protect\hypertarget{exr-tur}{}\label{exr-tur}
+
+Biology \& conceptual thinking
+
+Perform an in silico intervention to alter WOX5 dosage responsiveness.
+For example, enforce continuous induction or block its induction in the
+endodermis. How would you test these model predictions experimentally?
+
+\end{exercise}
+
+\begin{exercise}[]\protect\hypertarget{exr-tur}{}\label{exr-tur}
+
+Biological thinking
+
+All models are wrong, but some are useful. The model should offer
+mechanistic insight into paradoxical auxin responses. Yet the original
+experiments used different auxin analogs: NAA (transported independently
+of PINs), IAA (PIN-transported), and NPA (blocks PINs, increasing auxin
+in the apex). How does this information change your conclusions? What
+extensions to the model would account for these differences?
+
+\end{exercise}
 
 \part{III) Cell differentiation}
 
 \chapter{Differentiation
 introduction}\label{differentiation-introduction}
 
-\section{Equations}\label{equations-8}
+\subsection{TODO}\label{todo-2}
 
-Here's an equation:
+\begin{itemize}
+\tightlist
+\item
+  Write a brief intro to the differentiation practicals
+\end{itemize}
 
-\begin{equation}\phantomsection\label{eq-log}{ 
-\frac{\mathrm{d}N}{\mathrm{d}t} = rN(1 - \frac{N}{K}) 
-}\end{equation}
+\chapter{Practical 6}\label{practical-6}
 
-And Equation~\ref{eq-log} is a reference to the equation above.
+\subsection{TODO}\label{todo-3}
 
-\section{References}\label{references-8}
+\begin{itemize}
+\tightlist
+\item
+  Couldn't find text (yet)?
+\end{itemize}
 
-See Knuth (1984) for additional discussion of literate programming.
+\chapter{Practical 7}\label{practical-7}
 
-\section{Syntax highlighting}\label{syntax-highlighting-8}
+\subsection{TODO}\label{todo-4}
 
-Here's some python code:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
-\NormalTok{np.random.seed(}\DecValTok{42}\NormalTok{)}
-\NormalTok{a }\OperatorTok{=} \DecValTok{1} \OperatorTok{+} \DecValTok{2}
-\NormalTok{b }\OperatorTok{=}\NormalTok{ a }\OperatorTok{+} \DecValTok{3}
-\BuiltInTok{print}\NormalTok{(}\StringTok{"Hello"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\section{Visualising data (R)}\label{visualising-data-r-8}
-
-Here's an interactive plot generated with R:
-
-\includegraphics{differentiation_intro_text_files/figure-pdf/unnamed-chunk-1-1.pdf}
-
-\section{A youtube clip:}\label{a-youtube-clip-8}
-
-\url{https://www.youtube.com/embed/wo9vZccmqwc}
-
-\section{An `iframe' to a different page (e.g.~my
-simulations)}\label{an-iframe-to-a-different-page-e.g.-my-simulations-8}
-
-\subsection{Mermaid}\label{mermaid-8}
-
-Diagrams (Mermaid syntax):
-
-\begin{figure}
-
-\centering{
-
-\includegraphics[width=7.47in,height=2.27in]{differentiation_intro_text_files/figure-latex/mermaid-figure-1.png}
-
-}
-
-\caption{\label{fig-variables}Types of models}
-
-\end{figure}%
-
-Which can be referred to Figure~\ref{fig-variables}.
-
-\subsection{Callouts}\label{callouts-8}
-
-Call-outs can organise information and highlight important points.
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-Note that there are five types of callouts, including: \texttt{note},
-\texttt{warning}, \texttt{important}, \texttt{tip}, and
-\texttt{caution}.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-tip-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-tip-color-frame, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip with Title}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-This is an example of a callout with a title.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-caution-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-caution-color-frame, title=\textcolor{quarto-callout-caution-color}{\faFire}\hspace{0.5em}{Expand To Learn About Collapse}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-This is an example of a `folded' caution callout that can be expanded by
-the user. You can use \texttt{collapse="true"} to collapse it by default
-or \texttt{collapse="false"} to make a collapsible callout that is
-expanded by default.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-tip-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-tip-color-frame, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip \ref*{tip-example}: Cross-Referencing a Tip}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-\quartocallouttip{tip-example} 
-
-Add an ID starting with \texttt{\#tip-} to reference a tip.
-
-\end{tcolorbox}
-
-See Tip~\ref{tip-example}\ldots{}
-
-\subsection{How to format questions/problem
-sets}\label{how-to-format-questionsproblem-sets-8}
-
-\begin{exercise}[Test
-1]\protect\hypertarget{exr-test1}{}\label{exr-test1}
-
-The equation of any straight line, called a linear equation, can be
-written as:
-
-\begin{equation}\phantomsection\label{eq-line}{ 
-y = mx + b
-}\end{equation}
-
-Refer to the equation like this Equation~\ref{eq-line} or like
-Customlabel~\ref{eq-line}.
-
-\textbf{a.} Blabla?
-
-\textbf{b.} Of blablabla?
-
-\end{exercise}
-
-\subsection{Sharing data tables:}\label{sharing-data-tables-8}
-
-\includegraphics{differentiation_intro_text_files/figure-pdf/tab-anscombe-1.pdf}
-
-\chapter{Practical 1}\label{practical-1-2}
-
-\section{Equations}\label{equations-9}
-
-Here's an equation:
-
-\begin{equation}\phantomsection\label{eq-log}{ 
-\frac{\mathrm{d}N}{\mathrm{d}t} = rN(1 - \frac{N}{K}) 
-}\end{equation}
-
-And Equation~\ref{eq-log} is a reference to the equation above.
-
-\section{References}\label{references-9}
-
-See Knuth (1984) for additional discussion of literate programming.
-
-\section{Syntax highlighting}\label{syntax-highlighting-9}
-
-Here's some python code:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
-\NormalTok{np.random.seed(}\DecValTok{42}\NormalTok{)}
-\NormalTok{a }\OperatorTok{=} \DecValTok{1} \OperatorTok{+} \DecValTok{2}
-\NormalTok{b }\OperatorTok{=}\NormalTok{ a }\OperatorTok{+} \DecValTok{3}
-\BuiltInTok{print}\NormalTok{(}\StringTok{"Hello"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\section{Visualising data (R)}\label{visualising-data-r-9}
-
-Here's an interactive plot generated with R:
-
-\includegraphics{differentiation_practical_1_files/figure-pdf/unnamed-chunk-1-1.pdf}
-
-\section{A youtube clip:}\label{a-youtube-clip-9}
-
-\url{https://www.youtube.com/embed/wo9vZccmqwc}
-
-\section{An `iframe' to a different page (e.g.~my
-simulations)}\label{an-iframe-to-a-different-page-e.g.-my-simulations-9}
-
-\subsection{Mermaid}\label{mermaid-9}
-
-Diagrams (Mermaid syntax):
-
-\begin{figure}
-
-\centering{
-
-\includegraphics[width=7.47in,height=2.27in]{differentiation_practical_1_files/figure-latex/mermaid-figure-1.png}
-
-}
-
-\caption{\label{fig-variables}Types of models}
-
-\end{figure}%
-
-Which can be referred to Figure~\ref{fig-variables}.
-
-\subsection{Callouts}\label{callouts-9}
-
-Call-outs can organise information and highlight important points.
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-Note that there are five types of callouts, including: \texttt{note},
-\texttt{warning}, \texttt{important}, \texttt{tip}, and
-\texttt{caution}.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-tip-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-tip-color-frame, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip with Title}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-This is an example of a callout with a title.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-caution-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-caution-color-frame, title=\textcolor{quarto-callout-caution-color}{\faFire}\hspace{0.5em}{Expand To Learn About Collapse}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-This is an example of a `folded' caution callout that can be expanded by
-the user. You can use \texttt{collapse="true"} to collapse it by default
-or \texttt{collapse="false"} to make a collapsible callout that is
-expanded by default.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-tip-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-tip-color-frame, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip \ref*{tip-example}: Cross-Referencing a Tip}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-\quartocallouttip{tip-example} 
-
-Add an ID starting with \texttt{\#tip-} to reference a tip.
-
-\end{tcolorbox}
-
-See Tip~\ref{tip-example}\ldots{}
-
-\subsection{How to format questions/problem
-sets}\label{how-to-format-questionsproblem-sets-9}
-
-\begin{exercise}[Test
-1]\protect\hypertarget{exr-test1}{}\label{exr-test1}
-
-The equation of any straight line, called a linear equation, can be
-written as:
-
-\begin{equation}\phantomsection\label{eq-line}{ 
-y = mx + b
-}\end{equation}
-
-Refer to the equation like this Equation~\ref{eq-line} or like
-Customlabel~\ref{eq-line}.
-
-\textbf{a.} Blabla?
-
-\textbf{b.} Of blablabla?
-
-\end{exercise}
-
-\subsection{Sharing data tables:}\label{sharing-data-tables-9}
-
-\includegraphics{differentiation_practical_1_files/figure-pdf/tab-anscombe-1.pdf}
-
-\chapter{Practical 2}\label{practical-2-2}
-
-\section{Equations}\label{equations-10}
-
-Here's an equation:
-
-\begin{equation}\phantomsection\label{eq-log}{ 
-\frac{\mathrm{d}N}{\mathrm{d}t} = rN(1 - \frac{N}{K}) 
-}\end{equation}
-
-And Equation~\ref{eq-log} is a reference to the equation above.
-
-\section{References}\label{references-10}
-
-See Knuth (1984) for additional discussion of literate programming.
-
-\section{Syntax highlighting}\label{syntax-highlighting-10}
-
-Here's some python code:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
-\NormalTok{np.random.seed(}\DecValTok{42}\NormalTok{)}
-\NormalTok{a }\OperatorTok{=} \DecValTok{1} \OperatorTok{+} \DecValTok{2}
-\NormalTok{b }\OperatorTok{=}\NormalTok{ a }\OperatorTok{+} \DecValTok{3}
-\BuiltInTok{print}\NormalTok{(}\StringTok{"Hello"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\section{Visualising data (R)}\label{visualising-data-r-10}
-
-Here's an interactive plot generated with R:
-
-\includegraphics{differentiation_practical_2_files/figure-pdf/unnamed-chunk-1-1.pdf}
-
-\section{A youtube clip:}\label{a-youtube-clip-10}
-
-\url{https://www.youtube.com/embed/wo9vZccmqwc}
-
-\section{An `iframe' to a different page (e.g.~my
-simulations)}\label{an-iframe-to-a-different-page-e.g.-my-simulations-10}
-
-\subsection{Mermaid}\label{mermaid-10}
-
-Diagrams (Mermaid syntax):
-
-\begin{figure}
-
-\centering{
-
-\includegraphics[width=7.47in,height=2.27in]{differentiation_practical_2_files/figure-latex/mermaid-figure-1.png}
-
-}
-
-\caption{\label{fig-variables}Types of models}
-
-\end{figure}%
-
-Which can be referred to Figure~\ref{fig-variables}.
-
-\subsection{Callouts}\label{callouts-10}
-
-Call-outs can organise information and highlight important points.
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-Note that there are five types of callouts, including: \texttt{note},
-\texttt{warning}, \texttt{important}, \texttt{tip}, and
-\texttt{caution}.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-tip-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-tip-color-frame, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip with Title}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-This is an example of a callout with a title.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-caution-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-caution-color-frame, title=\textcolor{quarto-callout-caution-color}{\faFire}\hspace{0.5em}{Expand To Learn About Collapse}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-This is an example of a `folded' caution callout that can be expanded by
-the user. You can use \texttt{collapse="true"} to collapse it by default
-or \texttt{collapse="false"} to make a collapsible callout that is
-expanded by default.
-
-\end{tcolorbox}
-
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-tip-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-tip-color-frame, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip \ref*{tip-example}: Cross-Referencing a Tip}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
-
-\quartocallouttip{tip-example} 
-
-Add an ID starting with \texttt{\#tip-} to reference a tip.
-
-\end{tcolorbox}
-
-See Tip~\ref{tip-example}\ldots{}
-
-\subsection{How to format questions/problem
-sets}\label{how-to-format-questionsproblem-sets-10}
-
-\begin{exercise}[Test
-1]\protect\hypertarget{exr-test1}{}\label{exr-test1}
-
-The equation of any straight line, called a linear equation, can be
-written as:
-
-\begin{equation}\phantomsection\label{eq-line}{ 
-y = mx + b
-}\end{equation}
-
-Refer to the equation like this Equation~\ref{eq-line} or like
-Customlabel~\ref{eq-line}.
-
-\textbf{a.} Blabla?
-
-\textbf{b.} Of blablabla?
-
-\end{exercise}
-
-\subsection{Sharing data tables:}\label{sharing-data-tables-10}
-
-\includegraphics{differentiation_practical_2_files/figure-pdf/tab-anscombe-1.pdf}
+\begin{itemize}
+\tightlist
+\item
+  Complete the text on this page.
+\end{itemize}
 
 \part{IV) Evolution}
 
@@ -1824,9 +2587,12 @@ get translated into phenotypes (where selection happens), and how the
 environment can change over time and lead to niche construction and
 interactions.
 
-\chapter{Practical 1}\label{practical-1-3}
+\chapter{Sticking together}\label{sticking-together}
 
-\section{Sticking together}\label{sticking-together}
+\section*{Sticking together}\label{sticking-together-1}
+\addcontentsline{toc}{section}{Sticking together}
+
+\markright{Sticking together}
 
 In this practical, you will practice building your own model of
 collective behaviour, based on the one you saw at the end of the
@@ -1842,7 +2608,7 @@ Python.
 
 First, let's discuss how we can let individuals walk around in space.
 
-\section{Steering}\label{steering}
+\section{Steering}\label{sec-steering}
 
 We can represent a moving individual in space as a point with a position
 and a velocity. The position is represented by two coordinates, \(x\)
@@ -1856,7 +2622,7 @@ y-component. The position of the individual can then be updated by
 adding the velocity to the position. Combining that with a function that
 draws an arrow in Python, we get the following code:
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{CODE FOR ``moving vector in Python''}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, toptitle=1mm, colbacktitle=quarto-callout-note-color!10!white, toprule=.15mm, coltitle=black, colframe=quarto-callout-note-color-frame, opacityback=0, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{CODE FOR ``moving vector in Python''}, breakable, bottomtitle=1mm, rightrule=.15mm, titlerule=0mm, arc=.35mm, leftrule=.75mm, bottomrule=.15mm, colback=white]
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1938,8 +2704,8 @@ draws an arrow in Python, we get the following code:
 
 \end{tcolorbox}
 
-\begin{exercise}[Playing with steering
-arrows]\protect\hypertarget{exr-steering}{}\label{exr-steering}
+\begin{exercise}[Playing with steering arrows - Mathematical
+thinking]\protect\hypertarget{exr-steering}{}\label{exr-steering}
 
 Copy-paste the code above, study it for a few minutes, and run it.
 
@@ -1958,24 +2724,18 @@ where \(\theta\) is the angle of rotation:
 x_{new} = x \cdot cos(\theta) - y \cdot sin(\theta) \newline
 y_{new} = x \cdot sin(\theta) + y \cdot cos(\theta)
 \end{aligned}
-\]
-
-\begin{enumerate}
-\def\labelenumi{\alph{enumi}.}
-\setcounter{enumi}{1}
-\tightlist
-\item
-  Use the equation above to rotate the \textbf{velocity vector} in the
-  code by a small angle every timestep. What happens?
-\item
-  Modelling 1 individual is not very exciting. Think about what the code
-  above would look like if you had more than 1 individual. Discuss this
-  with other students and/or Bram.
-\end{enumerate}
+\] b. Use the equation above to rotate the \textbf{velocity vector} in
+the code by a small angle every timestep. What happens? c.~Modelling 1
+individual is not very exciting. Think about what the code above would
+look like if you had more than 1 individual. Discuss this with other
+students and/or Bram.
 
 \end{exercise}
 
-\section{Moving ``cells''}\label{moving-cells}
+\section*{Moving ``cells''}\label{moving-cells}
+\addcontentsline{toc}{section}{Moving ``cells''}
+
+\markright{Moving ``cells''}
 
 In this practical, you will practice with modelling individuals in space
 by modifying a Python code based on the foraging cells shown at the
@@ -1990,7 +2750,7 @@ beginning. To accommodate for many cells, we will define a new
 First, read the code yourself (you can ignore the \texttt{Visualisation}
 class), and see if you can get it running on your own laptop.
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{STARTING CODE FOR ``moving cells''}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, toptitle=1mm, colbacktitle=quarto-callout-note-color!10!white, toprule=.15mm, coltitle=black, colframe=quarto-callout-note-color-frame, opacityback=0, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{STARTING CODE FOR ``moving cells''}, breakable, bottomtitle=1mm, rightrule=.15mm, titlerule=0mm, arc=.35mm, leftrule=.75mm, bottomrule=.15mm, colback=white]
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2326,6 +3086,9 @@ bacteria, but it could also be a piece of fruit for a monkey (at this
 point, the model is still very abstract, so both could be true). Let's
 make the target change position around after an individual touches it.
 
+\begin{exercise}[Playing with steering arrows - Algorithmic/mathematical
+thinking]\protect\hypertarget{exr-steering}{}\label{exr-steering}
+
 To help you on your way, first answer the following questions for
 yourself:
 
@@ -2341,6 +3104,8 @@ yourself:
   How can we assign a random position to the dot?
 \end{enumerate}
 
+\end{exercise}
+
 \emph{First try it yourself. If you get stuck, ask Bram for help.}
 
 \section{Reproduction}\label{sec-reproduction}
@@ -2354,6 +3119,9 @@ new_cell = Cell(new_x, new_y, new_vx, new_vy, new_speed)
 self.cells.append(new_cell)
 \end{verbatim}
 
+\begin{exercise}[The birth of an arrow - Biological / algorithmic
+thinking]\protect\hypertarget{exr-steering}{}\label{exr-steering}
+
 Consider which properties of the parent cell get inherited to the child:
 
 \begin{enumerate}
@@ -2366,6 +3134,8 @@ Consider which properties of the parent cell get inherited to the child:
 \item
   Does the velocity get inherited?
 \end{enumerate}
+
+\end{exercise}
 
 Note that depending on the scenario, the above questions may change.
 When a planktonic algea reproduces the daughter cells may inherit the
@@ -2381,6 +3151,11 @@ overlapping quite a bit. Let's implement a simple form of collision
 detection, where overlap is resolved by pushing cells away from each
 other. Answer the following questions to get on your way:
 
+\begin{exercise}[Overlapping circles - Algorithmic/mathematical
+thinking]\protect\hypertarget{exr-steering}{}\label{exr-steering}
+
+~
+
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
 \tightlist
@@ -2391,6 +3166,8 @@ other. Answer the following questions to get on your way:
 \item
   What can we do when two points overlap?
 \end{enumerate}
+
+\end{exercise}
 
 Now that we have implemented both target-finding, reproduction, and
 collision, we can study these individual mechanisms by commenting one or
@@ -2418,9 +3195,12 @@ each grid point to 1. Let's use the function \texttt{np.exp} to
 calculate a Gaussian that we will place in the center of the grid. The
 \texttt{fill\_grid} already takes as arguments the grid, a relative
 x-coordinate (0-1), a relative y-coordinate (0-1), and a standard
-deviation (0-1).
+deviation (0-1). Get started by answering the question below.
 
-Get started by answering the following questions:
+\begin{exercise}[Bell curves in space - Mathematical
+thinking]\protect\hypertarget{exr-steering}{}\label{exr-steering}
+
+~
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -2434,6 +3214,8 @@ Get started by answering the following questions:
   center of the grid?
 \end{enumerate}
 
+\end{exercise}
+
 \section{Run and tumble}\label{sec-runandtumble}
 
 \begin{figure}[H]
@@ -2442,7 +3224,7 @@ Get started by answering the following questions:
 
 }
 
-\caption{``Test''}
+\caption{``Run and tumble''}
 
 \end{figure}%
 
@@ -2467,14 +3249,18 @@ v_y' = v_x \cdot sin(\theta) + v_y \cdot cos(\theta)
 
 Where \(\theta\) is the angle we want the vector to rotate (in radians,
 not degrees!), and \(v_x\) and \(v_y\) are the components of the vector.
-With this in mind, let's try and model chemotaxis. Do it in the
-following way:
+With this in mind, let's try and model chemotaxis.
+
+\begin{exercise}[Run and tumble - Biology / algorithmic
+thinking]\protect\hypertarget{exr-steering}{}\label{exr-steering}
+
+~
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
 \tightlist
 \item
-  Determine the concentration of the position of the cell, AND the
+  Determine the concentration at the position of the cell, AND the
   predicted position of the cell after a small timestep (hint: use
   \(v_x\) and \(v_y\) to predict the future position! \textbf{ask Bram
   if you get stuck})
@@ -2490,6 +3276,8 @@ following way:
   If the future position is a lower concentration, rotate the velocity
   vector a lot.
 \end{enumerate}
+
+\end{exercise}
 
 Study if your individuals can find the resource peak. Notice that
 depending on your implementation, cells may or may not work. Make sure
@@ -2511,12 +3299,19 @@ right, so feel free to explore. Ask for help if you get stuck.
 Try to run the model with 500 cells. Also go back to the starting code
 again (without all the additions), and run this code with 500 cells too.
 
+\begin{exercise}[Algorithmic / computational
+thinking]\protect\hypertarget{exr-steering}{}\label{exr-steering}
+
+~
+
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
 \tightlist
 \item
   What happens? Can you explain this?
 \end{enumerate}
+
+\end{exercise}
 
 This is far as this introduction to IBMs in python goes. Simple IBMs can
 be efficiently implemented in basic Python, but for more complex models,
@@ -2533,7 +3328,7 @@ This combination of individuals moving in continuous space, combined
 with a grid (e.g.~with resources, or other environmental states) is a
 very useful way to make a spatially structured model.
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Final code}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, toptitle=1mm, colbacktitle=quarto-callout-note-color!10!white, toprule=.15mm, coltitle=black, colframe=quarto-callout-note-color-frame, opacityback=0, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Final code}, breakable, bottomtitle=1mm, rightrule=.15mm, titlerule=0mm, arc=.35mm, leftrule=.75mm, bottomrule=.15mm, colback=white]
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2905,8 +3700,10 @@ selection will act. How much each cell is attracted to nearby cells
 depends on an internal ``stickiness'' parameter. Let the simulation run
 for some time.
 
-\begin{exercise}[The evolution of
-stickiness]\protect\hypertarget{exr-jsmodel}{}\label{exr-jsmodel}
+\begin{exercise}[The evolution of stickiness -
+Biology]\protect\hypertarget{exr-jsmodel}{}\label{exr-jsmodel}
+
+~
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -2924,7 +3721,7 @@ stickiness]\protect\hypertarget{exr-jsmodel}{}\label{exr-jsmodel}
 
 \end{exercise}
 
-\chapter{Practical 2}\label{practical-2-3}
+\chapter{What gets selected?}\label{what-gets-selected}
 
 \section{Genotypes, phenotypes, and evolutionary
 algorithms}\label{genotypes-phenotypes-and-evolutionary-algorithms}
@@ -2981,7 +3778,7 @@ where individuals have a ``fitness'' value, but it not yet used for
 selection (see below). \textbf{Read/test this code thoroughly before you
 move on to the next section}.
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{CODE FOR ``fitness without fitness''}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, toptitle=1mm, colbacktitle=quarto-callout-note-color!10!white, toprule=.15mm, coltitle=black, colframe=quarto-callout-note-color-frame, opacityback=0, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{CODE FOR ``fitness without fitness''}, breakable, bottomtitle=1mm, rightrule=.15mm, titlerule=0mm, arc=.35mm, leftrule=.75mm, bottomrule=.15mm, colback=white]
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3137,7 +3934,7 @@ above\footnote{Note that this is from the full code, so this code does
   not work stand-alone}. The variable \texttt{no\_reproduction\_chance}
 is the fixed weight that nobody gets to reproduce:
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Roulette wheel algorithm}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, toptitle=1mm, colbacktitle=quarto-callout-note-color!10!white, toprule=.15mm, coltitle=black, colframe=quarto-callout-note-color-frame, opacityback=0, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Roulette wheel algorithm}, breakable, bottomtitle=1mm, rightrule=.15mm, titlerule=0mm, arc=.35mm, leftrule=.75mm, bottomrule=.15mm, colback=white]
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3166,8 +3963,8 @@ is the fixed weight that nobody gets to reproduce:
 After you understand the roulette wheel algorithm, do the following
 exercise:
 
-\begin{exercise}[Questions about the roulette
-wheel]\protect\hypertarget{exr-roulette}{}\label{exr-roulette}
+\begin{exercise}[Questions about the roulette wheel - Algorithmic
+thinking]\protect\hypertarget{exr-roulette}{}\label{exr-roulette}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -3201,8 +3998,8 @@ Modify the function \texttt{calculate\_diversity} to calculate the
 diversity of the population as the standard deviation of the fitness
 values.
 
-\begin{exercise}[Questions about the roulette
-wheel]\protect\hypertarget{exr-diversitydynamics}{}\label{exr-diversitydynamics}
+\begin{exercise}[The dynamics of diversity -
+Biology]\protect\hypertarget{exr-diversitydynamics}{}\label{exr-diversitydynamics}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -3222,7 +4019,7 @@ selected). Let us try and adapt the model to be more biologically
 meaningful, by making each individual represented by a DNA sequence.
 Copy the following code:
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Starting code for ``evolving a DNA sequence''}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, toptitle=1mm, colbacktitle=quarto-callout-note-color!10!white, toprule=.15mm, coltitle=black, colframe=quarto-callout-note-color-frame, opacityback=0, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Starting code for ``evolving a DNA sequence''}, breakable, bottomtitle=1mm, rightrule=.15mm, titlerule=0mm, arc=.35mm, leftrule=.75mm, bottomrule=.15mm, colback=white]
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3376,8 +4173,8 @@ Copy the following code:
 
 Answer the following questions using the options available in the model:
 
-\begin{exercise}[Evolving
-DNA]\protect\hypertarget{exr-evolving-dna}{}\label{exr-evolving-dna}
+\begin{exercise}[Evolving DNA - Biology / abstract
+thinking]\protect\hypertarget{exr-evolving-dna}{}\label{exr-evolving-dna}
 
 ~
 
@@ -3428,7 +4225,7 @@ a protein sequence. The protein sequence is then used to calculate the
 fitness of the individual, which is based on how well the protein
 sequence matches a target protein sequence. The code is as follows:
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Starting code for evolving a protein sequence}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, toptitle=1mm, colbacktitle=quarto-callout-note-color!10!white, toprule=.15mm, coltitle=black, colframe=quarto-callout-note-color-frame, opacityback=0, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Starting code for evolving a protein sequence}, breakable, bottomtitle=1mm, rightrule=.15mm, titlerule=0mm, arc=.35mm, leftrule=.75mm, bottomrule=.15mm, colback=white]
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3610,8 +4407,8 @@ sequence matches a target protein sequence. The code is as follows:
 
 Answer the following question about the model:
 
-\begin{exercise}[Evolving protein
-sequences]\protect\hypertarget{exr-evolving-proteins}{}\label{exr-evolving-proteins}
+\begin{exercise}[Evolving protein sequences - Biology / abstract
+thinking]\protect\hypertarget{exr-evolving-proteins}{}\label{exr-evolving-proteins}
 
 ~
 
@@ -3641,7 +4438,7 @@ sequences]\protect\hypertarget{exr-evolving-proteins}{}\label{exr-evolving-prote
 
 \end{exercise}
 
-\chapter{Practical 3}\label{practical-3-1}
+\chapter{Public goods}\label{public-goods}
 
 \section{Building a model from
 scratch}\label{building-a-model-from-scratch}
@@ -3774,8 +4571,8 @@ Try studying what happens at different mutation rates.
 \section{Answers to Evolution Practical
 1}\label{answers-to-evolution-practical-1}
 
-\subsection{\texorpdfstring{Questions
-Exercise~\ref{exr-steering}}{Questions Exercise~}}\label{questions-exr-steering}
+\subsection{\texorpdfstring{Answer
+(Section~\ref{sec-steering})}{Answer (Section~)}}\label{answer-sec-steering}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -4221,7 +5018,7 @@ goods'}
 \chapter{Differentiation
 introduction}\label{differentiation-introduction-1}
 
-\section{Equations}\label{equations-11}
+\section{Equations}\label{equations}
 
 Here's an equation:
 
@@ -4231,11 +5028,11 @@ Here's an equation:
 
 And Equation~\ref{eq-log} is a reference to the equation above.
 
-\section{References}\label{references-11}
+\section{References}\label{references}
 
 See Knuth (1984) for additional discussion of literate programming.
 
-\section{Syntax highlighting}\label{syntax-highlighting-11}
+\section{Syntax highlighting}\label{syntax-highlighting}
 
 Here's some python code:
 
@@ -4249,20 +5046,20 @@ Here's some python code:
 \end{Highlighting}
 \end{Shaded}
 
-\section{Visualising data (R)}\label{visualising-data-r-11}
+\section{Visualising data (R)}\label{visualising-data-r}
 
 Here's an interactive plot generated with R:
 
 \includegraphics{project_1_files/figure-pdf/unnamed-chunk-1-1.pdf}
 
-\section{A youtube clip:}\label{a-youtube-clip-11}
+\section{A youtube clip:}\label{a-youtube-clip}
 
 \url{https://www.youtube.com/embed/wo9vZccmqwc}
 
 \section{An `iframe' to a different page (e.g.~my
-simulations)}\label{an-iframe-to-a-different-page-e.g.-my-simulations-11}
+simulations)}\label{an-iframe-to-a-different-page-e.g.-my-simulations}
 
-\subsection{Mermaid}\label{mermaid-11}
+\subsection{Mermaid}\label{mermaid}
 
 Diagrams (Mermaid syntax):
 
@@ -4280,11 +5077,11 @@ Diagrams (Mermaid syntax):
 
 Which can be referred to Figure~\ref{fig-variables}.
 
-\subsection{Callouts}\label{callouts-11}
+\subsection{Callouts}\label{callouts}
 
 Call-outs can organise information and highlight important points.
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, toptitle=1mm, colbacktitle=quarto-callout-note-color!10!white, toprule=.15mm, coltitle=black, colframe=quarto-callout-note-color-frame, opacityback=0, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, breakable, bottomtitle=1mm, rightrule=.15mm, titlerule=0mm, arc=.35mm, leftrule=.75mm, bottomrule=.15mm, colback=white]
 
 Note that there are five types of callouts, including: \texttt{note},
 \texttt{warning}, \texttt{important}, \texttt{tip}, and
@@ -4292,13 +5089,13 @@ Note that there are five types of callouts, including: \texttt{note},
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-tip-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-tip-color-frame, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip with Title}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, toptitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, toprule=.15mm, coltitle=black, colframe=quarto-callout-tip-color-frame, opacityback=0, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip with Title}, breakable, bottomtitle=1mm, rightrule=.15mm, titlerule=0mm, arc=.35mm, leftrule=.75mm, bottomrule=.15mm, colback=white]
 
 This is an example of a callout with a title.
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-caution-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-caution-color-frame, title=\textcolor{quarto-callout-caution-color}{\faFire}\hspace{0.5em}{Expand To Learn About Collapse}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, toptitle=1mm, colbacktitle=quarto-callout-caution-color!10!white, toprule=.15mm, coltitle=black, colframe=quarto-callout-caution-color-frame, opacityback=0, title=\textcolor{quarto-callout-caution-color}{\faFire}\hspace{0.5em}{Expand To Learn About Collapse}, breakable, bottomtitle=1mm, rightrule=.15mm, titlerule=0mm, arc=.35mm, leftrule=.75mm, bottomrule=.15mm, colback=white]
 
 This is an example of a `folded' caution callout that can be expanded by
 the user. You can use \texttt{collapse="true"} to collapse it by default
@@ -4307,7 +5104,7 @@ expanded by default.
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-tip-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-tip-color-frame, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip \ref*{tip-example}: Cross-Referencing a Tip}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, toptitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, toprule=.15mm, coltitle=black, colframe=quarto-callout-tip-color-frame, opacityback=0, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip \ref*{tip-example}: Cross-Referencing a Tip}, breakable, bottomtitle=1mm, rightrule=.15mm, titlerule=0mm, arc=.35mm, leftrule=.75mm, bottomrule=.15mm, colback=white]
 
 \quartocallouttip{tip-example} 
 
@@ -4318,7 +5115,7 @@ Add an ID starting with \texttt{\#tip-} to reference a tip.
 See Tip~\ref{tip-example}\ldots{}
 
 \subsection{How to format questions/problem
-sets}\label{how-to-format-questionsproblem-sets-11}
+sets}\label{how-to-format-questionsproblem-sets}
 
 \begin{exercise}[Test
 1]\protect\hypertarget{exr-test1}{}\label{exr-test1}
@@ -4339,7 +5136,7 @@ Customlabel~\ref{eq-line}.
 
 \end{exercise}
 
-\subsection{Sharing data tables:}\label{sharing-data-tables-11}
+\subsection{Sharing data tables:}\label{sharing-data-tables}
 
 \includegraphics{project_1_files/figure-pdf/tab-anscombe-1.pdf}
 
@@ -4428,7 +5225,7 @@ between hosts (horizontal transmission). To understand why, start by
 reading their paper. If you have read it, unfold the text below to see
 my summary of their methods.
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{My summary of the model by van Vliet et al.}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, toptitle=1mm, colbacktitle=quarto-callout-note-color!10!white, toprule=.15mm, coltitle=black, colframe=quarto-callout-note-color-frame, opacityback=0, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{My summary of the model by van Vliet et al.}, breakable, bottomtitle=1mm, rightrule=.15mm, titlerule=0mm, arc=.35mm, leftrule=.75mm, bottomrule=.15mm, colback=white]
 
 This model studies the maintanance of self-sacrificial ``helper''
 microbes. Here, I will refer to helpers as ``allies'' (A), as to clearly
@@ -4576,19 +5373,7 @@ allows you to tune these distinctions.
 
 \bookmarksetup{startatroot}
 
-\chapter{Summary}\label{summary}
-
-In summary, this book has no content whatsoever.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\DecValTok{1} \OperatorTok{+} \DecValTok{1} \OperatorTok{=} \DecValTok{2}
-\end{Highlighting}
-\end{Shaded}
-
-\bookmarksetup{startatroot}
-
-\chapter*{References}\label{references-12}
+\chapter*{References}\label{references-1}
 \addcontentsline{toc}{chapter}{References}
 
 \markboth{References}{References}
@@ -4599,6 +5384,11 @@ In summary, this book has no content whatsoever.
 Crombach, Anton, and Paulien Hogeweg. 2008. {``Evolution of Evolvability
 in Gene Regulatory Networks.''} \emph{PLoS Computational Biology} 4 (7):
 e1000112.
+
+\bibitem[\citeproctext]{ref-driever1988bicoid}
+Driever, Wolfgang, and Christiane Nüsslein-Volhard. 1988. {``The Bicoid
+Protein Determines Position in the Drosophila Embryo in a
+Concentration-Dependent Manner.''} \emph{Cell} 54 (1): 95--104.
 
 \bibitem[\citeproctext]{ref-knuth84}
 Knuth, Donald E. 1984. {``Literate Programming.''} \emph{Comput. J.} 27
@@ -4615,6 +5405,11 @@ Van Vliet, Simon, and Michael Doebeli. 2019. {``The Role of Multilevel
 Selection in Host Microbiome Evolution.''} \emph{Proceedings of the
 National Academy of Sciences} 116 (41): 20591--97.
 
+\bibitem[\citeproctext]{ref-wolpert1969positional}
+Wolpert, Lewis. 1969. {``Positional Information and the Spatial Pattern
+of Cellular Differentiation.''} \emph{Journal of Theoretical Biology} 25
+(1): 1--47.
+
 \end{CSLReferences}
 
 \cleardoublepage
@@ -4622,9 +5417,9 @@ National Academy of Sciences} 116 (41): 20591--97.
 \addcontentsline{toc}{part}{Appendices}
 \appendix
 
-\chapter{Quarto examples}\label{quarto-examples-1}
+\chapter{Quarto examples}\label{quarto-examples}
 
-\section{Equations}\label{equations-12}
+\section{Equations}\label{equations-1}
 
 Here's an equation:
 
@@ -4634,11 +5429,11 @@ Here's an equation:
 
 And Equation~\ref{eq-log} is a reference to the equation above.
 
-\section{References}\label{references-13}
+\section{References}\label{references-2}
 
 See Knuth (1984) for additional discussion of literate programming.
 
-\section{Syntax highlighting}\label{syntax-highlighting-12}
+\section{Syntax highlighting}\label{syntax-highlighting-1}
 
 Here's some python code:
 
@@ -4652,20 +5447,20 @@ Here's some python code:
 \end{Highlighting}
 \end{Shaded}
 
-\section{Visualising data (R)}\label{visualising-data-r-12}
+\section{Visualising data (R)}\label{visualising-data-r-1}
 
 Here's an interactive plot generated with R:
 
 \includegraphics{answers_files/figure-pdf/unnamed-chunk-1-1.pdf}
 
-\section{A youtube clip:}\label{a-youtube-clip-12}
+\section{A youtube clip:}\label{a-youtube-clip-1}
 
 \url{https://www.youtube.com/embed/wo9vZccmqwc}
 
 \section{An `iframe' to a different page (e.g.~my
-simulations)}\label{an-iframe-to-a-different-page-e.g.-my-simulations-12}
+simulations)}\label{an-iframe-to-a-different-page-e.g.-my-simulations-1}
 
-\subsection{Mermaid}\label{mermaid-12}
+\subsection{Mermaid}\label{mermaid-1}
 
 Diagrams (Mermaid syntax):
 
@@ -4683,11 +5478,11 @@ Diagrams (Mermaid syntax):
 
 Which can be referred to Figure~\ref{fig-variables}.
 
-\subsection{Callouts}\label{callouts-12}
+\subsection{Callouts}\label{callouts-1}
 
 Call-outs can organise information and highlight important points.
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, toptitle=1mm, colbacktitle=quarto-callout-note-color!10!white, toprule=.15mm, coltitle=black, colframe=quarto-callout-note-color-frame, opacityback=0, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, breakable, bottomtitle=1mm, rightrule=.15mm, titlerule=0mm, arc=.35mm, leftrule=.75mm, bottomrule=.15mm, colback=white]
 
 Note that there are five types of callouts, including: \texttt{note},
 \texttt{warning}, \texttt{important}, \texttt{tip}, and
@@ -4695,13 +5490,13 @@ Note that there are five types of callouts, including: \texttt{note},
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-tip-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-tip-color-frame, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip with Title}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, toptitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, toprule=.15mm, coltitle=black, colframe=quarto-callout-tip-color-frame, opacityback=0, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip with Title}, breakable, bottomtitle=1mm, rightrule=.15mm, titlerule=0mm, arc=.35mm, leftrule=.75mm, bottomrule=.15mm, colback=white]
 
 This is an example of a callout with a title.
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-caution-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-caution-color-frame, title=\textcolor{quarto-callout-caution-color}{\faFire}\hspace{0.5em}{Expand To Learn About Collapse}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, toptitle=1mm, colbacktitle=quarto-callout-caution-color!10!white, toprule=.15mm, coltitle=black, colframe=quarto-callout-caution-color-frame, opacityback=0, title=\textcolor{quarto-callout-caution-color}{\faFire}\hspace{0.5em}{Expand To Learn About Collapse}, breakable, bottomtitle=1mm, rightrule=.15mm, titlerule=0mm, arc=.35mm, leftrule=.75mm, bottomrule=.15mm, colback=white]
 
 This is an example of a `folded' caution callout that can be expanded by
 the user. You can use \texttt{collapse="true"} to collapse it by default
@@ -4710,7 +5505,7 @@ expanded by default.
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-tip-color!10!white, coltitle=black, colback=white, left=2mm, bottomtitle=1mm, arc=.35mm, titlerule=0mm, breakable, bottomrule=.15mm, opacitybacktitle=0.6, colframe=quarto-callout-tip-color-frame, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip \ref*{tip-example}: Cross-Referencing a Tip}, opacityback=0, toprule=.15mm, toptitle=1mm, rightrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, toptitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, toprule=.15mm, coltitle=black, colframe=quarto-callout-tip-color-frame, opacityback=0, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip \ref*{tip-example}: Cross-Referencing a Tip}, breakable, bottomtitle=1mm, rightrule=.15mm, titlerule=0mm, arc=.35mm, leftrule=.75mm, bottomrule=.15mm, colback=white]
 
 \quartocallouttip{tip-example} 
 
@@ -4721,7 +5516,7 @@ Add an ID starting with \texttt{\#tip-} to reference a tip.
 See Tip~\ref{tip-example}\ldots{}
 
 \subsection{How to format questions/problem
-sets}\label{how-to-format-questionsproblem-sets-12}
+sets}\label{how-to-format-questionsproblem-sets-1}
 
 \begin{exercise}[Test
 1]\protect\hypertarget{exr-test1}{}\label{exr-test1}
@@ -4742,7 +5537,7 @@ Customlabel~\ref{eq-line}.
 
 \end{exercise}
 
-\subsection{Sharing data tables:}\label{sharing-data-tables-12}
+\subsection{Sharing data tables:}\label{sharing-data-tables-1}
 
 \includegraphics{answers_files/figure-pdf/tab-anscombe-1.pdf}
 

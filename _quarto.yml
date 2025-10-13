@@ -29,7 +29,6 @@ book:
     - part: "Course information"
       chapters:
         - index.qmd
-        - intro.qmd
         - general.qmd
         - schedule.qmd
     - part: "I) Pattern formation"

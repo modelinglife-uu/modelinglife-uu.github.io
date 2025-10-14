@@ -1,8 +1,64 @@
-# General course info {#general}
+# General course info {#general .unnumbered}
 
-Our names, email addresses, an overview of the course content, learning goals,
-tips, grading, group formation, usage of Brightspace, materials they need,
-required attendencee, and feedback is welcome blabla. 
+## Contact
+Course coordinator: Monica Garcia Gomez (m.l.garciagomez@uu.nl).
+
+
+![**Teachers:** Kirsten ten Tusscher (K.H.W.J.tenTusscher@uu.nl), Erika Tsingos (e.tsingos@uu.nl),Monica Garcia Gomez (m.l.garciagomez@uu.nl), Bram van Dijk (b.vandijk@uu.nl).](images/teachers.png){width=50%}
+
+We are part of the [Theoretical Biology group of Utrecht University ](https://tbb.bio.uu.nl/aboutus.html)).
+
+## Course content
+This course will consist of lectures (HC) covering various modelling approaches to study life at different levels accompanied by computer practicals (WC) where students will get hands-on experience on running computational models of the development or the evolution of animals, plants, and microbial systems. 
+
+![Rough roadmap of the Modeling life course](images/timeline.png)
+
+## General schedule: 
+
+Monday – Guest lectures (mandatory)
+
+Tuesdays / Thursdays– Lecture and practicals (mandatory)
+
+### Key dates: 
+
+  - December 18, 2025: Exam
+  - Jan 6, 2026: Miniprojects presentations
+  - Jan 29, 2026: Minisymposium
+
+## Learning Goals
+The course aims to provide you with an introductory understanding of computational modeling to study living systems, and their large range of applications.
+
+After this course the student can:
+
+  - Explain how biological systems can be studied with computational models,
+  - Translate a biological system into a working computational model using python,
+  - Use algorithmic thinking to break down problems into programmable steps,
+  - Identify the underlying assumptions and limitations of computational models,
+  - Identify the modeling approach & formalism best suited for a research question.
+
+## Communication 
+
+Teams channel: fast communication.
+
+Brightspace is the channel for all official communications (*e.g.* final grades). 
+
+Schedule, slides, practicals: https://modelinglife-uu.github.io/
+
+Feedback and other matters: [m.l.garciagomez@uu.nl](mailto:m.l.garciagomez@uu.nl)
+
+## Grading 
+
+To pass this course, a minimum of 5,5 is mandatory. Your grade is calculated by the following components:
+
+Exam:                     70%
+
+Mini project:           30%
+
+## Attendance
+
+Attendance is mandatory to all lectures and practicals. Should you be unable to attend, please communicate this by email to: [m.l.garciagomez@uu.nl](mailto:m.l.garciagomez@uu.nl).
+
+
 
 
 

@@ -7,7 +7,7 @@ Nov 10, 2025 – Welcome and Intro to Python (**HC** 13:15-17:00).
 
 Nov 11, 2025 – Pattern formation I: Gradients and segments (**HC** 10:00-12:45 and **WC1** 13:15-17:00).
 
-Nov 13, 2025 – Pattern formation II: Turing Digit patterning (**HC** 10:00-12:45 and **WC2** 13:15-17:00).
+Nov 13, 2025 – Pattern formation II: Turing patterns (**HC** 10:00-12:45 and **WC2** 13:15-17:00).
 
 ## WEEK 2 {.unnumbered}
 
@@ -27,7 +27,7 @@ Nov 27, 2025 – Cell differentiation: gene regulation in space (**HC** 10:00-12
 
 ## WEEK 4 {.unnumbered}
 
-Dec 1, 2025 – Guest lectures: Vivek Bhardwak and Kaisa Kajala, What is a cell type? genomic and functional perspectives (**HC** 13:15-17:00).
+Dec 1, 2025 – Guest lectures: Vivek Bhardwaj and Kaisa Kajala, What is a cell type? genomic and functional perspectives (**HC** 13:15-17:00).
 
 Dec 2, 2025 – Environment and Development (**HC** 10:00-12:45 and **WC7** 13:15-17:00). 
 

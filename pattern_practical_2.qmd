@@ -1,3 +1,8 @@
+---
+params:
+  show_answers: true
+---
+
 # Pattern formation II <br> Turing digit patterns
   
 ## {.unnumbered}
@@ -25,6 +30,8 @@ Study the schemes below. The arrows represent activating or inhibiting interacti
 
 ::: {.columns}
 
+
+
 ::: {.column width="40%"}
 ![Schemes and numerical solutions of two prototypical 2-component Turing models](images/two_component_turing.png){#fig-turing}
 :::
@@ -36,6 +43,19 @@ Study the schemes below. The arrows represent activating or inhibiting interacti
 :::
 
 :::
+
+
+::: {.content-visible when-meta="params.show_answers"}
+> **Answer** “fuse” Sox9 and Wnt nodes to get Substrate-Depletion model
+<br>a)	Sox9 inhibits Wnt which inhibits Sox9 -> summarize as self-activation
+<br>b)	Wnt self-inhibition arrow -> part of self-activation in reduced scheme
+<br>c)	Wnt slow diffusion -> Sox9 slow diffusion<br><br>
+Turing instability requires short-range activation and long-range inhibition. <br>
+In the substrate-depletion model, the growth of the slow-diffusing activator A is constrained by the local loss of fast-diffusing substrate S. Around an A-enriched domain a halo of S will form, which will induce nearby A domains to grow, generating the alternating spatial pattern.<br><br>
+In the BSW model, Sox9 indirectly locally self-activates by inhibiting its slow-diffusing inhibitor Wnt, but the growth of Sox9 domains is constrained by depletion of the fast-diffusing Bmp (playing the role of substrate in this model). Around Sox9-enriched domains a halo of Bmp will form and induce the generation of more Sox9 domains in the surroundings.
+
+:::
+
 
 ## Patterning in a fixed domain size
 
@@ -63,6 +83,37 @@ Play with the reaction parameters and diffusion constants to study their effects
 
 :::
 
+::: {.content-visible when-meta="params.show_answers"}
+
+> For simplicity I will only show Sox9 patterns:
+
+![](images/sox9.png)
+
+![](images/sox9sweep.png)
+
+> In general, all three components follow similar trends in terms of concentrations as any impact on one component will affect the others via feedbacks.<br><br>
+Increasing or decreasing the parameters k2 and k4 has the same effect on the pattern. <br><br>
+With increased Sox9 activation (high k2) a lower amount of BMP is sufficient to get Sox9 to increase which in turn inhibits both Wnt and Bmp. As a result, the “peaks” are reached sooner in space resulting in shorter lower amplitude wavelengths. Similarly, when Sox9 inhibition of BMP is high (high k4) then BMP peaks are lower, which means there is less Sox9 activation leading to smaller amplitude peaks and hence shorter wavelength.
+Conversely, if Sox9 activation by BMP is weak (low k2), then it takes more BMP to build up to a peak, resulting in longer higher amplitude wavelengths. When Sox9 inhibition of BMP is weak (low k4), then it takes larger Sox9 domains to deplete BMP, resulting in longer higher amplitude wavelengths.
+If Sox9 activation (k2) or BMP inhibition (k4) are extremely strong, Sox9 locally depletes BMP faster than it can diffuse, which in turn leads to a reduction in Sox9; this could explain local oscillations and travelling waves, though this result should be verified with a better numerical scheme.
+Changing BMP self-inhibition (k5) has the opposite effect as Sox9 activation (k2) and BMP inhibition (k4). BMP self-inhibition restricts the size of BMP domains. Stronger self-inhibition (high k5) means small pockets of BMP are destabilized and Sox9 regions grow until the point that they completely deplete the local BMP, resulting in larger higher amplitude peaks. Vice-versa, reducing BMP self-inhibition (low k5) allows BMP peaks to more easily form, leading to shorter pattern wavelengths. Unlike the other two parameters, this reduction only happens up to a point, as the other feedback interactions take over. 
+
+![](images/sox9sweep2.png)
+
+>Increasing or decreasing the parameters k3 and k7 has the same effect on the pattern. When Wnt inhibition of Sox9 is increased (high k3) or Sox9 inhibition of Wnt is increased (high k7) the cross-inhibition of both variables is stronger, meaning they will tend to create larger exclusion zones which translates as longer higher amplitude wavelengths. When Wnt inhibition of Sox9 is decreased (low k3) or Sox9 inhibition of Wnt is decreased (low k7) smaller regions can coexist, reducing the wavelength and the amplitude. Even lower cross-inhibition means the regions overlap, and small time delays could lead to oscillations, although this should be verified with a numerically better scheme.
+Wnt self-inhibition (k9) limits the growth of Wnt domains. When self-inhibition is strong (high k9) Wnt domains shrink and therefore the wavelength is shorter with lower amplitude. Even stronger self-inhibition leads to overlapping domains and similar oscillations as observed for low k3 and low k7. Vice-versa, a decrease of Wnt self-inhibition (low k9) allows larger patches of Wnt to form, which increases the wavelength and the amplitude.
+
+![](images/sox9sweep3.png)
+
+> The equation for Sox9 includes a “saturation term” in the form of a negative cubic power of Sox9, which means that effectively there is Sox9 self-inhibition in the model. The parameter delta multiplies a quadratic Sox9-dependent term in the equation for Sox9, which by default is set to 0. A positive delta effectively means that Sox9 has a self-activation term that counteracts the self-inhibition by the cubic saturation term, whereas a negative delta means the Sox9 self-inhibition is stronger. 
+Introducing a stronger Sox9 self-activation (delta > 0) increases the amplitude of Sox9 domains. Due to this local strong increase in Sox9, there is also a local strong depletion of BMP which prevents stripes from elongating, resulting in a spot pattern.
+Introducing a stronger Sox9 self-inhibition (delta < 0) reduces the amplitude of Sox9 domains. There is thus less BMP depletion which enables stripes to elongate and fuse more easily.<br><br>
+Wnt and Sox9 are cross-inhibitory, and thus their domains will compete. Lower Wnt diffusion means Wnt domains form locally, leading to a reduced wavelength. Vice-versa a higher Wnt diffusion means that Wnt spreads away from Sox9 domains enabling them to expand ultimately resulting in longer wavelengths. Note that since BMP diffusion scales with Wnt diffusion, both parameters were changed at the same time.<br><br>
+The ratio of diffusion speeds defines the size of the Turing space. As the diffusion of BMP is set equal to that of Wnt, the homogenous solution becomes stable. Reducing the diffusion of BMP further leads to travelling waves or oscillations. This is because a slow (or stationary) BMP is in a local negative feedback loop with Sox9, which results in oscillatory behavior. The establishment of Wnt domains around the oscillating Sox9 regions is also oscillatory.<br><br>
+Increasing BMP diffusion allows to more effectively “feed” Sox9 domains, which leads to a subtle increase in the wavelength and amplitude.
+
+:::
+
 ------------------------------------------------------------------------
 
 ## The homogenous steady state in Turing models
@@ -75,6 +126,11 @@ In a system exhibiting Turing instability, the spatially unpatterned steady stat
 
  Modify the initial condition in the script `01__digits_squarehomogeneoustissue.py` to be exactly in this state (Sox9, BMP, Wnt should be all zero everywhere) and run the simulation. Explain the simulation result.
 :::
+
+:::{.content-visible when-meta="params.show_answers"}
+> **Answer** The homogenous steady state continues to exist, and if starting in that state the system will not evolve to a different state. A small perturbation is needed to nudge the system out of the steady state.
+:::
+
 ------------------------------------------------------------------------
 
 ## Patterning in a growing domain size
@@ -93,6 +149,17 @@ In the script `02__digits_growingsquare_PD.py` we added tissue growth in the pro
 **Note:** Increase the `totaltime` parameter to 5000 when using growth rate of 0.01.
 :::
 
+:::{.content-visible when-meta="params.show_answers"}
+
+> **Answer** At low growth rates, the pattern forms stripes parallel to the growth direction. As the growth speed increases, the alignment shifts to stripes perpendicular to the growth direction. When growth is slow, the “new domain” added by growth is too small to fit a Turing wavelength. As a result, the existing pattern gets extended into the new parts. When growth is fast, the “new domain” added by growth is sufficiently large to fit a Turing wavelength, which becomes the selected mode. Additionally for faster growth, the diffusion/growth ratio is now lower making it harder to simple extend the existing pattern from diffusion of the old cells that previously made up the boundary.
+
+![Simulations from this practical with domain growth ](images/domaingrowth.png)
+
+![Experimental work using a light-gated chemical reaction that forms Turing patterns when illuminated. The illuminated area was shifted over time to produce a growing domain, work by Míguez et at., 2006](images/experimental_stripes.png){width=40%}
+
+
+:::
+
 ------------------------------------------------------------------------
 
 ## Patterning along two growth axes
@@ -105,6 +172,14 @@ In reality, the limb bud grows in both the proximo-distal and anterior-posterior
 
 Play with the relative size of these growth rates and study what happens. Compare the order of appearance of stripes to the experimental data in the paper (see Figure 3F in the Raspopovic paper).
 
+:::
+
+:::{.content-visible when-meta="params.show_answers"}
+
+> **Answer** As in the previous question, the rate of growth influences whether stripes grow parallel to or perpendicular to the growth boundary. Also as before, slow horizontal growth promotes horizontal stripes (vi<=0.1), and when this becomes faster stripes reorient to become vertical. However now, if we add vertical growth and it is not small enough relative to the horizontal growth, above and below the horizontal stripes we get vertical stripes and these domains are larger the faster vertical growth is relative to horizontal growth. So to get ok-ish patterns we need horizontal growth not too fast, and vertical growth to be slower. These results are consistent with horizontal growth of the “paddle” being faster than vertical growth. Also, we see that middle horizontal stripes appear earlier than the outer ones (in those situation where not all is vertical), similar to what we see in the paper in Fig 3F.
+Still interestingly, if you put vj=0.2 and vi=0.1 you promote initially vertical and later on horizontal stripes, this is an effect of in the vertical direction hitting the boundaries of the domain first and then still slowly continuing growth in the horizontal dimension at a not too high rate that was supportive of extending horizontal stripes.
+
+![Simulations from this practical with domain growth ](images/domaingrowth.png)
 :::
 
 ------------------------------------------------------------------------
@@ -136,6 +211,15 @@ Inspired by this approach, the script `04__digits_growingsquare.py` implements a
 
 :::
 
+
+:::{.content-visible when-meta="params.show_answers"}
+> **Answer** The default value of newly added tissue is 0, because the entire matrix is initialized with 0s, and only a small rectangle corresponding to the initial tissue domain is filled with random values and then updated based on the equations. When growth happens, the tissue domain extends to cover new parts of the matrix that were not included in the initialization. Extending the edges into 0-valued territory would be as if new, empty cells appear at the edges of the tissue, which is not a reasonable approach to model limb bud growth.<br><br>If a cell increases in volume without producing/degrading molecules “X”, then the concentration of X will decrease as the cell increases in volume. Daughter cells would have on average half the concentration of X as the mother cell. If “X” is constantly produced and degraded (and the cell is a well-mixed environment) then the concentration of X could be in quasi-steady state during growth. A growing cell would maintain the same concentration of X over time. When the cell divides, both daughter cells would inherit the same concentration of X as the mother cell had. Assuming the latter scenario is more likely, then growth of a tissue should work by “stretching” the values of the growing parts. (Some tissues actually do grow only at the edges, but even there we would expect the newly added “territory” to be made from previous cells and therefore still inherit their concentrations.)
+
+> The different growth appears to affect pattern formation, e.g for vj=0.01 the pattern is still predominantly horizontal for 0.15, which was less so before. In constrast for vj=0.05 and vi=0.15 pattern is mostly vertical whereas in other growth regime it was still partly horizontal. Seems that transition from horizontal to vertical stripes is thus modulated. So for low vj it is easier to get horizontal stripes.
+
+
+:::
+
 ------------------------------------------------------------------------
 
 ## Spatial modulation of parameters k4 and k7
@@ -149,6 +233,13 @@ Let us now ignore growth and its role on orienting stripes for a while and explo
 The script `05__digits_squarek4k7gradient.py` allows you to implement exponential gradients of `k4` and `k7` across the tissue. You can set the minimum and maximum values, axis (x=horizontal, y=vertical) and direction (0=decreasing, 1=increasing). Look in the supplement of the Raspopovic paper, page 48 Fig 2C, left for the estimated change of `k4` and `k7` across the tissue and try to reproduce (not exactly but similarly) Figure 2C, right side, by playing with the parameters affecting the `k4` and `k7` gradients. Describe along which axis, in which direction and to what extent `k4` and `k7` are changing. Estimate the change in Turing pattern wavelength this results in.
 
 :::
+
+:::{.content-visible when-meta="params.show_answers"}
+> **Answer** See the script `05__digits_squarek4k7gradient_answer.py` for a solution. The output may look sometimes like this:
+
+![](images/spatial_parameter_turing.png)
+:::
+
 ------------------------------------------------------------------------
 
 ## Hoxd13 and FGF
@@ -170,6 +261,14 @@ $$
 The script `06__digits_squarehoxdfgf.py` implements how `k4` and `k7` are a function of local FGF and Hox values, but does not yet include Hox and FGF spatial patterns and how these develop over time. Adjust the code to incorporate the observed Hoxd13 and FGF patterns and study how the digit patterns compare to what you found under question 7. Note that arrays for `hox` and `fgf` are included, and decay and diffusion values for `fgf` are provided already in the code. Also note that `hox` and `fgf` each have a maximum value of 1.
 :::
 
+:::{.content-visible when-meta="params.show_answers"}
+> **Answer** See the script `06_digits_squarehoxdfgf_answer.py` for a solution. The output may look sometimes like this:
+
+![](images/spatial_parameter_turing2.png)
+
+The Hox domain starts as a narrow vertical band and expands backward. The FGF gradient develops from the rightward boundary. Since a certain amount of Hox and FGF is needed to result in k4 and k7 values permissive of Turing patterns the stripes develop from right to left and because of the wavelength changes induced by different Hox and FGF values become closer together towards the left. Note that here a nice example run is shown but patterns are variable.
+
+:::
 ------------------------------------------------------------------------
 
 ## Shape makes the tissue
@@ -196,6 +295,17 @@ To implement non-square geometries, the script uses “masks”. Study how these
 
 :::
 
+:::{.content-visible when-meta="params.show_answers"}
+> **Answer**<br>
+Fgf gradient forms from bottom to top, as a consequence bottom fingers form first, often one of the bottom fingers forms and than splits. While in general Turing mechanisms give patterns they are not reproducible in terms of the positioning of the stripes. By starting the highest point of the FGF gradient locally it is determine where the first digits can arise, generating control over the positioning of the digits.<br><br>
+Vi 0.1 goes okay, 0.2 stretched and splitting of digits <br>
+Vj too low too little room so less than 5 digits, vi too high more than 5 fingers, higher rates result in less reproducible patterns
+Below a nice pattern showing 5 fingers, but also showing near splitting of one of the fingers at the end<br><br>
+The model explains the formation and positioning of the 4 digits, and how the distance between these digits increases along the limb bud. However, the model clearly does not simulate/explain the formation of the wrist bones that is observed experimentally. Interestingly the experimental data suggest that while digits may form from the “right to the left”, the “leftmost” bones of the wrist are there the earliest, suggesting there locally different conditions apply allowing earlier Turing patterning but with a very large wavelength happening there.  <br><br>
+
+![](images/fingers.png)
+
+:::
 ------------------------------------------------------------------------
 
 ## Master students exercise 
@@ -212,5 +322,38 @@ Above we played with ellipse size and growth rates, however in addition to mutat
 -   `supp_i__smooth_function.py` visualizes the function `smooth_function()`;
 -   `supp_i__morphological_operations.py` visualizes morphological operations (binary dilate/erode and Gaussian blur) which are used for mask operations, calculating the Laplacian on the irregular domain, and to select pixels to generate the FGF and Hox pattern;
 -   `supp_i__maskDifference.py` visualizes the difference of masks, which is how the function `single_step_growth()` checks if the tissue domain is growing or shrinking.
+
+:::
+
+:::{.content-visible when-meta="params.show_answers"}
+> **Answer**
+Reference values:
+```python
+# Reaction-diffusion parameters for FGF
+Dfgf = 0.001            # diffusion coefficient
+fgf_decay_rate = 0.0003 # degradation parameter
+
+# Opening angle of fgf source at the start and end
+fgf_angle_start_1 = -0.3*np.pi
+fgf_angle_start_2 = -0.5*np.pi
+fgf_angle_end_1   =  0.4*np.pi
+fgf_angle_end_2   = -0.6*np.pi    
+fgf_angle_rate    = 0.0002      # Exponential rate of change of angle
+
+# Opening angle of Hoxd13 expression domain at the start and end
+hox_angle_start_1 = -0.1*np.pi
+hox_angle_start_2 = -0.3*np.pi
+hox_angle_end_1   =  0.6*np.pi
+hox_angle_end_2   = -0.6*np.pi
+hox_angle_rate    = 0.001       # Exponential rate of change of angle
+
+hox_minR   = 0.3    # Minimum radius for Hoxd13 permissive zone at the end
+hox_maxR   = 0.85   # Maximum radius for Hoxd13 permissive zone (also minimum at the start)
+hox_R_rate = 0.001  # Rate of change of the Hoxd13 minimum radius over time
+```
+
+> Decreasing FGF diffusion increases the number of fingers and creates a fin-like appearance. However note that it also creates a shorter finger forming domain. Increasing FGF diffusion decreases the number of fingers.
+
+![](images/polydact.png)
 
 :::

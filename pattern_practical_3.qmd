@@ -1,3 +1,9 @@
+---
+title: "Practical"
+params:
+  show_answers: true
+---
+
 # Pattern formation III <br> Clock-and-wavefront
 
 ## Goal of the tutorial:
@@ -59,6 +65,7 @@ tutorial](https://www.datacamp.com/tutorial/python-oop-tutorial)
 
 :::{#exr-test}
 
+## Biology 
 In practical 1 we saw how gradients can be created through local
 production, diffusion and decay. However, other mechanisms for
 gradient formation are possible, such as cell lineage transport.
@@ -70,24 +77,39 @@ decay rate of FGF and the division rate of the cells. How does this
 affect the gradient?
 :::
 
-  <!-- > **Answer** *If growth rate goes up cell volumes increase faster, causing more -->
-  <!-- > dilution of FGF and hence a lower maximum of the gradient as due to -->
-  <!-- > the stable protein quite some time is needed to compensate for this -->
-  <!-- > decrease by more production, at the same time the gradient is less -->
-  <!-- > steep as cell division follow up faster and hence less time has passed -->
-  <!-- > and less day has taken place. If decay rate goes up, maximum goes down -->
-  <!-- > but gradient become steeper and shorter as for same time between -->
-  <!-- > divisions more decay takes place* -->
 
-2.  **Conceptual thinking** When would this type of gradient formation
+::: {.content-visible when-meta="params.show_answers"}
+
+> **Answer** *If growth rate goes up cell volumes increase faster, causing more
+> dilution of FGF and hence a lower maximum of the gradient as due to
+> the stable protein quite some time is needed to compensate for this
+> decrease by more production, at the same time the gradient is less
+> steep as cell division follow up faster and hence less time has passed
+> and less day has taken place. If decay rate goes up, maximum goes down
+> but gradient become steeper and shorter as for same time between
+> divisions more decay takes place*
+  
+:::
+  
+:::{#exr-test}
+## Conceptual thinking
+
+When would this type of gradient formation
     be more applicable than the earlier studied production, diffusion,
     decay type of gradient formation? Compare how this model is built-up
     to a production/diffusion/decay gradient formation model.
+:::
 
-    > **Answer** Diffusion slow, degradation slow. In other words, a
-    > mostly stable, immobile compound.
+::: {.content-visible when-meta="params.show_answers"}
 
-3.  **Mathematics** Let us now move to the other half of the clock and
+  > **Answer** Diffusion slow, degradation slow. In other words, a
+  > mostly stable, immobile compound.
+:::
+
+:::{#exr-test}
+## Mathematics
+
+Let us now move to the other half of the clock and
     wavefront model, the clock part (`clock.py`), in which we implemented
     one of the earliest models for the somitogenesis oscillator from
     [Lewis (2003)](https://doi.org/10.1016/S0960-9822(03)00534-7) which
@@ -97,78 +119,110 @@ affect the gradient?
     and non-linearity are important. Examine the code to find the
     differential equations governing this model and determine the
     negative feedback, delay and non-linearities in them.
+:::
+
+::: {.content-visible when-meta="params.show_answers"}
 
   > **Answer** Non-linearity is in saturation function with power n, negative
   > feedback is because affects own expression negatively, delay is here
   > modeled explicitly through a special delay type differential equation
+:::
 
-4.  **Biology** Play with the parameters of the model. How does the delay
+:::{#exr-test}
+## Biology
+
+Play with the parameters of the model. How does the delay
    (`tau`/ $\tau$) affect oscillations?
+:::
+
+::: {.content-visible when-meta="params.show_answers"}
+
    > **Answer** *longer period (lower frequency) and higher
    amplitude. Remember how in class we discussed how removing introns
    reduced delays and affected oscillator period.*
+:::
 
-5.  **Algorithmic thinking** In the file `rolling_clock.py`, there is a
+:::{#exr-test}
+## Algorithmic thinking
+
+In the file `rolling_clock.py`, there is a
     different implementation of the clock. Compare the two files and
     find out how they differ. What benefits for studying the model does
     `clock.py` have over `rolling_clock.py` and vice versa? Ignore the added
     functions `__copy__` and `set_tau` in this comparison. Some
     differences become clearer when you run the code too.
+:::
 
-    > **Answer** The rolling clock only remembers a certain time window of the
+::: {.content-visible when-meta="params.show_answers"}
+
+  > **Answer** The rolling clock only remembers a certain time window of the
     clock state, namely as long as needs to be remembered plus some buffer for
     when the clock's tau changes. A drawback is that not all history is
     memorized, but it could still be stored to a file. A big win is clear when
     we run the code and see that it is much faster, especially at later time
     points.
+:::
 
-6.  Next, we will combine the clock and FGF wavefront into a single
+:::{#exr-test}
+
+## 
+
+Next, we will combine the clock and FGF wavefront into a single
     model. For this, we offer two options of this exercise: A. reading
     and interpreting existing code from the file clockplusfgf.py, or B.
     write your own code to combine the two.
 
-    1. **Read and interpret existing code:** Read the code of
-        `clockplusfgf.py` and try to understand the assumptions from this
-        model implementation by answering the following questions:
+1. **Read and interpret existing code:** Read the code of
+    `clockplusfgf.py` and try to understand the assumptions from this
+    model implementation by answering the following questions:
 
-        1.  Each cell has its own clock. What clock states is the tissue
-            initialized with? And what clock states do newly divided
-            cells get?
-        2.  The FGF wavefront affects `tau`: what function is used for
-            that? What are your expectations for the effect of the FGF
-            wavefront on the cells' clocks?
-        3.  Does growth affect the clock state?
-        4.  What is your opinion on the assumptions from the three
-            questions?
-       > **Answer**
-       > 1. The cells are initialized with the same state, namely the default with
-       >    `m=0` and `p=0`, and all clock parameters set to one defined in the file.
-       >    Newly divided cells get the same clock as the original cell, so we get
-       >    two exact copies.
-       > 2. The function is $$\tau_\text{cell}=\tau_\text{model}(1+0.5\frac{100-\text{FGF}\_\text{cell}}{100}),$$
-       >    where $\tau_\text{cell}$ is the cell's new $tau$ and $\tau_\text{model}$ the general "model" one's.
-       >    So, we would expect tau to become larger, i.e., the clock to become slower as the FGF wavefront
-       >    decays the further to the left we get.
-       > 3. No, there is currently no dilution from $m$ or $p$ from growth.
-       > 4. If we start with few cells that are likely also each other's sister cells,
-       >    the assumption of the same, or at least similar clock states is plausible.
-       >    Same for cell division assuming the molecules get evenly distributed.
-       >    The current function of FGF on $\tau$ is imposed, but the idea of slowing down is from
-       >    experimental observations.
-       >    We could argue about the effect of growth on the clock state, but only few cells are
-       >    dividing, so including growth in there would have only a limited effect (but feel free
-       >    to test this!).
+    1.  Each cell has its own clock. What clock states is the tissue
+        initialized with? And what clock states do newly divided
+        cells get?
+    2.  The FGF wavefront affects `tau`: what function is used for
+        that? What are your expectations for the effect of the FGF
+        wavefront on the cells' clocks?
+    3.  Does growth affect the clock state?
+    4.  What is your opinion on the assumptions from the three
+        questions?
+:::
 
-    2.  **Programming** As to not spoil the beans to students not
-        wanting to code the model extension, since the hints for programming may
-        answer above questions, please see instructions for
-        implementing it yourself at the end of this tutorial.
+::: {.content-visible when-meta="params.show_answers"}
+   > **Answer**
+   > 1. The cells are initialized with the same state, namely the default with
+   >    `m=0` and `p=0`, and all clock parameters set to one defined in the file.
+   >    Newly divided cells get the same clock as the original cell, so we get
+   >    two exact copies.
+   > 2. The function is $$\tau_\text{cell}=\tau_\text{model}(1+0.5\frac{100-\text{FGF}\_\text{cell}}{100}),$$
+   >    where $\tau_\text{cell}$ is the cell's new $tau$ and $\tau_\text{model}$ the general "model" one's.
+   >    So, we would expect tau to become larger, i.e., the clock to become slower as the FGF wavefront
+   >    decays the further to the left we get.
+   > 3. No, there is currently no dilution from $m$ or $p$ from growth.
+   > 4. If we start with few cells that are likely also each other's sister cells,
+   >    the assumption of the same, or at least similar clock states is plausible.
+   >    Same for cell division assuming the molecules get evenly distributed.
+   >    The current function of FGF on $\tau$ is imposed, but the idea of slowing down is from
+   >    experimental observations.
+   >    We could argue about the effect of growth on the clock state, but only few cells are
+   >    dividing, so including growth in there would have only a limited effect (but feel free
+   >    to test this!).
+:::
+
+:::{#exr-test}
+
+## Programming
+
+As to not spoil the beans to students not wanting to code the model extension, since the hints for programming may answer above questions, please see instructions for implementing it yourself at the end of this tutorial.
+:::
 
 7.  **Biology** With the existing model, or your own model working,
     describe how this model behaves. Do we get stable somites?
 
+::: {.content-visible when-meta="params.show_answers"}
+
     > **Answer** *we get waves of oscillations moving from left to right with increasing
     > amplitudes. Not yet conversion to a stable stripe pattern*
+:::
 
 8.  **Biology & Programming**
     What is still missing is a means to
@@ -212,12 +266,15 @@ Is it a regular pattern of somites? What happens if the requirement for
 updating $M$ is only that FGF should be below a certain value? What
 happens if the equation for $\frac{dM}{dt}$ only depends on $p$ and not $M$ itself.
 
+::: {.content-visible when-meta="params.show_answers"}
+
   > **Answer** *They should get somite patterns that are stable, but not necessarily
 regular. If only one threshold all goes to high state, because
 eventually all go through all phases, you need to memorize who was
 within a limited time/space window in a particular state. If only P
 dependent M is activated but does not memorize so it will be just as
 unstable as P before.*
+:::
 
 10. **Biology** Both zebrafish and mice are common model organisms, so
     we know a lot about the biological parameters of their

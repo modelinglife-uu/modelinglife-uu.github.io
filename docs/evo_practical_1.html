@@ -158,9 +158,9 @@ window.Quarto = {
     </div>
   </nav>
 </header>
-
+<!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
-
+<!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
@@ -227,7 +227,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pattern_practical_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Pattern formation I <br> Gradients and segments</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Gradients and segments <br>(Pattern formation I)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -239,7 +239,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pattern_practical_3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Pattern formation III <br> Clock-and-wavefront</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Practical</span></span></a>
   </div>
 </li>
       </ul>
@@ -393,7 +393,7 @@ window.Quarto = {
     </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
-
+<!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="-1">
     <h2 id="toc-title">Table of contents</h2>
@@ -414,7 +414,7 @@ window.Quarto = {
   </ul>
 </nav>
     </div>
-
+<!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./evo_intro_text.html">IV) Evolution</a></li><li class="breadcrumb-item"><a href="./evo_practical_1.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Sticking together</span></a></li></ol></nav>
@@ -439,7 +439,13 @@ window.Quarto = {
 <section id="sticking-together" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="sticking-together">Sticking together</h2>
 <p>In this practical, you will practice building your own model of collective behaviour, based on the one you saw at the end of the lecture:</p>
-
+<!-- 
+  ###########################################################################################
+    This is a JSFiddle example of "Cacatoo". This HTML page does not contain the code itself,
+    but determines where the grids, graphs, buttons, etc are placed. The real code is in the 
+    Javascript Tab. I recommend enabling "Tabs (Columns)" under the settings in the top-right. 
+  ###########################################################################################
+-->
 
 
   <script src="https://bramvandijk88.github.io/cacatoo/scripts/cacatoo.js"></script>
@@ -1793,7 +1799,7 @@ Final code
 </ol>
 </section>
 
-</main> 
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -2377,7 +2383,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav>
-</div> 
+</div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
@@ -2391,7 +2397,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom","loop":false});
+<script>var lightboxQuarto = GLightbox({"loop":false,"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

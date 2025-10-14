@@ -5,40 +5,15 @@
 
 **Answer Q1**
   
-  An important difference relative to the lecture is that instead of
-implementing a production term at the x=0 position, we instead fixed the
-concentration of u at x=0 at 100 and have nowhere a production term.
-This implies that we assume that production is very high and different D
-and d values have negligible effects on the level at x=0. The advantage
-of this approach is that we can easily study what different D and d
-does, as it only affects the shape of the gradient but not the maximum.
-
-Instead of using if/else to check for boundary conditions, we only
-compute the Laplacian in the inner, non-boundary points. For the x=0
-boundary we already set a constant value. For y=0 and y=n−1 we copy the
-values from y=1 and y=n−2 as the patterning is identical in that
-direction. For x=n−1 we use a special approach: if n−3=0 we assume it is
-zero; otherwise, we calculate the ratio of x at n−2 and n−3 to
-approximate the decay and multiply this with the value at x=n−2 to
-estimate x at n−1. Simply copying x at n−2 would add matter to the
-system and prevent the gradient from reaching a steady state.
+  
 
 **Answer Q2**
   
-  The imposed morphogen profile is an exponential gradient. The negative
-sign indicates a decline, the term i·dx converts the grid index to
-spatial distance, and the division by √(D/d) ensures that if i·dx = λ =
-  √(D/d), we have e⁻¹ = 1/e, meaning an e-fold decay — as expected for a
-steady-state diffusion gradient.
+  
 
 **Answer Q3**
   
-  The relevant concept is the diffusion length, √(D/d). It is the ratio
-between these parameters that determines the characteristic length scale
-λ over which the morphogen concentration decays e-fold. Changing both D
-and d while keeping the ratio constant preserves the shape of the
-steady-state gradient, but faster rates lead to a quicker approach to
-steady state.
+  
 
 **Answer Q4**
   

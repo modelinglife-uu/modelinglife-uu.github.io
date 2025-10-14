@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Pattern formation III   Clock-and-wavefront – Modeling Life</title>
+<title>6&nbsp; Practical – Modeling Life</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -112,7 +112,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pattern_intro_text.html">I) Pattern formation</a></li><li class="breadcrumb-item"><a href="./pattern_practical_3.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Pattern formation III <br> Clock-and-wavefront</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pattern_intro_text.html">I) Pattern formation</a></li><li class="breadcrumb-item"><a href="./pattern_practical_3.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Practical</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -121,9 +121,9 @@ window.Quarto = {
     </div>
   </nav>
 </header>
-
+<!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
-
+<!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
@@ -190,7 +190,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pattern_practical_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Pattern formation I <br> Gradients and segments</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Gradients and segments <br>(Pattern formation I)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -202,7 +202,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pattern_practical_3.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Pattern formation III <br> Clock-and-wavefront</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Practical</span></span></a>
   </div>
 </li>
       </ul>
@@ -356,29 +356,32 @@ window.Quarto = {
     </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
-
+<!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="-1">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#goal-of-the-tutorial" id="toc-goal-of-the-tutorial" class="nav-link active" data-scroll-target="#goal-of-the-tutorial"><span class="header-section-number">6.1</span> Goal of the tutorial:</a></li>
-  <li><a href="#the-model-system" id="toc-the-model-system" class="nav-link" data-scroll-target="#the-model-system"><span class="header-section-number">6.2</span> The model system</a></li>
-  <li><a href="#programming-with-classes" id="toc-programming-with-classes" class="nav-link" data-scroll-target="#programming-with-classes"><span class="header-section-number">6.3</span> Programming with classes</a></li>
-  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">6.4</span> Questions</a></li>
-  <li><a href="#further-open-questions" id="toc-further-open-questions" class="nav-link" data-scroll-target="#further-open-questions"><span class="header-section-number">6.5</span> Further (open) questions</a></li>
-  <li><a href="#references-for-biological-parameters" id="toc-references-for-biological-parameters" class="nav-link" data-scroll-target="#references-for-biological-parameters"><span class="header-section-number">6.6</span> References for biological parameters:</a></li>
-  <li><a href="#combining-the-clock-and-fgf-wavefront-model---programming-instructions" id="toc-combining-the-clock-and-fgf-wavefront-model---programming-instructions" class="nav-link" data-scroll-target="#combining-the-clock-and-fgf-wavefront-model---programming-instructions"><span class="header-section-number">6.7</span> Combining the clock and FGF wavefront model - programming instructions</a></li>
-  <li><a href="#relevant-literature" id="toc-relevant-literature" class="nav-link" data-scroll-target="#relevant-literature"><span class="header-section-number">6.8</span> Relevant literature</a></li>
+  <li><a href="#pattern-formation-iii-clock-and-wavefront" id="toc-pattern-formation-iii-clock-and-wavefront" class="nav-link active" data-scroll-target="#pattern-formation-iii-clock-and-wavefront"><span class="header-section-number">7</span> Pattern formation III <br> Clock-and-wavefront</a>
+  <ul class="collapse">
+  <li><a href="#goal-of-the-tutorial" id="toc-goal-of-the-tutorial" class="nav-link" data-scroll-target="#goal-of-the-tutorial"><span class="header-section-number">7.1</span> Goal of the tutorial:</a></li>
+  <li><a href="#the-model-system" id="toc-the-model-system" class="nav-link" data-scroll-target="#the-model-system"><span class="header-section-number">7.2</span> The model system</a></li>
+  <li><a href="#programming-with-classes" id="toc-programming-with-classes" class="nav-link" data-scroll-target="#programming-with-classes"><span class="header-section-number">7.3</span> Programming with classes</a></li>
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">7.4</span> Questions</a></li>
+  <li><a href="#further-open-questions" id="toc-further-open-questions" class="nav-link" data-scroll-target="#further-open-questions"><span class="header-section-number">7.5</span> Further (open) questions</a></li>
+  <li><a href="#references-for-biological-parameters" id="toc-references-for-biological-parameters" class="nav-link" data-scroll-target="#references-for-biological-parameters"><span class="header-section-number">7.6</span> References for biological parameters:</a></li>
+  <li><a href="#combining-the-clock-and-fgf-wavefront-model---programming-instructions" id="toc-combining-the-clock-and-fgf-wavefront-model---programming-instructions" class="nav-link" data-scroll-target="#combining-the-clock-and-fgf-wavefront-model---programming-instructions"><span class="header-section-number">7.7</span> Combining the clock and FGF wavefront model - programming instructions</a></li>
+  <li><a href="#relevant-literature" id="toc-relevant-literature" class="nav-link" data-scroll-target="#relevant-literature"><span class="header-section-number">7.8</span> Relevant literature</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
-
+<!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pattern_intro_text.html">I) Pattern formation</a></li><li class="breadcrumb-item"><a href="./pattern_practical_3.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Pattern formation III <br> Clock-and-wavefront</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pattern_intro_text.html">I) Pattern formation</a></li><li class="breadcrumb-item"><a href="./pattern_practical_3.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Practical</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Pattern formation III <br> Clock-and-wavefront</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Practical</span></h1>
 </div>
 
 
@@ -395,17 +398,19 @@ window.Quarto = {
 </header>
 
 
-<section id="goal-of-the-tutorial" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="goal-of-the-tutorial"><span class="header-section-number">6.1</span> Goal of the tutorial:</h2>
+<section id="pattern-formation-iii-clock-and-wavefront" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Pattern formation III <br> Clock-and-wavefront</h1>
+<section id="goal-of-the-tutorial" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="goal-of-the-tutorial"><span class="header-section-number">7.1</span> Goal of the tutorial:</h2>
 <p>In this tutorial you will look at gradient formation and patterning using different mechanisms than you have seen previously. We will model the so called clock-and-wavefront pattern, which stems from oscillations in gene and gene products and results in a regularly striped pattern in a growing tissue.</p>
 </section>
-<section id="the-model-system" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="the-model-system"><span class="header-section-number">6.2</span> The model system</h2>
+<section id="the-model-system" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="the-model-system"><span class="header-section-number">7.2</span> The model system</h2>
 <p>The clock-and-wavefront model is an important model in describing somitogenesis. In this process early in embryo development, the somites, a precursor tissue for the vertebrae and other tissues later in development, are formed from the pre-somitic mesoderm. This mesodorm extends on the posterior end by growth, and the somites bud off periodically at the anterior end in the order of a couple of weeks (in humans).</p>
 <p>Key players in this model system are the protein FGF (fibroblast growth factor), and many genes and gene products that have an oscillatory pattern that will determine cell fate. However, for this tutorial, we simplify this to a single pair of gene mRNA and product, denoted with <span class="math inline">\(m\)</span> and <span class="math inline">\(p\)</span> for short.</p>
 </section>
-<section id="programming-with-classes" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="programming-with-classes"><span class="header-section-number">6.3</span> Programming with classes</h2>
+<section id="programming-with-classes" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="programming-with-classes"><span class="header-section-number">7.3</span> Programming with classes</h2>
 <p>Because we are going to make a more complex model with a tissue existing of multiple cells, and each cell having its own concentrations of FGF, <span class="math inline">\(m\)</span> and <span class="math inline">\(p\)</span>, we are going to use Classes in our code. You have been using Classes already: the data types such as <code>int</code>, <code>str</code> and <code>bool</code> have their own class, and the <code>str</code> class has many <em>methods</em> (=functions working on that class) defined, such as <code>"hello world".upper()</code>, but it is also possible to create custom classes. With classes, you can easily make objects, which is part of the object-oriented programming paradigm.</p>
 <p>Today, we are going to use classes for the different levels of our model: 1) tissue, 2) cell, 3) <span class="math inline">\(m\)</span> &amp; <span class="math inline">\(p\)</span> clock and 4) the plotting. By using classes, we can separate things that happen on a tissue/cellular/clock scale, and seperate the model from the visualization of it. You will first work with 1 &amp; 2 &amp; 4, then 3 on its own and then combine all four yourself into one model.</p>
 <p>Important concepts when working with classes are</p>
@@ -416,43 +421,62 @@ window.Quarto = {
 </ul>
 <p>This tutorial should be doable without an extensive knowledge of classes as there are plenty of examples to copy-paste from, but feel free to read up on these concepts here at <a href="https://www.datacamp.com/tutorial/python-oop-tutorial">this online tutorial</a></p>
 </section>
-<section id="questions" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="questions"><span class="header-section-number">6.4</span> Questions</h2>
+<section id="questions" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="questions"><span class="header-section-number">7.4</span> Questions</h2>
 <div id="exr-test" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 6.1</strong></span> In practical 1 we saw how gradients can be created through local production, diffusion and decay. However, other mechanisms for gradient formation are possible, such as cell lineage transport. Here we work with a model for the FGF gradient (<code>fgfgradientfromgrowth.py</code>) where only the rightmost/posterior cell produces FGF and grows, and in which cells upon division inherit this FGF from their mother cell. Play with the model by varying the decay rate of FGF and the division rate of the cells. How does this affect the gradient?</p>
+<p><span class="theorem-title"><strong>Exercise 7.1 (Biology)</strong></span> In practical 1 we saw how gradients can be created through local production, diffusion and decay. However, other mechanisms for gradient formation are possible, such as cell lineage transport. Here we work with a model for the FGF gradient (<code>fgfgradientfromgrowth.py</code>) where only the rightmost/posterior cell produces FGF and grows, and in which cells upon division inherit this FGF from their mother cell. Play with the model by varying the decay rate of FGF and the division rate of the cells. How does this affect the gradient?</p>
 </div>
-<p>       </p>
-<ol start="2" type="1">
-<li><p><strong>Conceptual thinking</strong> When would this type of gradient formation be more applicable than the earlier studied production, diffusion, decay type of gradient formation? Compare how this model is built-up to a production/diffusion/decay gradient formation model.</p>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> <em>If growth rate goes up cell volumes increase faster, causing more dilution of FGF and hence a lower maximum of the gradient as due to the stable protein quite some time is needed to compensate for this decrease by more production, at the same time the gradient is less steep as cell division follow up faster and hence less time has passed and less day has taken place. If decay rate goes up, maximum goes down but gradient become steeper and shorter as for same time between divisions more decay takes place</em></p>
+</blockquote>
+<div id="exr-test" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 7.2 (Conceptual thinking)</strong></span> When would this type of gradient formation be more applicable than the earlier studied production, diffusion, decay type of gradient formation? Compare how this model is built-up to a production/diffusion/decay gradient formation model.</p>
+</div>
 <blockquote class="blockquote">
 <p><strong>Answer</strong> Diffusion slow, degradation slow. In other words, a mostly stable, immobile compound.</p>
-</blockquote></li>
-<li><p><strong>Mathematics</strong> Let us now move to the other half of the clock and wavefront model, the clock part (<code>clock.py</code>), in which we implemented one of the earliest models for the somitogenesis oscillator from <a href="https://doi.org/10.1016/S0960-9822(03)00534-7">Lewis (2003)</a> which models a gene that codes for a mRNA (<span class="math inline">\(m\)</span>) that encodes a protein (<span class="math inline">\(p\)</span>) that acts as a repressive transcription factor of this same gene. In class we discussed how for oscillations negative feedbacks, delays and non-linearity are important. Examine the code to find the differential equations governing this model and determine the negative feedback, delay and non-linearities in them.</p></li>
-</ol>
+</blockquote>
+<div id="exr-test" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 7.3 (Mathematics)</strong></span> Let us now move to the other half of the clock and wavefront model, the clock part (<code>clock.py</code>), in which we implemented one of the earliest models for the somitogenesis oscillator from <a href="https://doi.org/10.1016/S0960-9822(03)00534-7">Lewis (2003)</a> which models a gene that codes for a mRNA (<span class="math inline">\(m\)</span>) that encodes a protein (<span class="math inline">\(p\)</span>) that acts as a repressive transcription factor of this same gene. In class we discussed how for oscillations negative feedbacks, delays and non-linearity are important. Examine the code to find the differential equations governing this model and determine the negative feedback, delay and non-linearities in them.</p>
+</div>
 <blockquote class="blockquote">
 <p><strong>Answer</strong> Non-linearity is in saturation function with power n, negative feedback is because affects own expression negatively, delay is here modeled explicitly through a special delay type differential equation</p>
 </blockquote>
-<ol start="4" type="1">
-<li><p><strong>Biology</strong> Play with the parameters of the model. How does the delay (<code>tau</code>/ <span class="math inline">\(\tau\)</span>) affect oscillations? &gt; <strong>Answer</strong> <em>longer period (lower frequency) and higher amplitude. Remember how in class we discussed how removing introns reduced delays and affected oscillator period.</em></p></li>
-<li><p><strong>Algorithmic thinking</strong> In the file <code>rolling_clock.py</code>, there is a different implementation of the clock. Compare the two files and find out how they differ. What benefits for studying the model does <code>clock.py</code> have over <code>rolling_clock.py</code> and vice versa? Ignore the added functions <code>__copy__</code> and <code>set_tau</code> in this comparison. Some differences become clearer when you run the code too.</p>
+<div id="exr-test" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 7.4 (Biology)</strong></span> Play with the parameters of the model. How does the delay (<code>tau</code>/ <span class="math inline">\(\tau\)</span>) affect oscillations?</p>
+</div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> <em>longer period (lower frequency) and higher amplitude. Remember how in class we discussed how removing introns reduced delays and affected oscillator period.</em></p>
+</blockquote>
+<div id="exr-test" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 7.5 (Algorithmic thinking)</strong></span> In the file <code>rolling_clock.py</code>, there is a different implementation of the clock. Compare the two files and find out how they differ. What benefits for studying the model does <code>clock.py</code> have over <code>rolling_clock.py</code> and vice versa? Ignore the added functions <code>__copy__</code> and <code>set_tau</code> in this comparison. Some differences become clearer when you run the code too.</p>
+</div>
 <blockquote class="blockquote">
 <p><strong>Answer</strong> The rolling clock only remembers a certain time window of the clock state, namely as long as needs to be remembered plus some buffer for when the clock’s tau changes. A drawback is that not all history is memorized, but it could still be stored to a file. A big win is clear when we run the code and see that it is much faster, especially at later time points.</p>
-</blockquote></li>
-<li><p>Next, we will combine the clock and FGF wavefront into a single model. For this, we offer two options of this exercise: A. reading and interpreting existing code from the file clockplusfgf.py, or B. write your own code to combine the two.</p>
+</blockquote>
+<div id="exr-test" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 7.6</strong></span> Next, we will combine the clock and FGF wavefront into a single model. For this, we offer two options of this exercise: A. reading and interpreting existing code from the file clockplusfgf.py, or B. write your own code to combine the two.</p>
 <ol type="1">
 <li><p><strong>Read and interpret existing code:</strong> Read the code of <code>clockplusfgf.py</code> and try to understand the assumptions from this model implementation by answering the following questions:</p>
 <ol type="1">
 <li>Each cell has its own clock. What clock states is the tissue initialized with? And what clock states do newly divided cells get?</li>
 <li>The FGF wavefront affects <code>tau</code>: what function is used for that? What are your expectations for the effect of the FGF wavefront on the cells’ clocks?</li>
 <li>Does growth affect the clock state?</li>
-<li>What is your opinion on the assumptions from the three questions? &gt; <strong>Answer</strong> &gt; 1. The cells are initialized with the same state, namely the default with &gt; <code>m=0</code> and <code>p=0</code>, and all clock parameters set to one defined in the file. &gt; Newly divided cells get the same clock as the original cell, so we get &gt; two exact copies. &gt; 2. The function is <span class="math display">\[\tau_\text{cell}=\tau_\text{model}(1+0.5\frac{100-\text{FGF}\_\text{cell}}{100}),\]</span> &gt; where <span class="math inline">\(\tau_\text{cell}\)</span> is the cell’s new <span class="math inline">\(tau\)</span> and <span class="math inline">\(\tau_\text{model}\)</span> the general “model” one’s. &gt; So, we would expect tau to become larger, i.e., the clock to become slower as the FGF wavefront &gt; decays the further to the left we get. &gt; 3. No, there is currently no dilution from <span class="math inline">\(m\)</span> or <span class="math inline">\(p\)</span> from growth. &gt; 4. If we start with few cells that are likely also each other’s sister cells, &gt; the assumption of the same, or at least similar clock states is plausible. &gt; Same for cell division assuming the molecules get evenly distributed. &gt; The current function of FGF on <span class="math inline">\(\tau\)</span> is imposed, but the idea of slowing down is from &gt; experimental observations. &gt; We could argue about the effect of growth on the clock state, but only few cells are &gt; dividing, so including growth in there would have only a limited effect (but feel free &gt; to test this!).</li>
+<li>What is your opinion on the assumptions from the three questions?</li>
 </ol></li>
-<li><p><strong>Programming</strong> As to not spoil the beans to students not wanting to code the model extension, since the hints for programming may answer above questions, please see instructions for implementing it yourself at the end of this tutorial.</p></li>
-</ol></li>
-<li><p><strong>Biology</strong> With the existing model, or your own model working, describe how this model behaves. Do we get stable somites?</p>
+</ol>
+</div>
 <blockquote class="blockquote">
-<p><strong>Answer</strong> <em>we get waves of oscillations moving from left to right with increasing amplitudes. Not yet conversion to a stable stripe pattern</em></p>
-</blockquote></li>
+<p><strong>Answer</strong> 1. The cells are initialized with the same state, namely the default with <code>m=0</code> and <code>p=0</code>, and all clock parameters set to one defined in the file. Newly divided cells get the same clock as the original cell, so we get two exact copies. 2. The function is <span class="math display">\[\tau_\text{cell}=\tau_\text{model}(1+0.5\frac{100-\text{FGF}\_\text{cell}}{100}),\]</span> where <span class="math inline">\(\tau_\text{cell}\)</span> is the cell’s new <span class="math inline">\(tau\)</span> and <span class="math inline">\(\tau_\text{model}\)</span> the general “model” one’s. So, we would expect tau to become larger, i.e., the clock to become slower as the FGF wavefront decays the further to the left we get. 3. No, there is currently no dilution from <span class="math inline">\(m\)</span> or <span class="math inline">\(p\)</span> from growth. 4. If we start with few cells that are likely also each other’s sister cells, the assumption of the same, or at least similar clock states is plausible. Same for cell division assuming the molecules get evenly distributed. The current function of FGF on <span class="math inline">\(\tau\)</span> is imposed, but the idea of slowing down is from experimental observations. We could argue about the effect of growth on the clock state, but only few cells are dividing, so including growth in there would have only a limited effect (but feel free to test this!).</p>
+</blockquote>
+<div id="exr-test" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 7.7 (Programming)</strong></span> As to not spoil the beans to students not wanting to code the model extension, since the hints for programming may answer above questions, please see instructions for implementing it yourself at the end of this tutorial.</p>
+</div>
+<ol start="7" type="1">
+<li><strong>Biology</strong> With the existing model, or your own model working, describe how this model behaves. Do we get stable somites?</li>
+</ol>
+<pre><code>&gt; **Answer** *we get waves of oscillations moving from left to right with increasing
+&gt; amplitudes. Not yet conversion to a stable stripe pattern*</code></pre>
+<ol start="8" type="1">
 <li><p><strong>Biology &amp; Programming</strong> What is still missing is a means to transform the temporal oscillations in the posterior of the tissue into a spatial pattern in the anterior. Now, let’s implement a model that allows for fixation of the somite states.</p>
 <ol type="1">
 <li><p>We will add an extra ‘memory’ molecule <code>M</code> inside the cell that will be produced depending on the values of FGF and the clock.. To do so add a new attribute to the cell Class that will contain the value of a memory molecule. Also, upon division, let cells inherit the memory value from the mother cell.</p></li>
@@ -548,8 +572,8 @@ window.Quarto = {
 </ul></li>
 </ol>
 </section>
-<section id="further-open-questions" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="further-open-questions"><span class="header-section-number">6.5</span> Further (open) questions</h2>
+<section id="further-open-questions" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="further-open-questions"><span class="header-section-number">7.5</span> Further (open) questions</h2>
 <p>The model currently has a number of assumptions that we can question. Feel free to explore any of these further open questions and study how it effects the outcome of the model:</p>
 <ul>
 <li>What if the relationship between FGF and tau is shaped differently? For instance, if the clock runs faster on the left/anterior than on the right/posterior?</li>
@@ -558,8 +582,8 @@ window.Quarto = {
 <li>What if tau is unaffected by FGF: can we still get somites fixed in place?</li>
 </ul>
 </section>
-<section id="references-for-biological-parameters" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="references-for-biological-parameters"><span class="header-section-number">6.6</span> References for biological parameters:</h2>
+<section id="references-for-biological-parameters" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="references-for-biological-parameters"><span class="header-section-number">7.6</span> References for biological parameters:</h2>
 <ol type="a">
 <li><p><a href="https://anatomypubs.onlinelibrary.wiley.com/doi/10.1002/1097-0177(2000)9999:9999%3C::AID-DVDY1065%3E3.0.CO;2-A"><em>https://anatomypubs.onlinelibrary.wiley.com/doi/10.1002/1097-0177(2000)9999:9999%3C::AID-DVDY1065%3E3.0.CO;2-A</em></a></p></li>
 <li><p><a href="https://doi.org/10.1016/j.gde.2012.05.004"><em>https://doi.org/10.1016/j.gde.2012.05.004</em></a></p></li>
@@ -569,8 +593,8 @@ window.Quarto = {
 <li><p><a href="https://www.sciencedirect.com/science/article/pii/S0079610718300178"><em>https://www.sciencedirect.com/science/article/pii/S0079610718300178</em></a></p></li>
 </ol>
 </section>
-<section id="combining-the-clock-and-fgf-wavefront-model---programming-instructions" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="combining-the-clock-and-fgf-wavefront-model---programming-instructions"><span class="header-section-number">6.7</span> Combining the clock and FGF wavefront model - programming instructions</h2>
+<section id="combining-the-clock-and-fgf-wavefront-model---programming-instructions" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="combining-the-clock-and-fgf-wavefront-model---programming-instructions"><span class="header-section-number">7.7</span> Combining the clock and FGF wavefront model - programming instructions</h2>
 <p>Let us now combine the (rolling) clock and the wavefront, and assume that the FGF wavefront affects tau such that as FGF levels drop tau goes up and oscillations slow. Here are some tips and hints to help you along the way:</p>
 <ol type="1">
 <li>Try implementing things in steps and run your code in between steps: this is easier to debug than changing everything in one go.</li>
@@ -583,15 +607,16 @@ window.Quarto = {
 <li>Once you’re done, check if your model behaves as it should with the teacher/assistant or the file <code>clockplusfgf.py</code> directly.</li>
 </ol>
 </section>
-<section id="relevant-literature" class="level2" data-number="6.8">
-<h2 data-number="6.8" class="anchored" data-anchor-id="relevant-literature"><span class="header-section-number">6.8</span> Relevant literature</h2>
+<section id="relevant-literature" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="relevant-literature"><span class="header-section-number">7.8</span> Relevant literature</h2>
 <p>If you want to know more about the model system and previous models, have a look at the following (after the tutorial):</p>
 <p><a href="https://doi.org/10.1016/S0960-9822(03)00534-7">Lewis (2003) _Autoinhibition with Transcriptional Delay A Simple Mechanism for the Zebrafish Somitogenesis Oscillator</a></p>
 
 
 </section>
+</section>
 
-</main> 
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1175,7 +1200,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav>
-</div> 
+</div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">

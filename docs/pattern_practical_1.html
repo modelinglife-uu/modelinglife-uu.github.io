@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Pattern formation I   Gradients and segments – Modeling Life</title>
+<title>4&nbsp; Gradients and segments  (Pattern formation I) – Modeling Life</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -166,7 +166,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pattern_intro_text.html">I) Pattern formation</a></li><li class="breadcrumb-item"><a href="./pattern_practical_1.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Pattern formation I <br> Gradients and segments</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pattern_intro_text.html">I) Pattern formation</a></li><li class="breadcrumb-item"><a href="./pattern_practical_1.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Gradients and segments <br>(Pattern formation I)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -175,9 +175,9 @@ window.Quarto = {
     </div>
   </nav>
 </header>
-
+<!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
-
+<!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
@@ -244,7 +244,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pattern_practical_1.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Pattern formation I <br> Gradients and segments</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Gradients and segments <br>(Pattern formation I)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -256,7 +256,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pattern_practical_3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Pattern formation III <br> Clock-and-wavefront</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Practical</span></span></a>
   </div>
 </li>
       </ul>
@@ -410,7 +410,7 @@ window.Quarto = {
     </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
-
+<!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="-1">
     <h2 id="toc-title">Table of contents</h2>
@@ -425,12 +425,12 @@ window.Quarto = {
   </ul>
 </nav>
     </div>
-
+<!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pattern_intro_text.html">I) Pattern formation</a></li><li class="breadcrumb-item"><a href="./pattern_practical_1.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Pattern formation I <br> Gradients and segments</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pattern_intro_text.html">I) Pattern formation</a></li><li class="breadcrumb-item"><a href="./pattern_practical_1.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Gradients and segments <br>(Pattern formation I)</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Pattern formation I <br> Gradients and segments</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Gradients and segments <br>(Pattern formation I)</span></h1>
 </div>
 
 
@@ -626,15 +626,27 @@ Starting code for this practical
 <div id="exr-test" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.1 (Algorithmic thinking)</strong></span> Have a look at the reaction-diffusion equation for the morphogen and the implementation of it in the file <code>morphogengradient_to_segments.py</code> in the reaction_diffusion_step function, as well as at the initialization of the array u. How is this different from the gradient formation modeling we discussed during the lecture? What is done at the terminal boundary in the length direction and why does this make sense? (hint: outcommented we provided code doing essentially the same but not using numpy arrays and hence written in a less compact matter to help you understand what is happening)</p>
 </div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> An important difference relative to the lecture is that instead of implementing a production term at the x=0 position, we instead fixed the concentration of u at x=0 at 100 and have nowhere a production term. This implies that we assume that production is very high and different D and d values have negligible effects on the level at x=0. The advantage of this approach is that we can easily study what different D and d does, as it only affects the shape of the gradient but not the maximum. <br> <br> Instead of using if/else to check for boundary conditions, we only compute the Laplacian in the inner, non-boundary points. For the x=0 boundary we already set a constant value. For y=0 and y=n−1 we copy the values from y=1 and y=n−2 as the patterning is identical in that direction. For x=n−1 we use a special approach: if n−3=0 we assume it is zero; otherwise, we calculate the ratio of x at n−2 and n−3 to approximate the decay and multiply this with the value at x=n−2 to estimate x at n−1. Simply copying x at n−2 would add matter to the system and prevent the gradient from reaching a steady state.</p>
+</blockquote>
 <div id="exr-plain" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.2 (Important concept)</strong></span> Play with the morphogen diffusion rate and the morphogen decay rate and describe what happens. What happens in terms of dynamics and steady state if you change both, but the ratio stays the same? Hint: it might help to draw a horizontal line at a certain height to ease comparison.</p>
 </div>
+<blockquote class="blockquote">
+<p>Diffusion length concept =√(D/d), it is the ratio of these factors that determines the length scale lambda over which the morphogen concentration decays an e-fold. So with the same ratio, you get the same steady state gradient. However, it will still approach the steady state faster.</p>
+</blockquote>
 <div id="exr-plain" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.3 (Biology &amp; mathematical thinking)</strong></span> Next, we are going to introduce the genes A, B and C in the model. We want these genes to be expressed dependent on M, and in the head, trunk and tail respectively, so A on the left, B in the middle and C on the right. Think of what conditions in terms of M should lead to expression of A/B/C. What Hill functions (normal/inverse/any combination) corresponds to those conditions? Write down (pen and paper, not in code) full equations for the genes, do we need any other terms than just Hill functions, would we need specific parameter conditions?</p>
 </div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> <br><br> <span class="math inline">\(dA/dt\)</span> = normal hill (M) – decay term<br> <span class="math inline">\(dB/dt\)</span> = normal hill (M) * inverse hill(M) – decay term,<br> <span class="math inline">\(dC/dt\)</span> = inverse hill (M) -decay term. <br><br>Furthermore, <span class="math inline">\(kA=kB1&lt;kB2&lt;kC\)</span> to ensure the switches happen at the right places.</p>
+</blockquote>
 <div id="exr-plain" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.4 (Biology &amp; algorithmic/mathematical thinking)</strong></span> From hereon we assume that the morphogen gradient reaches steady state very quickly, and no longer use the numerical implementation of the diffusion equation and instead work with a superimposed morphogen profile defined by <code>reaction_diffusion_gradient</code> to save time. (Hint: to not call the function any more use # in front of where it is called) Change the simulation loop such that it computes the morphogen gradient once. What type of function is the superimposed morphogen profile and how does this relate to question 2.</p>
 </div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> The imposed morphogen profile is an exponential gradient, the – indicates it is a declining function, the <span class="math inline">\(i\cdot dx\)</span> is to convert position in the spatial grid to actual distance, and the /sqrt(D/d) ensures that if <span class="math inline">\(i\cdot dx=lambda=\sqrt(D/d)\)</span> we have <span class="math inline">\(e^{-1}=1/e\)</span> and hence an e-fold decline as is the case for a steady state diffusion gradient.</p>
+</blockquote>
 <div id="exr-plain" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.5 (Biology &amp; algorithmic/mathematical thinking)</strong></span> &nbsp;</p>
 <ol type="a">
@@ -644,21 +656,39 @@ Starting code for this practical
 <li>Do you get the expected “French flag” pattern? If not, think of why not and improve your equations from previous question, parameters or your code.</li>
 </ol>
 </div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> Look at code <code>02_answer_morphogengradient_superimposed_quickABC.py</code>. You will find that gene C needs to be induced by low and repressed by high M. And as explained above: kA=kB1&lt;kB2&lt;kC.</p>
+</blockquote>
 <div id="exr-plain" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.6 (Biology)</strong></span> At some point in development, the morphogen gradient will disappear, for example in the case of the Drosophila Bicoid gradient because the maternal mRNA is degraded. Predict what will happen to the expression of A,B and C (and hence the French flag pattern) if the morphogen gradient disappears over time and assume A, B, and C are regulated by our equations (first try think about this without actually simulating this).</p>
 </div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> As M decays A and B will no longer be activated and C no longer repressed, hence the takeover by C. The French flag pattern disappears.</p>
+</blockquote>
 <div id="exr-plain" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.7 (Algorithmic/mathematical thinking)</strong></span> Now write the code in reaction_diffusion_gradient that updates the morphogen concentration, such that after the time point A, B and C have gotten close to equilibrium, the morphogen gradient gradually disappears. Adapt the simulation loop where necessary and run your code: was your prediction on A/B/C from the previous question correct? Why/why not? Hint: you might need to increase the duration of your simulation, especially if it takes a long time for A, B and C to reach equilibrium (or you can change the parameters to speed things up by using same production/degradation rate ratio yet higher absolute values of the individual parameters).</p>
 </div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> It should always result in C taking over. See answer to 6.</p>
+</blockquote>
 <div id="exr-plain" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.8 (Biological &amp; mathematical thinking)</strong></span> A, B and C cannot remain in a stable pattern if they are only influenced by M. How can we stabilize the pattern in absence of M? Test your ideas by creating new update functions for A, B and C and let these new ‘rules’ kick in at the same time when M starts to decline. Again, you may find Hill functions useful and perhaps also the before/after switch time structure used in reaction_diffusion_gradient for M. (Hint: think about how the genes should affect each other, and assume that in this new phase, when genes have already been initialized in absence of repression the genes will be expressed). Can you maintain the expression domains of A, B and C and does their shape change?</p>
 </div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> See <code>03_answer_morphogengradient_superimposed_quickABC_phase2.py</code> As M decays A and B will no longer be activated and C no longer repressed, hence the takeover by C. They will find mutual repression with only your neighbor gene is not enough, you need it with both 2 other genes. So A needs to be repressed by B and C, B by A and C, and C by A and B. We can maintain A at the beginning, B in the middle and C at the end, but the shape of the expression domains becomes less gradual and more sharply defined.</p>
+</blockquote>
 <div id="exr-plain" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.9 (Biology &amp; algorithmic/mathematical thinking)</strong></span> A sudden switch from phase 1 (stable M gradient) to phase 2 (decaying M gradient) resulting in the genes following different differential equations is biologically implausible. In reality, genes have complex promotors and enhancers integrating different inputs that arise in different developmental stages. Try to come up with one integrated expression for each gene, incorporating simultaneous input from the morphogen gradient and the other genes. Create new update functions for A/B/C and test your ideas. Can you get a stable pattern before and after the decline in M? A couple of things you could consider: a. Think of how positively and negatively M regulated expression behave once the gradient starts declining: what is the best way to combine (AND/OR) that with the regulation by the genes? a. Consider splitting up the M regulated expression of middle gene B into a positive and negatively regulated morphogen part before integrating the other genes inputs. a. It is also possible to give certain genes a bit of a constant boost to prevent their takeover by other genes due to timing issues</p>
 </div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> This is not at all easy (or as the professor would say “highly non trivial”). It requires that for genes (or part of their input) being positively dependent on M that there is an OR gate (sum) (so they stay on once M is absent as long as the mutual repressors are absent) while for genes (or part of their input) being negatively dependent on M that there is an AND gate (so they do not expand once M is absent but require both M absent and mutual repressors absent). See the answer code: <code>05_&lt;longname&gt;_quickABC_phase2_combined.py</code></p>
+</blockquote>
 <div id="exr-plain" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.10 (Biology &amp; algorithmic/mathematical thinking)</strong></span> Write code to get noise in the morphogen gradient, both in its steady state and decaying phase. During which phase do the expression domains of A, B and C suffer more from the noise. Explain why? How could we make the system more robust in a manner that is also likely occurring in nature?</p>
 </div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> See the answer code: <code>05_&lt;longname&gt;_quickABC_phase2_combined_noise.py</code><br> The noise has more effect in the initial phase when mostly morphogen is driving the expression domains, as gene expression becomes established and morphogen levels decay the mutual repression ensures stability against the noise<br> Diffusion of A, B and C, in the lateral direction this evens out differences (not implemented right now)</p>
+</blockquote>
 </section>
 <section id="extra-questions" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="extra-questions"><span class="header-section-number">4.5</span> <span class="smallcaps"><strong>Extra questions</strong></span></h2>
@@ -666,6 +696,9 @@ Starting code for this practical
 <div id="exr-plain" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.11 (Biological thinking)</strong></span> Play with the size of the domain to see what happens to the gene expression domains. What would this mean for an organism?</p>
 </div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> You may find that if the domain expands the C domain expands and that if the domain shrinks the C domain disappears. This would mean having either a very large or loosing your “butt” part.</p>
+</blockquote>
 <div id="exr-plain" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.12 (Biological &amp; algorithmic thinking)</strong></span> Various mechanisms have been proposed to ensure that the domains of the morphogen controlled genes scale with the size of the domain. One proposed mechanism suggests the existence of an also diffusible “expander” molecule which expression is repressed by the morphogen but which itself either represses the degradation of the morphogen or enhances its diffusion (see e.g. <a href="https://www.pnas.org/doi/full/10.1073/pnas.0912734107" class="uri">https://www.pnas.org/doi/full/10.1073/pnas.0912734107</a> and <a href="https://onlinelibrary.wiley.com/doi/10.1111/dgd.12337" class="uri">https://onlinelibrary.wiley.com/doi/10.1111/dgd.12337</a>).</p>
 <p>For the expander we can write:</p>
@@ -674,15 +707,27 @@ Starting code for this practical
 \]</span></p>
 <p>Assume E reduces degradation of M (easier to implement than enhancement of diffusion) and study the effect of scaling. (Hint, vary the size of the domain in the length direction but plot domains as a function of relative instead of absolute domain size to compare domain sizes).</p>
 </div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> We have not tried this out. Let us know what you find!</p>
+</blockquote>
 <div id="exr-plain" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.13 (Algorithmic thinking)</strong></span> In b, we can also implement other boundary conditions, especially for the right boundary. What happens to the profile if we make a no-flux boundary by copying the value at n-2 to n-1? And what if we set it to a sink (force concentration to zero)?</p>
 </div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> Copying n-2 to n-1 adds material, so now concentration at end keeps rising and gradient fails to reach equilibrium. Putting it to sink not tried, may speed up stabilization of gradient</p>
+</blockquote>
 <div id="exr-plain" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.14 (Algorithmic thinking)</strong></span> From question 4 onwards, how do things change if we do not assume a quasi-steady-state for the morphogen gradient (i.e.&nbsp;keep the morphogen dynamics instead of replacing it by the superimposed exponential)? How would you implement a disappearing gradient and how does it shape change the outcomes of the flag?</p>
 </div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> Instead of only initializing position x=0 at 100, you now need to include it in the update of the diffusion and use a decaying exponential behind the value of 100 beyond a certain point. Not tried myself, likely somewhat different shape change than simply decreasing an exponential along the entire axis proportionally, may affect sizes and dynamics of domains.</p>
+</blockquote>
 <div id="exr-plain" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.15 (Algorithmic thinking)</strong></span> Implement your solution to make the system more robust for noise from question 10. Did it work?</p>
 </div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> This requires also having A, B and C diffuse and is expected to smooth out differences.</p>
+</blockquote>
 </section>
 <section id="relevant-literature-further-reading" class="level2" data-number="4.6">
 <h2 data-number="4.6" class="anchored" data-anchor-id="relevant-literature-further-reading"><span class="header-section-number">4.6</span> Relevant literature / further reading</h2>
@@ -710,7 +755,7 @@ Wolpert, Lewis. 1969. <span>“Positional Information and the Spatial Pattern of
 </div>
 </section>
 
-</main> 
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1294,7 +1339,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav>
-</div> 
+</div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">

@@ -12,10 +12,10 @@ Here you will explore with a multicelular model what is the relation of differen
 
 They will receive a line of cells that duplicate with the same probability. They have to implement differences in division and make a measure of cell production. Compare cell production with and without gradient of differentiation. Probabilities: 0.1, 0.7, 0.0.  They should see it is better to have no gradient. 
 
- 
-Tomasetti and Vogelstein, 2015. Science. 
- 
-Zhu et al., 2016.
+ ![Tomasetti and Vogelstein, 2015. Science. ](docs/images/miniprojectstemcells1.jpg){#sc1}
+
+![Zhu et al., 2016.](docs/images/miniprojectstemcells2.jpeg){#sc2}
+
 
 
 **The model**: I will prepare a simple 1D tissue-level model of a SCN, and let the students implement the division dynamics of different SCNs. Then quantify the propensity of different tissues to develop oncogenic mutations.  

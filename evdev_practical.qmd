@@ -1,4 +1,4 @@
-# Practical -  Modeling Thermomorphogenesis in Plants
+# Modeling Thermomorphogenesis in Plants
 
 Plants respond to temperature not only through metabolic changes but also by adjusting their morphology. A well known response of plants to increased ambiant temperature is the lifiting of their leaves (hyponasty) and  increasing their petiole (stalk between leaf and stem) length to lower the internal leaf temperature. It is thought that this may help plants cope with heat, but it's not always clear whether and if so how this actually improves growth.
 In this practical, we will use and extend a small ODE model of carbon (C) and leaf area (LA) dynamics and explore how temperature and thermomorphogenic responses affect growth. 

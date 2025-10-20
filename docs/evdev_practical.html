@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Modeling Life - 7&nbsp; Gene regulation in space</title>
+<title>Modeling Life - 12&nbsp; Practical - Modeling Thermomorphogenesis in Plants</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,8 +29,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./differentiation_intro_text.html" rel="next">
-<link href="./morpho_practical_1.html" rel="prev">
+<link href="./evo_intro_text.html" rel="next">
+<link href="./evdev_intro_text.html" rel="prev">
 <link href="./images/favicon.ico" rel="icon">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -63,6 +63,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -75,7 +77,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./morpho_intro_text.html">II) Morphogenesis</a></li><li class="breadcrumb-item"><a href="./morpho_practical_2.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Gene regulation in space</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./evdev_intro_text.html">IV) Environment and Development</a></li><li class="breadcrumb-item"><a href="./evdev_practical.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Practical -  Modeling Thermomorphogenesis in Plants</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -172,13 +174,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
  <span class="menu-text">II) Morphogenesis</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./morpho_intro_text.html" class="sidebar-item-text sidebar-link">
@@ -193,7 +195,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./morpho_practical_2.html" class="sidebar-item-text sidebar-link active">
+  <a href="./morpho_practical_2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Gene regulation in space</span></span></a>
   </div>
 </li>
@@ -230,23 +232,23 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
  <span class="menu-text">IV) Environment and Development</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./evdev_intro_text.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introduction to evolution</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Environmental inputs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./evdev_practical.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introduction to evolution</span></span></a>
+  <a href="./evdev_practical.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Practical - Modeling Thermomorphogenesis in Plants</span></span></a>
   </div>
 </li>
       </ul>
@@ -366,13 +368,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#todo-for" id="toc-todo-for" class="nav-link active" data-scroll-target="#todo-for"><span class="header-section-number">7.1</span> TODO FOR</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">7.2</span> Introduction</a></li>
-  <li><a href="#biological-background" id="toc-biological-background" class="nav-link" data-scroll-target="#biological-background"><span class="header-section-number">7.3</span> Biological background</a></li>
-  <li><a href="#the-model" id="toc-the-model" class="nav-link" data-scroll-target="#the-model"><span class="header-section-number">7.4</span> The model</a></li>
-  <li><a href="#files" id="toc-files" class="nav-link" data-scroll-target="#files"><span class="header-section-number">7.5</span> Files</a></li>
-  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">7.6</span> Questions</a></li>
+  <li><a href="#the-model" id="toc-the-model" class="nav-link active" data-scroll-target="#the-model"><span class="header-section-number">12.1</span> The model</a></li>
+  <li><a href="#question-1---temperature-effects-on-photosynthesis-respiration-and-growth" id="toc-question-1---temperature-effects-on-photosynthesis-respiration-and-growth" class="nav-link" data-scroll-target="#question-1---temperature-effects-on-photosynthesis-respiration-and-growth"><span class="header-section-number">12.2</span> Question 1 - Temperature Effects on Photosynthesis, Respiration and Growth</a></li>
+  <li><a href="#question-2---thermomorphogenesis-leaf-angle-increase" id="toc-question-2---thermomorphogenesis-leaf-angle-increase" class="nav-link" data-scroll-target="#question-2---thermomorphogenesis-leaf-angle-increase"><span class="header-section-number">12.3</span> Question 2 - Thermomorphogenesis – Leaf angle increase</a></li>
+  <li><a href="#question-3---thermomorphogenesis-cooling-benefit" id="toc-question-3---thermomorphogenesis-cooling-benefit" class="nav-link" data-scroll-target="#question-3---thermomorphogenesis-cooling-benefit"><span class="header-section-number">12.4</span> Question 3 - Thermomorphogenesis – Cooling Benefit</a></li>
+  <li><a href="#question-4---is-thermomorphogenesis-adaptive" id="toc-question-4---is-thermomorphogenesis-adaptive" class="nav-link" data-scroll-target="#question-4---is-thermomorphogenesis-adaptive"><span class="header-section-number">12.5</span> Question 4 - Is Thermomorphogenesis Adaptive?</a></li>
   </ul>
 </nav>
     </div>
@@ -381,7 +381,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Gene regulation in space</span></h1>
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Practical - Modeling Thermomorphogenesis in Plants</span></h1>
 </div>
 
 
@@ -396,98 +396,83 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="todo-for" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="todo-for"><span class="header-section-number">7.1</span> TODO FOR</h2>
+<p>Plants respond to temperature not only through metabolic changes but also by adjusting their morphology. A well known response of plants to increased ambiant temperature is the lifiting of their leaves (hyponasty) and increasing their petiole (stalk between leaf and stem) length to lower the internal leaf temperature. It is thought that this may help plants cope with heat, but it’s not always clear whether and if so how this actually improves growth. In this practical, we will use and extend a small ODE model of carbon (C) and leaf area (LA) dynamics and explore how temperature and thermomorphogenic responses affect growth. You’ll simulate different temperature conditions and analyze how traits like leaf angle and size affect photosynthesis and carbon respiration rate, and how this affects overall plant growth. Later, you will investigate the adaptive value of this response, as this is still an open question.</p>
+<section id="the-model" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="the-model"><span class="header-section-number">12.1</span> The model</h2>
+<p>We start with a simple two ODE model where leaf area (L) grows with rate G, which depends on carbon concentration (<span class="math inline">\(C_c\)</span>) and leaf area. Carbon (C) is produced by photosynthesis (P) dependent on leaf area, leaf angle (<span class="math inline">\(\alpha\)</span>), and temperature (T). Carbon is consumed by growth and respiration (R), dependent on temperature and leaf area again:</p>
+<p><span class="math inline">\(\frac{dC}{dt} = P(L,T,\alpha) - R(L, T) - G(C_c, L)\)</span></p>
+<p><span class="math inline">\(\frac{dL}{dt} = G(C_c, L)\)</span></p>
+<section id="photosynthesis" class="level3">
+<h3 class="anchored" data-anchor-id="photosynthesis">Photosynthesis</h3>
+<p>Photosynthesis is a complex process that can be modeled in many different ways with varying complexity. Here we included a semi-detailed photosynthesis model based on the assumption that the protein RubisCo is the limiting step in photosynthesis. This model has 6 parameters and 2 environmental variables, of which all parameters are temperature sensitive. This temperature sensitivity is based on the Arrhenius equation, which describes the temperature dependency of chemical reaction rates.</p>
+</section>
+<section id="maintenance-respiration" class="level3">
+<h3 class="anchored" data-anchor-id="maintenance-respiration">Maintenance Respiration</h3>
+<p>Maintenance respiration is a term used in biological systems to describe all energy/carbon consuming processes that a plant must do to survive. Similar to photosynthesis, the rates of these reactions increase with temperature, and as such, carbon costs greatly increase. We model this using the Q10 equation, that describes how much a rate increases for 10 degrees of temperature increase.</p>
+</section>
+</section>
+<section id="question-1---temperature-effects-on-photosynthesis-respiration-and-growth" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="question-1---temperature-effects-on-photosynthesis-respiration-and-growth"><span class="header-section-number">12.2</span> Question 1 - Temperature Effects on Photosynthesis, Respiration and Growth</h2>
+<p>Lets first investigate how photosynthesis and respiration depend on temperature.</p>
+<p>Q1.1 Plot photosynthesis and respiration rate as a function of temperature, using the functions defined above. Explain: • What happens to net carbon gain at high temperature? • Why high temperature is problematic for growth in this model?</p>
+<p>Q1.2 Run simulations of the ODE model for low (15°C), medium (25°C), and high (35°C) temperatures. Which plant performs best? Which plant worst? Why is this?</p>
+</section>
+<section id="question-2---thermomorphogenesis-leaf-angle-increase" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="question-2---thermomorphogenesis-leaf-angle-increase"><span class="header-section-number">12.3</span> Question 2 - Thermomorphogenesis – Leaf angle increase</h2>
+<p>Until now we have investigated the effect of temperature on plants that do not respond to their environment, but plants do respond to their surroundings. Let us now extent the model to include this hyponastic response to high temperature.</p>
+<p>Q2.1 The photosynthesis function already includes a term for ‘effective leaf area (LA_eff)’, but the function does currently return the total leaf area. Rewrite this function to return projected area onto the ground depending on the angle of the leaf. Plot the effective leaf area as a function of angle. How does hyponasty affect photosynthesis? What other factors could affect effective leaf area?</p>
+<p>Q2.2 Now investigate the effect of the increased leaf angle. Compare medium (25°C) and high temperature (35°C) for normal (20°) and increased (40°) angle. What is the effect of leaf hyponasty on plant growth?</p>
+</section>
+<section id="question-3---thermomorphogenesis-cooling-benefit" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="question-3---thermomorphogenesis-cooling-benefit"><span class="header-section-number">12.4</span> Question 3 - Thermomorphogenesis – Cooling Benefit</h2>
+<p>The thermomorphogenesis response does also have a positive effect. Leaf hyponasty is shown to lower leaf temperature with a few degrees by improving heat dissipation and decreasing the area in which direct sunlight hits the leaves.</p>
+<p>Q3.1 Investigate the effect of the leaf cooling. How much cooling is needed for hyponasty to have an effect?</p>
+<p>Q3.2 Hyponasty is shown to lower leaf temperature 1-3°C, what is the effect of this cooling on plant growth? And would you argue that the response is ‘justified’ by the current model, i.e.&nbsp;is the cooling benefit large enough to justify the costs of hyponasty?</p>
+</section>
+<section id="question-4---is-thermomorphogenesis-adaptive" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="question-4---is-thermomorphogenesis-adaptive"><span class="header-section-number">12.5</span> Question 4 - Is Thermomorphogenesis Adaptive?</h2>
+<p>The cooling down of the leaves is often thought to be an important adaptive trait. From the simulations we’ve done so far this is not very clear. It might therefore very well be that we miss important processes in the current model besides the photosynthesis efficiency and maintenance respiration rate. In this last question of the practical you will extent the model with a thermomorphogenic process that you think can play a role in increasing plant growth. This is also an open question in current research, so there is not one correct answer. To help you think, we have come up with some hypothesis you can implement and investigate. Pick one hypothesis to work on and investigate if this would provide an adaptive benefit? If you have extra time, see if you can combine multiple hypotheses.</p>
+<section id="hypothesis-1---day-night-rhythm" class="level3">
+<h3 class="anchored" data-anchor-id="hypothesis-1---day-night-rhythm">Hypothesis 1 - Day-Night Rhythm</h3>
+<p>During the night, cooler temperatures reduce maintenance respiration rates, but photosynthesis halts as sunlight is no longer available. To model this, implement the following changes for nighttime conditions:</p>
 <ul>
-<li><span class="citation" data-cites="Monica">(<a href="references.html#ref-Monica" role="doc-biblioref"><strong>Monica?</strong></a>)</span>, check labels for questions (‘mathematical thinking’, ‘biology’, etc)</li>
-<li><span class="citation" data-cites="Monica">(<a href="references.html#ref-Monica" role="doc-biblioref"><strong>Monica?</strong></a>)</span>, figure out how/where to share the files and answers</li>
+<li><p><strong>Temperature drops</strong>: Simulate the cooling effect of nighttime.</p></li>
+<li><p><strong>No photosynthesis</strong>: Photosynthesis does not occur without sunlight.</p></li>
+<li><p><strong>Respiration continues</strong>: Maintenance respiration persists despite the absence of photosynthesis.</p></li>
+<li><p><strong>Hyponasty decreases</strong>: Leaf angles return to a less pronounced state.</p></li>
+<li><p>Analyze how the absence of photosynthesis at night affects carbon balance.</p></li>
+<li><p>Examine the impact of reduced nighttime temperatures on maintenance respiration rates.</p></li>
+<li><p>Explore how changes in leaf angle during the night influence overall plant growth.</p></li>
+</ul>
+<p>Additionally, plants store carbon during the day to compensate for the lack of photosynthesis at night. Investigate whether this carbon storage provides advantages at specific times of the day or over extended periods. Analyze how these day-night dynamics influence overall plant growth and adaptation.</p>
+</section>
+<section id="hypothesis-2---stomata" class="level3">
+<h3 class="anchored" data-anchor-id="hypothesis-2---stomata">Hypothesis 2 - Stomata</h3>
+<p>Stomata play a critical role in regulating gas exchange and water loss in plants. As leaf temperature increases, stomata open to enhance transpiration, which cools the leaf through evaporative cooling. This mechanism is particularly effective in well-watered plants, where increased stomatal opening can significantly reduce leaf temperature up to around 35°C. However, at very high temperatures, stomata may close to prevent excessive water loss, which can lead to overheating. Additionally, stomatal opening increases photosynthesis rates by improving gas exchange efficiency.</p>
+<p>To model this, implement the following changes:</p>
+<ul>
+<li><p><strong>Stomatal opening increases transpiration</strong>: Simulate the cooling effect of transpiration on leaf temperature.</p></li>
+<li><p><strong>Stomatal opening enhances photosynthesis</strong>: Include the effect of improved gas exchange on photosynthesis rates.</p></li>
+<li><p><strong>Stomatal closure at high temperatures</strong>: Model the reduction in cooling and photosynthesis efficiency due to stomatal closure.</p></li>
+<li><p>Analyze how stomatal opening affects leaf cooling and photosynthesis under moderate temperature conditions.</p></li>
+<li><p>Investigate the trade-offs between cooling benefits and photosynthesis efficiency at very high temperatures.</p></li>
+<li><p>Examine how stomatal closure impacts plant growth and carbon balance under heat stress.</p></li>
 </ul>
 </section>
-<section id="section" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="section"></h2>
-<center>
-<em>How wonderful that we have met with a paradox. <br> Now we have some hope of making progress – Niehls Bohr</em>
-</center>
-</section>
-<section id="introduction" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="introduction"><span class="header-section-number">7.2</span> Introduction</h2>
-<p>In this practical you will study the effects of auxin, a plant hormone, on gene regulation in the root. Auxin is a hormone virtually involved in all developmental processes in plants, from embryo patterning and floral organ determination to leaf disposition and root growth. In each context, auxin triggers specific responses, which can be explained by the underlying regulatory networks—namely by the redundancy of molecular players in the auxin signalling pathway (the auxin response factors, ARFs), and how they are expressed in different tissues.</p>
-<p>In the root, researchers have found an auxin–WOX5 paradox: some experiments show that auxin promotes the expression of WOX5 (a root stem cell transcription factor), while others found WOX5 repression. This opposite auxin regulation is mediated by different ARFs—ARF5 and ARF10—posing the possibility that accounting for both ARF5 and ARF10 regulatory networks can reconcile the results. To this end, you will use an in silico root model to address this paradox and propose an explanation.</p>
-</section>
-<section id="biological-background" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="biological-background"><span class="header-section-number">7.3</span> Biological background</h2>
-<p>Plant roots grow thanks to the presence of stem cells housed in a niche at the root tip. A subset of these cells expresses WOX5, maintaining the surrounding cells as stem cells. WOX5 is regulated by several factors, and network models help us understand how.</p>
-<p>The Boolean network used last week describes the gene and hormonal activity configurations of the cells in the root apex. In this model WOX5 is regulated positively by ARF5 and negatively by ARF10 and CLE40. Auxin regulates stem cell activity in the roots, and multiple links exist between auxin and the regulators in the Boolean network. Both ARF5 and ARF10 are auxin response factors activated by auxin. Moreover, root transcription factors control ARF5 and ARF10 expression such that they are not expressed in every cell of the root apex. This regulation is included in the Boolean model we studied last week. Whether this is relevant to understanding the auxin–WOX5 paradox is unclear. Here, each cell of the in silico root model carries a copy of the Boolean network, which allows us to test hypotheses and find an explanation.</p>
-</section>
-<section id="the-model" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="the-model"><span class="header-section-number">7.4</span> The model</h2>
-<p>The model simulates a root apex, showing the stem cell niche at the apex (lime green cells in the cell graphics; purple cells in the WOX5 visualization). The different tissues of the root are spatially organized. Each cell has a different set of expressed genes, which we account for by initializing each cell’s Boolean network in the QC, Vascular, Endodermis, and Columella attractors. (Cortex and epidermis are not modeled.) Multiple grids store different cell properties: cell-type, auxin levels, and expression of each gene.</p>
-<p>You can visualize ARF10, ARF5, MGP, and WOX5 expression using the provided plotting function.</p>
-</section>
-<section id="files" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="files"><span class="header-section-number">7.5</span> Files</h2>
-<p><code>Rootfunctions.py</code> – contains model functions. You do not need to modify them but should understand what they do.</p>
-<p><code>Root-model-Auxin.py</code> – code to simulate the in silico root.</p>
-<p><code>auxin_grid.npy</code> – initial auxin levels in each cell.</p>
-</section>
-<section id="questions" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="questions"><span class="header-section-number">7.6</span> Questions</h2>
-<div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.1 </strong></span>Algorithmic thinking</p>
-<p>Familiarize yourself with the model. Examine Rootfunctions.py to see how each process is modeled and how they are coupled.</p>
-</div>
-<div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.2 </strong></span>Biology</p>
-<p>What happens if you update the network every timestep? Does that make biological sense? Where in the code can you make this modification?</p>
-</div>
-<div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.3 </strong></span>Biology &amp; algorithmic thinking</p>
-<p>Simulate an auxin treatment by changing the AuxinTreatment parameter. Try values of 10 and 750. This increases auxin levels in all cells by the given amount.</p>
-<p>How does auxin treatment affect gene expression in the root? (You can visualize different genes by changing the grid provided to plotGrids().)</p>
-<p>Does the model output correspond to the transcriptional reporter of WOX5 shown in Figure 1? Do you see activation or repression as reported experimentally?</p>
-</div>
-<div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.4 </strong></span>Biology &amp; algorithmic/mathematical thinking</p>
-<p>The model does not yet reproduce the experiments. To account for quantitative effects of auxin, implement two hypotheses based on the literature:</p>
-<p>Auxin represses MGP expression.</p>
-<p>Extremely high auxin levels (unrealistic in vivo) repress WOX5 expression.</p>
-<p>Modify the equations for MGP and WOX5 in rootNetwork accordingly.</p>
-<p>For MGP, retain its logical rule but multiply its production term by a saturation function of auxin (Km = 45):</p>
-<p>dMGP = (45/(45+auxininput))<em>((-np.exp(0.5 </em> h) + np.exp(-h * w_MGP)) / ((1 - np.exp(0.5 * h)) * (1 + np.exp(-h * (w_MGP - 0.5))))) - (lambda_ * MGP)</p>
-<p>Similarly, add a negative regulation by auxin to the WOX5 equation (Km = 1000).</p>
-<p>Run control and auxin treatments with (i) updated MGP, (ii) updated WOX5, and (iii) both updates.</p>
-<p>Do you now see the differences reported by experimentalists?</p>
-</div>
-<div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.5 </strong></span>Biological interpretation</p>
-<p>You should observe that WOX5 expression gradually expands into the endodermis and disappears from QC cells when both equations are updated. This matches experimental microscopy. To explain repression:</p>
-<p>Why do different parts of the root respond differently to auxin? Why does induction occur mainly in upper cells and repression in basal cells?</p>
-</div>
-<div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.6 </strong></span>Algorithmic thinking</p>
-<p>Experimental repression of WOX5 was detected by RT-PCR at the very apex. Reproduce this in silico by saving the average WOX5 levels of cells at the apex (y &lt; 40) at the end of the simulation for all three treatments. Plot them.</p>
-<p>What is the root apex response to auxin treatments? Considering that the root contains mixed cell types, which cells best represent your plotted values?</p>
-</div>
-<div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.7 </strong></span>Biology &amp; algorithmic thinking</p>
-<p>Repeat the analysis for all cells, for QC cells, and for endodermis cells. Compare WOX5 regulation across tissues.</p>
-<p>Do you see a difference between your observations and the simulated RT-PCR plot? Why?</p>
-</div>
-<div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.8 </strong></span>Biology &amp; algorithmic thinking</p>
-<p>Changes in WOX5 expression depend on tissue context and auxin dosage. Simulate a range of auxin treatments from 0 to 750 (choose your step size).</p>
-<p>Can you now explain the auxin–WOX5 paradox? What mechanism do you propose?</p>
-</div>
-<div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.9 </strong></span>Biology &amp; conceptual thinking</p>
-<p>Perform an in silico intervention to alter WOX5 dosage responsiveness. For example, enforce continuous induction or block its induction in the endodermis. How would you test these model predictions experimentally?</p>
-</div>
-<div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.10 </strong></span>Biological thinking</p>
-<p>All models are wrong, but some are useful. The model should offer mechanistic insight into paradoxical auxin responses. Yet the original experiments used different auxin analogs: NAA (transported independently of PINs), IAA (PIN-transported), and NPA (blocks PINs, increasing auxin in the apex). How does this information change your conclusions? What extensions to the model would account for these differences?</p>
-</div>
+<section id="hypothesis-3---leaf-aspect-ratio" class="level3">
+<h3 class="anchored" data-anchor-id="hypothesis-3---leaf-aspect-ratio">Hypothesis 3 - Leaf Aspect Ratio</h3>
+<p>Leaf size and shape can influence both photosynthesis and respiration rates. Smaller or thinner leaves may reduce maintenance respiration costs due to a lower overall biomass, while potentially maintaining a relatively high photosynthesis rate per unit area. A response often seen during thermomorphogenesis is a change in the ‘leaf-aspect ratio’, where the leaf width decreases but the length stays the same. What is also observed is that leaves become thinner, maintaining their surface area, but decreasing the biomass and thus respiration demand.</p>
+<p>To model this, implement the following changes:</p>
+<ul>
+<li><p><strong>Smaller and/or thinner leaves reduce respiration costs</strong>: Simulate the effect of reduced biomass on maintenance respiration rates.</p></li>
+<li><p><strong>Leaf-aspect area changes with temperature</strong>: Model the effect of different leaf shapes on effective leaf-area.</p></li>
+<li><p>Analyze how altering leaf thickness and aspect ratio affects plant growth under varying temperature conditions.</p></li>
+<li><p>Investigate the trade-offs between reduced respiration costs and decreased leaf area.</p></li>
+<li><p>Determine if smaller and/or thinner leaves provide an adaptive advantage under heat stress.</p></li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -857,13 +842,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./morpho_practical_1.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Gene regulation in time</span></span>
+      <a href="./evdev_intro_text.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Environmental inputs</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./differentiation_intro_text.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Differentiation introduction</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./evo_intro_text.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Introduction to evolution</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

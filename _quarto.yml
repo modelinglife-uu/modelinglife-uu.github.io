@@ -47,7 +47,11 @@ book:
             - differentiation_intro_text.qmd
             - differentiation_practical_1.qmd
             - differentiation_practical_2.qmd
-    - part: "IV) Evolution"
+    - part: "IV) Environment and Development"
+      chapters:
+            - evdev_intro_text.qmd
+            - evdev_practical.qmd
+    - part: "V) Evolution"
       chapters:
             - evo_intro_text.qmd
             - evo_practical_1.qmd

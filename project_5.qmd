@@ -1,0 +1,44 @@
+# Miniproject: Oncogenic propensity of different stem cell niches 
+
+UNDER CONSTRUCTION
+
+## Mini description
+Stem cells are present in our bodies, and their activity is important for the renewal of our tissues. For example, the turnover of our skin cells is ~30 days 
+For instance, our tissues are renewed throughout our life thanks to the activity of stem cells housed in our skin, lung, intestine epithelia. The organization of stem cell niches is generic such that stem cells produce progeny that divides actively in the transit-amplifying zone, and then differentiates. Notably, different tissues in have a different propensity of developing cancer, and it has been that this is due to“a combination of stem cell mutagenesis and extrinsic factors that enhance the proliferation of these cell populations, creates a “perfect storm” that ultimately determines organ cancer risk” (Zhu et al., 2016).
+Here you will explore with a multicelular model what is the relation of differences in SC activity and cancer risk.
+
+- Why? SCN organization is generic, but cycling of cells is different: Basis of model is that mutation probability is constant, and that division frequency is what changes in different tissues (see ref 1 below). 
+ 
+
+They will receive a line of cells that duplicate with the same probability. They have to implement differences in division and make a measure of cell production. Compare cell production with and without gradient of differentiation. Probabilities: 0.1, 0.7, 0.0.  They should see it is better to have no gradient. 
+
+ 
+Tomasetti and Vogelstein, 2015. Science. 
+ 
+Zhu et al., 2016.
+
+
+**The model**: I will prepare a simple 1D tissue-level model of a SCN, and let the students implement the division dynamics of different SCNs. Then quantify the propensity of different tissues to develop oncogenic mutations.  
+
+ 
+
+## Guiding questions: 
+-	Implement a mutation rate probability (0.01). Now quantify mutations per cell population, which one gets a higher production of oncogenic mutations?
+-	Which zone has long-lasting effects?
+-	What happens with mutations occurring in SC and in TA?
+-	Now simulate different SC activities to mimic different tissues cell renewal. Plot SC activity vs mutagenesis. Does it match the plot of the paper?
+-	Parameter sweep, is there a combination of division probabilities that can optimize cell production with minimal mutation rates? That is, minimal tumour probability?
+-	Propose how to decrease cancer incidence in this tissue-level model. One option is making divisions in TA more frequent than in SCs as long as overall tissue renewal is maintained (Paper proposing that cancer incidence decreases with age... they claim that tissues self-renew less frequently). 
+-	
+
+### Msc:
+-	Expand to 2D model, how it affects spreading? 
+-	Simulate injuries and see how it relates to spreading of mutations?
+ 
+## References: 
+1) SC divisions and cancer susceptibility https://www.nature.com/articles/nature23302
+2) Variation in cancer risk among tissues can be explained by the number of stem cell divisions https://www.science.org/doi/full/10.1126/science.1260825
+3) Zhu - SCs are more susceptible https://doi.org/10.1016/j.cell.2016.07.045
+extra: Tomassetti. https://www.science.org/doi/10.1126/science.aaf9011
+ 
+

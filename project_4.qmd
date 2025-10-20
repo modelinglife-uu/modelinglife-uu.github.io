@@ -1,0 +1,49 @@
+# Miniproject: Patterning – Asymmetric localization of ZIF-1 in the C. elegans embryo 
+
+## Mini description
+
+In the early C. elegans embryo, the first cell division of the zygote (P0 cell) is asymmetric. The anterior daughter forms the AB cell that gives rise to somatic tissues, while the posterior daughter forms the P1 cell that gives rise to both somatic and germline tissues. These different fates are a result of asymmetric segregation of proteins to the anterior and posterior sides of the P0 cell before division. In fact, at this stage in development, the embryo has no active transcription, but "survives" off of maternally-inherited mRNAs and proteins. 
+
+Asymmetric protein distribution is orchestrated by the PAR polarity proteins. One of the affected proteins is **MEX-5** which is phosphorylated by the posterior PAR protein PAR-1 (Griffin et al. 2011). Since PAR-1 is present only in the posterior half of the cell while the phosphatase PP2A is ubiquitous, the balance of phosphorylation and dephosphorylation of MEX-5 differs along the anterior-posterior axis. Importantly, phosphorylated MEX-5 diffuses faster. As a result, slow-diffusing unphosphorylated MEX-5 accumulates in the anterior part of the cell. This gradient-formation mechanism was also recapitulated by a mathematical model (Griffin et al. 2011). 
+
+The MEX-5 protein binds to the 3' untranslated region of various mRNAs, thereby activating their translation. One of its targets is **zif-1**, the mRNA encoding for the **ZIF-1** protein, a E3 ubiquitin ligase required to degrade factors that promote germline fate. To perform its function, ZIF-1 protein needs to be enriched anteriorly in the future AB cell, and needs to be excluded posteriorly in the future P1 cell. ZIF-1 is also known to inhibit MEX-5 by binding to it, resulting in a negative feedback on its own translation activation. 
+
+One mechanism for the specific localization of ZIF-1 protein to the future AB cell is local zif-1 mRNA translation in the anterior half of the cell via the action of MEX-5. But what prevents the ZIF-1 protein from simply diffusing into the posterior half of the cell (the future P1 cell)? There are several possible mechanisms, for example: 
+
+- ZIF-1 is bound to MEX-5 which accumulates anteriorly, thus depleting posterior ZIF-1. 
+
+- ZIF-1 is specifically degraded in the posterior side. 
+
+- ZIF-1 is actively transported towards the anterior side, e.g. using the cytoskeleton. 
+
+##Key References 
+
+Griffin, Erik E., David J. Odde, and Geraldine Seydoux. "Regulation of the MEX-5 gradient by a spatially segregated kinase/phosphatase cycle." Cell 146.6 (2011): 955-968. 
+
+##Guiding Questions 
+
+In this project, you will implement a model to explore the above hypothetical mechanisms of ZIF-1 localization. Consider the following: 
+
+Do the proposed mechanisms qualitatively result in spatially-localized ZIF-1? 
+
+If yes, how steep is the resulting ZIF-1 gradient? 
+
+[Master-level] How robust is the result to parameter variation? 
+
+[Master-level] Compare the mechanisms: Are they identical? Do they make different predictions (e.g. if a mutant is engineered, or the size of the cell is changed)? 
+
+## Hints 
+
+- Start by replicating the MEX-5 diffusion-gradient model of Griffin et al. 2011 [Reference #1]. 
+
+- Extend the model to also include: 
+
+    - zif-1 mRNA 
+
+    - ZIF-1 protein 
+
+    - binding of ZIF-1 to MEX-5 resulting in an inactive ZIF-1·MEX-5 complex 
+
+    - To simplify the model, start by assuming that zif-1 mRNA is uniformly distributed and does not diffuse. 
+
+ 

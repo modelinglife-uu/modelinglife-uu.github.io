@@ -58,6 +58,9 @@ book:
       chapters:
             - project_1.qmd
             - project_2.qmd
+            - project_3.qmd
+            - project_4.qmd
+            - project_5.qmd
     - references.qmd
   appendices:
       - answers.qmd

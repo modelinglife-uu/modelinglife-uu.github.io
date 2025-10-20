@@ -1,0 +1,34 @@
+# Miniproject: The devil is in the details – auxin transport in the root 
+
+## Mini description
+Auxin is a plant hormone that regulates a great diversity of processes in plants. Auxin can move between cells through the activity of membrane proteins acting as auxin efflux and influx transporters, allowing the coordination of cells. In the cells, auxin activates a signalling pathway in which a family of transcription factors, the auxin response factors (ARF), activate or repress gene expression. To study the role of auxin on plant development, experimentalists have found several ways to impinge on the different steps preceding auxin responses. For example, auxin levels can be increased using a synthetic auxin molecule (NAA) or by inhibiting the activity of the PIN transporters (N-1-naphthylphthalamic acid, NPA), while auxin responses can be actively elicited by interfering directly with components the auxin signalling pathway. 
+
+In the root, WOX5 regulation by auxin has been studied using these three strategies. The model we used in Practical 6 makes a rather coarse representation of the auxin treatments by increasing the auxin levels equally in all cells. Yet, the actual treatments made experimentally may affect auxin levels and responses in very different ways. Here you will extend the model we used before, by implementing each of these strategies and compare how each intervention modifies WOX5 expression in time and space. 
+
+## Guiding steps
+**Increasing auxin levels in the root apex**
+
+Implement:
+
+1)	the effect of using a synthetic auxin molecule (NAA) whose transport is not universally PIN-dependent and thus it enhanced signal but no change in spatial pattern (Friml et al., 2013). 
+
+2)	the inhibition of PIN efflux transporters when treating plants with NPA (Abas et al., 2020). 
+
+•	Simulate single NAA and NPA treatments, and combined NPA+IAA (natural auxin) treatments.
+
+•	Evaluate in each case how WOX5 is regulated in time and space. Does this match the experiments?
+
+•	Are these treatments equivalent? 
+
+## Question only for master students
+
+**Modifying auxin responses in the root apex**
+
+3)	Modify the gene regulatory network function to include the negative feedback from WOX5 to auxin signaling pathway (Tian et al., 2014). 
+
+•	Simulate the experiments in Figure 2 of the paper. If necessary, propose and test new interactions. 
+
+## Key references:
+-	https://www.nature.com/articles/nature13663
+-	https://www.pnas.org/doi/10.1073/pnas.1000672107
+-	https://www.cell.com/molecular-plant/fulltext/S1674-2052(14)60288-4

@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Modeling Life - 3&nbsp; Pattern formation II  Turing digit patterns</title>
+<title>3&nbsp; Pattern formation II   Turing digit patterns – Modeling Life</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -77,13 +77,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -92,13 +101,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -108,12 +146,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pattern_intro_text.html">I) Pattern formation</a></li><li class="breadcrumb-item"><a href="./pattern_practical_2.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Pattern formation II <br> Turing digit patterns</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pattern_intro_text.html">I) Pattern formation</a></li><li class="breadcrumb-item"><a href="./pattern_practical_2.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Pattern formation II <br> Turing digit patterns</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -123,7 +161,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
       <img src="./images/android-chrome-512x512.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
@@ -144,9 +182,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Course information</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -173,9 +211,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">I) Pattern formation</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -183,7 +221,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pattern_intro_text.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Pattern formation (intro)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -201,16 +239,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pattern_practical_3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Practical</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Pattern formation III <br> Clock-and-wavefront</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">II) Morphogenesis</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -231,9 +269,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
  <span class="menu-text">III) Cell differentiation</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -260,9 +298,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
  <span class="menu-text">IV) Environment and Development</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -283,9 +321,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
  <span class="menu-text">V) Evolution</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -324,9 +362,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
  <span class="menu-text">Mini-projects</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -371,9 +409,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -389,7 +427,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="-1">
@@ -413,7 +451,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pattern_intro_text.html">I) Pattern formation</a></li><li class="breadcrumb-item"><a href="./pattern_practical_2.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Pattern formation II <br> Turing digit patterns</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Pattern formation II <br> Turing digit patterns</span></h1>
 </div>
@@ -428,7 +466,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <section id="section" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="section"></h2>
@@ -446,20 +486,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="3.1" class="anchored" data-anchor-id="equivalence-of-turing-models"><span class="header-section-number">3.1</span> Equivalence of Turing models</h2>
 <p>The model proposed by Raspopovic et al.&nbsp;for generating Turing patterns underlying limb bone modeling consists of 3 instead of 2 interacting variables. We will refer to this model as “BSW” model, as it represents interactions between Bmp, Sox9, and Wnt.</p>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.1 (Conceptual thinking) </strong></span>Study the schemes below. The arrows represent activating or inhibiting interactions, while the wavy lines represent diffusion of components. Simplify the BSW model scheme to a 2-component system and explain why the relevant Turing constraints apply to the BSW model. In your answer, think about the logic of the interactions in the system conceptually; we do not expect you to answer by writing down equations.</p>
+<p><span class="theorem-title"><strong>Exercise 3.1 (Conceptual thinking)</strong></span> Study the schemes below. The arrows represent activating or inhibiting interactions, while the wavy lines represent diffusion of components. Simplify the BSW model scheme to a 2-component system and explain why the relevant Turing constraints apply to the BSW model. In your answer, think about the logic of the interactions in the system conceptually; we do not expect you to answer by writing down equations.</p>
 <div class="columns">
 <div class="column" style="width:40%;">
-<div id="fig-turing" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/two_component_turing.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;3.1: Schemes and numerical solutions of two prototypical 2-component Turing models</figcaption>
+<div id="fig-turing" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-turing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/two_component_turing.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;3.1: Schemes and numerical solutions of two prototypical 2-component Turing models"><img src="images/two_component_turing.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-turing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: Schemes and numerical solutions of two prototypical 2-component Turing models
+</figcaption>
 </figure>
 </div>
 </div><div class="column" style="width:60%;">
-<div id="fig-wntbmpsox" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/wntbmpsox.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;3.2: Scheme of the BSW model</figcaption>
+<div id="fig-wntbmpsox" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-wntbmpsox-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/wntbmpsox.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;3.2: Scheme of the BSW model"><img src="images/wntbmpsox.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wntbmpsox-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.2: Scheme of the BSW model
+</figcaption>
 </figure>
 </div>
 </div>
@@ -473,7 +521,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="3.2" class="anchored" data-anchor-id="patterning-in-a-fixed-domain-size"><span class="header-section-number">3.2</span> Patterning in a fixed domain size</h2>
 <p>The code in the script <code>01__digits_squarehomogeneoustissue.py</code> simulates the model in a 2D square tissue of constant size. This setup can be considered as a small region of a large Petri dish in which mesenchymal cells have been plated with the correct chemicals to undergo bone formation (Supplementary Figure S3 in the paper).</p>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.2 (Biology) </strong></span>Play with the reaction parameters and diffusion constants to study their effects on the wavelength of the patterns. Note down the following:</p>
+<p><span class="theorem-title"><strong>Exercise 3.2 (Biology)</strong></span> Play with the reaction parameters and diffusion constants to study their effects on the wavelength of the patterns. Note down the following:</p>
 <ul>
 <li>Which parameter changes lead to a pattern with thicker/thinner stripes?</li>
 <li>Which parameter changes lead to a pattern with spots?</li>
@@ -490,16 +538,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p>For simplicity I will only show Sox9 patterns:</p>
 </blockquote>
-<p><img src="images/sox9.png" class="img-fluid"></p>
-<p><img src="images/sox9sweep.png" class="img-fluid"></p>
+<p><a href="images/sox9.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="images/sox9.png" class="img-fluid"></a></p>
+<p><a href="images/sox9sweep.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="images/sox9sweep.png" class="img-fluid"></a></p>
 <blockquote class="blockquote">
 <p>In general, all three components follow similar trends in terms of concentrations as any impact on one component will affect the others via feedbacks.<br><br> Increasing or decreasing the parameters k2 and k4 has the same effect on the pattern. <br><br> With increased Sox9 activation (high k2) a lower amount of BMP is sufficient to get Sox9 to increase which in turn inhibits both Wnt and Bmp. As a result, the “peaks” are reached sooner in space resulting in shorter lower amplitude wavelengths. Similarly, when Sox9 inhibition of BMP is high (high k4) then BMP peaks are lower, which means there is less Sox9 activation leading to smaller amplitude peaks and hence shorter wavelength. Conversely, if Sox9 activation by BMP is weak (low k2), then it takes more BMP to build up to a peak, resulting in longer higher amplitude wavelengths. When Sox9 inhibition of BMP is weak (low k4), then it takes larger Sox9 domains to deplete BMP, resulting in longer higher amplitude wavelengths. If Sox9 activation (k2) or BMP inhibition (k4) are extremely strong, Sox9 locally depletes BMP faster than it can diffuse, which in turn leads to a reduction in Sox9; this could explain local oscillations and travelling waves, though this result should be verified with a better numerical scheme. Changing BMP self-inhibition (k5) has the opposite effect as Sox9 activation (k2) and BMP inhibition (k4). BMP self-inhibition restricts the size of BMP domains. Stronger self-inhibition (high k5) means small pockets of BMP are destabilized and Sox9 regions grow until the point that they completely deplete the local BMP, resulting in larger higher amplitude peaks. Vice-versa, reducing BMP self-inhibition (low k5) allows BMP peaks to more easily form, leading to shorter pattern wavelengths. Unlike the other two parameters, this reduction only happens up to a point, as the other feedback interactions take over.</p>
 </blockquote>
-<p><img src="images/sox9sweep2.png" class="img-fluid"></p>
+<p><a href="images/sox9sweep2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="images/sox9sweep2.png" class="img-fluid"></a></p>
 <blockquote class="blockquote">
 <p>Increasing or decreasing the parameters k3 and k7 has the same effect on the pattern. When Wnt inhibition of Sox9 is increased (high k3) or Sox9 inhibition of Wnt is increased (high k7) the cross-inhibition of both variables is stronger, meaning they will tend to create larger exclusion zones which translates as longer higher amplitude wavelengths. When Wnt inhibition of Sox9 is decreased (low k3) or Sox9 inhibition of Wnt is decreased (low k7) smaller regions can coexist, reducing the wavelength and the amplitude. Even lower cross-inhibition means the regions overlap, and small time delays could lead to oscillations, although this should be verified with a numerically better scheme. Wnt self-inhibition (k9) limits the growth of Wnt domains. When self-inhibition is strong (high k9) Wnt domains shrink and therefore the wavelength is shorter with lower amplitude. Even stronger self-inhibition leads to overlapping domains and similar oscillations as observed for low k3 and low k7. Vice-versa, a decrease of Wnt self-inhibition (low k9) allows larger patches of Wnt to form, which increases the wavelength and the amplitude.</p>
 </blockquote>
-<p><img src="images/sox9sweep3.png" class="img-fluid"></p>
+<p><a href="images/sox9sweep3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="images/sox9sweep3.png" class="img-fluid"></a></p>
 <blockquote class="blockquote">
 <p>The equation for Sox9 includes a “saturation term” in the form of a negative cubic power of Sox9, which means that effectively there is Sox9 self-inhibition in the model. The parameter delta multiplies a quadratic Sox9-dependent term in the equation for Sox9, which by default is set to 0. A positive delta effectively means that Sox9 has a self-activation term that counteracts the self-inhibition by the cubic saturation term, whereas a negative delta means the Sox9 self-inhibition is stronger. Introducing a stronger Sox9 self-activation (delta &gt; 0) increases the amplitude of Sox9 domains. Due to this local strong increase in Sox9, there is also a local strong depletion of BMP which prevents stripes from elongating, resulting in a spot pattern. Introducing a stronger Sox9 self-inhibition (delta &lt; 0) reduces the amplitude of Sox9 domains. There is thus less BMP depletion which enables stripes to elongate and fuse more easily.<br><br> Wnt and Sox9 are cross-inhibitory, and thus their domains will compete. Lower Wnt diffusion means Wnt domains form locally, leading to a reduced wavelength. Vice-versa a higher Wnt diffusion means that Wnt spreads away from Sox9 domains enabling them to expand ultimately resulting in longer wavelengths. Note that since BMP diffusion scales with Wnt diffusion, both parameters were changed at the same time.<br><br> The ratio of diffusion speeds defines the size of the Turing space. As the diffusion of BMP is set equal to that of Wnt, the homogenous solution becomes stable. Reducing the diffusion of BMP further leads to travelling waves or oscillations. This is because a slow (or stationary) BMP is in a local negative feedback loop with Sox9, which results in oscillatory behavior. The establishment of Wnt domains around the oscillating Sox9 regions is also oscillatory.<br><br> Increasing BMP diffusion allows to more effectively “feed” Sox9 domains, which leads to a subtle increase in the wavelength and amplitude.</p>
 </blockquote>
@@ -509,7 +557,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="3.3" class="anchored" data-anchor-id="the-homogenous-steady-state-in-turing-models"><span class="header-section-number">3.3</span> The homogenous steady state in Turing models</h2>
 <p>In a system exhibiting Turing instability, the spatially unpatterned steady state is unstable in the presence of diffusion.</p>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.3 (Conceptual thinking) </strong></span>Modify the initial condition in the script <code>01__digits_squarehomogeneoustissue.py</code> to be exactly in this state (Sox9, BMP, Wnt should be all zero everywhere) and run the simulation. Explain the simulation result.</p>
+<p><span class="theorem-title"><strong>Exercise 3.3 (Conceptual thinking)</strong></span> Modify the initial condition in the script <code>01__digits_squarehomogeneoustissue.py</code> to be exactly in this state (Sox9, BMP, Wnt should be all zero everywhere) and run the simulation. Explain the simulation result.</p>
 </div>
 <blockquote class="blockquote">
 <p><strong>Answer</strong> The homogenous steady state continues to exist, and if starting in that state the system will not evolve to a different state. A small perturbation is needed to nudge the system out of the steady state.</p>
@@ -521,7 +569,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Besides parameter values, the pattern that emerges from a Turing system is also strongly influenced by initial conditions and the size and shape of the domain where reactions and diffusion happen.</p>
 <p>In the script <code>02__digits_growingsquare_PD.py</code> we added tissue growth in the proximo-distal (body to limb) direction. Growth is controlled by a growth rate <code>vi</code>.</p>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.4 (Biology) </strong></span>&nbsp;</p>
+<p><span class="theorem-title"><strong>Exercise 3.4 (Biology)</strong></span> &nbsp;</p>
 <ul>
 <li>Study the code to understand what it does.<br>
 </li>
@@ -534,14 +582,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/domaingrowth.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Simulations from this practical with domain growth</figcaption>
+<p><a href="images/domaingrowth.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Simulations from this practical with domain growth"><img src="images/domaingrowth.png" class="img-fluid figure-img" alt="Simulations from this practical with domain growth"></a></p>
+<figcaption>Simulations from this practical with domain growth</figcaption>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/experimental_stripes.png" class="img-fluid figure-img" style="width:40.0%"></p>
-<figcaption class="figure-caption">Experimental work using a light-gated chemical reaction that forms Turing patterns when illuminated. The illuminated area was shifted over time to produce a growing domain, work by Míguez et at., 2006</figcaption>
+<p><a href="images/experimental_stripes.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Experimental work using a light-gated chemical reaction that forms Turing patterns when illuminated. The illuminated area was shifted over time to produce a growing domain, work by Míguez et at., 2006"><img src="images/experimental_stripes.png" class="img-fluid figure-img" style="width:40.0%" alt="Experimental work using a light-gated chemical reaction that forms Turing patterns when illuminated. The illuminated area was shifted over time to produce a growing domain, work by Míguez et at., 2006"></a></p>
+<figcaption>Experimental work using a light-gated chemical reaction that forms Turing patterns when illuminated. The illuminated area was shifted over time to produce a growing domain, work by Míguez et at., 2006</figcaption>
 </figure>
 </div>
 <hr>
@@ -550,15 +598,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="3.5" class="anchored" data-anchor-id="patterning-along-two-growth-axes"><span class="header-section-number">3.5</span> Patterning along two growth axes</h2>
 <p>In reality, the limb bud grows in both the proximo-distal and anterior-posterior direction. In the script <code>03__digits_growingsquare.py</code> this is implemented with growth rates <code>vi</code> for proximo-distal growth and <code>vj</code> for anterior-posterior growth.</p>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.5 (Biology) </strong></span>Play with the relative size of these growth rates and study what happens. Compare the order of appearance of stripes to the experimental data in the paper (see Figure 3F in the Raspopovic paper).</p>
+<p><span class="theorem-title"><strong>Exercise 3.5 (Biology)</strong></span> Play with the relative size of these growth rates and study what happens. Compare the order of appearance of stripes to the experimental data in the paper (see Figure 3F in the Raspopovic paper).</p>
 </div>
 <blockquote class="blockquote">
 <p><strong>Answer</strong> As in the previous question, the rate of growth influences whether stripes grow parallel to or perpendicular to the growth boundary. Also as before, slow horizontal growth promotes horizontal stripes (vi&lt;=0.1), and when this becomes faster stripes reorient to become vertical. However now, if we add vertical growth and it is not small enough relative to the horizontal growth, above and below the horizontal stripes we get vertical stripes and these domains are larger the faster vertical growth is relative to horizontal growth. So to get ok-ish patterns we need horizontal growth not too fast, and vertical growth to be slower. These results are consistent with horizontal growth of the “paddle” being faster than vertical growth. Also, we see that middle horizontal stripes appear earlier than the outer ones (in those situation where not all is vertical), similar to what we see in the paper in Fig 3F. Still interestingly, if you put vj=0.2 and vi=0.1 you promote initially vertical and later on horizontal stripes, this is an effect of in the vertical direction hitting the boundaries of the domain first and then still slowly continuing growth in the horizontal dimension at a not too high rate that was supportive of extending horizontal stripes.</p>
 </blockquote>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/domaingrowth.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Simulations from this practical with domain growth</figcaption>
+<p><a href="images/domaingrowth.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Simulations from this practical with domain growth"><img src="images/domaingrowth.png" class="img-fluid figure-img" alt="Simulations from this practical with domain growth"></a></p>
+<figcaption>Simulations from this practical with domain growth</figcaption>
 </figure>
 </div>
 <hr>
@@ -567,7 +615,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="3.6" class="anchored" data-anchor-id="making-a-virtual-tissue-grow"><span class="header-section-number">3.6</span> Making a virtual tissue grow</h2>
 <p>Think about how tissue growth is implemented in the script <code>03__digits_growingsquare.py</code>.</p>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.6 (Algorithmic and conceptual thinking) </strong></span>What is the default value of the newly added tissue when it grows? Is the concentration elsewhere in the tissue changed?</p>
+<p><span class="theorem-title"><strong>Exercise 3.6 (Algorithmic and conceptual thinking)</strong></span> What is the default value of the newly added tissue when it grows? Is the concentration elsewhere in the tissue changed?</p>
 <p>Do you think this approach is reasonable to model biological growth of a tissue? Explain why/why not.</p>
 <p><em>Hint:</em> Think about it from the perspective of a growing cell containing a number of molecules “X”.<br>
 If the cell increases in volume and does not produce/degrade X, what happens to the concentration of X?<br>
@@ -590,12 +638,12 @@ How would the situation change if X is constantly produced and degraded?</p>
 <h2 data-number="3.7" class="anchored" data-anchor-id="spatial-modulation-of-parameters-k4-and-k7"><span class="header-section-number">3.7</span> Spatial modulation of parameters k4 and k7</h2>
 <p>Let us now ignore growth and its role on orienting stripes for a while and explore once again the influence of parameters on the patterns. In reality, digits are patterned further apart at the distal end than at the proximal end, where they need to converge on a hand and wrist. This implies that the wavelength of the Turing pattern should not be constant. In a previous question you probably found that the <code>k7</code> and <code>k4</code> parameters impact the wavelength of the Turing pattern. The authors speculate that the FGF and Hox gene gradients observed in the limb bud exert an effect on the Sox9-BMP-Wnt patterning module through these parameters.</p>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.7 (Biology) </strong></span>The script <code>05__digits_squarek4k7gradient.py</code> allows you to implement exponential gradients of <code>k4</code> and <code>k7</code> across the tissue. You can set the minimum and maximum values, axis (x=horizontal, y=vertical) and direction (0=decreasing, 1=increasing). Look in the supplement of the Raspopovic paper, page 48 Fig 2C, left for the estimated change of <code>k4</code> and <code>k7</code> across the tissue and try to reproduce (not exactly but similarly) Figure 2C, right side, by playing with the parameters affecting the <code>k4</code> and <code>k7</code> gradients. Describe along which axis, in which direction and to what extent <code>k4</code> and <code>k7</code> are changing. Estimate the change in Turing pattern wavelength this results in.</p>
+<p><span class="theorem-title"><strong>Exercise 3.7 (Biology)</strong></span> The script <code>05__digits_squarek4k7gradient.py</code> allows you to implement exponential gradients of <code>k4</code> and <code>k7</code> across the tissue. You can set the minimum and maximum values, axis (x=horizontal, y=vertical) and direction (0=decreasing, 1=increasing). Look in the supplement of the Raspopovic paper, page 48 Fig 2C, left for the estimated change of <code>k4</code> and <code>k7</code> across the tissue and try to reproduce (not exactly but similarly) Figure 2C, right side, by playing with the parameters affecting the <code>k4</code> and <code>k7</code> gradients. Describe along which axis, in which direction and to what extent <code>k4</code> and <code>k7</code> are changing. Estimate the change in Turing pattern wavelength this results in.</p>
 </div>
 <blockquote class="blockquote">
 <p><strong>Answer</strong> See the script <code>05__digits_squarek4k7gradient_answer.py</code> for a solution. The output may look sometimes like this:</p>
 </blockquote>
-<p><img src="images/spatial_parameter_turing.png" class="img-fluid"></p>
+<p><a href="images/spatial_parameter_turing.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="images/spatial_parameter_turing.png" class="img-fluid"></a></p>
 <hr>
 </section>
 <section id="hoxd13-and-fgf" class="level2" data-number="3.8">
@@ -608,12 +656,12 @@ k4^* = k4 - k_{HF_{bmp}} * fgf(i,j) * hox(i,j)
 k7^* = k7 + k_{HF_{wnt}} * fgf(i,j) * hox(i,j)
 \]</span></p>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.8 (Algorithmic and biological thinking) </strong></span>The script <code>06__digits_squarehoxdfgf.py</code> implements how <code>k4</code> and <code>k7</code> are a function of local FGF and Hox values, but does not yet include Hox and FGF spatial patterns and how these develop over time. Adjust the code to incorporate the observed Hoxd13 and FGF patterns and study how the digit patterns compare to what you found under question 7. Note that arrays for <code>hox</code> and <code>fgf</code> are included, and decay and diffusion values for <code>fgf</code> are provided already in the code. Also note that <code>hox</code> and <code>fgf</code> each have a maximum value of 1.</p>
+<p><span class="theorem-title"><strong>Exercise 3.8 (Algorithmic and biological thinking)</strong></span> The script <code>06__digits_squarehoxdfgf.py</code> implements how <code>k4</code> and <code>k7</code> are a function of local FGF and Hox values, but does not yet include Hox and FGF spatial patterns and how these develop over time. Adjust the code to incorporate the observed Hoxd13 and FGF patterns and study how the digit patterns compare to what you found under question 7. Note that arrays for <code>hox</code> and <code>fgf</code> are included, and decay and diffusion values for <code>fgf</code> are provided already in the code. Also note that <code>hox</code> and <code>fgf</code> each have a maximum value of 1.</p>
 </div>
 <blockquote class="blockquote">
 <p><strong>Answer</strong> See the script <code>06_digits_squarehoxdfgf_answer.py</code> for a solution. The output may look sometimes like this:</p>
 </blockquote>
-<p><img src="images/spatial_parameter_turing2.png" class="img-fluid"></p>
+<p><a href="images/spatial_parameter_turing2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="images/spatial_parameter_turing2.png" class="img-fluid"></a></p>
 <p>The Hox domain starts as a narrow vertical band and expands backward. The FGF gradient develops from the rightward boundary. Since a certain amount of Hox and FGF is needed to result in k4 and k7 values permissive of Turing patterns the stripes develop from right to left and because of the wavelength changes induced by different Hox and FGF values become closer together towards the left. Note that here a nice example run is shown but patterns are variable.</p>
 <hr>
 </section>
@@ -621,7 +669,7 @@ k7^* = k7 + k_{HF_{wnt}} * fgf(i,j) * hox(i,j)
 <h2 data-number="3.9" class="anchored" data-anchor-id="shape-makes-the-tissue"><span class="header-section-number">3.9</span> Shape makes the tissue</h2>
 <p>Having studied the effects of growth and genetic factors modulating the Turing pattern now it is time for the final step. So far, we’ve approximated the limb bud very crudely with a rectangle. As you probably noticed in your parameter exploration, the tissue boundary can bias stripe orientation. Therefore it is interesting to study the interplay between the shape of the “paddle” or limb bud in which the digits develop and how it grows with the temporal development of the hox and fgf patterns. In the script <code>07__digits_growingpaddle.py</code> we implemented two different tissue geometries: An ellipse and a “paddle” that imitates the shape of the limb bud. Note that to implement Hox and FGF domains on a complex growing shape, quite a bit of complex code involving masks describing the tissue domain and angles to control the Hox and FGF domains was needed. At first, we are going to ignore these technical details.</p>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.9 (Biology) </strong></span>Switching between geometries is easily done by changing the value of the parameter <code>geometry</code> on line 78 of the script. Start with the “ellipse” geometry. What do you observe with regards to the FGF gradient? What consequences does this have? Why would this be “a smart thing to do”?</p>
+<p><span class="theorem-title"><strong>Exercise 3.9 (Biology)</strong></span> Switching between geometries is easily done by changing the value of the parameter <code>geometry</code> on line 78 of the script. Start with the “ellipse” geometry. What do you observe with regards to the FGF gradient? What consequences does this have? Why would this be “a smart thing to do”?</p>
 <p>Play around with <code>vi/vj</code> and <code>Lx0</code> to investigate the effect of ellipse shape and development over time on the number, shape and robustness of digits that form.</p>
 <p>Now switch to the paddle geometry. Observe the patterns that emerge and compare these to the simulated and experimentally observed patterns in Figure 3E and 3F of the Raspopovic article. According to you what does and what doesn’t the model explain well?</p>
 <p>The model explains the formation and positioning of the 4 digits, and how the distance between these digits increases along the limb bud. However, the model clearly does not simulate/explain the formation of the wrist bones that is observed experimentally. Interestingly the experimental data suggest that while digits may form from the “right to the left”, the “leftmost” bones of the wrist are there the earliest, suggesting there locally different conditions apply allowing earlier Turing patterning but with a very large wavelength happening there.</p>
@@ -632,13 +680,13 @@ k7^* = k7 + k_{HF_{wnt}} * fgf(i,j) * hox(i,j)
 <blockquote class="blockquote">
 <p><strong>Answer</strong><br> Fgf gradient forms from bottom to top, as a consequence bottom fingers form first, often one of the bottom fingers forms and than splits. While in general Turing mechanisms give patterns they are not reproducible in terms of the positioning of the stripes. By starting the highest point of the FGF gradient locally it is determine where the first digits can arise, generating control over the positioning of the digits.<br><br> Vi 0.1 goes okay, 0.2 stretched and splitting of digits <br> Vj too low too little room so less than 5 digits, vi too high more than 5 fingers, higher rates result in less reproducible patterns Below a nice pattern showing 5 fingers, but also showing near splitting of one of the fingers at the end<br><br> The model explains the formation and positioning of the 4 digits, and how the distance between these digits increases along the limb bud. However, the model clearly does not simulate/explain the formation of the wrist bones that is observed experimentally. Interestingly the experimental data suggest that while digits may form from the “right to the left”, the “leftmost” bones of the wrist are there the earliest, suggesting there locally different conditions apply allowing earlier Turing patterning but with a very large wavelength happening there. <br><br></p>
 </blockquote>
-<p><img src="images/fingers.png" class="img-fluid"></p>
+<p><a href="images/fingers.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="images/fingers.png" class="img-fluid"></a></p>
 <hr>
 </section>
 <section id="master-students-exercise" class="level2" data-number="3.10">
 <h2 data-number="3.10" class="anchored" data-anchor-id="master-students-exercise"><span class="header-section-number">3.10</span> Master students exercise</h2>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.10 (Poly and oligodactyly) </strong></span>Above we played with ellipse size and growth rates, however in addition to mutations affecting tissue size and growth, also mutations in genes affecting the Hox and FGF morphogens may occur. Play with parameters that determine Hox and FGF expression zones on the paddle geometry. Which parameter changes lead to the formation of supernumerary fingers (polydactyly)? Which parameters lead to too few fingers (oligodactyly)?</p>
+<p><span class="theorem-title"><strong>Exercise 3.10 (Poly and oligodactyly)</strong></span> Above we played with ellipse size and growth rates, however in addition to mutations affecting tissue size and growth, also mutations in genes affecting the Hox and FGF morphogens may occur. Play with parameters that determine Hox and FGF expression zones on the paddle geometry. Which parameter changes lead to the formation of supernumerary fingers (polydactyly)? Which parameters lead to too few fingers (oligodactyly)?</p>
 <p><em>Hint:</em> The following supplementary scripts will be helpful to understand how the FGF and Hox domains were coded:</p>
 <ul>
 <li><code>supp_i__ellipse_slice.py</code> visualizes the usefulness of masks based on the example of selecting a slice of an ellipse;</li>
@@ -674,7 +722,7 @@ k7^* = k7 + k_{HF_{wnt}} * fgf(i,j) * hox(i,j)
 <blockquote class="blockquote">
 <p>Decreasing FGF diffusion increases the number of fingers and creates a fin-like appearance. However note that it also creates a shorter finger forming domain. Increasing FGF diffusion decreases the number of fingers.</p>
 </blockquote>
-<p><img src="images/polydact.png" class="img-fluid"></p>
+<p><a href="images/polydact.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="images/polydact.png" class="img-fluid"></a></p>
 
 
 </section>
@@ -721,6 +769,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       } else {
         el.classList.add('notransition');
       }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
     }
   }
   const toggleColorMode = (alternate) => {
@@ -789,13 +864,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -830,18 +907,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -873,11 +939,57 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -887,8 +999,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -900,7 +1021,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -944,6 +1188,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -969,6 +1214,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1026,46 +1297,67 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          // default icon
-          link.classList.add("external");
-      }
-    }
 });
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./pattern_practical_1.html" class="pagination-link">
+      <a href="./pattern_practical_1.html" class="pagination-link" aria-label="Gradients and segments <br>(Pattern formation I)">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Gradients and segments <br>(Pattern formation I)</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./pattern_practical_3.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Practical</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./pattern_practical_3.html" class="pagination-link" aria-label="Pattern formation III <br> Clock-and-wavefront">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Pattern formation III <br> Clock-and-wavefront</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Theoretical Biology, Utrecht University.</div>   
+    <div class="nav-footer-left">
+<p>Theoretical Biology, Utrecht University.</p>
+</div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
-    <div class="nav-footer-right">This book was made with <a href="https://quarto.org/">Quarto</a>.</div>
+    <div class="nav-footer-right">
+<p>This book was made with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","loop":false,"closeEffect":"zoom","selector":".lightbox","openEffect":"zoom"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
 
 
 

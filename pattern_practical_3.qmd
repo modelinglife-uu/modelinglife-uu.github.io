@@ -1,5 +1,4 @@
 ---
-title: "Practical"
 params:
   show_answers: true
 ---
@@ -323,6 +322,11 @@ The model currently has a number of assumptions that we can
 -   What if the clock $m$ and $p$ are diluted by growth?
 -   What if tau is unaffected by FGF: can we still get somites fixed in
     place?
+    
+    ::: {.content-visible when-meta="params.show_answers"}
+
+  > **Answer** These are open questions and do not have a single correct answer. Feel free to discuss with us if you find something interesting or have an interesting answer. 
+:::
 
 ## References for biological parameters:
 

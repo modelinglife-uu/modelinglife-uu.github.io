@@ -1,3 +1,8 @@
+---
+params:
+  show_answers: true
+---
+
 # Introduction to evolution
 
 ## Evolution: Life's most clever algorithm 
@@ -48,7 +53,7 @@ for step in range(steps):
     # Copy with mutation
     new_fit = fitnesses[parent]
     if np.random.rand() < mu:
-        new_fit = np.clip(new_fit + np.random.normal(0, 0.05), 0, 1)
+        new_fit = np.clip(new_fit + np.random.normal(0, 0.1), 0, 1)
             
     fitnesses[dead] = new_fit
 
@@ -75,7 +80,15 @@ Study the Python code for the evolutionary algorithm given above. Answer the fol
 a. How "well adapted" is the initial population?
 b. How are mutations implemented in the code? Can you think of other ways?
 c. Can the parent be replaced by its own offspring? Why/why not?
-d. Investigate which value of $\mu$ works best if you want to achieve maximum fitness in the shortest amount of steps.
+d. Try to decreasing/increase value of $\mu$ (mutation rate). Which values makes evolution go *faster*? Which values make evolution more *precise*?
+:::
+
+::: {.content-visible when-meta="params.show_answers"}
+  > **Answer** <br>
+  a. Looking at the output or at the code, we see that the initial population has a "fitness" of 0.05. <br>
+  b. Mutations are implemented by adding a normally distributed random number (mean 0, std 0.1) to the parent's fitness value with a probability of `mu`. This comes down to sampling from a normal distribution with the mean set to the parent's value. Other ways could include using a uniform distribution for mutations, making every jump equally likely. <br>
+  c. Yes, the parent can be replaced by its own offspring if the random individual chosen to die happens to be the parent. This is possible because the death selection is random and independent of fitness. <br>
+  d. Increasing mutation rates makes it easier to find fitter mutants when the population is not (yet) adapted, so evolution goes faster. However, it is also less "precise", as the average of the population will fluctuate well below the optimal fitness of 1. 
 :::
 
 ## What this part of the course is about

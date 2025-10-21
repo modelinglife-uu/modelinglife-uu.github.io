@@ -1,5 +1,21 @@
-# Introduction
+## Pattern formation (intro)
 
-### TODO
+The field of pattern formation studies the mechanisms that underly the formation of spatial patterns in biological systems. Patterns may arise at any biological level of organization, from single cells polarizing to decide in which direction to move, grow or divide, to the formation of body axes, different cell types and shapes that set apart complex multi-cellular organisms from amorphous blobs,  to entire ecosystems patterning where e.g. plants do and do not grow.  An important concept in pattern formation is so called “symmetry breaking”, which refers to the destruction of an originally homogeneous or non-patterned state, to a non-homogeneous patterned state (see figure below).   
 
-- Write a short intro on pattern formation part of the practicals. 
+![](images/non_to_patterning.png){fig-align="center"}
+
+Focusing on multi-cellular development, pattern formation addresses how within an organism in which all cells (except for germ cells that have undergone meiosis and immune cells applying VJ recombination) share the same genetic material “symmetry is broken” resulting in usage of a different subset of genes and functions by different cells. Symmetry breaking is needed for the creation of body axes, domains with different functions as well as repeating elements. 
+
+A limited range of mechanisms leading to symmetry breaking exist, which have been used time and again by evolution to create patterns in animals, plants, fungi and multicellular algae. Major mechanisms are morphogen gradients, where graded distribution of a signal provides distinct input to cells parallel to the gradient allowing both regionalization and segmentation; Turing patterns, where initial noise combined with diffusion induced destabilization lead to repetitive patterns, and clock-and-wavefront patterning where autonomous oscillations combined with growth and a memorization mechanism provide an alternative means for segmenting a tissue. We will explore these 3 mechanisms in the practicals. In addition, in plants self-organized patterning of auxin transporters underly phyllotaxis (the positioning of new leaf organs at the shoot apex) and leaf venation. Note that this list of symmetry breaking mechanisms is not exhaustive and additional mechanisms such as lateral inhibition and planar cell polarity exist. 
+
+:::{.callout-note}
+## Links throughout part I-V
+
+Although this course is divided into 5 clearly distinct topics, there is also substantial overlap. We challenge you to see how all sections use similar concepts, and to think about how different types of models may even be combined. To help you along with this integrated view of modelling biology, we will below discuss some of the links with future topics. It may be a good idea to go back to this text later in the course, and reflect if you indeed see all the links. 
+:::
+
+Often, initial signals like gradients and clocks are transient, implying that the patterns they induce require additional mechanisms of memorization. Critical for understanding this memorization process is the concept of multistability, where two or more alternative stable states of the system exist and the initial signals bring the system from the original to a new patterned state. This concept will be further explored in **Part III** of the course which focuses on Differentiation. Of course, to form a multicellular organism with a functional shape, simply telling a blob of cells where the head or tail needs to be or which cells will become finger bones and which cells will apoptose to carve out the tissue between the fingers is insufficient, and actual shape changing processes need to occur. This we will discuss in **Part II**.  
+
+Particularly for animal development, simply breaking symmetry and stably memorizing formed patterns is not enough, scaling of the pattern with body plan size and robustness against noise from gene expression, cell division, cell signalling and other processes is essential for fitness. In contrast, in plants developmental plasticity, the potential to adjust developmental patterning to environmental conditions, plays a key role.  This latter concept will be discussed in **Part IV** of the course on Environment. 
+
+The repeated usage of a limited number of possible symmetry breaking mechanisms also raises interesting *evolutionary* questions (**Part V**). Are there indeed only a limited number of options, or did evolution select for specific mechanisms that are more robust or more evolvable? Or are some mechanisms simply easier to find? This way of evolutionary thinking will be further discussed in **Part V**.  

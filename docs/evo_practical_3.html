@@ -29,7 +29,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./evo_answers.html" rel="next">
+<link href="./project_1.html" rel="next">
 <link href="./evo_practical_2.html" rel="prev">
 <link href="./images/favicon.ico" rel="icon">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -318,12 +318,6 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Public goods</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./evo_answers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Answers exercises</span></span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -338,31 +332,31 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./project_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Miniproject: Pattern formation in vegetation in semi-arid areas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Miniproject: Pattern formation in vegetation in semi-arid areas</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./project_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Miniproject: maintaining a healthy microbiome</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Miniproject: maintaining a healthy microbiome</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./project_3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Miniproject: The devil is in the details – auxin transport in the root</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Miniproject: The devil is in the details – auxin transport in the root</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./project_4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Miniproject: Patterning – Asymmetric localization of ZIF-1 in the C. elegans embryo</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Miniproject: Patterning – Asymmetric localization of ZIF-1 in the C. elegans embryo</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./project_5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Miniproject: Oncogenic propensity of different stem cell niches</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Miniproject: Oncogenic propensity of different stem cell niches</span></span></a>
   </div>
 </li>
       </ul>
@@ -479,6 +473,9 @@ Figure&nbsp;15.1: Example of what the simulation could look like
 <p>Try investigating how the model behaves with different values of <span class="math inline">\(c\)</span> (the cost of producing public goods). Can you explain what happens at <span class="math inline">\(c=0.0\)</span>?</p>
 <p>Try studying the effect of mixing the whole grid every timestep, such that neighbourhoods are constantly “randomised”. Look at the population size, as well as the distribution of different types. Can you explain the observations in biological terms?</p>
 <p>Try studying what happens at different mutation rates.</p>
+<blockquote class="blockquote">
+<p><strong>Answer</strong><br> This practical is quite open-ended, so instead of answers it is more useful to have a scientific discussion. The image below was first run on a spatially structured grid, but from the dashed line onwards the grid was mixed every timestep. From this we can see that it matters “who you compete with”. On the spatial grid, individuals compete mostly with other individuals of their own species. That means that, on average, they cannot complement each other by providing public goods (they produce the same set!). Because of this, the “omni-producers” (yellow line) dominates, surrounded by a cloud of mutants that rely on other types. The population size fluctuates strongly, as local populations can collapse due to the loss of public goods, typically followed by the “omni-producers” once again invading the available niche space (empty space on the grid). <br><br> When mixing the grid every time step, who you interact with is randomised, and individuals can now rely on other genotypes in the population. Although there is some luck involved in this, you can see that the total population (the black line) increases from this point onward. Thus, although the omni-producers are less dominant, statistically individuals are much better off in this mixed world. That said, there is a risk to this mixed population: if the cost of producing public goods is too high, the population can collapse as there is a strong incentive to lose production of public goods and start relying on others. Depending on your implementation, you may find that mixed systems therefor perform better <strong>or</strong> worse than spatially structured systems. If they behave identically though, let me (Bram) know, as that is something I almost never observe in models like this ;) <img src="images/evo_pract3_mix.png" class="img-fluid" alt="Dynamics of the producer-types in a system with 10 ‘public goods’"></p>
+</blockquote>
 
 
 </section>
@@ -1063,8 +1060,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./evo_answers.html" class="pagination-link" aria-label="Answers exercises">
-        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Answers exercises</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./project_1.html" class="pagination-link" aria-label="Miniproject: Pattern formation in vegetation in semi-arid areas">
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Miniproject: Pattern formation in vegetation in semi-arid areas</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1082,7 +1079,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","loop":false,"openEffect":"zoom","closeEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","openEffect":"zoom","closeEffect":"zoom","loop":false});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

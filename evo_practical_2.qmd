@@ -1,3 +1,7 @@
+---
+params:
+  show_answers: true
+---
 # What gets selected?
 
 ## Genotypes, phenotypes, and evolutionary algorithms
@@ -189,6 +193,16 @@ d. Describe what the `no_reproduction_chance` parameter does in biological terms
 e. Spatially structured populations are often placed on a grid. **Describe** how you could implement a roulette wheel to resolve *local* competition, *e.g.* when an empty grid point is competed for by the neighbours.
 :::
 
+
+:::{.content-visible when-meta="params.show_answers"}
+> **Answer**<br>
+a. If we sample 10 unfit individuals, the weight of the `no_reproduction_event` is proportionally high (the black slice of the roulette wheel is big). Hence, there is only a small chance that anyone will reproduce to begin with.<br> 
+b. If we sample 10 fit individuals (fitness 1), the chances are much higher that someone will reproduce.<br>
+c. If the dummy value is 0, the chances that someone will reproduce are the same in both scenarios, as even with very unfit individuals there is no chance that nobody reproduces.<br> 
+d. In nature, if no individual is sufficiently fit, reproduction may not occur at all. For example, if the competing individuals are bacteria with very low glucose uptake rates, they may not yet be physiologically ready to reproduce. In such cases, population size should remain stable or even decline if death is also occurring. The `no_reproduction_event` captures this by ensuring that fitness is not judged solely in relative terms against other individuals, but also in absolute terms against environmental demands.<br>
+e. If a grid point is empty (contains no individual), make a list of (up to) 8 individuals around that grid point. Apply the roulette wheel for those individuals, and place the 'winner' inside the empty grid point. 
+:::
+
 ## Diversity patterns
 
 Modify the function `calculate_diversity` to calculate the diversity of the population as the standard deviation of the fitness values.
@@ -198,6 +212,20 @@ Modify the function `calculate_diversity` to calculate the diversity of the popu
 <br>
 
 a. Use a low mutation rate and study the dynamics of diversity. Describe the pattern verbally. 
+:::
+
+:::{.content-visible when-meta="params.show_answers"}
+> **Answer**<br>
+> A snippet to calculate the standard deviation of a population is shown below. Note that this value is already being plotted, so if you modify this function you ought to be able to see what happens immediately. 
+>```python
+>def calculate_diversity(population):
+>    """Calculate diversity as the standard deviation of fitness values."""
+>    mean = sum(population) / len(population)
+>    variance = sum((x - mean) ** 2 for x in population) / (len(population) - 1)
+>    return math.sqrt(variance)
+>```
+> a. The green dotted line is the standard deviation of the values in the population ('diversity'). From this we can see that the population is only briefly diverse whenever a new, fit individual appears. In between these phases, diversity is 0. This makes intuitive (biological) sense, as with a low mutation rate the only moments where there is more than 1 species is during the invasion of a new mutant. During all other phases, there is just a single (fittest) species. 
+>![](images/evo_pract2_div.png)
 :::
 
 ## Evolving a DNA sequence
@@ -362,12 +390,20 @@ Answer the following questions using the options available in the model:
 ## Evolving DNA - Biology / abstract thinking
    a. Run the code. What does the new (dashed blue) line represent? Do you understand how is changes over time?
 
-   The program reports after how many generations it manages to find the target sequence. With default settings this can take a long time... (default: 4633 generations)
+   The program reports after how many generations it manages to find the target sequence. With default settings this can take a long time... (default: 429 generations)
 
    b. Modify the mutation rate to see how it affects the time to find the target sequence. Try different mutation rates between 0.0001 and 0.1. Keep track of both how long (number of generations) it takes to find the target, and how fit the population is once the target is found. What do you observe?
    c. Diversity is no longer calculated as the standard deviation in fitness, but as the Shannon diversity of all present sequences (although it is not super complex, you do not need to fully understand this function). Because of this, the exact number (quantities) cannot be compared to our ealrier model. Do you see a *qualitative* differences?
 d. Study how fitness is calculated in this model. Is there a distinction between genotype en phenotype? Why/why not?
 
+:::
+
+:::{.content-visible when-meta="params.show_answers"}
+> **Answer**<br>
+a. The new blue dotted line represents how many mutations are beneficial (towards the target). As the population gets closer to the target, the number of beneficial mutations decreases. As such, this line is a mirror image of the fitness in the population. We will look a bit deeper into this line in the next model. <br>
+b. Generally speaking, a higher mutation rate helps to find the target faster. However, with high mutation rates (0.01 or higher), the fitness after the target is found starts to decrease, as individual produce many (unfit) mutants. In fact, if mutation rate is too high (approximately 0.04 or higher), the population fails to find the target at all, as reproduction is too inaccurate! This concept is known as the 'Error Threshold' or the 'Error Catastrophe' in evolutionary biology. <br>
+c. Qualitatively, there is no clear difference to what we saw before: diversity only peaks at moments when there is a new mutant coming in, but otherwise diversity is still 0. 
+d. There is no distinction between genotype and phenotype. Fitness is directly calculated from the DNA sequence, so there is no 'genotype-to-phenotype mapping'. <br>
 :::
 
 ## Evolving a protein sequence
@@ -564,4 +600,12 @@ a. Another line was added to the model. What new information can you obtain from
 b. Study carefully how the other lines (also present in previous models) change over time. What do you observe? Try and capture what you see into words. 
 c. In biology, multiple genotypes can translate to the same phenotype (this is called a many-to-one genotype-phenotype map), or alternatively, one genotype can produce multiple phenotype (this is called phenotypic plasticity, or a one-to-many genotype-phenotype map). Which genotype-phenotype (GP) mapping applies to this model? Why?
 d. **Bonus question for motivated students** modify the code to include a second target protein sequence, and alternate between the two targets. If you see something interesting, please share it with the class!
+:::
+
+:::{.content-visible when-meta="params.show_answers"}
+> **Answer**<br>
+a. The new black line is the maximum fitness in the population. Thanks to this line we can see that, sometimes, an individual is present that is fitter but it does not manage to take over the population. We are dealing with a stochastic process, so this is very natural. <br>
+b. The fitness line once again goes in distinct steps. The diversity line (green dotted) has a distinct behaviour compared to earlier models. Instead of only going up during the discovery of a new mutant, it constantly creeps up during periods where fitness does not change. This is because the codon-table is partially redundant: many different DNA sequences can code for the same amino acid sequence, so diveristy increases. However, when a new "fitter" individual comes in, diversity goes down as that individual clonally takes over the population. Then, diversity slowly increases again. A similar pattern is reflected in the line that represents the "beneficial mutations" (blue dotted line). TLDR; even when fitness is not changing there is still a lot going on in this population!<br>
+c. This model represents a many-to-one mapping between genotype and phenotype. The DNA sequence (genotype) is translated into an amino acid sequence (phenotype), which is then used to calculate fitness. This means that many different genotypes can lead to the same phenotype, and thus the same fitness. Earlier in this course you have learned about development, and those processes often lead to effects where the same genotype can produce many different shapes (phenotypes). <br>
+d. **BONUS:** I have not personally done this, and I do not know the answer to this question yet. However, it is sometimes observed that with many-to-one mapping, populations can because better and better at switching between two alternating targets. This is because the alternating selection pressures make populations move towards genotypes that are "close" to both targets, and because there is some neutrality coding this can be acchieved without losing fitness in either environment. For  cool paper on this principle, see @crombach2008evolution. I suspect however that our current model will not be able to do the same. 
 :::

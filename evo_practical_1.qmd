@@ -1,3 +1,8 @@
+---
+params:
+  show_answers: true
+---
+
 # Sticking together
 
 ## Sticking together {.unnumbered}
@@ -40,6 +45,7 @@ function cacatoo() {
   
   let simconfig = {
     title: "Collective migration", // The name of your cacatoo-simulation
+    noheader: true,
     description: "", // And a description if you wish
     maxtime: 1000000, // How many time steps the model continues to run
     // (note, the onscreen FPS may drop below 60 fps when using fast mode, although many more timesteps may be handled per second)
@@ -557,6 +563,40 @@ c. Modelling 1 individual is not very exciting. Think about what the code above 
 
 :::
 
+::: {.content-visible when-meta="params.show_answers"}
+  > **Answers**<br> 
+a. For this, you can simply multiply the velocity components every timestep by a value   > 1. For example:
+  ```python
+  # Accellerate the velocity
+  vx *= 1.01
+  vy *= 1.01
+  ```
+  > Note that this gets out of hand quite quickly.
+> b. To do this, we need to store the new values in a temporary variable, and then assign them to the original variables. This is necessary because while we first modify vx, we still want to use the 'old' value of vx to calculate the new vy. The following
+code rotates the velocity vector by 0.05 radians:
+  ```python
+  # Rotate the velocity vector by a small angle 
+  vxnew = vx * np.cos(0.05) - vy * np.sin(0.05)
+  vynew = vx * np.sin(0.05) + vy * np.cos(0.05)
+  vx, vy = vxnew, vynew
+  ```
+    
+> If you run this code, you will see that the dot will go in circles. 
+
+> c. While the code above stores x, y, vx, and vy as a 'global variables', this is not good if we have many individuals. Instead, we can store the state of each individual in a list, dictionary, or a class. For example, we make a class 'cell' and store 100 of these 'cells' in a large list:
+> ```python
+> class Cell:
+>     def __init__(self, x, y, vx, vy):
+>         self.x = x
+>         self.y = y
+>         self.vx = vx
+>         self.vy = vy
+> # Create 100 cells
+> cells = [Cell(np.random.rand(), np.random.rand(), 0.0, 0.0) for _ in range(100)]
+> ```
+  
+:::
+
 
 
 ## Moving "cells" {.unnumbered}
@@ -905,7 +945,30 @@ b. When is an individual close enough to the orange dot?
 c. How can we assign a random position to the dot?
 :::
 
+A working code to steer the individuals towards the target is shown below. Note that the acceleration that is applied is only small, otherwise the individuals will move in a straight line towards the target very rapidly. 
+
 *First try it yourself. If you get stuck, ask Bram for help.*
+ 
+:::{.content-visible when-meta="params.show_answers"}
+> **Answer**<br>
+   > ```python
+> def move_towards_dot(self, cell):
+>     """Apply forces in the direction of the dot."""
+>     # Calculate dx and dy
+>     dx = self.target_position[0] - cell.x
+>     dy = self.target_position[1] - cell.y
+>     # Calculate the distance to the target (Pythagorean theorem)
+>     distance = np.sqrt(dx**2 + dy**2)
+>     
+>     # Normalize dx and dy 
+>     dx /= distance
+>     dy /= distance
+>     # Apply a small force towards the target
+>     cell.ax += dx * 0.01
+>     cell.ay += dy * 0.01
+> ```
+:::
+
 
 ## Reproduction {#sec-reproduction}
 
@@ -926,6 +989,23 @@ b. Should the offspring be placed nearby its parent? (yes/no)
 c. Does the velocity get inherited? 
 :::
 
+:::{.content-visible when-meta="params.show_answers"}
+> **Answer**<br>
+A working code to reproduce a cell is shown below. Note that I decided to first throw an individual away, and then add the newborn individual (instead of the other way around). This ensures the newborn cannot be immediately thrown away, which would be a rather pointless event.
+>```python
+>def reproduce_cell(self, cell):
+>        # Reproduce: Create a new cell with the same properties as the current cell
+>        angle = np.random.uniform(0, 2 * np.pi)
+>        radius = np.random.uniform(0.05, 1.5)
+>        new_x = cell.x + radius * np.cos(angle)
+>        new_y = cell.y + radius * np.sin(angle)
+>        new_cell = Cell(new_x, new_y, cell.vx, cell.vy)
+>        random_cell = np.random.choice(self.cells)   
+>        self.cells.remove(random_cell)
+>        self.cells.append(new_cell)
+>```
+:::
+
 Note that depending on the scenario, the above questions may change. When a planktonic algea reproduces the daughter cells may inherit the velocity of the mother cell, but if a monkey gives birth, it does not make a lot of sense to talk about the 'velocity' of the mother. If we consider plants, we should not even consider velocity of the individuals at any stage of their life. 
 
 ## Collision detection {#sec-collision}
@@ -939,6 +1019,27 @@ b. When are two points overlapping?
 c. What can we do when two points overlap?
 :::
 
+:::{.content-visible when-meta="params.show_answers"}
+> **Answer**<br>
+A working code for cell-cell collision is shown below. Note that we apply a large force as we want this force to be able to overpower other forces that make the cells overlap. 
+> ```python
+> def avoid_collision(self, cell):
+>     """Avoidance forces to prevent cells from colliding."""
+>     for other_cell in self.cells:
+>         if other_cell is not cell:
+>             # Calculate the distance between the two cells
+>             dx = cell.x - other_cell.x
+>             dy = cell.y - other_cell.y
+>             distance = np.sqrt(dx**2 + dy**2)
+>
+>             # If the cells are too close, apply a repulsion force
+>             if distance < 5.0 and distance > 0:  # Threshold for "too close"
+>                 # repulsion force proportional to the inverse of the distance
+>                 force_magnitude = (5.0 - distance) / distance
+>                 cell.ax += force_magnitude * dx * 100
+>                 cell.ay += force_magnitude * dy * 100
+> ```
+:::
 
 Now that we have implemented both target-finding, reproduction, and collision, we can study these individual mechanisms by commenting one or the other out. This is an important process in understanding a model. Try it for yourself!
 
@@ -966,6 +1067,25 @@ a. The function $e^{-x^2}$ gives a bell-curve centered around zero. How can you 
 b. Combined with the numpy function `np.exp`, how can we use the equation in question *a* to create a Gaussian that is at the center of the grid?
 :::
 
+:::{.content-visible when-meta="params.show_answers"}
+> **Answer**<br>
+A working code to implement a resource peak (with optional noise set to 0 by default) is shown below:
+>```python
+>def fill_grid(self, grid, mean_x, mean_y, std_dev, noise=0):
+>        """Creates a Gaussian distribution with noise on the grid."""
+>        for i in range(WORLD_SIZE):
+>            for j in range(WORLD_SIZE):
+>                x = i / (WORLD_SIZE - 1)
+>                y = j / (WORLD_SIZE - 1)
+>                distance_squared = (x - mean_x)**2 + (y - mean_y)**2
+>                grid[i, j] = np.exp(-distance_squared / (2 * std_dev**2)) * np.random.uniform(0.0, 1.0)**noise
+>
+>        # Normalize the grid to keep the total resource concentration the same
+>        grid /= np.sum(grid)
+>       self.grid = grid
+>```
+:::
+
 ## Run and tumble {#sec-runandtumble}
 
 !["Run and tumble"](https://upload.wikimedia.org/wikipedia/commons/0/0c/Tumbling_and_running_modes_associated_with_Escherichia_coli_and_Salmonella_typhimurium.png)
@@ -991,21 +1111,62 @@ c. If the future position has a higher concentration than the current position, 
 d. If the future position is a lower concentration, rotate the velocity vector a lot. 
 :::
 
-Study if your individuals can find the resource peak. Notice that depending on your implementation, cells may or may not work. Make sure to carefully investigate why it does or does not work. 
+
+:::{.content-visible when-meta="params.show_answers"}
+> **Answer**<br>
+> A working code to implement a run-and-tumble mechanism shown below:
+>```python
+>def find_peak(self, cell):
+>        # Convert cell position to grid indices, as well as the previous position
+>        grid_x = int(cell.x) % WORLD_SIZE
+>        grid_y = int(cell.y) % WORLD_SIZE
+>        next_x = (int(cell.x + 10*cell.vx) + WORLD_SIZE) % WORLD_SIZE 
+>        next_y = (int(cell.y + 10*cell.vy) + WORLD_SIZE) % WORLD_SIZE 
+>        # Get the resource value at cell's position, as well as the next position
+>        resource_value = self.grid[grid_x, grid_y]
+>        resource_next = self.grid[next_x, next_y]
+>        
+>        # Check if the cell is moving in the right direction
+>        if resource_next > resource_value:
+>            # Moving in the right direction: small random adjustment
+>            angle = np.random.uniform(-0.1, 0.1)  # Small angle change
+>        else:
+>            # Moving in the wrong direction: large random adjustment
+>            angle = np.random.uniform(-np.pi*1.0, np.pi*1.0)  # Large angle change
+>        
+>        # Rotate the velocity vector by the angle calculated
+>        new_vx = cell.vx * np.cos(angle) - cell.vy * np.sin(angle)
+>        new_vy = cell.vx * np.sin(angle) + cell.vy * np.cos(angle)
+>    
+>        # Update the acceleration with the new velocity vector
+>        cell.vx = new_vx
+>        cell.vy = new_vy
+>        cell.ax += cell.vx
+>        cell.ay += cell.vy
+>``` 
+:::
+
+Study if your individuals can find the resource peak. Notice that depending on your implementation, it may or may not work. Make sure to carefully investigate why it does or does not work. 
 
 ## Sticking together {#sec-sticking}
 
 Cells sticking together can be implemented in multiple ways. Cells could be connected by a Newtonian spring, or we could simple make sure that cells that are close to each other are attracted to one another. In this case, we will use the latter method. Note that this is not very different from collision avoidance, but it is the other way around. In fact, we now have two opposing forces: cells are attracted to one another but do not want to overlap. This can be a bit finicky to get right, so feel free to explore. Ask for help if you get stuck.
 
-## 500 cells?
+## 1000 cells?
 
-Try to run the model with 500 cells. Also go back to the starting code again (without all the additions), and run this code with 500 cells too. 
+Try to run the model with 1000 cells. Also go back to the starting code again (without all the additions), and run this code with 1000 or cells too. 
 
 :::{#exr-steering}
 
 ## Algorithmic / computational thinking
 a. What happens? Can you explain this?
 :::
+
+:::{.content-visible when-meta="params.show_answers"}
+> **Answer**<br>
+> It becomes quite slow, and in the microbial world 1000 cells is not all that much... The earlier code without all the collision and stickiness did not have such a noticable slowing down. This is because the collision and stickiness functions both loop over all cells for each cell. For 1000 cells, this results in 1,000,000 interactions to check per timestep, which can be quite slow in Python. In other words, because we have to compare everyone with everyone, a 10-fold increase in the number of cells results in a 100-fold increase in the computation time. Not ideal. 
+:::
+
 
 This is far as this introduction to IBMs in python goes. Simple IBMs can be efficiently implemented in basic Python, but for more complex models, it is better to i) use `numpy` operations to speed up your Python code, or ii) use a faster programming language like C, Rust, or Javascript. For the last part of this pratical, we will study the Javascript version of this model. But before that, here is the final code that I ended up with:
 
@@ -1387,5 +1548,12 @@ c. Given your answer in **b.**, can you name an important parameter that may det
 
 :::
 
+:::{.content-visible when-meta="params.show_answers"}
+> **Answer**<br>
+a. In the full model, stickiness evolves to be higher. Because we select for individuals that find the resource peaks, we can state that natural selection favours stickiness. There is however a limit to this, as stickiness does not go beyond ~0.25. 
+<br>
+b. The **advantages** of stickiness are that larger groups of cells are better at steering towards the resources. Even if a single cell tries to randomly go in the wrong direction (due to its tumbling mechanic), it will be pulled back. In other words, together these cells are far less sensitive to noise. Another distinct advantage you may have noticed is that the stickiest cells are sorted to be in the center of the group (as you have already seen earlier in this course!). That means that even after the peak was found, the stickiest cells have an advantage over the other cells as they can occupy the peak of the resource distribution. The **disadvantages** of stickiness are that larger groups clearly move more slowly, and that the sticky clusters tend to stay together even if there are many resource peaks (and therewith miss out on resources). <br>
+c. The duration of the seasonal cycle is very important. If it is very long, it does not matter that the large clusters move slowly, as they will be better at finding and staying on the peak by being sticky. If the cycle is however very short, it may be more important to be able to move quickly and change direction rapidly. In that case, being too sticky may be a problem. As you modify this parameter in the online model, you will indeed see that shorter seasons mostly cause stickiness to drift close to 0.0, while longer seasons cause stickiness to evolve towards 0.25 or even higher.
+:::
 
 

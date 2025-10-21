@@ -173,6 +173,12 @@ window.Quarto = {
  <span class="menu-text">Schedule</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Slides</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -367,23 +373,6 @@ window.Quarto = {
  <span class="menu-text">References</span></a>
   </div>
 </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
- <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./answers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Quarto examples</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -435,7 +424,7 @@ window.Quarto = {
 <p><span id="eq-log"><span class="math display">\[
 \frac{\mathrm{d}N}{\mathrm{d}t} = rN(1 - \frac{N}{K})
 \tag{16.1}\]</span></span></p>
-<p>And <a href="answers.html#eq-log" class="quarto-xref">Equation&nbsp;<span>A.1</span></a> is a reference to the equation above.</p>
+<p>And <a href="#eq-log" class="quarto-xref">Equation&nbsp;<span>16.1</span></a> is a reference to the equation above.</p>
 <p>The model has three variables, O = surface water, W = soil water and P is plant biomass.</p>
 <p>The parameters are R=rainfall, alpha=maximum uptake of surface water to become soil water, W0= the plant biomass independent fraction of surface water uptake, k2 =saturation constant determining how much plant biomass you need to reach half maximum plant mediated surface water uptake, gmax = the maximum uptake of soil water by plants, k1=saturation constant of the soil water level at which this uptake is half maximum, rw = soil water loss due to evaporation, c=factor for the conversion of uptaken water into plant biomass, and d=decay rate of plant biomass.</p>
 <p>Classically, it was thought that the positive feedback between water and plants gives rise to a bistable system in which at a certain point, a further gradual decrease in water level or increase in cattle grazing could lead to the sudden collapse of the vegetation, a phenomenon referred to as a catastrophic bifurcation or tipping point. Furthermore, it was thought transitions in spatial patterning could be interpreted as warning signs for the system becoming closer to this point of sudden collapse (Fig 2A). More recent mathematical analysis instead suggests that spatial patterning may allow for a more gradual transition from high to low vegetation levels without the occurrence of sudden transitions (Fig2B).</p>
@@ -1066,7 +1055,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"loop":false,"closeEffect":"zoom","openEffect":"zoom","selector":".lightbox","descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"loop":false,"openEffect":"zoom","closeEffect":"zoom","selector":".lightbox","descPosition":"bottom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

@@ -31,6 +31,7 @@ book:
         - index.qmd
         - general.qmd
         - schedule.qmd
+        - slides.qmd
     - part: "I) Pattern formation"
       chapters:
             - pattern_intro_text.qmd
@@ -66,8 +67,7 @@ book:
             - project_4.qmd
             - project_5.qmd
     - references.qmd
-  appendices:
-      - answers.qmd
+
 
 bibliography: references.bib
 

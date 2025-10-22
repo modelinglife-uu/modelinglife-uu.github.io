@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Gradients and segments  (Pattern formation I) – Modeling Life</title>
+<title>Modeling Life - 2&nbsp; Gradients and segments (Pattern formation I)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -58,7 +58,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -103,13 +102,7 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
+  "limit": 20,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -118,42 +111,13 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-submit-button-title": "Submit"
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -163,12 +127,12 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pattern_intro_text.html">I) Pattern formation</a></li><li class="breadcrumb-item"><a href="./pattern_practical_1.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Gradients and segments <br>(Pattern formation I)</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pattern_intro_text.html">I) Pattern formation</a></li><li class="breadcrumb-item"><a href="./pattern_practical_1.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Gradients and segments <br>(Pattern formation I)</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -178,7 +142,7 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
       <img src="./images/android-chrome-512x512.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
@@ -199,9 +163,9 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
  <span class="menu-text">Course information</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -234,9 +198,9 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
  <span class="menu-text">I) Pattern formation</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -269,9 +233,9 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
  <span class="menu-text">II) Morphogenesis</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -292,9 +256,9 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
  <span class="menu-text">III) Cell differentiation</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -321,9 +285,9 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
  <span class="menu-text">IV) Environment and Development</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -344,9 +308,9 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
  <span class="menu-text">V) Evolution</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -379,9 +343,9 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
  <span class="menu-text">Mini-projects</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -427,7 +391,7 @@ window.Quarto = {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="-1">
@@ -446,7 +410,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pattern_intro_text.html">I) Pattern formation</a></li><li class="breadcrumb-item"><a href="./pattern_practical_1.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Gradients and segments <br>(Pattern formation I)</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Gradients and segments <br>(Pattern formation I)</span></h1>
 </div>
@@ -461,9 +425,7 @@ window.Quarto = {
   </div>
   
 
-
 </header>
-
 
 <section id="morphogen-gradients-and-patterning" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="morphogen-gradients-and-patterning"><span class="header-section-number">2.1</span> Morphogen Gradients and Patterning</h2>
@@ -642,31 +604,31 @@ Starting code for this practical
 <section id="questions" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="questions"><span class="header-section-number">2.4</span> Questions</h2>
 <div id="exr-test" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.1 (Algorithmic thinking)</strong></span> Have a look at the reaction-diffusion equation for the morphogen and the implementation of it in the file <code>morphogengradient_to_segments.py</code> in the reaction_diffusion_step function, as well as at the initialization of the array u. How is this different from the gradient formation modeling we discussed during the lecture? What is done at the terminal boundary in the length direction and why does this make sense? (hint: outcommented we provided code doing essentially the same but not using numpy arrays and hence written in a less compact matter to help you understand what is happening)</p>
+<p><span class="theorem-title"><strong>Exercise 2.1 (Algorithmic thinking) </strong></span>Have a look at the reaction-diffusion equation for the morphogen and the implementation of it in the file <code>morphogengradient_to_segments.py</code> in the reaction_diffusion_step function, as well as at the initialization of the array u. How is this different from the gradient formation modeling we discussed during the lecture? What is done at the terminal boundary in the length direction and why does this make sense? (hint: outcommented we provided code doing essentially the same but not using numpy arrays and hence written in a less compact matter to help you understand what is happening)</p>
 </div>
 <blockquote class="blockquote">
 <p><strong>Answer</strong> An important difference relative to the lecture is that instead of implementing a production term at the x=0 position, we instead fixed the concentration of u at x=0 at 100 and have nowhere a production term. This implies that we assume that production is very high and different D and d values have negligible effects on the level at x=0. The advantage of this approach is that we can easily study what different D and d does, as it only affects the shape of the gradient but not the maximum. <br> <br> Instead of using if/else to check for boundary conditions, we only compute the Laplacian in the inner, non-boundary points. For the x=0 boundary we already set a constant value. For y=0 and y=n−1 we copy the values from y=1 and y=n−2 as the patterning is identical in that direction. For x=n−1 we use a special approach: if n−3=0 we assume it is zero; otherwise, we calculate the ratio of x at n−2 and n−3 to approximate the decay and multiply this with the value at x=n−2 to estimate x at n−1. Simply copying x at n−2 would add matter to the system and prevent the gradient from reaching a steady state.</p>
 </blockquote>
 <div id="exr-plain" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.2 (Important concept)</strong></span> Play with the morphogen diffusion rate and the morphogen decay rate and describe what happens. What happens in terms of dynamics and steady state if you change both, but the ratio stays the same? Hint: it might help to draw a horizontal line at a certain height to ease comparison.</p>
+<p><span class="theorem-title"><strong>Exercise 2.2 (Important concept) </strong></span>Play with the morphogen diffusion rate and the morphogen decay rate and describe what happens. What happens in terms of dynamics and steady state if you change both, but the ratio stays the same? Hint: it might help to draw a horizontal line at a certain height to ease comparison.</p>
 </div>
 <blockquote class="blockquote">
 <p>Diffusion length concept =√(D/d), it is the ratio of these factors that determines the length scale lambda over which the morphogen concentration decays an e-fold. So with the same ratio, you get the same steady state gradient. However, it will still approach the steady state faster.</p>
 </blockquote>
 <div id="exr-plain" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.3 (Biology &amp; mathematical thinking)</strong></span> Next, we are going to introduce the genes A, B and C in the model. We want these genes to be expressed dependent on M, and in the head, trunk and tail respectively, so A on the left, B in the middle and C on the right. Think of what conditions in terms of M should lead to expression of A/B/C. What Hill functions (normal/inverse/any combination) corresponds to those conditions? Write down (pen and paper, not in code) full equations for the genes, do we need any other terms than just Hill functions, would we need specific parameter conditions?</p>
+<p><span class="theorem-title"><strong>Exercise 2.3 (Biology &amp; mathematical thinking) </strong></span>Next, we are going to introduce the genes A, B and C in the model. We want these genes to be expressed dependent on M, and in the head, trunk and tail respectively, so A on the left, B in the middle and C on the right. Think of what conditions in terms of M should lead to expression of A/B/C. What Hill functions (normal/inverse/any combination) corresponds to those conditions? Write down (pen and paper, not in code) full equations for the genes, do we need any other terms than just Hill functions, would we need specific parameter conditions?</p>
 </div>
 <blockquote class="blockquote">
 <p><strong>Answer</strong> <br><br> <span class="math inline">\(dA/dt\)</span> = normal hill (M) – decay term<br> <span class="math inline">\(dB/dt\)</span> = normal hill (M) * inverse hill(M) – decay term,<br> <span class="math inline">\(dC/dt\)</span> = inverse hill (M) -decay term. <br><br>Furthermore, <span class="math inline">\(kA=kB1&lt;kB2&lt;kC\)</span> to ensure the switches happen at the right places.</p>
 </blockquote>
 <div id="exr-plain" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.4 (Biology &amp; algorithmic/mathematical thinking)</strong></span> From hereon we assume that the morphogen gradient reaches steady state very quickly, and no longer use the numerical implementation of the diffusion equation and instead work with a superimposed morphogen profile defined by <code>reaction_diffusion_gradient</code> to save time. (Hint: to not call the function any more use # in front of where it is called) Change the simulation loop such that it computes the morphogen gradient once. What type of function is the superimposed morphogen profile and how does this relate to question 2.</p>
+<p><span class="theorem-title"><strong>Exercise 2.4 (Biology &amp; algorithmic/mathematical thinking) </strong></span>From hereon we assume that the morphogen gradient reaches steady state very quickly, and no longer use the numerical implementation of the diffusion equation and instead work with a superimposed morphogen profile defined by <code>reaction_diffusion_gradient</code> to save time. (Hint: to not call the function any more use # in front of where it is called) Change the simulation loop such that it computes the morphogen gradient once. What type of function is the superimposed morphogen profile and how does this relate to question 2.</p>
 </div>
 <blockquote class="blockquote">
 <p><strong>Answer</strong> The imposed morphogen profile is an exponential gradient, the – indicates it is a declining function, the <span class="math inline">\(i\cdot dx\)</span> is to convert position in the spatial grid to actual distance, and the /sqrt(D/d) ensures that if <span class="math inline">\(i\cdot dx=lambda=\sqrt(D/d)\)</span> we have <span class="math inline">\(e^{-1}=1/e\)</span> and hence an e-fold decline as is the case for a steady state diffusion gradient.</p>
 </blockquote>
 <div id="exr-plain" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.5 (Biology &amp; algorithmic/mathematical thinking)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Exercise 2.5 (Biology &amp; algorithmic/mathematical thinking) </strong></span>&nbsp;</p>
 <ol type="a">
 <li>Now create functions to update A, B and C according to your equations from the previous question. You may use the predefined hill and ihill functions that are provided in the code. For simplicity, you may keep most of the parameters the same across genes, but some have to be different to ensure the right location of the genes (see your reasoning to the previous question). (Hint: using array properties to update A/B/C, like in the reaction_diffusion_step function, makes your code run a lot faster than using for-loops)</li>
 <li>Also make sure that the levels of A, B and C are updated in the simulation loop. (Hint: using array properties to update A/B/C, like in the reaction_diffusion_step function, makes your code run a lot faster than using for-loops)</li>
@@ -678,31 +640,31 @@ Starting code for this practical
 <p><strong>Answer</strong> Look at code <code>02_answer_morphogengradient_superimposed_quickABC.py</code>. You will find that gene C needs to be induced by low and repressed by high M. And as explained above: kA=kB1&lt;kB2&lt;kC.</p>
 </blockquote>
 <div id="exr-plain" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.6 (Biology)</strong></span> At some point in development, the morphogen gradient will disappear, for example in the case of the Drosophila Bicoid gradient because the maternal mRNA is degraded. Predict what will happen to the expression of A,B and C (and hence the French flag pattern) if the morphogen gradient disappears over time and assume A, B, and C are regulated by our equations (first try think about this without actually simulating this).</p>
+<p><span class="theorem-title"><strong>Exercise 2.6 (Biology) </strong></span>At some point in development, the morphogen gradient will disappear, for example in the case of the Drosophila Bicoid gradient because the maternal mRNA is degraded. Predict what will happen to the expression of A,B and C (and hence the French flag pattern) if the morphogen gradient disappears over time and assume A, B, and C are regulated by our equations (first try think about this without actually simulating this).</p>
 </div>
 <blockquote class="blockquote">
 <p><strong>Answer</strong> As M decays A and B will no longer be activated and C no longer repressed, hence the takeover by C. The French flag pattern disappears.</p>
 </blockquote>
 <div id="exr-plain" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.7 (Algorithmic/mathematical thinking)</strong></span> Now write the code in reaction_diffusion_gradient that updates the morphogen concentration, such that after the time point A, B and C have gotten close to equilibrium, the morphogen gradient gradually disappears. Adapt the simulation loop where necessary and run your code: was your prediction on A/B/C from the previous question correct? Why/why not? Hint: you might need to increase the duration of your simulation, especially if it takes a long time for A, B and C to reach equilibrium (or you can change the parameters to speed things up by using same production/degradation rate ratio yet higher absolute values of the individual parameters).</p>
+<p><span class="theorem-title"><strong>Exercise 2.7 (Algorithmic/mathematical thinking) </strong></span>Now write the code in reaction_diffusion_gradient that updates the morphogen concentration, such that after the time point A, B and C have gotten close to equilibrium, the morphogen gradient gradually disappears. Adapt the simulation loop where necessary and run your code: was your prediction on A/B/C from the previous question correct? Why/why not? Hint: you might need to increase the duration of your simulation, especially if it takes a long time for A, B and C to reach equilibrium (or you can change the parameters to speed things up by using same production/degradation rate ratio yet higher absolute values of the individual parameters).</p>
 </div>
 <blockquote class="blockquote">
 <p><strong>Answer</strong> It should always result in C taking over. See answer to 6.</p>
 </blockquote>
 <div id="exr-plain" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.8 (Biological &amp; mathematical thinking)</strong></span> A, B and C cannot remain in a stable pattern if they are only influenced by M. How can we stabilize the pattern in absence of M? Test your ideas by creating new update functions for A, B and C and let these new ‘rules’ kick in at the same time when M starts to decline. Again, you may find Hill functions useful and perhaps also the before/after switch time structure used in reaction_diffusion_gradient for M. (Hint: think about how the genes should affect each other, and assume that in this new phase, when genes have already been initialized in absence of repression the genes will be expressed). Can you maintain the expression domains of A, B and C and does their shape change?</p>
+<p><span class="theorem-title"><strong>Exercise 2.8 (Biological &amp; mathematical thinking) </strong></span>A, B and C cannot remain in a stable pattern if they are only influenced by M. How can we stabilize the pattern in absence of M? Test your ideas by creating new update functions for A, B and C and let these new ‘rules’ kick in at the same time when M starts to decline. Again, you may find Hill functions useful and perhaps also the before/after switch time structure used in reaction_diffusion_gradient for M. (Hint: think about how the genes should affect each other, and assume that in this new phase, when genes have already been initialized in absence of repression the genes will be expressed). Can you maintain the expression domains of A, B and C and does their shape change?</p>
 </div>
 <blockquote class="blockquote">
 <p><strong>Answer</strong> See <code>03_answer_morphogengradient_superimposed_quickABC_phase2.py</code> As M decays A and B will no longer be activated and C no longer repressed, hence the takeover by C. They will find mutual repression with only your neighbor gene is not enough, you need it with both 2 other genes. So A needs to be repressed by B and C, B by A and C, and C by A and B. We can maintain A at the beginning, B in the middle and C at the end, but the shape of the expression domains becomes less gradual and more sharply defined.</p>
 </blockquote>
 <div id="exr-plain" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.9 (Biology &amp; algorithmic/mathematical thinking)</strong></span> A sudden switch from phase 1 (stable M gradient) to phase 2 (decaying M gradient) resulting in the genes following different differential equations is biologically implausible. In reality, genes have complex promotors and enhancers integrating different inputs that arise in different developmental stages. Try to come up with one integrated expression for each gene, incorporating simultaneous input from the morphogen gradient and the other genes. Create new update functions for A/B/C and test your ideas. Can you get a stable pattern before and after the decline in M? A couple of things you could consider: a. Think of how positively and negatively M regulated expression behave once the gradient starts declining: what is the best way to combine (AND/OR) that with the regulation by the genes? a. Consider splitting up the M regulated expression of middle gene B into a positive and negatively regulated morphogen part before integrating the other genes inputs. a. It is also possible to give certain genes a bit of a constant boost to prevent their takeover by other genes due to timing issues</p>
+<p><span class="theorem-title"><strong>Exercise 2.9 (Biology &amp; algorithmic/mathematical thinking) </strong></span>A sudden switch from phase 1 (stable M gradient) to phase 2 (decaying M gradient) resulting in the genes following different differential equations is biologically implausible. In reality, genes have complex promotors and enhancers integrating different inputs that arise in different developmental stages. Try to come up with one integrated expression for each gene, incorporating simultaneous input from the morphogen gradient and the other genes. Create new update functions for A/B/C and test your ideas. Can you get a stable pattern before and after the decline in M? A couple of things you could consider: a. Think of how positively and negatively M regulated expression behave once the gradient starts declining: what is the best way to combine (AND/OR) that with the regulation by the genes? a. Consider splitting up the M regulated expression of middle gene B into a positive and negatively regulated morphogen part before integrating the other genes inputs. a. It is also possible to give certain genes a bit of a constant boost to prevent their takeover by other genes due to timing issues</p>
 </div>
 <blockquote class="blockquote">
 <p><strong>Answer</strong> This is not at all easy (or as the professor would say “highly non trivial”). It requires that for genes (or part of their input) being positively dependent on M that there is an OR gate (sum) (so they stay on once M is absent as long as the mutual repressors are absent) while for genes (or part of their input) being negatively dependent on M that there is an AND gate (so they do not expand once M is absent but require both M absent and mutual repressors absent). See the answer code: <code>05_&lt;longname&gt;_quickABC_phase2_combined.py</code></p>
 </blockquote>
 <div id="exr-plain" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.10 (Biology &amp; algorithmic/mathematical thinking)</strong></span> Write code to get noise in the morphogen gradient, both in its steady state and decaying phase. During which phase do the expression domains of A, B and C suffer more from the noise. Explain why? How could we make the system more robust in a manner that is also likely occurring in nature?</p>
+<p><span class="theorem-title"><strong>Exercise 2.10 (Biology &amp; algorithmic/mathematical thinking) </strong></span>Write code to get noise in the morphogen gradient, both in its steady state and decaying phase. During which phase do the expression domains of A, B and C suffer more from the noise. Explain why? How could we make the system more robust in a manner that is also likely occurring in nature?</p>
 </div>
 <blockquote class="blockquote">
 <p><strong>Answer</strong> See the answer code: <code>05_&lt;longname&gt;_quickABC_phase2_combined_noise.py</code><br> The noise has more effect in the initial phase when mostly morphogen is driving the expression domains, as gene expression becomes established and morphogen levels decay the mutual repression ensures stability against the noise<br> Diffusion of A, B and C, in the lateral direction this evens out differences (not implemented right now)</p>
@@ -712,13 +674,13 @@ Starting code for this practical
 <h2 data-number="2.5" class="anchored" data-anchor-id="extra-questions"><span class="header-section-number">2.5</span> <span class="smallcaps"><strong>Extra questions</strong></span></h2>
 <p>If you’re done early or a master student, you can make these extra questions. These questions need not be made in the order they are provided, you can choose what you would like to investigate.</p>
 <div id="exr-plain" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.11 (Biological thinking)</strong></span> Play with the size of the domain to see what happens to the gene expression domains. What would this mean for an organism?</p>
+<p><span class="theorem-title"><strong>Exercise 2.11 (Biological thinking) </strong></span>Play with the size of the domain to see what happens to the gene expression domains. What would this mean for an organism?</p>
 </div>
 <blockquote class="blockquote">
 <p><strong>Answer</strong> You may find that if the domain expands the C domain expands and that if the domain shrinks the C domain disappears. This would mean having either a very large or loosing your “butt” part.</p>
 </blockquote>
 <div id="exr-plain" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.12 (Biological &amp; algorithmic thinking)</strong></span> Various mechanisms have been proposed to ensure that the domains of the morphogen controlled genes scale with the size of the domain. One proposed mechanism suggests the existence of an also diffusible “expander” molecule which expression is repressed by the morphogen but which itself either represses the degradation of the morphogen or enhances its diffusion (see e.g. <a href="https://www.pnas.org/doi/full/10.1073/pnas.0912734107" class="uri">https://www.pnas.org/doi/full/10.1073/pnas.0912734107</a> and <a href="https://onlinelibrary.wiley.com/doi/10.1111/dgd.12337" class="uri">https://onlinelibrary.wiley.com/doi/10.1111/dgd.12337</a>).</p>
+<p><span class="theorem-title"><strong>Exercise 2.12 (Biological &amp; algorithmic thinking) </strong></span>Various mechanisms have been proposed to ensure that the domains of the morphogen controlled genes scale with the size of the domain. One proposed mechanism suggests the existence of an also diffusible “expander” molecule which expression is repressed by the morphogen but which itself either represses the degradation of the morphogen or enhances its diffusion (see e.g. <a href="https://www.pnas.org/doi/full/10.1073/pnas.0912734107" class="uri">https://www.pnas.org/doi/full/10.1073/pnas.0912734107</a> and <a href="https://onlinelibrary.wiley.com/doi/10.1111/dgd.12337" class="uri">https://onlinelibrary.wiley.com/doi/10.1111/dgd.12337</a>).</p>
 <p>For the expander we can write:</p>
 <p><span class="math display">\[
 ∂E/∂t=p K^h/(K^h+M^h )-dE+D_E ∆E
@@ -729,19 +691,19 @@ Starting code for this practical
 <p><strong>Answer</strong> We have not tried this out. Let us know what you find!</p>
 </blockquote>
 <div id="exr-plain" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.13 (Algorithmic thinking)</strong></span> In b, we can also implement other boundary conditions, especially for the right boundary. What happens to the profile if we make a no-flux boundary by copying the value at n-2 to n-1? And what if we set it to a sink (force concentration to zero)?</p>
+<p><span class="theorem-title"><strong>Exercise 2.13 (Algorithmic thinking) </strong></span>In b, we can also implement other boundary conditions, especially for the right boundary. What happens to the profile if we make a no-flux boundary by copying the value at n-2 to n-1? And what if we set it to a sink (force concentration to zero)?</p>
 </div>
 <blockquote class="blockquote">
 <p><strong>Answer</strong> Copying n-2 to n-1 adds material, so now concentration at end keeps rising and gradient fails to reach equilibrium. Putting it to sink not tried, may speed up stabilization of gradient</p>
 </blockquote>
 <div id="exr-plain" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.14 (Algorithmic thinking)</strong></span> From question 4 onwards, how do things change if we do not assume a quasi-steady-state for the morphogen gradient (i.e.&nbsp;keep the morphogen dynamics instead of replacing it by the superimposed exponential)? How would you implement a disappearing gradient and how does it shape change the outcomes of the flag?</p>
+<p><span class="theorem-title"><strong>Exercise 2.14 (Algorithmic thinking) </strong></span>From question 4 onwards, how do things change if we do not assume a quasi-steady-state for the morphogen gradient (i.e.&nbsp;keep the morphogen dynamics instead of replacing it by the superimposed exponential)? How would you implement a disappearing gradient and how does it shape change the outcomes of the flag?</p>
 </div>
 <blockquote class="blockquote">
 <p><strong>Answer</strong> Instead of only initializing position x=0 at 100, you now need to include it in the update of the diffusion and use a decaying exponential behind the value of 100 beyond a certain point. Not tried myself, likely somewhat different shape change than simply decreasing an exponential along the entire axis proportionally, may affect sizes and dynamics of domains.</p>
 </blockquote>
 <div id="exr-plain" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.15 (Algorithmic thinking)</strong></span> Implement your solution to make the system more robust for noise from question 10. Did it work?</p>
+<p><span class="theorem-title"><strong>Exercise 2.15 (Algorithmic thinking) </strong></span>Implement your solution to make the system more robust for noise from question 10. Did it work?</p>
 </div>
 <blockquote class="blockquote">
 <p><strong>Answer</strong> This requires also having A, B and C diffuse and is expected to smooth out differences.</p>
@@ -763,7 +725,7 @@ Starting code for this practical
 <p>Sizzled is expander (by reducing decay of morphogen)</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-driever1988bicoid" class="csl-entry" role="listitem">
 Driever, Wolfgang, and Christiane Nüsslein-Volhard. 1988. <span>“The Bicoid Protein Determines Position in the Drosophila Embryo in a Concentration-Dependent Manner.”</span> <em>Cell</em> 54 (1): 95–104.
 </div>
@@ -815,33 +777,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       } else {
         el.classList.add('notransition');
       }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
     }
   }
   const toggleColorMode = (alternate) => {
@@ -910,15 +845,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  let localAlternateSentinel = 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -953,7 +886,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -985,57 +929,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          if (link.getAttribute("rel") === null) {
-            link.setAttribute("rel", "noopener");
-          }
-          // default icon
-          link.classList.add("external");
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1045,17 +943,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1067,130 +956,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
+      return note.innerHTML;
     });
   }
       let selectedAnnoteEl;
@@ -1234,7 +1000,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1260,32 +1025,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1343,16 +1082,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
 });
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./pattern_intro_text.html" class="pagination-link" aria-label="Pattern formation (intro)">
+      <a href="./pattern_intro_text.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Pattern formation (intro)</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./pattern_practical_2.html" class="pagination-link" aria-label="Pattern formation II <br> Turing digit patterns">
+      <a href="./pattern_practical_2.html" class="pagination-link">
         <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Pattern formation II <br> Turing digit patterns</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -1360,18 +1115,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">
-<p>Theoretical Biology, Utrecht University.</p>
-</div>   
+    <div class="nav-footer-left">Theoretical Biology, Utrecht University.</div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
-    <div class="nav-footer-right">
-<p>This book was made with <a href="https://quarto.org/">Quarto</a>.</p>
-</div>
+    <div class="nav-footer-right">This book was made with <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>
-
 
 
 

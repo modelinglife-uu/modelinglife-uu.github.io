@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Modeling Life - 2&nbsp; Gradients and segments (Pattern formation I)</title>
+<title>Modeling Life - 2&nbsp; Gradients and segments</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -130,7 +130,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pattern_intro_text.html">I) Pattern formation</a></li><li class="breadcrumb-item"><a href="./pattern_practical_1.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Gradients and segments <br>(Pattern formation I)</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pattern_intro_text.html">I) Pattern formation</a></li><li class="breadcrumb-item"><a href="./pattern_practical_1.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Gradients and segments</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -214,19 +214,19 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pattern_practical_1.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Gradients and segments <br>(Pattern formation I)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Gradients and segments</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pattern_practical_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Pattern formation II <br> Turing digit patterns</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Turing digit patterns</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pattern_practical_3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Pattern formation III <br> Clock-and-wavefront</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Clock-and-wavefront</span></span></a>
   </div>
 </li>
       </ul>
@@ -412,7 +412,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Gradients and segments <br>(Pattern formation I)</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Gradients and segments</span></h1>
 </div>
 
 
@@ -711,23 +711,31 @@ Starting code for this practical
 </section>
 <section id="relevant-literature-further-reading" class="level2" data-number="2.6">
 <h2 data-number="2.6" class="anchored" data-anchor-id="relevant-literature-further-reading"><span class="header-section-number">2.6</span> Relevant literature / further reading</h2>
-<p><a href="https://www.nature.com/articles/ncomms6077" class="uri">https://www.nature.com/articles/ncomms6077</a></p>
-<p>Dagmar Iber group, scaling from non-steady state dynamics and uniform growth</p>
-<p><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3109599/" class="uri">https://pmc.ncbi.nlm.nih.gov/articles/PMC3109599/</a></p>
-<p><a href="https://www.nature.com/articles/ncomms7679" class="uri">https://www.nature.com/articles/ncomms7679</a></p>
-<p>Bicoid gradient: larger eggs get more Bicoid mRNA so higher production rate, when it scales with volume this helps scale the gradient</p>
-<p><a href="https://onlinelibrary.wiley.com/doi/10.1111/dgd.12337" class="uri">https://onlinelibrary.wiley.com/doi/10.1111/dgd.12337</a></p>
-<p><a href="https://www.pnas.org/doi/abs/10.1073/pnas.0912734107" class="uri">https://www.pnas.org/doi/abs/10.1073/pnas.0912734107</a></p>
-<p>Expansion repression model</p>
-<p>Chordin, Bmp, Sizzled</p>
-<p>Chordin represses Bmp which induces Sizzled (which has low decay rate), yet Sizzled reduces Chordin decay</p>
-<p>Chordin is morphogen</p>
-<p>Sizzled is expander (by reducing decay of morphogen)</p>
+<p>Dagmar Iber group, scaling from non-steady state dynamics and uniform growth: <span class="citation" data-cites="fried2014dynamic">Fried and Iber (<a href="references.html#ref-fried2014dynamic" role="doc-biblioref">2014</a>)</span> <a href="https://www.nature.com/articles/ncomms6077" class="uri">https://www.nature.com/articles/ncomms6077</a></p>
+<p><span class="citation" data-cites="cheung2011scaling">Cheung et al. (<a href="references.html#ref-cheung2011scaling" role="doc-biblioref">2011</a>)</span> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3109599/" class="uri">https://pmc.ncbi.nlm.nih.gov/articles/PMC3109599/</a></p>
+<p><span class="citation" data-cites="he2015fundamental">He et al. (<a href="references.html#ref-he2015fundamental" role="doc-biblioref">2015</a>)</span> <a href="https://www.nature.com/articles/ncomms7679" class="uri">https://www.nature.com/articles/ncomms7679</a></p>
+<p>Bicoid gradient: larger eggs get more Bicoid mRNA so higher production rate, when it scales with volume this helps scale the gradient: <span class="citation" data-cites="inomata2017scaling">Inomata (<a href="references.html#ref-inomata2017scaling" role="doc-biblioref">2017</a>)</span> <a href="https://onlinelibrary.wiley.com/doi/10.1111/dgd.12337" class="uri">https://onlinelibrary.wiley.com/doi/10.1111/dgd.12337</a></p>
+<p>Expansion repression model. Players: Chordin, Bmp, Sizzled. Chordin represses Bmp which induces Sizzled (which has low decay rate), yet Sizzled reduces Chordin decay. Chordin is morphogen. Sizzled is expander (by reducing decay of morphogen) <span class="citation" data-cites="ben2010scaling">Ben-Zvi and Barkai (<a href="references.html#ref-ben2010scaling" role="doc-biblioref">2010</a>)</span> <a href="https://www.pnas.org/doi/abs/10.1073/pnas.0912734107" class="uri">https://www.pnas.org/doi/abs/10.1073/pnas.0912734107</a></p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-ben2010scaling" class="csl-entry" role="listitem">
+Ben-Zvi, Danny, and Naama Barkai. 2010. <span>“Scaling of Morphogen Gradients by an Expansion-Repression Integral Feedback Control.”</span> <em>Proceedings of the National Academy of Sciences</em> 107 (15): 6924–29.
+</div>
+<div id="ref-cheung2011scaling" class="csl-entry" role="listitem">
+Cheung, David, Cecelia Miles, Martin Kreitman, and Jun Ma. 2011. <span>“Scaling of the Bicoid Morphogen Gradient by a Volume-Dependent Production Rate.”</span> <em>Development</em> 138 (13): 2741–49.
+</div>
 <div id="ref-driever1988bicoid" class="csl-entry" role="listitem">
 Driever, Wolfgang, and Christiane Nüsslein-Volhard. 1988. <span>“The Bicoid Protein Determines Position in the Drosophila Embryo in a Concentration-Dependent Manner.”</span> <em>Cell</em> 54 (1): 95–104.
+</div>
+<div id="ref-fried2014dynamic" class="csl-entry" role="listitem">
+Fried, Patrick, and Dagmar Iber. 2014. <span>“Dynamic Scaling of Morphogen Gradients on Growing Domains.”</span> <em>Nature Communications</em> 5 (1): 5077.
+</div>
+<div id="ref-he2015fundamental" class="csl-entry" role="listitem">
+He, Feng, Chuanxian Wei, Honggang Wu, David Cheung, Renjie Jiao, and Jun Ma. 2015. <span>“Fundamental Origins and Limits for Scaling a Maternal Morphogen Gradient.”</span> <em>Nature Communications</em> 6 (1): 6679.
+</div>
+<div id="ref-inomata2017scaling" class="csl-entry" role="listitem">
+Inomata, Hidehiko. 2017. <span>“Scaling of Pattern Formations and Morphogen Gradients.”</span> <em>Development, Growth &amp; Differentiation</em> 59 (1): 41–51.
 </div>
 <div id="ref-wolpert1969positional" class="csl-entry" role="listitem">
 Wolpert, Lewis. 1969. <span>“Positional Information and the Spatial Pattern of Cellular Differentiation.”</span> <em>Journal of Theoretical Biology</em> 25 (1): 1–47.
@@ -1108,7 +1116,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="./pattern_practical_2.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Pattern formation II <br> Turing digit patterns</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Turing digit patterns</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

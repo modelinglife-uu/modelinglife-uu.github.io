@@ -1,3 +1,8 @@
+---
+params:
+  show_answers: false
+---
+
 # Gene regulation in time 
 
 ## Introduction
@@ -91,12 +96,19 @@ Now let's compare how ODE and Boolean logic represent different logical gates. Y
 
 :::{#exr-non}
 
+
 ## Algorithmic thinking
 
 **Q3** Is there a logical gate that can be better represented with an ODE than with Boolean logic? Think of examples of biological regulatory interactions that can be described with each logical gate? 
 
 :::
 
+:::{.content-visible when-meta="params.show_answers"}
+
+> **Answer** jkdslafjjdlks
+
+
+:::
 ## Part II – Gene regulatory network
 
 Now let's move to a network model made of many individual regulatory interactions. This model includes regulatory interactions experimentally determined in the cells of plant roots, here they encoded as logical rules. The model consists of 18 nodes representing transcription factors, hormones, peptides, and multitude regulatory interactions among them. Look at the rootNetwork() function in the circuitFunctions.py file. See how the activity of each node is determined by the state of its regulators using and combining the logical operators AND, OR and NOT. Find the model here: https://www.nature.com/articles/s41598-020-60251-8

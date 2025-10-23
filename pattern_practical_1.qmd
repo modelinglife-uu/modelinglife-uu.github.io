@@ -3,7 +3,7 @@ params:
   show_answers: true
 ---
 
-# Gradients and segments <br>(Pattern formation I)
+# Gradients and segments 
 
 ## Morphogen Gradients and Patterning 
 
@@ -517,29 +517,22 @@ from question 10. Did it work?
 
 ## Relevant literature / further reading
 
+Dagmar Iber group, scaling from non-steady state dynamics and uniform growth: 
+@fried2014dynamic
 <https://www.nature.com/articles/ncomms6077>
 
-Dagmar Iber group, scaling from non-steady state dynamics and uniform
-growth
-
+@cheung2011scaling
 <https://pmc.ncbi.nlm.nih.gov/articles/PMC3109599/>
 
+@he2015fundamental
 <https://www.nature.com/articles/ncomms7679>
 
 Bicoid gradient: larger eggs get more Bicoid mRNA so higher production
-rate, when it scales with volume this helps scale the gradient
-
+rate, when it scales with volume this helps scale the gradient: 
+@inomata2017scaling
 <https://onlinelibrary.wiley.com/doi/10.1111/dgd.12337>
 
+Expansion repression model. Players: Chordin, Bmp, Sizzled. Chordin represses Bmp which induces Sizzled (which has low decay rate), yet Sizzled reduces Chordin decay. Chordin is morphogen. Sizzled is expander (by reducing decay of morphogen)
+@ben2010scaling
 <https://www.pnas.org/doi/abs/10.1073/pnas.0912734107>
 
-Expansion repression model
-
-Chordin, Bmp, Sizzled
-
-Chordin represses Bmp which induces Sizzled (which has low decay rate),
-yet Sizzled reduces Chordin decay
-
-Chordin is morphogen
-
-Sizzled is expander (by reducing decay of morphogen)

@@ -1,9 +1,9 @@
 ---
 params:
-  show_answers: true
+  show_answers: false
 ---
 
-# Pattern formation III <br> Clock-and-wavefront
+# Clock-and-wavefront
 
 ## Goal of the tutorial:
 

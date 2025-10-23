@@ -1,5 +1,5 @@
 # Slides {.unnumbered}
 
 ```{=html}
-<iframe width="780" height="1200" src="https://tbb.bio.uu.nl/bvd/ml/" title="Slides"></iframe>
+<iframe width="780" height="90%" src="https://tbb.bio.uu.nl/bvd/ml/" title="Slides"></iframe>
 ```

@@ -45,10 +45,8 @@ book:
     - part: "III) Cell differentiation"
       chapters:
             - differentiation_intro_text.qmd
-            - morpho_practical_1.qmd #this where in the wrong chapter
-            - morpho_practical_2.qmd
-#            - differentiation_practical_1.qmd
-#            - differentiation_practical_2.qmd
+            - differentiation_practical_1.qmd
+            - differentiation_practical_2.qmd
     - part: "IV) Environment and Development"
       chapters:
             - evdev_intro_text.qmd

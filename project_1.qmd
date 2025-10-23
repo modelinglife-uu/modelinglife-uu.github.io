@@ -4,13 +4,13 @@
 
 In semi-arid areas, instead of a spatially continuous vegetation pattern, shrubs and bushes typically occur in a spot, stripe, labyrinthine or inverted spot pattern with the pattern type depending on the availability of water and the severity of grazing by cattle (Figure 1). These vegetation patterns are thought to arise from a positive effect of plant presence on water infiltration in the soil and vice versa from soil water to plant growth, giving rise to a positive feedback loop.   
 
-![Figure 1. Vegetation patterns in semi-arid ecosystems. Depending on rainfall and terrain slope varies types of vegetation patterns may arise. Adjusted from Rietkerk et al., Science 2024. ](docs/images/vegetationFigure1.png){#vegmini1}
+![Figure 1. Vegetation patterns in semi-arid ecosystems. Depending on rainfall and terrain slope varies types of vegetation patterns may arise. Adjusted from Rietkerk et al., Science 2024. ](images/vegetationFigure1.png){#vegmini1}
 
 
 One of the models frequently used for these water-vegetation systems is described by the following set of 3 equations: 
 
 
-![](docs/images/vegetationEq.png){#vegminieq}
+![](images/vegetationEq.png){#vegminieq}
 
 $$ 
 \frac{\mathrm{d}N}{\mathrm{d}t} = rN(1 - \frac{N}{K}) 
@@ -25,7 +25,7 @@ The parameters are R=rainfall, alpha=maximum uptake of surface water to become s
 
 Classically, it was thought that the positive feedback between water and plants gives rise to a bistable system in which at a certain point, a further gradual decrease in water level or increase in cattle grazing could lead to the sudden collapse of the vegetation, a phenomenon referred to as a catastrophic bifurcation or tipping point. Furthermore, it was thought transitions in spatial patterning could be interpreted as warning signs for the system becoming closer to this point of sudden collapse (Fig 2A). More recent mathematical analysis instead suggests that spatial patterning may allow for a more gradual transition from high to low vegetation levels without the occurrence of sudden transitions (Fig2B). 
 
-![Fig 2. Relation between Turing patterns and vegetation collapse. A) Transitions in Turing pattern where average vegetation level decreases are a warning sign indicating that the system is approaching a tipping point. B) Alternatively, transitions in Turing patter are a way of postponing and softening the sudden collapse in vegetation that would be expected in a non-spatially patterned ecosystem. Figure taken from Rietkerk et al., Science, 2021.](docs/images/vegetationFig2.png){#vegmini2}
+![Fig 2. Relation between Turing patterns and vegetation collapse. A) Transitions in Turing pattern where average vegetation level decreases are a warning sign indicating that the system is approaching a tipping point. B) Alternatively, transitions in Turing patter are a way of postponing and softening the sudden collapse in vegetation that would be expected in a non-spatially patterned ecosystem. Figure taken from Rietkerk et al., Science, 2021.](images/vegetationFig2.png){#vegmini2}
 
 
  

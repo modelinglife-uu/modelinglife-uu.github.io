@@ -2,5 +2,4 @@
 
 ### TODO
 
-- Write a brief intro to the differentiation practicals
-- i should write this asap I will complete it this week test test
+- Differentiation is fun. 

@@ -143,12 +143,12 @@ Let us now move to the other half of the clock and
 ## Biology
 
 Play with the parameters of the model. How does the delay
-   (`tau`/ $\tau$) affect oscillations?
+   ($\tau$) affect oscillations?
 :::
 
 ::: {.content-visible when-meta="params.show_answers"}
 
-   > **Answer** Larger value of $tau$=delay results in a longer period 
+   > **Answer** Larger value of $\tau$=delay results in a longer period 
    > (lower frequency) and higher amplitude. Remember how in class we 
    >discussed how removing introns reduced delays and affected oscillator 
    >period.
@@ -168,16 +168,16 @@ In the file `rolling_clock.py`, there is a
 ::: {.content-visible when-meta="params.show_answers"}
 
   > **Answer** Working with delay functions implies that you need the value 
-  > of a variable not on the current time but on time-tau. In the previous 
+  > of a variable not on the current time but on time-$\tau$. In the previous 
   > model we simply memorized the entire history of both variables. Here 
   > instead we only store the variable state for the length of the time delay 
-  > `tau`. This saves memory and hence runtime. This will become especially 
+  > $\tau$. This saves memory and hence runtime. This will become especially 
   > important when simulating a larger number of individual cells each having 
   > their own clocks. In the plotting we only plotted stored values, hence 
-  > you only see what happened between current_time-tau and current_time 
+  > you only see what happened between current_time-$\tau$ and current_time 
   > instead of what happened from start of simulation till current time. Of 
-  > course if you want to dynamically change tau you need to make sure you store 
-  > values over an interval corresponding to the largest possible value of `tau` 
+  > course if you want to dynamically change $\tau$ you need to make sure you store 
+  > values over an interval corresponding to the largest possible value of $\tau$ 
   > and need to know this beforehand.
 :::
 
@@ -195,7 +195,7 @@ Next, we will combine the clock and FGF wavefront into a single
     1.  Each cell has its own clock. What clock states is the tissue
         initialized with? And what clock states do newly divided
         cells get?
-    2.  The FGF wavefront affects `tau`: what function is used for
+    2.  The FGF wavefront affects tau: what function is used for
         that? What are your expectations for the effect of the FGF
         wavefront on the cells' clocks?
     3.  Does growth affect the clock state?
@@ -205,19 +205,22 @@ Next, we will combine the clock and FGF wavefront into a single
 
 ::: {.content-visible when-meta="params.show_answers"}
    > **Answer**
+   > 
    > 1. Going to code rolling_clock.py we see that clocks are initialized 
    > with the __init__ function of the Class Clock, which gets as arguments 
-   > `m0` and `p0`, this initialization function is called when in Class `Cell`, 
+   > $m0$ and $p0$, this initialization function is called when in Class `Cell`, 
    > in its respective `__init__`  function `self.clock=Clock(..)` is called. 
-   > It uses default values of `m=0` and `p=0` to pass to the `Clock`. (In turn, 
+   > It uses default values of $m=0$ and $p=0$ to pass to the `Clock`. (In turn, 
    > the initialization function of Class `Cell` is called from the
    > initialize_regular_tissue function of Class `Tissue` when the first cell 
    > is created). Newly divided cells inherit clock state and and FGF value 
    > from mother cell.
    > 
-   > 2. The function is $$\tau_\text{cell}=\tau_\text{model}(1+0.5\frac{100-\text{FGF}\_\text{cell}}{100}),$$
-   >    where $\tau_\text{cell}$ is the cell's new $tau$ and $\tau_\text{model}$ the general "model" one's.
-   >    So for lower FGF tau increases slowing down the oscillations.
+   > 2. The function is:
+   > $$\tau_\text{cell}=\tau_\text{model}(1+0.5\frac{100-\text{FGF}\_\text{cell}}{100}),$$ 
+   > So if localfgf=max=100,  $\tau{local}$=$\tau{global}$, and if localfgf=min=0
+   > $\tau{local}$=1.5*$\tau{global}$ 
+   > So for lower FGF $\tau$ increases slowing down the oscillations. 
    > 3. Not directly, growth of cells, leading to volume increase and potential
    > dilution effects is not affecting m or p levels, however since it is 
    > affecting FGF levels it is indirectly affecting the clock.
@@ -258,37 +261,37 @@ are important to stabilize spatial patterns once the start up signal that broke
 the symmetry and initialized patterning has gone. It turns out that such a
 memorization/stabilization mechanism is also essential to convert oscillations 
 to stripes. Add a memorization mechanism to the model to achieve this. *Hint*: Make 
-use of an extra ‘memory’ molecule `M` in each cell and perform its updating inside 
+use of an extra ‘memory’ molecule $M$ in each cell and perform its updating inside 
 the function `run_clocks`. To see what you are doing, visualize the spatial pattern 
-of `M` over time following the same procedure as for visualizing the `fgf` and `p` 
-values. Think about where, when and what should be memorized to design how `M` 
-is regulated and what `M` itself affects and take a stepwise approach.
+of $M$` over time following the same procedure as for visualizing the `fgf` and $p$ 
+values. Think about where, when and what should be memorized to design how $M$ 
+is regulated and what $M$ itself affects and take a stepwise approach.
 
-    1.  Add an extra 'memory' molecule `M` as a new attribute to the Class `Cell`,
+    1.  Add an extra 'memory' molecule $M$ as a new attribute to the Class `Cell`,
     which value is inherited from the mother cell upon division. To create memory 
     we need bistability, which can be easily achieved by having the memory molecule 
     having a non-linear saturating positive feedback on itself.  However, doing only 
-    this it will depend on the initial value of `M` -below or above a threshold- whether 
-    `M` will autoactivate or not. Additionally, if it happens it will occur across 
+    this it will depend on the initial value of  $M$ -below or above a threshold- whether 
+     $M$ will autoactivate or not. Additionally, if it happens it will occur across 
     the entire tissue.  
 
-    2.  Thus, we need to make `M` dependent on the clock. To achieve this, we can start 
-    with low values of `M` that prevent autoactivation, and then have `M` activated by 
-    either `p` (part of the clock) or `M` itself using the following function: 
+    2.  Thus, we need to make $M$ dependent on the clock. To achieve this, we can start 
+    with low values of  $M$ that prevent autoactivation, and then have $M$ activated by 
+    either $p$ (part of the clock) or $M$ itself using the following function: 
             $$\frac{dM}{dt}=c\max\left(\frac{p^4}{h_p^4+p^4}, \frac{M^4}{h_M^4+M^4}\right)-\delta M.$$
             
-    However, now we simply always get activation of `M` everywhere.
+    However, now we simply always get activation of $M$ everywhere.
     3.  Since oscillations occur in the PSM and stripe formation occurs only more anteriorly 
     we should constrain memorization to occur only below a certain FGF value. As a consequence, 
-    high levels of `M` now only arise anteriorly, but there is no pattern yet and oscillations 
+    high levels of $M$ now only arise anteriorly, but there is no pattern yet and oscillations 
     keep occurring.  This is because cells cycle through high and low p values so all cells at 
-    some point have high `p` values and can induce `M`.
+    some point have high $p$ values and can induce $M$.
     4. So in addition to have memorization occur only below a certain FGF value it should also 
     occur above another, lower FGF value, constraining it to occur in a limited temporal window 
-    that enables cells passing through there with a high `p` state to induce a high `M` state while 
-    cells pasing through with a low `p` state to not induce a high `M` state. You should get somite 
-    patterns that are stable, but not necessarily regular. Still `m` and `p` oscillations continue.
-    5. As a final step, beyond the FGF window where we memorize `M` we no longer update either `M` 
+    that enables cells passing through there with a high $p$ state to induce a high $M$ state while 
+    cells pasing through with a low $p$ state to not induce a high $M$ state. You should get somite 
+    patterns that are stable, but not necessarily regular. Still $m$ and $p$ oscillations continue.
+    5. As a final step, beyond the FGF window where we memorize $M$ we no longer update either $M$ 
     or the clock.
 :::
 ::: {.content-visible when-meta="params.show_answers"}
@@ -331,7 +334,7 @@ parameters of their somitogenesis. See the following list:
     -   You might want to adapt your plotting timestep to have sufficient
         but not too many plot updates in one simulation.
     -   You can test the clock parameters separately with the `clock.py`/`rolling_clock.py`
-        script. Don't forget that FGF has an effect on `tau`!
+        script. Don't forget that FGF has an effect on tau!
 :::
 ::: {.content-visible when-meta="params.show_answers"}
 
@@ -348,7 +351,7 @@ parameters of their somitogenesis. See the following list:
   > 
   > For clock frequency:
   > 
-  > Tau times 0.25
+  > $\tau$ times 0.25
   > 
   > Fac = 6 (multiplies alpha, beta, mu, v)
   >
@@ -368,20 +371,20 @@ parameters of their somitogenesis. See the following list:
   >
   > For clock frequency:
   >
-  > Tau times 1.4-1.6 is sufficient (Fac=1 (multiplies alpha, beta, mu, v))
+  > $\tau$ times 1.4-1.6 is sufficient (Fac=1 (multiplies alpha, beta, mu, v))
   > 
   > Somehow this does not fully work:
   > 
   > Too few cells (not $65*8=520$) too short tissue (not $65*8*15=7800$) and only 
-  > 24 segments. First, remember $taulocal=(1+0.5 *(100-localfgf)/100))*tauglobal$. 
-  > So taulocal max 1.5 times tauglobal  so the also increasing tauglobal 1.4-1.6 times 
-  > 1.5 makes it really slow. Indeed tau times 1.2 gives 31 segments, tau times 1 gives 
-  > 36 segments, tau times 0.7 gives 49 segments
+  > 24 segments. First, remember $\tau_{local}=(1+0.5 *(100-localfgf)/100))*\tau_{global}$. 
+  > So $\tau_{local}$ max 1.5 times $\tau_{global}$  so the also increasing $\tau_{global}$ 
+  > 1.4-1.6 times 1.5 makes it really slow. Indeed $\tau$ times 1.2 gives 31 segments, $\tau$ 
+  > times 1 gives   > 36 segments, $\tau$ times 0.7 gives 49 segments
   > 
   > Good to realize that the numbers in the table do not completely add up:
   > 
   > If it takes 5 days =$5*24=120$ hours, and the period is 2-3 hours this would result 
-  > in 40-60 segments but never 65. For a duration of 5.5 days and tau times 0.6 we 
+  > in 40-60 segments but never 65. For a duration of 5.5 days and $\tau$ times 0.6 we 
   > get to 62 somites of size 9, so quite close.
 
 :::
@@ -394,13 +397,13 @@ The model currently has a number of assumptions that we can
   question. Feel free to explore any of these further open questions
   and study how it effects the outcome of the model:
 
--   What if the relationship between FGF and tau is shaped differently?
+-   What if the relationship between FGF and $\tau$ is shaped differently?
     For instance, if the clock runs faster on the left/anterior than on
     the right/posterior?
 -   What if the clock state of a daughter cell is started fresh rather
     than being a copy from the mother cell?
 -   What if the clock $m$ and $p$ are diluted by growth?
--   What if tau is unaffected by FGF: can we still get somites fixed in
+-   What if $\tau$ is unaffected by FGF: can we still get somites fixed in
     place?
 :::
 

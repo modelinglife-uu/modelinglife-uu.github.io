@@ -1,7 +1,7 @@
 # General course info {#general .unnumbered}
 
 ## Contact
-Course coordinator: Monica Garcia Gomez (m.l.garciagomez@uu.nl).
+**Course coordinator**: Monica Garcia Gomez (m.l.garciagomez@uu.nl).
 In this website you will find all practical information about the course. You can reach the
 instructors via email at modelinglife@uu.nl .
 

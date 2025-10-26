@@ -1,17 +1,19 @@
 ---
 params:
-  show_answers: false
+  show_answers: true
 ---
 
-# Clock-and-wavefront
+# Clock-and-wavefront patterning
 
 ## Goal of the tutorial:
 
-In this tutorial you will look at gradient formation and patterning
-using different mechanisms than you have seen previously. We will model
-the so called clock-and-wavefront pattern, which stems from oscillations
-in gene and gene products and results in a regularly striped pattern in
-a growing tissue.
+In this tutorial you will look at gradient formation and patterning 
+using different mechanisms than you have seen previously. We will 
+model the so-called clock-and-wavefront pattern, which stems from 
+oscillations in gene expression and gene products and results in a 
+regularly striped segmentation pattern in a growing tissue. Note that 
+as compared to the Drosophila French Flag type case, this is thought 
+to be the evolutionary ancestral model of segmenting animal body axes.
 
 ## The model system
 
@@ -64,29 +66,36 @@ tutorial](https://www.datacamp.com/tutorial/python-oop-tutorial)
 
 :::{#exr-test}
 
-## Biology 
-In practical 1 we saw how gradients can be created through local
-production, diffusion and decay. However, other mechanisms for
-gradient formation are possible, such as cell lineage transport.
-Here we work with a model for the FGF gradient
-(`fgfgradientfromgrowth.py`) where only the rightmost/posterior cell
-produces FGF and grows, and in which cells upon division inherit
-this FGF from their mother cell. Play with the model by varying the
-decay rate of FGF and the division rate of the cells. How does this
-affect the gradient?
+## Biology - An alternative gradient forming mechanism
+In practical 1 we saw how gradients can be created through local 
+production, diffusion and decay. However, other mechanisms for 
+gradient formation are possible, such as cell lineage transport. 
+Here we work with a model for the FGF gradient (`fgfgradientfromgrowth.py`)
+where only the rightmost/posterior cell produces FGF and grows, and 
+in which cells upon division inherit this FGF from their mother cell. 
+First study the code to see how it uses Classes and see what happens. 
+Next, play with the model by varying the decay rate of FGF and the 
+division rate of the cells. How does this affect the gradient? What 
+happens if divisions are only allowed during the first half of the 
+simulation (put `divisiontime` to 0.5 instead of 1).
+
 :::
 
 
 ::: {.content-visible when-meta="params.show_answers"}
 
-> **Answer** *If growth rate goes up cell volumes increase faster, causing more
-> dilution of FGF and hence a lower maximum of the gradient as due to
-> the stable protein quite some time is needed to compensate for this
-> decrease by more production, at the same time the gradient is less
-> steep as cell division follow up faster and hence less time has passed
-> and less day has taken place. If decay rate goes up, maximum goes down
-> but gradient become steeper and shorter as for same time between
-> divisions more decay takes place*
+  > **Answer** If growth rate goes up cell volumes increase faster, causing more
+  > dilution of FGF and hence a lower maximum of the gradient as due to
+  > the stable protein quite some time is needed to compensate for this
+  > decrease by more production, at the same time the gradient is less
+  > steep as cell division follow up faster and hence less time has passed
+  > and less day has taken place. 
+  >
+  > If decay rate goes up, maximum goes down but the gradient become steeper 
+  > and shorter as for same time between divisions more decay takes place.
+  > If divisions stop halfway the simulation FGF in last cell goes up (no 
+  > longer any loss due to growth-induced dilution) and FGF in all other 
+  > cells goes to zero (no fresh influx from newly divided cells still having FGF).
   
 :::
   
@@ -101,8 +110,11 @@ When would this type of gradient formation
 
 ::: {.content-visible when-meta="params.show_answers"}
 
-  > **Answer** Diffusion slow, degradation slow. In other words, a
-  > mostly stable, immobile compound.
+  > **Answer** Earlier gradient model: gradient length increases and slope 
+  > decreases with faster diffusion and slower degradation. Here gradient 
+  > driven by combination of growth/division and degradation. This new mechanism
+  > can only work if growth and patterning are occurring simultaneously, 
+  > not if growth precedes patterning..
 :::
 
 :::{#exr-test}
@@ -131,14 +143,15 @@ Let us now move to the other half of the clock and
 ## Biology
 
 Play with the parameters of the model. How does the delay
-   (`tau`/ $\tau$) affect oscillations?
+   ($\tau$) affect oscillations?
 :::
 
 ::: {.content-visible when-meta="params.show_answers"}
 
-   > **Answer** *longer period (lower frequency) and higher
-   amplitude. Remember how in class we discussed how removing introns
-   reduced delays and affected oscillator period.*
+   > **Answer** Larger value of $\tau$=delay results in a longer period 
+   > (lower frequency) and higher amplitude. Remember how in class we 
+   >discussed how removing introns reduced delays and affected oscillator 
+   >period.
 :::
 
 :::{#exr-test}
@@ -154,12 +167,18 @@ In the file `rolling_clock.py`, there is a
 
 ::: {.content-visible when-meta="params.show_answers"}
 
-  > **Answer** The rolling clock only remembers a certain time window of the
-    clock state, namely as long as needs to be remembered plus some buffer for
-    when the clock's tau changes. A drawback is that not all history is
-    memorized, but it could still be stored to a file. A big win is clear when
-    we run the code and see that it is much faster, especially at later time
-    points.
+  > **Answer** Working with delay functions implies that you need the value 
+  > of a variable not on the current time but on time-$\tau$. In the previous 
+  > model we simply memorized the entire history of both variables. Here 
+  > instead we only store the variable state for the length of the time delay 
+  > $\tau$. This saves memory and hence runtime. This will become especially 
+  > important when simulating a larger number of individual cells each having 
+  > their own clocks. In the plotting we only plotted stored values, hence 
+  > you only see what happened between current_time-$\tau$ and current_time 
+  > instead of what happened from start of simulation till current time. Of 
+  > course if you want to dynamically change $\tau$ you need to make sure you store 
+  > values over an interval corresponding to the largest possible value of $\tau$ 
+  > and need to know this beforehand.
 :::
 
 :::{#exr-test}
@@ -167,117 +186,125 @@ In the file `rolling_clock.py`, there is a
 ## 
 
 Next, we will combine the clock and FGF wavefront into a single
-    model. For this, we offer two options of this exercise: A. reading
-    and interpreting existing code from the file clockplusfgf.py, or B.
-    write your own code to combine the two.
+    model. 
 
-1. **Read and interpret existing code:** Read the code of
+**Read and interpret existing code:** Read the code of
     `clockplusfgf.py` and try to understand the assumptions from this
     model implementation by answering the following questions:
 
     1.  Each cell has its own clock. What clock states is the tissue
         initialized with? And what clock states do newly divided
         cells get?
-    2.  The FGF wavefront affects `tau`: what function is used for
+    2.  The FGF wavefront affects tau: what function is used for
         that? What are your expectations for the effect of the FGF
         wavefront on the cells' clocks?
     3.  Does growth affect the clock state?
-    4.  What is your opinion on the assumptions from the three
+    4.  What is your opinion on the assumptions discussed in the three
         questions?
 :::
 
 ::: {.content-visible when-meta="params.show_answers"}
    > **Answer**
-   > 1. The cells are initialized with the same state, namely the default with
-   >    `m=0` and `p=0`, and all clock parameters set to one defined in the file.
-   >    Newly divided cells get the same clock as the original cell, so we get
-   >    two exact copies.
-   > 2. The function is $$\tau_\text{cell}=\tau_\text{model}(1+0.5\frac{100-\text{FGF}\_\text{cell}}{100}),$$
-   >    where $\tau_\text{cell}$ is the cell's new $tau$ and $\tau_\text{model}$ the general "model" one's.
-   >    So, we would expect tau to become larger, i.e., the clock to become slower as the FGF wavefront
-   >    decays the further to the left we get.
-   > 3. No, there is currently no dilution from $m$ or $p$ from growth.
-   > 4. If we start with few cells that are likely also each other's sister cells,
-   >    the assumption of the same, or at least similar clock states is plausible.
-   >    Same for cell division assuming the molecules get evenly distributed.
-   >    The current function of FGF on $\tau$ is imposed, but the idea of slowing down is from
-   >    experimental observations.
-   >    We could argue about the effect of growth on the clock state, but only few cells are
-   >    dividing, so including growth in there would have only a limited effect (but feel free
-   >    to test this!).
+   > 
+   > 1. Going to code rolling_clock.py we see that clocks are initialized 
+   > with the __init__ function of the Class Clock, which gets as arguments 
+   > $m0$ and $p0$, this initialization function is called when in Class `Cell`, 
+   > in its respective `__init__`  function `self.clock=Clock(..)` is called. 
+   > It uses default values of $m=0$ and $p=0$ to pass to the `Clock`. (In turn, 
+   > the initialization function of Class `Cell` is called from the
+   > initialize_regular_tissue function of Class `Tissue` when the first cell 
+   > is created). Newly divided cells inherit clock state and and FGF value 
+   > from mother cell.
+   > 
+   > 2. The function is:
+   > $$\tau_\text{cell}=\tau_\text{model}(1+0.5\frac{100-\text{FGF}\_\text{cell}}{100}),$$ 
+   > So if localfgf=max=100,  $\tau{local}$=$\tau{global}$, and if localfgf=min=0
+   > $\tau{local}$=1.5*$\tau{global}$ 
+   > So for lower FGF $\tau$ increases slowing down the oscillations. 
+   > 3. Not directly, growth of cells, leading to volume increase and potential
+   > dilution effects is not affecting m or p levels, however since it is 
+   > affecting FGF levels it is indirectly affecting the clock.
+   > 4. Initialization is somewhat arbitrary, inheritance from mother cells is 
+   > logical although in reality it is of course not perfect but noisy,  FGF 
+   > effect is also reasonable to get the observed slowing and waves, but it 
+   > would be more logical for clock state like fgf to also be diluted if cells 
+   > grow their volume
 :::
 
 :::{#exr-test}
 
-## Programming
+## Biology
 
-As to not spoil the beans to students not wanting to code the model extension, since the hints for programming may answer above questions, please see instructions for implementing it yourself at the end of this tutorial.
+Describe how the model behaves and why. Do we get stable somites?
 :::
-
-7.  **Biology** With the existing model, or your own model working,
-    describe how this model behaves. Do we get stable somites?
 
 ::: {.content-visible when-meta="params.show_answers"}
 
-    > **Answer** *we get waves of oscillations moving from left to right with increasing
-    > amplitudes. Not yet conversion to a stable stripe pattern*
+  > **Answer** First there is a startup period where we have synchronized 
+  > oscillations in the first formed cells that all still have high FGF. 
+  > Then as the tissue grows and the FGF gradient forms we obtain waves of 
+  > oscillations moving from right to left with increasing amplitudes. The 
+  > right to left movement arises because oscillations are faster on the right 
+  > than on the left, this difference in oscillation frequency arises from the 
+  > impact of FGF on oscillator frequency. However, the oscillations do not 
+  > become halted and transformed into a stable spatial pattern because there 
+  > is no memory mechanism in place.
 :::
 
-8.  **Biology & Programming**
-    What is still missing is a means to
-    transform the temporal oscillations in the posterior of the tissue
-    into a spatial pattern in the anterior. Now, let's implement a model
-    that allows for fixation of the somite states.
+:::{#exr-test}
+## Biology & Programming
 
-    1.  We will add an extra 'memory' molecule `M` inside the cell that
-        will be produced depending on the values of FGF and the clock..
-        To do so add a new attribute to the cell Class that will contain
-        the value of a memory molecule. Also, upon division, let cells
-        inherit the memory value from the mother cell.
+What is still missing is a means to transform the temporal oscillations in 
+the posterior of the tissue into a spatial pattern in the anterior.  In the 
+French Flag morphogen gradient lecture we discussed that memory mechanisms 
+are important to stabilize spatial patterns once the start up signal that broke 
+the symmetry and initialized patterning has gone. It turns out that such a
+memorization/stabilization mechanism is also essential to convert oscillations 
+to stripes. Add a memorization mechanism to the model to achieve this. *Hint*: Make 
+use of an extra ‘memory’ molecule $M$ in each cell and perform its updating inside 
+the function `run_clocks`. To see what you are doing, visualize the spatial pattern 
+of $M$` over time following the same procedure as for visualizing the `fgf` and $p$ 
+values. Think about where, when and what should be memorized to design how $M$ 
+is regulated and what $M$ itself affects and take a stepwise approach.
 
-    2.  Change the `run_clocks` function by creating two conditions:
+    1.  Add an extra 'memory' molecule $M$ as a new attribute to the Class `Cell`,
+    which value is inherited from the mother cell upon division. To create memory 
+    we need bistability, which can be easily achieved by having the memory molecule 
+    having a non-linear saturating positive feedback on itself.  However, doing only 
+    this it will depend on the initial value of  $M$ -below or above a threshold- whether 
+     $M$ will autoactivate or not. Additionally, if it happens it will occur across 
+    the entire tissue.  
 
-        1.  If the fgf level is between some upper and some lower bound,
-            the clock is updated and simulated after the memory value is
-            updated according to this
-            formula:
+    2.  Thus, we need to make $M$ dependent on the clock. To achieve this, we can start 
+    with low values of  $M$ that prevent autoactivation, and then have $M$ activated by 
+    either $p$ (part of the clock) or $M$ itself using the following function: 
             $$\frac{dM}{dt}=c\max\left(\frac{p^4}{h_p^4+p^4}, \frac{M^4}{h_M^4+M^4}\right)-\delta M.$$
-            Add the new memory parameters as global
-            parameters at the top of the file. For starters, you can
-            give them the following values:
-
-            1.  $\text{FGF upper bound}=10$
-            2.  $\text{FGF lower bound}=9.75$
-            3.  $c=0.01$
-            4.  $h_p=8.5$
-            5.  $h_M=0.5$
-            6.  $\delta=0.01$
-
-        1. Otherwise, the clock is updated and simulated as normal, and
-            nothing changes with the memory molecule of the cell
-
-    3.  To visualize the memory, follow the same procedure as for
-        visualizing the `fgf` and `p` values: put in a string referring to
-        the new attribute you created for the molecule in step 1.
-
-9. **Biology** Do you get stable somite formation on the left/anterior of the tissue?
-Is it a regular pattern of somites? What happens if the requirement for
-updating $M$ is only that FGF should be below a certain value? What
-happens if the equation for $\frac{dM}{dt}$ only depends on $p$ and not $M$ itself.
-
+            
+    However, now we simply always get activation of $M$ everywhere.
+    3.  Since oscillations occur in the PSM and stripe formation occurs only more anteriorly 
+    we should constrain memorization to occur only below a certain FGF value. As a consequence, 
+    high levels of $M$ now only arise anteriorly, but there is no pattern yet and oscillations 
+    keep occurring.  This is because cells cycle through high and low p values so all cells at 
+    some point have high $p$ values and can induce $M$.
+    4. So in addition to have memorization occur only below a certain FGF value it should also 
+    occur above another, lower FGF value, constraining it to occur in a limited temporal window 
+    that enables cells passing through there with a high $p$ state to induce a high $M$ state while 
+    cells pasing through with a low $p$ state to not induce a high $M$ state. You should get somite 
+    patterns that are stable, but not necessarily regular. Still $m$ and $p$ oscillations continue.
+    5. As a final step, beyond the FGF window where we memorize $M$ we no longer update either $M$ 
+    or the clock.
+:::
 ::: {.content-visible when-meta="params.show_answers"}
 
-  > **Answer** *They should get somite patterns that are stable, but not necessarily
-regular. If only one threshold all goes to high state, because
-eventually all go through all phases, you need to memorize who was
-within a limited time/space window in a particular state. If only P
-dependent M is activated but does not memorize so it will be just as
-unstable as P before.*
-:::
+  > **Answer** See code `05_answers_clockplusfgf_memory.py`
 
-10. **Biology** Both zebrafish and mice are common model organisms, so
-    we know a lot about the biological parameters of their
-    somitogenesis. See the following list:
+:::
+:::{#exr-test}
+
+## Biology
+
+Both zebrafish and mice are common model organisms, so we know a lot about the biological 
+parameters of their somitogenesis. See the following list:
 
     | Parameter                 | Zebrafish             | Reference                                                                                                                                            | Mouse                                                                     | Reference                                     |
     |---------------------------|-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|-----------------------------------------------|
@@ -308,86 +335,113 @@ unstable as P before.*
         but not too many plot updates in one simulation.
     -   You can test the clock parameters separately with the `clock.py`/`rolling_clock.py`
         script. Don't forget that FGF has an effect on tau!
+:::
+::: {.content-visible when-meta="params.show_answers"}
 
-## Further (open) questions
+  > **Answer** See codes `06_answers_clockplusfgf_memory_mouse.py` and
+  `06_answers_clockplusfgf_memory_zebrafish.py`.
+  > 
+  > **Zebrafish:**
+  > 
+  > Totaltime: 18 hours for duration of somitogenesis + 10 hours startup phase.
+  >
+  > Cell width= 30-50 $\mu$ sized somite/5 cells per somite = 6-10 so 8
+  > 
+  > Growthrate: 30 somites x 5 cells x 8$\mu$ / 18 hours = $1200$\mu$/18*3600$s
+  > 
+  > For clock frequency:
+  > 
+  > $\tau$ times 0.25
+  > 
+  > Fac = 6 (multiplies alpha, beta, mu, v)
+  >
+  > This gives 32/31 somites with on average 4.9 cells, so perfect.
+  > 
+  >
+  > **Mouse:**
+  > 
+  > Simply doing the computations would give you: 
+  >
+  >
+  > Totaltime: 5 days for duration of somitogenesis + 15 hours startup phase
+  >
+  > Cell width = 120$\mu$ sized somite/5-11 cells = $120/8=15$
+  >
+  > Growthrate: 65 somites x 8 cells x 15$\mu$ / 5 days = $7800/5* 24 *3600$s
+  >
+  > For clock frequency:
+  >
+  > $\tau$ times 1.4-1.6 is sufficient (Fac=1 (multiplies alpha, beta, mu, v))
+  > 
+  > Somehow this does not fully work:
+  > 
+  > Too few cells (not $65*8=520$) too short tissue (not $65*8*15=7800$) and only 
+  > 24 segments. First, remember $\tau_{local}=(1+0.5 *(100-localfgf)/100))*\tau_{global}$. 
+  > So $\tau_{local}$ max 1.5 times $\tau_{global}$  so the also increasing $\tau_{global}$ 
+  > 1.4-1.6 times 1.5 makes it really slow. Indeed $\tau$ times 1.2 gives 31 segments, $\tau$ 
+  > times 1 gives   > 36 segments, $\tau$ times 0.7 gives 49 segments
+  > 
+  > Good to realize that the numbers in the table do not completely add up:
+  > 
+  > If it takes 5 days =$5*24=120$ hours, and the period is 2-3 hours this would result 
+  > in 40-60 segments but never 65. For a duration of 5.5 days and $\tau$ times 0.6 we 
+  > get to 62 somites of size 9, so quite close.
+
+:::
+
+:::{#exr-test}
+
+## Questions for master students
+
 The model currently has a number of assumptions that we can
   question. Feel free to explore any of these further open questions
   and study how it effects the outcome of the model:
 
--   What if the relationship between FGF and tau is shaped differently?
+-   What if the relationship between FGF and $\tau$ is shaped differently?
     For instance, if the clock runs faster on the left/anterior than on
     the right/posterior?
 -   What if the clock state of a daughter cell is started fresh rather
     than being a copy from the mother cell?
 -   What if the clock $m$ and $p$ are diluted by growth?
--   What if tau is unaffected by FGF: can we still get somites fixed in
+-   What if $\tau$ is unaffected by FGF: can we still get somites fixed in
     place?
-    
-    ::: {.content-visible when-meta="params.show_answers"}
-
-  > **Answer** These are open questions and do not have a single correct answer. Feel free to discuss with us if you find something interesting or have an interesting answer. 
 :::
 
-## References for biological parameters:
+::: {.content-visible when-meta="params.show_answers"}
 
-(a) [*https://anatomypubs.onlinelibrary.wiley.com/doi/10.1002/1097-0177(2000)9999:9999%3C::AID-DVDY1065%3E3.0.CO;2-A*](https://anatomypubs.onlinelibrary.wiley.com/doi/10.1002/1097-0177(2000)9999:9999%3C::AID-DVDY1065%3E3.0.CO;2-A)
+  > **Answer** These are open questions and do not have a single correct answer. Feel free 
+  > to discuss with us if you find something interesting or have an interesting answer. 
+:::
 
-(b) [*https://doi.org/10.1016/j.gde.2012.05.004*](https://doi.org/10.1016/j.gde.2012.05.004)
-
-(c) [*https://doi.org/10.1242/dev.65.Supplement.103*](https://doi.org/10.1242/dev.65.Supplement.103)
-
-(d) [*https://doi.org/10.1242/dev.161257*](https://doi.org/10.1242/dev.161257)
-
-(e) [*https://doi.org/10.3389/fcell.2022.944016*](https://doi.org/10.3389/fcell.2022.944016)
-
-(f) [*https://www.sciencedirect.com/science/article/pii/S0079610718300178*](https://www.sciencedirect.com/science/article/pii/S0079610718300178)
-
-## Combining the clock and FGF wavefront model - programming instructions
-
-Let us now combine the (rolling) clock and the wavefront, and assume
-that the FGF wavefront affects tau such that as FGF levels drop tau goes
-up and oscillations slow. Here are some tips and hints to help you along
-the way:
-
-1.  Try implementing things in steps and run your code in between steps:
-    this is easier to debug than changing everything in one go.
-2.  Use the file `rolling_clock.py` to import the `clock` class from. Make
-    sure that every cell gets initialized with a clock by adding a `clock`
-    as a `cell` Class attribute.
-3.  Of course, we must not forget that a cell inherits the clock from
-    its mother. Use the `__copy__` method from the `clock` Class to set
-    the clock of the freshly divided daughter cell the same as the
-    mother's.
-4.  There are many ways that FGF could affect tau. For this tutorial,
-    stick to the following relationship:
-    $$\tau_\text{cell}=\tau_\text{model}(1+0.5\frac{100-\text{FGF}\_\text{cell}}{100}),$$
-    where $\tau_\text{cell}$ is the tau of a specific cell, and $\tau_\text{model}$ is a global
-    tau set as a model parameter. To implement this, create a method
-    `update_clock` for the `cell` Class, that uses the `clock` Class's `set_tau`
-    method to update the clock of the cell.
-5.  Make a method in the `tissue` class called `run_clocks` that simulates
-    the clock of every cell in the tissue. Use the `Clock`'s `simulate`
-    method. For simplicity, we assume that growth does not affect the
-    concentrations of $m$ and $p$.
-6.  Make sure that the tissue method `run_clocks` also updates the clock
-    of the cell, and that the `simulate_development` function also lets
-    the clocks run.
-7.  Visualize the `p` values of every cell. You can reuse the existing
-    visualisation methods `initialize_axis_cell_data` and
-    `update_plot_cell_data` from `graphics.py`, but now let them display `p`
-    values instead of `fgf` values. You can give the name of the attribute as a
-    string to the `initialize_axis_cell_data` function, so something like
-    `clock.p_values[-1]` instead of `fgf` might already work depending on
-    your exact implementation of the clock.
-8.  Once you're done, check if your
-    model behaves as it should with the teacher/assistant or the file
-    `clockplusfgf.py` directly.
-    
-    
 ## Relevant literature
 
 If you want to know more about the model system and previous models,
 have a look at the following (after the tutorial):
 
-[Lewis (2003) _Autoinhibition with Transcriptional Delay
-A Simple Mechanism for the Zebrafish Somitogenesis Oscillator](https://doi.org/10.1016/S0960-9822(03)00534-7)
+@lewis2003autoinhibition Autoinhibition with transcriptional delay: a simple mechanism for the zebrafish somitogenesis oscillator. 
+
+@hester2012multi A Multi-cell, Multi-scale Model of Vertebrate Segmentation and Somite Formation. 
+
+@herrgen2010intercellular Intercellular coupling regulates the period of the segmentation clock.
+
+@soroldoni2014doppler Genetic oscillations. A Doppler effect in embryonic pattern formation.
+
+@sonnen2018modulation Modulation of Phase Shift between Wnt and Notch Signaling Oscillations Controls Mesoderm Segmentation. 
+
+@bulusu2017spatiotemporal Spatiotemporal Analysis of a Glycolytic Activity Gradient Linked to Mouse Embryo Mesoderm Development.
+
+@van2025scaling Coupling of cell proliferation to the segmentation clock ensures robust somite scaling.
+
+## References for biological parameters:
+
+(a) @stickney2000somite
+
+(b) @saga2012mechanism
+
+(c) @tam1981control
+
+(d) @ishimatsu2018size
+
+(e) @carraco2022vertebrate
+
+(f) @tomka2018travelling

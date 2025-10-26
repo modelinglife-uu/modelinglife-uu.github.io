@@ -47,7 +47,7 @@ book:
             - differentiation_intro_text.qmd
             - differentiation_practical_1.qmd
             - differentiation_practical_2.qmd
-    - part: "IV) Environment and Development"
+    - part: "IV) Environment"
       chapters:
             - evdev_intro_text.qmd
             - evdev_practical.qmd

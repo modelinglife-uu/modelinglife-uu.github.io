@@ -1,96 +1,370 @@
-# Modeling Thermomorphogenesis in Plants
+---
+params:
+  show_answers: true
+---
 
-Plants respond to temperature not only through metabolic changes but also by adjusting their morphology. A well known response of plants to increased ambiant temperature is the lifiting of their leaves (hyponasty) and  increasing their petiole (stalk between leaf and stem) length to lower the internal leaf temperature. It is thought that this may help plants cope with heat, but it's not always clear whether and if so how this actually improves growth.
-In this practical, we will use and extend a small ODE model of carbon (C) and leaf area (LA) dynamics and explore how temperature and thermomorphogenic responses affect growth. 
-You'll simulate different temperature conditions and analyze how traits like leaf angle and size affect photosynthesis and carbon respiration rate,  and how this affects overall plant growth. Later, you will investigate the adaptive value of this response, as this is still an open question.
+## Modeling Thermomorphogenesis in Plants
+
+Plants respond to temperature not only through metabolic changes but also by adjusting 
+their morphology. A well known response of plants to increased ambiant temperature is the 
+lifiting of their leaves (hyponasty) and increasing their petiole (stalk between leaf and 
+stem) length to lower the internal leaf temperature. It is thought that this may help plants 
+cope with heat, but it's not always clear whether and if so how this actually improves growth.
+In this practical, we will use and extend a small ODE model of carbon (C) and leaf area (LA) 
+dynamics and explore how temperature and thermomorphogenic responses affect growth. You'll 
+simulate different temperature conditions and analyze how traits like leaf angle and size 
+affect photosynthesis and carbon respiration rate, and how this affects overall plant growth. 
+Later, you will investigate the adaptive value of this response, as this is still an open question.
+  
+![Fig 1. Taken from Quint et al., Nat. Plants 2016; Taken from Bridge et al., Interface 2013.](images/practical7.png){#p7}
+
+
 
 ## The model
-We start with a simple two ODE model where leaf area (L) grows with rate G, which depends on carbon concentration ($C_c$) and leaf area. Carbon (C) is produced by photosynthesis (P) dependent on leaf area, leaf angle ($\alpha$), and temperature (T). Carbon is consumed by growth and respiration (R), dependent on temperature and leaf area again:
+In `code 00_Environment_and_development.py` we start with a simple two ODE model where leaf area ($L$) grows with rate $G$, which depends on carbon concentration ($C_c$) and leaf area. Carbon ($C$) is produced by photosynthesis ($P$) dependent on leaf area, leaf angle ($\alpha$), and temperature ($T$). Carbon is consumed by growth and respiration ($R$), dependent on temperature and leaf area again:
 
- $\frac{dC}{dt} = P(L,T,\alpha) - R(L, T) - G(C_c, L)$ 
- 
- $\frac{dL}{dt} = G(C_c, L)$
+$\frac{dC}{dt}=P(L,T,\alpha)-R(L,T)-G(C_c,L)$
 
+$\frac{dL}{dt}=G(C_c,L)$
 
-### Photosynthesis
-Photosynthesis is a complex process that can be modeled in many different ways with varying complexity. Here we included a semi-detailed photosynthesis model based on the assumption that the protein RubisCo is the limiting step in photosynthesis. This model has 6 parameters and 2 environmental variables, of which all parameters are temperature sensitive. This temperature sensitivity is based on the Arrhenius equation, which describes the temperature dependency of chemical reaction rates.
+### Photosynthesis 
+
+Photosynthesis is a complex process that can be modeled in many different ways with varying
+complexity. Here, in the function `Photosynthesis_per_m2()` we included a semi-detailed 
+photosynthesis model based on the assumption that the protein RubisCo is the limiting step in
+photosynthesis. This model has 6 parameters and 2 environmental variables,  of which all 
+parameters are temperature sensitive. This temperature sensitivity is based on the Arrhenius
+equation, which describes the temperature dependency of chemical reaction rates.
 
 ### Maintenance Respiration
-Maintenance respiration is a term used in biological systems to describe all energy/carbon consuming processes that a plant must do to survive. Similar to photosynthesis, the rates of these reactions increase with temperature, and as such, carbon costs greatly increase. We model this using the Q10 equation, that describes how much a rate increases for 10 degrees of temperature increase.
+Maintenance respiration is a term used in biological systems to describe all energy/carbon 
+consuming processes that a plant must do to survive. Similar to photosynthesis, the rates of 
+these reactions increase with temperature, and as such, carbon costs greatly increase. We model 
+this in the function Respiration_per_m2() using the Q10 equation, that describes how much a rate
+increases for 10 degrees of temperature increase.
 
-## Question 1 - Temperature Effects on Photosynthesis, Respiration and Growth
-Lets first investigate how photosynthesis and respiration depend on temperature.
+## Exercises
 
-Q1.1 Plot photosynthesis and respiration rate as a function of temperature, using the functions defined above. Explain: 
-    • What happens to net carbon gain at high temperature?
-    • Why high temperature is problematic for growth in this model?
+:::{#exr-test}
 
-Q1.2 Run simulations of the ODE model for low (15°C), medium (25°C), and high (35°C) temperatures. Which plant performs best? Which plant worst? Why is this?
+##	Algorithmic thinking and Biology - Temperature Effects on Photosynthesis, Respiration and Growth
+Let us first investigate how photosynthesis and respiration depend on temperature.
 
-## Question 2 - Thermomorphogenesis – Leaf angle increase 
-Until now we have investigated the effect of temperature on plants that do not respond to their environment, but plants do respond to their surroundings. Let us now extent the model to include this hyponastic response to high temperature.
-
-Q2.1 The photosynthesis function already includes a term for ‘effective leaf area (LA_eff)’, but the function does currently return the total leaf area. Rewrite this function to return projected area onto the ground depending on the angle of the leaf. Plot the effective leaf area as a function of angle. How does hyponasty affect photosynthesis? What other factors could affect effective leaf area?
-
-Q2.2 Now investigate the effect of the increased leaf angle. Compare medium (25°C) and high temperature (35°C) for normal (20°) and increased (40°) angle. What is the effect of leaf hyponasty on plant growth?
-
-## Question 3 - Thermomorphogenesis – Cooling Benefit
-The thermomorphogenesis response does also have a positive effect. Leaf hyponasty is shown to lower leaf temperature with a few degrees by improving heat dissipation and decreasing the area in which direct sunlight hits the leaves.
-
-Q3.1 Investigate the effect of the leaf cooling. How much cooling is needed for hyponasty to have an effect? 
-
-Q3.2 Hyponasty is shown to lower leaf temperature 1-3°C, what is the effect of this cooling on plant growth? And would you argue that the response is ‘justified’ by the current model, i.e. is the cooling benefit large enough to justify the costs of hyponasty?
-
-## Question 4 - Is Thermomorphogenesis Adaptive?
-The cooling down of the leaves is often thought to be an important adaptive trait. From the simulations we've done so far this is not very clear.
-It might therefore very well be that we miss important processes in the current model besides the photosynthesis efficiency and maintenance respiration rate. 
-In this last question of the practical you will extent the model with a thermomorphogenic process that you think can play a role in increasing plant growth.
-This is also an open question in current research, so there is not one correct answer. To help you think, we have come up with some hypothesis you can implement and investigate.
-Pick one hypothesis to work on and investigate if this would provide an adaptive benefit? If you have extra time, see if you can combine multiple hypotheses.
+  a. Plot photosynthesis and respiration rate as a function of temperature, using the functions 
+  defined above. Explain: What happens to net carbon gain at high temperature? Why is high
+  temperature problematic for growth in this model?
+  
+  b. Run the code and study the output for leaf area and carbon. Why does leaf area increase
+  exponentially while carbon levels saturate? What carbon level are you actually plotting?
+  
+  c. 	Now run simulations of the ODE model for low (15°C), medium (25°C), and high (35°C)     
+  temperatures. Which plant performs best? Which plant worst? Why is this?
 
 
-### Hypothesis 1 - Day-Night Rhythm
-During the night, cooler temperatures reduce maintenance respiration rates, but photosynthesis halts as sunlight is no longer available. To model this, implement the following changes for nighttime conditions:
 
-- **Temperature drops**: Simulate the cooling effect of nighttime.
-- **No photosynthesis**: Photosynthesis does not occur without sunlight.
-- **Respiration continues**: Maintenance respiration persists despite the absence of photosynthesis.
-- **Hyponasty decreases**: Leaf angles return to a less pronounced state.
+:::
 
-- Analyze how the absence of photosynthesis at night affects carbon balance.
-- Examine the impact of reduced nighttime temperatures on maintenance respiration rates.
-- Explore how changes in leaf angle during the night influence overall plant growth.
+::: {.content-visible when-meta="params.show_answers"}
 
-Additionally, plants store carbon during the day to compensate for the lack of photosynthesis at night. Investigate whether this carbon storage provides advantages at specific times of the day or over extended periods. 
-Analyze how these day-night dynamics influence overall plant growth and adaptation.
+  > **Answer** 
+  >
+  > a. See answer code '01_Environment_and_development_answer.py'
+  > You need to do this plotting outside of the plant growth simulation loop by calling the
+  > photosynthesis and respiration functions for a range of temperatures (10-40 degrees).
+  >
+  > b. $dLA/dt=Gmax*(C*/(C*+K))*LA$
+  >
+  > This gives $LA(t)=LA(0)*exp(Gmax*(C/(C+K))*t)$
+  >
+  > In contrast:
+  >
+  > $dC/dt=photosynthesis-respiration-growth$
+  >
+  > $dC/dt=p*LA-d*LA- Gmax*(C*/(C*+K))*LA$
+  >
+  > Solving $dC/dt=0$ we get $LA=0$ (no plant) or
+  >
+  > $p-d-Gmax*(C*/(C*+K))=0$
+  >
+  > $p-d=Gmax*(C*/(C*+K))$
+  >
+  > $(p-d)*C*+(p-d)*K=Gmax*C*$
+  >
+  > $(p-d)*K=(Gmax-p+d)*C*$
+  >
+  > $C*=(p-d)*K/(Gmax-p+d)$
+  >
+  > $C*=C/LA$
+  >
+  > So carbon concentration equilibrates, not total carbon
+  >
+  > c. See answer `code 01_Environment_and_development_answer.py` for running and plotting 
+  > the 3 different temperatures.
+  > At 15 degrees respiration is low but photosynthesis is far below optimal, so at 25 degrees 
+  > you loose more to respiration but that is overcompensated by the increase in photosynthesis, 
+  > at 35 degrees photosynthesis is beyond its optimum while respiration is now very high; as a
+  > consequence 25 degrees gives optimum growth and 35 the worst.
 
-### Hypothesis 2 - Stomata
-Stomata play a critical role in regulating gas exchange and water loss in plants. As leaf temperature increases, 
-stomata open to enhance transpiration, which cools the leaf through evaporative cooling. 
-This mechanism is particularly effective in well-watered plants, where increased stomatal opening can significantly reduce leaf 
-temperature up to around 35°C. However, at very high temperatures, 
-stomata may close to prevent excessive water loss, which can lead to overheating. 
-Additionally, stomatal opening increases photosynthesis rates by improving gas exchange efficiency.
 
-To model this, implement the following changes:
+:::
 
-- **Stomatal opening increases transpiration**: Simulate the cooling effect of transpiration on leaf temperature.
-- **Stomatal opening enhances photosynthesis**: Include the effect of improved gas exchange on photosynthesis rates.
-- **Stomatal closure at high temperatures**: Model the reduction in cooling and photosynthesis efficiency due to stomatal closure.
 
-- Analyze how stomatal opening affects leaf cooling and photosynthesis under moderate temperature conditions.
-- Investigate the trade-offs between cooling benefits and photosynthesis efficiency at very high temperatures.
-- Examine how stomatal closure impacts plant growth and carbon balance under heat stress.
+:::{#exr-test}
 
-### Hypothesis 3 - Leaf Aspect Ratio
-Leaf size and shape can influence both photosynthesis and respiration rates. Smaller or thinner leaves may reduce maintenance respiration costs due to a lower overall biomass, while potentially maintaining a relatively high photosynthesis rate per unit area. A response often seen during thermomorphogenesis is a change in the 'leaf-aspect ratio', where the leaf width decreases but the length stays the same. What is also observed is that leaves become thinner, maintaining their surface area, but decreasing the biomass and thus respiration demand. 
 
-To model this, implement the following changes:
+##	Mathematical & Biological thinking - Hyponasty – Leaf angle increase  
 
-- **Smaller and/or thinner leaves reduce respiration costs**: Simulate the effect of reduced biomass on maintenance respiration rates.
-- **Leaf-aspect area changes with temperature**: Model the effect of different leaf shapes on effective leaf-area.
+Until now we have investigated the effect of temperature on plants that do not respond to their
+environment, but plants do respond to their surroundings.Plants display a variety of responses to
+elevated temperature, and one of these is so-called leaf hyponasty in which leaves are positioned 
+in a more upward orientation that is often accompanied by longer leaf stems (petioles) and smaller
+leaves (blades).  Let us extend the model to first simply include the orientation aspect of this
+hyponastic response to high temperature.
 
-- Analyze how altering leaf thickness and aspect ratio affects plant growth under varying temperature conditions.
-- Investigate the trade-offs between reduced respiration costs and decreased leaf area.
-- Determine if smaller and/or thinner leaves provide an adaptive advantage under heat stress.
+  a. 	The photosynthesis function already includes a term for ‘effective leaf area (LA_eff)’, 
+  but the function does currently return the total leaf area. Rewrite this function to return
+  effective leaf area as a function of leaf elevation angle, assuming that light comes from above.
+  Plot the effective leaf area as a function of angle. How does hyponasty affect photosynthesis?
+  What other factors could affect effective leaf area?
+  b. 	Now investigate the effect of the increased leaf angle on plant growth. Compare medium 
+  (25°C) and high temperature (35°C) for normal (20°) and increased (40°) angle. 
+
+:::
+
+::: {.content-visible when-meta="params.show_answers"}
+
+  > **Answer** 
+  > 
+  > a. See answer code '02_Environment_and_development_answer.py' 
+  > Under the assumption that light comes from above it holds that effective leaf area=the area
+  > projected on the horizontal surface which can be found by taking the cosine of the angle of 
+  > the leaf. So the larger the angle the smaller the effective leaf area. This results in an
+  > effective reduction of leaf area and thus photosynthesis. Shading, chloroplast density, leaf
+  size could all affect effective leaf area.
+  >
+  > b. As can be expected from the above, the temperature increase combined with the angle increase
+  >now both reduce photosynthesis and hence carbon and leaf area increase, so it is basically
+  > adding insult to injury rather than helping.
+
+:::
+
+:::{#exr-test}
+
+##	Biology - Hyponasty– Cooling Benefit
+
+Leaf hyponasty is shown to lower leaf temperature with a few degrees by improving heat 
+dissipation and decreasing the area in which direct sunlight hits the leaves.
+
+  a. Investigate the effect of the leaf cooling. How much cooling is needed for hyponasty to 
+  have a net positive effect? Simply assume a certain cooling effect and hence apply a lower
+  temperature than the environmental one.
+  
+  b. 	Hyponasty is shown to lower leaf temperature by only 1-2°C (see the left picture at the
+  beginning of this document), what is the effect of this amount of cooling on plant growth? 
+  Would you argue that this hyponastic response is adaptive in the current model (i.e. assuming no
+  other factors play a role)?
+  
+  c. 	Reanalyze the curves describing how photosynthesis rate depends on temperature and how
+  effective leaf area depends on angle and explain your earlier results.
+
+:::
+::: {.content-visible when-meta="params.show_answers"}
+
+  > **Answer** 
+  > 
+  > a. See answer code '03_Environment_and_development_answer.py'
+  > If the 40 degree angle results in slightly more than 3 degrees of cooling, causing internal
+  > leaf temperature to be less then 32 degrees instead of the external 35 degrees, final leaf 
+  > area is larger than for 35 degrees and an angle of 20 degrees. Note that if under high
+  > temperature leaf anlge would increase to only 35 degrees, a slightly less than 3 degrees of
+  > cooling would already have a positive effect and this positive effect would start already at
+  > 32.5 degrees celcius.
+  >
+  > b. See answer code `03_Environment_and_development_answer.py`
+  > No for only 1-2 degrees of cooling final leaf area is smaller under a hyponastic response 
+  > than if leaf angle were kept at 20 degrees under 35 degrees celcius temperature.	
+  > 
+  > c. Photosynthesis is normalized to 100% at 25 degrees and is 90% at 35 degrees. Lowering leaf
+  > temperature with 1-2 degrees by hyponasty recovers this to 95 % while lowering it to 2-3
+  > degrees recovers it to 100%. Still since there is only a 10% loss of photosynthesis to high
+  > temperature there is also only a max 10% gain by cooling the leaves. At the same time a
+  > hyponastic angle of 40% decreases effective leaf area to 80 percent whereas it is 95% for 20
+  > degrees. So the loss is 15%, which is more than the potential gain.
+
+
+:::
+
+:::{#exr-test}
+
+##	Biology -Is hyponasty adaptive?
+The cooling down of the leaves through hyponasty is thought to be an important adaptive trait.
+Interestingly, from the simulations we've done so far this adaptive advantage is not very clear. 
+It might therefore very well be that we miss important processes in the current model. In this 
+last question of the practical you will extend the model with additional processes also relevant 
+in plants to see if this may help explain the adaptiveness of hyponasty. This is also an open
+question in current research, so there is no clear answer and you might actually come up with 
+novel ideas! To help guide your thinking, we have come up with some additional plant processes 
+you can implement and investigate to see how these impact adaptiveness of leaf hyponasty under 
+high temperature. Pick one to work on and investigate if this would render hyponasty more clearly
+adaptive. If you have extra time, see if you can combinethem. If you have other ideas to work on,
+this is also great!
+
+  a. *Hypothesis 1 - Day-Night Rhythm *
+  
+  We found that during the day, while hyponastic cooling brings photosynthesis closer to its
+  optimum temperature and reduces respiration, this is insufficient to overcompensate the costs 
+  of reduced effective leaf area. During the night, cooler leaf temperatures still reduce
+  maintenance respiration, while photosynthesis halts and hence reduction of effective leaf area
+  plays no role, suggesting at night time hyponasty has only advantages. To investigate whether
+  this results in a net adaptive effect of leaf hyponasty incorporate the following processes in
+  your model:
+  - Temperature: Simulate the cooling effect of nighttime.
+  - Photosynthesis: Photosynthesis does not occur without sunlight, so simulate the change of 
+  light over the day and its effects.
+  - Respiration: Maintenance respiration persists in absence of photosynthesis.
+  - Hyponasty changes: Leaf angles change over the course of a day, reaching a minimum early during
+  the day and being relatively high during the night.
+  - Growth rate: Counterintuitively in plants often most growth happens during the night, when
+  water loss is minimal and hence turgor pressure is high.
+  
+  Hint: use sinus functions to describe the daily rhythms and their relative phases. Make sure 
+  that light is really zero at night.
+  
+  **a1.** Analyze how the absence of photosynthesis at night affects carbon balance. Do you think what 
+  you see happening is reasonable? How could you repair this?
+
+  **a2.** Examine the impact of nighttime temperatures on maintenance respiration rates. 
+  
+  **a3.** Explore how changes in leaf angle influence overall plant growth.
+  
+  **a4.** Now combine the two
+  
+  b. 	*Hypothesis 2 – Stomata*
+  
+  Stomata play a critical role in regulating gas exchange and water loss in plants. As leaf
+  temperature increases, stomata open to enhance transpiration, which cools the leaf through
+  evaporative cooling. This mechanism is particularly effective in well-watered plants, where
+  increased stomatal opening can significantly reduce leaf temperature up to around a maximum of
+  9-10°C. However, at very high temperatures, stomata may close to prevent excessive water loss,
+  which can lead to overheating. Additionally, stomatal opening increases while stomatal closing
+  decreases photosynthesis rates by affecting gas exchange efficiency. Thus, incorporating this
+  dependence of stomatal aperture on temperature may enhance the detrimental effects of high
+  temperature, offering more opportunity for leaf cooling effects of hyponasty to matter.
+  
+  To model this, implement the following changes:
+  - Stomatal opening affects photosynthesis: Include in the photosynthesis function a
+  multiplication factor for stomatal aperture.
+  - Stomatal opening depends on temperatures: Include a function that describes how stomatal
+  aperture first increases with temperature, reaches a maximum at around 25 degrees and then
+  declines for higher temperatures. Aperture should be approximately half the maximum value for
+  temperatures of 10 degrees and 35 degrees.
+  - Stomatal opening increases transpiration: Simulate the cooling effect of transpiration on leaf
+  temperature. 
+  
+  Analyze how stomatal opening affects leaf cooling and photosynthesis under moderate temperature
+  conditions. 
+  Investigate the trade-offs between cooling benefits and photosynthesis efficiency at very high
+  temperatures. 
+  Examine how stomatal closure impacts plant growth and carbon balance under heat stress.
+  
+:::
+
+::: {.content-visible when-meta="params.show_answers"}
+
+  > **Answer** 
+  > 
+  > **a1.** Carbon levels at night go below zero because while growth depends on carbon levels,
+  > respiration continues independent of carbon levels in the current model. However, you can not
+  > burn energy you do not have so it is best to make respiration also depend on carbon levels,
+  > this is constistent with experimental observations: @seki2017adjustment
+  >
+  > **a2.** The less temperatures drop during the night,  the larger the reduction in final leaf
+  > area, yet also the closer the final leaf area achieved with hyponasty becomes to that without.
+  > As night time temperature is higher, respiration is higher and leaf cooling becomes more
+  > relevant. So we increase the night time advantage of hyponasty.
+  >
+  > **a3.** For leaf angle we can play with how much the minimum and maximum angles are and when
+  > during the day these are reached. If leaf angle is allowed to drop from 40 to 14 degrees
+  > instead of 20 degrees and the lowest point is reached early in the morning, average day time
+  > angle is lower and hence photosynthesis loss is lower and hence break even is reached easier.
+  > If maximum leaf angle is lowered to 35 degrees it also helps. So here we basically decrease 
+  > the day time costs of hyponasty.
+  >
+  > **a4.** If we make leaf angle during the day low and keep night time temperature high we are able
+  > to make hyponasty adaptive.  The results are a bit shaky in that in the final leaf area versus
+  > temperature curve the non hyponasty and hyponasty curves intersect multiple times but beyond 
+  > 32 degrees with hyponasty is always on top but with small difference.
+  >
+  > b. See answer `code 04_Environment_and_development_Stomata_1.py`
+  > This is a first code with a Gaussian function for how stomatal aperture depends on temperature
+  > that results in stomatal opening being maximal at around 25 degrees. Now slightly less than 2
+  > degrees cooling (on top of the stomatal aperture induced cooling) suffices to make leaf
+  > hyponasty advantageous. This is because temperature increase harms photosynthesis now way more
+  > (leaf area under no hyponasty decreases to 32 instead of 43% while with hyponasty it decreases
+  > to 20  instead of 25%, 43-25=18% 32-20=12%). But this approach is a bit odd: we let stomatal
+  > aperture affect effective leaf temperature, and separately (and before this) substract the
+  > cooling effect of hyponasty.
+  > 
+  > See answer code `04_Environment_and_development_Stomata_2.py`
+  > Instead of doing a manual extra cooling because of leaf hyponastic angle here we made a
+  > function for leaf temperature that takes into account both the stomatal aperture (max cooling
+  > effect of 10 degrees for full aperture at 35 degrees) and the leaf angle (max cooling effect 
+  > of 2 degrees for a 40 degree angle). Now final leaf area decreases to 34% for no hyponasty 
+  > and to 25% for hyponasty so 34-25=9%. (and looking at the lower temperatures done by further
+  > manual substraction is non-sensical now). So, although difference becomes less and less, still
+  > hyponasty costs more than it delivers. Also intriguing that if we put both effects into leaf
+  > temperature directly we can not get it to work while if we put in the 2 degrees cooling from
+  > the angle manually and then the stomatal affect it could work. This is because with the 2
+  > degrees manually, stomatal opening for 33 degrees applies which is 70% whereas without this,
+  > stomatal opening for 35 degrees applies which is 60%, so the actual cooling achieved was
+  > higher.
+  > 
+  > See `04_Environment_and_development_Stomata_3.py`
+  > However in reality stomatal aperture does not depend on external temperature but on leaf
+  > temperature, so let’s make leaf temperature a variable that affects stomatal aperture and is
+  > affected by it. However, we also reduced the stomatal effects on temperature a bit to avoid
+  > weird effects: if internal leaf temperature drops too much instead of external temperature 25
+  > being optimal and 35 far below it, we get internal temperatures 17.5 far from optimum and 25
+  > close to optimum, so now under 35 degrees the plants would be doing better. If we make the
+  > stomata effect on leaf cooling less strong (factor 0.175 instead of 0.29) internal temperatures
+  > are 29 and 20, things are again worse for external temperature of 35, and now for hyponasty
+  > situation is only slightly worse and if external temperature is 37.5 with hyponasty plants 
+  > even perform better. We can further enhance this by boosting angle effect on temperature a bit
+  > (factor 0.4 instead of 0.3). If we now additionally assume that stomatal aperture as a function
+  > of temperature is usually plotted for external not internal temperature and therefore assume
+  > that an external temperature optimum of 24 is approximately an internal leaf temperature of 22
+  > we get a break even for hyponasty at slightly below 35 degrees and plants with hyponasty do
+  > actually a bit better at 35 degrees.
+  > 
+  > As optima are around 25 and stomata always provide some cooling actual growth optimum for angle
+  > of 20 degrees is around 28.5 degrees and things only really start to go down at 35 degrees, 
+  > so there is where the big costs are and where hyponasty earns you more by cooling than it costs
+  > in terms of effective leaf area. This explains why if you increase further effect of angle at
+  > lowering temperature (eg factor 0.8 instead of 0.4), plants do much better at 36/37 degrees
+  > than without hyponasty (i.e. at 36/37 degrees difference gets way bigger), but temperature at
+  > which plants with hyponasty start to do better hardly shifts. If optimum temperature of
+  > stomatal aperture is lowered than temperature at which plant with hyponasty do better becomes
+  > lower.
+  > 
+  > Also note it is a bit of a flywheel effect, angle brings more cooling, more cooling brings 
+  > more stomatal aperture, which brings still more cooling.
+
+:::
+
+
+
+
+
+
+
+## References
+
+Look at this: hyponasty angle quite high during night, dips early in the day
+@praat2024using
+
+Normal and shade avoidance hyponasty is still large in the dark, and dips around dawn for long day conditions: @michaud2017local
+
+For short day conditions it even peaks during the dark and is lower during day: @oskam2023low and @dornbusch2012measuring
+
+
 

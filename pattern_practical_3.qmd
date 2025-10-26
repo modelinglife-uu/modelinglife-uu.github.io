@@ -195,7 +195,7 @@ Next, we will combine the clock and FGF wavefront into a single
   1.  Each cell has its own clock. What clock states is the tissue
         initialized with? And what clock states do newly divided
         cells get?
-    2.  The FGF wavefront affects tau: what function is used for
+    2.  The FGF wavefront affects $\tau$ : what function is used for
         that? What are your expectations for the effect of the FGF
         wavefront on the cells' clocks?
     3.  Does growth affect the clock state?
@@ -310,7 +310,7 @@ parameters of their somitogenesis. See the following list:
   |----------------------------------------------------------------------------------|----------------------------------|-----------------------------------------------------|---------------------------------------------------------------------------|-----------------------------------------------|
   | Duration of somitogenesis | 18 h                  | (a)                                       | 5 days                                                                    | (b)     |
   | Number of somites         | ~30                   | (a)                                       | 65                                                                        | (c) |
-  | Somite size               | 50 micron / 30 micron | (d) (a)    | 120 micron                                                                | (c) |
+  | Somite size               | 50 $\mu$ / 30 $\mu$  | (d) (a)    | 120 $\mu$                                                                 | (c) |
   | Cells per somite          | ~5 cell in diameter   | (a)                                       | 5-11 (estimated from total cell size in 3D, ranging 1 order of magnitude) | (c) |
   | Clock period              | 25 min /30 min        | (d) / (e) / (f) | 2-3 h                                                                     | (e)     |
 
@@ -334,7 +334,7 @@ parameters of their somitogenesis. See the following list:
   -   You might want to adapt your plotting timestep to have sufficient
       but not too many plot updates in one simulation.
   -   You can test the clock parameters separately with the `clock.py`/`rolling_clock.py`
-      script. Don't forget that FGF has an effect on tau!
+      script. Don't forget that FGF has an effect on $\tau$ !
 :::
 
 ::: {.content-visible when-meta="params.show_answers"}

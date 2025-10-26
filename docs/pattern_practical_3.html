@@ -488,15 +488,9 @@ window.Quarto = {
 <div id="exr-test" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.6</strong></span> Next, we will combine the clock and FGF wavefront into a single model.</p>
 <p><strong>Read and interpret existing code:</strong> Read the code of <code>clockplusfgf.py</code> and try to understand the assumptions from this model implementation by answering the following questions:</p>
-<pre><code>1.  Each cell has its own clock. What clock states is the tissue
-    initialized with? And what clock states do newly divided
-    cells get?
-2.  The FGF wavefront affects tau: what function is used for
-    that? What are your expectations for the effect of the FGF
-    wavefront on the cells' clocks?
-3.  Does growth affect the clock state?
-4.  What is your opinion on the assumptions discussed in the three
-    questions?</code></pre>
+<ol type="1">
+<li>Each cell has its own clock. What clock states is the tissue initialized with? And what clock states do newly divided cells get? 2. The FGF wavefront affects tau: what function is used for that? What are your expectations for the effect of the FGF wavefront on the cells’ clocks? 3. Does growth affect the clock state? 4. What is your opinion on the assumptions discussed in the three questions?</li>
+</ol>
 </div>
 <blockquote class="blockquote">
 <p><strong>Answer</strong></p>
@@ -515,32 +509,14 @@ window.Quarto = {
 </blockquote>
 <div id="exr-test" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.8 (Biology &amp; Programming)</strong></span> What is still missing is a means to transform the temporal oscillations in the posterior of the tissue into a spatial pattern in the anterior. In the French Flag morphogen gradient lecture we discussed that memory mechanisms are important to stabilize spatial patterns once the start up signal that broke the symmetry and initialized patterning has gone. It turns out that such a memorization/stabilization mechanism is also essential to convert oscillations to stripes. Add a memorization mechanism to the model to achieve this. <em>Hint</em>: Make use of an extra ‘memory’ molecule <span class="math inline">\(M\)</span> in each cell and perform its updating inside the function <code>run_clocks</code>. To see what you are doing, visualize the spatial pattern of <span class="math inline">\(M\)</span><code>over time following the same procedure as for visualizing the</code>fgf` and <span class="math inline">\(p\)</span> values. Think about where, when and what should be memorized to design how <span class="math inline">\(M\)</span> is regulated and what <span class="math inline">\(M\)</span> itself affects and take a stepwise approach.</p>
-<pre><code>1.  Add an extra 'memory' molecule $M$ as a new attribute to the Class `Cell`,
-which value is inherited from the mother cell upon division. To create memory 
-we need bistability, which can be easily achieved by having the memory molecule 
-having a non-linear saturating positive feedback on itself.  However, doing only 
-this it will depend on the initial value of  $M$ -below or above a threshold- whether 
- $M$ will autoactivate or not. Additionally, if it happens it will occur across 
-the entire tissue.  
-
-2.  Thus, we need to make $M$ dependent on the clock. To achieve this, we can start 
-with low values of  $M$ that prevent autoactivation, and then have $M$ activated by 
-either $p$ (part of the clock) or $M$ itself using the following function: 
-        $$\frac{dM}{dt}=c\max\left(\frac{p^4}{h_p^4+p^4}, \frac{M^4}{h_M^4+M^4}\right)-\delta M.$$
-        
-However, now we simply always get activation of $M$ everywhere.
-3.  Since oscillations occur in the PSM and stripe formation occurs only more anteriorly 
-we should constrain memorization to occur only below a certain FGF value. As a consequence, 
-high levels of $M$ now only arise anteriorly, but there is no pattern yet and oscillations 
-keep occurring.  This is because cells cycle through high and low p values so all cells at 
-some point have high $p$ values and can induce $M$.
-4. So in addition to have memorization occur only below a certain FGF value it should also 
-occur above another, lower FGF value, constraining it to occur in a limited temporal window 
-that enables cells passing through there with a high $p$ state to induce a high $M$ state while 
-cells pasing through with a low $p$ state to not induce a high $M$ state. You should get somite 
-patterns that are stable, but not necessarily regular. Still $m$ and $p$ oscillations continue.
-5. As a final step, beyond the FGF window where we memorize $M$ we no longer update either $M$ 
-or the clock.</code></pre>
+<ol type="1">
+<li><p>Add an extra ‘memory’ molecule <span class="math inline">\(M\)</span> as a new attribute to the Class <code>Cell</code>, which value is inherited from the mother cell upon division. To create memory we need bistability, which can be easily achieved by having the memory molecule having a non-linear saturating positive feedback on itself. However, doing only this it will depend on the initial value of <span class="math inline">\(M\)</span> -below or above a threshold- whether <span class="math inline">\(M\)</span> will autoactivate or not. Additionally, if it happens it will occur across the entire tissue.</p></li>
+<li><p>Thus, we need to make <span class="math inline">\(M\)</span> dependent on the clock. To achieve this, we can start with low values of <span class="math inline">\(M\)</span> that prevent autoactivation, and then have <span class="math inline">\(M\)</span> activated by either <span class="math inline">\(p\)</span> (part of the clock) or <span class="math inline">\(M\)</span> itself using the following function: <span class="math display">\[\frac{dM}{dt}=c\max\left(\frac{p^4}{h_p^4+p^4}, \frac{M^4}{h_M^4+M^4}\right)-\delta M.\]</span></p>
+<p>However, now we simply always get activation of <span class="math inline">\(M\)</span> everywhere.</p></li>
+<li><p>Since oscillations occur in the PSM and stripe formation occurs only more anteriorly we should constrain memorization to occur only below a certain FGF value. As a consequence, high levels of <span class="math inline">\(M\)</span> now only arise anteriorly, but there is no pattern yet and oscillations keep occurring. This is because cells cycle through high and low p values so all cells at some point have high <span class="math inline">\(p\)</span> values and can induce <span class="math inline">\(M\)</span>.</p></li>
+<li><p>So in addition to have memorization occur only below a certain FGF value it should also occur above another, lower FGF value, constraining it to occur in a limited temporal window that enables cells passing through there with a high <span class="math inline">\(p\)</span> state to induce a high <span class="math inline">\(M\)</span> state while cells pasing through with a low <span class="math inline">\(p\)</span> state to not induce a high <span class="math inline">\(M\)</span> state. You should get somite patterns that are stable, but not necessarily regular. Still <span class="math inline">\(m\)</span> and <span class="math inline">\(p\)</span> oscillations continue.</p></li>
+<li><p>As a final step, beyond the FGF window where we memorize <span class="math inline">\(M\)</span> we no longer update either <span class="math inline">\(M\)</span> or the clock.</p></li>
+</ol>
 </div>
 <blockquote class="blockquote">
 <p><strong>Answer</strong> See code <code>05_answers_clockplusfgf_memory.py</code></p>

@@ -192,7 +192,7 @@ Next, we will combine the clock and FGF wavefront into a single
     `clockplusfgf.py` and try to understand the assumptions from this
     model implementation by answering the following questions:
 
-    1.  Each cell has its own clock. What clock states is the tissue
+  1.  Each cell has its own clock. What clock states is the tissue
         initialized with? And what clock states do newly divided
         cells get?
     2.  The FGF wavefront affects tau: what function is used for
@@ -267,7 +267,7 @@ of $M$` over time following the same procedure as for visualizing the `fgf` and 
 values. Think about where, when and what should be memorized to design how $M$ 
 is regulated and what $M$ itself affects and take a stepwise approach.
 
-    1.  Add an extra 'memory' molecule $M$ as a new attribute to the Class `Cell`,
+  1.  Add an extra 'memory' molecule $M$ as a new attribute to the Class `Cell`,
     which value is inherited from the mother cell upon division. To create memory 
     we need bistability, which can be easily achieved by having the memory molecule 
     having a non-linear saturating positive feedback on itself.  However, doing only 
@@ -275,23 +275,23 @@ is regulated and what $M$ itself affects and take a stepwise approach.
      $M$ will autoactivate or not. Additionally, if it happens it will occur across 
     the entire tissue.  
 
-    2.  Thus, we need to make $M$ dependent on the clock. To achieve this, we can start 
+2.  Thus, we need to make $M$ dependent on the clock. To achieve this, we can start 
     with low values of  $M$ that prevent autoactivation, and then have $M$ activated by 
     either $p$ (part of the clock) or $M$ itself using the following function: 
             $$\frac{dM}{dt}=c\max\left(\frac{p^4}{h_p^4+p^4}, \frac{M^4}{h_M^4+M^4}\right)-\delta M.$$
             
     However, now we simply always get activation of $M$ everywhere.
-    3.  Since oscillations occur in the PSM and stripe formation occurs only more anteriorly 
+3.  Since oscillations occur in the PSM and stripe formation occurs only more anteriorly 
     we should constrain memorization to occur only below a certain FGF value. As a consequence, 
     high levels of $M$ now only arise anteriorly, but there is no pattern yet and oscillations 
     keep occurring.  This is because cells cycle through high and low p values so all cells at 
     some point have high $p$ values and can induce $M$.
-    4. So in addition to have memorization occur only below a certain FGF value it should also 
+4. So in addition to have memorization occur only below a certain FGF value it should also 
     occur above another, lower FGF value, constraining it to occur in a limited temporal window 
     that enables cells passing through there with a high $p$ state to induce a high $M$ state while 
     cells pasing through with a low $p$ state to not induce a high $M$ state. You should get somite 
     patterns that are stable, but not necessarily regular. Still $m$ and $p$ oscillations continue.
-    5. As a final step, beyond the FGF window where we memorize $M$ we no longer update either $M$ 
+5. As a final step, beyond the FGF window where we memorize $M$ we no longer update either $M$ 
     or the clock.
 :::
 ::: {.content-visible when-meta="params.show_answers"}

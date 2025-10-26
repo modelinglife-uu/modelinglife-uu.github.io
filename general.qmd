@@ -9,7 +9,10 @@ Course coordinator: Monica Garcia Gomez (m.l.garciagomez@uu.nl).
 We are part of the [Theoretical Biology group of Utrecht University ](https://tbb.bio.uu.nl/aboutus.html)).
 
 ## Course content
-This course will consist of lectures (HC) covering various modelling approaches to study life at different levels accompanied by computer practicals (WC) where students will get hands-on experience on running computational models of the development or the evolution of animals, plants, and microbial systems. 
+This course will consist of lectures (HC) covering various modelling approaches to study life at
+different levels accompanied by computer practicals (WC) where students will get hands-on experience
+on running computational models of the development or the evolution of animals, plants, and microbial
+systems. 
 
 ![Rough roadmap of the Modeling life course](images/timeline.png)
 
@@ -26,7 +29,8 @@ Tuesdays / Thursdays– Lecture and practicals (mandatory)
   - Jan 29, 2026: Minisymposium
 
 ## Learning Goals
-The course aims to provide you with an introductory understanding of computational modeling to study living systems, and their large range of applications.
+The course aims to provide you with an introductory understanding of computational modeling to 
+study living systems, and their large range of applications.
 
 After this course the student can:
 
@@ -48,7 +52,8 @@ Feedback and other matters: [m.l.garciagomez@uu.nl](mailto:m.l.garciagomez@uu.nl
 
 ## Grading 
 
-To pass this course, a minimum of 5,5 is mandatory. Your grade is calculated by the following components:
+To pass this course, a minimum of 5,5 is mandatory. Your grade is calculated by the 
+following components:
 
 Exam:                     70%
 
@@ -56,7 +61,8 @@ Mini project:           30%
 
 ## Attendance
 
-Attendance is mandatory to all lectures and practicals. Should you be unable to attend, please communicate this by email to: [m.l.garciagomez@uu.nl](mailto:m.l.garciagomez@uu.nl).
+Attendance is mandatory to all lectures and practicals. Should you be unable to attend, 
+please communicate this by email to: [m.l.garciagomez@uu.nl](mailto:m.l.garciagomez@uu.nl).
 
 
 

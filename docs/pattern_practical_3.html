@@ -547,35 +547,74 @@ or the clock.</code></pre>
 </blockquote>
 <div id="exr-test" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.9 (Biology)</strong></span> Both zebrafish and mice are common model organisms, so we know a lot about the biological parameters of their somitogenesis. See the following list:</p>
-<pre><code>| Parameter                 | Zebrafish             | Reference                                                                                                                                            | Mouse                                                                     | Reference                                     |
-|---------------------------|-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|-----------------------------------------------|
-| Duration of somitogenesis | 18 h                  | (a)                                       | 5 days                                                                    | (b)     |
-| Number of somites         | ~30                   | (a)                                       | 65                                                                        | (c) |
-| Somite size               | 50 micron / 30 micron | (d) (a)    | 120 micron                                                                | (c) |
-| Cells per somite          | ~5 cell in diameter   | (a)                                       | 5-11 (estimated from total cell size in 3D, ranging 1 order of magnitude) | (c) |
-| Clock period              | 25 min /30 min        | (d) / (e) / (f) | 2-3 h                                                                     | (e)     |
-
-From these parameters, you can derive a number of desired model
-inputs/outcomes:
-
--   The total size of the tissue at the end of somitogenesis
--   The size of a cell
--   Speed of division
-
-Use the model and try to find suitable model parameters to recreate the
-development of both zebrafish and mice: is this model able to describe
-both of these processes? I.e., is this model able to deal with the scale
-differences between zebrafish and mice?
-
-A couple of notes:
-
--   You don't have to exactly recreate the biological parameter with
-    100% precision, except for the number of segments/somites, although
-    it can be a fun challenge to get a complete match.
--   You might want to adapt your plotting timestep to have sufficient
-    but not too many plot updates in one simulation.
--   You can test the clock parameters separately with the `clock.py`/`rolling_clock.py`
-    script. Don't forget that FGF has an effect on tau!</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 11%">
+<col style="width: 18%">
+<col style="width: 25%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Zebrafish</th>
+<th>Reference</th>
+<th>Mouse</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Duration of somitogenesis</td>
+<td>18 h</td>
+<td>(a)</td>
+<td>5 days</td>
+<td>(b)</td>
+</tr>
+<tr class="even">
+<td>Number of somites</td>
+<td>~30</td>
+<td>(a)</td>
+<td>65</td>
+<td>(c)</td>
+</tr>
+<tr class="odd">
+<td>Somite size</td>
+<td>50 micron / 30 micron</td>
+<td>(d) (a)</td>
+<td>120 micron</td>
+<td>(c)</td>
+</tr>
+<tr class="even">
+<td>Cells per somite</td>
+<td>~5 cell in diameter</td>
+<td>(a)</td>
+<td>5-11 (estimated from total cell size in 3D, ranging 1 order of magnitude)</td>
+<td>(c)</td>
+</tr>
+<tr class="odd">
+<td>Clock period</td>
+<td>25 min /30 min</td>
+<td>(d) / (e) / (f)</td>
+<td>2-3 h</td>
+<td>(e)</td>
+</tr>
+</tbody>
+</table>
+<p>From these parameters, you can derive a number of desired model inputs/outcomes:</p>
+<ul>
+<li>The total size of the tissue at the end of somitogenesis</li>
+<li>The size of a cell</li>
+<li>Speed of division</li>
+</ul>
+<p>Use the model and try to find suitable model parameters to recreate the development of both zebrafish and mice: is this model able to describe both of these processes? I.e., is this model able to deal with the scale differences between zebrafish and mice?</p>
+<p>A couple of notes:</p>
+<ul>
+<li>You don’t have to exactly recreate the biological parameter with 100% precision, except for the number of segments/somites, although it can be a fun challenge to get a complete match.</li>
+<li>You might want to adapt your plotting timestep to have sufficient but not too many plot updates in one simulation.</li>
+<li>You can test the clock parameters separately with the <code>clock.py</code>/<code>rolling_clock.py</code> script. Don’t forget that FGF has an effect on tau!</li>
+</ul>
 </div>
 <blockquote class="blockquote">
 <p><strong>Answer</strong> See codes <code>06_answers_clockplusfgf_memory_mouse.py</code> and <code>06_answers_clockplusfgf_memory_zebrafish.py</code>.</p>

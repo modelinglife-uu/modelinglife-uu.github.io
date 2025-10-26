@@ -306,36 +306,37 @@ is regulated and what $M$ itself affects and take a stepwise approach.
 Both zebrafish and mice are common model organisms, so we know a lot about the biological 
 parameters of their somitogenesis. See the following list:
 
-    | Parameter                 | Zebrafish             | Reference                                                                                                                                            | Mouse                                                                     | Reference                                     |
-    |---------------------------|-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|-----------------------------------------------|
-    | Duration of somitogenesis | 18 h                  | (a)                                       | 5 days                                                                    | (b)     |
-    | Number of somites         | ~30                   | (a)                                       | 65                                                                        | (c) |
-    | Somite size               | 50 micron / 30 micron | (d) (a)    | 120 micron                                                                | (c) |
-    | Cells per somite          | ~5 cell in diameter   | (a)                                       | 5-11 (estimated from total cell size in 3D, ranging 1 order of magnitude) | (c) |
-    | Clock period              | 25 min /30 min        | (d) / (e) / (f) | 2-3 h                                                                     | (e)     |
+| Parameter                           | Zebrafish             | Reference                                                                                                                                            | Mouse                                                                     | Reference |
+  |----------------------------------------------------------------------------------|----------------------------------|-----------------------------------------------------|---------------------------------------------------------------------------|-----------------------------------------------|
+  | Duration of somitogenesis | 18 h                  | (a)                                       | 5 days                                                                    | (b)     |
+  | Number of somites         | ~30                   | (a)                                       | 65                                                                        | (c) |
+  | Somite size               | 50 micron / 30 micron | (d) (a)    | 120 micron                                                                | (c) |
+  | Cells per somite          | ~5 cell in diameter   | (a)                                       | 5-11 (estimated from total cell size in 3D, ranging 1 order of magnitude) | (c) |
+  | Clock period              | 25 min /30 min        | (d) / (e) / (f) | 2-3 h                                                                     | (e)     |
 
-    From these parameters, you can derive a number of desired model
-    inputs/outcomes:
+  From these parameters, you can derive a number of desired model
+  inputs/outcomes:
 
-    -   The total size of the tissue at the end of somitogenesis
-    -   The size of a cell
-    -   Speed of division
+  -   The total size of the tissue at the end of somitogenesis
+  -   The size of a cell
+  -   Speed of division
 
-    Use the model and try to find suitable model parameters to recreate the
-    development of both zebrafish and mice: is this model able to describe
-    both of these processes? I.e., is this model able to deal with the scale
-    differences between zebrafish and mice?
+  Use the model and try to find suitable model parameters to recreate the
+  development of both zebrafish and mice: is this model able to describe
+  both of these processes? I.e., is this model able to deal with the scale
+  differences between zebrafish and mice?
 
-    A couple of notes:
+  A couple of notes:
 
-    -   You don't have to exactly recreate the biological parameter with
-        100% precision, except for the number of segments/somites, although
-        it can be a fun challenge to get a complete match.
-    -   You might want to adapt your plotting timestep to have sufficient
-        but not too many plot updates in one simulation.
-    -   You can test the clock parameters separately with the `clock.py`/`rolling_clock.py`
-        script. Don't forget that FGF has an effect on tau!
+  -   You don't have to exactly recreate the biological parameter with
+      100% precision, except for the number of segments/somites, although
+      it can be a fun challenge to get a complete match.
+  -   You might want to adapt your plotting timestep to have sufficient
+      but not too many plot updates in one simulation.
+  -   You can test the clock parameters separately with the `clock.py`/`rolling_clock.py`
+      script. Don't forget that FGF has an effect on tau!
 :::
+
 ::: {.content-visible when-meta="params.show_answers"}
 
   > **Answer** See codes `06_answers_clockplusfgf_memory_mouse.py` and

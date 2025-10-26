@@ -1,0 +1,2 @@
+docs/* merge=theirs
+docs/** merge=theirs

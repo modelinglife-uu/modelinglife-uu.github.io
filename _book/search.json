@@ -15,7 +15,7 @@
     "href": "general.html",
     "title": "General course info",
     "section": "",
-    "text": "Contact\nCourse coordinator: Monica Garcia Gomez (m.l.garciagomez@uu.nl).\nWe are part of the Theoretical Biology group of Utrecht University).",
+    "text": "Contact\nCourse coordinator: Monica Garcia Gomez (m.l.garciagomez@uu.nl). In this website you will find all practical information about the course. You can reach the instructors via email at modelinglife@uu.nl .\nWe are part of the Theoretical Biology group of Utrecht University).",
     "crumbs": [
       "Course information",
       "General course info"
@@ -70,7 +70,7 @@
     "href": "general.html#communication",
     "title": "General course info",
     "section": "Communication",
-    "text": "Communication\nTeams channel: fast communication.\nBrightspace is the channel for all official communications (e.g. final grades).\nSchedule, slides, practicals: https://modelinglife-uu.github.io/\nFeedback and other matters: m.l.garciagomez@uu.nl",
+    "text": "Communication\nFeedback and other matters: m.l.garciagomez@uu.nl\nSchedule, slides, practicals: https://modelinglife-uu.github.io/\nCode: https://github.com/moneralee/UU_Modeling-Life-course\nBrightspace: is the channel for all official communications (e.g. final grades).\nModeling Life 2025 in Microsoft Teams. You can sign up as follows:\n\nOpen MS Teams\nIn the menu on the left, select the “Teams” icon\nClick the “Join or create a team” button at the bottom left of the screen (or, depending on the Teams version, at the top right)\nFind the tile that says “Join a team with a code”\nEnter the following code in this field: 6jhv6z5\nSelect “Join team”\nTeams is not used to livestream lectures. However, if you have any questions for the instructors, student assistants, or your fellow students, it’s very helpful to share them on Teams (General channel) so everyone can benefit.",
     "crumbs": [
       "Course information",
       "General course info"
@@ -81,7 +81,7 @@
     "href": "general.html#grading",
     "title": "General course info",
     "section": "Grading",
-    "text": "Grading\nTo pass this course, a minimum of 5,5 is mandatory. Your grade is calculated by the following components:\nExam: 70%\nMini project: 30%",
+    "text": "Grading\nTo pass this course, a minimum of 5,5 is mandatory. Your grade is calculated by the following components:\nExam: 70%\nMini project: 30%\nYou will find your Final grade on Brigthspace.",
     "crumbs": [
       "Course information",
       "General course info"

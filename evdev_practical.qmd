@@ -230,14 +230,14 @@ this is also great!
   Hint: use sinus functions to describe the daily rhythms and their relative phases. Make sure 
   that light is really zero at night.
   
-  a1. Analyze how the absence of photosynthesis at night affects carbon balance. Do you think what 
+  **a1.** Analyze how the absence of photosynthesis at night affects carbon balance. Do you think what 
   you see happening is reasonable? How could you repair this?
 
-  a2. Examine the impact of nighttime temperatures on maintenance respiration rates. 
+  **a2.** Examine the impact of nighttime temperatures on maintenance respiration rates. 
   
-  a3. Explore how changes in leaf angle influence overall plant growth.
+  **a3.** Explore how changes in leaf angle influence overall plant growth.
   
-  a4. Now combine the two
+  **a4.** Now combine the two
   
   b. 	*Hypothesis 2 – Stomata*
   
@@ -273,24 +273,24 @@ this is also great!
 
   > **Answer** 
   > 
-  > *a1.* Carbon levels at night go below zero because while growth depends on carbon levels,
+  > **a1.** Carbon levels at night go below zero because while growth depends on carbon levels,
   > respiration continues independent of carbon levels in the current model. However, you can not
   > burn energy you do not have so it is best to make respiration also depend on carbon levels,
   > this is constistent with experimental observations: @seki2017adjustment
   >
-  > *a2.* The less temperatures drop during the night,  the larger the reduction in final leaf
+  > **a2.** The less temperatures drop during the night,  the larger the reduction in final leaf
   > area, yet also the closer the final leaf area achieved with hyponasty becomes to that without.
   > As night time temperature is higher, respiration is higher and leaf cooling becomes more
   > relevant. So we increase the night time advantage of hyponasty.
   >
-  > *a3*. For leaf angle we can play with how much the minimum and maximum angles are and when
+  > **a3.** For leaf angle we can play with how much the minimum and maximum angles are and when
   > during the day these are reached. If leaf angle is allowed to drop from 40 to 14 degrees
   > instead of 20 degrees and the lowest point is reached early in the morning, average day time
   > angle is lower and hence photosynthesis loss is lower and hence break even is reached easier.
   > If maximum leaf angle is lowered to 35 degrees it also helps. So here we basically decrease 
   > the day time costs of hyponasty.
   >
-  > a4. If we make leaf angle during the day low and keep night time temperature high we are able
+  > **a4.** If we make leaf angle during the day low and keep night time temperature high we are able
   > to make hyponasty adaptive.  The results are a bit shaky in that in the final leaf area versus
   > temperature curve the non hyponasty and hyponasty curves intersect multiple times but beyond 
   > 32 degrees with hyponasty is always on top but with small difference.

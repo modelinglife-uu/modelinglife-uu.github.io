@@ -1,0 +1,153 @@
+# 0) Introduction to Python {.unnumbered}
+
+This introductory page explains how to install Python and Spyder, and provides a brief overview of Python programming. You will also have access codes to a great StudyLens app to quickly get a grasp of Python programming, especially the parts directly relevant to this course.
+
+## Installing Spyder and Anaconda
+
+To best way to install Spyder is to do so via Anaconda, which is a free and open-source distribution of Python for scientific computing. You can [download Anaconda from this page](https://www.anaconda.com/download/success) (note: use the download link on the *left*, and **not** the one called "miniconda" which does not include Spyder). After downloading, follow the installation instructions. 
+
+Once done, you now have:
+
+-	Python
+- Spyder (our main editor)
+- Most scientific packages like numpy, matplotlib, and pandas
+- Conda and pip (for if you want to install other packages)
+
+## Launching Spyder
+
+You can now launch Spyder via the 'Anaconda Navigator' application. In MacOS you find this under 'Applications' > 'Anaconda-Navigator' (it doesn't always show up in the Spotlight search immediately). In Windows, you can search for 'Anaconda Navigator' in the Start Menu. Once the Anaconda Navigator is open, you can launch Spyder by clicking on the 'Launch' button under the Spyder icon. 
+
+## Disabling inline plots
+
+By default, Spyder shows figures inside the “Plots” pane, but in this course we 
+typically use plots that update dynamically (animations), which don’t work well in that mode. So we need to change that.
+
+Here’s how:
+
+1. Click the 'preferences' icon in the top panel (a wrench icon 🔧).
+2. Go to 'IPython Console' → Graphics → Backend
+3. Choose QT, QT5, or QT6 (whichever is available)
+4. Click Apply and OK
+5. Restart Spyder may or may not be necessary depending on your operating system. 
+
+Now your plots will open in a separate window and can animate properly!
+
+
+## Testing your setup!
+
+Throughout this course you will either work with scripts you have been handed out, 
+or scripts that you can copy/paste from this website. Let's test your Spyder setup
+with the following script:
+
+
+```python
+import random, matplotlib.pyplot as plt
+
+plt.ion()
+fig, ax = plt.subplots()
+ax.set_ylim(-2, 2)
+ax.set_xlim(0, 100)
+ax.set_title("Random Wiggle Test")
+line, = ax.plot([], [], color='seagreen', lw=2)
+
+y = [0]
+for i in range(100):
+    y.append(y[-1] + random.uniform(-0.1, 0.1))  # random wiggle
+    line.set_data(range(len(y)), y)
+    ax.set_xlim(0, len(y))
+    plt.pause(0.03)
+
+ax.set_title("Animation works! (you can close this window)")
+plt.ioff()
+plt.show()
+```
+
+Paste this into a new script in Spyder and hit the 'play' icon (or press F5). Does
+the animation show up in a seperate window and is it animated? Good, you're ready
+to go! 
+    
+# Introduction to Python Programming
+
+This document provides a brief introduction to Python programming. It covers basic concepts such as variables, data types, control structures, functions, and libraries. 
+
+## Variables and Data Types
+
+In Python, variables are used to store data. You can create a variable by assigning a value to it using the `=` operator. For example:
+```python
+x = 10
+y = "Hello, World!"
+```
+Python has many built-in data types, including:
+
+- Integers (`int`): Whole numbers, e.g., `10`, `-5`
+- Floating-point numbers (`float`): Decimal numbers, e.g., `3.14`, `-0.001`
+- Strings (`str`): Text, e.g., `"Hello"`, `'Python'`
+- Booleans (`bool`): True or False values, e.g., `True`, `False`
+- Lists (`list`): Ordered collections of items, e.g., `[1, 2, 3]`, `['a', 'b', 'c']`
+- Dictionaries (`dict`): Key-value pairs, e.g., `{'name': 'Alice', 'age': 25}`
+- And many more 
+
+## Control Structures
+
+Control structures allow you to control the flow of your program. Common control structures in Python include: 
+
+- Conditional statements (`if`, `elif`, `else`):
+```python
+if x > 0:
+    print("x is positive")
+elif x == 0:
+    print("x is zero")
+else:
+    print("x is negative")
+```
+
+- Loops (`for`, `while`):
+```python
+for i in range(5):
+    print(i)
+count = 0
+while count < 5:
+    print(count)
+    count += 1
+```
+
+## Functions
+
+Functions are reusable blocks of code that perform a specific task. You can define a function using the `def` keyword: 
+
+```python
+def greet(name):
+    return f"Hello, {name}!"
+    
+print(greet("Alice"))
+```
+
+## Libraries
+
+Python has a rich ecosystem of libraries that extend its functionality. Most scientific packages are shipped with Anaconda, so you don't need to worry about these. These
+include: 
+
+- NumPy: For numerical computing
+- Pandas: For data manipulation and analysis
+- Matplotlib: For data visualization
+- SciPy: For scientific computing
+
+But if you still wish to install other packages, you can use `pip` or `conda` in the terminal. For example, to install the `html5` library using pip, you would run:
+
+```
+pip install html5lib
+```
+
+From the command line. You can also run this bit of code within the Spyder console by adding an `!` in front of the command, which tells the console to run it as a shell command: 
+
+```python
+!pip install html5lib
+```
+
+But you probably won't have to install a lot of packages during this course. (nearly) All scripts we use only rely on the base packages. 
+
+## StudyLens practice
+
+If you've installed Python and read through the basics of Python above, it's time
+to dive into the StudyLens exercises. For this, login to [StudyLens](http://studylens.science.uu.nl/) and use the username
+and password that was shared with you on Brightspace. 

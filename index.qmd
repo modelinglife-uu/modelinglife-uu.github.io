@@ -8,7 +8,6 @@ You can navigate the site using the sidebar or the left. The [General Course Inf
 
 We hope you’ll use this website actively. There's lots to read, simulate, modify, and explore.
 
-:::{style="color:red;"}
-*Note: the Modeling Life course is new. This website is to help you, but is by no means perfect. Please let us know if you see any mistakes, typo's or other issues. Any constructive feedback on how to make things better and easier for you is always welcome.*
-:::
+
+*Note: this website is to help you, but is by no means perfect. Please let us know if you see any mistakes, typo's or other issues. Any constructive feedback on how to make things better and easier for you is always welcome.*
 

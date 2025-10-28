@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>20&nbsp; Miniproject: Oncogenic propensity of different stem cell niches – Modeling Life</title>
+<title>0) Introduction to Python – Modeling Life</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -29,8 +63,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
-<link href="./project_4.html" rel="prev">
+<link href="./pattern_intro_text.html" rel="next">
+<link href="./slides.html" rel="prev">
 <link href="./images/favicon.ico" rel="icon">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -43,9 +77,6 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -86,7 +117,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./project_1.html">Mini-projects</a></li><li class="breadcrumb-item"><a href="./project_5.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Miniproject: Oncogenic propensity of different stem cell niches</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_to_python.html">0) Introduction to Python</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -154,7 +185,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_to_python.html" class="sidebar-item-text sidebar-link">
+  <a href="./intro_to_python.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">0) Introduction to Python</span></a>
   </div>
 </li>
@@ -305,13 +336,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
  <span class="menu-text">Mini-projects</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./project_1.html" class="sidebar-item-text sidebar-link">
@@ -338,7 +369,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./project_5.html" class="sidebar-item-text sidebar-link active">
+  <a href="./project_5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Miniproject: Oncogenic propensity of different stem cell niches</span></span></a>
   </div>
 </li>
@@ -360,18 +391,27 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#mini-description" id="toc-mini-description" class="nav-link active" data-scroll-target="#mini-description"><span class="header-section-number">20.1</span> Mini description</a></li>
-  <li><a href="#guiding-questions" id="toc-guiding-questions" class="nav-link" data-scroll-target="#guiding-questions"><span class="header-section-number">20.2</span> Guiding questions:</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">20.3</span> References:</a></li>
+  <li><a href="#installing-spyder-and-anaconda" id="toc-installing-spyder-and-anaconda" class="nav-link active" data-scroll-target="#installing-spyder-and-anaconda">Installing Spyder and Anaconda</a></li>
+  <li><a href="#launching-spyder" id="toc-launching-spyder" class="nav-link" data-scroll-target="#launching-spyder">Launching Spyder</a></li>
+  <li><a href="#disabling-inline-plots" id="toc-disabling-inline-plots" class="nav-link" data-scroll-target="#disabling-inline-plots">Disabling inline plots</a></li>
+  <li><a href="#testing-your-setup" id="toc-testing-your-setup" class="nav-link" data-scroll-target="#testing-your-setup">Testing your setup!</a></li>
+  <li><a href="#introduction-to-python-programming" id="toc-introduction-to-python-programming" class="nav-link" data-scroll-target="#introduction-to-python-programming">Introduction to Python Programming</a>
+  <ul class="collapse">
+  <li><a href="#variables-and-data-types" id="toc-variables-and-data-types" class="nav-link" data-scroll-target="#variables-and-data-types">Variables and Data Types</a></li>
+  <li><a href="#control-structures" id="toc-control-structures" class="nav-link" data-scroll-target="#control-structures">Control Structures</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a></li>
+  <li><a href="#libraries" id="toc-libraries" class="nav-link" data-scroll-target="#libraries">Libraries</a></li>
+  <li><a href="#studylens-practice" id="toc-studylens-practice" class="nav-link" data-scroll-target="#studylens-practice">StudyLens practice</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./project_1.html">Mini-projects</a></li><li class="breadcrumb-item"><a href="./project_5.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Miniproject: Oncogenic propensity of different stem cell niches</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Miniproject: Oncogenic propensity of different stem cell niches</span></h1>
+<h1 class="title">0) Introduction to Python</h1>
 </div>
 
 
@@ -388,56 +428,129 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>UNDER CONSTRUCTION</p>
-<section id="mini-description" class="level2" data-number="20.1">
-<h2 data-number="20.1" class="anchored" data-anchor-id="mini-description"><span class="header-section-number">20.1</span> Mini description</h2>
-<p>Stem cells are present in our bodies, and their activity is important for the renewal of our tissues. For example, the turnover of our skin cells is ~30 days For instance, our tissues are renewed throughout our life thanks to the activity of stem cells housed in our skin, lung, intestine epithelia. The organization of stem cell niches is generic such that stem cells produce progeny that divides actively in the transit-amplifying zone, and then differentiates. Notably, different tissues in have a different propensity of developing cancer, and it has been that this is due to“a combination of stem cell mutagenesis and extrinsic factors that enhance the proliferation of these cell populations, creates a “perfect storm” that ultimately determines organ cancer risk” (Zhu et al., 2016). Here you will explore with a multicelular model what is the relation of differences in SC activity and cancer risk.</p>
+<p>This introductory page explains how to install Python and Spyder, and provides a brief overview of Python programming. You will also have access codes to a great StudyLens app to quickly get a grasp of Python programming, especially the parts directly relevant to this course.</p>
+<section id="installing-spyder-and-anaconda" class="level2">
+<h2 class="anchored" data-anchor-id="installing-spyder-and-anaconda">Installing Spyder and Anaconda</h2>
+<p>To best way to install Spyder is to do so via Anaconda, which is a free and open-source distribution of Python for scientific computing. You can <a href="https://www.anaconda.com/download/success">download Anaconda from this page</a> (note: use the download link on the <em>left</em>, and <strong>not</strong> the one called “miniconda” which does not include Spyder). After downloading, follow the installation instructions.</p>
+<p>Once done, you now have:</p>
 <ul>
-<li>Why? SCN organization is generic, but cycling of cells is different: Basis of model is that mutation probability is constant, and that division frequency is what changes in different tissues (see ref 1 below).</li>
-</ul>
-<p>They will receive a line of cells that duplicate with the same probability. They have to implement differences in division and make a measure of cell production. Compare cell production with and without gradient of differentiation. Probabilities: 0.1, 0.7, 0.0. They should see it is better to have no gradient.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/miniprojectstemcells1.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Tomasetti and Vogelstein, 2015. Science."><img src="images/miniprojectstemcells1.jpg" class="img-fluid figure-img" alt="Tomasetti and Vogelstein, 2015. Science."></a></p>
-<figcaption>Tomasetti and Vogelstein, 2015. Science.</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/miniprojectstemcells2.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Zhu et al., 2016."><img src="images/miniprojectstemcells2.jpg" class="img-fluid figure-img" alt="Zhu et al., 2016."></a></p>
-<figcaption>Zhu et al., 2016.</figcaption>
-</figure>
-</div>
-<p><strong>The model</strong>: I will prepare a simple 1D tissue-level model of a SCN, and let the students implement the division dynamics of different SCNs. Then quantify the propensity of different tissues to develop oncogenic mutations.</p>
-</section>
-<section id="guiding-questions" class="level2" data-number="20.2">
-<h2 data-number="20.2" class="anchored" data-anchor-id="guiding-questions"><span class="header-section-number">20.2</span> Guiding questions:</h2>
-<ul>
-<li>Implement a mutation rate probability (0.01). Now quantify mutations per cell population, which one gets a higher production of oncogenic mutations?</li>
-<li>Which zone has long-lasting effects?</li>
-<li>What happens with mutations occurring in SC and in TA?</li>
-<li>Now simulate different SC activities to mimic different tissues cell renewal. Plot SC activity vs mutagenesis. Does it match the plot of the paper?</li>
-<li>Parameter sweep, is there a combination of division probabilities that can optimize cell production with minimal mutation rates? That is, minimal tumour probability?</li>
-<li>Propose how to decrease cancer incidence in this tissue-level model. One option is making divisions in TA more frequent than in SCs as long as overall tissue renewal is maintained (Paper proposing that cancer incidence decreases with age… they claim that tissues self-renew less frequently).</li>
-<li></li>
-</ul>
-<section id="msc" class="level3">
-<h3 class="anchored" data-anchor-id="msc">Msc:</h3>
-<ul>
-<li>Expand to 2D model, how it affects spreading?</li>
-<li>Simulate injuries and see how it relates to spreading of mutations?</li>
+<li>Python</li>
+<li>Spyder (our main editor)</li>
+<li>Most scientific packages like numpy, matplotlib, and pandas</li>
+<li>Conda and pip (for if you want to install other packages)</li>
 </ul>
 </section>
+<section id="launching-spyder" class="level2">
+<h2 class="anchored" data-anchor-id="launching-spyder">Launching Spyder</h2>
+<p>You can now launch Spyder via the ‘Anaconda Navigator’ application. In MacOS you find this under ‘Applications’ &gt; ‘Anaconda-Navigator’ (it doesn’t always show up in the Spotlight search immediately). In Windows, you can search for ‘Anaconda Navigator’ in the Start Menu. Once the Anaconda Navigator is open, you can launch Spyder by clicking on the ‘Launch’ button under the Spyder icon.</p>
 </section>
-<section id="references" class="level2" data-number="20.3">
-<h2 data-number="20.3" class="anchored" data-anchor-id="references"><span class="header-section-number">20.3</span> References:</h2>
+<section id="disabling-inline-plots" class="level2">
+<h2 class="anchored" data-anchor-id="disabling-inline-plots">Disabling inline plots</h2>
+<p>By default, Spyder shows figures inside the “Plots” pane, but in this course we typically use plots that update dynamically (animations), which don’t work well in that mode. So we need to change that.</p>
+<p>Here’s how:</p>
 <ol type="1">
-<li>SC divisions and cancer susceptibility https://www.nature.com/articles/nature23302</li>
-<li>Variation in cancer risk among tissues can be explained by the number of stem cell divisions https://www.science.org/doi/full/10.1126/science.1260825</li>
-<li>Zhu - SCs are more susceptible https://doi.org/10.1016/j.cell.2016.07.045 extra: Tomassetti. https://www.science.org/doi/10.1126/science.aaf9011</li>
+<li>Click the ‘preferences’ icon in the top panel (a wrench icon 🔧).</li>
+<li>Go to ‘IPython Console’ → Graphics → Backend</li>
+<li>Choose QT, QT5, or QT6 (whichever is available)</li>
+<li>Click Apply and OK</li>
+<li>Restart Spyder may or may not be necessary depending on your operating system.</li>
 </ol>
+<p>Now your plots will open in a separate window and can animate properly!</p>
+</section>
+<section id="testing-your-setup" class="level2">
+<h2 class="anchored" data-anchor-id="testing-your-setup">Testing your setup!</h2>
+<p>Throughout this course you will either work with scripts you have been handed out, or scripts that you can copy/paste from this website. Let’s test your Spyder setup with the following script:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random, matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>plt.ion()</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="dv">100</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Random Wiggle Test"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>line, <span class="op">=</span> ax.plot([], [], color<span class="op">=</span><span class="st">'seagreen'</span>, lw<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> [<span class="dv">0</span>]</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    y.append(y[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> random.uniform(<span class="op">-</span><span class="fl">0.1</span>, <span class="fl">0.1</span>))  <span class="co"># random wiggle</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    line.set_data(<span class="bu">range</span>(<span class="bu">len</span>(y)), y)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    ax.set_xlim(<span class="dv">0</span>, <span class="bu">len</span>(y))</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    plt.pause(<span class="fl">0.03</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Animation works! (you can close this window)"</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>plt.ioff()</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Paste this into a new script in Spyder and hit the ‘play’ icon (or press F5). Does the animation show up in a seperate window and is it animated? Good, you’re ready to go!</p>
+</section>
+<section id="introduction-to-python-programming" class="level1">
+<h1>Introduction to Python Programming</h1>
+<p>This document provides a brief introduction to Python programming. It covers basic concepts such as variables, data types, control structures, functions, and libraries.</p>
+<section id="variables-and-data-types" class="level2">
+<h2 class="anchored" data-anchor-id="variables-and-data-types">Variables and Data Types</h2>
+<p>In Python, variables are used to store data. You can create a variable by assigning a value to it using the <code>=</code> operator. For example:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="st">"Hello, World!"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Python has many built-in data types, including:</p>
+<ul>
+<li>Integers (<code>int</code>): Whole numbers, e.g., <code>10</code>, <code>-5</code></li>
+<li>Floating-point numbers (<code>float</code>): Decimal numbers, e.g., <code>3.14</code>, <code>-0.001</code></li>
+<li>Strings (<code>str</code>): Text, e.g., <code>"Hello"</code>, <code>'Python'</code></li>
+<li>Booleans (<code>bool</code>): True or False values, e.g., <code>True</code>, <code>False</code></li>
+<li>Lists (<code>list</code>): Ordered collections of items, e.g., <code>[1, 2, 3]</code>, <code>['a', 'b', 'c']</code></li>
+<li>Dictionaries (<code>dict</code>): Key-value pairs, e.g., <code>{'name': 'Alice', 'age': 25}</code></li>
+<li>And many more</li>
+</ul>
+</section>
+<section id="control-structures" class="level2">
+<h2 class="anchored" data-anchor-id="control-structures">Control Structures</h2>
+<p>Control structures allow you to control the flow of your program. Common control structures in Python include:</p>
+<ul>
+<li>Conditional statements (<code>if</code>, <code>elif</code>, <code>else</code>):</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"x is positive"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> x <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"x is zero"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"x is negative"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Loops (<code>for</code>, <code>while</code>):</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> count <span class="op">&lt;</span> <span class="dv">5</span>:</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(count)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    count <span class="op">+=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="functions" class="level2">
+<h2 class="anchored" data-anchor-id="functions">Functions</h2>
+<p>Functions are reusable blocks of code that perform a specific task. You can define a function using the <code>def</code> keyword:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> greet(name):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f"Hello, </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">!"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(greet(<span class="st">"Alice"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="libraries" class="level2">
+<h2 class="anchored" data-anchor-id="libraries">Libraries</h2>
+<p>Python has a rich ecosystem of libraries that extend its functionality. Most scientific packages are shipped with Anaconda, so you don’t need to worry about these. These include:</p>
+<ul>
+<li>NumPy: For numerical computing</li>
+<li>Pandas: For data manipulation and analysis</li>
+<li>Matplotlib: For data visualization</li>
+<li>SciPy: For scientific computing</li>
+</ul>
+<p>But if you still wish to install other packages, you can use <code>pip</code> or <code>conda</code> in the terminal. For example, to install the <code>html5</code> library using pip, you would run:</p>
+<pre><code>pip install html5lib</code></pre>
+<p>From the command line. You can also run this bit of code within the Spyder console by adding an <code>!</code> in front of the command, which tells the console to run it as a shell command:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install html5lib</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>But you probably won’t have to install a lot of packages during this course. (nearly) All scripts we use only rely on the base packages.</p>
+</section>
+<section id="studylens-practice" class="level2">
+<h2 class="anchored" data-anchor-id="studylens-practice">StudyLens practice</h2>
+<p>If you’ve installed Python and read through the basics of Python above, it’s time to dive into the StudyLens exercises. For this, login to <a href="http://studylens.science.uu.nl/">StudyLens</a> and use the username and password that was shared with you on Brightspace.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1014,13 +1127,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./project_4.html" class="pagination-link" aria-label="Miniproject: Patterning – Asymmetric localization of ZIF-1 in the C. elegans embryo">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Miniproject: Patterning – Asymmetric localization of ZIF-1 in the C. elegans embryo</span></span>
+      <a href="./slides.html" class="pagination-link" aria-label="Slides">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Slides</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./pattern_intro_text.html" class="pagination-link" aria-label="Pattern formation (intro)">
+        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Pattern formation (intro)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1038,38 +1151,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"loop":false,"openEffect":"zoom","selector":".lightbox","descPosition":"bottom","closeEffect":"zoom"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
 
 
 

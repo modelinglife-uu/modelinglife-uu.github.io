@@ -32,6 +32,7 @@ book:
         - general.qmd
         - schedule.qmd
         - slides.qmd
+    - intro_to_python.qmd
     - part: "I) Pattern formation"
       chapters:
             - pattern_intro_text.qmd

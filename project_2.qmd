@@ -10,17 +10,18 @@ Understanding the fundamental principles behind disease pressure can help mitiga
 
 To phrase the above story a little differently: the microbes in our gut or in the soil of our favourite crops, are constantly evolving on a parasitism-mutualism continuum (see @fig-parmut). In this mini project, you will investigate the dynamics of microbiomes evolving on such a continuum. We will particularly focus on how the properties of the *host* (plant, animals, etc.) shape the likelihood of disease outbreaks. To that end, here are a few key questions to get you started, but you don't need to focus on each and every one of them at the same time. Plus, more (better!) questions will likely emerge as you work on the project. That's science.
 
-## Key references
-
-- @van2019role: a model of self-sacrificing microbes in hosts with different transmission modes.
-- @koskella2020study: an opinion piece on host-microbe (co)evolution and levels of selection
-
 ## Guiding questions:
 
  * Do motile hosts (e.g. animals) experience different disease pressures than non-motile hosts (e.g. plants)?
  * Are mutualistic microbes easier to maintain in short- or long-lived hosts?
  * Does non-local reproduction (e.g. seed/spore dispersal) change these patterns?
  * How does an adaptive immune system (animals) affect the evolution of microbiomes, compared to plants, who don't have an adaptive immune system?
+
+## Key references
+
+- @van2019role: a model of self-sacrificing microbes in hosts with different transmission modes.
+- @koskella2020study: an opinion piece on host-microbe (co)evolution and levels of selection
+
 
 ## Getting started
 

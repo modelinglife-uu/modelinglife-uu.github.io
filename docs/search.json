@@ -198,6 +198,17 @@
     ]
   },
   {
+    "objectID": "slides.html",
+    "href": "slides.html",
+    "title": "Slides",
+    "section": "",
+    "text": "Below is a list of all the slides per section. Since this listing is partially automated, you can contact Bram when something is wrong.",
+    "crumbs": [
+      "Course information",
+      "Slides"
+    ]
+  },
+  {
     "objectID": "intro_to_python.html",
     "href": "intro_to_python.html",
     "title": "0) Introduction to Python",

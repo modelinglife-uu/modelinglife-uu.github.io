@@ -1,9 +1,5 @@
 # Gene regulation in space
 
-## TODO FOR
-- @Monica, check labels for questions ('mathematical thinking', 'biology', etc)
-- @Monica, figure out how/where to share the files and answers
-
 ## {.unnumbered}
 <center>
 *How wonderful that we have met with a paradox. <br>
@@ -51,6 +47,10 @@ is unclear. Here, each cell of the in silico root model carries a copy
 of the Boolean network, which allows us to test hypotheses and find an
 explanation.
 
+![Figure 1 Auxin regulates WOX5 expression through different auxin response factors.](images/0-Auxin-regulation.png){#vegmini1}
+
+![Figure 2. Experiments showing different effects of auxin on WOX5 expression. On the right we can see the evidence of Auxin-->WOX5, and in the left we see aAuxin--/ WOX5. Both are pretty convincing.](images/0-auxin-paradox.png){#vegmini1}
+ 
 ## The model 
 
 The model simulates a root apex, showing the stem cell niche at the apex
@@ -64,6 +64,9 @@ cell-type, auxin levels, and expression of each gene.
 
 You can visualize ARF10, ARF5, MGP, and WOX5 expression using
 the provided plotting function.
+
+![Figure 3. Ingredients of the in silico root model. 1) gene regulatory network, 2) multi-cellular tissue layout with transport in the root apex.](images/0-auxin-model.png){#vegmini1}
+
 
 ## Files 
 
@@ -117,17 +120,16 @@ The model does not yet reproduce the experiments. To account for
 quantitative effects of auxin, implement two hypotheses based on the
 literature:
 
-Auxin represses MGP expression.
 
-Extremely high auxin levels (unrealistic in vivo) repress WOX5
-expression.
+
+![Figure 4. <span style="color: magenta;">Auxin represses MGP expression.</span> <span style="color: #32CD32;">Extremely high auxin levels (unrealistic in vivo) repress WOX5 expression.</span>](images/0-auxin-hypothesis.png){#vegmini1}
 
 Modify the equations for MGP and WOX5 in rootNetwork accordingly.
 
 For MGP, retain its logical rule but multiply its production term by a
 saturation function of auxin (Km = 45):
 
-dMGP = (45/(45+auxininput))*((-np.exp(0.5 * h) + np.exp(-h * w_MGP)) / ((1 - np.exp(0.5 * h)) * (1 + np.exp(-h * (w_MGP - 0.5))))) - (lambda_ * MGP)
+dMGP =  <span style="color: magenta;">(45/(45+auxininput))</span>*((-np.exp(0.5 * h) + np.exp(-h * w_MGP)) / ((1 - np.exp(0.5 * h)) * (1 + np.exp(-h * (w_MGP - 0.5))))) - (lambda_ * MGP)
 
 Similarly, add a negative regulation by auxin to the WOX5 equation
 (Km = 1000).

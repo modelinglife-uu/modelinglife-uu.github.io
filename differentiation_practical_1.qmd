@@ -211,6 +211,8 @@ Now let's move to a network model made of many individual regulatory interaction
 This model includes regulatory interactions discovered for the cells of plant roots in years
 of experimental research. Here, all this knowledge is encoded as logical rules. 
 
+![](images/rootnetwork.png){#vegmini1}
+
 The model consists of 18 variables representing transcription factors, hormones, peptides. Look at the
 `rootNetwork()` function in the `circuitFunctions.py` file. This function defines the state of 18 variables
 (CK, ARR1, SHY2, AUXIAAR, etc.) based on an input stored in `parameters`, then it updates the state of each 
@@ -399,7 +401,7 @@ to model continuous activity in an ODE model.
 |:---------|---------:|
 | AND.     |   max    |
 | OR       |   min    |
-| NOT      |   1-n    |
+| NOT      |   1-x    |
 
 * AND operator is a min function, OR operator is a max function, and NOT operator is 1-x. Use the code below to run a random initial condition for the 18 variables (IC) and see how the system behaves.
 

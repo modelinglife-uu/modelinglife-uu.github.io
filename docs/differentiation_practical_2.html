@@ -47,6 +47,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-0e7c136abd6418639055ad70ade9c940.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark-c2e0d09699c19eeb454aa3ea76728735.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-0e7c136abd6418639055ad70ade9c940.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -524,13 +527,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#todo-for" id="toc-todo-for" class="nav-link active" data-scroll-target="#todo-for"><span class="header-section-number">9.1</span> TODO FOR</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">9.2</span> Introduction</a></li>
-  <li><a href="#biological-background" id="toc-biological-background" class="nav-link" data-scroll-target="#biological-background"><span class="header-section-number">9.3</span> Biological background</a></li>
-  <li><a href="#the-model" id="toc-the-model" class="nav-link" data-scroll-target="#the-model"><span class="header-section-number">9.4</span> The model</a></li>
-  <li><a href="#files" id="toc-files" class="nav-link" data-scroll-target="#files"><span class="header-section-number">9.5</span> Files</a></li>
-  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">9.6</span> Questions</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"></a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">9.1</span> Introduction</a></li>
+  <li><a href="#biological-background" id="toc-biological-background" class="nav-link" data-scroll-target="#biological-background"><span class="header-section-number">9.2</span> Biological background</a></li>
+  <li><a href="#the-model" id="toc-the-model" class="nav-link" data-scroll-target="#the-model"><span class="header-section-number">9.3</span> The model</a></li>
+  <li><a href="#files" id="toc-files" class="nav-link" data-scroll-target="#files"><span class="header-section-number">9.4</span> Files</a></li>
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">9.5</span> Questions</a></li>
   </ul>
 </nav>
     </div>
@@ -557,42 +559,53 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="todo-for" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="todo-for"><span class="header-section-number">9.1</span> TODO FOR</h2>
-<ul>
-<li><span class="citation" data-cites="Monica">(<a href="references.html#ref-Monica" role="doc-biblioref"><strong>Monica?</strong></a>)</span>, check labels for questions (‘mathematical thinking’, ‘biology’, etc)</li>
-<li><span class="citation" data-cites="Monica">(<a href="references.html#ref-Monica" role="doc-biblioref"><strong>Monica?</strong></a>)</span>, figure out how/where to share the files and answers</li>
-</ul>
-</section>
 <section id="section" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="section"></h2>
 <center>
 <em>How wonderful that we have met with a paradox. <br> Now we have some hope of making progress – Niehls Bohr</em>
 </center>
 </section>
-<section id="introduction" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="introduction"><span class="header-section-number">9.2</span> Introduction</h2>
+<section id="introduction" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">9.1</span> Introduction</h2>
 <p>In this practical you will study the effects of auxin, a plant hormone, on gene regulation in the root. Auxin is a hormone virtually involved in all developmental processes in plants, from embryo patterning and floral organ determination to leaf disposition and root growth. In each context, auxin triggers specific responses, which can be explained by the underlying regulatory networks—namely by the redundancy of molecular players in the auxin signalling pathway (the auxin response factors, ARFs), and how they are expressed in different tissues.</p>
 <p>In the root, researchers have found an auxin–WOX5 paradox: some experiments show that auxin promotes the expression of WOX5 (a root stem cell transcription factor), while others found WOX5 repression. This opposite auxin regulation is mediated by different ARFs—ARF5 and ARF10—posing the possibility that accounting for both ARF5 and ARF10 regulatory networks can reconcile the results. To this end, you will use an in silico root model to address this paradox and propose an explanation.</p>
 </section>
-<section id="biological-background" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="biological-background"><span class="header-section-number">9.3</span> Biological background</h2>
+<section id="biological-background" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="biological-background"><span class="header-section-number">9.2</span> Biological background</h2>
 <p>Plant roots grow thanks to the presence of stem cells housed in a niche at the root tip. A subset of these cells expresses WOX5, maintaining the surrounding cells as stem cells. WOX5 is regulated by several factors, and network models help us understand how.</p>
 <p>The Boolean network used last week describes the gene and hormonal activity configurations of the cells in the root apex. In this model WOX5 is regulated positively by ARF5 and negatively by ARF10 and CLE40. Auxin regulates stem cell activity in the roots, and multiple links exist between auxin and the regulators in the Boolean network. Both ARF5 and ARF10 are auxin response factors activated by auxin. Moreover, root transcription factors control ARF5 and ARF10 expression such that they are not expressed in every cell of the root apex. This regulation is included in the Boolean model we studied last week. Whether this is relevant to understanding the auxin–WOX5 paradox is unclear. Here, each cell of the in silico root model carries a copy of the Boolean network, which allows us to test hypotheses and find an explanation.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/0-Auxin-regulation.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure 1 Auxin regulates WOX5 expression through different auxin response factors."><img src="images/0-Auxin-regulation.png" class="img-fluid figure-img" alt="Figure 1 Auxin regulates WOX5 expression through different auxin response factors."></a></p>
+<figcaption>Figure 1 Auxin regulates WOX5 expression through different auxin response factors.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/0-auxin-paradox.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure 2. Experiments showing different effects of auxin on WOX5 expression. On the right we can see the evidence of Auxin–>WOX5, and in the left we see aAuxin–/ WOX5. Both are pretty convincing."><img src="images/0-auxin-paradox.png" class="img-fluid figure-img" alt="Figure 2. Experiments showing different effects of auxin on WOX5 expression. On the right we can see the evidence of Auxin–>WOX5, and in the left we see aAuxin–/ WOX5. Both are pretty convincing."></a></p>
+<figcaption>Figure 2. Experiments showing different effects of auxin on WOX5 expression. On the right we can see the evidence of Auxin–&gt;WOX5, and in the left we see aAuxin–/ WOX5. Both are pretty convincing.</figcaption>
+</figure>
+</div>
 </section>
-<section id="the-model" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="the-model"><span class="header-section-number">9.4</span> The model</h2>
+<section id="the-model" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="the-model"><span class="header-section-number">9.3</span> The model</h2>
 <p>The model simulates a root apex, showing the stem cell niche at the apex (lime green cells in the cell graphics; purple cells in the WOX5 visualization). The different tissues of the root are spatially organized. Each cell has a different set of expressed genes, which we account for by initializing each cell’s Boolean network in the QC, Vascular, Endodermis, and Columella attractors. (Cortex and epidermis are not modeled.) Multiple grids store different cell properties: cell-type, auxin levels, and expression of each gene.</p>
 <p>You can visualize ARF10, ARF5, MGP, and WOX5 expression using the provided plotting function.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/0-auxin-model.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure 3. Ingredients of the in silico root model. 1) gene regulatory network, 2) multi-cellular tissue layout with transport in the root apex."><img src="images/0-auxin-model.png" class="img-fluid figure-img" alt="Figure 3. Ingredients of the in silico root model. 1) gene regulatory network, 2) multi-cellular tissue layout with transport in the root apex."></a></p>
+<figcaption>Figure 3. Ingredients of the in silico root model. 1) gene regulatory network, 2) multi-cellular tissue layout with transport in the root apex.</figcaption>
+</figure>
+</div>
 </section>
-<section id="files" class="level2" data-number="9.5">
-<h2 data-number="9.5" class="anchored" data-anchor-id="files"><span class="header-section-number">9.5</span> Files</h2>
+<section id="files" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="files"><span class="header-section-number">9.4</span> Files</h2>
 <p><code>Rootfunctions.py</code> – contains model functions. You do not need to modify them but should understand what they do.</p>
 <p><code>Root-model-Auxin.py</code> – code to simulate the in silico root.</p>
 <p><code>auxin_grid.npy</code> – initial auxin levels in each cell.</p>
 </section>
-<section id="questions" class="level2" data-number="9.6">
-<h2 data-number="9.6" class="anchored" data-anchor-id="questions"><span class="header-section-number">9.6</span> Questions</h2>
+<section id="questions" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="questions"><span class="header-section-number">9.5</span> Questions</h2>
 <div id="exr-tur" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 9.1</strong></span> Algorithmic thinking</p>
 <p>Familiarize yourself with the model. Examine Rootfunctions.py to see how each process is modeled and how they are coupled.</p>
@@ -610,11 +623,15 @@ ul.task-list li input[type="checkbox"] {
 <div id="exr-tur" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 9.4</strong></span> Biology &amp; algorithmic/mathematical thinking</p>
 <p>The model does not yet reproduce the experiments. To account for quantitative effects of auxin, implement two hypotheses based on the literature:</p>
-<p>Auxin represses MGP expression.</p>
-<p>Extremely high auxin levels (unrealistic in vivo) repress WOX5 expression.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/0-auxin-hypothesis.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure 4. Auxin represses MGP expression. Extremely high auxin levels (unrealistic in vivo) repress WOX5 expression."><img src="images/0-auxin-hypothesis.png" class="img-fluid figure-img" alt="Figure 4. Auxin represses MGP expression. Extremely high auxin levels (unrealistic in vivo) repress WOX5 expression."></a></p>
+<figcaption>Figure 4. <span style="color: magenta;">Auxin represses MGP expression.</span> <span style="color: #32CD32;">Extremely high auxin levels (unrealistic in vivo) repress WOX5 expression.</span></figcaption>
+</figure>
+</div>
 <p>Modify the equations for MGP and WOX5 in rootNetwork accordingly.</p>
 <p>For MGP, retain its logical rule but multiply its production term by a saturation function of auxin (Km = 45):</p>
-<p>dMGP = (45/(45+auxininput))<em>((-np.exp(0.5 </em> h) + np.exp(-h * w_MGP)) / ((1 - np.exp(0.5 * h)) * (1 + np.exp(-h * (w_MGP - 0.5))))) - (lambda_ * MGP)</p>
+<p>dMGP = <span style="color: magenta;">(45/(45+auxininput))</span><em>((-np.exp(0.5 </em> h) + np.exp(-h * w_MGP)) / ((1 - np.exp(0.5 * h)) * (1 + np.exp(-h * (w_MGP - 0.5))))) - (lambda_ * MGP)</p>
 <p>Similarly, add a negative regulation by auxin to the WOX5 equation (Km = 1000).</p>
 <p>Run control and auxin treatments with (i) updated MGP, (ii) updated WOX5, and (iii) both updates.</p>
 <p>Do you now see the differences reported by experimentalists?</p>
@@ -1098,6 +1115,38 @@ ul.task-list li input[type="checkbox"] {
 </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

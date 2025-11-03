@@ -102,6 +102,9 @@ div.csl-indent {
 <link href="site_libs/bootstrap/bootstrap-0e7c136abd6418639055ad70ade9c940.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark-c2e0d09699c19eeb454aa3ea76728735.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-0e7c136abd6418639055ad70ade9c940.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -752,6 +755,7 @@ examples of biological regulatory interactions that can be described with each l
 <section id="gene-regulatory-network" class="level2" data-number="8.3">
 <h2 data-number="8.3" class="anchored" data-anchor-id="gene-regulatory-network"><span class="header-section-number">8.3</span> Gene regulatory network</h2>
 <p>Now let’s move to a network model made of many individual regulatory interactions (<span class="citation" data-cites="garcia2020system">Garcı́a-Gómez et al. (<a href="references.html#ref-garcia2020system" role="doc-biblioref">2020</a>)</span>). This model includes regulatory interactions discovered for the cells of plant roots in years of experimental research. Here, all this knowledge is encoded as logical rules.</p>
+<p><a href="images/rootnetwork.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/rootnetwork.png" id="vegmini1" class="img-fluid"></a></p>
 <p>The model consists of 18 variables representing transcription factors, hormones, peptides. Look at the <code>rootNetwork()</code> function in the <code>circuitFunctions.py</code> file. This function defines the state of 18 variables (CK, ARR1, SHY2, AUXIAAR, etc.) based on an input stored in <code>parameters</code>, then it updates the state of each variable using the logical operators <span class="math inline">\(AND\)</span>, <span class="math inline">\(OR\)</span> and <span class="math inline">\(NOT\)</span>; the result is stored in <code>w_variable</code>. The function returns the update state <code>w_variable</code> for each of the 18 variables.</p>
 <section id="initial-condition-timecourse" class="level3">
 <h3 class="anchored" data-anchor-id="initial-condition-timecourse">Initial condition timecourse</h3>
@@ -850,7 +854,7 @@ examples of biological regulatory interactions that can be described with each l
 </tr>
 <tr class="odd">
 <td style="text-align: left;">NOT</td>
-<td style="text-align: right;">1-n</td>
+<td style="text-align: right;">1-x</td>
 </tr>
 </tbody>
 </table>
@@ -1350,6 +1354,38 @@ Garcı́a-Gómez, Mónica L, Diego Ornelas-Ayala, Adriana Garay-Arroyo, Berenice
 </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

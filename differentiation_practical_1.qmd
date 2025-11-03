@@ -16,7 +16,7 @@ will learn how to predict the genes that cause cell fate transitions (attractor 
 Today we will use the following python file: `circuitsfunctions.py`.  In it you will find 
 the code of the functions we use throughout the practical, have a quick look at it. 
 
-## Part I - Encoding regulatory interactions
+## Regulatory interactions
 
 Open Boolean_practical.py and familiarize yourself with the functions `ODEgeneRegulation()` 
 and `logicalRule()`. Look at the name of the functions, inputs and outputs. 
@@ -94,17 +94,10 @@ Both implementations of this regulatory interaction produce the same effect, i.e
 higher than 1.
 
 Now, let’s explore the output of each function using different values of `A` and `B` We are going to 
-use the code below to plot the output of the ODE and the Boolean model in a 2D heatmap. Notice that the exploration values for a Boolean model is 2 (0 or 1), while for the ODE model we explore 11 values (0,1,2,3,4,5,6,7,8,9,10). 
+use the code below to plot the output of the ODE and the Boolean model in a 2D heatmap. Notice that the exploration values for the ODE model is 11 values (0,1,2,3,4,5,6,7,8,9,10), while for a Boolean model is 2 (0 or 1). 
 
+ODE model simulation - AND gate:
 ```python
-# First, Boolean network simulation - AND gate
-explorationvalue=2 # a Boolean model assumes there is only 2 possible states: 0 or 1
-bool_output = np.zeros((explorationvalue, explorationvalue))
-for nodeA in range(0, explorationvalue):
-    for nodeB in range(0, explorationvalue):
-        bool_output[nodeA, nodeB] = nodeA and nodeB #AND #Tip: Change this in exercise 8.3
-
-# Now, ODE model simulation
 explorationvalue = 11 # an ODE model allows us to explore more values than a Boolean model
 ode_output = np.zeros((explorationvalue, explorationvalue))
 for nodeA in range(0, explorationvalue):
@@ -112,8 +105,19 @@ for nodeA in range(0, explorationvalue):
         parameters = {'prod': 0.01, 'decay': 0.001,'Ksat': 4, 'n': 2,'nodeA':nodeA,'nodeB':nodeB} # prod, decay, Ksat, n, and initial values for A and B
         cells = odeint(ODEgeneRegulation, 0, np.arange(0, 1000.1 , 0.1), args=(parameters,)) 
         ode_output[nodeA, nodeB] = cells[-1, 0]
+```
 
-# After running each, this function plots the ODE and Boolean results side by side
+Boolean network simulation - AND gate:
+```python
+explorationvalue=2 # a Boolean model assumes there is only 2 possible states: 0 or 1
+bool_output = np.zeros((explorationvalue, explorationvalue))
+for nodeA in range(0, explorationvalue):
+    for nodeB in range(0, explorationvalue):
+        bool_output[nodeA, nodeB] = nodeA and nodeB #AND #Tip: Change this in exercise 8.3
+```
+
+After running each, this function plots the ODE and Boolean results side by side:
+```python
 ODEBooleanPlot(ode_output, bool_output)
 ```
 
@@ -129,7 +133,7 @@ ODEBooleanPlot(ode_output, bool_output)
   > Whereas in a Boolean model the activity of the variables can be either 0 or 1, in an ODE the
   > variables can have   > continuous values with the maximum level determined by the production and 
   > the decay rate parameters ($p/d$). This is the reason $C$ has values close to 5 in the ODE output.
-
+  > ![ODE and Boolean output for the logical gate A AND B, for C regulation.](images/odetegenboolean.png){#vegmini1}
 :::
 
 :::{#exr-non}
@@ -184,70 +188,113 @@ examples of biological regulatory interactions that can be described with each l
   > 
   > Biological examples that can be modelled with the logical gates: 
   > 
-  > - AND gate can be that both genes code for transcription factors that form a protein complex that 
+  > - $AND$ gate can be that both genes code for transcription factors that form a protein complex that 
   > binds a promoter to regulate gene expression of $X$. It can also represent that one regulator 
-  > promotes the expression of $X$, while the other phosphorylates protein $X$. And it is phosphorylated
-  > $X$ the active form. 
+  > promotes the expression of $X$, while the other phosphorylates protein $X$. As the phosphorylated
+  > $X$ is the active form, both regulatory interactions are needed ($AND$). 
   > 
-  > - OR is that either TF can bind promoter and activate transcription. 
+  > - $OR$ is that either TF can bind promoter and activate transcription. 
   > 
-  > - NOT is that a TF blocks the promoter so that activating TF cannot bind.
+  > - $NOT$ is that a TF blocks the promoter so that activating TF cannot bind.
   > 
-  > - NOT A & NOT B is that both TFs are repressors of the same gene. 
+  > - $NOT$ **A** $AND$ $NOT$ **B** is that both TFs are repressors of the same gene. 
   > 
-  > - NOT A, yes B is that A is a repressor and B is an activator. 
+  > - $NOT$ **A** $AND$ **B** is that A is a repressor and B is an activator. 
   > 
-  > - XOR gate can be a promoter where either A or B can bind, the complex AB cannot bind. 
+  > - $XOR$ gate can be a promoter where either A or B can bind, the complex AB cannot bind. 
 
 
 :::
-## Part II – Gene regulatory network
+## Gene regulatory network
 
-Now let's move to a network model made of many individual regulatory interactions. This model includes regulatory interactions experimentally determined in the cells of plant roots, here they encoded as logical rules. The model consists of 18 nodes representing transcription factors, hormones, peptides, and multitude regulatory interactions among them. Look at the rootNetwork() function in the circuitFunctions.py file. See how the activity of each node is determined by the state of its regulators using and combining the logical operators AND, OR and NOT. Find the model here: https://www.nature.com/articles/s41598-020-60251-8
+Now let's move to a network model made of many individual regulatory interactions (@garcia2020system). 
+This model includes regulatory interactions discovered for the cells of plant roots in years
+of experimental research. Here, all this knowledge is encoded as logical rules. 
 
-Let’s define a random initial condition for each of these 18 nodes, and the timesteps to solve the system using the logical functions. To find the state of the nodes in the network the next timestep, we need to give the state of our nodes to the rootNetwork() function, and then save the output of this function. We will save in matrix the initial condition, and how these 18 nodes change in the timesteps defined. At the end the function plotBooleanTimecourse() will show us the network changes in the simulated timesteps.
-* tip: 100 timesteps is enough to reach the attractors. For the initial condition you can also use that of one of the attractors reported in the paper and check what happens when you update them.
+The model consists of 18 variables representing transcription factors, hormones, peptides. Look at the
+`rootNetwork()` function in the `circuitFunctions.py` file. This function defines the state of 18 variables
+(CK, ARR1, SHY2, AUXIAAR, etc.) based on an input stored in `parameters`, then it updates the state of each 
+variable using the logical operators $AND$, $OR$ and $NOT$; the result is stored in `w_variable`. The function returns the update state `w_variable` for each of the 18 variables.  
+
+### Initial condition timecourse
+Let us define a random initial condition for each of these 18 variables , and the total number of timesteps 
+we will solve the network using the logical functions. First, we need to input the initial condition of the 
+variables to `rootNetwork()` using `parameters`. Next, we save the output of this function as the new current 
+state. We repeat this procedure iteratively for as many timesteps as we defined, saving in a matrix the 
+timecourse of the simulation. This can be done using a for loop as shown below: 
 
 ```python
 timesteps=20
-nodes=18
-matrix = np.zeros((timesteps+1, nodes), dtype=int) 
-matrix[0,:] = np.random.randint(0, 2, size=nodes) #Random initial condition
+variables=18
+matrix = np.zeros((timesteps+1, variables), dtype=int) 
+matrix[0,:] = np.random.randint(0, 2, size=variables) #Random initial condition
 for i in range(timesteps):
     parameters= {'CK': matrix[i,0], 'ARR1': matrix[i,1], 'SHY2': matrix[i,2], 'AUXIAAR': matrix[i,3], 'ARFR': matrix[i,4], 'ARF10': matrix[i,5], 'ARF5': matrix[i,6], 'XAL1': matrix[i,7], 'PLT': matrix[i,8], 'AUX': matrix[i,9], 'SCR': matrix[i,10], 'SHR': matrix[i,11], 'MIR165': matrix[i,12], 'PHB': matrix[i,13], 'JKD': matrix[i,14], 'MGP': matrix[i,15], 'WOX5': matrix[i,16], 'CLE40': matrix[i,17]}
-    matrix[i+1, :] = rootNetwork(parameters)
+    
+    matrix[i+1, :] = rootNetwork(parameters) # we save the output in i+1
 
 plotBooleanTimecourse(matrix,timesteps)
 ```
 
-Instead of a random initial condition try this one: 
+At the end the function `plotBooleanTimecourse()` will make a plot to see how each variable in the network 
+changes ts activity throughout the simulated timesteps. 100 timesteps is enough to reach an attractor for 
+this network. 
+
+* For the initial condition you can also use that of one of the attractors reported in the paper and check 
+what happens when you update them.
+
+
+:::{#exr-non}
+
+## Algorithmic thinking
+Try this initial condition: 
 
 ```python
 matrix[0,:]=[0,1,1,0,1,1,0,0,1,0,1,1,1,1,1,0,1,0]
 ```
 
-Use the asynchronous updating scheme by changing the function to rootNetworkAsynchronous() and see what happens to this initial condition. 
-
-:::{#exr-non}
-
-## Algorithmic thinking
-**Q4** What happens now and why? What does an asyncrhonous update do?
+Solve this initial condition using `rootNetwork()` and `rootNetworkAsynchronous()`. Compare the output in 
+each case. What happens and why? What does an asynchronous update do?
 :::
 
-This network has 18 nodes, and then 218 = 262,144 possible states. We can either solve each of these conditions, or instead explore just a subset of them. Using the previous code, add for loop to solve 100 random initial conditions, and then save the final activity configurations (attractors) in the attractors matrix. 
-*tip: 100 initial conditons is a good number to start with. 
-# The attractors matrix should have the shape (initial_conditions, nodes) so that you can plot the results using the function plotBooleanAttractors.
+:::{.content-visible when-meta="params.show_answers"}
+
+  > **Answer** The asynchronous updating function introduces a probability of update (95%) to each node in 
+  > the simulation. This means the nodes might not be all updated each timestep. The initial condition 
+  > converges to a cyclic attractor in the synchronous updating function (`rootNetwork()`), and to a fixed
+  > point attractor in the asynchronous function (`rootNetworkAsynchronous()`). This means the cyclic 
+  > behaviour recovered with the synchronous updating scheme was an artifact of updating all the nodes at 
+  > the same time. 
+
+:::
+
+This network has 18 variables, and then $2^{18}$ = 262,144 possible states. We can either solve each of 
+these conditions, or instead explore just a subset of them. Using the previous code, add for loop to solve 
+100 random initial conditions, and then save the final activity configurations (attractors) in the attractors
+matrix. The attractors matrix should have the shape (initial_conditions, variables) so that you can plot the results using the `plotBooleanAttractors()` function. 
+
+* Notice here you should save the final state for each initial condition you explore. 
+
+* tip: 100 initial conditions is a good number to explore. 
+
 
 ```python
 ICs=100
-attractors = np.zeros((ICs, len(parameters))) # new
+attractors = np.zeros((ICs, len(parameters))) 
 
 # your code
 
-plotBooleanAttractors(attractors) # it takes as argument your matrix of attractors
+plotBooleanAttractors(attractors) # it takes as argument a matrix of attractors
 ```
 
-You probably found many different attractors. First, let's use a multidimensional reduction technique to see if each of initial conditions form groups of similar cells.
+:::{.content-visible when-meta="params.show_answers"}
+
+  > **Answer** See `Boolean_answered-8.5.py` to see an implementation of this for loop. ![Timecourse simulation: state of the variables (columns) through simulated time (rows).](images/timecourse.png){#vegmini1}
+
+:::
+
+You probably found many different attractors. First, let's use a multidimensional reduction technique to 
+see how these attractors relate to each other.
 
 ```python
 UMAPBoolean(attractors)
@@ -255,11 +302,19 @@ UMAPBoolean(attractors)
 
 :::{#exr-non}
 
-## Biology / abstract thinking
+## Biology / Conceptual thinking
 **Q5** Why do you see clearly defined groups and not a continuous distribution of attractors? 
 :::
 
-Now let's analyse the attractors you found. First, let's group similar attractors:
+:::{.content-visible when-meta="params.show_answers"}
+
+  > **Answer** We see clearly defined groups because we are doing the UMAP with the cells that have 
+  > already reached an attractor, and not while they are in their trajectory towards the attractor. ![Timecourse simulation: state of the variables (columns) through simulated time (rows).](images/UMAP-10kcells.png){#vegmini1}
+
+:::
+
+Now let's analyse the attractors you found. First, let's group similar attractors using the 
+`sorted()`` function:
 
 ```python
 attractors_sorted = np.array(sorted(attractors.tolist()))
@@ -268,17 +323,41 @@ plotBooleanAttractors(attractors_sorted)
 
 :::{#exr-non}
 
-## Biology / abstract thinking
-**Q6** Do some attractors occur more frequently than others. Do they all have the same basin size of attraction? Why is this? 
+## Biology / Conceptual thinking
+**Q6** Do some attractors occur more frequently than others. Why is this? 
+:::
+
+:::{.content-visible when-meta="params.show_answers"}
+
+  > **Answer** Yes, some attractors occur more often than others, and this is a consequence of the 
+  > regulatory interactions of the model. The number of initial conditions that reached a specific attractor 
+  > is a reflection of the size of their basin of attraction. The basins of attraction (all 
+  > variable configurations  that converge to an attractor) are shaped by the AND, OR, and NOT gates in 
+  > each of the modelled variables. Imagine cells are like marbles moving through a landscape, such that 
+  > the regulatory interactions define the “rolling” direction, until eventually they land in different 
+  > basins of attraction as they acquire different cell states. Here the landscape is multidimensional 
+  > (as many dimensions as variables in the model, so 18). 
+
 :::
 
 :::{#exr-non}
 
 ## Biology
-Some nodes are active (1) in most attractors, others in half, and others in very few. In how many of them is the node SHR active? What does this suggest about their regulation?
+Some variables are active (1) in the majority of the attractors, others in half, and others in very few. 
+In how many attractors is the node SHR active? What does this suggest about its regulation?
 :::
 
-Now let's remove the repeated rows (duplicate attractor states) to see unique attractors: 
+:::{.content-visible when-meta="params.show_answers"}
+
+  > **Answer** How often a variable is active in the attractors, is defined by their logical rules. For
+  > example, SHR logical rule is SHR = SHR. This means that SHR is an input node, that is not regulated by 
+  > any other node. This splits the state space perfectly in two halves: one with SHR active and another 
+  > with SHR inactive
+  
+:::
+
+Now let's remove the repeated rows (duplicate attractor states) to see unique attractors using the 
+`np.unique()` function: 
 
 ```python
 _, unique_indices = np.unique(attractors, axis=0, return_index=True)
@@ -288,18 +367,25 @@ plotBooleanAttractors(attractors_unique)
 
 :::{#exr-non}
 
-## Biology / abstract thinking
+## Biology / conceptual thinking
 How many unique attractors did you find? Compare them with the ones reported in the paper. Are they all fixed points? 
 :::
 
-## Part III – Cell differentiation – jumping from one attractor to another
+:::{.content-visible when-meta="params.show_answers"}
+
+  > **Answer** This depends on how many initial conditions you test. The more initial conditions, the 
+  > more likely you will find the maximum of 6 fixed point attractors this model can produce. 
+
+:::
+
+## Cell differentiation – jumping from one attractor to another
 
 Depending on what we want to answer a continuous or discrete model may be more appropriate for a model. To study the role of many genes in cell differentiation, a Boolean model might be better particularly if we lack details of the parameters underlying each reaction. If we want to study how cells jump from one state to another, a continuous model might be more appropriate. 
 
 Here we will see how we can convert the Boolean model to a continuous one and use it to predict which regulators are able of causing a change in the state of the system (changes in cell fate!)
 
 Compare the code of the functions rootNetwork() and rootNetworkODE(). Notice how in rootNetworkODE() the logical rules are represented with min and max functions, and then used in a sigmoidal function to create a continuous ODE model. 
-* AND operator is a min function, OR operator is a max function, and NOT operator is 1-x. Use the code below to run a random initial condition for the 18 nodes (IC) and see how the system behaves.
+* AND operator is a min function, OR operator is a max function, and NOT operator is 1-x. Use the code below to run a random initial condition for the 18 variables (IC) and see how the system behaves.
 
 ```python
 timerunning=10.1 
@@ -336,7 +422,7 @@ plotODErootTransition(cells,times) # use this function to plot your result
 :::{#exr-non}
 
 ## Algorithmic thinking / biology
-What regulator causes the transition between these attractors? How many nodes change their activity between the initial and final state? what could be the biological meaning of this switch? how would you test this experimentally?
+What regulator causes the transition between these attractors? How many variables change their activity between the initial and final state? what could be the biological meaning of this switch? how would you test this experimentally?
 :::
 
 :::{#exr-non}

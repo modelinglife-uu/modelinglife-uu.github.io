@@ -51,7 +51,7 @@ def ODEgeneRegulation(a,t,parameters):
     nodeB=parameters['nodeB']
     n=parameters['n']
     outputC=a[0]
-    doutputC=prod*nodeA**n/(Ksat**n+nodeA**n)*nodeB**n/(Ksat**n+nodeB**n)-decay*outputC  
+    doutputC=prod*nodeA**n/(Ksat**n+nodeA**n)*nodeB**n/(Ksat**n+nodeB**n)-decay*outputC #Tip: Change this in exercise 8.3
     return(doutputC)
 
 def logicalRule(nodeA,nodeB):
@@ -102,7 +102,7 @@ explorationvalue=2 # a Boolean model assumes there is only 2 possible states: 0 
 bool_output = np.zeros((explorationvalue, explorationvalue))
 for nodeA in range(0, explorationvalue):
     for nodeB in range(0, explorationvalue):
-        bool_output[nodeA, nodeB] = nodeA and nodeB #AND # Change this in exercise 8.3
+        bool_output[nodeA, nodeB] = nodeA and nodeB #AND #Tip: Change this in exercise 8.3
 
 # Now, ODE model simulation
 explorationvalue = 11 # an ODE model allows us to explore more values than a Boolean model
@@ -132,28 +132,72 @@ ODEBooleanPlot(ode_output, bool_output)
 
 :::
 
-Now let's compare how ODE and Boolean logic represent different logical gates. You can use the same code in the previous box. Remember to modify the logical operator in the Boolean section, and to modify the doutputC equation in ODEgeneRegulation: 
+:::{#exr-non}
 
-1. either nodeA or nodeB can activate outputC (OR gate) 
-2. that nodeA represses outputC (NOT gate) 
-3. that both nodeA and nodeB repress outputC (NOT nodeA & NOT nodeB ) 
-4. that nodeA represses outputC but nodeB activates it (NOT nodeA, yes nodeB) 
-5. that nodeA or nodeB can activate outputC, but not both at the same time (XOR gate) 
+## Altorithmic thinking:
+
+Now let's compare how ODE and Boolean models represent different regulatory interactions. You can use the same code in the previous box. Remember to modify the logical operator in the Boolean section, and to modify the $doutputC$ equation in the `ODEgeneRegulation` function: 
+
+
+1. Either `A` or `B` can activate `C`. 
+2. `A` represses `C`.
+3. `A` and `B` together repress `C`. 
+4. `A` represses `C` and `B` activates it.
+5. `A` or `B` can activate `C`, but not when both are active at the same time. 
 6. any other biological scenario yon can think of! 
-* tip: include an extra input node, and make a 3-node logical gate. 
+
+* See if you can modify the code to include an extra input node, and make a 3-node logical gate. 
+
+:::
+
+::: {.content-visible when-meta="params.show_answers"}
+  > **Answer** See `Boolean_answered-8.3.py` to see an implementation of the regulatory interactions listed
+  > above. 
+  > 
+  > 1. is an $OR$ gate: **A** $OR$ **B**
+  > 
+  > 2. is a $NOT$ gate: $NOT$ **A**
+  > 
+  > 3. is a combination of $NOT$ and $AND$ gate: $NOT$ **A** $AND$ $NOT$ **B**
+  > 
+  > 4. is also a combination. There are two possibilities because it is not specified which interaction is 
+  > "stronger". Option 1: $NOT$ **A** $AND$ **B**. Option 2: $NOT$ **A** $OR$ **B**.
+  > 
+  > 5. is a $XOR$ gate (**A** $XOR$ **B**), meaning either but not both at the same time. 
+
+:::
 
 :::{#exr-non}
 
 
-## Algorithmic thinking
+## Biology and Algorithmic thinking
 
-**Q3** Is there a logical gate that can be better represented with an ODE than with Boolean logic? Think of examples of biological regulatory interactions that can be described with each logical gate? 
+Is there a logical gate that can be better represented with an ODE than with Boolean logic? Give an  
+examples of biological regulatory interactions that can be described with each logical gate? 
 
 :::
 
 :::{.content-visible when-meta="params.show_answers"}
 
-> **Answer** jkdslafjjdlks
+  > **Answer** All logical gates can be modelled correctly with either approach. With Boolean models 
+  > we look quantitative resolution, with ODE we can model many more values than 0 and 1. 
+  > 
+  > Biological examples that can be modelled with the logical gates: 
+  > 
+  > - AND gate can be that both genes code for transcription factors that form a protein complex that 
+  > binds a promoter to regulate gene expression of $X$. It can also represent that one regulator 
+  > promotes the expression of $X$, while the other phosphorylates protein $X$. And it is phosphorylated
+  > $X$ the active form. 
+  > 
+  > - OR is that either TF can bind promoter and activate transcription. 
+  > 
+  > - NOT is that a TF blocks the promoter so that activating TF cannot bind.
+  > 
+  > - NOT A & NOT B is that both TFs are repressors of the same gene. 
+  > 
+  > - NOT A, yes B is that A is a repressor and B is an activator. 
+  > 
+  > - XOR gate can be a promoter where either A or B can bind, the complex AB cannot bind. 
 
 
 :::

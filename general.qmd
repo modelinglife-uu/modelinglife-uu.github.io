@@ -18,7 +18,7 @@ different levels accompanied by computer practicals (WC) where students will get
 on running computational models of the development or the evolution of animals, plants, and microbial
 systems. 
 
-![Rough roadmap of the Modeling life course](images/timeline.png)
+![Rough roadmap of the Modeling life course](images/timeline.png){#vegmini1 width=130%}
 
 ## General schedule: 
 

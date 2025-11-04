@@ -58,13 +58,6 @@ book:
             - evo_practical_1.qmd
             - evo_practical_2.qmd
             - evo_practical_3.qmd
-    - part: "Mini-projects"
-      chapters:
-            - project_1.qmd
-            - project_2.qmd
-            - project_3.qmd
-            - project_4.qmd
-            - project_5.qmd
     - references.qmd
 
 

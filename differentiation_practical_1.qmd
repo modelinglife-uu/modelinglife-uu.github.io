@@ -21,7 +21,7 @@ the code of the functions we use throughout the practical, have a quick look at 
 Open Boolean_practical.py and familiarize yourself with the functions `ODEgeneRegulation()` 
 and `logicalRule()`. Look at the name of the functions, inputs and outputs. 
 
-Both functions model an `AND` gate where `A` and `B` positively regulate `C`. This 
+Both functions model an `AND` gate where nodeA and nodeB positively regulate nodeC. This 
 could represent that A and B are transcription factors that form a protein complex, and 
 that it is via this complex that they can regulate the expression of C. 
 
@@ -47,15 +47,15 @@ def ODEgeneRegulation(a,t,parameters):
     prod=parameters['prod']
     decay=parameters['decay']
     Ksat=parameters['Ksat']
-    variableA=parameters['variableA']
-    variableB=parameters['variableB']
+    nodeA=parameters['nodeA']
+    nodeB=parameters['nodeB']
     n=parameters['n']
     outputC=a[0]
-    doutputC=prod*variableA**n/(Ksat**n+variableA**n)*variableB**n/(Ksat**n+variableB**n)-decay*outputC #Tip: Change this in exercise 8.3
+    doutputC=prod*nodeA**n/(Ksat**n+nodeA**n)*nodeB**n/(Ksat**n+nodeB**n)-decay*outputC #Tip: Change this in exercise 8.3
     return(doutputC)
 
-def logicalRule(variableA,variableB):
-    return(variableA and variableB)
+def logicalRule(nodeA,nodeB):
+    return(nodeA and nodeB)
 ```
 
 :::{#exr-non}
@@ -86,7 +86,7 @@ ODErun(ODEgeneRegulation,A,B)
 # look at the text in the terminal for the result:
 A=1
 B=1
-print("the boolean operation of variableA ",A," AND variableB",B," is:", logicalRule(A,B))
+print("the boolean operation of nodeA ",A," AND nodeB",B," is:", logicalRule(A,B))
 ```
 
 Both implementations of this regulatory interaction produce the same effect, i.e. `C` is active when both
@@ -100,20 +100,20 @@ ODE model simulation - AND gate:
 ```python
 explorationvalue = 11 # an ODE model allows us to explore more values than a Boolean model
 ode_output = np.zeros((explorationvalue, explorationvalue))
-for variableA in range(0, explorationvalue):
-    for variableB in range(0, explorationvalue):
-        parameters = {'prod': 0.01, 'decay': 0.001,'Ksat': 4, 'n': 2,'variableA':variableA,'variableB':variableB} # prod, decay, Ksat, n, and initial values for A and B
+for nodeA in range(0, explorationvalue):
+    for nodeB in range(0, explorationvalue):
+        parameters = {'prod': 0.01, 'decay': 0.001,'Ksat': 4, 'n': 2,'nodeA':nodeA,'nodeB':nodeB} # prod, decay, Ksat, n, and initial values for A and B
         cells = odeint(ODEgeneRegulation, 0, np.arange(0, 1000.1 , 0.1), args=(parameters,)) 
-        ode_output[variableA, variableB] = cells[-1, 0]
+        ode_output[nodeA, nodeB] = cells[-1, 0]
 ```
 
 Boolean network simulation - AND gate:
 ```python
 explorationvalue=2 # a Boolean model assumes there is only 2 possible states: 0 or 1
 bool_output = np.zeros((explorationvalue, explorationvalue))
-for variableA in range(0, explorationvalue):
-    for variableB in range(0, explorationvalue):
-        bool_output[variableA, variableB] = variableA and variableB #AND #Tip: Change this in exercise 8.3
+for nodeA in range(0, explorationvalue):
+    for nodeB in range(0, explorationvalue):
+        bool_output[nodeA, nodeB] = nodeA and nodeB #AND #Tip: Change this in exercise 8.3
 ```
 
 After running each, this function plots the ODE and Boolean results side by side:
@@ -150,7 +150,7 @@ Now let's compare how ODE and Boolean models represent different regulatory inte
 5. `A` or `B` can activate `C`, but not when both are active at the same time. 
 6. any other biological scenario yon can think of! 
 
-* See if you can modify the code to include an extra input variable, and make a 3-variable logical gate. 
+* See if you can modify the code to include an extra input node, and make a 3-node logical gate. 
 
 :::
 
@@ -158,16 +158,26 @@ Now let's compare how ODE and Boolean models represent different regulatory inte
   > **Answer** See `Boolean_answered-8.3.py` to see an implementation of the regulatory interactions listed
   > above. 
   > 
-  > 1. is an $OR$ gate: **A** $OR$ **B**
+  > 1. $OR$ gate: **A** $OR$ **B**
+  > ![](images/0-or.png){#vegmini1}  
+  >
+  > 2. $NOT$ gate: $NOT$ **A**
+  > ![](images/0-not.png){#vegmini1}  
   > 
-  > 2. is a $NOT$ gate: $NOT$ **A**
+  > 3. combination of $NOT$ and $AND$ gate: $NOT$ **A** $AND$ $NOT$ **B**
+  > ![](images/0-notAND.png){#vegmini1}  
   > 
-  > 3. is a combination of $NOT$ and $AND$ gate: $NOT$ **A** $AND$ $NOT$ **B**
+  > looks quite different if it is an $OR$ gate:  $NOT$ **A** $OR$ $NOT$ **B**
   > 
-  > 4. is also a combination. There are two possibilities because it is not specified which interaction is 
-  > "stronger". Option 1: $NOT$ **A** $AND$ **B**. Option 2: $NOT$ **A** $OR$ **B**.
+  > ![](images/0-notOR.png){#vegmini1}  
+  >
+  > 4. There are two possibilities because it is not specified which interaction is 
+  > "stronger". Here we show when A is stronger. Option 1: $NOT$ **A** $AND$ **B**. 
   > 
-  > 5. is a $XOR$ gate (**A** $XOR$ **B**), meaning either but not both at the same time. 
+  > ![](images/0-NOTA,B.png){#vegmini1}  
+  > 
+  > 5. $XOR$ gate (**A** $XOR$ **B**), meaning either but not both at the same time. 
+  > ![](images/0-XOR.png){#vegmini1}  
 
 :::
 
@@ -211,8 +221,6 @@ Now let's move to a network model made of many individual regulatory interaction
 This model includes regulatory interactions discovered for the cells of plant roots in years
 of experimental research. Here, all this knowledge is encoded as logical rules. 
 
-![](images/rootnetwork.png){#vegmini1}
-
 The model consists of 18 variables representing transcription factors, hormones, peptides. Look at the
 `rootNetwork()` function in the `circuitFunctions.py` file. This function defines the state of 18 variables
 (CK, ARR1, SHY2, AUXIAAR, etc.) based on an input stored in `parameters`, then it updates the state of each 
@@ -233,7 +241,7 @@ matrix[0,:] = np.random.randint(0, 2, size=variables) #Random initial condition
 for i in range(timesteps):
     parameters= {'CK': matrix[i,0], 'ARR1': matrix[i,1], 'SHY2': matrix[i,2], 'AUXIAAR': matrix[i,3], 'ARFR': matrix[i,4], 'ARF10': matrix[i,5], 'ARF5': matrix[i,6], 'XAL1': matrix[i,7], 'PLT': matrix[i,8], 'AUX': matrix[i,9], 'SCR': matrix[i,10], 'SHR': matrix[i,11], 'MIR165': matrix[i,12], 'PHB': matrix[i,13], 'JKD': matrix[i,14], 'MGP': matrix[i,15], 'WOX5': matrix[i,16], 'CLE40': matrix[i,17]}
     
-    matrix[i+1, :] = rootNetwork(parameters) # we save the output in time i+1
+    matrix[i+1, :] = rootNetwork(parameters) # we save the output in i+1
 
 plotBooleanTimecourse(matrix,timesteps)
 ```
@@ -241,6 +249,12 @@ plotBooleanTimecourse(matrix,timesteps)
 At the end the function `plotBooleanTimecourse()` will make a plot to see how each variable in the network 
 changes ts activity throughout the simulated timesteps. 100 timesteps is enough to reach an attractor for 
 this network. 
+
+:::{.content-visible when-meta="params.show_answers"}
+
+  > ![Timecourse simulations](images/0-timecourse.png){#vegmini1}
+
+:::
 
 * For the initial condition you can also use that of one of the attractors reported in the paper and check 
 what happens when you update them.
@@ -261,19 +275,24 @@ each case. What happens and why? What does an asynchronous update do?
 
 :::{.content-visible when-meta="params.show_answers"}
 
-  > **Answer** The asynchronous updating function introduces a probability of update (95%) to each variable in 
-  > the simulation. This means not all the variables are updated each timestep. The initial condition 
+  > **Answer** The asynchronous updating function introduces a probability of update (95%) to each node in 
+  > the simulation. This means the nodes might not be all updated each timestep. The initial condition 
   > converges to a cyclic attractor in the synchronous updating function (`rootNetwork()`), and to a fixed
   > point attractor in the asynchronous function (`rootNetworkAsynchronous()`). This means the cyclic 
-  > behaviour recovered with the synchronous updating scheme was an artifact of updating all the variables at 
+  > behaviour recovered with the synchronous updating scheme was an artifact of updating all the nodes at 
   > the same time. 
 
 :::
 
-This network has 18 variables, and then $2^{18}$ = 262,144 possible states. We can either solve each of 
-these conditions, or instead explore just a subset of them. Using the previous code, add for loop to solve 
-100 random initial conditions, and then save the final activity configurations (attractors) in the attractors
-matrix. The attractors matrix should have the shape (initial_conditions, variables) so that you can plot the results using the `plotBooleanAttractors()` function. 
+This network has 18 variables, and then $2^{18}$ = 262,144 possible states. We can solve each of 
+these conditions, or instead explore just a subset of them. 
+
+:::{#exr-non}
+
+## Algorithmic thinking
+Using the previous code, add for loop to solve 100 random initial conditions, and then save the final activity
+configurations (attractors) in the attractors matrix. The attractors matrix should have the dimensions  
+(initial_conditions, variables) so that you can plot the results using the `plotBooleanAttractors()` function. 
 
 * Notice here you should save the final state for each initial condition you explore. 
 
@@ -288,10 +307,13 @@ attractors = np.zeros((ICs, len(parameters)))
 
 plotBooleanAttractors(attractors) # it takes as argument a matrix of attractors
 ```
+:::
 
 :::{.content-visible when-meta="params.show_answers"}
 
-  > **Answer** See `Boolean_answered-8.5.py` to see an implementation of this for loop. ![Timecourse simulation: state of the variables (columns) through simulated time (rows).](images/timecourse.png){#vegmini1}
+  > **Answer** See `Boolean_answered-8.6.py` to see an implementation of this for loop.
+  > 
+  > ![Attractors reached by 100 random initial conditions](images/0-100ic.png){#vegmini1}
 
 :::
 
@@ -305,7 +327,7 @@ UMAPBoolean(attractors)
 :::{#exr-non}
 
 ## Biology / Conceptual thinking
-Why do you see clearly defined groups and not a continuous distribution of attractors? 
+**Q5** Why do you see clearly defined groups and not a continuous distribution of attractors? 
 :::
 
 :::{.content-visible when-meta="params.show_answers"}
@@ -322,11 +344,16 @@ Now let's analyse the attractors you found. First, let's group similar attractor
 attractors_sorted = np.array(sorted(attractors.tolist()))
 plotBooleanAttractors(attractors_sorted) 
 ```
+:::{.content-visible when-meta="params.show_answers"}
+
+  > ![Attractors reached by 100 random initial conditions - clustered](images/0-clustered_attractors.png){#vegmini1}
+
+:::
 
 :::{#exr-non}
 
 ## Biology / Conceptual thinking
-Do some attractors occur more frequently than others. Why is this? 
+**Q6** Do some attractors occur more frequently than others. Why is this? 
 :::
 
 :::{.content-visible when-meta="params.show_answers"}
@@ -346,16 +373,18 @@ Do some attractors occur more frequently than others. Why is this?
 
 ## Biology
 Some variables are active (1) in the majority of the attractors, others in half, and others in very few. 
-In how many attractors is the variable SHR active? What does this suggest about its regulation?
+In how many attractors is the node SHR active? What does this suggest about its regulation?
 :::
 
 :::{.content-visible when-meta="params.show_answers"}
 
   > **Answer** How often a variable is active in the attractors, is defined by their logical rules. For
-  > example, SHR logical rule is SHR = SHR. This means that SHR is an input variable, that is not regulated 
-  > by any other variable. This splits the state space perfectly in two halves: one with SHR active and
-  > another with SHR inactive
-  
+  > example, SHR logical rule is SHR = SHR. This means that SHR is an input node, that is not regulated by 
+  > any other node. This splits the state space perfectly in two halves: one with SHR active and another 
+  > with SHR inactive. You can implement this in `Boolean_answered-8.3.py` to visualize this split. 
+  >
+  > ![](images/0-SHR.png){#vegmini1}
+
 :::
 
 Now let's remove the repeated rows (duplicate attractor states) to see unique attractors using the 
@@ -367,6 +396,11 @@ attractors_unique = attractors[np.sort(unique_indices)]
 plotBooleanAttractors(attractors_unique) 
 ```
 
+:::{.content-visible when-meta="params.show_answers"}
+
+  > ![5 Attractors reached by random 100 initial conditions - unique](images/0-unique_attractors.png){#vegmini1}
+
+:::
 :::{#exr-non}
 
 ## Biology / conceptual thinking
@@ -382,27 +416,11 @@ How many unique attractors did you find? Compare them with the ones reported in 
 
 ## Cell differentiation – jumping from one attractor to another
 
-Depending on the specific question that we want to answer, it may be better to us a continuous or a discrete
-approach to model gene regulation. The lack of parametrization in Boolean models make them suitable to study 
-the role of many genes in cell differentiation, particularly if we lack details of the parameters underlying 
-each reaction. Yet, the discreteness assumptions may limit how we can use the model to study how morphogens 
-that vary quantitatively in space cause cells to change from one state to another. Thus, to study how the 
-networks jump from one state to another, a continuous model might be more appropriate.
+Depending on what we want to answer a continuous or discrete model may be more appropriate for a model. To study the role of many genes in cell differentiation, a Boolean model might be better particularly if we lack details of the parameters underlying each reaction. If we want to study how cells jump from one state to another, a continuous model might be more appropriate. 
 
-We can convert a Boolean model into a continuous one. Here you will learn how, and will use the continuous 
-model to predict which regulators are able of causing a change in the state of the system (changes in cell 
-fate!)
+Here we will see how we can convert the Boolean model to a continuous one and use it to predict which regulators are able of causing a change in the state of the system (changes in cell fate!)
 
-Compare the code of the functions `rootNetwork()` and` rootNetworkODE()`. Notice how in `rootNetworkODE()` 
-the logical rules are represented with `min` and `max` functions, that are then used in a sigmoidal function
-to model continuous activity in an ODE model. 
-
-| Operator | ODE      |
-|:---------|---------:|
-| AND.     |   max    |
-| OR       |   min    |
-| NOT      |   1-x    |
-
+Compare the code of the functions rootNetwork() and rootNetworkODE(). Notice how in rootNetworkODE() the logical rules are represented with min and max functions, and then used in a sigmoidal function to create a continuous ODE model. 
 * AND operator is a min function, OR operator is a max function, and NOT operator is 1-x. Use the code below to run a random initial condition for the 18 variables (IC) and see how the system behaves.
 
 ```python
@@ -422,25 +440,14 @@ plotODEroot(cells,times)
 Do the attractors match those recovered with the Boolean network?
 :::
 
-:::{.content-visible when-meta="params.show_answers"}
-
-  > **Answer** Yes. The ODE model is built with the same regulatory interactions from the Boolean model. 
-  > The difference is that this model allows us to describe quantitative differences in the activity of 
-  > the variables  
-
-:::
-
-Now let’s use the model to study cell differentiation. Let’s start in the following initial condition (IC vector),
-and find a change in a variable that produce a jump to another attractor (end). For this you can simply flip the
-activity of a gene in the initial condition (from 0 ->1 or 1->0) and see the final attractor matches the desired 
-end state. 
+Now let’s use the model to study cell differentiation. Let’s start in the following initial condition (IC vector), and find a change in a node that produce a jump to another attractor (end). For this you can simply flip the activity of a gene in the initial condition (from 0 ->1 or 1->0) and see the final attractor matches the desired end state. 
 
 ```python
 # We start here: 
 IC=[0,0,0,0,1,0,1,1,1,1,1,1,1,0,1,0,1,0]
 # We want to end here. 
 end=[1,1,0,0,1,1,1,1,1,1,0,0,1,0,0,0,0,1]
-# variable order
+# node order
 # CK, ARR1, SHY2, AUXIAAR, ARFR, ARF10, ARF5, XAL1, PLT, AUX, SCR, SHR, MIR165, PHB, JKD, MGP, WOX5, CLE40
 
 # your code 
@@ -450,27 +457,12 @@ plotODErootTransition(cells,times) # use this function to plot your result
 
 :::{#exr-non}
 
-## Biology
+## Algorithmic thinking / biology
 What regulator causes the transition between these attractors? How many variables change their activity between the initial and final state? what could be the biological meaning of this switch? how would you test this experimentally?
-:::
-
-:::{.content-visible when-meta="params.show_answers"}
-
-  > **Answer** SHR OFF (0) causes the transition between the specified activity configurations. We can interpret 
-  > this change between attractors as a cell fate change, in which the decrease in SHR activity triggers changes 
-  > in other nodes of the network resulting in the differentiation of the cells.  
-
 :::
 
 :::{#exr-non}
 
 ## Biology
-Finally, use the model to predict the rest of the attractor transitions because of single variable changes. Are all attractor transitions possible, or are there preferred differentiation routes?
-:::
-
-:::{.content-visible when-meta="params.show_answers"}
-  > **Answer** Not all attractor transitions are possible by single variable changes. This is because the 
-  > regulatory interactions in the model constrain how this perturbation is interpreted, and with it the
-  > differentiation trajectories. 
-
+Finally, use the model to predict the rest of the attractor transitions because of single node changes. Are all attractor transitions possible, or are there preferred differentiation routes?
 :::

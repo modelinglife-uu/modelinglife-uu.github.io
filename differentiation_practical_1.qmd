@@ -383,7 +383,7 @@ In how many attractors is the node SHR active? What does this suggest about its 
   > any other node. This splits the state space perfectly in two halves: one with SHR active and another 
   > with SHR inactive. You can implement this in `Boolean_answered-8.3.py` to visualize this split. 
   >
-  > ![](images/0-SHR.png){#vegmini1}
+  > ![SHR activity regulated by itself (variable A)](images/0-SHR.png){#vegmini1}
 
 :::
 
@@ -439,6 +439,12 @@ plotODEroot(cells,times)
 ## Modeling choices
 Do the attractors match those recovered with the Boolean network?
 :::
+:::{.content-visible when-meta="params.show_answers"}
+
+  > **Answer** Yes. The ODE model is built with the same regulatory interactions from the Boolean model. 
+  > The difference is that this model allows us to describe quantitative differences in the activity of the nodes. 
+
+:::
 
 Now let’s use the model to study cell differentiation. Let’s start in the following initial condition (IC vector), and find a change in a node that produce a jump to another attractor (end). For this you can simply flip the activity of a gene in the initial condition (from 0 ->1 or 1->0) and see the final attractor matches the desired end state. 
 
@@ -458,11 +464,29 @@ plotODErootTransition(cells,times) # use this function to plot your result
 :::{#exr-non}
 
 ## Algorithmic thinking / biology
-What regulator causes the transition between these attractors? How many variables change their activity between the initial and final state? what could be the biological meaning of this switch? how would you test this experimentally?
+What regulator causes the transition between these attractors? How many variables change their activity between the 
+initial and final state? what could be the biological meaning of this switch? how would you test this experimentally?
+:::
+
+:::{.content-visible when-meta="params.show_answers"}
+
+  > **Answer** SHR OFF (0) causes the transition between the specified activity configurations. We can interpret this
+  > change between attractors as a cell fate change, in which the decrease in SHR activity triggers changes in other 
+  > nodes of the network resulting in the differentiation of the cells. SHR could be a cell differentiation signal. 
+  > To test this experimentally we can artificially repress SHR in the cells.
+
 :::
 
 :::{#exr-non}
 
 ## Biology
 Finally, use the model to predict the rest of the attractor transitions because of single node changes. Are all attractor transitions possible, or are there preferred differentiation routes?
+:::
+
+:::{.content-visible when-meta="params.show_answers"}
+
+  > **Answer** Not all attractor transitions are possible by single node changes. This is because the regulatory
+  > interactions in the model constrain how this perturbation is interpreted, and with it the differentiation 
+  > trajectories.
+
 :::

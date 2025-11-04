@@ -850,7 +850,12 @@ examples of biological regulatory interactions that can be described with each l
 </div>
 <blockquote class="blockquote">
 <p><strong>Answer</strong> How often a variable is active in the attractors, is defined by their logical rules. For example, SHR logical rule is SHR = SHR. This means that SHR is an input node, that is not regulated by any other node. This splits the state space perfectly in two halves: one with SHR active and another with SHR inactive. You can implement this in <code>Boolean_answered-8.3.py</code> to visualize this split.</p>
-<p><a href="images/0-SHR.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="images/0-SHR.png" id="vegmini1" class="img-fluid"></a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/0-SHR.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="SHR activity regulated by itself (variable A)"><img src="images/0-SHR.png" class="img-fluid figure-img" alt="SHR activity regulated by itself (variable A)"></a></p>
+<figcaption>SHR activity regulated by itself (variable A)</figcaption>
+</figure>
+</div>
 </blockquote>
 <p>Now let’s remove the repeated rows (duplicate attractor states) to see unique attractors using the <code>np.unique()</code> function:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>_, unique_indices <span class="op">=</span> np.unique(attractors, axis<span class="op">=</span><span class="dv">0</span>, return_index<span class="op">=</span><span class="va">True</span>)</span>
@@ -888,6 +893,9 @@ examples of biological regulatory interactions that can be described with each l
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.11 (Modeling choices)</strong></span> Do the attractors match those recovered with the Boolean network?</p>
 </div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> Yes. The ODE model is built with the same regulatory interactions from the Boolean model. The difference is that this model allows us to describe quantitative differences in the activity of the nodes.</p>
+</blockquote>
 <p>Now let’s use the model to study cell differentiation. Let’s start in the following initial condition (IC vector), and find a change in a node that produce a jump to another attractor (end). For this you can simply flip the activity of a gene in the initial condition (from 0 -&gt;1 or 1-&gt;0) and see the final attractor matches the desired end state.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We start here: </span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>IC<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>]</span>
@@ -902,9 +910,15 @@ examples of biological regulatory interactions that can be described with each l
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.12 (Algorithmic thinking / biology)</strong></span> What regulator causes the transition between these attractors? How many variables change their activity between the initial and final state? what could be the biological meaning of this switch? how would you test this experimentally?</p>
 </div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> SHR OFF (0) causes the transition between the specified activity configurations. We can interpret this change between attractors as a cell fate change, in which the decrease in SHR activity triggers changes in other nodes of the network resulting in the differentiation of the cells. SHR could be a cell differentiation signal. To test this experimentally we can artificially repress SHR in the cells.</p>
+</blockquote>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.13 (Biology)</strong></span> Finally, use the model to predict the rest of the attractor transitions because of single node changes. Are all attractor transitions possible, or are there preferred differentiation routes?</p>
 </div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> Not all attractor transitions are possible by single node changes. This is because the regulatory interactions in the model constrain how this perturbation is interpreted, and with it the differentiation trajectories.</p>
+</blockquote>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">

@@ -9,45 +9,46 @@ Now we have some hope of making progress – Niehls Bohr*
 ## Introduction 
 
 In this practical you will study the effects of auxin, a plant hormone,
-on gene regulation in the root. Auxin is a hormone virtually involved in
-all developmental processes in plants, from embryo patterning and floral
-organ determination to leaf disposition and root growth. In each
-context, auxin triggers specific responses, which can be explained by
-the underlying regulatory networks—namely by the redundancy of molecular
-players in the auxin signalling pathway (the auxin response factors,
-ARFs), and how they are expressed in different tissues.
+on gene regulation in the root. Auxin is a hormone that is virtually involved 
+in all developmental processes in plants, from embryo patterning and floral
+organ determination to leaf disposition and root growth. In each context, 
+auxin triggers specific responses, which can be explained by the underlying 
+regulatory networks. Indeed, there are multiple molecular players in the auxin 
+signalling pathway that can be expressed in different tissues.
+Particularly important are the the auxin response factors, ARFs, that are 
+transcription factors that regulate the expression of genes in response to auxin.
 
-In the root, researchers have found an auxin–WOX5 paradox: some
-experiments show that auxin promotes the expression of WOX5 (a root
-stem cell transcription factor), while others found WOX5 repression.
-This opposite auxin regulation is mediated by different ARFs—ARF5 and
-ARF10—posing the possibility that accounting for both ARF5 and ARF10
-regulatory networks can reconcile the results. To this end, you will use
-an in silico root model to address this paradox and propose an
+In the root, researchers have found an auxin paradox: some
+experiments show that auxin promotes the expression of the gene *WOX5* (a root
+stem cell transcription factor), while others found it represses *WOX5*
+(Figure 1). This opposite auxin regulation is mediated by different ARFs—ARF5 and
+ARF10—posing the possibility that accounting for how ARF5 and ARF10 are themselves 
+regulated can reconcile the results. Here we will explore this possibility using 
+an *in silico* root model; we will address this paradox and propose an
 explanation.
+
+![Figure 1 Auxin regulates WOX5 expression through different auxin response factors.](images/0-Auxin-regulation.png){#vegmini1 width=50%}
 
 ## Biological background 
 
 Plant roots grow thanks to the presence of stem cells housed in a niche
-at the root tip. A subset of these cells expresses WOX5, maintaining
-the surrounding cells as stem cells. WOX5 is regulated by several
+at the root tip. A subset of these cells express *WOX5*, maintaining
+the surrounding cells undifferentiated. WOX5 is regulated by several
 factors, and network models help us understand how.
 
 The Boolean network used last week describes the gene and hormonal
 activity configurations of the cells in the root apex. In this model
-WOX5 is regulated positively by ARF5 and negatively by ARF10 and
+WOX5 is regulated positively by ARF5, and negatively by ARF10 and
 CLE40. Auxin regulates stem cell activity in the roots, and multiple
-links exist between auxin and the regulators in the Boolean network.
-Both ARF5 and ARF10 are auxin response factors activated by auxin.
-Moreover, root transcription factors control ARF5 and ARF10
-expression such that they are not expressed in every cell of the root
+links exist between auxin and the regulators included in the Boolean network.
+Both ARF5 and ARF10 are auxin response factors, activated by auxin.
+Moreover, other root transcription factors control ARF5 and ARF10
+expression causing them to not be expressed in every cell of the root
 apex. This regulation is included in the Boolean model we studied last
 week. Whether this is relevant to understanding the auxin–WOX5 paradox
-is unclear. Here, each cell of the in silico root model carries a copy
-of the Boolean network, which allows us to test hypotheses and find an
-explanation.
-
-![Figure 1 Auxin regulates WOX5 expression through different auxin response factors.](images/0-Auxin-regulation.png){#vegmini1}
+is unclear. Here, each cell of the *in silico* root model carries a copy
+of the Boolean network initialized in a particular attractor, which allows us 
+to test hypotheses and find an explanation.
 
 ![Figure 2. Experiments showing different effects of auxin on WOX5 expression. On the right we can see the evidence of Auxin-->WOX5, and in the left we see aAuxin--/ WOX5. Both are pretty convincing.](images/0-auxin-paradox.png){#vegmini1}
  

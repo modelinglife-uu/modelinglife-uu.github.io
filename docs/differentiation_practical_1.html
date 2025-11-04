@@ -826,15 +826,21 @@ examples of biological regulatory interactions that can be described with each l
 <p><span class="theorem-title"><strong>Exercise 8.7 (Biology / Conceptual thinking)</strong></span> <strong>Q5</strong> Why do you see clearly defined groups and not a continuous distribution of attractors?</p>
 </div>
 <blockquote class="blockquote">
-<p><strong>Answer</strong> We see clearly defined groups because we are doing the UMAP with the cells that have already reached an attractor, and not while they are in their trajectory towards the attractor. <img src="images/UMAP-10kcells.png" id="vegmini1" class="img-fluid" alt="Timecourse simulation: state of the variables (columns) through simulated time (rows)."></p>
+<p><strong>Answer</strong> We see clearly defined groups because we are doing the UMAP with the cells that have already reached an attractor, and not while they are in their trajectory towards the attractor.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/UMAP-10kcells.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Timecourse simulation: state of the variables (columns) through simulated time (rows)."><img src="images/UMAP-10kcells.png" class="img-fluid figure-img" alt="Timecourse simulation: state of the variables (columns) through simulated time (rows)."></a></p>
+<figcaption>Timecourse simulation: state of the variables (columns) through simulated time (rows).</figcaption>
+</figure>
+</div>
 </blockquote>
-<p>Now let’s analyse the attractors you found. First, let’s group similar attractors using the `sorted()`` function:</p>
+<p>Now let’s analyse the attractors you found. First, let’s group similar attractors using the <code>sorted()</code> function:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>attractors_sorted <span class="op">=</span> np.array(<span class="bu">sorted</span>(attractors.tolist()))</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>plotBooleanAttractors(attractors_sorted) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <blockquote class="blockquote">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/0-clustered_attractors.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Attractors reached by 100 random initial conditions - clustered"><img src="images/0-clustered_attractors.png" class="img-fluid figure-img" alt="Attractors reached by 100 random initial conditions - clustered"></a></p>
+<p><a href="images/0-clustered_attractors.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Attractors reached by 100 random initial conditions - clustered"><img src="images/0-clustered_attractors.png" class="img-fluid figure-img" alt="Attractors reached by 100 random initial conditions - clustered"></a></p>
 <figcaption>Attractors reached by 100 random initial conditions - clustered</figcaption>
 </figure>
 </div>
@@ -852,7 +858,7 @@ examples of biological regulatory interactions that can be described with each l
 <p><strong>Answer</strong> How often a variable is active in the attractors, is defined by their logical rules. For example, SHR logical rule is SHR = SHR. This means that SHR is an input node, that is not regulated by any other node. This splits the state space perfectly in two halves: one with SHR active and another with SHR inactive. You can implement this in <code>Boolean_answered-8.3.py</code> to visualize this split.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/0-SHR.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="SHR activity regulated by itself (variable A)"><img src="images/0-SHR.png" class="img-fluid figure-img" alt="SHR activity regulated by itself (variable A)"></a></p>
+<p><a href="images/0-SHR.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="SHR activity regulated by itself (variable A)"><img src="images/0-SHR.png" class="img-fluid figure-img" alt="SHR activity regulated by itself (variable A)"></a></p>
 <figcaption>SHR activity regulated by itself (variable A)</figcaption>
 </figure>
 </div>
@@ -864,7 +870,7 @@ examples of biological regulatory interactions that can be described with each l
 <blockquote class="blockquote">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/0-unique_attractors.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="5 Attractors reached by random 100 initial conditions - unique"><img src="images/0-unique_attractors.png" class="img-fluid figure-img" alt="5 Attractors reached by random 100 initial conditions - unique"></a></p>
+<p><a href="images/0-unique_attractors.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="5 Attractors reached by random 100 initial conditions - unique"><img src="images/0-unique_attractors.png" class="img-fluid figure-img" alt="5 Attractors reached by random 100 initial conditions - unique"></a></p>
 <figcaption>5 Attractors reached by random 100 initial conditions - unique</figcaption>
 </figure>
 </div>

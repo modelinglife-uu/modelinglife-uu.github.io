@@ -333,12 +333,14 @@ UMAPBoolean(attractors)
 :::{.content-visible when-meta="params.show_answers"}
 
   > **Answer** We see clearly defined groups because we are doing the UMAP with the cells that have 
-  > already reached an attractor, and not while they are in their trajectory towards the attractor. ![Timecourse simulation: state of the variables (columns) through simulated time (rows).](images/UMAP-10kcells.png){#vegmini1}
+  > already reached an attractor, and not while they are in their trajectory towards the attractor. 
+  >
+  > ![Timecourse simulation: state of the variables (columns) through simulated time (rows).](images/UMAP-10kcells.png){#vegmini1}
 
 :::
 
 Now let's analyse the attractors you found. First, let's group similar attractors using the 
-`sorted()`` function:
+`sorted()` function:
 
 ```python
 attractors_sorted = np.array(sorted(attractors.tolist()))

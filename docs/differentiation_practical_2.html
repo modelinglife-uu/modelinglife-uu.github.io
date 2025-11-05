@@ -520,6 +520,7 @@ window.Quarto = {
   <li><a href="#auxin-does-opposite-things-in-the-root" id="toc-auxin-does-opposite-things-in-the-root" class="nav-link" data-scroll-target="#auxin-does-opposite-things-in-the-root"><span class="header-section-number">9.2</span> Auxin does opposite things in the root</a></li>
   <li><a href="#the-model" id="toc-the-model" class="nav-link" data-scroll-target="#the-model"><span class="header-section-number">9.3</span> The model</a></li>
   <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">9.4</span> Questions</a></li>
+  <li><a href="#biology-algorithmic-thinking-2" id="toc-biology-algorithmic-thinking-2" class="nav-link" data-scroll-target="#biology-algorithmic-thinking-2"><span class="header-section-number">9.5</span> Biology &amp; algorithmic thinking</a></li>
   </ul>
 </nav>
     </div>
@@ -666,34 +667,34 @@ window.Quarto = {
 <p>What is the root tip response to auxin treatments? Considering that the root contains mixed cell types, which cells best represent your plotted values?</p>
 </div>
 <blockquote class="blockquote">
-<p><strong>Answer</strong> What portion of the root we sample changes completely our perception of how auxin regulates WOX5.<br>
-<img src="images/0-insilico-RT-PCR_plots.png" id="vegmini1" class="img-fluid" style="width:100.0%"></p>
+<p><strong>Answer</strong> What portion of the root we sample changes completely our perception of how auxin regulates WOX5. If we sample the whole root we get the impression that WOX5 is induced and it is true for the endodermis cells. Yet, if we sample the very tip of the root, we are sampling a smaller proportion of endodermal cells, allowing us to detect that auxin is also repressing WOX5 expression. The latter is similar to the qPCR experiment in Figure 1 (right panel). <img src="images/0-insilico-RT-PCR_plots.png" id="vegmini1" class="img-fluid" style="width:100.0%"></p>
 </blockquote>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.7 (Biology &amp; algorithmic thinking)</strong></span> Repeat the analysis for all cells, for QC cells, and for endodermis cells. Compare WOX5 regulation across tissues.</p>
+<p><span class="theorem-title"><strong>Exercise 9.7 (Biology &amp; algorithmic thinking)</strong></span> Now, let’s compare WOX5 regulation across tissues. Repeat the qPCR <em>in silico</em> analysis but include the cells in the QC position, and endodermis cells. Tip: cell types ar stored in cellGrid.</p>
 <p>Do you see a difference between your observations and the simulated RT-PCR plot? Why?</p>
 </div>
 <blockquote class="blockquote">
-<p><strong>Answer</strong> Prepare</p>
+<p><strong>Answer</strong> The repression of WOX5 expression is much more clear if we sample individual QC cells, while sampling only endodermal cells only shows activation. In a way both results are correct, and reveal how dependent on spatial context the effects of auxin are. Moreover it shows how difficult it is to draw conclusions from this sort of experiments, as it is actually very diffiult to only sample individual cell types. Sampling the whole tissue is the best option, but we have to be aware that tissues are composed of many cell types, and each may respond differently! <img src="images/0-insilico-RT-PCR_plots copy.png" id="vegmini1" class="img-fluid" style="width:100.0%"> :::{#exr-tur}</p>
 </blockquote>
-<div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.8 (Biology &amp; algorithmic thinking)</strong></span> Changes in WOX5 expression depend on tissue context and auxin dosage. Simulate a range of auxin treatments from 0 to 750 (choose your step size).</p>
+</section>
+<section id="biology-algorithmic-thinking-2" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="biology-algorithmic-thinking-2"><span class="header-section-number">9.5</span> Biology &amp; algorithmic thinking</h2>
+<p>Changes in WOX5 expression depend on tissue context and auxin dosage. Simulate a range of auxin treatments from 0 to 750 (choose your step size).</p>
 <p>Can you now explain the auxin–WOX5 paradox? What mechanism do you propose?</p>
-</div>
 <blockquote class="blockquote">
-<p><strong>Answer</strong> Prepare</p>
+<p><strong>Answer</strong> It is clearly dependent on levels of auxin and cell type specificity.</p>
 </blockquote>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.9 (Biology &amp; conceptual thinking)</strong></span> Perform an in silico intervention to alter WOX5 dosage responsiveness. For example, enforce continuous induction or block its induction in the endodermis. How would you test these model predictions experimentally?</p>
+<p><span class="theorem-title"><strong>Exercise 9.8 (Biology &amp; conceptual thinking)</strong></span> Perform an <em>in silico</em> intervention to alter WOX5 dosage responsiveness. For example, enforce continuous induction or block its induction in the endodermis. How would you test these model predictions experimentally?</p>
 </div>
 <blockquote class="blockquote">
-<p><strong>Answer</strong> Prepare</p>
+<p><strong>Answer</strong> This is an open question. Feel free to test your ideas with the model and discuss with us your results :)∂</p>
 </blockquote>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.10 (Biological thinking)</strong></span> All models are wrong, but some are useful. The model should offer mechanistic insight into paradoxical auxin responses. Yet the original experiments used different auxin analogs: NAA (transported independently of PINs), IAA (PIN-transported), and NPA (blocks PINs, increasing auxin in the tip). How does this information change your conclusions? What extensions to the model would account for these differences?</p>
+<p><span class="theorem-title"><strong>Exercise 9.9 (Biological thinking)</strong></span> All models are wrong, but some are useful. The model we studied today offered mechanistic insight into the paradoxical auxin responses. Yet, to make things more fun, the original experiments used different auxin analogs: NAA (that is transported independently of PINs), IAA (that is PIN-transported), and NPA (that blocks PINs, increasing auxin in the tip). How does this information change your conclusions? What extensions to the model would account for these differences?</p>
 </div>
 <blockquote class="blockquote">
-<p><strong>Answer</strong> Prepare</p>
+<p><strong>Answer</strong> Open question. This will be a mini project if you are interested!</p>
 </blockquote>
 
 

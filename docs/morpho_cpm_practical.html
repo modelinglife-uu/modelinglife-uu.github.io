@@ -507,7 +507,9 @@ div.csl-indent {
    
   <ul class="collapse">
   <li><a href="#morphogenesis" id="toc-morphogenesis" class="nav-link active" data-scroll-target="#morphogenesis"><span class="header-section-number">6.1</span> Morphogenesis</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">6.2</span> Exercises</a></li>
+  <li><a href="#biological-background-cell-sorting-by-differential-adhesion" id="toc-biological-background-cell-sorting-by-differential-adhesion" class="nav-link" data-scroll-target="#biological-background-cell-sorting-by-differential-adhesion"><span class="header-section-number">6.2</span> Biological background: Cell sorting by differential adhesion</a></li>
+  <li><a href="#the-cellular-potts-glazier-graner-hogeweg-model" id="toc-the-cellular-potts-glazier-graner-hogeweg-model" class="nav-link" data-scroll-target="#the-cellular-potts-glazier-graner-hogeweg-model"><span class="header-section-number">6.3</span> The cellular Potts / Glazier-Graner-Hogeweg model</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">6.4</span> Exercises</a></li>
   </ul>
 </nav>
     </div>
@@ -537,8 +539,9 @@ div.csl-indent {
 <section id="morphogenesis" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="morphogenesis"><span class="header-section-number">6.1</span> Morphogenesis</h2>
 <p>Morphogenesis is the culmination of gene expression, biochemical signaling, and biophysical forces at the cell and tissue levels. These processes are complex and not completely understood, so we don’t yet have a “perfect” model of how we should simulate morphogenesis. For this reason, several research groups independently developed simulation approaches that fit their needs. In this practical, you will get acquainted with one such approach, the cellular Potts model.</p>
-<section id="biological-background-cell-sorting-by-differential-adhesion" class="level3">
-<h3 class="anchored" data-anchor-id="biological-background-cell-sorting-by-differential-adhesion">Biological background: Cell sorting by differential adhesion</h3>
+</section>
+<section id="biological-background-cell-sorting-by-differential-adhesion" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="biological-background-cell-sorting-by-differential-adhesion"><span class="header-section-number">6.2</span> Biological background: Cell sorting by differential adhesion</h2>
 <p>Classical experiments in the 1950s dissociated animal embryonic tissues and recombined them <em>in vitro</em> to try to understand the principles of self-organization. Instead of staying mixed, each cell type sorts out into its own region, resembling the organization in the embryo.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -548,8 +551,8 @@ div.csl-indent {
 </div>
 <p>According to the “differential adhesion hypothesis”, unlike expression levels of cell-cell adhesion molecules is the mechanistic driver of cell sorting. Biophysically, cells form aggregates that minimize the contact energy at interfaces, rearranging into the most thermodynamically stable pattern. In 1992, the cellular Potts model was developed to test this hypothesis using simulations (<span class="citation" data-cites="graner1992simulation">Graner and Glazier (<a href="references.html#ref-graner1992simulation" role="doc-biblioref">1992</a>)</span>).</p>
 </section>
-<section id="the-cellular-potts-glazier-graner-hogeweg-model" class="level3">
-<h3 class="anchored" data-anchor-id="the-cellular-potts-glazier-graner-hogeweg-model">The cellular Potts / Glazier-Graner-Hogeweg model</h3>
+<section id="the-cellular-potts-glazier-graner-hogeweg-model" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="the-cellular-potts-glazier-graner-hogeweg-model"><span class="header-section-number">6.3</span> The cellular Potts / Glazier-Graner-Hogeweg model</h2>
 <p>The cellular Potts Model (CPM), also known as Glazier-Graner-Hogeweg (GGH) model after its major developers and popularizers, simulates stochastic dynamics of cell shapes on a grid (=a <strong>lattice</strong>). The model has its historical roots in physical models of magnetization of metals and formation of foam bubbles, so some of the terminology harkens back to that. Each grid site on the lattice has a <strong>spin</strong> value <em>σ</em> (Greek small letter sigma), usually an integer number. A biological cell is represented by all lattice sites with equal value <em>σ</em>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -573,9 +576,8 @@ div.csl-indent {
 </div>
 <p>In the above equation, <em>T</em> is a parameter that determines how likely it is that an unfavorable copy attempt that increases the energy is accepted, while <em>H<sub>0</sub></em> is a parameter representing the yield, that is, how easily the cell membrane changes shape (often, this parameter is set to <em>H<sub>0</sub> = 0</em>). What this equation says is: Configurational changes that lower the energy below at least <em>H<sub>0</sub></em> are always accepted (probability of 1), while configurational changes that increase the energy are accepted with a probability that decreases exponentially with the energy cost. In a biological sense, cells consume energy from ATP to create configurations that are physically unfavorable (<em>ΔH ≥ -H<sub>0</sub></em>). Therefore, the parameter <em>T</em> can be interpreted as intrinsic cell activity.</p>
 </section>
-</section>
-<section id="exercises" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="exercises"><span class="header-section-number">6.2</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="exercises"><span class="header-section-number">6.4</span> Exercises</h2>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 6.1 (Algorithmic thinking - Anatomy of a cellular Potts model)</strong></span> A minimal cellular Potts model simulation of cell sorting contains the following ingredients:</p>
 <ul>

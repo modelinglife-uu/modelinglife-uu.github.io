@@ -13,7 +13,7 @@ so we don’t yet have a “perfect” model of how we should simulate morphogen
 several research groups independently developed simulation approaches that fit their needs. In 
 this practical, you will get acquainted with one such approach, the cellular Potts model.
 
-### Biological background: Cell sorting by differential adhesion
+## Biological background: Cell sorting by differential adhesion
 Classical experiments in the 1950s dissociated animal embryonic tissues and recombined them 
 *in vitro* to try to understand the principles of self-organization. Instead of staying mixed, 
 each cell type sorts out into its own region, resembling the organization in the embryo.
@@ -25,7 +25,7 @@ molecules is the mechanistic driver of cell sorting. Biophysically, cells form a
 minimize the contact energy at interfaces, rearranging into the most thermodynamically stable pattern.
 In 1992, the cellular Potts model was developed to test this hypothesis using simulations (@graner1992simulation).
 
-### The cellular Potts / Glazier-Graner-Hogeweg model
+## The cellular Potts / Glazier-Graner-Hogeweg model
 
 The cellular Potts Model (CPM), also known as Glazier-Graner-Hogeweg (GGH) model after its 
 major developers and popularizers, simulates stochastic dynamics of cell shapes on a grid (=a

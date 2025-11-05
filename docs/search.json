@@ -630,23 +630,12 @@
   {
     "objectID": "differentiation_intro_text.html",
     "href": "differentiation_intro_text.html",
-    "title": "7  Differentiation introduction",
+    "title": "7  Cell differentiation introduction",
     "section": "",
-    "text": "7.1 Cell differentiation\nCell differentiation is the process in which cells acquire specialized functions, giving rise to a large array of different cell types. This happens in both single cell organisms (bacterial cells being in exponential growth or stationary phase), and multicellular organisms with different cell types organized in tissues and organs (think of blood cells, melanocytes, muscle cells, neurons, etc., in our bodies). This cell specialization results from regulated gene expression: genes are turned on and off in precise combinations, yielding distinct expression profiles. Therefore, cells with an identical genome can be phenotypically different if they express different sets of genes. Yet, how exactly is this differential gene expression regulated?\nTranscription factors are DNA-binding proteins that regulate gene transcription by binding to gene promoters to regulate expression, therefore acting as master switches of gene expression. In E. coli, plants and animals it is estimated that 5-10% of the genes are transcription factors, and then this relative small portion of the genome controls the expression of the rest of the genes. Numerous transcription factors together with signaling pathways (… and epigenetic modifications) form gene regulatory networks that govern when and where genes are expressed. Computational models are useful to study how transcription factor activity is regulated, and describe the mechanisms underlying cell identity and behavior. For example, they can help us decipher how gene regulatory networks produce the gene expression patterns observed in normal and abnormal development (where cells do not differentiate normally), or identify information processing motifs in the network that help cells make decisions in response to intrinsic cues and environmental signals.\nIn this course chapter, you will learn how to use computational models to simulate gene regulatory netwokrs and to understand how their dynamics generate gene expression patterns that establish and maintain different cell types.",
+    "text": "Gene regulation in a bacteria: from genes to networks. Credit: RegulonDB, and DOI: 10.1371/journal.pone.0106479\n\n\nCell differentiation is the process in which cells acquire specialized functions, giving rise to a large array of different cell types. This happens in both single cell organisms (bacterial cells being in exponential growth or stationary phase), and multicellular organisms with different cell types organized in tissues and organs (think of blood cells, melanocytes, muscle cells, neurons, etc., in our bodies). This cell specialization results from regulated gene expression: genes are turned on and off in precise combinations, yielding distinct expression profiles. Therefore, cells with an identical genome can be phenotypically different if they express different sets of genes. Yet, how exactly is this differential gene expression regulated?\nTranscription factors are DNA-binding proteins that regulate gene transcription by binding to gene promoters to regulate expression, therefore acting as master switches of gene expression. In E. coli, plants and animals it is estimated that 5-10% of the genes are transcription factors, and then this relative small portion of the genome controls the expression of the rest of the genes. Numerous transcription factors together with signaling pathways (… and epigenetic modifications) form gene regulatory networks that govern when and where genes are expressed. Computational models are useful to study how transcription factor activity is regulated, and describe the mechanisms underlying cell identity and behavior. For example, they can help us decipher how gene regulatory networks produce the gene expression patterns observed in normal and abnormal development (where cells do not differentiate normally), or identify information processing motifs in the network that help cells make decisions in response to intrinsic cues and environmental signals.\nIn this course chapter, you will learn how to use computational models to simulate gene regulatory networks and to understand how their dynamics generate gene expression patterns that establish and maintain different cell types.",
     "crumbs": [
       "III) Cell differentiation",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Differentiation introduction</span>"
-    ]
-  },
-  {
-    "objectID": "differentiation_intro_text.html#cell-differentiation",
-    "href": "differentiation_intro_text.html#cell-differentiation",
-    "title": "7  Differentiation introduction",
-    "section": "",
-    "text": "Gene regulation in a bacteria: from genes to networks. Credit: RegulonDB, and DOI: 10.1371/journal.pone.0106479",
-    "crumbs": [
-      "III) Cell differentiation",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Differentiation introduction</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Cell differentiation introduction</span>"
     ]
   },
   {

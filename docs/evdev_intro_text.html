@@ -47,6 +47,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-0e7c136abd6418639055ad70ade9c940.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark-c2e0d09699c19eeb454aa3ea76728735.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-0e7c136abd6418639055ad70ade9c940.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -508,6 +511,12 @@ ul.task-list li input[type="checkbox"] {
 <p>In contrast to our discussion so far, environmental conditions may have a major impact on developmental processes. This ranges from the effect of temperature on the body sizes of fruitflies and butterflies, and on the gender of hatching sea turtles, nutritional effects on ant size and worker function to the complete reshaping of organs, organ positioning and body plans in plants. Indeed, while for animals symmetry and scaling are essential for mobility, for plants adaptation to the conditions they find themselves in is of key importance, making developmental plasticity more pervasive in plant development. In the practical we are going to investigate temperature induced leaf hyponasty, in which plants develop leaves with longer petioles (stems) and smaller blades (leaf surface itself) that are positioned in a more upright angle, investigating the adaptive value of this developmental plasticity.</p>
 <p>Apart from the question whether plasticity of a developmental process is adaptive, a major question is how this plasticity can be united with robustness. That is, how certain aspects of development can be adjusted, while other aspects can be maintained (i.e.&nbsp;the plant still makes a leaf, that has still a top, bottom, stomata veins, etc but other things are allowed to vary). Additionally, a question is how the networks that drive developmental patterning and e.g.&nbsp;cell fate decisions (<strong>Part III</strong>) are integrated with networks that sense, process and combine various environmental signals to decide how these developmental processes are to be adjusted. This will be discussed in the lecture.</p>
 <p>In addition to developmental processes, also physiology, behavior and evolution of course depend on environmental conditions. Examples of the latter two will be discussed in <strong>Part V</strong>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/Plants.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Environmental cues affect how organisms develop. Credit: WikimediaCommons."><img src="images/Plants.gif" class="img-fluid figure-img" style="width:50.0%" alt="Environmental cues affect how organisms develop. Credit: WikimediaCommons."></a></p>
+<figcaption>Environmental cues affect how organisms develop. Credit: WikimediaCommons.</figcaption>
+</figure>
+</div>
 
 
 
@@ -958,6 +967,38 @@ ul.task-list li input[type="checkbox"] {
 </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

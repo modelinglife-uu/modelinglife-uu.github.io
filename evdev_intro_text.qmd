@@ -10,3 +10,5 @@ Apart from the question whether plasticity of a developmental process is adaptiv
 
 
 In addition to developmental processes, also physiology, behavior and evolution of course depend on environmental conditions. Examples of the latter two will be discussed in **Part V**. 
+
+![Environmental cues affect how organisms develop. Credit: WikimediaCommons.](images/Plants.gif){#vegmini1 width=50%}

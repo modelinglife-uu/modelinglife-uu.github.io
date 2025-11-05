@@ -400,7 +400,7 @@ plotBooleanAttractors(attractors_unique)
 
 :::{.content-visible when-meta="params.show_answers"}
 
-  > ![5 Attractors reached by random 100 initial conditions - unique](images/0-unique_attractors.png){#vegmini1}
+  > ![Unique attractors reached by random 100 initial conditions](images/0-unique_attractors.png){#vegmini1}
 
 :::
 :::{#exr-non}

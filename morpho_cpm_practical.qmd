@@ -7,7 +7,7 @@ Morphogenesis is the culmination of gene expression, biochemical signaling, and 
 ### Biological background: Cell sorting by differential adhesion
 Classical experiments in the 1950s dissociated animal embryonic tissues and recombined them in vitro to try to understand the principles of self-organization. Instead of staying mixed, each cell type sorts out into its own region, resembling the organization in the embryo.
 
-![Sorting of aggregates of embryonic cells, based on experiments by Townes and Holftreter in 1955. Image adapted from Gilbert "Developmental Biology" 11th edition.](WC_04_images/upscaled_Gilbert_Figure.png)
+![Sorting of aggregates of embryonic cells, based on experiments by Townes and Holftreter in 1955. Image adapted from Gilbert "Developmental Biology" 11th edition.](images/upscaled_Gilbert_Figure.png)
 *Caption: Sorting of aggregates of embryonic cells, based on experiments by Townes and Holftreter in 1955. Image adapted from Gilbert "Developmental Biology" 11th edition.*
 
 According to the “differential adhesion hypothesis”, unlike expression levels of cell-cell adhesion molecules is the mechanistic driver of cell sorting. Biophysically, cells form aggregates that minimize the contact energy at interfaces, rearranging into the most thermodynamically stable pattern. In 1992, the cellular Potts model was developed to test this hypothesis using simulations (Graner and Glazier, 1992).
@@ -22,17 +22,17 @@ According to the “differential adhesion hypothesis”, unlike expression level
 
 The cellular Potts Model (CPM), also known as Glazier-Graner-Hogeweg (GGH) model after its major developers and popularizers, simulates stochastic dynamics of cell shapes on a grid (=a **lattice**). The model has its historical roots in physical models of magnetization of metals and formation of foam bubbles, so some of the terminology harkens back to that. Each grid site on the lattice has a **spin** value *σ* (Greek small letter sigma), usually an integer number. A biological cell is represented by all lattice sites with equal value *σ*. 
 
-![Example of a σ field with four unique integer values. The value 0 is reserved for the medium, while the non-zero values represent three cells.](WC_04_images/sigma_field.png)
+![Example of a σ field with four unique integer values. The value 0 is reserved for the medium, while the non-zero values represent three cells.](images/sigma_field.png)
 *Caption: Example of a σ field with four unique integer values. The value 0 is reserved for the medium, while the non-zero values represent three cells.*
 
 Cell shapes change by elementary changes called **copy attempts**, where one site of the lattice (the source site *x<sub>S</sub>*) attempts to copy its *σ* value to a neighboring lattice site (the target site *x<sub>T</sub>*). Copy attempts can succeed (be accepted) or fail (be rejected). 
 
-![Every copy attempt affects a pair of neighboring lattice sites.](WC_04_images/copy_attempt.png)
+![Every copy attempt affects a pair of neighboring lattice sites.](images/copy_attempt.png)
 *Caption:Every copy attempt affects a pair of neighboring lattice sites.*
 
 Choosing and accepting copy attempts occurs via a stochastic **Monte Carlo** method. More specifically, a modified Metropolis-Hastings algorithm, which is an algorithm that minimizes an energy function H calculated based on the lattice configuration. The probability that a copy attempt is accepted *P*(accept) depends on the change in energy *ΔH* between the configuration before and after a copy attempt:
 
-![Equation 1.](WC_04_images/acceptance.png)
+![Equation 1.](images/acceptance.png)
 
 In the above equation, *T* is a parameter that determines how likely it is that an unfavorable copy attempt that increases the energy is accepted, while *H<sub>0</sub>* is a parameter representing the yield, that is, how easily the cell membrane changes shape (often, this parameter is set to *H<sub>0</sub> = 0*).  What this equation says is: Configurational changes that lower the energy below at least *H<sub>0</sub>* are always accepted (probability of 1), while configurational changes that increase the energy are accepted with a probability that decreases exponentially with the energy cost. 
 In a biological sense, cells consume energy from ATP to create configurations that are physically unfavorable (*ΔH ≥ -H<sub>0</sub>*). Therefore, the parameter *T* can be interpreted as intrinsic cell activity.
@@ -60,12 +60,12 @@ The **Hamiltonian** energy function *H* is at the heart of a CPM/GGH simulation.
 
 In the script ```01_cpm.py```, the following Hamiltonian is used.
 
-![Equation 2.](WC_04_images/Hamiltonian.png)
+![Equation 2.](images/Hamiltonian.png)
 
 where *J* is a symmetric matrix of interfacial energies for all cell type pairs *τ* (small Greek letter tau), *A(σ)* is the area sum of lattice sites belonging to spin *σ*, *A<sub>0,τ(σ)</sub>* is the “target” area of the corresponding cell type *τ*, and *λ<sub>A(τ(σ))</sub>* is a weighting factor that scales the importance of this term (also known as **Lagrange multiplier**). Each term represents a **constraint**.
 Perhaps a more intuitive way to understand the terms is the following pseudo-code:
 
-![](WC_04_images/pseudocode_table.png)
+![](images/pseudocode_table.png)
 
 Compare the pseudo-code to the implementation in the script. Then answer the following questions:
 
@@ -91,7 +91,7 @@ Reset all parameters to their default values, then, based on the printed informa
  
 The script ```01_cpm.py``` uses the traditional update algorithm. In this algorithm, every copy attempt picks a target site randomly among all lattice sites, then subsequently picks a source site randomly among the neighbors of the target site. This leads to many invalid lattice pairs that are always rejected. The edge list algorithm is a clever way of speeding up this procedure by restricting copy attempts only to those interfaces where there is a possibility of acceptance.
 
-![Since a copy attempt affects a pair of neighboring lattice sites, we can keep track of valid pairs (productive site pairs). These can be represented by an edge, i.e. an arrow pointing from one site to the other. Edges have a directionality, so two neighboring sites are always joined by two edges with opposing direction.](WC_04_images/edgelist.png)
+![Since a copy attempt affects a pair of neighboring lattice sites, we can keep track of valid pairs (productive site pairs). These can be represented by an edge, i.e. an arrow pointing from one site to the other. Edges have a directionality, so two neighboring sites are always joined by two edges with opposing direction.](images/edgelist.png)
 
 The script ```02_cpm_edgelist.py``` implements the edge list algorithm. It’s quite complicated, so don’t worry about understanding all the technical details. Using this script, answer the above questions again and compare to the results you got with the traditional update algorithm.
 
@@ -108,7 +108,7 @@ Let’s walk through these steps together to create a **perimeter constraint**.
 1.	Animal cells possess a contractile actomyosin cortex connected to the cell membrane via actin-membrane linker proteins. Cortex contraction is regulated to maintain homeostasis of the membrane tension. Simply put, if the cell membrane gets “floppy”, the cortex contracts to pull the membrane in. Vice-versa, if the membrane is too tense, cortex contractility is reduced to allow the membrane to relax. We thus could advance the hypothesis that forces from the actin cortex strive to maintain a constant cell surface area.
 2.	We want cell surface area to reach a target homeostatic value *S<sub>0</sub>*. Let’s call the actual cell surface area *S*. We need a function that has a minimum where *S<sub>0</sub> = S* and increases if *S* is larger or smaller than *S<sub>0</sub>*. A simple function that does the trick is the parabola *(S- S<sub>0</sub>)<sup>2</sup>*. We may also want to tune how much this term influences the entire Hamiltonian, so we introduce the weight factor *λ<sub>S</sub>*. We also consider that both *S<sub>0</sub>* and *λ<sub>S</sub>* may depend on cell type *τ*.
 Thus, we write:
-![Equation 3.](WC_04_images/perimeter.png)
+![Equation 3.](images/perimeter.png)
 
 - For the implementation of steps 3 and 4, consult the script ```03_cpm_perimeter.py```.
 - Study the new additions to the script (search for the string: ```### NEW ###``` to find them quickly), then run the simulation. Vary the parameters to gain an intuition of how this new Hamiltonian term affects the simulation outcome.

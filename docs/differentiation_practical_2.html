@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -521,6 +541,7 @@ window.Quarto = {
   <li><a href="#the-model" id="toc-the-model" class="nav-link" data-scroll-target="#the-model"><span class="header-section-number">9.3</span> The model</a></li>
   <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">9.4</span> Questions</a></li>
   <li><a href="#biology-algorithmic-thinking-2" id="toc-biology-algorithmic-thinking-2" class="nav-link" data-scroll-target="#biology-algorithmic-thinking-2"><span class="header-section-number">9.5</span> Biology &amp; algorithmic thinking</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">9.6</span> References</a></li>
   </ul>
 </nav>
     </div>
@@ -696,8 +717,23 @@ window.Quarto = {
 <blockquote class="blockquote">
 <p><strong>Answer</strong> Open question. This will be a mini project if you are interested!</p>
 </blockquote>
+</section>
+<section id="references" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="references"><span class="header-section-number">9.6</span> References</h2>
+<ul>
+<li><span class="citation" data-cites="mahonen2014plethora">Mähönen et al. (<a href="references.html#ref-mahonen2014plethora" role="doc-biblioref">2014</a>)</span></li>
+<li><span class="citation" data-cites="ding2010auxin">Ding and Friml (<a href="references.html#ref-ding2010auxin" role="doc-biblioref">2010</a>)</span></li>
+</ul>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-ding2010auxin" class="csl-entry" role="listitem">
+Ding, Zhaojun, and Jiřı́ Friml. 2010. <span>“Auxin Regulates Distal Stem Cell Differentiation in Arabidopsis Roots.”</span> <em>Proceedings of the National Academy of Sciences</em> 107 (26): 12046–51.
+</div>
+<div id="ref-mahonen2014plethora" class="csl-entry" role="listitem">
+Mähönen, Ari Pekka, Kirsten ten Tusscher, Riccardo Siligato, Ondřej Smetana, Sara Dı́az-Triviño, Jarkko Salojärvi, Guy Wachsman, Kalika Prasad, Renze Heidstra, and Ben Scheres. 2014. <span>“PLETHORA Gradient Formation Mechanism Separates Auxin Responses.”</span> <em>Nature</em> 515 (7525): 125–29.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

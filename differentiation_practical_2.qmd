@@ -333,3 +333,8 @@ differences?
   > **Answer** Open question. This will be a mini project if you are interested! 
   
 :::
+
+## References
+
+- @mahonen2014plethora
+- @ding2010auxin

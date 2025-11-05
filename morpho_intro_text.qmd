@@ -1,6 +1,26 @@
-# What is morphogenesis?
+# Introduction to Morphogenesis
 
-### TODO
+Cells collectively organize into higher-order structures, forming tissues and organs. 
+The process by which tissues are given their shape is called morphogenesis, which is 
+Greek for the generation of form. Gene regulation, (sub-)cellular effectors, and 
+tissue-scale mechanics are the three ingredients of morphogenesis (@collinet2021programmed
+@gilmour2017morphogen). Regulation between these players goes both ways: Genes may 
+determine expression of cytoskeletal regulators, which in turn exert forces resulting 
+in tissue reshaping. Vice-versa, both tissue shape and forces can feed back on 
+cytoskeletal proteins, which feed back to gene expression. Earlier in this course, 
+you learned about patterning. In this part we'll pick up from there to learn how cells 
+and tissue mechanics interplay to generate ordered structures.
 
-- Write a brief intro to the morphogenesis practicals
+Despite their great internal molecular complexity, cells do a few basic things: Grow, 
+divide, die, move around, change their shape, adhere to each other, and secrete or 
+absorb material. This repertoire of cell behaviors is used to build higher-order 
+structures. Additionally, non-cellular components which are generated and regulated 
+by cells also contribute to shaping tissues and organs: Osmotic pressure and extracellular
+matrix proteins. For instance, bones are shaped by a specialized, stiff extracellular 
+matrix, while the inside of eyes is filled with an osmotically active, jelly-like fluid 
+that exerts pressure that maintains the shape of light-sensitive tissues, much like an
+inflated balloon.
 
+The relatively small number of processes occurring at the cellular level has inspired 
+the development of various computational models that treat cells as the central unit. 
+In this chapter of the course, you'll learn about these cell-based models.

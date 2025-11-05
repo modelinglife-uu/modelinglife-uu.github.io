@@ -2,7 +2,7 @@
 
 ## Cell differentiation
 
-![Gene regulation in a bacteria: from genes to networks. Credit: RegulonDB, and DOI: 10.1371/journal.pone.0106479](images/0-ecoli-regulondb.png){#vegmini1 width=150%}
+![Gene regulation in a bacteria: from genes to networks. Credit: RegulonDB, and DOI: 10.1371/journal.pone.0106479](images/0-ecoli-regulondb_doi.png){#vegmini1 width=150%}
 
 Cell differentiation is the process in which cells acquire specialized functions, giving 
 rise to a large array of different cell types. This happens in both single cell organisms (bacterial cells being in exponential growth or stationary phase), and multicellular organisms with different cell types organized in tissues and organs (think of blood cells, melanocytes, muscle cells, neurons, etc., in our bodies). This cell specialization results from regulated gene expression: genes are turned on and off in precise combinations, yielding distinct expression profiles. Therefore, cells with an identical genome can be phenotypically different if they express different sets of genes. Yet, how exactly is this differential gene expression regulated? 

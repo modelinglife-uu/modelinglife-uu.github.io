@@ -55,27 +55,7 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -767,9 +747,6 @@ div.csl-indent {
 <li>Spatially structured populations are often placed on a grid. <strong>Describe</strong> how you could implement a roulette wheel to resolve <em>local</em> competition, <em>e.g.</em> when an empty grid point is competed for by the neighbours.</li>
 </ol>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong><br> a. If we sample 10 unfit individuals, the weight of the <code>no_reproduction_event</code> is proportionally high (the black slice of the roulette wheel is big). Hence, there is only a small chance that anyone will reproduce to begin with.<br> b. If we sample 10 fit individuals (fitness 1), the chances are much higher that someone will reproduce.<br> c.&nbsp;If the dummy value is 0, the chances that someone will reproduce are the same in both scenarios, as even with very unfit individuals there is no chance that nobody reproduces.<br> d.&nbsp;In nature, if no individual is sufficiently fit, reproduction may not occur at all. For example, if the competing individuals are bacteria with very low glucose uptake rates, they may not yet be physiologically ready to reproduce. In such cases, population size should remain stable or even decline if death is also occurring. The <code>no_reproduction_event</code> captures this by ensuring that fitness is not judged solely in relative terms against other individuals, but also in absolute terms against environmental demands.<br> e. If a grid point is empty (contains no individual), make a list of (up to) 8 individuals around that grid point. Apply the roulette wheel for those individuals, and place the ‘winner’ inside the empty grid point.</p>
-</blockquote>
 </section>
 <section id="diversity-patterns" class="level2" data-number="14.5">
 <h2 data-number="14.5" class="anchored" data-anchor-id="diversity-patterns"><span class="header-section-number">14.5</span> Diversity patterns</h2>
@@ -780,17 +757,6 @@ div.csl-indent {
 <li>Use a low mutation rate and study the dynamics of diversity. Describe the pattern verbally.</li>
 </ol>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong><br> A snippet to calculate the standard deviation of a population is shown below. Note that this value is already being plotted, so if you modify this function you ought to be able to see what happens immediately.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_diversity(population):</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>   <span class="co">"""Calculate diversity as the standard deviation of fitness values."""</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>   mean <span class="op">=</span> <span class="bu">sum</span>(population) <span class="op">/</span> <span class="bu">len</span>(population)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>   variance <span class="op">=</span> <span class="bu">sum</span>((x <span class="op">-</span> mean) <span class="op">**</span> <span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> population) <span class="op">/</span> (<span class="bu">len</span>(population) <span class="op">-</span> <span class="dv">1</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>   <span class="cf">return</span> math.sqrt(variance)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ol type="a">
-<li>The green dotted line is the standard deviation of the values in the population (‘diversity’). From this we can see that the population is only briefly diverse whenever a new, fit individual appears. In between these phases, diversity is 0. This makes intuitive (biological) sense, as with a low mutation rate the only moments where there is more than 1 species is during the invasion of a new mutant. During all other phases, there is just a single (fittest) species. <img src="images/evo_pract2_div.png" class="img-fluid"></li>
-</ol>
-</blockquote>
 </section>
 <section id="evolving-a-dna-sequence" class="level2" data-number="14.6">
 <h2 data-number="14.6" class="anchored" data-anchor-id="evolving-a-dna-sequence"><span class="header-section-number">14.6</span> Evolving a DNA sequence</h2>
@@ -807,149 +773,149 @@ div.csl-indent {
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># set the random number seed</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">0</span>)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>plt.ion()  <span class="co"># Enable interactive mode</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>alphabet <span class="op">=</span> <span class="st">"ATCG"</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>target_sequence <span class="op">=</span> <span class="st">"GATGCGCGCTGGATTAAC"</span>  <span class="co"># Example target sequence</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>dna_length <span class="op">=</span> <span class="bu">len</span>(target_sequence)</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>target_length <span class="op">=</span> <span class="bu">len</span>(target_sequence)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation settings</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>population_size <span class="op">=</span> <span class="dv">500</span>  <span class="co"># must be a square number for grid mode</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>generations <span class="op">=</span> <span class="dv">20000</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>mutation_rate <span class="op">=</span> <span class="fl">0.001</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>sample_interval <span class="op">=</span> <span class="dv">5</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>sample_size <span class="op">=</span> population_size</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>no_reproduction_chance <span class="op">=</span> <span class="fl">0.1</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Core functions</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fitness(dna):</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">-</span> <span class="bu">sum</span>(a <span class="op">!=</span> b <span class="cf">for</span> a, b <span class="kw">in</span> <span class="bu">zip</span>(dna, target_sequence)) <span class="op">/</span> target_length</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mutate(dna, rate<span class="op">=</span>mutation_rate):</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">''</span>.join(</span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>        random.choice([b <span class="cf">for</span> b <span class="kw">in</span> alphabet <span class="cf">if</span> b <span class="op">!=</span> base]) <span class="cf">if</span> random.random() <span class="op">&lt;</span> rate <span class="cf">else</span> base</span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> base <span class="kw">in</span> dna</span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> count_beneficial_mutations(dna):</span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    f0 <span class="op">=</span> fitness(dna)</span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(dna)):</span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> b <span class="kw">in</span> alphabet:</span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> b <span class="op">!=</span> dna[i]:</span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>                mutant <span class="op">=</span> dna[:i] <span class="op">+</span> b <span class="op">+</span> dna[i<span class="op">+</span><span class="dv">1</span>:]</span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> fitness(mutant) <span class="op">&gt;</span> f0:</span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>                    count <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> count</span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> diversity(pop):</span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>    counts <span class="op">=</span> {}</span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> ind <span class="kw">in</span> pop:</span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>        counts[ind] <span class="op">=</span> counts.get(ind, <span class="dv">0</span>) <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> <span class="bu">len</span>(pop)</span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span><span class="bu">sum</span>((c<span class="op">/</span>total) <span class="op">*</span> math.log(c<span class="op">/</span>total <span class="op">+</span> <span class="fl">1e-9</span>) <span class="cf">for</span> c <span class="kw">in</span> counts.values()) <span class="cf">if</span> total <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="dv">0</span></span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize population</span></span>
-<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>initial_sequence <span class="op">=</span> <span class="st">"GATAGCGAAGTTTAGCCG"</span> <span class="co"># far from target (only first 3 are correct)</span></span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>population <span class="op">=</span> [initial_sequence <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(population_size)]</span>
-<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>avg_fitness <span class="op">=</span> []</span>
-<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>avg_beneficial <span class="op">=</span> []</span>
-<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>diversity_over_time <span class="op">=</span> []</span>
-<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>best_individuals <span class="op">=</span> []</span>
-<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_neighbors(i, j):</span>
-<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [(x <span class="op">%</span> side, y <span class="op">%</span> side)</span>
-<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(i<span class="op">-</span><span class="dv">1</span>, i<span class="op">+</span><span class="dv">2</span>)</span>
-<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> y <span class="kw">in</span> <span class="bu">range</span>(j<span class="op">-</span><span class="dv">1</span>, j<span class="op">+</span><span class="dv">2</span>)]</span>
-<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize interactive plot</span></span>
-<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>fig, ax1 <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
-<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">"Generation"</span>)</span>
-<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">"Average Fitness"</span>, color<span class="op">=</span><span class="st">'tab:blue'</span>)</span>
-<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>ax1.set_ylim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>line1, <span class="op">=</span> ax1.plot([], [], color<span class="op">=</span><span class="st">'tab:blue'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Fitness'</span>)</span>
-<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>ax1.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelcolor<span class="op">=</span><span class="st">'tab:blue'</span>)</span>
-<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> ax1.twinx()</span>
-<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">"Beneficial Mutations / Diversity"</span>, color<span class="op">=</span><span class="st">'tab:purple'</span>)</span>
-<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>line2, <span class="op">=</span> ax2.plot([], [], color<span class="op">=</span><span class="st">'tab:purple'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Beneficial Mutations'</span>)</span>
-<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>line3, <span class="op">=</span> ax2.plot([], [], color<span class="op">=</span><span class="st">'tab:green'</span>, linestyle<span class="op">=</span><span class="st">':'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Diversity'</span>)</span>
-<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>ax2.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelcolor<span class="op">=</span><span class="st">'tab:purple'</span>)</span>
-<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">"Evolution Toward Target Sequence"</span>)</span>
-<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
-<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>ax2.set_ylim(<span class="dv">0</span>, <span class="dv">20</span>)</span>
-<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>fig.legend(loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
-<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>plt.draw()</span>
-<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>best_seq <span class="op">=</span> <span class="st">""</span></span>
-<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>best_score <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
-<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>found <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a><span class="co"># Evolution loop</span></span>
-<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> gen <span class="kw">in</span> <span class="bu">range</span>(generations):</span>
-<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>    fitnesses <span class="op">=</span> [fitness(ind) <span class="cf">for</span> ind <span class="kw">in</span> population]</span>
-<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>    total_fit <span class="op">=</span> <span class="bu">sum</span>(fitnesses)</span>
-<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>    best <span class="op">=</span> <span class="bu">max</span>(fitnesses)</span>
-<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(best <span class="op">==</span> <span class="dv">1</span> <span class="kw">and</span> <span class="kw">not</span> found):</span>
-<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a>        found <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Found perfect solution at generation"</span>, gen)</span>
-<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> gen <span class="op">%</span> sample_interval <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>        sample <span class="op">=</span> random.sample(population, sample_size)</span>
-<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>        avg_beneficial.append(<span class="bu">sum</span>(count_beneficial_mutations(ind) <span class="cf">for</span> ind <span class="kw">in</span> sample) <span class="op">/</span> sample_size)</span>
-<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>        diversity_over_time.append(diversity(population))</span>
-<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Update plot data</span></span>
-<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a>        line1.set_data(<span class="bu">range</span>(<span class="bu">len</span>(avg_fitness)<span class="op">+</span><span class="dv">1</span>), avg_fitness <span class="op">+</span> [<span class="bu">sum</span>(fitnesses)<span class="op">/</span>population_size])</span>
-<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a>        line2.set_data(<span class="bu">range</span>(<span class="bu">len</span>(avg_beneficial)), avg_beneficial)</span>
-<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a>        line3.set_data(<span class="bu">range</span>(<span class="bu">len</span>(diversity_over_time)), diversity_over_time)</span>
-<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a>        ax1.relim()<span class="op">;</span> ax1.autoscale_view()</span>
-<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a>        ax2.relim()<span class="op">;</span> ax2.autoscale_view()</span>
-<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a>        best <span class="op">=</span> <span class="bu">max</span>(population, key<span class="op">=</span>fitness)</span>
-<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a>        fig.suptitle(<span class="ss">f"Best: </span><span class="sc">{</span>best<span class="sc">}</span><span class="ss"> (target: </span><span class="sc">{</span>target_sequence<span class="sc">}</span><span class="ss">)"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a>        plt.pause(<span class="fl">0.01</span>)</span>
-<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a>        avg_beneficial.append(avg_beneficial[<span class="op">-</span><span class="dv">1</span>])</span>
-<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a>        diversity_over_time.append(diversity_over_time[<span class="op">-</span><span class="dv">1</span>])</span>
-<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Tournament selection (as in evolving_fitness_final.py)</span></span>
-<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a>    new_pop <span class="op">=</span> []</span>
-<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a>    tournament_size <span class="op">=</span> <span class="dv">10</span>  <span class="co"># can be adjusted</span></span>
-<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(population_size):</span>
-<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Select tournament_size individuals randomly</span></span>
-<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a>        competitors <span class="op">=</span> random.sample(population, tournament_size)</span>
-<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Pick the one with highest fitness</span></span>
-<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a>        fitness_values <span class="op">=</span> [fitness(ind) <span class="cf">for</span> ind <span class="kw">in</span> competitors]</span>
-<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a>        total <span class="op">=</span> <span class="bu">sum</span>(fitness_values)</span>
-<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a>        probs <span class="op">=</span> [f <span class="op">/</span> total <span class="cf">for</span> f <span class="kw">in</span> fitness_values]</span>
-<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a>        winner <span class="op">=</span> random.choices(competitors, weights<span class="op">=</span>probs, k<span class="op">=</span><span class="dv">1</span>)[<span class="dv">0</span>]</span>
-<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Mutate winner to produce offspring</span></span>
-<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a>        offspring <span class="op">=</span> mutate(winner)</span>
-<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a>        new_pop.append(offspring)</span>
-<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a>    population <span class="op">=</span> new_pop</span>
-<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a>    avg_fitness.append(<span class="bu">sum</span>(fitness(ind) <span class="cf">for</span> ind <span class="kw">in</span> population) <span class="op">/</span> population_size)</span>
-<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> gen <span class="op">%</span> <span class="dv">250</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a>        best <span class="op">=</span> <span class="bu">max</span>(population, key<span class="op">=</span>fitness)</span>
-<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a>        best_individuals.append((gen, best))</span>
-<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a><span class="bu">input</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Simulation complete. Press Enter to exit plot window..."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># set the random number seed</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">0</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>plt.ion()  <span class="co"># Enable interactive mode</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>alphabet <span class="op">=</span> <span class="st">"ATCG"</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>target_sequence <span class="op">=</span> <span class="st">"GATGCGCGCTGGATTAAC"</span>  <span class="co"># Example target sequence</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>dna_length <span class="op">=</span> <span class="bu">len</span>(target_sequence)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>target_length <span class="op">=</span> <span class="bu">len</span>(target_sequence)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation settings</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>population_size <span class="op">=</span> <span class="dv">500</span>  <span class="co"># must be a square number for grid mode</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>generations <span class="op">=</span> <span class="dv">20000</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>mutation_rate <span class="op">=</span> <span class="fl">0.001</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>sample_interval <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>sample_size <span class="op">=</span> population_size</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>no_reproduction_chance <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Core functions</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fitness(dna):</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">-</span> <span class="bu">sum</span>(a <span class="op">!=</span> b <span class="cf">for</span> a, b <span class="kw">in</span> <span class="bu">zip</span>(dna, target_sequence)) <span class="op">/</span> target_length</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mutate(dna, rate<span class="op">=</span>mutation_rate):</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">''</span>.join(</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>        random.choice([b <span class="cf">for</span> b <span class="kw">in</span> alphabet <span class="cf">if</span> b <span class="op">!=</span> base]) <span class="cf">if</span> random.random() <span class="op">&lt;</span> rate <span class="cf">else</span> base</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> base <span class="kw">in</span> dna</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> count_beneficial_mutations(dna):</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    f0 <span class="op">=</span> fitness(dna)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(dna)):</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> b <span class="kw">in</span> alphabet:</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> b <span class="op">!=</span> dna[i]:</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>                mutant <span class="op">=</span> dna[:i] <span class="op">+</span> b <span class="op">+</span> dna[i<span class="op">+</span><span class="dv">1</span>:]</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> fitness(mutant) <span class="op">&gt;</span> f0:</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>                    count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> count</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> diversity(pop):</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    counts <span class="op">=</span> {}</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> ind <span class="kw">in</span> pop:</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>        counts[ind] <span class="op">=</span> counts.get(ind, <span class="dv">0</span>) <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> <span class="bu">len</span>(pop)</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span><span class="bu">sum</span>((c<span class="op">/</span>total) <span class="op">*</span> math.log(c<span class="op">/</span>total <span class="op">+</span> <span class="fl">1e-9</span>) <span class="cf">for</span> c <span class="kw">in</span> counts.values()) <span class="cf">if</span> total <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="dv">0</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize population</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>initial_sequence <span class="op">=</span> <span class="st">"GATAGCGAAGTTTAGCCG"</span> <span class="co"># far from target (only first 3 are correct)</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>population <span class="op">=</span> [initial_sequence <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(population_size)]</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>avg_fitness <span class="op">=</span> []</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>avg_beneficial <span class="op">=</span> []</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>diversity_over_time <span class="op">=</span> []</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>best_individuals <span class="op">=</span> []</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_neighbors(i, j):</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [(x <span class="op">%</span> side, y <span class="op">%</span> side)</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(i<span class="op">-</span><span class="dv">1</span>, i<span class="op">+</span><span class="dv">2</span>)</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> y <span class="kw">in</span> <span class="bu">range</span>(j<span class="op">-</span><span class="dv">1</span>, j<span class="op">+</span><span class="dv">2</span>)]</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize interactive plot</span></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>fig, ax1 <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">"Generation"</span>)</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">"Average Fitness"</span>, color<span class="op">=</span><span class="st">'tab:blue'</span>)</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>ax1.set_ylim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>line1, <span class="op">=</span> ax1.plot([], [], color<span class="op">=</span><span class="st">'tab:blue'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Fitness'</span>)</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>ax1.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelcolor<span class="op">=</span><span class="st">'tab:blue'</span>)</span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> ax1.twinx()</span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">"Beneficial Mutations / Diversity"</span>, color<span class="op">=</span><span class="st">'tab:purple'</span>)</span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>line2, <span class="op">=</span> ax2.plot([], [], color<span class="op">=</span><span class="st">'tab:purple'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Beneficial Mutations'</span>)</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>line3, <span class="op">=</span> ax2.plot([], [], color<span class="op">=</span><span class="st">'tab:green'</span>, linestyle<span class="op">=</span><span class="st">':'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Diversity'</span>)</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>ax2.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelcolor<span class="op">=</span><span class="st">'tab:purple'</span>)</span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">"Evolution Toward Target Sequence"</span>)</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>ax2.set_ylim(<span class="dv">0</span>, <span class="dv">20</span>)</span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>fig.legend(loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>plt.draw()</span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>best_seq <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>best_score <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>found <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a><span class="co"># Evolution loop</span></span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> gen <span class="kw">in</span> <span class="bu">range</span>(generations):</span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>    fitnesses <span class="op">=</span> [fitness(ind) <span class="cf">for</span> ind <span class="kw">in</span> population]</span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>    total_fit <span class="op">=</span> <span class="bu">sum</span>(fitnesses)</span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>    best <span class="op">=</span> <span class="bu">max</span>(fitnesses)</span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(best <span class="op">==</span> <span class="dv">1</span> <span class="kw">and</span> <span class="kw">not</span> found):</span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>        found <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Found perfect solution at generation"</span>, gen)</span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> gen <span class="op">%</span> sample_interval <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>        sample <span class="op">=</span> random.sample(population, sample_size)</span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>        avg_beneficial.append(<span class="bu">sum</span>(count_beneficial_mutations(ind) <span class="cf">for</span> ind <span class="kw">in</span> sample) <span class="op">/</span> sample_size)</span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>        diversity_over_time.append(diversity(population))</span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Update plot data</span></span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>        line1.set_data(<span class="bu">range</span>(<span class="bu">len</span>(avg_fitness)<span class="op">+</span><span class="dv">1</span>), avg_fitness <span class="op">+</span> [<span class="bu">sum</span>(fitnesses)<span class="op">/</span>population_size])</span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>        line2.set_data(<span class="bu">range</span>(<span class="bu">len</span>(avg_beneficial)), avg_beneficial)</span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>        line3.set_data(<span class="bu">range</span>(<span class="bu">len</span>(diversity_over_time)), diversity_over_time)</span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>        ax1.relim()<span class="op">;</span> ax1.autoscale_view()</span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>        ax2.relim()<span class="op">;</span> ax2.autoscale_view()</span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>        best <span class="op">=</span> <span class="bu">max</span>(population, key<span class="op">=</span>fitness)</span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>        fig.suptitle(<span class="ss">f"Best: </span><span class="sc">{</span>best<span class="sc">}</span><span class="ss"> (target: </span><span class="sc">{</span>target_sequence<span class="sc">}</span><span class="ss">)"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>        plt.pause(<span class="fl">0.01</span>)</span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>        avg_beneficial.append(avg_beneficial[<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>        diversity_over_time.append(diversity_over_time[<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Tournament selection (as in evolving_fitness_final.py)</span></span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>    new_pop <span class="op">=</span> []</span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a>    tournament_size <span class="op">=</span> <span class="dv">10</span>  <span class="co"># can be adjusted</span></span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(population_size):</span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Select tournament_size individuals randomly</span></span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>        competitors <span class="op">=</span> random.sample(population, tournament_size)</span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Pick the one with highest fitness</span></span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a>        fitness_values <span class="op">=</span> [fitness(ind) <span class="cf">for</span> ind <span class="kw">in</span> competitors]</span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a>        total <span class="op">=</span> <span class="bu">sum</span>(fitness_values)</span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a>        probs <span class="op">=</span> [f <span class="op">/</span> total <span class="cf">for</span> f <span class="kw">in</span> fitness_values]</span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a>        winner <span class="op">=</span> random.choices(competitors, weights<span class="op">=</span>probs, k<span class="op">=</span><span class="dv">1</span>)[<span class="dv">0</span>]</span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Mutate winner to produce offspring</span></span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a>        offspring <span class="op">=</span> mutate(winner)</span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a>        new_pop.append(offspring)</span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a>    population <span class="op">=</span> new_pop</span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a>    avg_fitness.append(<span class="bu">sum</span>(fitness(ind) <span class="cf">for</span> ind <span class="kw">in</span> population) <span class="op">/</span> population_size)</span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> gen <span class="op">%</span> <span class="dv">250</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a>        best <span class="op">=</span> <span class="bu">max</span>(population, key<span class="op">=</span>fitness)</span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a>        best_individuals.append((gen, best))</span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a><span class="bu">input</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Simulation complete. Press Enter to exit plot window..."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -966,9 +932,6 @@ div.csl-indent {
 <li>Study how fitness is calculated in this model. Is there a distinction between genotype en phenotype? Why/why not?</li>
 </ol>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong><br> a. The new blue dotted line represents how many mutations are beneficial (towards the target). As the population gets closer to the target, the number of beneficial mutations decreases. As such, this line is a mirror image of the fitness in the population. We will look a bit deeper into this line in the next model. <br> b. Generally speaking, a higher mutation rate helps to find the target faster. However, with high mutation rates (0.01 or higher), the fitness after the target is found starts to decrease, as individual produce many (unfit) mutants. In fact, if mutation rate is too high (approximately 0.04 or higher), the population fails to find the target at all, as reproduction is too inaccurate! This concept is known as the ‘Error Threshold’ or the ‘Error Catastrophe’ in evolutionary biology. <br> c.&nbsp;Qualitatively, there is no clear difference to what we saw before: diversity only peaks at moments when there is a new mutant coming in, but otherwise diversity is still 0. d.&nbsp;There is no distinction between genotype and phenotype. Fitness is directly calculated from the DNA sequence, so there is no ‘genotype-to-phenotype mapping’. <br></p>
-</blockquote>
 </section>
 <section id="evolving-a-protein-sequence" class="level2" data-number="14.7">
 <h2 data-number="14.7" class="anchored" data-anchor-id="evolving-a-protein-sequence"><span class="header-section-number">14.7</span> Evolving a protein sequence</h2>
@@ -985,177 +948,177 @@ div.csl-indent {
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># set the random number seed</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">0</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>plt.ion()  <span class="co"># Enable interactive mode</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Codon table</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>codon_table <span class="op">=</span> {</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'TTT'</span>: <span class="st">'F'</span>, <span class="st">'TTC'</span>: <span class="st">'F'</span>, <span class="st">'TTA'</span>: <span class="st">'L'</span>, <span class="st">'TTG'</span>: <span class="st">'L'</span>, <span class="st">'CTT'</span>: <span class="st">'L'</span>, <span class="st">'CTC'</span>: <span class="st">'L'</span>, <span class="st">'CTA'</span>: <span class="st">'L'</span>, <span class="st">'CTG'</span>: <span class="st">'L'</span>,</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ATT'</span>: <span class="st">'I'</span>, <span class="st">'ATC'</span>: <span class="st">'I'</span>, <span class="st">'ATA'</span>: <span class="st">'I'</span>, <span class="st">'ATG'</span>: <span class="st">'M'</span>,</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">'GTT'</span>: <span class="st">'V'</span>, <span class="st">'GTC'</span>: <span class="st">'V'</span>, <span class="st">'GTA'</span>: <span class="st">'V'</span>, <span class="st">'GTG'</span>: <span class="st">'V'</span>,</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">'TCT'</span>: <span class="st">'S'</span>, <span class="st">'TCC'</span>: <span class="st">'S'</span>, <span class="st">'TCA'</span>: <span class="st">'S'</span>, <span class="st">'TCG'</span>: <span class="st">'S'</span>, <span class="st">'AGT'</span>: <span class="st">'S'</span>, <span class="st">'AGC'</span>: <span class="st">'S'</span>,</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">'CCT'</span>: <span class="st">'P'</span>, <span class="st">'CCC'</span>: <span class="st">'P'</span>, <span class="st">'CCA'</span>: <span class="st">'P'</span>, <span class="st">'CCG'</span>: <span class="st">'P'</span>,</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ACT'</span>: <span class="st">'T'</span>, <span class="st">'ACC'</span>: <span class="st">'T'</span>, <span class="st">'ACA'</span>: <span class="st">'T'</span>, <span class="st">'ACG'</span>: <span class="st">'T'</span>,</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">'GCT'</span>: <span class="st">'A'</span>, <span class="st">'GCC'</span>: <span class="st">'A'</span>, <span class="st">'GCA'</span>: <span class="st">'A'</span>, <span class="st">'GCG'</span>: <span class="st">'A'</span>,</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">'TAT'</span>: <span class="st">'Y'</span>, <span class="st">'TAC'</span>: <span class="st">'Y'</span>, <span class="st">'CAT'</span>: <span class="st">'H'</span>, <span class="st">'CAC'</span>: <span class="st">'H'</span>,</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">'CAA'</span>: <span class="st">'Q'</span>, <span class="st">'CAG'</span>: <span class="st">'Q'</span>, <span class="st">'AAT'</span>: <span class="st">'N'</span>, <span class="st">'AAC'</span>: <span class="st">'N'</span>,</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">'AAA'</span>: <span class="st">'K'</span>, <span class="st">'AAG'</span>: <span class="st">'K'</span>, <span class="st">'GAT'</span>: <span class="st">'D'</span>, <span class="st">'GAC'</span>: <span class="st">'D'</span>,</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">'GAA'</span>: <span class="st">'E'</span>, <span class="st">'GAG'</span>: <span class="st">'E'</span>, <span class="st">'TGT'</span>: <span class="st">'C'</span>, <span class="st">'TGC'</span>: <span class="st">'C'</span>,</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">'TGG'</span>: <span class="st">'W'</span>, <span class="st">'CGT'</span>: <span class="st">'R'</span>, <span class="st">'CGC'</span>: <span class="st">'R'</span>, <span class="st">'CGA'</span>: <span class="st">'R'</span>, <span class="st">'CGG'</span>: <span class="st">'R'</span>, <span class="st">'AGA'</span>: <span class="st">'R'</span>, <span class="st">'AGG'</span>: <span class="st">'R'</span>,</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">'GGT'</span>: <span class="st">'G'</span>, <span class="st">'GGC'</span>: <span class="st">'G'</span>, <span class="st">'GGA'</span>: <span class="st">'G'</span>, <span class="st">'GGG'</span>: <span class="st">'G'</span>,</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">'TAA'</span>: <span class="st">'*'</span>, <span class="st">'TAG'</span>: <span class="st">'*'</span>, <span class="st">'TGA'</span>: <span class="st">'*'</span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>alphabet <span class="op">=</span> <span class="st">"ATCG"</span></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>target_protein <span class="op">=</span> <span class="st">"DARWIN"</span></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>dna_length <span class="op">=</span> <span class="bu">len</span>(target_protein)<span class="op">*</span><span class="dv">3</span></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>target_length <span class="op">=</span> <span class="bu">len</span>(target_protein)</span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation settings</span></span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>population_size <span class="op">=</span> <span class="dv">625</span>  <span class="co"># must be a square number for grid mode</span></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>generations <span class="op">=</span> <span class="dv">20000</span></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>mutation_rate <span class="op">=</span> <span class="fl">0.0005</span>   </span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>sample_interval <span class="op">=</span> <span class="dv">5</span></span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>sample_size <span class="op">=</span> population_size</span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>no_reproduction_chance <span class="op">=</span> <span class="fl">0.01</span></span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Core functions</span></span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> translate(dna):</span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">''</span>.join(codon_table.get(dna[i:i<span class="op">+</span><span class="dv">3</span>], <span class="st">'?'</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">len</span>(dna), <span class="dv">3</span>))</span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fitness(dna):</span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>    protein <span class="op">=</span> translate(dna)</span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">-</span> <span class="bu">sum</span>(a <span class="op">!=</span> b <span class="cf">for</span> a, b <span class="kw">in</span> <span class="bu">zip</span>(protein, target_protein)) <span class="op">/</span> target_length</span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mutate(dna, rate<span class="op">=</span>mutation_rate):</span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">''</span>.join(</span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>        random.choice([b <span class="cf">for</span> b <span class="kw">in</span> alphabet <span class="cf">if</span> b <span class="op">!=</span> base]) <span class="cf">if</span> random.random() <span class="op">&lt;</span> rate <span class="cf">else</span> base</span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> base <span class="kw">in</span> dna</span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> count_beneficial_mutations(dna):</span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>    f0 <span class="op">=</span> fitness(dna)</span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(dna)):</span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> b <span class="kw">in</span> alphabet:</span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> b <span class="op">!=</span> dna[i]:</span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>                mutant <span class="op">=</span> dna[:i] <span class="op">+</span> b <span class="op">+</span> dna[i<span class="op">+</span><span class="dv">1</span>:]</span>
-<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> fitness(mutant) <span class="op">&gt;</span> f0:</span>
-<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>                    count <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> count</span>
-<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> diversity(pop):</span>
-<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>    counts <span class="op">=</span> Counter(pop)</span>
-<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> <span class="bu">len</span>(pop)</span>
-<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span><span class="bu">sum</span>((c<span class="op">/</span>total) <span class="op">*</span> math.log(c<span class="op">/</span>total <span class="op">+</span> <span class="fl">1e-9</span>) <span class="cf">for</span> c <span class="kw">in</span> counts.values()) <span class="cf">if</span> total <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="dv">0</span></span>
-<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize population</span></span>
-<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>initial_sequence <span class="op">=</span> <span class="st">''</span>.join(random.choice(alphabet) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(dna_length))</span>
-<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>population <span class="op">=</span> [initial_sequence <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(population_size)]</span>
-<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>avg_fitness <span class="op">=</span> []</span>
-<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>avg_beneficial <span class="op">=</span> []</span>
-<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>diversity_over_time <span class="op">=</span> []</span>
-<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>best_individuals <span class="op">=</span> []</span>
-<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a><span class="co"># Grid setup</span></span>
-<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>side <span class="op">=</span> <span class="bu">int</span>(math.sqrt(population_size))</span>
-<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> side <span class="op">*</span> side <span class="op">==</span> population_size, <span class="st">"Population size must be a square number for grid mode"</span></span>
-<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_neighbors(i, j):</span>
-<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [(x <span class="op">%</span> side, y <span class="op">%</span> side)</span>
-<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(i<span class="op">-</span><span class="dv">1</span>, i<span class="op">+</span><span class="dv">2</span>)</span>
-<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> y <span class="kw">in</span> <span class="bu">range</span>(j<span class="op">-</span><span class="dv">1</span>, j<span class="op">+</span><span class="dv">2</span>)]</span>
-<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize interactive plot</span></span>
-<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>fig, ax1 <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
-<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">"Generation"</span>)</span>
-<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">"Average Fitness"</span>, color<span class="op">=</span><span class="st">'tab:blue'</span>)</span>
-<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a>ax1.set_ylim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a>line0, <span class="op">=</span> ax1.plot([], [], color<span class="op">=</span><span class="st">'black'</span>, linewidth<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">'Max fitness'</span>)</span>
-<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a>line1, <span class="op">=</span> ax1.plot([], [], color<span class="op">=</span><span class="st">'tab:blue'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Fitness'</span>)</span>
-<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a>ax1.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelcolor<span class="op">=</span><span class="st">'tab:blue'</span>)</span>
-<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> ax1.twinx()</span>
-<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">"Beneficial Mutations / Diversity"</span>, color<span class="op">=</span><span class="st">'tab:purple'</span>)</span>
-<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>line2, <span class="op">=</span> ax2.plot([], [], color<span class="op">=</span><span class="st">'tab:purple'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Beneficial Mutations'</span>)</span>
-<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>line3, <span class="op">=</span> ax2.plot([], [], color<span class="op">=</span><span class="st">'tab:green'</span>, linestyle<span class="op">=</span><span class="st">':'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Diversity'</span>)</span>
-<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a>ax2.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelcolor<span class="op">=</span><span class="st">'tab:purple'</span>)</span>
-<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">"Evolution Toward "</span> <span class="op">+</span> <span class="bu">str</span>(target_protein))</span>
-<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
-<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a>ax2.set_ylim(<span class="dv">0</span>, <span class="dv">5</span>)</span>
-<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a>fig.legend(loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
-<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a>plt.draw()</span>
-<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a>best_seq <span class="op">=</span> <span class="st">""</span></span>
-<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a>best_score <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
-<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a>best_fitnesses <span class="op">=</span> []</span>
-<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a>found <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a><span class="co"># Evolution loop</span></span>
-<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> gen <span class="kw">in</span> <span class="bu">range</span>(generations):</span>
-<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a>    fitnesses <span class="op">=</span> [fitness(ind) <span class="cf">for</span> ind <span class="kw">in</span> population]</span>
-<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a>    total_fit <span class="op">=</span> <span class="bu">sum</span>(fitnesses)</span>
-<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a>    best <span class="op">=</span> <span class="bu">max</span>(fitnesses)</span>
-<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>    best_fitnesses.append(best)</span>
-<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(best <span class="op">==</span> <span class="dv">1</span> <span class="kw">and</span> <span class="kw">not</span> found):</span>
-<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a>        found <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Found perfect solution at generation"</span>, gen)</span>
-<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> gen <span class="op">%</span> sample_interval <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a>        sample <span class="op">=</span> random.sample(population, sample_size)</span>
-<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a>        avg_beneficial.append(<span class="bu">sum</span>(count_beneficial_mutations(ind) <span class="cf">for</span> ind <span class="kw">in</span> sample) <span class="op">/</span> sample_size)</span>
-<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a>        diversity_over_time.append(diversity(population))</span>
-<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Update plot data</span></span>
-<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a>        line0.set_data(<span class="bu">range</span>(<span class="bu">len</span>(avg_fitness)<span class="op">+</span><span class="dv">1</span>), best_fitnesses)</span>
-<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a>        line1.set_data(<span class="bu">range</span>(<span class="bu">len</span>(avg_fitness)<span class="op">+</span><span class="dv">1</span>), avg_fitness <span class="op">+</span> [<span class="bu">sum</span>(fitnesses)<span class="op">/</span>population_size])</span>
-<span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a>        line2.set_data(<span class="bu">range</span>(<span class="bu">len</span>(avg_beneficial)), avg_beneficial)</span>
-<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a>        line3.set_data(<span class="bu">range</span>(<span class="bu">len</span>(diversity_over_time)), diversity_over_time)</span>
-<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a>        ax1.relim()<span class="op">;</span> ax1.autoscale_view()</span>
-<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a>        ax2.relim()<span class="op">;</span> ax2.autoscale_view()</span>
-<span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a>        best <span class="op">=</span> <span class="bu">max</span>(population, key<span class="op">=</span>fitness)</span>
-<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a>        fig.suptitle(<span class="ss">f"Best: </span><span class="sc">{</span>translate(best)<span class="sc">}</span><span class="ss"> (target: </span><span class="sc">{</span>target_protein<span class="sc">}</span><span class="ss">)"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a>        plt.pause(<span class="fl">0.01</span>)</span>
-<span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a>        avg_beneficial.append(avg_beneficial[<span class="op">-</span><span class="dv">1</span>])</span>
-<span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a>        diversity_over_time.append(diversity_over_time[<span class="op">-</span><span class="dv">1</span>])</span>
-<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a>    new_pop <span class="op">=</span> []</span>
-<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a>    tournament_size <span class="op">=</span> <span class="dv">10</span>  <span class="co"># can be adjusted</span></span>
-<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(population_size):</span>
-<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Select tournament_size individuals randomly</span></span>
-<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a>        competitors <span class="op">=</span> random.sample(population, tournament_size)</span>
-<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Pick the one with highest fitness</span></span>
-<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a>        fitness_values <span class="op">=</span> [fitness(ind) <span class="cf">for</span> ind <span class="kw">in</span> competitors]</span>
-<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a>        total <span class="op">=</span> <span class="bu">sum</span>(fitness_values)</span>
-<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a>        probs <span class="op">=</span> [f <span class="op">/</span> total <span class="cf">for</span> f <span class="kw">in</span> fitness_values]</span>
-<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a>        winner <span class="op">=</span> random.choices(competitors, weights<span class="op">=</span>probs, k<span class="op">=</span><span class="dv">1</span>)[<span class="dv">0</span>]</span>
-<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Mutate winner to produce offspring</span></span>
-<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a>        offspring <span class="op">=</span> mutate(winner)</span>
-<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a>        new_pop.append(offspring)</span>
-<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a>    population <span class="op">=</span> new_pop</span>
-<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a>    avg_fitness.append(<span class="bu">sum</span>(fitness(ind) <span class="cf">for</span> ind <span class="kw">in</span> population) <span class="op">/</span> population_size)</span>
-<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> gen <span class="op">%</span> <span class="dv">250</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a>        best <span class="op">=</span> <span class="bu">max</span>(population, key<span class="op">=</span>fitness)</span>
-<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a>        best_individuals.append((gen, translate(best)))</span>
-<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a><span class="bu">input</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Simulation complete. Press Enter to exit plot window..."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># set the random number seed</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">0</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>plt.ion()  <span class="co"># Enable interactive mode</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Codon table</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>codon_table <span class="op">=</span> {</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'TTT'</span>: <span class="st">'F'</span>, <span class="st">'TTC'</span>: <span class="st">'F'</span>, <span class="st">'TTA'</span>: <span class="st">'L'</span>, <span class="st">'TTG'</span>: <span class="st">'L'</span>, <span class="st">'CTT'</span>: <span class="st">'L'</span>, <span class="st">'CTC'</span>: <span class="st">'L'</span>, <span class="st">'CTA'</span>: <span class="st">'L'</span>, <span class="st">'CTG'</span>: <span class="st">'L'</span>,</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ATT'</span>: <span class="st">'I'</span>, <span class="st">'ATC'</span>: <span class="st">'I'</span>, <span class="st">'ATA'</span>: <span class="st">'I'</span>, <span class="st">'ATG'</span>: <span class="st">'M'</span>,</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">'GTT'</span>: <span class="st">'V'</span>, <span class="st">'GTC'</span>: <span class="st">'V'</span>, <span class="st">'GTA'</span>: <span class="st">'V'</span>, <span class="st">'GTG'</span>: <span class="st">'V'</span>,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">'TCT'</span>: <span class="st">'S'</span>, <span class="st">'TCC'</span>: <span class="st">'S'</span>, <span class="st">'TCA'</span>: <span class="st">'S'</span>, <span class="st">'TCG'</span>: <span class="st">'S'</span>, <span class="st">'AGT'</span>: <span class="st">'S'</span>, <span class="st">'AGC'</span>: <span class="st">'S'</span>,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">'CCT'</span>: <span class="st">'P'</span>, <span class="st">'CCC'</span>: <span class="st">'P'</span>, <span class="st">'CCA'</span>: <span class="st">'P'</span>, <span class="st">'CCG'</span>: <span class="st">'P'</span>,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ACT'</span>: <span class="st">'T'</span>, <span class="st">'ACC'</span>: <span class="st">'T'</span>, <span class="st">'ACA'</span>: <span class="st">'T'</span>, <span class="st">'ACG'</span>: <span class="st">'T'</span>,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">'GCT'</span>: <span class="st">'A'</span>, <span class="st">'GCC'</span>: <span class="st">'A'</span>, <span class="st">'GCA'</span>: <span class="st">'A'</span>, <span class="st">'GCG'</span>: <span class="st">'A'</span>,</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">'TAT'</span>: <span class="st">'Y'</span>, <span class="st">'TAC'</span>: <span class="st">'Y'</span>, <span class="st">'CAT'</span>: <span class="st">'H'</span>, <span class="st">'CAC'</span>: <span class="st">'H'</span>,</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">'CAA'</span>: <span class="st">'Q'</span>, <span class="st">'CAG'</span>: <span class="st">'Q'</span>, <span class="st">'AAT'</span>: <span class="st">'N'</span>, <span class="st">'AAC'</span>: <span class="st">'N'</span>,</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">'AAA'</span>: <span class="st">'K'</span>, <span class="st">'AAG'</span>: <span class="st">'K'</span>, <span class="st">'GAT'</span>: <span class="st">'D'</span>, <span class="st">'GAC'</span>: <span class="st">'D'</span>,</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">'GAA'</span>: <span class="st">'E'</span>, <span class="st">'GAG'</span>: <span class="st">'E'</span>, <span class="st">'TGT'</span>: <span class="st">'C'</span>, <span class="st">'TGC'</span>: <span class="st">'C'</span>,</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">'TGG'</span>: <span class="st">'W'</span>, <span class="st">'CGT'</span>: <span class="st">'R'</span>, <span class="st">'CGC'</span>: <span class="st">'R'</span>, <span class="st">'CGA'</span>: <span class="st">'R'</span>, <span class="st">'CGG'</span>: <span class="st">'R'</span>, <span class="st">'AGA'</span>: <span class="st">'R'</span>, <span class="st">'AGG'</span>: <span class="st">'R'</span>,</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">'GGT'</span>: <span class="st">'G'</span>, <span class="st">'GGC'</span>: <span class="st">'G'</span>, <span class="st">'GGA'</span>: <span class="st">'G'</span>, <span class="st">'GGG'</span>: <span class="st">'G'</span>,</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">'TAA'</span>: <span class="st">'*'</span>, <span class="st">'TAG'</span>: <span class="st">'*'</span>, <span class="st">'TGA'</span>: <span class="st">'*'</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>alphabet <span class="op">=</span> <span class="st">"ATCG"</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>target_protein <span class="op">=</span> <span class="st">"DARWIN"</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>dna_length <span class="op">=</span> <span class="bu">len</span>(target_protein)<span class="op">*</span><span class="dv">3</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>target_length <span class="op">=</span> <span class="bu">len</span>(target_protein)</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation settings</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>population_size <span class="op">=</span> <span class="dv">625</span>  <span class="co"># must be a square number for grid mode</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>generations <span class="op">=</span> <span class="dv">20000</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>mutation_rate <span class="op">=</span> <span class="fl">0.0005</span>   </span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>sample_interval <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>sample_size <span class="op">=</span> population_size</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>no_reproduction_chance <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Core functions</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> translate(dna):</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">''</span>.join(codon_table.get(dna[i:i<span class="op">+</span><span class="dv">3</span>], <span class="st">'?'</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">len</span>(dna), <span class="dv">3</span>))</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fitness(dna):</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    protein <span class="op">=</span> translate(dna)</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">-</span> <span class="bu">sum</span>(a <span class="op">!=</span> b <span class="cf">for</span> a, b <span class="kw">in</span> <span class="bu">zip</span>(protein, target_protein)) <span class="op">/</span> target_length</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mutate(dna, rate<span class="op">=</span>mutation_rate):</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">''</span>.join(</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>        random.choice([b <span class="cf">for</span> b <span class="kw">in</span> alphabet <span class="cf">if</span> b <span class="op">!=</span> base]) <span class="cf">if</span> random.random() <span class="op">&lt;</span> rate <span class="cf">else</span> base</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> base <span class="kw">in</span> dna</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> count_beneficial_mutations(dna):</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>    f0 <span class="op">=</span> fitness(dna)</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(dna)):</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> b <span class="kw">in</span> alphabet:</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> b <span class="op">!=</span> dna[i]:</span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>                mutant <span class="op">=</span> dna[:i] <span class="op">+</span> b <span class="op">+</span> dna[i<span class="op">+</span><span class="dv">1</span>:]</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> fitness(mutant) <span class="op">&gt;</span> f0:</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>                    count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> count</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> diversity(pop):</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>    counts <span class="op">=</span> Counter(pop)</span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> <span class="bu">len</span>(pop)</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span><span class="bu">sum</span>((c<span class="op">/</span>total) <span class="op">*</span> math.log(c<span class="op">/</span>total <span class="op">+</span> <span class="fl">1e-9</span>) <span class="cf">for</span> c <span class="kw">in</span> counts.values()) <span class="cf">if</span> total <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="dv">0</span></span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize population</span></span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>initial_sequence <span class="op">=</span> <span class="st">''</span>.join(random.choice(alphabet) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(dna_length))</span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>population <span class="op">=</span> [initial_sequence <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(population_size)]</span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>avg_fitness <span class="op">=</span> []</span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>avg_beneficial <span class="op">=</span> []</span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>diversity_over_time <span class="op">=</span> []</span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>best_individuals <span class="op">=</span> []</span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a><span class="co"># Grid setup</span></span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>side <span class="op">=</span> <span class="bu">int</span>(math.sqrt(population_size))</span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> side <span class="op">*</span> side <span class="op">==</span> population_size, <span class="st">"Population size must be a square number for grid mode"</span></span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_neighbors(i, j):</span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [(x <span class="op">%</span> side, y <span class="op">%</span> side)</span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(i<span class="op">-</span><span class="dv">1</span>, i<span class="op">+</span><span class="dv">2</span>)</span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> y <span class="kw">in</span> <span class="bu">range</span>(j<span class="op">-</span><span class="dv">1</span>, j<span class="op">+</span><span class="dv">2</span>)]</span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize interactive plot</span></span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>fig, ax1 <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">"Generation"</span>)</span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">"Average Fitness"</span>, color<span class="op">=</span><span class="st">'tab:blue'</span>)</span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>ax1.set_ylim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a>line0, <span class="op">=</span> ax1.plot([], [], color<span class="op">=</span><span class="st">'black'</span>, linewidth<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">'Max fitness'</span>)</span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a>line1, <span class="op">=</span> ax1.plot([], [], color<span class="op">=</span><span class="st">'tab:blue'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Fitness'</span>)</span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>ax1.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelcolor<span class="op">=</span><span class="st">'tab:blue'</span>)</span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> ax1.twinx()</span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">"Beneficial Mutations / Diversity"</span>, color<span class="op">=</span><span class="st">'tab:purple'</span>)</span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>line2, <span class="op">=</span> ax2.plot([], [], color<span class="op">=</span><span class="st">'tab:purple'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Beneficial Mutations'</span>)</span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>line3, <span class="op">=</span> ax2.plot([], [], color<span class="op">=</span><span class="st">'tab:green'</span>, linestyle<span class="op">=</span><span class="st">':'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Diversity'</span>)</span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>ax2.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelcolor<span class="op">=</span><span class="st">'tab:purple'</span>)</span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">"Evolution Toward "</span> <span class="op">+</span> <span class="bu">str</span>(target_protein))</span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a>ax2.set_ylim(<span class="dv">0</span>, <span class="dv">5</span>)</span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a>fig.legend(loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a>plt.draw()</span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a>best_seq <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a>best_score <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a>best_fitnesses <span class="op">=</span> []</span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a>found <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a><span class="co"># Evolution loop</span></span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> gen <span class="kw">in</span> <span class="bu">range</span>(generations):</span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a>    fitnesses <span class="op">=</span> [fitness(ind) <span class="cf">for</span> ind <span class="kw">in</span> population]</span>
+<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a>    total_fit <span class="op">=</span> <span class="bu">sum</span>(fitnesses)</span>
+<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a>    best <span class="op">=</span> <span class="bu">max</span>(fitnesses)</span>
+<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a>    best_fitnesses.append(best)</span>
+<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(best <span class="op">==</span> <span class="dv">1</span> <span class="kw">and</span> <span class="kw">not</span> found):</span>
+<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a>        found <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Found perfect solution at generation"</span>, gen)</span>
+<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> gen <span class="op">%</span> sample_interval <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a>        sample <span class="op">=</span> random.sample(population, sample_size)</span>
+<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a>        avg_beneficial.append(<span class="bu">sum</span>(count_beneficial_mutations(ind) <span class="cf">for</span> ind <span class="kw">in</span> sample) <span class="op">/</span> sample_size)</span>
+<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a>        diversity_over_time.append(diversity(population))</span>
+<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Update plot data</span></span>
+<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a>        line0.set_data(<span class="bu">range</span>(<span class="bu">len</span>(avg_fitness)<span class="op">+</span><span class="dv">1</span>), best_fitnesses)</span>
+<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a>        line1.set_data(<span class="bu">range</span>(<span class="bu">len</span>(avg_fitness)<span class="op">+</span><span class="dv">1</span>), avg_fitness <span class="op">+</span> [<span class="bu">sum</span>(fitnesses)<span class="op">/</span>population_size])</span>
+<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a>        line2.set_data(<span class="bu">range</span>(<span class="bu">len</span>(avg_beneficial)), avg_beneficial)</span>
+<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a>        line3.set_data(<span class="bu">range</span>(<span class="bu">len</span>(diversity_over_time)), diversity_over_time)</span>
+<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a>        ax1.relim()<span class="op">;</span> ax1.autoscale_view()</span>
+<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a>        ax2.relim()<span class="op">;</span> ax2.autoscale_view()</span>
+<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a>        best <span class="op">=</span> <span class="bu">max</span>(population, key<span class="op">=</span>fitness)</span>
+<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a>        fig.suptitle(<span class="ss">f"Best: </span><span class="sc">{</span>translate(best)<span class="sc">}</span><span class="ss"> (target: </span><span class="sc">{</span>target_protein<span class="sc">}</span><span class="ss">)"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a>        plt.pause(<span class="fl">0.01</span>)</span>
+<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a>        avg_beneficial.append(avg_beneficial[<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a>        diversity_over_time.append(diversity_over_time[<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a>    new_pop <span class="op">=</span> []</span>
+<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a>    tournament_size <span class="op">=</span> <span class="dv">10</span>  <span class="co"># can be adjusted</span></span>
+<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(population_size):</span>
+<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Select tournament_size individuals randomly</span></span>
+<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a>        competitors <span class="op">=</span> random.sample(population, tournament_size)</span>
+<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Pick the one with highest fitness</span></span>
+<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a>        fitness_values <span class="op">=</span> [fitness(ind) <span class="cf">for</span> ind <span class="kw">in</span> competitors]</span>
+<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a>        total <span class="op">=</span> <span class="bu">sum</span>(fitness_values)</span>
+<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a>        probs <span class="op">=</span> [f <span class="op">/</span> total <span class="cf">for</span> f <span class="kw">in</span> fitness_values]</span>
+<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a>        winner <span class="op">=</span> random.choices(competitors, weights<span class="op">=</span>probs, k<span class="op">=</span><span class="dv">1</span>)[<span class="dv">0</span>]</span>
+<span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Mutate winner to produce offspring</span></span>
+<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a>        offspring <span class="op">=</span> mutate(winner)</span>
+<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a>        new_pop.append(offspring)</span>
+<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a>    population <span class="op">=</span> new_pop</span>
+<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a>    avg_fitness.append(<span class="bu">sum</span>(fitness(ind) <span class="cf">for</span> ind <span class="kw">in</span> population) <span class="op">/</span> population_size)</span>
+<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> gen <span class="op">%</span> <span class="dv">250</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a>        best <span class="op">=</span> <span class="bu">max</span>(population, key<span class="op">=</span>fitness)</span>
+<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a>        best_individuals.append((gen, translate(best)))</span>
+<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a><span class="bu">input</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Simulation complete. Press Enter to exit plot window..."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1169,16 +1132,8 @@ div.csl-indent {
 <li><strong>Bonus question for motivated students</strong> modify the code to include a second target protein sequence, and alternate between the two targets. If you see something interesting, please share it with the class!</li>
 </ol>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong><br> a. The new black line is the maximum fitness in the population. Thanks to this line we can see that, sometimes, an individual is present that is fitter but it does not manage to take over the population. We are dealing with a stochastic process, so this is very natural. <br> b. The fitness line once again goes in distinct steps. The diversity line (green dotted) has a distinct behaviour compared to earlier models. Instead of only going up during the discovery of a new mutant, it constantly creeps up during periods where fitness does not change. This is because the codon-table is partially redundant: many different DNA sequences can code for the same amino acid sequence, so diveristy increases. However, when a new “fitter” individual comes in, diversity goes down as that individual clonally takes over the population. Then, diversity slowly increases again. A similar pattern is reflected in the line that represents the “beneficial mutations” (blue dotted line). TLDR; even when fitness is not changing there is still a lot going on in this population!<br> c.&nbsp;This model represents a many-to-one mapping between genotype and phenotype. The DNA sequence (genotype) is translated into an amino acid sequence (phenotype), which is then used to calculate fitness. This means that many different genotypes can lead to the same phenotype, and thus the same fitness. Earlier in this course you have learned about development, and those processes often lead to effects where the same genotype can produce many different shapes (phenotypes). <br> d.&nbsp;<strong>BONUS:</strong> I have not personally done this, and I do not know the answer to this question yet. However, it is sometimes observed that with many-to-one mapping, populations can because better and better at switching between two alternating targets. This is because the alternating selection pressures make populations move towards genotypes that are “close” to both targets, and because there is some neutrality coding this can be acchieved without losing fitness in either environment. For cool paper on this principle, see <span class="citation" data-cites="crombach2008evolution">Crombach and Hogeweg (<a href="references.html#ref-crombach2008evolution" role="doc-biblioref">2008</a>)</span>. I suspect however that our current model will not be able to do the same.</p>
-</blockquote>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-crombach2008evolution" class="csl-entry" role="listitem">
-Crombach, Anton, and Paulien Hogeweg. 2008. <span>“Evolution of Evolvability in Gene Regulatory Networks.”</span> <em>PLoS Computational Biology</em> 4 (7): e1000112.
-</div>
-</div>
 </section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>

@@ -596,9 +596,6 @@ div.csl-indent {
 <li>Run the script and observe the plots that appear. Explain in your own words what is the sigma field and what is the tau field. Do you understand why two different fields are needed?</li>
 </ul>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong> TBD</p>
-</blockquote>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 6.2 (Conceptual thinking - Interpreting the Hamiltonian energy function)</strong></span> The <strong>Hamiltonian</strong> energy function <em>H</em> is at the heart of a CPM/GGH simulation. <em>H</em> reflects our assumptions about the system and how forces affect the cell (the derivative of energy with respect to position is force).</p>
 <p>In the script <code>01_cpm.py</code>, the following Hamiltonian is used.</p>
@@ -617,9 +614,6 @@ div.csl-indent {
 <li>Take a closer look at the summation terms. Over which domain is the first sum calculated? What about the second summation term?</li>
 </ul>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong> TBD</p>
-</blockquote>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 6.3 (Conceptual thinking - How parameters affect the Hamiltonian energy function)</strong></span> The modified Metropolis algorithm used in the Monte Carlo stepping procedure ensures that over time, on average, the sum of the energy of the entire sigma field will reach a minimum. However, the different Hamiltonian terms may work “against” each other: minimizing one term may lead to maximizing the value of the other term.</p>
 <p>Let’s vary the parameters that affect the Hamiltonian terms to get an intuition for how they work. In the following, you may want to take screenshots of the final simulation state to put in your notes, so that it’s easier to compare the outputs.</p>
@@ -630,9 +624,6 @@ div.csl-indent {
 <li>Explain why these settings and parameters that you just changed affect the simulation outcome.</li>
 </ul>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong> TBD</p>
-</blockquote>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 6.4 (Algorithmic thinking - The Monte Carlo update algorithm)</strong></span> In addition to showing a visualization of the <em>σ</em> and <em>τ</em> fields, the script <code>01_cpm.py</code> also prints some information to the terminal.</p>
 <p>Reset all parameters to their default values, then, based on the printed information, answer the following questions:</p>
@@ -657,9 +648,6 @@ div.csl-indent {
 <p>The script <code>02_cpm_edgelist.py</code> implements the edge list algorithm. It’s quite complicated, so don’t worry about understanding all the technical details. Using this script, answer the above questions again and compare to the results you got with the traditional update algorithm.</p>
 <p>Explain: Why does the edgelist algorithm reduce computation time? In which situations would you expect the difference in computation time between algorithms to be large?</p>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong> TBD</p>
-</blockquote>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 6.5 (Biology - Expanding the Hamiltonian)</strong></span> Suppose you want to add more mechanisms for cell shape changes to the model. This would involve the following steps:</p>
 <ol type="1">
@@ -686,9 +674,6 @@ div.csl-indent {
 <li>You may have noticed the simulation is running more slowly than before. Review the new code additions again. Can you identify any potential reasons for this decrease in computation speed?</li>
 </ul>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong> TBD</p>
-</blockquote>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 6.6 (Biology - Imposing cell connectivity**)</strong></span> In the previous simulations you ran, you may have noticed that cells sometimes break up into disjointed fragments. There are two alternative ways to prevent this: 1. Add a new Hamiltonian term that penalizes copy attempts that would break up the cell. 2. Modify the update algorithm to always reject copies that would break cells apart.</p>
 <p>Script <code>04_cpm_connectivity.py</code> implements the second option using a flood fill algorithm to count the number of contiguous pixels of the non-medium target cell supposing that a copy succeeded.</p>
@@ -698,9 +683,6 @@ div.csl-indent {
 <li>Once again, the simulation is running more slowly than before. What parts of the new code do you suspect may be causing the slowdown?</li>
 </ul>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong> TBD</p>
-</blockquote>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 6.7 (Biology - Exploring differential adhesion and cell sorting**)</strong></span> Now let’s explore how changing adhesion affinities leads to different sorted cell configurations. To do that, you will need to run simulations for a longer time. To speed up computations, you will be using an optimized package (many scripts working together), which is contained in the folder <code>“cellularPotts”</code>. To make visualizations super-fast, this package uses the <code>PyQt5</code> module, which should be installed by default with your Anaconda distribution.</p>
 <p><em>Note: If for some reason you cannot get <code>PyQt5</code> to work, there is an alternative package that uses matplotlib <code>“cellularPotts_MPL”</code>. However, this runs much slower.</em></p>
@@ -714,9 +696,6 @@ div.csl-indent {
 </ul>
 <p><em>(Master students)</em> Add a third cell type to the simulation by editing the <code>parameter.py</code> file. Can you get a sorted configuration where cell type 1 envelops cell type 2, which itself envelops cell type 3?</p>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong> TBD</p>
-</blockquote>
 <section id="references" class="level4">
 <h4 class="anchored" data-anchor-id="references">References</h4>
 <p>[1] <span class="citation" data-cites="gilbert2016developmental">Gilbert and Barresi (<a href="references.html#ref-gilbert2016developmental" role="doc-biblioref">2016</a>)</span> (https://utrechtuniversity.on.worldcat.org/oclc/1035852599)</p>

@@ -1,6 +1,6 @@
 ---
 params:
-  show_answers: true
+  show_answers: false
 ---
 
 # Gene regulation in space
@@ -225,9 +225,10 @@ You should observe that WOX5 expression gradually expands into the
 endodermis and disappears from QC cells when both equations are updated.
 This matches experimental microscopy. 
 
-Why do different parts of the root respond differently to auxin? Why
-does induction occur mainly in upper cells and repression in basal
-cells?
+- Why do different parts of the root respond differently to auxin? 
+- Why does auxin regulation of MGP do? (Tip: look at the network...)
+- Why does induction of WOX5 occur mainly in upper cells and repression 
+in the basal cells?
 :::
 
 :::{.content-visible when-meta="params.show_answers"}

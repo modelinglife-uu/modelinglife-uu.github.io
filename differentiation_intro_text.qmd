@@ -1,5 +1,14 @@
 # Differentiation introduction
 
-### TODO
+## Cell differentiation
 
-- this will be finished if i manage to link
+![Gene regulation in a bacteria. aCredit: RegulonDB](images/0-ecoli-regulondb.png){#vegmini1 width=50%}
+
+Cell differentiation is the process by which cells acquire specialized structures and functions, giving rise to the diverse array of cell types. This can happen in single cell organisms (bacterias being in exponential growth, or stationary phase), and also in multicellular systems where different cells are organized in tissues and organs (think of all the blood cells, melanocytes, muscle cells, neurons, etc., in our bodies). This specialization results from regulated gene expression: genes are turned on and off in precise combinations, yielding distinct expression profiles. Therefore, two cells with an identical genome can be phenotypically different because they express different sets of genes. Transcription factors are DNA-binding proteins that regulate gene transcription by binding promoters; together with signaling pathways and epigenetic modifications, they form gene regulatory networks (GRNs) that govern when and where genes are expressed. The topology and dynamics of these networks relate to cell identity and behaviour, and how perturbations in the networks—genetic mutations or environmental challenges—can lead to cell differentiation into other cell types, or even into aberrant cell fates that increase the risk of disease.  and how expression changes in response to intrinsic cues and environmental signals
+Computational approaches help us decipher how these networks process information to produce the gene expression patterns observed in *normal* and *abnormal* development, how these cell types are organized in time and space in a tissue/organ/organism. 
+
+In this course chapter, you will learn how to use computational models to simulate regulatory interactions within GRNs and to understand how their dynamics generate the gene expression patterns that establish and maintain different cell types.
+
+For instance, during animal or plant embryogenesis, a single cell—the zygote—divides and undergoes successive lineage decisions to produce the complex array of cell types that comprise an organism. 
+
+

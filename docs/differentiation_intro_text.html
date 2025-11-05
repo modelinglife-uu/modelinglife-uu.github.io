@@ -47,6 +47,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-0e7c136abd6418639055ad70ade9c940.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark-c2e0d09699c19eeb454aa3ea76728735.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-0e7c136abd6418639055ad70ade9c940.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -478,8 +481,14 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="-1">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+  <li><a href="#cell-differentiation" id="toc-cell-differentiation" class="nav-link active" data-scroll-target="#cell-differentiation"><span class="header-section-number">7.1</span> Cell differentiation</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -504,11 +513,17 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="todo" class="level3">
-<h3 class="anchored" data-anchor-id="todo">TODO</h3>
-<ul>
-<li>this will be finished if i manage to link</li>
-</ul>
+<section id="cell-differentiation" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="cell-differentiation"><span class="header-section-number">7.1</span> Cell differentiation</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/0-ecoli-regulondb.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Gene regulation in a bacteria. aCredit: RegulonDB"><img src="images/0-ecoli-regulondb.png" class="img-fluid figure-img" style="width:50.0%" alt="Gene regulation in a bacteria. aCredit: RegulonDB"></a></p>
+<figcaption>Gene regulation in a bacteria. aCredit: RegulonDB</figcaption>
+</figure>
+</div>
+<p>Cell differentiation is the process by which cells acquire specialized structures and functions, giving rise to the diverse array of cell types. This can happen in single cell organisms (bacterias being in exponential growth, or stationary phase), and also in multicellular systems where different cells are organized in tissues and organs (think of all the blood cells, melanocytes, muscle cells, neurons, etc., in our bodies). This specialization results from regulated gene expression: genes are turned on and off in precise combinations, yielding distinct expression profiles. Therefore, two cells with an identical genome can be phenotypically different because they express different sets of genes. Transcription factors are DNA-binding proteins that regulate gene transcription by binding promoters; together with signaling pathways and epigenetic modifications, they form gene regulatory networks (GRNs) that govern when and where genes are expressed. The topology and dynamics of these networks relate to cell identity and behaviour, and how perturbations in the networks—genetic mutations or environmental challenges—can lead to cell differentiation into other cell types, or even into aberrant cell fates that increase the risk of disease. and how expression changes in response to intrinsic cues and environmental signals Computational approaches help us decipher how these networks process information to produce the gene expression patterns observed in <em>normal</em> and <em>abnormal</em> development, how these cell types are organized in time and space in a tissue/organ/organism.</p>
+<p>In this course chapter, you will learn how to use computational models to simulate regulatory interactions within GRNs and to understand how their dynamics generate the gene expression patterns that establish and maintain different cell types.</p>
+<p>For instance, during animal or plant embryogenesis, a single cell—the zygote—divides and undergoes successive lineage decisions to produce the complex array of cell types that comprise an organism.</p>
 
 
 </section>
@@ -960,6 +975,38 @@ ul.task-list li input[type="checkbox"] {
 </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

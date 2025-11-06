@@ -571,6 +571,7 @@ window.Quarto = {
   <li><a href="#regulatory-interactions" id="toc-regulatory-interactions" class="nav-link" data-scroll-target="#regulatory-interactions"><span class="header-section-number">8.2</span> Regulatory interactions</a></li>
   <li><a href="#gene-regulatory-network" id="toc-gene-regulatory-network" class="nav-link" data-scroll-target="#gene-regulatory-network"><span class="header-section-number">8.3</span> Gene regulatory network</a></li>
   <li><a href="#cell-differentiation-jumping-from-one-attractor-to-another" id="toc-cell-differentiation-jumping-from-one-attractor-to-another" class="nav-link" data-scroll-target="#cell-differentiation-jumping-from-one-attractor-to-another"><span class="header-section-number">8.4</span> Cell differentiation – jumping from one attractor to another</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">8.5</span> References</a></li>
   </ul>
 </nav>
     </div>
@@ -599,7 +600,7 @@ window.Quarto = {
 
 <section id="introduction" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">8.1</span> Introduction</h2>
-<p>In this practical you will get hands on experience into making gene regulatory networks models. First you will practice how to encode regulatory interactions into ordinary differential equations and logical rules. Next you will study how many interactions produce self-sustained activity configurations (attractors) in a Boolean network model. Lastly, you will learn how to predict the genes that cause cell fate transitions (attractor changes).</p>
+<p>In this practical you will get hands on experience into making gene regulatory networks models. First you will practice how to encode regulatory interactions into ordinary differential equations and logical rules. Next you will study how many interactions produce self-sustained activity configurations (attractors) in a Boolean network model (<span class="citation" data-cites="rozum2023boolean">Rozum et al. (<a href="references.html#ref-rozum2023boolean" role="doc-biblioref">2023</a>)</span>). Lastly, you will learn how to predict the genes that cause cell fate transitions (attractor changes).</p>
 <p>Today we will use the following python file: <code>circuitsfunctions.py</code>. In it you will find the code of the functions we use throughout the practical, have a quick look at it.</p>
 </section>
 <section id="regulatory-interactions" class="level2" data-number="8.2">
@@ -777,11 +778,21 @@ examples of biological regulatory interactions that can be described with each l
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.13 (Biology)</strong></span> Finally, use the model to predict the rest of the attractor transitions because of single node changes. Are all attractor transitions possible, or are there preferred differentiation routes?</p>
 </div>
+</section>
+<section id="references" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="references"><span class="header-section-number">8.5</span> References</h2>
+<ul>
+<li><span class="citation" data-cites="rozum2023boolean">Rozum et al. (<a href="references.html#ref-rozum2023boolean" role="doc-biblioref">2023</a>)</span></li>
+<li><span class="citation" data-cites="garcia2020system">Garcı́a-Gómez et al. (<a href="references.html#ref-garcia2020system" role="doc-biblioref">2020</a>)</span></li>
+</ul>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-garcia2020system" class="csl-entry" role="listitem">
 Garcı́a-Gómez, Mónica L, Diego Ornelas-Ayala, Adriana Garay-Arroyo, Berenice Garcı́a-Ponce, Marı́a de la Paz Sánchez, and Elena R Alvarez-Buylla. 2020. <span>“A System-Level Mechanistic Explanation for Asymmetric Stem Cell Fates: Arabidopsis Thaliana Root Niche as a Study System.”</span> <em>Scientific Reports</em> 10 (1): 3525.
+</div>
+<div id="ref-rozum2023boolean" class="csl-entry" role="listitem">
+Rozum, Jordan C, Colin Campbell, Eli Newby, Fatemeh Sadat Fatemi Nasrollahi, and Reka Albert. 2023. <span>“Boolean Networks as Predictive Models of Emergent Biological Behaviors.”</span> <em>arXiv Preprint arXiv:2310.12901</em>.
 </div>
 </div>
 </section>

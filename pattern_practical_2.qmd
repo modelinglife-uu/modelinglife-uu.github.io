@@ -94,7 +94,7 @@ Play with the reaction parameters and diffusion constants to study their effects
 
 > For simplicity I will only show Sox9 patterns:
 
-![](images/sox9.png)
+![](images/sox9.png){#vegmini1 width=40%}
 
 ![](images/sox9sweep.png)
 

@@ -1,19 +1,27 @@
 ---
 params:
-  show_answers: false
+  show_answers: true
 ---
 
-# Turing digit patterns
+# Turing patterns, repetitive patterning
   
 ## {.unnumbered}
 A foundational work in Theoretical Biology is Alan Turing's paper *"The Chemical Basis of Morphogenesis"* (@turing1990chemical). In this work, Turing mathematically demonstrates a plausible mechanism whereby a reaction-diffusion system can lead to the formation of a spatially-patterned solution in steady state. Mathematically and conceptually, Turing’s key innovation was considering diffusion-driven instability. That is: An unpatterned steady state solution becomes unstable in the presence of diffusion, leading to the formation of a spatially patterned state.
 
 Turing-type patterns emerge when a system exhibits short-ranged activation and long-ranged inhibition. The most well-known realization of a Turing reaction-diffusion system is the combination of a slow-diffusing activator and fast-diffusing inhibitor. Many more examples exist which can be reduced to a mathematically equivalent form. In this practical, we will explore a 3-component Turing system developed by Raspopovic and coauthors to explain the patterning of fingers on the paws of mice (@raspopovic2014digit).
 
+::: {.columns}
+
+
+
+::: {.column width="40%"}
 ![Credit: the internet.](images/0-hamster.png){#vegmini1 width=40%}
+:::
+::: {.column width="60%"}
 
 In this practical you will work with a total of 6 different python codes. Please note that each code simply differs by an extension or modification from the previous code, so that in the end you will have a long script that performs all the steps in one go.
-
+:::
+:::
 ------------------------------------------------------------------------
 
 ## Equivalence of Turing models
@@ -49,7 +57,7 @@ Study the schemes below. The arrows represent activating or inhibiting interacti
 <br>a)	Sox9 inhibits Wnt which inhibits Sox9 -> summarize as self-activation
 <br>b)	Wnt self-inhibition arrow -> part of self-activation in reduced scheme
 <br>c)	Wnt slow diffusion -> Sox9 slow diffusion<br><br>
-Turing instability requires short-range activation and long-range inhibition. <br>
+Turing instability requires short-range activation and long-range inhibition. <br><br>
 In the substrate-depletion model, the growth of the slow-diffusing activator A is constrained by the local loss of fast-diffusing substrate S. Around an A-enriched domain a halo of S will form, which will induce nearby A domains to grow, generating the alternating spatial pattern.<br><br>
 In the BSW model, Sox9 indirectly locally self-activates by inhibiting its slow-diffusing inhibitor Wnt, but the growth of Sox9 domains is constrained by depletion of the fast-diffusing Bmp (playing the role of substrate in this model). Around Sox9-enriched domains a halo of Bmp will form and induce the generation of more Sox9 domains in the surroundings.
 
@@ -152,9 +160,9 @@ In the script `02__digits_growingsquare_PD.py` we added tissue growth in the pro
 
 > **Answer** At low growth rates, the pattern forms stripes parallel to the growth direction. As the growth speed increases, the alignment shifts to stripes perpendicular to the growth direction. When growth is slow, the “new domain” added by growth is too small to fit a Turing wavelength. As a result, the existing pattern gets extended into the new parts. When growth is fast, the “new domain” added by growth is sufficiently large to fit a Turing wavelength, which becomes the selected mode. Additionally for faster growth, the diffusion/growth ratio is now lower making it harder to simple extend the existing pattern from diffusion of the old cells that previously made up the boundary.
 
-![Simulations from this practical with domain growth ](images/domaingrowth.png)
+![Simulations from this practical with domain growth ](images/growth1d.png)
 
-![Experimental work using a light-gated chemical reaction that forms Turing patterns when illuminated. The illuminated area was shifted over time to produce a growing domain, work by Míguez et at., 2006](images/experimental_stripes.png){width=40%}
+![Experimental work using a light-gated chemical reaction that forms Turing patterns when illuminated. The illuminated area was shifted over time to produce a growing domain, work by @miguez2006effect](images/experimental_stripes.png){width=40%}
 
 
 :::
@@ -169,16 +177,18 @@ In reality, the limb bud grows in both the proximo-distal and anterior-posterior
 
 ## Biology
 
-Play with the relative size of these growth rates and study what happens. Compare the order of appearance of stripes to the experimental data in the paper (see Figure 3F in the Raspopovic paper).
+Play with the relative size of these growth rates and study what happens. Compare the order of appearance of stripes to the experimental data in the paper (see Figure 3F in the Raspopovic paper @raspopovic2014digit).
 
 :::
 
 :::{.content-visible when-meta="params.show_answers"}
 
-> **Answer** As in the previous question, the rate of growth influences whether stripes grow parallel to or perpendicular to the growth boundary. Also as before, slow horizontal growth promotes horizontal stripes (vi<=0.1), and when this becomes faster stripes reorient to become vertical. However now, if we add vertical growth and it is not small enough relative to the horizontal growth, above and below the horizontal stripes we get vertical stripes and these domains are larger the faster vertical growth is relative to horizontal growth. So to get ok-ish patterns we need horizontal growth not too fast, and vertical growth to be slower. These results are consistent with horizontal growth of the “paddle” being faster than vertical growth. Also, we see that middle horizontal stripes appear earlier than the outer ones (in those situation where not all is vertical), similar to what we see in the paper in Fig 3F.
+> **Answer** 
+> ![Simulations from this practical with domain growth ](images/domaingrowth.png){#vegmini1 width=140%}
+>As in the previous question, the rate of growth influences whether stripes grow parallel to or perpendicular to the growth boundary. Also as before, slow horizontal growth promotes horizontal stripes (vi<=0.1), and when this becomes faster stripes reorient to become vertical. However now, if we add vertical growth and it is not small enough relative to the horizontal growth, above and below the horizontal stripes we get vertical stripes and these domains are larger the faster vertical growth is relative to horizontal growth. So to get ok-ish patterns we need horizontal growth not too fast, and vertical growth to be slower. These results are consistent with horizontal growth of the “paddle” being faster than vertical growth. Also, we see that middle horizontal stripes appear earlier than the outer ones (in those situation where not all is vertical), similar to what we see in the paper in Fig 3F.
 Still interestingly, if you put vj=0.2 and vi=0.1 you promote initially vertical and later on horizontal stripes, this is an effect of in the vertical direction hitting the boundaries of the domain first and then still slowly continuing growth in the horizontal dimension at a not too high rate that was supportive of extending horizontal stripes.
 
-![Simulations from this practical with domain growth ](images/domaingrowth.png)
+![](images/horizontal.png){#vegmini1 width=40%}
 :::
 
 ------------------------------------------------------------------------
@@ -200,7 +210,7 @@ If the cell increases in volume and does not produce/degrade X, what happens to 
 What would be the concentration of X in the two daughter cells if the cell divides?\
 How would the situation change if X is constantly produced and degraded?
 
-In the paper, Raspopovic et al. create a “tissue growth map” (see Figure 3A), which they use to map concentration values from one timepoint to the next using interpolation-based transformations.
+In the paper, @@raspopovic2014digit create a “tissue growth map” (see Figure 3A), which they use to map concentration values from one timepoint to the next using interpolation-based transformations.
 
 Inspired by this approach, the script `04__digits_growingsquare.py` implements a different growth function that uses bilinear interpolation to expand the tissue. Play around with the growth rate parameters and compare the results to what you found earlier. Do the patterns differ? If yes, how do they differ?
 
@@ -212,7 +222,12 @@ Inspired by this approach, the script `04__digits_growingsquare.py` implements a
 
 
 :::{.content-visible when-meta="params.show_answers"}
-> **Answer** The default value of newly added tissue is 0, because the entire matrix is initialized with 0s, and only a small rectangle corresponding to the initial tissue domain is filled with random values and then updated based on the equations. When growth happens, the tissue domain extends to cover new parts of the matrix that were not included in the initialization. Extending the edges into 0-valued territory would be as if new, empty cells appear at the edges of the tissue, which is not a reasonable approach to model limb bud growth.<br><br>If a cell increases in volume without producing/degrading molecules “X”, then the concentration of X will decrease as the cell increases in volume. Daughter cells would have on average half the concentration of X as the mother cell. If “X” is constantly produced and degraded (and the cell is a well-mixed environment) then the concentration of X could be in quasi-steady state during growth. A growing cell would maintain the same concentration of X over time. When the cell divides, both daughter cells would inherit the same concentration of X as the mother cell had. Assuming the latter scenario is more likely, then growth of a tissue should work by “stretching” the values of the growing parts. (Some tissues actually do grow only at the edges, but even there we would expect the newly added “territory” to be made from previous cells and therefore still inherit their concentrations.)
+> **Answer** 
+> 
+> - The default value of newly added tissue is 0, because the entire matrix is initialized with 0s, and only a small rectangle corresponding to the initial tissue domain is filled with random values and then updated based on the equations. When growth happens, the tissue domain extends to cover new parts of the matrix that were not included in the initialization. Extending the edges into 0-valued territory would be as if new, empty cells appear at the edges of the tissue, which is not a reasonable approach to model limb bud growth.<br><br>
+> - If a cell increases in volume without producing/degrading molecules “X”, then the concentration of X will decrease as the cell increases in volume. Daughter cells would have on average half the concentration of X as the mother cell. If “X” is constantly produced and degraded (and the cell is a well-mixed environment) then the concentration of X could be in quasi-steady state during growth. A growing cell would maintain the same concentration of X over time. When the cell divides, both daughter cells would inherit the same concentration of X as the mother cell had. Assuming the latter scenario is more likely, then growth of a tissue should work by “stretching” the values of the growing parts. (Some tissues actually do grow only at the edges, but even there we would expect the newly added “territory” to be made from previous cells and therefore still inherit their concentrations.)
+
+![Simulations from this practical with domain growth ](images/growth1.png){#vegmini1 width=140%}
 
 > The different growth appears to affect pattern formation, e.g for vj=0.01 the pattern is still predominantly horizontal for 0.15, which was less so before. In constrast for vj=0.05 and vi=0.15 pattern is mostly vertical whereas in other growth regime it was still partly horizontal. Seems that transition from horizontal to vertical stripes is thus modulated. So for low vj it is easier to get horizontal stripes.
 
@@ -229,21 +244,29 @@ Let us now ignore growth and its role on orienting stripes for a while and explo
 
 ## Biology 
 
-The script `05__digits_squarek4k7gradient.py` allows you to implement exponential gradients of `k4` and `k7` across the tissue. You can set the minimum and maximum values, axis (x=horizontal, y=vertical) and direction (0=decreasing, 1=increasing). Look in the supplement of the Raspopovic paper, page 48 Fig 2C, left for the estimated change of `k4` and `k7` across the tissue and try to reproduce (not exactly but similarly) Figure 2C, right side, by playing with the parameters affecting the `k4` and `k7` gradients. Describe along which axis, in which direction and to what extent `k4` and `k7` are changing. Estimate the change in Turing pattern wavelength this results in.
+The script `05__digits_squarek4k7gradient.py` allows you to implement exponential gradients of `k4` and `k7` across the tissue. You can set the minimum and maximum values, axis (x=horizontal, y=vertical) and direction (0=decreasing, 1=increasing). Look in the supplement of the Raspopovic paper, page 48 Fig 2C (@raspopovic2014digit), left for the estimated change of `k4` and `k7` across the tissue and try to reproduce (not exactly but similarly) Figure 2C, right side, by playing with the parameters affecting the `k4` and `k7` gradients. Describe along which axis, in which direction and to what extent `k4` and `k7` are changing. Estimate the change in Turing pattern wavelength this results in.
 
 :::
 
 :::{.content-visible when-meta="params.show_answers"}
-> **Answer** See the script `05__digits_squarek4k7gradient_answer.py` for a solution. The output may look sometimes like this:
-
-![](images/spatial_parameter_turing.png)
+  > **Answer** See the script `05__digits_squarek4k7gradient_answer.py` 
+  > for a solution. The output may look sometimes like this: ![](images/spatial_parameter_turing.png)
+  >
+  > Parameter values for the gradients should be:
+  >
+  > $k4_{min}=0.8$, $k4_{max}=1.8$, $direction=0$, $axis =x$
+  >
+  > $k7_{min}=0.5$, $k7_{max}=1.3$, $direction=1$, $axis=x$
+  >
+  > This results in $k4$ decreasing and $k7$ increasing along the x-axis.
+  > Wavelength of the Turing pattern increases more than 2-fold
 :::
 
 ------------------------------------------------------------------------
 
 ## Hoxd13 and FGF
 
-As mentioned above, the biological factors thought to underly the variation in the `k4` and `k7` parameters are Hoxd13 and FGF. Hoxd13 is highly expressed in the distal domain of the paddle and not expressed elsewhere, and this expression domain is growing as the paddle grows. FGF is expressed from the distal edge of the paddle and spreads through diffusion. For an illustration see Fig S8A of the supplement of the Raspopovic paper (page 10). Experimental data furthermore suggest that Hoxd13 and FGF together affect `k4` and `k7`, which the authors decided to model using the following equations:
+As mentioned above, the biological factors thought to underly the variation in the `k4` and `k7` parameters are Hoxd13 and FGF. Hoxd13 is highly expressed in the distal domain of the paddle and not expressed elsewhere, and this expression domain is growing as the paddle grows. FGF is expressed from the distal edge of the paddle and spreads through diffusion. For an illustration see Fig S8A of the supplement of the Raspopovic paper (page 10 @raspopovic2014digit). Experimental data furthermore suggest that Hoxd13 and FGF together affect `k4` and `k7`, which the authors decided to model using the following equations:
 
 $$
 k4^* = k4 - k_{HF_{bmp}} * fgf(i,j) * hox(i,j)
@@ -264,8 +287,7 @@ The script `06__digits_squarehoxdfgf.py` implements how `k4` and `k7` are a func
 > **Answer** See the script `06_digits_squarehoxdfgf_answer.py` for a solution. The output may look sometimes like this:
 
 ![](images/spatial_parameter_turing2.png)
-
-The Hox domain starts as a narrow vertical band and expands backward. The FGF gradient develops from the rightward boundary. Since a certain amount of Hox and FGF is needed to result in k4 and k7 values permissive of Turing patterns the stripes develop from right to left and because of the wavelength changes induced by different Hox and FGF values become closer together towards the left. Note that here a nice example run is shown but patterns are variable.
+  > The Hox domain starts as a narrow vertical band and expands backward. The FGF gradient develops from the rightward boundary. Since a certain amount of Hox and FGF is needed to result in k4 and k7 values permissive of Turing patterns the stripes develop from right to left and because of the wavelength changes induced by different Hox and FGF values become closer together towards the left. Note that here a nice example run is shown but patterns are variable.
 
 :::
 ------------------------------------------------------------------------
@@ -282,9 +304,7 @@ Switching between geometries is easily done by changing the value of the paramet
 
 Play around with `vi/vj` and `Lx0` to investigate the effect of ellipse shape and development over time on the number, shape and robustness of digits that form.
 
-Now switch to the paddle geometry. Observe the patterns that emerge and compare these to the simulated and experimentally observed patterns in Figure 3E and 3F of the Raspopovic article. According to you what does and what doesn’t the model explain well?
-
-The model explains the formation and positioning of the 4 digits, and how the distance between these digits increases along the limb bud. However, the model clearly does not simulate/explain the formation of the wrist bones that is observed experimentally. Interestingly the experimental data suggest that while digits may form from the “right to the left”, the “leftmost” bones of the wrist are there the earliest, suggesting there locally different conditions apply allowing earlier Turing patterning but with a very large wavelength happening there.
+Now switch to the paddle geometry. Observe the patterns that emerge and compare these to the simulated and experimentally observed patterns in Figure 3E and 3F of the Raspopovic article (@raspopovic2014digit). According to you what does and what doesn’t the model explain well?
 
 To implement non-square geometries, the script uses “masks”. Study how these masks are created in the functions `create_ellipse_mask` and `create_tissue_mask`.
 
@@ -295,12 +315,13 @@ To implement non-square geometries, the script uses “masks”. Study how these
 :::
 
 :::{.content-visible when-meta="params.show_answers"}
-> **Answer**<br>
-Fgf gradient forms from bottom to top, as a consequence bottom fingers form first, often one of the bottom fingers forms and than splits. While in general Turing mechanisms give patterns they are not reproducible in terms of the positioning of the stripes. By starting the highest point of the FGF gradient locally it is determine where the first digits can arise, generating control over the positioning of the digits.<br><br>
-Vi 0.1 goes okay, 0.2 stretched and splitting of digits <br>
+  > **Answer**<br>
+  > 
+  > - Fgf gradient forms from bottom to top, as a consequence bottom fingers form first, often one of the bottom fingers forms and than splits. While in general Turing mechanisms give patterns they are not reproducible in terms of the positioning of the stripes. By starting the highest point of the FGF gradient locally it is determine where the first digits can arise, generating control over the positioning of the digits.<br><br>
+  > - Vi 0.1 goes okay, 0.2 stretched and splitting of digits <br>
 Vj too low too little room so less than 5 digits, vi too high more than 5 fingers, higher rates result in less reproducible patterns
 Below a nice pattern showing 5 fingers, but also showing near splitting of one of the fingers at the end<br><br>
-The model explains the formation and positioning of the 4 digits, and how the distance between these digits increases along the limb bud. However, the model clearly does not simulate/explain the formation of the wrist bones that is observed experimentally. Interestingly the experimental data suggest that while digits may form from the “right to the left”, the “leftmost” bones of the wrist are there the earliest, suggesting there locally different conditions apply allowing earlier Turing patterning but with a very large wavelength happening there.  <br><br>
+> - The model explains the formation and positioning of the 4 digits, and how the distance between these digits increases along the limb bud. However, the model clearly does not simulate/explain the formation of the wrist bones that is observed experimentally. Interestingly the experimental data suggest that while digits may form from the “right to the left”, the “leftmost” bones of the wrist are there the earliest, suggesting there locally different conditions apply allowing earlier Turing patterning but with a very large wavelength happening there.  <br><br>
 
 ![](images/fingers.png)
 
@@ -327,37 +348,17 @@ Above we played with ellipse size and growth rates, however in addition to mutat
 :::{.content-visible when-meta="params.show_answers"}
 > **Answer**
 Reference values:
-```python
-# Reaction-diffusion parameters for FGF
-Dfgf = 0.001            # diffusion coefficient
-fgf_decay_rate = 0.0003 # degradation parameter
-
-# Opening angle of fgf source at the start and end
-fgf_angle_start_1 = -0.3*np.pi
-fgf_angle_start_2 = -0.5*np.pi
-fgf_angle_end_1   =  0.4*np.pi
-fgf_angle_end_2   = -0.6*np.pi    
-fgf_angle_rate    = 0.0002      # Exponential rate of change of angle
-
-# Opening angle of Hoxd13 expression domain at the start and end
-hox_angle_start_1 = -0.1*np.pi
-hox_angle_start_2 = -0.3*np.pi
-hox_angle_end_1   =  0.6*np.pi
-hox_angle_end_2   = -0.6*np.pi
-hox_angle_rate    = 0.001       # Exponential rate of change of angle
-
-hox_minR   = 0.3    # Minimum radius for Hoxd13 permissive zone at the end
-hox_maxR   = 0.85   # Maximum radius for Hoxd13 permissive zone (also minimum at the start)
-hox_R_rate = 0.001  # Rate of change of the Hoxd13 minimum radius over time
-
+![](images/referencevalues.png){#vegmini1 width=140%}
 
 > Decreasing FGF diffusion increases the number of fingers and creates a fin-like appearance. However note that it also creates a shorter finger forming domain. Increasing FGF diffusion decreases the number of fingers.
 
 ![](images/polydact.png)
+![](images/growthanswer.png)
 
 :::
 
 
 ### References
-1.  Turing, A. M. “The Chemical Basis of Morphogenesis.” *Philosophical Transactions of the Royal Society of London. Series B, Biological Sciences* 237.641 (1952): 37–72.\
-2.  Raspopovic, Jelena, et al. "Digit patterning is controlled by a Bmp-Sox9-Wnt Turing network modulated by morphogen gradients." *Science* 345.6196 (2014): 566-570.
+1.  @turing1990chemical
+2. @raspopovic2014digit
+3. @miguez2006effect

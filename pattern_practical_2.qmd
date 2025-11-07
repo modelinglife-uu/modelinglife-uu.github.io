@@ -6,14 +6,11 @@ params:
 # Turing digit patterns
   
 ## {.unnumbered}
-A foundational work in Theoretical Biology is Alan Turing's paper *"The Chemical Basis of Morphogenesis"* \[1\]. In this work, Turing mathematically demonstrates a plausible mechanism whereby a reaction-diffusion system can lead to the formation of a spatially-patterned solution in steady state. Mathematically and conceptually, Turing’s key innovation was considering diffusion-driven instability. That is: An unpatterned steady state solution becomes unstable in the presence of diffusion, leading to the formation of a spatially patterned state.
+A foundational work in Theoretical Biology is Alan Turing's paper *"The Chemical Basis of Morphogenesis"* (@turing1990chemical). In this work, Turing mathematically demonstrates a plausible mechanism whereby a reaction-diffusion system can lead to the formation of a spatially-patterned solution in steady state. Mathematically and conceptually, Turing’s key innovation was considering diffusion-driven instability. That is: An unpatterned steady state solution becomes unstable in the presence of diffusion, leading to the formation of a spatially patterned state.
 
-Turing-type patterns emerge when a system exhibits short-ranged activation and long-ranged inhibition. The most well-known realization of a Turing reaction-diffusion system is the combination of a slow-diffusing activator and fast-diffusing inhibitor. Many more examples exist which can be reduced to a mathematically equivalent form. In this practical, we will explore a 3-component Turing system developed by Raspopovic and coauthors to explain the patterning of fingers on the paws of mice \[2\].
+Turing-type patterns emerge when a system exhibits short-ranged activation and long-ranged inhibition. The most well-known realization of a Turing reaction-diffusion system is the combination of a slow-diffusing activator and fast-diffusing inhibitor. Many more examples exist which can be reduced to a mathematically equivalent form. In this practical, we will explore a 3-component Turing system developed by Raspopovic and coauthors to explain the patterning of fingers on the paws of mice (@raspopovic2014digit).
 
 In this practical you will work with a total of 6 different python codes. Please note that each code simply differs by an extension or modification from the previous code, so that in the end you will have a long script that performs all the steps in one go.
-
-1.  Turing, A. M. “The Chemical Basis of Morphogenesis.” *Philosophical Transactions of the Royal Society of London. Series B, Biological Sciences* 237.641 (1952): 37–72.\
-2.  Raspopovic, Jelena, et al. "Digit patterning is controlled by a Bmp-Sox9-Wnt Turing network modulated by morphogen gradients." *Science* 345.6196 (2014): 566-570.
 
 ------------------------------------------------------------------------
 
@@ -350,10 +347,15 @@ hox_angle_rate    = 0.001       # Exponential rate of change of angle
 hox_minR   = 0.3    # Minimum radius for Hoxd13 permissive zone at the end
 hox_maxR   = 0.85   # Maximum radius for Hoxd13 permissive zone (also minimum at the start)
 hox_R_rate = 0.001  # Rate of change of the Hoxd13 minimum radius over time
-```
+
 
 > Decreasing FGF diffusion increases the number of fingers and creates a fin-like appearance. However note that it also creates a shorter finger forming domain. Increasing FGF diffusion decreases the number of fingers.
 
 ![](images/polydact.png)
 
 :::
+
+
+## References
+1.  Turing, A. M. “The Chemical Basis of Morphogenesis.” *Philosophical Transactions of the Royal Society of London. Series B, Biological Sciences* 237.641 (1952): 37–72.\
+2.  Raspopovic, Jelena, et al. "Digit patterning is controlled by a Bmp-Sox9-Wnt Turing network modulated by morphogen gradients." *Science* 345.6196 (2014): 566-570.

@@ -20,42 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
 }
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
 }
-</style>
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -561,6 +546,11 @@ window.Quarto = {
   <li><a href="#hoxd13-and-fgf" id="toc-hoxd13-and-fgf" class="nav-link" data-scroll-target="#hoxd13-and-fgf"><span class="header-section-number">3.8</span> Hoxd13 and FGF</a></li>
   <li><a href="#shape-makes-the-tissue" id="toc-shape-makes-the-tissue" class="nav-link" data-scroll-target="#shape-makes-the-tissue"><span class="header-section-number">3.9</span> Shape makes the tissue</a></li>
   <li><a href="#master-students-exercise" id="toc-master-students-exercise" class="nav-link" data-scroll-target="#master-students-exercise"><span class="header-section-number">3.10</span> Master students exercise</a></li>
+  <li><a href="#opening-angle-of-fgf-source-at-the-start-and-end" id="toc-opening-angle-of-fgf-source-at-the-start-and-end" class="nav-link" data-scroll-target="#opening-angle-of-fgf-source-at-the-start-and-end"><span class="header-section-number">4</span> Opening angle of fgf source at the start and end</a></li>
+  <li><a href="#opening-angle-of-hoxd13-expression-domain-at-the-start-and-end" id="toc-opening-angle-of-hoxd13-expression-domain-at-the-start-and-end" class="nav-link" data-scroll-target="#opening-angle-of-hoxd13-expression-domain-at-the-start-and-end"><span class="header-section-number">5</span> Opening angle of Hoxd13 expression domain at the start and end</a>
+  <ul class="collapse">
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">5.1</span> References</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -589,14 +579,9 @@ window.Quarto = {
 
 <section id="section" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="section"></h2>
-<p>A foundational work in Theoretical Biology is Alan Turing’s paper <em>“The Chemical Basis of Morphogenesis”</em> [1]. In this work, Turing mathematically demonstrates a plausible mechanism whereby a reaction-diffusion system can lead to the formation of a spatially-patterned solution in steady state. Mathematically and conceptually, Turing’s key innovation was considering diffusion-driven instability. That is: An unpatterned steady state solution becomes unstable in the presence of diffusion, leading to the formation of a spatially patterned state.</p>
-<p>Turing-type patterns emerge when a system exhibits short-ranged activation and long-ranged inhibition. The most well-known realization of a Turing reaction-diffusion system is the combination of a slow-diffusing activator and fast-diffusing inhibitor. Many more examples exist which can be reduced to a mathematically equivalent form. In this practical, we will explore a 3-component Turing system developed by Raspopovic and coauthors to explain the patterning of fingers on the paws of mice [2].</p>
+<p>A foundational work in Theoretical Biology is Alan Turing’s paper <em>“The Chemical Basis of Morphogenesis”</em> (<span class="citation" data-cites="turing1990chemical">Turing (<a href="references.html#ref-turing1990chemical" role="doc-biblioref">1990</a>)</span>). In this work, Turing mathematically demonstrates a plausible mechanism whereby a reaction-diffusion system can lead to the formation of a spatially-patterned solution in steady state. Mathematically and conceptually, Turing’s key innovation was considering diffusion-driven instability. That is: An unpatterned steady state solution becomes unstable in the presence of diffusion, leading to the formation of a spatially patterned state.</p>
+<p>Turing-type patterns emerge when a system exhibits short-ranged activation and long-ranged inhibition. The most well-known realization of a Turing reaction-diffusion system is the combination of a slow-diffusing activator and fast-diffusing inhibitor. Many more examples exist which can be reduced to a mathematically equivalent form. In this practical, we will explore a 3-component Turing system developed by Raspopovic and coauthors to explain the patterning of fingers on the paws of mice (<span class="citation" data-cites="raspopovic2014digit">Raspopovic et al. (<a href="references.html#ref-raspopovic2014digit" role="doc-biblioref">2014</a>)</span>).</p>
 <p>In this practical you will work with a total of 6 different python codes. Please note that each code simply differs by an extension or modification from the previous code, so that in the end you will have a long script that performs all the steps in one go.</p>
-<ol type="1">
-<li>Turing, A. M. “The Chemical Basis of Morphogenesis.” <em>Philosophical Transactions of the Royal Society of London. Series B, Biological Sciences</em> 237.641 (1952): 37–72.<br>
-</li>
-<li>Raspopovic, Jelena, et al.&nbsp;“Digit patterning is controlled by a Bmp-Sox9-Wnt Turing network modulated by morphogen gradients.” <em>Science</em> 345.6196 (2014): 566-570.</li>
-</ol>
 <hr>
 </section>
 <section id="equivalence-of-turing-models" class="level2" data-number="3.1">
@@ -813,35 +798,40 @@ k7^* = k7 + k_{HF_{wnt}} * fgf(i,j) * hox(i,j)
 </ul>
 </div>
 <blockquote class="blockquote">
-<p><strong>Answer</strong> Reference values:</p>
+<p><strong>Answer</strong> Reference values: ```python # Reaction-diffusion parameters for FGF Dfgf = 0.001 # diffusion coefficient fgf_decay_rate = 0.0003 # degradation parameter</p>
 </blockquote>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reaction-diffusion parameters for FGF</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Dfgf <span class="op">=</span> <span class="fl">0.001</span>            <span class="co"># diffusion coefficient</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>fgf_decay_rate <span class="op">=</span> <span class="fl">0.0003</span> <span class="co"># degradation parameter</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Opening angle of fgf source at the start and end</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>fgf_angle_start_1 <span class="op">=</span> <span class="op">-</span><span class="fl">0.3</span><span class="op">*</span>np.pi</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>fgf_angle_start_2 <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span><span class="op">*</span>np.pi</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>fgf_angle_end_1   <span class="op">=</span>  <span class="fl">0.4</span><span class="op">*</span>np.pi</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>fgf_angle_end_2   <span class="op">=</span> <span class="op">-</span><span class="fl">0.6</span><span class="op">*</span>np.pi    </span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>fgf_angle_rate    <span class="op">=</span> <span class="fl">0.0002</span>      <span class="co"># Exponential rate of change of angle</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Opening angle of Hoxd13 expression domain at the start and end</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>hox_angle_start_1 <span class="op">=</span> <span class="op">-</span><span class="fl">0.1</span><span class="op">*</span>np.pi</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>hox_angle_start_2 <span class="op">=</span> <span class="op">-</span><span class="fl">0.3</span><span class="op">*</span>np.pi</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>hox_angle_end_1   <span class="op">=</span>  <span class="fl">0.6</span><span class="op">*</span>np.pi</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>hox_angle_end_2   <span class="op">=</span> <span class="op">-</span><span class="fl">0.6</span><span class="op">*</span>np.pi</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>hox_angle_rate    <span class="op">=</span> <span class="fl">0.001</span>       <span class="co"># Exponential rate of change of angle</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>hox_minR   <span class="op">=</span> <span class="fl">0.3</span>    <span class="co"># Minimum radius for Hoxd13 permissive zone at the end</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>hox_maxR   <span class="op">=</span> <span class="fl">0.85</span>   <span class="co"># Maximum radius for Hoxd13 permissive zone (also minimum at the start)</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>hox_R_rate <span class="op">=</span> <span class="fl">0.001</span>  <span class="co"># Rate of change of the Hoxd13 minimum radius over time</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="opening-angle-of-fgf-source-at-the-start-and-end" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Opening angle of fgf source at the start and end</h1>
+<p>fgf_angle_start_1 = -0.3<em>np.pi fgf_angle_start_2 = -0.5</em>np.pi fgf_angle_end_1 = 0.4<em>np.pi fgf_angle_end_2 = -0.6</em>np.pi<br>
+fgf_angle_rate = 0.0002 # Exponential rate of change of angle</p>
+</section>
+<section id="opening-angle-of-hoxd13-expression-domain-at-the-start-and-end" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Opening angle of Hoxd13 expression domain at the start and end</h1>
+<p>hox_angle_start_1 = -0.1<em>np.pi hox_angle_start_2 = -0.3</em>np.pi hox_angle_end_1 = 0.6<em>np.pi hox_angle_end_2 = -0.6</em>np.pi hox_angle_rate = 0.001 # Exponential rate of change of angle</p>
+<p>hox_minR = 0.3 # Minimum radius for Hoxd13 permissive zone at the end hox_maxR = 0.85 # Maximum radius for Hoxd13 permissive zone (also minimum at the start) hox_R_rate = 0.001 # Rate of change of the Hoxd13 minimum radius over time</p>
 <blockquote class="blockquote">
 <p>Decreasing FGF diffusion increases the number of fingers and creates a fin-like appearance. However note that it also creates a shorter finger forming domain. Increasing FGF diffusion decreases the number of fingers.</p>
 </blockquote>
 <p><a href="images/polydact.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="images/polydact.png" class="img-fluid"></a></p>
+<section id="references" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="references"><span class="header-section-number">5.1</span> References</h2>
+<ol type="1">
+<li>Turing, A. M. “The Chemical Basis of Morphogenesis.” <em>Philosophical Transactions of the Royal Society of London. Series B, Biological Sciences</em> 237.641 (1952): 37–72.<br>
+</li>
+<li>Raspopovic, Jelena, et al.&nbsp;“Digit patterning is controlled by a Bmp-Sox9-Wnt Turing network modulated by morphogen gradients.” <em>Science</em> 345.6196 (2014): 566-570.</li>
+</ol>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-raspopovic2014digit" class="csl-entry" role="listitem">
+Raspopovic, Jelena, Luciano Marcon, Laura Russo, and James Sharpe. 2014. <span>“Digit Patterning Is Controlled by a Bmp-Sox9-Wnt Turing Network Modulated by Morphogen Gradients.”</span> <em>Science</em> 345 (6196): 566–70.
+</div>
+<div id="ref-turing1990chemical" class="csl-entry" role="listitem">
+Turing, Alan Mathison. 1990. <span>“The Chemical Basis of Morphogenesis.”</span> <em>Bulletin of Mathematical Biology</em> 52 (1): 153–97.
+</div>
+</div>
+</section>
 </section>
 
 </main> <!-- /main -->

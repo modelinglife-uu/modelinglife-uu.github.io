@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -21,8 +21,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -86,17 +87,21 @@ div.csl-indent {
 <link href="./pattern_practical_2.html" rel="next">
 <link href="./pattern_intro_text.html" rel="prev">
 <link href="./images/favicon.ico" rel="icon">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-0e7c136abd6418639055ad70ade9c940.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-c2e0d09699c19eeb454aa3ea76728735.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-0e7c136abd6418639055ad70ade9c940.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -139,7 +144,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -157,7 +162,169 @@ window.Quarto = {
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -181,7 +348,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/android-chrome-512x512.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="./images/android-chrome-512x512.png" alt="Course website Modeling life" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/android-chrome-512x512.png" alt="Course website Modeling life" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Modeling life</a> 
@@ -411,6 +579,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pattern_intro_text.html">I) Pattern formation</a></li><li class="breadcrumb-item"><a href="./pattern_practical_1.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Gradients and segments</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Gradients and segments</span></h1>
@@ -439,26 +608,26 @@ window.Quarto = {
 <h2 data-number="2.2" class="anchored" data-anchor-id="mathematical-modeling---integrating-multiple-signals"><span class="header-section-number">2.2</span> Mathematical modeling - integrating multiple signals</h2>
 <p>Promotors/enhancers driving gene expression frequently make use of so called OR and AND gates to integrate inputs from different transcription factors. An OR gate can be implemented mathematically with a sum of the effect of the transcription factors, while an AND can be implemented mathematically with a product. Some examples:</p>
 <ul>
-<li><span class="math inline">\(\frac{dX}{dt} = a(\text{tf1}) + b(\text{tf2})\)</span>: Gene X is induced by transcription factor 1 and 2 in an OR fashion, either <span class="math inline">\(a(\text{tf1})\)</span> or <span class="math inline">\(b(\text{tf2})\)</span> needs to be high to give high transcription of X.</li>
-<li><span class="math inline">\(\frac{dY}{dt} = a(\text{tf1})\cdot b(\text{tf2})\)</span>: Gene Y is induced by transcription factor 1 and 2 in an AND fashion, both <span class="math inline">\(a(\text{tf1})\)</span> and <span class="math inline">\(b(\text{tf2})\)</span>, which are being multiplied, need to be high to give high transcription of X.</li>
+<li><p><span class="math inline">\(\frac{dX}{dt} = a(\text{tf1}) + b(\text{tf2})\)</span>: Gene X is induced by transcription factor 1 and 2 in an OR fashion, either <span class="math inline">\(a(\text{tf1})\)</span> or <span class="math inline">\(b(\text{tf2})\)</span> needs to be high to give high transcription of X.</p></li>
+<li><p><span class="math inline">\(\frac{dY}{dt} = a(\text{tf1})\cdot b(\text{tf2})\)</span>: Gene Y is induced by transcription factor 1 and 2 in an AND fashion, both <span class="math inline">\(a(\text{tf1})\)</span> and <span class="math inline">\(b(\text{tf2})\)</span>, which are being multiplied, need to be high to give high transcription of X.</p></li>
 </ul>
 <p>Note that the shape of <span class="math inline">\(a(\text{tf1})\)</span> and <span class="math inline">\(b(\text{tf2})\)</span> (increasing or decreasing function of the transcription factor) determines whether tf1 and tf2 are repressing or activating.</p>
 </section>
 <section id="python-code" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="python-code"><span class="header-section-number">2.3</span> Python code</h2>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Starting code for this practical
+<span class="screen-reader-only">Note</span>Starting code for this practical
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
@@ -599,7 +768,7 @@ Starting code for this practical
 <span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.show()</span></span>
 <span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a><span class="co"># Or close the plot window when done</span></span>
-<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a>plt.close(fig)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a>plt.close(fig)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -607,70 +776,84 @@ Starting code for this practical
 <section id="questions" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="questions"><span class="header-section-number">2.4</span> Questions</h2>
 <div id="exr-test" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.1 (Algorithmic thinking)</strong></span> Have a look at the reaction-diffusion equation for the morphogen and the implementation of it in the file <code>morphogengradient_to_segments.py</code> in the reaction_diffusion_step function, as well as at the initialization of the array u. How is this different from the gradient formation modeling we discussed during the lecture? What is done at the terminal boundary in the length direction and why does this make sense? (hint: outcommented we provided code doing essentially the same but not using numpy arrays and hence written in a less compact matter to help you understand what is happening)</p>
+<p><span class="theorem-title"><strong>Exercise 2.1 (Algorithmic thinking)</strong></span> Have a look at the reaction-diffusion equation for the morphogen and the implementation of it in the file <code>01_morphogengradient_to_segments.py</code> in the <code>reaction_diffusion_step</code> function, as well as at the initialization of the array <span class="math inline">\(u\)</span>. How is this different from the gradient formation modeling we discussed during the lecture? What is done at the terminal boundary in the length direction and why does this make sense? (hint: outcommented we provided code doing essentially the same but not using numpy arrays and hence written in a less compact matter to help you understand what is happening)</p>
 </div>
 <blockquote class="blockquote">
-<p><strong>Answer</strong> An important difference relative to the lecture is that instead of implementing a production term at the x=0 position, we instead fixed the concentration of u at x=0 at 100 and have nowhere a production term. This implies that we assume that production is very high and different D and d values have negligible effects on the level at x=0. The advantage of this approach is that we can easily study what different D and d does, as it only affects the shape of the gradient but not the maximum. <br> <br> Instead of using if/else to check for boundary conditions, we only compute the Laplacian in the inner, non-boundary points. For the x=0 boundary we already set a constant value. For y=0 and y=n−1 we copy the values from y=1 and y=n−2 as the patterning is identical in that direction. For x=n−1 we use a special approach: if n−3=0 we assume it is zero; otherwise, we calculate the ratio of x at n−2 and n−3 to approximate the decay and multiply this with the value at x=n−2 to estimate x at n−1. Simply copying x at n−2 would add matter to the system and prevent the gradient from reaching a steady state.</p>
+<p><strong>Answer</strong> An important difference relative to the lecture is that instead of implementing a production term at the <span class="math inline">\(x=0\)</span> position, we instead fixed the concentration of <span class="math inline">\(u\)</span> at <span class="math inline">\(x=0\)</span> at 100 and have nowhere a production term. This implies that we assume that production is very high and different <span class="math inline">\(D\)</span> and <span class="math inline">\(d\)</span> values have negligible effects on the level at <span class="math inline">\(x=0\)</span>. The advantage of this approach is that we can easily study what different <span class="math inline">\(D\)</span> and <span class="math inline">\(d\)</span> does, as it only affects the shape of the gradient but not the maximum.</p>
+<p>Instead of using if/else to check for boundary conditions, we only compute the Laplacian in the inner, non-boundary points. For the <span class="math inline">\(x=0\)</span> boundary we already set a constant value. For <span class="math inline">\(y=0\)</span> and <span class="math inline">\(y=n−1\)</span> we copy the values from <span class="math inline">\(y=1\)</span> and <span class="math inline">\(y=n−2\)</span> as the patterning is identical in that direction. For <span class="math inline">\(x=n−1\)</span> we use a special approach: if <span class="math inline">\(n−3=0\)</span> we assume it is zero; otherwise, we calculate the ratio of <span class="math inline">\(x\)</span> at <span class="math inline">\(n−2\)</span> and <span class="math inline">\(n−3\)</span> to approximate the decay and multiply this with the value at <span class="math inline">\(x=n−2\)</span> to estimate <span class="math inline">\(x\)</span> at <span class="math inline">\(n−1\)</span>. Simply copying <span class="math inline">\(x\)</span> at <span class="math inline">\(n−2\)</span> would add matter to the system and prevent the gradient from reaching a steady state.</p>
 </blockquote>
 <div id="exr-plain" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.2 (Important concept)</strong></span> Play with the morphogen diffusion rate and the morphogen decay rate and describe what happens. What happens in terms of dynamics and steady state if you change both, but the ratio stays the same? Hint: it might help to draw a horizontal line at a certain height to ease comparison.</p>
+<p><span class="theorem-title"><strong>Exercise 2.2 (Important concept)</strong></span> Play with the morphogen <span class="math inline">\(M\)</span> diffusion rate and the morphogen <span class="math inline">\(M\)</span> decay rate and describe what happens. What happens in terms of dynamics and steady state if you change both, but the ratio stays the same? Hint: it might help to draw a horizontal line at a certain height to ease comparison.</p>
 </div>
 <blockquote class="blockquote">
-<p>Diffusion length concept =√(D/d), it is the ratio of these factors that determines the length scale lambda over which the morphogen concentration decays an e-fold. So with the same ratio, you get the same steady state gradient. However, it will still approach the steady state faster.</p>
+<p><strong>Answer</strong> Diffusion length concept <span class="math inline">\(=√(D/d)\)</span>, it is the ratio of these factors that determines the length scale lambda <span class="math inline">\(\lambda\)</span> over which the morphogen concentration decays an e-fold. So with the same ratio, you get the same steady state gradient. However, it will still approach the steady state faster.</p>
 </blockquote>
 <div id="exr-plain" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.3 (Biology &amp; mathematical thinking)</strong></span> Next, we are going to introduce the genes A, B and C in the model. We want these genes to be expressed dependent on M, and in the head, trunk and tail respectively, so A on the left, B in the middle and C on the right. Think of what conditions in terms of M should lead to expression of A/B/C. What Hill functions (normal/inverse/any combination) corresponds to those conditions? Write down (pen and paper, not in code) full equations for the genes, do we need any other terms than just Hill functions, would we need specific parameter conditions?</p>
+<p><span class="theorem-title"><strong>Exercise 2.3 (Biology &amp; mathematical thinking)</strong></span> Next, we are going to introduce the genes <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> in the model. We want these genes to be expressed dependent on <span class="math inline">\(M\)</span>, and in the head, trunk and tail respectively, so <span class="math inline">\(A\)</span> on the left, <span class="math inline">\(B\)</span> in the middle and <span class="math inline">\(C\)</span> on the right. Think of what conditions in terms of <span class="math inline">\(M\)</span> should lead to expression of <span class="math inline">\(A/B/C\)</span>. What Hill functions (normal/inverse/any combination) corresponds to those conditions? Write down (pen and paper, not in code) full equations for the genes, do we need any other terms than just Hill functions, would we need specific parameter conditions?</p>
 </div>
 <blockquote class="blockquote">
-<p><strong>Answer</strong> <br><br> <span class="math inline">\(dA/dt\)</span> = normal hill (M) – decay term<br> <span class="math inline">\(dB/dt\)</span> = normal hill (M) * inverse hill(M) – decay term,<br> <span class="math inline">\(dC/dt\)</span> = inverse hill (M) -decay term. <br><br>Furthermore, <span class="math inline">\(kA=kB1&lt;kB2&lt;kC\)</span> to ensure the switches happen at the right places.</p>
+<p><strong>Answer</strong> Equation for A:</p>
+<p><span class="math inline">\(\frac{dA}{dt}\)</span> = normal hill (<span class="math inline">\(M\)</span>) – decay term</p>
+<p>Equation for B:</p>
+<p><span class="math inline">\(\frac{dB}{dt}\)</span> = normal hill (<span class="math inline">\(M\)</span>) * inverse hill(<span class="math inline">\(M\)</span>) – decay term</p>
+<p>Equation for C:</p>
+<p><span class="math inline">\(\frac{dC}{dt}\)</span> = inverse hill (<span class="math inline">\(M\)</span>) -decay term.</p>
+<p>Furthermore, <span class="math inline">\(k_A=k_{B1}&lt;k_{B2}&lt;k_C\)</span> to ensure the switches happen at the right places.</p>
 </blockquote>
 <div id="exr-plain" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.4 (Biology &amp; algorithmic/mathematical thinking)</strong></span> From hereon we assume that the morphogen gradient reaches steady state very quickly, and no longer use the numerical implementation of the diffusion equation and instead work with a superimposed morphogen profile defined by <code>reaction_diffusion_gradient</code> to save time. (Hint: to not call the function any more use # in front of where it is called) Change the simulation loop such that it computes the morphogen gradient once. What type of function is the superimposed morphogen profile and how does this relate to question 2.</p>
+<p><span class="theorem-title"><strong>Exercise 2.4 (Biology &amp; algorithmic/mathematical thinking)</strong></span> From hereon we assume that the morphogen <span class="math inline">\(M\)</span> gradient reaches steady state very quickly, and no longer use the numerical implementation of the diffusion equation and instead work with a superimposed morphogen profile defined by <code>reaction_diffusion_gradient</code> to save time. (Hint: to not call the function any more use # in front of where it is called). Change the simulation loop such that it computes the morphogen <span class="math inline">\(M\)</span> gradient once. What type of function is the superimposed morphogen profile and how does this relate to question 2.</p>
 </div>
 <blockquote class="blockquote">
-<p><strong>Answer</strong> The imposed morphogen profile is an exponential gradient, the – indicates it is a declining function, the <span class="math inline">\(i\cdot dx\)</span> is to convert position in the spatial grid to actual distance, and the /sqrt(D/d) ensures that if <span class="math inline">\(i\cdot dx=lambda=\sqrt(D/d)\)</span> we have <span class="math inline">\(e^{-1}=1/e\)</span> and hence an e-fold decline as is the case for a steady state diffusion gradient.</p>
+<p><strong>Answer</strong> The imposed morphogen <span class="math inline">\(M\)</span> profile is an exponential gradient, the <span class="math inline">\(–\)</span> indicates it is a declining function, the <span class="math inline">\(i\cdot dx\)</span> is to convert position in the spatial grid to actual distance, and the <span class="math inline">\(\sqrt(D/d)\)</span> ensures that if <span class="math inline">\(i\cdot dx=\lambda=\sqrt(D/d)\)</span> we have <span class="math inline">\(e^{-1}=1/e\)</span> and hence an e-fold decline as is the case for a steady state diffusion gradient.</p>
 </blockquote>
 <div id="exr-plain" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 2.5 (Biology &amp; algorithmic/mathematical thinking)</strong></span> &nbsp;</p>
 <ol type="a">
-<li>Now create functions to update A, B and C according to your equations from the previous question. You may use the predefined hill and ihill functions that are provided in the code. For simplicity, you may keep most of the parameters the same across genes, but some have to be different to ensure the right location of the genes (see your reasoning to the previous question). (Hint: using array properties to update A/B/C, like in the reaction_diffusion_step function, makes your code run a lot faster than using for-loops)</li>
-<li>Also make sure that the levels of A, B and C are updated in the simulation loop. (Hint: using array properties to update A/B/C, like in the reaction_diffusion_step function, makes your code run a lot faster than using for-loops)</li>
-<li>Next, ensure A, B and C are visualized in the bottom plot axis (copy and adapt the code for the visualization of M). You can add an extra third axis to the plot to visualize the (French) flag pattern, by getting which of the three genes is maximal at each location with np.argmax(np.array([A, B, C]), axis=0)and turning that into an array of RGB colors of choice.</li>
+<li>Now create functions to update <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> according to your equations from the previous question. You may use the predefined hill and ihill (inverse) functions that are provided in the code. For simplicity, you may keep most of the parameters the same across genes, but some have to be different to ensure the right location of the genes (see your reasoning to the previous question).</li>
+<li>Also make sure that the levels of <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> are updated in the simulation loop. (Hint: using array properties to update <span class="math inline">\(A\)</span>,<span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span>, like in the <code>reaction_diffusion_step</code> function, makes your code run a lot faster than using for-loops)</li>
+<li>Next, ensure <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> are visualized in the bottom plot axis (copy and adapt the code for the visualization of <span class="math inline">\(M\)</span>). You can add an extra third axis to the plot to visualize the (French) flag pattern, by getting which of the three genes is maximal at each location with <code>np.argmax(np.array(\[A, B, C\])</code>, axis=0) and turning that into an array of RGB colors of choice.</li>
 <li>Do you get the expected “French flag” pattern? If not, think of why not and improve your equations from previous question, parameters or your code.</li>
 </ol>
 </div>
 <blockquote class="blockquote">
-<p><strong>Answer</strong> Look at code <code>02_answer_morphogengradient_superimposed_quickABC.py</code>. You will find that gene C needs to be induced by low and repressed by high M. And as explained above: kA=kB1&lt;kB2&lt;kC.</p>
+<p><strong>Answer</strong> Look at code <code>02_answer_morphogengradient_superimposed_quickABC.py</code>. You will find that gene <span class="math inline">\(C\)</span> needs to be induced by low and repressed by high <span class="math inline">\(M\)</span>. And as explained above: <span class="math inline">\(k_A=k_{B1}&lt;k_{B2}&lt;k_C\)</span>.</p>
 </blockquote>
 <div id="exr-plain" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.6 (Biology)</strong></span> At some point in development, the morphogen gradient will disappear, for example in the case of the Drosophila Bicoid gradient because the maternal mRNA is degraded. Predict what will happen to the expression of A,B and C (and hence the French flag pattern) if the morphogen gradient disappears over time and assume A, B, and C are regulated by our equations (first try think about this without actually simulating this).</p>
+<p><span class="theorem-title"><strong>Exercise 2.6 (Biology)</strong></span> At some point in development, the morphogen gradient <span class="math inline">\(M\)</span> will disappear. For example, in the case of Drosophila embryos the Bicoid gradient disappear because the maternal mRNA is degraded. Predict what will happen to the expression of <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> (and hence the French flag pattern) if the morphogen <span class="math inline">\(M\)</span> gradient disappears over time and assume <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, and <span class="math inline">\(C\)</span> are regulated by our equations (first try think about this without actually simulating this).</p>
 </div>
 <blockquote class="blockquote">
-<p><strong>Answer</strong> As M decays A and B will no longer be activated and C no longer repressed, hence the takeover by C. The French flag pattern disappears.</p>
+<p><strong>Answer</strong> As <span class="math inline">\(M\)</span> decays, <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> will no longer be activated and <span class="math inline">\(C\)</span> no longer repressed, hence the takeover by C in all the cells. The French flag pattern disappears.</p>
 </blockquote>
 <div id="exr-plain" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.7 (Algorithmic/mathematical thinking)</strong></span> Now write the code in reaction_diffusion_gradient that updates the morphogen concentration, such that after the time point A, B and C have gotten close to equilibrium, the morphogen gradient gradually disappears. Adapt the simulation loop where necessary and run your code: was your prediction on A/B/C from the previous question correct? Why/why not? Hint: you might need to increase the duration of your simulation, especially if it takes a long time for A, B and C to reach equilibrium (or you can change the parameters to speed things up by using same production/degradation rate ratio yet higher absolute values of the individual parameters).</p>
+<p><span class="theorem-title"><strong>Exercise 2.7 (Algorithmic/mathematical thinking)</strong></span> Now write the code in <code>reaction_diffusion_gradient</code> that updates the morphogen <span class="math inline">\(M\)</span> concentration, such that after the time point A, B and C have gotten close to equilibrium, the gradient gradually disappears. Adapt the simulation loop where necessary to implement this, and run your code:</p>
+<p>Was your prediction on <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span> from the previous question correct? Why/why not? Hint: you might need to increase the duration of your simulation, especially if it takes a long time for <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> to reach equilibrium (or you can change the parameters to speed things up by using same production/degradation rate ratio yet higher absolute values of the individual parameters).</p>
 </div>
 <blockquote class="blockquote">
 <p><strong>Answer</strong> It should always result in C taking over. See answer to 6.</p>
 </blockquote>
 <div id="exr-plain" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.8 (Biological &amp; mathematical thinking)</strong></span> A, B and C cannot remain in a stable pattern if they are only influenced by M. How can we stabilize the pattern in absence of M? Test your ideas by creating new update functions for A, B and C and let these new ‘rules’ kick in at the same time when M starts to decline. Again, you may find Hill functions useful and perhaps also the before/after switch time structure used in reaction_diffusion_gradient for M. (Hint: think about how the genes should affect each other, and assume that in this new phase, when genes have already been initialized in absence of repression the genes will be expressed). Can you maintain the expression domains of A, B and C and does their shape change?</p>
+<p><span class="theorem-title"><strong>Exercise 2.8 (Biological &amp; mathematical thinking)</strong></span> <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> cannot remain in a stable pattern if they are only influenced by <span class="math inline">\(M\)</span>. How can we stabilize the pattern in absence of M? Test your ideas by creating new update functions for <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> and let these new ‘rules’ kick in at the same time when <span class="math inline">\(M\)</span> starts to decline. Again, you may find Hill functions useful and perhaps also the before/after switch time structure used in reaction_diffusion_gradient for <span class="math inline">\(M\)</span>. (Hint: think about how the genes should affect each other, and assume that in this new phase, when genes have already been initialized in absence of repression the genes will be expressed). Can you implement changes that maintain the expression domains of <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> and does their shape change?</p>
 </div>
 <blockquote class="blockquote">
-<p><strong>Answer</strong> See <code>03_answer_morphogengradient_superimposed_quickABC_phase2.py</code> As M decays A and B will no longer be activated and C no longer repressed, hence the takeover by C. They will find mutual repression with only your neighbor gene is not enough, you need it with both 2 other genes. So A needs to be repressed by B and C, B by A and C, and C by A and B. We can maintain A at the beginning, B in the middle and C at the end, but the shape of the expression domains becomes less gradual and more sharply defined.</p>
+<p><strong>Answer</strong> See <code>03_answer_morphogengradient_superimposed_quickABC_phase2.py</code> As <span class="math inline">\(M\)</span> decays, <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> will no longer be activated and <span class="math inline">\(C\)</span> no longer repressed, hence the takeover by C. They will find mutual repression with only your neighbor gene is not enough, you need it with both 2 other genes. So A needs to be repressed by B and C, B by A and C, and C by A and B. We can maintain A at the beginning, B in the middle and C at the end, but the shape of the expression domains becomes less gradual and more sharply defined.</p>
 </blockquote>
 <div id="exr-plain" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.9 (Biology &amp; algorithmic/mathematical thinking)</strong></span> A sudden switch from phase 1 (stable M gradient) to phase 2 (decaying M gradient) resulting in the genes following different differential equations is biologically implausible. In reality, genes have complex promotors and enhancers integrating different inputs that arise in different developmental stages. Try to come up with one integrated expression for each gene, incorporating simultaneous input from the morphogen gradient and the other genes. Create new update functions for A/B/C and test your ideas. Can you get a stable pattern before and after the decline in M? A couple of things you could consider: a. Think of how positively and negatively M regulated expression behave once the gradient starts declining: what is the best way to combine (AND/OR) that with the regulation by the genes? a. Consider splitting up the M regulated expression of middle gene B into a positive and negatively regulated morphogen part before integrating the other genes inputs. a. It is also possible to give certain genes a bit of a constant boost to prevent their takeover by other genes due to timing issues</p>
+<p><span class="theorem-title"><strong>Exercise 2.9 (Biology &amp; algorithmic/mathematical thinking)</strong></span> A sudden switch from phase 1 (stable <span class="math inline">\(M\)</span> gradient) to phase 2 (decaying <span class="math inline">\(M\)</span> gradient) resulting in the genes following different differential equations is biologically implausible. In reality, genes have complex promoters and enhancers integrating different inputs that arise in different developmental stages. Try to come up with one integrated expression for each gene, incorporating simultaneous input from the morphogen <span class="math inline">\(M\)</span> gradient and the other genes. Create new update functions for <span class="math inline">\(A\)</span>,<span class="math inline">\(B\)</span>,<span class="math inline">\(C\)</span> and test your ideas. Can you get a stable pattern before and after the decline in <span class="math inline">\(M\)</span>? A couple of things you could consider:</p>
+<ol type="a">
+<li><p>Think of how positively and negatively <span class="math inline">\(M\)</span> regulated expression behave once the gradient starts declining: what is the best way to combine (<span class="math inline">\(AND/OR\)</span>) that with the regulation by the genes?</p></li>
+<li><p>Consider splitting up the <span class="math inline">\(M\)</span> regulated expression of middle gene <span class="math inline">\(B\)</span> into a positive and negatively regulated morphogen part before integrating the other genes inputs.</p></li>
+<li><p>It is also possible to give certain genes a bit of a constant boost to prevent their takeover by other genes due to timing issues</p></li>
+</ol>
 </div>
 <blockquote class="blockquote">
-<p><strong>Answer</strong> This is not at all easy (or as the professor would say “highly non trivial”). It requires that for genes (or part of their input) being positively dependent on M that there is an OR gate (sum) (so they stay on once M is absent as long as the mutual repressors are absent) while for genes (or part of their input) being negatively dependent on M that there is an AND gate (so they do not expand once M is absent but require both M absent and mutual repressors absent). See the answer code: <code>05_&lt;longname&gt;_quickABC_phase2_combined.py</code></p>
+<p><strong>Answer</strong> This is not at all easy (or as the professor would say “highly non trivial”). It requires that for genes (or part of their input) being positively dependent on <span class="math inline">\(M\)</span> that there is an <span class="math inline">\(OR\)</span> gate (sum) (so they stay on once <span class="math inline">\(M\)</span> is absent as long as the mutual repressors are absent) while for genes (or part of their input) being negatively dependent on <span class="math inline">\(M\)</span> that there is an <span class="math inline">\(AND\)</span> gate (so they do not expand once <span class="math inline">\(M\)</span> is absent but require both <span class="math inline">\(M\)</span> absent and mutual repressors absent). See the answer code: <code>04_answer_morphogengradient_superimposed_quickABC_phase2_combined</code>.</p>
 </blockquote>
 <div id="exr-plain" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.10 (Biology &amp; algorithmic/mathematical thinking)</strong></span> Write code to get noise in the morphogen gradient, both in its steady state and decaying phase. During which phase do the expression domains of A, B and C suffer more from the noise. Explain why? How could we make the system more robust in a manner that is also likely occurring in nature?</p>
+<p><span class="theorem-title"><strong>Exercise 2.10 (Biology &amp; algorithmic/mathematical thinking)</strong></span> Write code to get noise in the morphogen <span class="math inline">\(M\)</span> gradient, both in its steady state and decaying phase. During which phase do the expression domains of <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> suffer more from the noise. Explain why? How could we make the system more robust in a manner that is also likely occurring in nature?</p>
 </div>
 <blockquote class="blockquote">
-<p><strong>Answer</strong> See the answer code: <code>05_&lt;longname&gt;_quickABC_phase2_combined_noise.py</code><br> The noise has more effect in the initial phase when mostly morphogen is driving the expression domains, as gene expression becomes established and morphogen levels decay the mutual repression ensures stability against the noise<br> Diffusion of A, B and C, in the lateral direction this evens out differences (not implemented right now)</p>
+<p><strong>Answer</strong></p>
+<p>See the answer code: <code>05_answer_morphogengradient_superimposed_quickABC_phase2_combined_noise</code> The noise has more effect in the initial phase when mostly morphogen is driving the expression domains, as gene expression becomes established and morphogen levels decay the mutual repression ensures stability against the noise. Diffusion of <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span>, in the lateral direction this evens out differences (not implemented right now)</p>
 </blockquote>
 </section>
 <section id="extra-questions" class="level2" data-number="2.5">
@@ -680,36 +863,36 @@ Starting code for this practical
 <p><span class="theorem-title"><strong>Exercise 2.11 (Biological thinking)</strong></span> Play with the size of the domain to see what happens to the gene expression domains. What would this mean for an organism?</p>
 </div>
 <blockquote class="blockquote">
-<p><strong>Answer</strong> You may find that if the domain expands the C domain expands and that if the domain shrinks the C domain disappears. This would mean having either a very large or loosing your “butt” part.</p>
+<p><strong>Answer</strong> You may find that if the domain expands the <span class="math inline">\(C\)</span> domain expands and that if the domain shrinks the <span class="math inline">\(C\)</span> domain disappears. This would mean having either a very large or loosing your “butt” part.</p>
 </blockquote>
 <div id="exr-plain" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 2.12 (Biological &amp; algorithmic thinking)</strong></span> Various mechanisms have been proposed to ensure that the domains of the morphogen controlled genes scale with the size of the domain. One proposed mechanism suggests the existence of an also diffusible “expander” molecule which expression is repressed by the morphogen but which itself either represses the degradation of the morphogen or enhances its diffusion (see e.g. <a href="https://www.pnas.org/doi/full/10.1073/pnas.0912734107" class="uri">https://www.pnas.org/doi/full/10.1073/pnas.0912734107</a> and <a href="https://onlinelibrary.wiley.com/doi/10.1111/dgd.12337" class="uri">https://onlinelibrary.wiley.com/doi/10.1111/dgd.12337</a>).</p>
 <p>For the expander we can write:</p>
 <p><span class="math display">\[
-∂E/∂t=p K^h/(K^h+M^h )-dE+D_E ∆E
+\frac{∂E}{∂t}=p\frac{K^h}{K^h+M^h}-dE+D_E ∆E
 \]</span></p>
-<p>Assume E reduces degradation of M (easier to implement than enhancement of diffusion) and study the effect of scaling. (Hint, vary the size of the domain in the length direction but plot domains as a function of relative instead of absolute domain size to compare domain sizes).</p>
+<p>Assume <span class="math inline">\(E\)</span> reduces degradation of <span class="math inline">\(M\)</span> (easier to implement than enhancement of diffusion) and study the effect of scaling. (Hint, vary the size of the domain in the length direction but plot domains as a function of relative instead of absolute domain size to compare domain sizes).</p>
 </div>
 <blockquote class="blockquote">
 <p><strong>Answer</strong> We have not tried this out. Let us know what you find!</p>
 </blockquote>
 <div id="exr-plain" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.13 (Algorithmic thinking)</strong></span> In b, we can also implement other boundary conditions, especially for the right boundary. What happens to the profile if we make a no-flux boundary by copying the value at n-2 to n-1? And what if we set it to a sink (force concentration to zero)?</p>
+<p><span class="theorem-title"><strong>Exercise 2.13 (Algorithmic thinking)</strong></span> In b, we can also implement other boundary conditions, especially for the right boundary. What happens to the profile if we make a no-flux boundary by copying the value at <span class="math inline">\(n-2\)</span> to <span class="math inline">\(n-1\)</span>? And what if we set it to a sink (force concentration to zero)?</p>
 </div>
 <blockquote class="blockquote">
-<p><strong>Answer</strong> Copying n-2 to n-1 adds material, so now concentration at end keeps rising and gradient fails to reach equilibrium. Putting it to sink not tried, may speed up stabilization of gradient</p>
+<p><strong>Answer</strong> Copying <span class="math inline">\(n-2\)</span> to <span class="math inline">\(n-1\)</span> adds material, so now concentration at end keeps rising and gradient fails to reach equilibrium. Putting it to sink not tried, may speed up stabilization of gradient</p>
 </blockquote>
 <div id="exr-plain" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 2.14 (Algorithmic thinking)</strong></span> From question 4 onwards, how do things change if we do not assume a quasi-steady-state for the morphogen gradient (i.e.&nbsp;keep the morphogen dynamics instead of replacing it by the superimposed exponential)? How would you implement a disappearing gradient and how does it shape change the outcomes of the flag?</p>
 </div>
 <blockquote class="blockquote">
-<p><strong>Answer</strong> Instead of only initializing position x=0 at 100, you now need to include it in the update of the diffusion and use a decaying exponential behind the value of 100 beyond a certain point. Not tried myself, likely somewhat different shape change than simply decreasing an exponential along the entire axis proportionally, may affect sizes and dynamics of domains.</p>
+<p><strong>Answer</strong> Instead of only initializing position <span class="math inline">\(x=0\)</span> at <span class="math inline">\(100\)</span>, you now need to include it in the update of the diffusion and use a decaying exponential behind the value of 100 beyond a certain point. Not tried myself, likely somewhat different shape change than simply decreasing an exponential along the entire axis proportionally, may affect sizes and dynamics of domains.</p>
 </blockquote>
 <div id="exr-plain" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 2.15 (Algorithmic thinking)</strong></span> Implement your solution to make the system more robust for noise from question 10. Did it work?</p>
 </div>
 <blockquote class="blockquote">
-<p><strong>Answer</strong> This requires also having A, B and C diffuse and is expected to smooth out differences.</p>
+<p><strong>Answer</strong> This requires also having <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> diffuse and is expected to smooth out differences.</p>
 </blockquote>
 </section>
 <section id="relevant-literature-further-reading" class="level2" data-number="2.6">
@@ -748,390 +931,263 @@ Wolpert, Lewis. 1969. <span>“Positional Information and the Spatial Pattern of
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
     }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
       return false;
     }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
     }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          if (link.getAttribute("rel") === null) {
-            link.setAttribute("rel", "noopener");
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
-          // default icon
-          link.classList.add("external");
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
         }
       }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
     }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
         }
-        return container.innerHTML
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1139,185 +1195,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./pattern_intro_text.html" class="pagination-link" aria-label="Pattern formation (intro)">

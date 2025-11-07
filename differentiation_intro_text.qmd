@@ -12,7 +12,7 @@ an identical genome can be phenotypically different if they express different se
 genes. Yet, how exactly is this differential gene expression regulated? 
 
 Transcription factors are DNA-binding proteins that regulate gene transcription by binding 
-to gene promoters to regulate expression, therefore acting as master switches of gene 
+to gene promoters to switch gene expression $ON$ or $OFF$, therefore acting as master regulators of gene 
 expression. In *E. coli*, plants and animals it is estimated that 5-10% of the genes 
 are transcription factors, and then this relative small portion of the genome controls 
 the expression of the rest of the genes. Numerous transcription factors together with 

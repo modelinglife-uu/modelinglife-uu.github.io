@@ -579,14 +579,14 @@ window.Quarto = {
 </section>
 <section id="auxin-does-opposite-things-in-the-root" class="level2" data-number="9.2">
 <h2 data-number="9.2" class="anchored" data-anchor-id="auxin-does-opposite-things-in-the-root"><span class="header-section-number">9.2</span> Auxin does opposite things in the root</h2>
-<p>Plant roots grow thanks to the presence of stem cells housed in a niche at the root tip. A subset of these cells express <em>WOX5</em>, maintaining the surrounding cells undifferentiated. WOX5 is regulated by several factors, and network models help us understand how. Researchers have found paradoxical results regarding how auxin regulates WOX5: some experiments show that auxin promotes its expression, while others found it is repressed (Figure 1). Notably, auxin does this opposite reglation through different ARFs (Figure 2) posing the possibility that accounting for how the ARFs themselves are regulated can reconcile the results. Here we will explore this possibility using an <em>in silico</em> root model.</p>
+<p>Plant roots grow thanks to the presence of stem cells housed in a niche at the root tip. A subset of these cells express <em>WOX5</em>, maintaining the surrounding cells undifferentiated. WOX5 is regulated by several factors, and network models help us understand how. Researchers have found paradoxical results regarding how auxin regulates WOX5: some experiments show that auxin promotes its expression, while others found it is repressed (Figure 1). Notably, auxin does this opposite regulation through different ARFs (Figure 2) posing the possibility that accounting for how the ARFs themselves are regulated can reconcile the results. Here we will explore this possibility using an <em>in silico</em> root model.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="images/0-auxin-paradox.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure 1. The right panel shows evidence of the positive effect of auxin on WOX5 expression (white arrows). The left panel shows evidence of auxin repression of WOX5 in the root tip (white rectangle), also shown with qPCR measurements of WOX5 mRNA in root-tip cells."><img src="images/0-auxin-paradox.png" class="img-fluid figure-img" style="width:130.0%" alt="Figure 1. The right panel shows evidence of the positive effect of auxin on WOX5 expression (white arrows). The left panel shows evidence of auxin repression of WOX5 in the root tip (white rectangle), also shown with qPCR measurements of WOX5 mRNA in root-tip cells."></a></p>
 <figcaption>Figure 1. The right panel shows evidence of the positive effect of auxin on WOX5 expression (white arrows). The left panel shows evidence of auxin repression of WOX5 in the root tip (white rectangle), also shown with qPCR measurements of WOX5 mRNA in root-tip cells.</figcaption>
 </figure>
 </div>
-<p>The Boolean network we used last week describes the gene and hormonal activity configurations of the cells in the root tip (Figure 3 left). This model recovers an attractor representing the columella, the <strong>QC</strong>, the endodermis, and three types of vascular cells. attractorswe studied describe the columella, In this model WOX5 is regulated positively by ARF5, and negatively by ARF10 and also by CLE40. Both ARF5 and ARF10 are auxin response factors, activated by auxin. Moreover, other root transcription factors control ARF5 and ARF10 expression causing them to be expressed in specific cells of the root (see Figure 3). This regulation is included in the Boolean model we studied last week. Here you will explore whether this is relevant to understanding the auxin–WOX5 paradox. For this you will use an <em>in silico</em> root model in which each cell carries a copy of the Boolean network initialized in a particular attractor, which allows us to test hypotheses and find an explanation.</p>
+<p>The Boolean network we used last week describes the gene and hormonal activity configurations of the cells in the root tip (Figure 3 left). This model recovers an attractor representing the columella, the <strong>QC</strong>, the endodermis, and three types of vascular cells. attractors we studied describe the columella, In this model WOX5 is regulated positively by ARF5, and negatively by ARF10 and also by CLE40. Both ARF5 and ARF10 are auxin response factors, activated by auxin. Moreover, other root transcription factors control ARF5 and ARF10 expression causing them to be expressed in specific cells of the root (see Figure 3). This regulation is included in the Boolean model we studied last week. Here you will explore whether this is relevant to understanding the auxin–WOX5 paradox. For this you will use an <em>in silico</em> root model in which each cell carries a copy of the Boolean network initialized in a particular attractor, which allows us to test hypotheses and find an explanation.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="images/0-unique_attractors-celltypes.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure 2 Auxin regulates WOX5 expression through different auxin response factors. These are expressed in specific cell types of the root"><img src="images/0-unique_attractors-celltypes.png" class="img-fluid figure-img" style="width:100.0%" alt="Figure 2 Auxin regulates WOX5 expression through different auxin response factors. These are expressed in specific cell types of the root"></a></p>
@@ -602,7 +602,7 @@ window.Quarto = {
 </section>
 <section id="the-model" class="level2" data-number="9.3">
 <h2 data-number="9.3" class="anchored" data-anchor-id="the-model"><span class="header-section-number">9.3</span> The model</h2>
-<p>Today you will use a multicellular model that simulates the cells of a root tip (Figure 3, right). The tissue is modeled as a grid, where the x position defines the radial direction and the y the longitudinal position (0 being the cells at the bottom). The cells are organized in cell layers (8 layers, so x is 8), each with a gene regulatory network initialized in a different attractor. The model simulates the transport of auxin from cell to cell, where the cell type (the attractor) defines the direction of polar auxin transport. In figure 3 (right) you can see the different properties that the cells have: a cell type, auxin levels, gene expression (in the figure we see only ARF10, ARF5, MGP and WOX5).</p>
+<p>Today you will use a multicellular model that simulates the cells of a root tip (Figure 3, right). The tissue is modeled as a grid, where the <span class="math inline">\(x\)</span> position defines the radial direction and the <span class="math inline">\(y\)</span> the longitudinal position (0 being the cells at the bottom). The cells are organized in cell layers (8 layers, so <span class="math inline">\(x\)</span> is 8), each with a gene regulatory network initialized in a different attractor. The model simulates the transport of auxin from cell to cell, where the cell type (the attractor) defines the direction of polar auxin transport. In figure 3 (right) you can see the different properties that the cells have: a cell type, auxin levels, gene expression (in the figure we see only ARF10, ARF5, MGP and WOX5). These properties are stored in individual grids: one grid for cell type, another for auxin levels, and many others for each of the genes in the network.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="images/0-new-RAM.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure 3. Ingredients of the in silico root model. 1) gene regulatory network, 2) multi-cellular tissue layout with polar auxin transport in the root tip"><img src="images/0-new-RAM.png" class="img-fluid figure-img" style="width:130.0%" alt="Figure 3. Ingredients of the in silico root model. 1) gene regulatory network, 2) multi-cellular tissue layout with polar auxin transport in the root tip"></a></p>
@@ -621,7 +621,7 @@ window.Quarto = {
 <li><p><code>nodeUpdate</code> - function to take the output of the ODE and stored it in the grids.</p></li>
 <li><p><code>plotGrids</code> - plots 6 grids you provide. The labelling assumes you give <code>cellgrid</code>, <code>auxingrid</code>, <code>arf10grid</code>, <code>arf5grid</code>, <code>mgpgrid</code>, <code>wox5grid.</code></p></li>
 </ul>
-<p>2.- <code>Root-model-Auxin.py</code> – code to simulate the <em>in silico</em> root where we use the functions in a specific order. In the main we define the dimensions of the grid, the parameters, initialize the grid, and then use a for loop to run the transport and network update tor a defined number of timesteps. In this loop, the output of the network is plotted every 10 steps. Tip: if the simulation runs too slow, increase this plotting frequency.</p>
+<p>2.- <code>Root-model-Auxin.py</code> – code to simulate the <em>in silico</em> root where we use the functions in a specific order. Before the <code>main()</code> we define the dimensions of the grid, the parameters, initialize the grid, and then inside the <code>main()</code> we use a for loop to run the auxin transport and network update for a defined number of time steps. In this loop, the output of the network is plotted every 10 steps. Tip: if the simulation runs too slow, decrease this plotting frequency.</p>
 <p>3.- <code>auxin_grid.npy</code> – initial auxin levels in each cell with the auxin gradient. This is used to initialize auxinGrid in <code>Root-model-Auxin.py</code>.</p>
 </section>
 </section>
@@ -635,11 +635,15 @@ window.Quarto = {
 <p><span class="theorem-title"><strong>Exercise 9.2 (Biology)</strong></span> What happens if you update the network more often than the auxin transport? How would you implement this modification in the code?</p>
 </div>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.3 (Biology &amp; algorithmic thinking)</strong></span> Now let’s use the model to simulate the auxin treatments from the experiments in Figure 1. To simulate an auxin treatment change the value of <code>AuxinTreatment</code> in <code>Root-model-Auxin.py</code>. Try values of 10 and 750. This increases auxin levels in all cells by the given amount.</p>
-<p>How does auxin treatment affect gene expression in the root? Does the model output correspond to the transcriptional reporter of WOX5 shown in Figure 1? Do you see activation or repression as reported experimentally?(You can visualize different genes by changing the grid provided to <code>plotGrids()</code>.)</p>
+<p><span class="theorem-title"><strong>Exercise 9.3 (Biology &amp; algorithmic thinking)</strong></span> Now let’s use the model to simulate the auxin treatments from the experiments in Figure 1. To simulate an auxin treatment change the value of <span class="math inline">\(AuxinTreatment\)</span> in <code>Root-model-Auxin.py</code>. Try values of 10 and 750. This increases auxin levels in all cells by the same amount.</p>
+<ul>
+<li>How does auxin treatment affect gene expression in the root?</li>
+<li>Does the model output correspond to the transcriptional reporter of WOX5 shown in Figure 1?</li>
+<li>Do you see activation or repression as reported experimentally? (You can visualize different genes by changing the grid provided to <code>plotGrids()</code>.)</li>
+</ul>
 </div>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.4 (Biology &amp; algorithmic/mathematical thinking)</strong></span> The model does not yet reproduce the experiments. Yet, we can use this model to test hypothesis and aim to recover such behaviours (Figure 1). To account for quantitative effects of auxin on gene regulation, let’ implement the following two hypotheses based on the literature:</p>
+<p><span class="theorem-title"><strong>Exercise 9.4 (Biology &amp; algorithmic/mathematical thinking)</strong></span> The model does not yet reproduce the experiments. Yet, we can use this model to test hypothesis and aim to recover such behaviours (Figure 1). Let’s implement the following two hypotheses:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="images/0-auxin-hypothesis.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Testing two hypothesis: Auxin represses MGP expression. Extremely high auxin levels (unrealistic in vivo) repress WOX5 expression."><img src="images/0-auxin-hypothesis.png" class="img-fluid figure-img" style="width:60.0%" alt="Testing two hypothesis: Auxin represses MGP expression. Extremely high auxin levels (unrealistic in vivo) repress WOX5 expression."></a></p>
@@ -655,31 +659,31 @@ window.Quarto = {
 <p>Do you now see the differences reported by experimentalists?</p>
 </div>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.5 (Biological interpretation)</strong></span> You should observe that WOX5 expression gradually expands into the endodermis and disappears from QC cells when both equations are updated. This matches experimental microscopy.</p>
+<p><span class="theorem-title"><strong>Exercise 9.5 (Biological interpretation)</strong></span> You should observe that WOX5 expression gradually expands into the endodermis and disappears from QC cells when both equations are updated. This matches the experimental microscopy from Figure 1.</p>
 <ul>
 <li>Why do different parts of the root respond differently to auxin?</li>
 <li>Why does auxin regulation of MGP do? (Tip: look at the network…)</li>
-<li>Why does induction of WOX5 occur mainly in upper cells and repression in the basal cells?</li>
+<li>Why does induction of WOX5 occur mainly in “upper” cells and repression in the cells closer to the tip?</li>
 </ul>
 </div>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.6 (Algorithmic thinking)</strong></span> Experimental repression of WOX5 was detected by RT-PCR at the very tip. Reproduce this <em>in silico</em> by saving the average WOX5 levels of cells at the tip (<code>y</code> &lt; 40) at the end of the simulation for all three treatments. For comparison, also calculate the average for the whole root. Then plot this average WOX5 expression levels for <code>auxinTreatment</code>= 0, 10 and 750.</p>
-<p>Tip: <code>WOX5Grid</code> stores WOX5 levels, and <code>y</code> controls the position of the cells.</p>
-<p>What is the overall effect of auxin treatments in the root tip? Considering that the root contains mixed cell types, which cells best represent your plotted values?</p>
+<p><span class="theorem-title"><strong>Exercise 9.6 (Algorithmic thinking)</strong></span> Experimental repression of WOX5 was detected by RT-PCR at the very tip (Figure 1, right panel). Reproduce this <em>in silico</em> by saving the average WOX5 levels of cells at the tip (<code>y</code> &lt; 40) at the end of the simulation for all three treatments. For comparison, also calculate the average for the whole root. Then plot this average WOX5 expression levels (y axis) for each <code>auxinTreatment</code>= 0, 10 and 750 (x axis).</p>
+<p>Tip: <code>WOX5Grid</code> stores WOX5 levels, and <span class="math inline">\(y\)</span> controls the position of the cells.</p>
+<p>What is the overall effect of auxin treatments in the root tip? Considering that the root contains mixed cell types, which cells best represent the plotted values?</p>
 </div>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.7 (Biology &amp; algorithmic thinking)</strong></span> Now, let’s compare WOX5 regulation across tissues. Repeat the RT-PCR <em>in silico</em> analysis but include the cells in the QC position, and endodermis cells. Tip: cell types are stored in cellGrid.</p>
-<p>Do you see a difference between your observations and the simulated RT-PCR plot? Why?</p>
+<p><span class="theorem-title"><strong>Exercise 9.7 (Biology &amp; algorithmic thinking)</strong></span> Now, let’s compare WOX5 regulation across tissues. Let’s use the model to do an in RT-PCR <em>in silico</em> analysis of only the cells in the QC position, and also the endodermis cells. This has not been done experimentally and thus you will generate a prediction (!). Tip: cell types are stored in <code>cellGrid.</code></p>
+<p>Compare what you see in the root simulation, and what you obtain in the simulated RT-PCR plot. Which case represents better how WOX5 is regulated in the root tip? Why?</p>
 </div>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.8 (Biology &amp; algorithmic thinking)</strong></span> Changes in WOX5 expression depend on tissue context and auxin dosage. Simulate a range of auxin treatments from 0 to 750 (choose your step size).</p>
+<p><span class="theorem-title"><strong>Exercise 9.8 (Biology &amp; algorithmic thinking)</strong></span> Changes in WOX5 expression depend on tissue context and auxin dosage. Simulate a range of auxin treatments from 0 to 750.</p>
 <p>Can you now explain the auxin–WOX5 paradox? What mechanism do you propose?</p>
 </div>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.9 (Biology &amp; conceptual thinking)</strong></span> Perform an <em>in silico</em> intervention to alter WOX5 dosage responsiveness. For example, enforce continuous induction or block its induction in the endodermis. How would you test these model predictions experimentally?</p>
+<p><span class="theorem-title"><strong>Exercise 9.9 (Biology &amp; conceptual thinking)</strong></span> Perform an <em>in silico</em> intervention to alter WOX5 dosage responsiveness to auxin. For example, what would it take to enforce its continuous expression, or block completely its induction in the endodermis. How would you test these model predictions experimentally?</p>
 </div>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.10 (Biological thinking)</strong></span> All models are wrong, but some are useful. The model we studied today offered us a mechanistic insight into the paradoxical auxin responses. Yet, (to make things more fun), the original experiments used different auxin <em>analogs</em> which are transported very differently between cells: NAA (that is transported independently of PINs), IAA (that is PIN-transported), and NPA (that blocks PINs, increasing auxin in the tip). How does this information change your conclusions? What extensions to the model would you make to account for these differences?</p>
+<p><span class="theorem-title"><strong>Exercise 9.10 (Biological thinking)</strong></span> All models are wrong, but some are useful. The model we studied today offered us a mechanistic insight into the paradoxical auxin responses. Yet, (to make things more fun), the original experiments used different auxin <em>analogs</em> and other molecules which are transported very differently between cells: NAA (transported independently of PINs), IAA (PIN-transported), and NPA (blocks PINs, increasing auxin in the tip). How does this information change your conclusions? What extensions to the model would you make to account for these differences?</p>
 </div>
 </section>
 <section id="references" class="level2" data-number="9.5">
@@ -687,6 +691,7 @@ window.Quarto = {
 <ul>
 <li><span class="citation" data-cites="mahonen2014plethora">Mähönen et al. (<a href="references.html#ref-mahonen2014plethora" role="doc-biblioref">2014</a>)</span></li>
 <li><span class="citation" data-cites="ding2010auxin">Ding and Friml (<a href="references.html#ref-ding2010auxin" role="doc-biblioref">2010</a>)</span></li>
+<li><span class="citation" data-cites="shamir2016snapshot">Shamir et al. (<a href="references.html#ref-shamir2016snapshot" role="doc-biblioref">2016</a>)</span></li>
 </ul>
 
 
@@ -696,6 +701,9 @@ Ding, Zhaojun, and Jiřı́ Friml. 2010. <span>“Auxin Regulates Distal Stem Ce
 </div>
 <div id="ref-mahonen2014plethora" class="csl-entry" role="listitem">
 Mähönen, Ari Pekka, Kirsten ten Tusscher, Riccardo Siligato, Ondřej Smetana, Sara Dı́az-Triviño, Jarkko Salojärvi, Guy Wachsman, Kalika Prasad, Renze Heidstra, and Ben Scheres. 2014. <span>“PLETHORA Gradient Formation Mechanism Separates Auxin Responses.”</span> <em>Nature</em> 515 (7525): 125–29.
+</div>
+<div id="ref-shamir2016snapshot" class="csl-entry" role="listitem">
+Shamir, Maya, Yinon Bar-On, Rob Phillips, and Ron Milo. 2016. <span>“SnapShot: Timescales in Cell Biology.”</span> <em>Cell</em> 164 (6): 1302–2.
 </div>
 </div>
 </section>

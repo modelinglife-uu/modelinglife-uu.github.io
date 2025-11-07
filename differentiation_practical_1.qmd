@@ -38,7 +38,7 @@ $B$, $d$ is the decay rate.
 
 **Logical rule implementation**
 
-$$C_{t+1}=A_t$ & $B_t$$
+$C_{t+1}=A_t$ & $B_t$
 
 
 **Python code for ODE and logical rule**

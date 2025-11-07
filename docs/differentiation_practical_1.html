@@ -612,7 +612,7 @@ window.Quarto = {
 <p><span class="math inline">\(\frac{dC}{dt}=p\frac{A^n}{K^n+A^n}\frac{B^n}{K^n+B^n}-dC\)</span></p>
 <p>Where <span class="math inline">\(p\)</span> is the production rate, <span class="math inline">\(K\)</span> is the half saturation constant (represents the affinity of a TF to the promoter), <span class="math inline">\(n\)</span> is the cooperativity of transcription factor binding, and is the same for <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, <span class="math inline">\(d\)</span> is the decay rate.</p>
 <p><strong>Logical rule implementation</strong></p>
-<p><span class="math display">\[C_{t+1}=A_t$ &amp; $B_t\]</span></p>
+<p><span class="math inline">\(C_{t+1}=A_t\)</span> &amp; <span class="math inline">\(B_t\)</span></p>
 <p><strong>Python code for ODE and logical rule</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ODEgeneRegulation(a,t,parameters): </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    prod<span class="op">=</span>parameters[<span class="st">'prod'</span>]</span>

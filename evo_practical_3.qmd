@@ -7,11 +7,11 @@ params:
 
 ## Building a model from scratch
 
-Over the last weeks you have been given many model of biology, and you have modified or extended upon them. For this practical, I will give you a only a description. Your challenge will be to see how far you get in trying to get this model working yourself. I advice you use AI-assisted programming only to solve small steps, otherwise you have no clue what you are doing. But if you try and do everything yourself, it may take a little long. 
+Over the last weeks you have been given many model of biology, and you have modified or extended upon them. For this practical, we will give you a only a description. Your challenge for today is to implement this model on your own. We advice you use AI-assisted programming only to solve small steps, otherwise you have no clue what you are doing. But if you try and do everything yourself, it may take a little long. 
 
 At the end of the pratical, we will compare different implementations by students, as well as my implementation. Hopefully, we will see some generic patterns, because the model description should be good enough to give "similar models". The description should be "vague enough" to lead to some differences, but "precise enough" to yield similar results. This is an experiment in and of itself. So let's see :')
 
-Note that I also do not yet know exactly what will happen in this simulation (although I have tried it out), so I'm hoping we will learn some cool stuff together! 
+Note that we also do not yet know exactly what will happen in this simulation (although I have tried it out), so we hope to learn some cool stuff together! 
 
 ## Simulating a simple microbial ecosystem with "public goods"
 
@@ -42,7 +42,7 @@ The model will have the following output: a grid that is coloured by the number 
 - Grid size: 50 x 50
 - Initial population: produces all public goods (1111...1)
 - Death rate: 0.1
-- Cost (c): 0.05
+- Cost ($c$): 0.05
 - Bitstring 1 to 0 mutation (losing a gene): 0.01
 - Bitstring 0 to 1 mutation (gaining a gene): 0.001
 - Number of public goods (i.e. bitstring length): 10 

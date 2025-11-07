@@ -137,14 +137,26 @@ If you have read the code, you will see that we can pass a list of weights to th
 
 `probs = [1 for fit in population] # All probability weights are equal (1.0)`
 
+:::{#exr-roulette}
+## Running the roulette wheel with fitness values
+<br>
+
 a. Run the code with the current (all equal) weights. What happens?
-a. Modify this line of code to take the fitness values as the weight, rather than 1. (hint: this is a VERY small change in the code).
+b. Modify this line of code to take the fitness values as the weight, rather than 1. (hint: this is a VERY small change in the code).
+:::
+
+:::{.content-visible when-meta="params.show_answers"}
+> **Answer**<br>
+a. The line starts at 0.1 (the initial value) and then just randomly wiggles around a bit. This is because the "population" is not really evolving, as everyone has the same chance to reproduce (1). Hence, what we called 'fitness' is not yet treated as such, and just drifts. <br>
+b. We change one word in the line `probs = [1 for fit in population] # All probability weights are equal (1.0)`. Instead of `1 for fit` we want `fit for fit`, meaning that all probabilities will be equal to the fitness values in the population. Now the population evolves to increase its fitness value over time.
+:::
+
 
 ## A roulette wheel of a subset of individuals
 
-Instead of letting everyone reproduce, let us modify the code to only sample from a smaller list of 'competitors', and spin a virtual roulette wheel to determine who wins. There are many ways to implement this, but here's how we will do it. We will sample N individuals from the population, and implement the following algorithm:
+Instead of letting everyone reproduce, let us modify the code to only sample from a smaller list of 'competitors', and spin a virtual roulette wheel to determine who wins. There are many ways to implement this, but here's how we will do it. We will sample $N$ individuals from the population, and implement the following algorithm:
 
-1. Select a random subset of N individuals from the population.
+1. Select a random subset of $N$ individuals from the population.
 2. Take/compute the fitness of each selected individual.
 3. Add a reproduction-skip option with a fixed weight.
 4. Choose one individual or the skip option using weighted random selection.
@@ -388,12 +400,12 @@ Answer the following questions using the options available in the model:
 :::{#exr-evolving-dna}
 
 ## Evolving DNA - Biology / abstract thinking
-   a. Run the code. What does the new (dashed blue) line represent? Do you understand how is changes over time?
+   a. Run the code. What does the new (dashed blue) line represent? Do you understand how it changes over time?
 
    The program reports after how many generations it manages to find the target sequence. With default settings this can take a long time... (default: 429 generations)
 
    b. Modify the mutation rate to see how it affects the time to find the target sequence. Try different mutation rates between 0.0001 and 0.1. Keep track of both how long (number of generations) it takes to find the target, and how fit the population is once the target is found. What do you observe?
-   c. Diversity is no longer calculated as the standard deviation in fitness, but as the Shannon diversity of all present sequences (although it is not super complex, you do not need to fully understand this function). Because of this, the exact number (quantities) cannot be compared to our ealrier model. Do you see a *qualitative* differences?
+   c. Diversity is no longer calculated as the standard deviation in fitness, but as the Shannon diversity of all present sequences (although it is not super complex, you do not need to fully understand this function). Because of this, the exact number (quantities) cannot be compared to our earlier model. Do you see a *qualitative* differences?
 d. Study how fitness is calculated in this model. Is there a distinction between genotype en phenotype? Why/why not?
 
 :::

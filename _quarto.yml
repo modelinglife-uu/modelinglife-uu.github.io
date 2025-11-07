@@ -24,7 +24,7 @@ book:
     collapse-level: 1
     style: "floating" #"floating/docked"
     pinned: true
-    title: "Modelling life"
+    title: "Modeling life"
   chapters: 
     - part: "Course information"
       chapters:

@@ -256,9 +256,9 @@ function cacatoo() {
 
   sim.start()
 	  sim.addButton("Play/Pause", function () { sim.toggle_play() })
-	  document.getElementById("form_holder").innerHTML += " " 
+	  document.getElementById("form_holder").insertAdjacentHTML("beforeend", "&nbsp;");
   sim.addButton("Reset boids", function () { sim.reset() })
-  document.getElementById("form_holder").innerHTML += " "
+ document.getElementById("form_holder").insertAdjacentHTML("beforeend", "&nbsp;");
 	sim.addButton("Reset peak", function () { sim.resetResource() })
  
 }
@@ -340,12 +340,10 @@ We can represent a moving individual in space as a point with a position and a v
   <canvas id="vectorCanvas" width="600" height="250"></canvas>
 
   <div class="controls">
-    <button onclick="moveBase(-10, 0)">← </button>
-    <button onclick="moveBase(10, 0)">→ </button>
-    <button onclick="changeLength(10)">↑ </button>
-    <button onclick="changeLength(-10)">↓ </button>
-    <button onclick="rotateVector(-Math.PI / 24)">⟲ </button>
-    <button onclick="rotateVector(Math.PI / 24)">⟳ </button>
+    <button onclick="changeLength(10)"> Faster </button>
+    <button onclick="changeLength(-10)"> Slower </button>
+    <button onclick="rotateVector(-Math.PI / 24)"> Rotate (⟲) </button>
+    <button onclick="rotateVector(Math.PI / 24)"> Rotate (⟳) </button>
   </div>
 
   <script>
@@ -554,11 +552,13 @@ To rotate a vector, we can use the following trigonometrical equations, where $\
 
 $$
 \begin{aligned}
-x_{new} = x \cdot cos(\theta) - y \cdot sin(\theta) \newline
-y_{new} = x \cdot sin(\theta) + y \cdot cos(\theta)
+x_{new} = x \cdot \cos(\theta) - y \cdot \sin(\theta) \newline
+y_{new} = x \cdot \sin(\theta) + y \cdot \cos(\theta)
 \end{aligned}
 $$
+
 b. Use the equation above to rotate the **velocity vector** in the code by a small angle every timestep. What happens?
+
 c. Modelling 1 individual is not very exciting. Think about what the code above would look like if you had more than 1 individual. Discuss this with other students and/or Bram.
 
 :::

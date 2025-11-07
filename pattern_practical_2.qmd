@@ -10,7 +10,7 @@ A foundational work in Theoretical Biology is Alan Turing's paper *"The Chemical
 
 Turing-type patterns emerge when a system exhibits short-ranged activation and long-ranged inhibition. The most well-known realization of a Turing reaction-diffusion system is the combination of a slow-diffusing activator and fast-diffusing inhibitor. Many more examples exist which can be reduced to a mathematically equivalent form. In this practical, we will explore a 3-component Turing system developed by Raspopovic and coauthors to explain the patterning of fingers on the paws of mice (@raspopovic2014digit).
 
-![](images/0-hamster.png){#vegmini1 width=40%}
+![Credit: the internet.](images/0-hamster.png){#vegmini1 width=40%}
 
 In this practical you will work with a total of 6 different python codes. Please note that each code simply differs by an extension or modification from the previous code, so that in the end you will have a long script that performs all the steps in one go.
 

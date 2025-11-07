@@ -74,7 +74,7 @@ therefore allowing for WOX5 activity.
 ## The model 
 
 Today you will use a multicellular model that simulates the cells of a root tip 
-(Figure 3, right). The tissue is modelled as a grid, where the x position defines 
+(Figure 3, right). The tissue is modeled as a grid, where the x position defines 
 the radial direction and the y the longitudinal position (0 being the cells at the bottom). 
 The cells are organized in cell layers (8 layers, so x is 8), each with a gene regulatory 
 network initialized in a different attractor. The model simulates the transport of 

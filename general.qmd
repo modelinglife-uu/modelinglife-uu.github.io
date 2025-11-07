@@ -3,17 +3,17 @@
 ## Contact
 **Course coordinator**: Monica Garcia Gomez (m.l.garciagomez@uu.nl).
 In this website you will find all practical information about the course. You can reach the
-instructors via email at modelinglife@uu.nl .
+instructors via email at <a href="mailto:modelinglife@uu.nl">Modeling Life email</a>
 
 
 
 
-![**Teachers:** Kirsten ten Tusscher (K.H.W.J.tenTusscher@uu.nl), Erika Tsingos (e.tsingos@uu.nl),Monica Garcia Gomez (m.l.garciagomez@uu.nl), Bram van Dijk (b.vandijk@uu.nl).](images/teachers.png){width=50%}
+![**Teachers:** Kirsten ten Tusscher  [K.H.W.J.tenTusscher@uu.nl](mailto:K.H.W.J.tenTusscher@uu.nl), Erika Tsingos [e.tsingos@uu.nl](mailto:e.tsingos@uu.nl), Monica Garcia Gomez [m.l.garciagomez@uu.nl](mailto:m.l.garciagomez@uu.nl), Bram van Dijk [b.vandijk@uu.nl](mailto:b.vandijk@uu.nl).](images/teachers.png){width=50%}
 
 We are part of the [Theoretical Biology group of Utrecht University ](https://tbb.bio.uu.nl/aboutus.html)).
 
 ## Course content
-This course will consist of lectures (HC) covering various modelling approaches to study life at
+This course will consist of lectures (HC) covering various modeling approaches to study life at
 different levels accompanied by computer practicals (WC) where students will get hands-on experience
 on running computational models of the development or the evolution of animals, plants, and microbial
 systems. 
@@ -29,8 +29,8 @@ Tuesdays / Thursdays– Lecture and practicals (mandatory)
 ### Key dates: 
 
   - December 18, 2025: Exam
-  - Jan 6, 2026: Miniprojects presentations
-  - Jan 29, 2026: Minisymposium
+  - Jan 6, 2026: Mini projects presentations
+  - Jan 29, 2026: Mini symposium
 
 ## Learning Goals
 The course aims to provide you with an introductory understanding of computational modeling to 
@@ -46,7 +46,7 @@ After this course the student can:
 
 ## Communication 
 
-  Feedback and other matters: [m.l.garciagomez@uu.nl](mailto:m.l.garciagomez@uu.nl)
+  Feedback and other matters: [modelinglife@uu.nl](mailto:modelinglife@uu.nl) or [m.l.garciagomez@uu.nl](mailto:m.l.garciagomez@uu.nl)
 
   Schedule, slides, practicals: <https://modelinglife-uu.github.io/>
 
@@ -54,6 +54,9 @@ After this course the student can:
 
   **Brightspace**: is the channel for all official communications (*e.g.* final grades). 
 
+**Teams** is not used to livestream lectures. However, if you have any questions for the
+  instructors, student assistants, or your fellow students, it's very helpful to share them on 
+  Teams (General channel) so everyone can benefit.
 
   Modeling Life 2025 in Microsoft **Teams**. You can sign up as follows:
   
@@ -70,13 +73,10 @@ After this course the student can:
   
   - Select “Join team”
   
-  - Teams is not used to livestream lectures. However, if you have any questions for the
-  instructors, student assistants, or your fellow students, it's very helpful to share them on 
-  Teams (General channel) so everyone can benefit.
 
 ## Grading 
 
-To pass this course, a minimum of 5,5 is mandatory. Your grade is calculated by the 
+To pass this course, a minimum of 5.5 is mandatory. Your grade is calculated by the 
 following components:
 
 Exam:                     70%
@@ -84,7 +84,7 @@ Exam:                     70%
 Mini project:           30%
 
 
-You will find your Final grade on Brigthspace.
+You will find your Final grade on Brightspace.
 
 
 ## Attendance

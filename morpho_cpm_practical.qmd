@@ -3,7 +3,7 @@ params:
   show_answers: false
 ---
 
-# Morphogenesis practical
+# Cell sorting by differential adhesion
 
 ## Morphogenesis
 
@@ -13,7 +13,7 @@ so we don’t yet have a “perfect” model of how we should simulate morphogen
 several research groups independently developed simulation approaches that fit their needs. In 
 this practical, you will get acquainted with one such approach, the cellular Potts model.
 
-## Biological background: Cell sorting by differential adhesion
+## Biological background
 Classical experiments in the 1950s dissociated animal embryonic tissues and recombined them 
 *in vitro* to try to understand the principles of self-organization. Instead of staying mixed, 
 each cell type sorts out into its own region, resembling the organization in the embryo.
@@ -115,7 +115,7 @@ Perhaps a more intuitive way to understand the terms is the following pseudo-cod
 
 Compare the pseudo-code to the implementation in the script. Then answer the following questions:
 
- - What are the biological processes modelled with this specific energy function?
+ - What are the biological processes modeled with this specific energy function?
  - Take a closer look at the summation terms. Over which domain is the first sum calculated? 
  What about the second summation term?
 

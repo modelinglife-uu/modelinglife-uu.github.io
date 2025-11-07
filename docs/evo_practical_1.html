@@ -442,7 +442,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./morpho_cpm_practical.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Morphogenesis practical</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Cell sorting by differential adhesion</span></span></a>
   </div>
 </li>
       </ul>
@@ -865,7 +865,7 @@ function cacatoo() {
 
 
 
-<p><br> The example above is a implemented in Javascript, a programming language that is widely used for web development. It is easy to share with others, interactive, and surprisingly fast. But, it’s not the most “professional” programming language. Plus, at this stage of the course there is no point in learning <em>yet another programming language</em>, as you are here to learn about modelling biology. So we will stick to Python.</p>
+<p><br> The example above is a implemented in Javascript, a programming language that is widely used for web development. It is easy to share with others, interactive, and surprisingly fast. But, it’s not the most “professional” programming language. Plus, at this stage of the course there is no point in learning <em>yet another programming language</em>, as you are here to learn about modeling biology. So we will stick to Python.</p>
 <p>First, let’s discuss how we can let individuals walk around in space.</p>
 </section>
 <section id="sec-steering" class="level2" data-number="13.1">
@@ -1129,13 +1129,13 @@ y_{new} = x \cdot \sin(\theta) + y \cdot \cos(\theta)
 \]</span></p>
 <ol start="2" type="a">
 <li><p>Use the equation above to rotate the <strong>velocity vector</strong> in the code by a small angle every timestep. What happens?</p></li>
-<li><p>Modelling 1 individual is not very exciting. Think about what the code above would look like if you had more than 1 individual. Discuss this with other students and/or Bram.</p></li>
+<li><p>Modeling 1 individual is not very exciting. Think about what the code above would look like if you had more than 1 individual. Discuss this with other students and/or Bram.</p></li>
 </ol>
 </div>
 </section>
 <section id="moving-cells" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="moving-cells">Moving “cells”</h2>
-<p>In this practical, you will practice with modelling individuals in space by modifying a Python code based on the foraging cells shown at the beginning. To accommodate for many cells, we will define a new <code>Cell</code> class, embedded in a <code>Simulation</code> class.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>In this practical, you will practice with modeling individuals in space by modifying a Python code based on the foraging cells shown at the beginning. To accommodate for many cells, we will define a new <code>Cell</code> class, embedded in a <code>Simulation</code> class.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <p>First, read the code yourself (you can ignore the <code>Visualisation</code> class), and see if you can get it running on your own laptop.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -1597,7 +1597,7 @@ v_y' = v_x \cdot sin(\theta) + v_y \cdot cos(\theta)
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">###</span></span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># PRACTICAL 1 | PLENARY DISCUSSION</span></span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># What else was discussed in the plenary?</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Why are grids so popular in modelling?</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Why are grids so popular in modeling?</span></span>
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Tessellation of space</span></span>
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Automatic tessellation of space: quad tree</span></span>
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. In the full model (javascript/Cacatoo), a quad tree is present, impacting performance</span></span>

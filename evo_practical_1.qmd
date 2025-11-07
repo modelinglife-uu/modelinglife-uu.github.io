@@ -287,7 +287,7 @@ function cacatoo() {
 ```
 
 <br>
-The example above is a implemented in Javascript, a programming language that is widely used for web development. It is easy to share with others, interactive, and surprisingly fast. But, it's not the most "professional" programming language. Plus, at this stage of the course there is no point in learning *yet another programming language*, as you are here to learn about modelling biology. So we will stick to Python. 
+The example above is a implemented in Javascript, a programming language that is widely used for web development. It is easy to share with others, interactive, and surprisingly fast. But, it's not the most "professional" programming language. Plus, at this stage of the course there is no point in learning *yet another programming language*, as you are here to learn about modeling biology. So we will stick to Python. 
 
 First, let's discuss how we can let individuals walk around in space. 
 
@@ -559,7 +559,7 @@ $$
 
 b. Use the equation above to rotate the **velocity vector** in the code by a small angle every timestep. What happens?
 
-c. Modelling 1 individual is not very exciting. Think about what the code above would look like if you had more than 1 individual. Discuss this with other students and/or Bram.
+c. Modeling 1 individual is not very exciting. Think about what the code above would look like if you had more than 1 individual. Discuss this with other students and/or Bram.
 
 :::
 
@@ -601,7 +601,7 @@ code rotates the velocity vector by 0.05 radians:
 
 ## Moving "cells" {.unnumbered}
 
-In this practical, you will practice with modelling individuals in space by modifying a Python code based on the foraging cells shown at the beginning. To accommodate for many cells, we will define a new `Cell` class, embedded in a `Simulation` class.^[The code also contains a `Visualisation` class that uses the `matplotlib` library to draw the cells and their movement, which we have tuned to speed things up a bit. You do not need to understand this part of the code, but if you are interested feel free to check it out.] 
+In this practical, you will practice with modeling individuals in space by modifying a Python code based on the foraging cells shown at the beginning. To accommodate for many cells, we will define a new `Cell` class, embedded in a `Simulation` class.^[The code also contains a `Visualisation` class that uses the `matplotlib` library to draw the cells and their movement, which we have tuned to speed things up a bit. You do not need to understand this part of the code, but if you are interested feel free to check it out.] 
 
 First, read the code yourself (you can ignore the `Visualisation` class), and see if you can get it running on your own laptop.
 
@@ -1195,7 +1195,7 @@ This combination of individuals moving in continuous space, combined with a grid
 ###
 # PRACTICAL 1 | PLENARY DISCUSSION
 # What else was discussed in the plenary?
-# 1. Why are grids so popular in modelling?
+# 1. Why are grids so popular in modeling?
 # 2. Tessellation of space
 # 3. Automatic tessellation of space: quad tree
 # 4. In the full model (javascript/Cacatoo), a quad tree is present, impacting performance

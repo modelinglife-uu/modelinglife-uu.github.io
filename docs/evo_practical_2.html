@@ -442,7 +442,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./morpho_cpm_practical.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Morphogenesis practical</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Cell sorting by differential adhesion</span></span></a>
   </div>
 </li>
       </ul>
@@ -597,7 +597,7 @@ window.Quarto = {
 <li>With a small probability, modify the ‘fitness’ value of the newborn.</li>
 </ol>
 <p>And so on.</p>
-<p>With a Moran process, competition between individuals is modelled in a very indirect (“implicit”) way. By always selecting fit individuals, and removing a random other, any individual in the populations could be replaced by another individual, which statistically is a fitter individual. One could thus say that “everyone is competing with everyone”. A different method is often applied in spatially structured models, as in this case only nearby individuals are competing. Then, we could sample who wins from an imaginary roulette wheel:</p>
+<p>With a Moran process, competition between individuals is modeled in a very indirect (“implicit”) way. By always selecting fit individuals, and removing a random other, any individual in the populations could be replaced by another individual, which statistically is a fitter individual. One could thus say that “everyone is competing with everyone”. A different method is often applied in spatially structured models, as in this case only nearby individuals are competing. Then, we could sample who wins from an imaginary roulette wheel:</p>
 <p><a href="images/roulette.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/roulette.png" class="img-fluid"></a></p>
 <p>As can be seen, not all individual have the same size on the roulette wheel. That depicts differences in their growth rates, biomass, or other approximations of “fitness”. Also, the roulette wheel contains an area (shown in black) that shapes the chance that nobody reproduces. We will try and implement this rule to let individuals reproduce based on their fitness, but with only 10 competitors at a time. Let’s start with a code where individuals have a “fitness” value, but it not yet used for selection (see below). <strong>Read/test this code thoroughly before you move on to the next section</strong>.</p>
 <div class="callout callout-style-default callout-note callout-titled">

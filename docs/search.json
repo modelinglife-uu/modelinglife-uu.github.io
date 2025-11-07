@@ -496,17 +496,6 @@
     ]
   },
   {
-    "objectID": "pattern_practical_2.html#references",
-    "href": "pattern_practical_2.html#references",
-    "title": "3  Turing digit patterns",
-    "section": "5.1 References",
-    "text": "5.1 References\n\nTuring, A. M. “The Chemical Basis of Morphogenesis.” Philosophical Transactions of the Royal Society of London. Series B, Biological Sciences 237.641 (1952): 37–72.\n\nRaspopovic, Jelena, et al. “Digit patterning is controlled by a Bmp-Sox9-Wnt Turing network modulated by morphogen gradients.” Science 345.6196 (2014): 566-570.\n\n\n\n\n\nRaspopovic, Jelena, Luciano Marcon, Laura Russo, and James Sharpe. 2014. “Digit Patterning Is Controlled by a Bmp-Sox9-Wnt Turing Network Modulated by Morphogen Gradients.” Science 345 (6196): 566–70.\n\n\nTuring, Alan Mathison. 1990. “The Chemical Basis of Morphogenesis.” Bulletin of Mathematical Biology 52 (1): 153–97.",
-    "crumbs": [
-      "I) Pattern formation",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Turing digit patterns</span>"
-    ]
-  },
-  {
     "objectID": "pattern_practical_3.html",
     "href": "pattern_practical_3.html",
     "title": "4  Clock-and-wavefront patterning",

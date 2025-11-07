@@ -53,6 +53,9 @@ tf1 and tf2 are repressing or activating.
 
 ## Python code
 
+
+The code below is also in `01_morphogengradient_to_segments.py`. 
+
 ::: {.callout-note collapse="true"}
 ## Starting code for this practical
 

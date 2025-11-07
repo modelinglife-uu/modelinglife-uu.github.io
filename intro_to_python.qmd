@@ -26,7 +26,7 @@ Here’s how:
 
 1. Click the 'preferences' icon in the top panel (a wrench icon 🔧).
 2. Go to 'IPython Console' → Graphics → Backend
-3. Choose QT, QT5, or QT6 (whichever is available)
+3. Choose Qt, Qt5, or Qt6^[on some laptops, Tk may be faster, but DON'T use 'inline']
 4. Click Apply and OK
 5. Restart Spyder may or may not be necessary depending on your operating system. 
 

@@ -6,7 +6,7 @@ params:
 # Turing patterns, repetitive patterning
   
 ## {.unnumbered}
-A foundational work in Theoretical Biology is Alan Turing's paper *"The Chemical Basis of Morphogenesis"* (@turing1990chemical). In this work, Turing mathematically demonstrates a plausible mechanism whereby a reaction-diffusion system can lead to the formation of a spatially-patterned solution in steady state. Mathematically and conceptually, Turing’s key innovation was considering diffusion-driven instability. That is: An unpatterned steady state solution becomes unstable in the presence of diffusion, leading to the formation of a spatially patterned state.
+A foundational work in Theoretical Biology is Alan Turing's paper *"The Chemical Basis of Morphogenesis"* (@turing1990chemical). In this work, Turing mathematically demonstrates a plausible mechanism whereby a reaction-diffusion system can lead to the formation of a spatially-patterned solution in steady state. Mathematically and conceptually, Turing’s key innovation was considering diffusion-driven instability. That is: A non-patterned steady state solution becomes unstable in the presence of diffusion, leading to the formation of a spatially patterned state.
 
 Turing-type patterns emerge when a system exhibits short-ranged activation and long-ranged inhibition. The most well-known realization of a Turing reaction-diffusion system is the combination of a slow-diffusing activator and fast-diffusing inhibitor. Many more examples exist which can be reduced to a mathematically equivalent form. In this practical, we will explore a 3-component Turing system developed by Raspopovic and coauthors to explain the patterning of fingers on the paws of mice (@raspopovic2014digit).
 
@@ -254,9 +254,9 @@ The script `05__digits_squarek4k7gradient.py` allows you to implement exponentia
   >
   > Parameter values for the gradients should be:
   >
-  > $k4_{min}=0.8$, $k4_{max}=1.8$, $direction=0$, $axis =x$
+  > $k4_{min}=0.8$, $k4_{max}=1.8$, $direction=0$, $axis ="x"$
   >
-  > $k7_{min}=0.5$, $k7_{max}=1.3$, $direction=1$, $axis=x$
+  > $k7_{min}=0.5$, $k7_{max}=1.3$, $direction=1$, $axis="x"$
   >
   > This results in $k4$ decreasing and $k7$ increasing along the x-axis.
   > Wavelength of the Turing pattern increases more than 2-fold

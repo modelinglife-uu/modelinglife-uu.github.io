@@ -206,7 +206,7 @@ visualize different genes by changing the grid provided to
 The model does not yet reproduce the experiments. Yet, we can use this model to test 
 hypothesis and aim to recover such behaviours (Figure 1). Let's implement the following two hypotheses:
 
-![Testing two hypothesis: <span style="color: magenta;">Auxin represses MGP expression.</span> <span style="color: #32CD32;">Extremely high auxin levels (unrealistic in vivo) repress WOX5 expression.</span>](images/0-auxin-hypothesis.png){#vegmini1 width=60%}
+![Testing two hypothesis: <span style="color: magenta;">Auxin represses MGP expression.</span> <span style="color: #32CD32;">Extremely high auxin levels (easy to apply experimentally, but unrealistic *in vivo*) repress WOX5 expression.</span>](images/0-auxin-hypothesis.png){#vegmini1 width=60%}
 
 Modify the equations for MGP and WOX5 in `rootNetwork` accordingly.
 

@@ -342,7 +342,7 @@ d.  Do you get the expected “French flag” pattern? If not, think of why
 ::: {.content-visible when-meta="params.show_answers"}
   > **Answer** Look at code `02_answer_morphogengradient_superimposed_quickABC.py`.	
   > You will find that gene $C$ needs to be induced by low and repressed by high $M$. 
-  > And as explained above: $k_A=k_{B1}<k_{B2}<k_C$.
+  > And as explained above: $k_A=k_{B1}>k_{B2}>k_C$.
 
 
 :::

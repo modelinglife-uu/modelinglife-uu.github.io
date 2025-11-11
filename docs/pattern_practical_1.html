@@ -799,7 +799,7 @@ window.Quarto = {
 <p><span class="math inline">\(\frac{dB}{dt}\)</span> = normal hill (<span class="math inline">\(M\)</span>) * inverse hill(<span class="math inline">\(M\)</span>) – decay term</p>
 <p>Equation for C:</p>
 <p><span class="math inline">\(\frac{dC}{dt}\)</span> = inverse hill (<span class="math inline">\(M\)</span>) -decay term.</p>
-<p>Furthermore, <span class="math inline">\(k_A=k_{B1}&lt;k_{B2}&lt;k_C\)</span> to ensure the switches happen at the right places.</p>
+<p>Furthermore, <span class="math inline">\(k_A=k_{B1}&gt;k_{B2}&gt;k_C\)</span> to ensure the switches happen at the right places.</p>
 </blockquote>
 <div id="exr-plain" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 2.4 (Biology &amp; algorithmic/mathematical thinking)</strong></span> From hereon we assume that the morphogen <span class="math inline">\(M\)</span> gradient reaches steady state very quickly, and no longer use the numerical implementation of the diffusion equation and instead work with a superimposed morphogen profile defined by <code>reaction_diffusion_gradient</code> to save time. (Hint: to not call the function any more use # in front of where it is called). Change the simulation loop such that it computes the morphogen <span class="math inline">\(M\)</span> gradient once. What type of function is the superimposed morphogen profile and how does this relate to question 2.</p>

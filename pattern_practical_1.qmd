@@ -290,7 +290,7 @@ parameter conditions?
   >
   > $\frac{dC}{dt}$ = inverse hill ($M$) -decay term. 
   >
-  > Furthermore, $k_A=k_{B1}<k_{B2}<k_C$ to ensure the switches happen at the right places.
+  > Furthermore, $k_A=k_{B1}>k_{B2}>k_C$ to ensure the switches happen at the right places.
 
 :::
 

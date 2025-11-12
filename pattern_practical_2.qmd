@@ -32,7 +32,9 @@ The model proposed by Raspopovic et al. for generating Turing patterns underlyin
 
 ## Conceptual thinking 
 
-Study the schemes below. The arrows represent activating or inhibiting interactions, while the wavy lines represent diffusion of components. Simplify the BSW model scheme to a 2-component system and explain why the relevant Turing constraints apply to the BSW model. In your answer, think about the logic of the interactions in the system conceptually; we do not expect you to answer by writing down equations.
+Study the schemes below. The arrows represent activating or inhibiting interactions, while the wavy lines represent diffusion of components. Simplify this 3-variable model scheme into a 2 variable model scheme (just by drawing the interactions, no need to write equations) and explain how it satisfies the Turing conditions discussed in the lecture. Remember that for Turing patterns we need an activator an inhibitor. 
+
+In a 2 variable system the activator needs to be a single autoactivating molecule. When we have more variables, the positive feedback can be achieved differently (indirectly). So think which two variables would be logical to combine into one to get a 2 variable model..
 
 
 ::: {.columns}
@@ -73,20 +75,11 @@ The code in the script `01__digits_squarehomogeneoustissue.py` simulates the mod
 ## Biology
 
 
-Play with the reaction parameters and diffusion constants to study their effects on the wavelength of the patterns. Note down the following:
+Play with parameters $k4$ (Sox9 effect on BMP), $k7$ (Sox9 effect on Wnt), and how much Bmp diffusion is faster than that of Wnt. Change one parameter at a time and realise that changing in one direction is sufficient; change in the other direction can be expected to have the opposite effect. 
 
--   Which parameter changes lead to a pattern with thicker/thinner stripes?
--   Which parameter changes lead to a pattern with spots?
+What effects on pattern wavelength do you find? 
 
-**Note:** To make things easier on yourself, only change one parameter at a time. Use a narrow range around the reference value to stay in the numerically stable regime of the forward Euler solver. If the solution becomes blank or wildly oscillating, you’re likely in the numerically unstable regime and you should try a smaller change of values. When increasing diffusion constants, you may need to reduce the time stepping `dt`.
-
-**(only Master students)** Based on the BSW interaction scheme, give a short interpretation of why the following parameter alterations change the spatial pattern:
-
--   Parameters of Sox9-BMP interaction `k2` and `k4`
--   Parameters of Sox9-Wnt interaction `k3` and `k7`
--   Fold change difference in BMP diffusion compared to Wnt diffusion
-
-*Hint:* Use the maximum and minimum values of the variables to guide your thinking.
+**Note**: Make sure to use only small changes for $k4$ and $k7$, if things start oscillating wildly or go blank you are watching numerical errors rather than real outcomes. When increasing Bmp diffusion you may need to reduce the time step for integration $dt$. 
 
 :::
 
@@ -121,22 +114,6 @@ Increasing BMP diffusion allows to more effectively “feed” Sox9 domains, whi
 
 :::
 
-------------------------------------------------------------------------
-
-## The homogenous steady state in Turing models
-
-In a system exhibiting Turing instability, the spatially unpatterned steady state is unstable in the presence of diffusion.
-
-:::{#exr-tur}
-
-## Conceptual thinking 
-
- Modify the initial condition in the script `01__digits_squarehomogeneoustissue.py` to be exactly in this state (Sox9, BMP, Wnt should be all zero everywhere) and run the simulation. Explain the simulation result.
-:::
-
-:::{.content-visible when-meta="params.show_answers"}
-> **Answer** The homogenous steady state continues to exist, and if starting in that state the system will not evolve to a different state. A small perturbation is needed to nudge the system out of the steady state.
-:::
 
 ------------------------------------------------------------------------
 

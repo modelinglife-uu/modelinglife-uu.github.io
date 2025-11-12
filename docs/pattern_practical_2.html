@@ -538,14 +538,13 @@ window.Quarto = {
   <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"></a></li>
   <li><a href="#equivalence-of-turing-models" id="toc-equivalence-of-turing-models" class="nav-link" data-scroll-target="#equivalence-of-turing-models"><span class="header-section-number">3.1</span> Equivalence of Turing models</a></li>
   <li><a href="#patterning-in-a-fixed-domain-size" id="toc-patterning-in-a-fixed-domain-size" class="nav-link" data-scroll-target="#patterning-in-a-fixed-domain-size"><span class="header-section-number">3.2</span> Patterning in a fixed domain size</a></li>
-  <li><a href="#the-homogenous-steady-state-in-turing-models" id="toc-the-homogenous-steady-state-in-turing-models" class="nav-link" data-scroll-target="#the-homogenous-steady-state-in-turing-models"><span class="header-section-number">3.3</span> The homogenous steady state in Turing models</a></li>
-  <li><a href="#patterning-in-a-growing-domain-size" id="toc-patterning-in-a-growing-domain-size" class="nav-link" data-scroll-target="#patterning-in-a-growing-domain-size"><span class="header-section-number">3.4</span> Patterning in a growing domain size</a></li>
-  <li><a href="#patterning-along-two-growth-axes" id="toc-patterning-along-two-growth-axes" class="nav-link" data-scroll-target="#patterning-along-two-growth-axes"><span class="header-section-number">3.5</span> Patterning along two growth axes</a></li>
-  <li><a href="#making-a-virtual-tissue-grow" id="toc-making-a-virtual-tissue-grow" class="nav-link" data-scroll-target="#making-a-virtual-tissue-grow"><span class="header-section-number">3.6</span> Making a virtual tissue grow</a></li>
-  <li><a href="#spatial-modulation-of-parameters-k4-and-k7" id="toc-spatial-modulation-of-parameters-k4-and-k7" class="nav-link" data-scroll-target="#spatial-modulation-of-parameters-k4-and-k7"><span class="header-section-number">3.7</span> Spatial modulation of parameters k4 and k7</a></li>
-  <li><a href="#hoxd13-and-fgf" id="toc-hoxd13-and-fgf" class="nav-link" data-scroll-target="#hoxd13-and-fgf"><span class="header-section-number">3.8</span> Hoxd13 and FGF</a></li>
-  <li><a href="#shape-makes-the-tissue" id="toc-shape-makes-the-tissue" class="nav-link" data-scroll-target="#shape-makes-the-tissue"><span class="header-section-number">3.9</span> Shape makes the tissue</a></li>
-  <li><a href="#master-students-exercise" id="toc-master-students-exercise" class="nav-link" data-scroll-target="#master-students-exercise"><span class="header-section-number">3.10</span> Master students exercise</a></li>
+  <li><a href="#patterning-in-a-growing-domain-size" id="toc-patterning-in-a-growing-domain-size" class="nav-link" data-scroll-target="#patterning-in-a-growing-domain-size"><span class="header-section-number">3.3</span> Patterning in a growing domain size</a></li>
+  <li><a href="#patterning-along-two-growth-axes" id="toc-patterning-along-two-growth-axes" class="nav-link" data-scroll-target="#patterning-along-two-growth-axes"><span class="header-section-number">3.4</span> Patterning along two growth axes</a></li>
+  <li><a href="#making-a-virtual-tissue-grow" id="toc-making-a-virtual-tissue-grow" class="nav-link" data-scroll-target="#making-a-virtual-tissue-grow"><span class="header-section-number">3.5</span> Making a virtual tissue grow</a></li>
+  <li><a href="#spatial-modulation-of-parameters-k4-and-k7" id="toc-spatial-modulation-of-parameters-k4-and-k7" class="nav-link" data-scroll-target="#spatial-modulation-of-parameters-k4-and-k7"><span class="header-section-number">3.6</span> Spatial modulation of parameters k4 and k7</a></li>
+  <li><a href="#hoxd13-and-fgf" id="toc-hoxd13-and-fgf" class="nav-link" data-scroll-target="#hoxd13-and-fgf"><span class="header-section-number">3.7</span> Hoxd13 and FGF</a></li>
+  <li><a href="#shape-makes-the-tissue" id="toc-shape-makes-the-tissue" class="nav-link" data-scroll-target="#shape-makes-the-tissue"><span class="header-section-number">3.8</span> Shape makes the tissue</a></li>
+  <li><a href="#master-students-exercise" id="toc-master-students-exercise" class="nav-link" data-scroll-target="#master-students-exercise"><span class="header-section-number">3.9</span> Master students exercise</a></li>
   </ul>
 </nav>
     </div>
@@ -594,7 +593,8 @@ window.Quarto = {
 <h2 data-number="3.1" class="anchored" data-anchor-id="equivalence-of-turing-models"><span class="header-section-number">3.1</span> Equivalence of Turing models</h2>
 <p>The model proposed by Raspopovic et al.&nbsp;for generating Turing patterns underlying limb bone modeling consists of 3 instead of 2 interacting variables. We will refer to this model as “BSW” model, as it represents interactions between Bmp, Sox9, and Wnt.</p>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.1 (Conceptual thinking)</strong></span> Study the schemes below. The arrows represent activating or inhibiting interactions, while the wavy lines represent diffusion of components. Simplify the BSW model scheme to a 2-component system and explain why the relevant Turing constraints apply to the BSW model. In your answer, think about the logic of the interactions in the system conceptually; we do not expect you to answer by writing down equations.</p>
+<p><span class="theorem-title"><strong>Exercise 3.1 (Conceptual thinking)</strong></span> Study the schemes below. The arrows represent activating or inhibiting interactions, while the wavy lines represent diffusion of components. Simplify this 3-variable model scheme into a 2 variable model scheme (just by drawing the interactions, no need to write equations) and explain how it satisfies the Turing conditions discussed in the lecture. Remember that for Turing patterns we need an activator an inhibitor.</p>
+<p>In a 2 variable system the activator needs to be a single autoactivating molecule. When we have more variables, the positive feedback can be achieved differently (indirectly). So think which two variables would be logical to combine into one to get a 2 variable model..</p>
 <div class="columns">
 <div class="column" style="width:40%;">
 <div id="fig-turing" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -626,36 +626,18 @@ Figure&nbsp;3.2: Scheme of the BSW model
 <h2 data-number="3.2" class="anchored" data-anchor-id="patterning-in-a-fixed-domain-size"><span class="header-section-number">3.2</span> Patterning in a fixed domain size</h2>
 <p>The code in the script <code>01__digits_squarehomogeneoustissue.py</code> simulates the model in a 2D square tissue of constant size. This setup can be considered as a small region of a large Petri dish in which mesenchymal cells have been plated with the correct chemicals to undergo bone formation (Supplementary Figure S3 in the paper).</p>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.2 (Biology)</strong></span> Play with the reaction parameters and diffusion constants to study their effects on the wavelength of the patterns. Note down the following:</p>
-<ul>
-<li>Which parameter changes lead to a pattern with thicker/thinner stripes?</li>
-<li>Which parameter changes lead to a pattern with spots?</li>
-</ul>
-<p><strong>Note:</strong> To make things easier on yourself, only change one parameter at a time. Use a narrow range around the reference value to stay in the numerically stable regime of the forward Euler solver. If the solution becomes blank or wildly oscillating, you’re likely in the numerically unstable regime and you should try a smaller change of values. When increasing diffusion constants, you may need to reduce the time stepping <code>dt</code>.</p>
-<p><strong>(only Master students)</strong> Based on the BSW interaction scheme, give a short interpretation of why the following parameter alterations change the spatial pattern:</p>
-<ul>
-<li>Parameters of Sox9-BMP interaction <code>k2</code> and <code>k4</code></li>
-<li>Parameters of Sox9-Wnt interaction <code>k3</code> and <code>k7</code></li>
-<li>Fold change difference in BMP diffusion compared to Wnt diffusion</li>
-</ul>
-<p><em>Hint:</em> Use the maximum and minimum values of the variables to guide your thinking.</p>
+<p><span class="theorem-title"><strong>Exercise 3.2 (Biology)</strong></span> Play with parameters <span class="math inline">\(k4\)</span> (Sox9 effect on BMP), <span class="math inline">\(k7\)</span> (Sox9 effect on Wnt), and how much Bmp diffusion is faster than that of Wnt. Change one parameter at a time and realise that changing in one direction is sufficient; change in the other direction can be expected to have the opposite effect.</p>
+<p>What effects on pattern wavelength do you find?</p>
+<p><strong>Note</strong>: Make sure to use only small changes for <span class="math inline">\(k4\)</span> and <span class="math inline">\(k7\)</span>, if things start oscillating wildly or go blank you are watching numerical errors rather than real outcomes. When increasing Bmp diffusion you may need to reduce the time step for integration <span class="math inline">\(dt\)</span>.</p>
 </div>
 <hr>
 </section>
-<section id="the-homogenous-steady-state-in-turing-models" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="the-homogenous-steady-state-in-turing-models"><span class="header-section-number">3.3</span> The homogenous steady state in Turing models</h2>
-<p>In a system exhibiting Turing instability, the spatially unpatterned steady state is unstable in the presence of diffusion.</p>
-<div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.3 (Conceptual thinking)</strong></span> Modify the initial condition in the script <code>01__digits_squarehomogeneoustissue.py</code> to be exactly in this state (Sox9, BMP, Wnt should be all zero everywhere) and run the simulation. Explain the simulation result.</p>
-</div>
-<hr>
-</section>
-<section id="patterning-in-a-growing-domain-size" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="patterning-in-a-growing-domain-size"><span class="header-section-number">3.4</span> Patterning in a growing domain size</h2>
+<section id="patterning-in-a-growing-domain-size" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="patterning-in-a-growing-domain-size"><span class="header-section-number">3.3</span> Patterning in a growing domain size</h2>
 <p>Besides parameter values, the pattern that emerges from a Turing system is also strongly influenced by initial conditions and the size and shape of the domain where reactions and diffusion happen.</p>
 <p>In the script <code>02__digits_growingsquare_PD.py</code> we added tissue growth in the proximo-distal (body to limb) direction. Growth is controlled by a growth rate <code>vi</code>.</p>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.4 (Biology)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Exercise 3.3 (Biology)</strong></span> &nbsp;</p>
 <ul>
 <li>Study the code to understand what it does.<br>
 </li>
@@ -665,19 +647,19 @@ Figure&nbsp;3.2: Scheme of the BSW model
 </div>
 <hr>
 </section>
-<section id="patterning-along-two-growth-axes" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="patterning-along-two-growth-axes"><span class="header-section-number">3.5</span> Patterning along two growth axes</h2>
+<section id="patterning-along-two-growth-axes" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="patterning-along-two-growth-axes"><span class="header-section-number">3.4</span> Patterning along two growth axes</h2>
 <p>In reality, the limb bud grows in both the proximo-distal and anterior-posterior direction. In the script <code>03__digits_growingsquare.py</code> this is implemented with growth rates <code>vi</code> for proximo-distal growth and <code>vj</code> for anterior-posterior growth.</p>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.5 (Biology)</strong></span> Play with the relative size of these growth rates and study what happens. Compare the order of appearance of stripes to the experimental data in the paper (see Figure 3F in the Raspopovic paper <span class="citation" data-cites="raspopovic2014digit">Raspopovic et al. (<a href="references.html#ref-raspopovic2014digit" role="doc-biblioref">2014</a>)</span>).</p>
+<p><span class="theorem-title"><strong>Exercise 3.4 (Biology)</strong></span> Play with the relative size of these growth rates and study what happens. Compare the order of appearance of stripes to the experimental data in the paper (see Figure 3F in the Raspopovic paper <span class="citation" data-cites="raspopovic2014digit">Raspopovic et al. (<a href="references.html#ref-raspopovic2014digit" role="doc-biblioref">2014</a>)</span>).</p>
 </div>
 <hr>
 </section>
-<section id="making-a-virtual-tissue-grow" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="making-a-virtual-tissue-grow"><span class="header-section-number">3.6</span> Making a virtual tissue grow</h2>
+<section id="making-a-virtual-tissue-grow" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="making-a-virtual-tissue-grow"><span class="header-section-number">3.5</span> Making a virtual tissue grow</h2>
 <p>Think about how tissue growth is implemented in the script <code>03__digits_growingsquare.py</code>.</p>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.6 (Algorithmic and conceptual thinking)</strong></span> What is the default value of the newly added tissue when it grows? Is the concentration elsewhere in the tissue changed?</p>
+<p><span class="theorem-title"><strong>Exercise 3.5 (Algorithmic and conceptual thinking)</strong></span> What is the default value of the newly added tissue when it grows? Is the concentration elsewhere in the tissue changed?</p>
 <p>Do you think this approach is reasonable to model biological growth of a tissue? Explain why/why not.</p>
 <p><em>Hint:</em> Think about it from the perspective of a growing cell containing a number of molecules “X”.<br>
 If the cell increases in volume and does not produce/degrade X, what happens to the concentration of X?<br>
@@ -690,16 +672,16 @@ How would the situation change if X is constantly produced and degraded?</p>
 </div>
 <hr>
 </section>
-<section id="spatial-modulation-of-parameters-k4-and-k7" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="spatial-modulation-of-parameters-k4-and-k7"><span class="header-section-number">3.7</span> Spatial modulation of parameters k4 and k7</h2>
+<section id="spatial-modulation-of-parameters-k4-and-k7" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="spatial-modulation-of-parameters-k4-and-k7"><span class="header-section-number">3.6</span> Spatial modulation of parameters k4 and k7</h2>
 <p>Let us now ignore growth and its role on orienting stripes for a while and explore once again the influence of parameters on the patterns. In reality, digits are patterned further apart at the distal end than at the proximal end, where they need to converge on a hand and wrist. This implies that the wavelength of the Turing pattern should not be constant. In a previous question you probably found that the <code>k7</code> and <code>k4</code> parameters impact the wavelength of the Turing pattern. The authors speculate that the FGF and Hox gene gradients observed in the limb bud exert an effect on the Sox9-BMP-Wnt patterning module through these parameters.</p>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.7 (Biology)</strong></span> The script <code>05__digits_squarek4k7gradient.py</code> allows you to implement exponential gradients of <code>k4</code> and <code>k7</code> across the tissue. You can set the minimum and maximum values, axis (x=horizontal, y=vertical) and direction (0=decreasing, 1=increasing). Look in the supplement of the Raspopovic paper, page 48 Fig 2C (<span class="citation" data-cites="raspopovic2014digit">Raspopovic et al. (<a href="references.html#ref-raspopovic2014digit" role="doc-biblioref">2014</a>)</span>), left for the estimated change of <code>k4</code> and <code>k7</code> across the tissue and try to reproduce (not exactly but similarly) Figure 2C, right side, by playing with the parameters affecting the <code>k4</code> and <code>k7</code> gradients. Describe along which axis, in which direction and to what extent <code>k4</code> and <code>k7</code> are changing. Estimate the change in Turing pattern wavelength this results in.</p>
+<p><span class="theorem-title"><strong>Exercise 3.6 (Biology)</strong></span> The script <code>05__digits_squarek4k7gradient.py</code> allows you to implement exponential gradients of <code>k4</code> and <code>k7</code> across the tissue. You can set the minimum and maximum values, axis (x=horizontal, y=vertical) and direction (0=decreasing, 1=increasing). Look in the supplement of the Raspopovic paper, page 48 Fig 2C (<span class="citation" data-cites="raspopovic2014digit">Raspopovic et al. (<a href="references.html#ref-raspopovic2014digit" role="doc-biblioref">2014</a>)</span>), left for the estimated change of <code>k4</code> and <code>k7</code> across the tissue and try to reproduce (not exactly but similarly) Figure 2C, right side, by playing with the parameters affecting the <code>k4</code> and <code>k7</code> gradients. Describe along which axis, in which direction and to what extent <code>k4</code> and <code>k7</code> are changing. Estimate the change in Turing pattern wavelength this results in.</p>
 </div>
 <hr>
 </section>
-<section id="hoxd13-and-fgf" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="hoxd13-and-fgf"><span class="header-section-number">3.8</span> Hoxd13 and FGF</h2>
+<section id="hoxd13-and-fgf" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="hoxd13-and-fgf"><span class="header-section-number">3.7</span> Hoxd13 and FGF</h2>
 <p>As mentioned above, the biological factors thought to underly the variation in the <code>k4</code> and <code>k7</code> parameters are Hoxd13 and FGF. Hoxd13 is highly expressed in the distal domain of the paddle and not expressed elsewhere, and this expression domain is growing as the paddle grows. FGF is expressed from the distal edge of the paddle and spreads through diffusion. For an illustration see Fig S8A of the supplement of the Raspopovic paper (page 10 <span class="citation" data-cites="raspopovic2014digit">Raspopovic et al. (<a href="references.html#ref-raspopovic2014digit" role="doc-biblioref">2014</a>)</span>). Experimental data furthermore suggest that Hoxd13 and FGF together affect <code>k4</code> and <code>k7</code>, which the authors decided to model using the following equations:</p>
 <p><span class="math display">\[
 k4^* = k4 - k_{HF_{bmp}} * fgf(i,j) * hox(i,j)
@@ -708,15 +690,15 @@ k4^* = k4 - k_{HF_{bmp}} * fgf(i,j) * hox(i,j)
 k7^* = k7 + k_{HF_{wnt}} * fgf(i,j) * hox(i,j)
 \]</span></p>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.8 (Algorithmic and biological thinking)</strong></span> The script <code>06__digits_squarehoxdfgf.py</code> implements how <code>k4</code> and <code>k7</code> are a function of local FGF and Hox values, but does not yet include Hox and FGF spatial patterns and how these develop over time. Adjust the code to incorporate the observed Hoxd13 and FGF patterns and study how the digit patterns compare to what you found under question 7. Note that arrays for <code>hox</code> and <code>fgf</code> are included, and decay and diffusion values for <code>fgf</code> are provided already in the code. Also note that <code>hox</code> and <code>fgf</code> each have a maximum value of 1.</p>
+<p><span class="theorem-title"><strong>Exercise 3.7 (Algorithmic and biological thinking)</strong></span> The script <code>06__digits_squarehoxdfgf.py</code> implements how <code>k4</code> and <code>k7</code> are a function of local FGF and Hox values, but does not yet include Hox and FGF spatial patterns and how these develop over time. Adjust the code to incorporate the observed Hoxd13 and FGF patterns and study how the digit patterns compare to what you found under question 7. Note that arrays for <code>hox</code> and <code>fgf</code> are included, and decay and diffusion values for <code>fgf</code> are provided already in the code. Also note that <code>hox</code> and <code>fgf</code> each have a maximum value of 1.</p>
 </div>
 <hr>
 </section>
-<section id="shape-makes-the-tissue" class="level2" data-number="3.9">
-<h2 data-number="3.9" class="anchored" data-anchor-id="shape-makes-the-tissue"><span class="header-section-number">3.9</span> Shape makes the tissue</h2>
+<section id="shape-makes-the-tissue" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="shape-makes-the-tissue"><span class="header-section-number">3.8</span> Shape makes the tissue</h2>
 <p>Having studied the effects of growth and genetic factors modulating the Turing pattern now it is time for the final step. So far, we’ve approximated the limb bud very crudely with a rectangle. As you probably noticed in your parameter exploration, the tissue boundary can bias stripe orientation. Therefore it is interesting to study the interplay between the shape of the “paddle” or limb bud in which the digits develop and how it grows with the temporal development of the hox and fgf patterns. In the script <code>07__digits_growingpaddle.py</code> we implemented two different tissue geometries: An ellipse and a “paddle” that imitates the shape of the limb bud. Note that to implement Hox and FGF domains on a complex growing shape, quite a bit of complex code involving masks describing the tissue domain and angles to control the Hox and FGF domains was needed. At first, we are going to ignore these technical details.</p>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.9 (Biology)</strong></span> Switching between geometries is easily done by changing the value of the parameter <code>geometry</code> on line 78 of the script. Start with the “ellipse” geometry. What do you observe with regards to the FGF gradient? What consequences does this have? Why would this be “a smart thing to do”?</p>
+<p><span class="theorem-title"><strong>Exercise 3.8 (Biology)</strong></span> Switching between geometries is easily done by changing the value of the parameter <code>geometry</code> on line 78 of the script. Start with the “ellipse” geometry. What do you observe with regards to the FGF gradient? What consequences does this have? Why would this be “a smart thing to do”?</p>
 <p>Play around with <code>vi/vj</code> and <code>Lx0</code> to investigate the effect of ellipse shape and development over time on the number, shape and robustness of digits that form.</p>
 <p>Now switch to the paddle geometry. Observe the patterns that emerge and compare these to the simulated and experimentally observed patterns in Figure 3E and 3F of the Raspopovic article (<span class="citation" data-cites="raspopovic2014digit">Raspopovic et al. (<a href="references.html#ref-raspopovic2014digit" role="doc-biblioref">2014</a>)</span>). According to you what does and what doesn’t the model explain well?</p>
 <p>To implement non-square geometries, the script uses “masks”. Study how these masks are created in the functions <code>create_ellipse_mask</code> and <code>create_tissue_mask</code>.</p>
@@ -725,10 +707,10 @@ k7^* = k7 + k_{HF_{wnt}} * fgf(i,j) * hox(i,j)
 </div>
 <hr>
 </section>
-<section id="master-students-exercise" class="level2" data-number="3.10">
-<h2 data-number="3.10" class="anchored" data-anchor-id="master-students-exercise"><span class="header-section-number">3.10</span> Master students exercise</h2>
+<section id="master-students-exercise" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="master-students-exercise"><span class="header-section-number">3.9</span> Master students exercise</h2>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3.10 (Poly and oligodactyly)</strong></span> Above we played with ellipse size and growth rates, however in addition to mutations affecting tissue size and growth, also mutations in genes affecting the Hox and FGF morphogens may occur. Play with parameters that determine Hox and FGF expression zones on the paddle geometry. Which parameter changes lead to the formation of supernumerary fingers (polydactyly)? Which parameters lead to too few fingers (oligodactyly)?</p>
+<p><span class="theorem-title"><strong>Exercise 3.9 (Poly and oligodactyly)</strong></span> Above we played with ellipse size and growth rates, however in addition to mutations affecting tissue size and growth, also mutations in genes affecting the Hox and FGF morphogens may occur. Play with parameters that determine Hox and FGF expression zones on the paddle geometry. Which parameter changes lead to the formation of supernumerary fingers (polydactyly)? Which parameters lead to too few fingers (oligodactyly)?</p>
 <p><em>Hint:</em> The following supplementary scripts will be helpful to understand how the FGF and Hox domains were coded:</p>
 <ul>
 <li><code>supp_i__ellipse_slice.py</code> visualizes the usefulness of masks based on the example of selecting a slice of an ellipse;</li>

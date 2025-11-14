@@ -98,24 +98,6 @@ simulation (put `divisiontime` to 0.5 instead of 1).
   > cells goes to zero (no fresh influx from newly divided cells still having FGF).
   
 :::
-  
-:::{#exr-test}
-## Conceptual thinking
-
-When would this type of gradient formation
-    be more applicable than the earlier studied production, diffusion,
-    decay type of gradient formation? Compare how this model is built-up
-    to a production/diffusion/decay gradient formation model.
-:::
-
-::: {.content-visible when-meta="params.show_answers"}
-
-  > **Answer** Earlier gradient model: gradient length increases and slope 
-  > decreases with faster diffusion and slower degradation. Here gradient 
-  > driven by combination of growth/division and degradation. This new mechanism
-  > can only work if growth and patterning are occurring simultaneously, 
-  > not if growth precedes patterning..
-:::
 
 :::{#exr-test}
 ## Mathematics
@@ -195,11 +177,14 @@ Next, we will combine the clock and FGF wavefront into a single
   1.  Each cell has its own clock. What clock states is the tissue
         initialized with? And what clock states do newly divided
         cells get?
-    2.  The FGF wavefront affects $\tau$ : what function is used for
+        
+  2.  The FGF wavefront affects $\tau$ : what function is used for
         that? What are your expectations for the effect of the FGF
         wavefront on the cells' clocks?
-    3.  Does growth affect the clock state?
-    4.  What is your opinion on the assumptions discussed in the three
+        
+  3.  Does growth affect the clock state?
+    
+  4.  What is your opinion on the assumptions discussed in the three
         questions?
 :::
 

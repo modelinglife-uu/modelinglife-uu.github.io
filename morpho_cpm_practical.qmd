@@ -232,7 +232,7 @@ Thus, we write:
 
 :::{#exr-non}
 
-## Biology - Imposing cell connectivity**
+## Biology - Imposing cell connectivity
 In the previous simulations you ran, you may have noticed that cells sometimes break up into
 disjointed fragments. There are two alternative ways to prevent this:
 1.	Add a new Hamiltonian term that penalizes copy attempts that would break up the cell.
@@ -257,7 +257,7 @@ Try out the simulation!
 
 :::{#exr-non}
 
-## Biology - Exploring differential adhesion and cell sorting**
+## Biology - Exploring differential adhesion and cell sorting
 
 Now let’s explore how changing adhesion affinities leads to different sorted cell configurations.
 To do that, you will need to run simulations for a longer time. To speed up computations, you will

@@ -675,7 +675,7 @@ div.csl-indent {
 </ul>
 </div>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 6.6 (Biology - Imposing cell connectivity**)</strong></span> In the previous simulations you ran, you may have noticed that cells sometimes break up into disjointed fragments. There are two alternative ways to prevent this: 1. Add a new Hamiltonian term that penalizes copy attempts that would break up the cell. 2. Modify the update algorithm to always reject copies that would break cells apart.</p>
+<p><span class="theorem-title"><strong>Exercise 6.6 (Biology - Imposing cell connectivity)</strong></span> In the previous simulations you ran, you may have noticed that cells sometimes break up into disjointed fragments. There are two alternative ways to prevent this: 1. Add a new Hamiltonian term that penalizes copy attempts that would break up the cell. 2. Modify the update algorithm to always reject copies that would break cells apart.</p>
 <p>Script <code>04_cpm_connectivity.py</code> implements the second option using a flood fill algorithm to count the number of contiguous pixels of the non-medium target cell supposing that a copy succeeded.</p>
 <p>Try out the simulation!</p>
 <ul>
@@ -684,7 +684,7 @@ div.csl-indent {
 </ul>
 </div>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 6.7 (Biology - Exploring differential adhesion and cell sorting**)</strong></span> Now let’s explore how changing adhesion affinities leads to different sorted cell configurations. To do that, you will need to run simulations for a longer time. To speed up computations, you will be using an optimized package (many scripts working together), which is contained in the folder <code>“cellularPotts”</code>. To make visualizations super-fast, this package uses the <code>PyQt5</code> module, which should be installed by default with your Anaconda distribution.</p>
+<p><span class="theorem-title"><strong>Exercise 6.7 (Biology - Exploring differential adhesion and cell sorting)</strong></span> Now let’s explore how changing adhesion affinities leads to different sorted cell configurations. To do that, you will need to run simulations for a longer time. To speed up computations, you will be using an optimized package (many scripts working together), which is contained in the folder <code>“cellularPotts”</code>. To make visualizations super-fast, this package uses the <code>PyQt5</code> module, which should be installed by default with your Anaconda distribution.</p>
 <p><em>Note: If for some reason you cannot get <code>PyQt5</code> to work, there is an alternative package that uses matplotlib <code>“cellularPotts_MPL”</code>. However, this runs much slower.</em></p>
 <p>To launch the simulation, run the <code>main.py</code> file in the <code>cellularPotts</code> folder. You can change the parameters by adjusting values in the <code>parameters.py</code> file.</p>
 <p>Adjust the values of the adhesion table for the two cell types:</p>

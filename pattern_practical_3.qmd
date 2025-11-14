@@ -263,7 +263,7 @@ memorization/stabilization mechanism is also essential to convert oscillations
 to stripes. Add a memorization mechanism to the model to achieve this. *Hint*: Make 
 use of an extra ‘memory’ molecule $M$ in each cell and perform its updating inside 
 the function `run_clocks`. To see what you are doing, visualize the spatial pattern 
-of $M$` over time following the same procedure as for visualizing the `fgf` and $p$ 
+of $M$ over time following the same procedure as for visualizing the `fgf` and $p$ 
 values. Think about where, when and what should be memorized to design how $M$ 
 is regulated and what $M$ itself affects and take a stepwise approach.
 

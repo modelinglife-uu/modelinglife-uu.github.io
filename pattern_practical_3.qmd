@@ -70,7 +70,7 @@ tutorial](https://www.datacamp.com/tutorial/python-oop-tutorial)
 In practical 1 we saw how gradients can be created through local 
 production, diffusion and decay. However, other mechanisms for 
 gradient formation are possible, such as cell lineage transport. 
-Here we work with a model for the FGF gradient (`fgfgradientfromgrowth.py`)
+Here we work with a model for the FGF gradient (`01-fgfgradientfromgrowth.py`)
 where only the rightmost/posterior cell produces FGF and grows, and 
 in which cells upon division inherit this FGF from their mother cell. 
 First study the code to see how it uses Classes and see what happens. 
@@ -121,7 +121,7 @@ When would this type of gradient formation
 ## Mathematics
 
 Let us now move to the other half of the clock and
-    wavefront model, the clock part (`clock.py`), in which we implemented
+    wavefront model, the clock part (`02_clock.py`), in which we implemented
     one of the earliest models for the somitogenesis oscillator from
     [Lewis (2003)](https://doi.org/10.1016/S0960-9822(03)00534-7) which
     models a gene that codes for a mRNA ($m$) that encodes a protein ($p$)
@@ -157,10 +157,10 @@ Play with the parameters of the model. How does the delay
 :::{#exr-test}
 ## Algorithmic thinking
 
-In the file `rolling_clock.py`, there is a
+In the file `03_rolling_clock.py`, there is a
     different implementation of the clock. Compare the two files and
     find out how they differ. What benefits for studying the model does
-    `clock.py` have over `rolling_clock.py` and vice versa? Ignore the added
+    `02_clock.py` have over `03_rolling_clock.py` and vice versa? Ignore the added
     functions `__copy__` and `set_tau` in this comparison. Some
     differences become clearer when you run the code too.
 :::
@@ -189,7 +189,7 @@ Next, we will combine the clock and FGF wavefront into a single
     model. 
 
 **Read and interpret existing code:** Read the code of
-    `clockplusfgf.py` and try to understand the assumptions from this
+    `04_clockplusfgf.py` and try to understand the assumptions from this
     model implementation by answering the following questions:
 
   1.  Each cell has its own clock. What clock states is the tissue

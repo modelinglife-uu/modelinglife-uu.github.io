@@ -212,7 +212,7 @@ Next, we will combine the clock and FGF wavefront into a single
    > 4. Initialization is somewhat arbitrary, inheritance from mother cells is 
    > logical although in reality it is of course not perfect but noisy,  FGF 
    > effect is also reasonable to get the observed slowing and waves, but it 
-   > would be more logical for clock state like fgf to also be diluted if cells 
+   > would be more logical for clock state like FGF to also be diluted if cells 
    > grow their volume
 :::
 
@@ -220,7 +220,7 @@ Next, we will combine the clock and FGF wavefront into a single
 
 ## Biology
 
-Describe how the model behaves and why. Do we get stable somites?
+Describe how the model behaves and why. Reverse the effect of FGF and see how that affects the patterning? Do we get stable somites?
 :::
 
 ::: {.content-visible when-meta="params.show_answers"}

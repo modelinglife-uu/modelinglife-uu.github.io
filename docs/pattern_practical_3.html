@@ -625,28 +625,15 @@ window.Quarto = {
 <div id="exr-test" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.1 (Biology - An alternative gradient forming mechanism)</strong></span> In practical 1 we saw how gradients can be created through local production, diffusion and decay. However, other mechanisms for gradient formation are possible, such as cell lineage transport. Here we work with a model for the FGF gradient (<code>01-fgfgradientfromgrowth.py</code>) where only the rightmost/posterior cell produces FGF and grows, and in which cells upon division inherit this FGF from their mother cell. First study the code to see how it uses Classes and see what happens. Next, play with the model by varying the decay rate of FGF and the division rate of the cells. How does this affect the gradient? What happens if divisions are only allowed during the first half of the simulation (put <code>divisiontime</code> to 0.5 instead of 1).</p>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong> If growth rate goes up cell volumes increase faster, causing more dilution of FGF and hence a lower maximum of the gradient as due to the stable protein quite some time is needed to compensate for this decrease by more production, at the same time the gradient is less steep as cell division follow up faster and hence less time has passed and less day has taken place.</p>
-<p>If decay rate goes up, maximum goes down but the gradient become steeper and shorter as for same time between divisions more decay takes place. If divisions stop halfway the simulation FGF in last cell goes up (no longer any loss due to growth-induced dilution) and FGF in all other cells goes to zero (no fresh influx from newly divided cells still having FGF).</p>
-</blockquote>
 <div id="exr-test" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.2 (Mathematics)</strong></span> Let us now move to the other half of the clock and wavefront model, the clock part (<code>02_clock.py</code>), in which we implemented one of the earliest models for the somitogenesis oscillator from <a href="https://doi.org/10.1016/S0960-9822(03)00534-7">Lewis (2003)</a> which models a gene that codes for a mRNA (<span class="math inline">\(m\)</span>) that encodes a protein (<span class="math inline">\(p\)</span>) that acts as a repressive transcription factor of this same gene. In class we discussed how for oscillations negative feedbacks, delays and non-linearity are important. Examine the code to find the differential equations governing this model and determine the negative feedback, delay and non-linearities in them.</p>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong> Non-linearity is in saturation function with power n, negative feedback is because affects own expression negatively, delay is here modeled explicitly through a special delay type differential equation</p>
-</blockquote>
 <div id="exr-test" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.3 (Biology)</strong></span> Play with the parameters of the model. How does the delay (<span class="math inline">\(\tau\)</span>) affect oscillations?</p>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong> Larger value of <span class="math inline">\(\tau\)</span>=delay results in a longer period (lower frequency) and higher amplitude. Remember how in class we discussed how removing introns reduced delays and affected oscillator period.</p>
-</blockquote>
 <div id="exr-test" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.4 (Algorithmic thinking)</strong></span> In the file <code>03_rolling_clock.py</code>, there is a different implementation of the clock. Compare the two files and find out how they differ. What benefits for studying the model does <code>02_clock.py</code> have over <code>03_rolling_clock.py</code> and vice versa? Ignore the added functions <code>__copy__</code> and <code>set_tau</code> in this comparison. Some differences become clearer when you run the code too.</p>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong> Working with delay functions implies that you need the value of a variable not on the current time but on time-<span class="math inline">\(\tau\)</span>. In the previous model we simply memorized the entire history of both variables. Here instead we only store the variable state for the length of the time delay <span class="math inline">\(\tau\)</span>. This saves memory and hence runtime. This will become especially important when simulating a larger number of individual cells each having their own clocks. In the plotting we only plotted stored values, hence you only see what happened between current_time-<span class="math inline">\(\tau\)</span> and current_time instead of what happened from start of simulation till current time. Of course if you want to dynamically change <span class="math inline">\(\tau\)</span> you need to make sure you store values over an interval corresponding to the largest possible value of <span class="math inline">\(\tau\)</span> and need to know this beforehand.</p>
-</blockquote>
 <div id="exr-test" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.5</strong></span> Next, we will combine the clock and FGF wavefront into a single model.</p>
 <p><strong>Read and interpret existing code:</strong> Read the code of <code>04_clockplusfgf.py</code> and try to understand the assumptions from this model implementation by answering the following questions:</p>
@@ -657,21 +644,9 @@ window.Quarto = {
 <li><p>What is your opinion on the assumptions discussed in the three questions?</p></li>
 </ol>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong></p>
-<ol type="1">
-<li><p>Going to code rolling_clock.py we see that clocks are initialized with the <strong>init</strong> function of the Class Clock, which gets as arguments <span class="math inline">\(m0\)</span> and <span class="math inline">\(p0\)</span>, this initialization function is called when in Class <code>Cell</code>, in its respective <code>__init__</code> function <code>self.clock=Clock(..)</code> is called. It uses default values of <span class="math inline">\(m=0\)</span> and <span class="math inline">\(p=0\)</span> to pass to the <code>Clock</code>. (In turn, the initialization function of Class <code>Cell</code> is called from the initialize_regular_tissue function of Class <code>Tissue</code> when the first cell is created). Newly divided cells inherit clock state and and FGF value from mother cell.</p></li>
-<li><p>The function is: <span class="math display">\[\tau_\text{cell}=\tau_\text{model}(1+0.5\frac{100-\text{FGF}\_\text{cell}}{100}),\]</span> So if localfgf=max=100, <span class="math inline">\(\tau{local}\)</span>=<span class="math inline">\(\tau{global}\)</span>, and if localfgf=min=0 <span class="math inline">\(\tau{local}\)</span>=1.5*<span class="math inline">\(\tau{global}\)</span> So for lower FGF <span class="math inline">\(\tau\)</span> increases slowing down the oscillations.</p></li>
-<li><p>Not directly, growth of cells, leading to volume increase and potential dilution effects is not affecting m or p levels, however since it is affecting FGF levels it is indirectly affecting the clock.</p></li>
-<li><p>Initialization is somewhat arbitrary, inheritance from mother cells is logical although in reality it is of course not perfect but noisy, FGF effect is also reasonable to get the observed slowing and waves, but it would be more logical for clock state like FGF to also be diluted if cells grow their volume</p></li>
-</ol>
-</blockquote>
 <div id="exr-test" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.6 (Biology)</strong></span> Describe how the model behaves and why. Reverse the effect of FGF and see how that affects the patterning? Do we get stable somites?</p>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong> First there is a startup period where we have synchronized oscillations in the first formed cells that all still have high FGF. Then as the tissue grows and the FGF gradient forms we obtain waves of oscillations moving from right to left with increasing amplitudes. The right to left movement arises because oscillations are faster on the right than on the left, this difference in oscillation frequency arises from the impact of FGF on oscillator frequency. However, the oscillations do not become halted and transformed into a stable spatial pattern because there is no memory mechanism in place.</p>
-</blockquote>
 <div id="exr-test" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.7 (Biology &amp; Programming)</strong></span> What is still missing is a means to transform the temporal oscillations in the posterior of the tissue into a spatial pattern in the anterior. In the French Flag morphogen gradient lecture we discussed that memory mechanisms are important to stabilize spatial patterns once the start up signal that broke the symmetry and initialized patterning has gone. It turns out that such a memorization/stabilization mechanism is also essential to convert oscillations to stripes.</p>
 <ol type="1">
@@ -886,15 +861,6 @@ window.Quarto = {
 <li><p>So in addition to have memorization occur only below a certain <span class="math inline">\(FGF\)</span> value it should also occur above another, lower <span class="math inline">\(FGF\)</span> value, constraining it to occur in a limited temporal window that enables cells passing through there with a high <span class="math inline">\(p\)</span> state to induce a high <span class="math inline">\(M\)</span> state while cells passing through with a low <span class="math inline">\(p\)</span> state to not induce a high <span class="math inline">\(M\)</span> state. Implement this and see if you get stable somite formation. What would be another way of achieving this?</p></li>
 </ol>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong> See code <code>05_answers_clockplusfgf_memory.py</code></p>
-<ol type="1">
-<li><p>If initial values are low <span class="math inline">\(M\)</span> will stay low everywhere, if initial values are higher autoactivation starts working and <span class="math inline">\(M\)</span> will become high everywhere. So this does not work.</p></li>
-<li><p>Now, despite <span class="math inline">\(M\)</span> being linked to the clock and <span class="math inline">\(M\)</span> starting low, <span class="math inline">\(M\)</span> still becomes high everywhere as each cell eventually goes through a clock phase with <span class="math inline">\(p\)</span> high.</p></li>
-<li><p>Now <span class="math inline">\(M\)</span> stays low posteriorly where <span class="math inline">\(FGF\)</span> is still high, however as <span class="math inline">\(FGF\)</span> drops cells exiting that zone still oscillate, hence pass through all phases, so also the high <span class="math inline">\(p\)</span> one and hence anteriorly all cells get a high <span class="math inline">\(M\)</span> level.</p></li>
-<li><p>Thresholds should be relatively close to ensure stripes of low and high <span class="math inline">\(M\)</span> forming. Restricting only certain cells to have high <span class="math inline">\(M\)</span> can also be achieved by stopping oscillations after certain <span class="math inline">\(FGF\)</span> level.</p></li>
-</ol>
-</blockquote>
 <div id="exr-test" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.8 (Biology)</strong></span> Both zebrafish and mice are common model organisms, so we know a lot about the biological parameters of their somitogenesis. See the following list:</p>
 <table class="caption-top table">
@@ -966,28 +932,6 @@ window.Quarto = {
 <li>You can test the clock parameters separately with the <code>clock.py</code>/<code>rolling_clock.py</code> script. Don’t forget that FGF has an effect on <span class="math inline">\(\tau\)</span> !</li>
 </ul>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong> See codes <code>06_answers_clockplusfgf_memory_mouse.py</code> and <code>06_answers_clockplusfgf_memory_zebrafish.py</code>.</p>
-<p><strong>Zebrafish:</strong></p>
-<p>Totaltime: 18 hours for duration of somitogenesis + 10 hours startup phase.</p>
-<p>Cell width= 30-50 <span class="math inline">\(\mu\)</span> sized somite/5 cells per somite = 6-10 so 8</p>
-<p>Growthrate: 30 somites x 5 cells x 8<span class="math inline">\(\mu\)</span> / 18 hours = <span class="math inline">\(1200\)</span><span class="math inline">\(/18*3600\)</span>s</p>
-<p>For clock frequency:</p>
-<p><span class="math inline">\(\tau\)</span> times 0.25</p>
-<p>Fac = 6 (multiplies alpha, beta, mu, v)</p>
-<p>This gives 32/31 somites with on average 4.9 cells, so perfect.</p>
-<p><strong>Mouse:</strong></p>
-<p>Simply doing the computations would give you:</p>
-<p>Totaltime: 5 days for duration of somitogenesis + 15 hours startup phase</p>
-<p>Cell width = 120<span class="math inline">\(\mu\)</span> sized somite/5-11 cells = <span class="math inline">\(120/8=15\)</span></p>
-<p>Growthrate: 65 somites x 8 cells x 15<span class="math inline">\(\mu\)</span> / 5 days = <span class="math inline">\(7800/5* 24 *3600\)</span>s</p>
-<p>For clock frequency:</p>
-<p><span class="math inline">\(\tau\)</span> times 1.4-1.6 is sufficient (Fac=1 (multiplies alpha, beta, mu, v))</p>
-<p>Somehow this does not fully work:</p>
-<p>Too few cells (not <span class="math inline">\(65*8=520\)</span>) too short tissue (not <span class="math inline">\(65*8*15=7800\)</span>) and only 24 segments. First, remember <span class="math inline">\(\tau_{local}=(1+0.5 *(100-localfgf)/100))*\tau_{global}\)</span>. So <span class="math inline">\(\tau_{local}\)</span> max 1.5 times <span class="math inline">\(\tau_{global}\)</span> so the also increasing <span class="math inline">\(\tau_{global}\)</span> 1.4-1.6 times 1.5 makes it really slow. Indeed <span class="math inline">\(\tau\)</span> times 1.2 gives 31 segments, <span class="math inline">\(\tau\)</span> times 1 gives &gt; 36 segments, <span class="math inline">\(\tau\)</span> times 0.7 gives 49 segments</p>
-<p>Good to realize that the numbers in the table do not completely add up:</p>
-<p>If it takes 5 days =<span class="math inline">\(5*24=120\)</span> hours, and the period is 2-3 hours this would result in 40-60 segments but never 65. For a duration of 5.5 days and <span class="math inline">\(\tau\)</span> times 0.6 we get to 62 somites of size 9, so quite close.</p>
-</blockquote>
 <div id="exr-test" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.9 (Questions for master students)</strong></span> The model currently has a number of assumptions that we can question. Feel free to explore any of these further open questions and study how it effects the outcome of the model:</p>
 <ul>
@@ -997,9 +941,6 @@ window.Quarto = {
 <li>What if <span class="math inline">\(\tau\)</span> is unaffected by FGF: can we still get somites fixed in place?</li>
 </ul>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong> These are open questions and do not have a single correct answer. Feel free to discuss with us if you find something interesting or have an interesting answer.</p>
-</blockquote>
 </section>
 <section id="relevant-literature" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="relevant-literature"><span class="header-section-number">4.5</span> Relevant literature</h2>

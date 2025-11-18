@@ -65,6 +65,16 @@ plt.show()
 Paste this into a new script in Spyder and hit the 'play' icon (or press F5). Does
 the animation show up in a seperate window and is it animated? Good, you're ready
 to go! 
+
+## Installing VS code
+
+Instead of Spyder, you may want to use a nicer IDE. The most popular one is currently Visual Studio Code (VS Code). To install VS Code and connect it to your Anaconda3 python installation, do the following:
+
+1. Download and install VS code ([https://code.visualstudio.com/download](https://code.visualstudio.com/download))
+2. Open VS code and install the Python extension (search for 'Python' in the extensions tab on the left, and install the one with the blue check mark)
+3. Select the python interpreter that comes with Anaconda. You can do this by pressing `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac) to open the command palette, then type `Python: Select Interpreter` and choose the one that points to your Anaconda installation (it should have 'anaconda3' in the path).
+
+Now, you should be able to run all the code from the course via VS code as well! While Spyder is nice, it also is a little less stable than VS code, so if you run into issues, consider switching to VS code! :) 
     
 # Introduction to Python Programming
 

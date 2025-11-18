@@ -45,7 +45,7 @@ which is part of the object-oriented programming paradigm.
 Today, we are going to use classes for the different levels of our
 model: 1) tissue, 2) cell, 3) $m$ & $p$ clock and 4) the plotting. By using
 classes, we can separate things that happen on a tissue/cellular/clock
-scale, and seperate the model from the visualization of it. You will
+scale, and separate the model from the visualization of it. You will
 first work with 1 & 2 & 4, then 3 on its own and then combine all
 four yourself into one model.
 

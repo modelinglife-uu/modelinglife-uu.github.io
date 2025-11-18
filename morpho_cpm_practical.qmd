@@ -88,7 +88,21 @@ Study the code provided in the script ```01_cpm.py```. Then, answer the followin
 
 ::: {.content-visible when-meta="params.show_answers"}
 
-  > **Answer** TBD
+  > **Answer** Both the sigma and tau fields are defined in the function ```initialize```. This is also where the initial conditions for these fields are set.
+Different modes of initialization can be selected by changing the value of the variable ```init_mode``` that is passed in the dictionary of simulation parameters.
+  >
+  > The neighborhood of a grid site is defined in the function ```get_neighborhood```. This function specifies which neighboring sites will be considered for all calculations that involve neighboring sites.
+The type of neighborhood (e.g., Von Neumann or Moore) can be selected by changing the value of the variable ```neighborhood``` in the dictionary of simulation parameters.
+  >
+  > The Monte Carlo stepping procedure is defined in the function ```monte_carlo_step```. This function implements the core logic of the Monte Carlo algorithm, including selecting random sites, proposing changes, and accepting or rejecting those changes based on energy calculations.
+  >
+  >The definition and calculation of the energy function H is implemented in different functions: ```get_dH_adhesion``` and ```get_dH_volume``` calculate contributions of individual terms and are then summed together in the function ```calc_dH```, which is called by ```monte_carlo_step```.
+  >
+  >Running the code generates a plot with two subplots. The left one shows cells colored with a unique color according to their sigma value. The right subplot shows the tau field, where different cell types are colored differently according to their tau value.
+
+![Simulation Run](images/6.1__0_sim.png)
+*Figure:* Final state of a simulation run.
+
 
 :::
 
@@ -124,7 +138,13 @@ Compare the pseudo-code to the implementation in the script. Then answer the fol
 
 ::: {.content-visible when-meta="params.show_answers"}
 
-  > **Answer** TBD
+  > **Answer** The first Hamiltonian term corresponds to the function ```get_dH_adhesion``` and the second Hamiltonian term corresponds to the function ```get_dH_volume```. 
+The biological process calculated by ```get_dH_adhesion``` is the energy from cell-cell and cell-medium contacts. The energy of cell-cell contacts depends on the expression levels and the types of cell-cell adhesion molecules such as cadherins. The interfacial energy of cell-medium contacts depends on the expression levels and types of cell-matrix adhesion molecules such as integrins.
+  >
+  > The biological process calculated by ```get_dH_volume``` is the effect of a combination of internal pressure and cytoskeletal tension that maintains the cell's volume close to a homeostatic (target) volume.
+  >
+  > The first Hamiltonian term sums over neighbours of the selected target site.
+The second Hamiltonian term sums over lattice sites of the sigma values that correspond to the target and the source sites.
 
 :::
 
@@ -148,7 +168,45 @@ notes, so that it’s easier to compare the outputs.
 
 ::: {.content-visible when-meta="params.show_answers"}
 
-  > **Answer** TBD
+  > **Answer** 
+  >
+  > **Reference simulation with default parameters**
+Using default parameters, the simulation results in a small group of cells that adhere to each other and maintain their target volume.
+
+![Reference simulation using default parameters](images/6.3__0_default_sim.png)
+
+*Figure:* Simulation using default parameters.
+
+  >
+  > **Changing neighborhood from "4" to "8"**
+  > Increasing the neighborhood from "4" to "8" causes most cells to disappear. In most simulations there are no cells left at all.
+
+![Simulation with neighborhood changed to "8"](images/6.3__1_neighborhood_8.png)
+
+*Figure:* Simulation with neighborhood changed to "8"
+
+  > **Changing neighborhood from "4" to "8" and increasing “volume_weight” from [1, 1] to [2, 1]**
+  > Again many cells disappear. The cells that remain tend to be of tau type 1 (corresponding to the red color).
+
+![Simulation with neighborhood changed to "8"](images/6.3__2_neighborhood_8_volumeweight_2-1.png)
+
+*Figure:* Simulation with neighborhood changed to "8" and volume weight changed to [2, 1].
+
+
+  > **Changing neighborhood from "4" to "8" and initialization mode from "random_pixel" to "square_grid"**
+  > 
+  > With these changes, the cells are more likely to remain present throughout the simulation, regardless of their type.
+
+![Simulation with neighborhood changed to "8" and initialization mode changed to "square_grid"](images/6.3__3_neighborhood_8_initmode_squaregrid.png)
+
+  > **Explanation of the observed effects**
+  >
+  > Changing the neighborhood from "4" to "8" increases the number of neighboring sites considered for the first term (the adhesion energy) of the Hamiltonian energy calculation, which sums over the neighbors of the target site. This can lead to a higher likelihood of unfavorable interactions, causing cells to disappear if they start from a 1-pixel size, especially since adhesion to the medium is costly according to the default parameter set.
+  > 
+  > Changing the volume weight for tau type 1 cells from 1 to 2 increases the penalty for deviating from the target volume for these cells. This increases the contribution of the second term (the volume energy) of the Hamiltonian energy calculation. Thus, it makes it energetically less favorable for them to be copied into when they are small (1-pixel sized), leading to a *lower* chance of disappearance. In other words, the second term is now offsetting the effect of the first term more strongly for cells of tau type 1.
+  > 
+  > In the "random_pixel" mode, cells start as single pixels scattered randomly, making them highly susceptible to disappearance due to unfavorable cell-medium interactions. In the "square_grid" initialization mode, cells start off as a 9-pixel square in relative close proximity to other cells. With a few lucky copy attempts, they can get in contact with other cells, which has a more favorable adhesion energy compared to being in contact with the medium. This and the fact that they start out with a larger area, prevents cells from shrinking away immediately.
+
 
 :::
 
@@ -184,7 +242,51 @@ Explain: Why does the edgelist algorithm reduce computation time? In which situa
 
 ::: {.content-visible when-meta="params.show_answers"}
 
-  > **Answer** TBD
+  > **Answer** Each Monte Carlo steps consists of 2500 copy attempts. This is equal to the number of lattice sites in the 50x50 grid.
+  > 
+  > ### Script 01_cpm.py
+For the sake of simplicity, I will pick the last 5 Monte Carlo steps across 3 simulations to calculate the averages. Note however that the proportion of accepted copy attempts varies over time, and is particularly quite different at the beginning of the simulation.
+
+|        | sim 1 | sim 2 | sim 3 |
+|--------|-------|-------|-------| 
+|MCS 96  | 92    | 62    | 74	 |
+|MCS 97  | 97    | 93    | 75    |
+|MCS 98  | 69    | 74    | 54    |
+|MCS 99  | 94    | 99    | 73    |
+|MCS100  | 74    | 77    | 86    |
+|Average | 85.2  | 81    | 72.4  |
+
+  > The average accepted copy attempts is 79.5. This corresponds to an acceptance proportion of 3.18%
+
+  >
+  > In terms of runtime, on my machine the simulations took 22.99 seconds, 18.67 seconds, and 18.54 seconds. On average, this makes 20.1 seconds per simulation.
+
+
+  > ### Script 02_cpm_edgelist.py
+
+  > Again, I will pick the last 5 Monte Carlo steps across 3 simulations to calculate the averages.
+
+|        | sim 1 | sim 2 | sim 3 |
+|--------|-------|-------|-------| 
+|MCS 96  | 275   | 266   | 245	 |
+|MCS 97  | 273   | 258   | 257   |
+|MCS 98  | 280   | 261   | 247   |
+|MCS 99  | 281   | 252   | 246   |
+|MCS100  | 277   | 246   | 252   |
+|Average | 277.2 | 256.6 | 249.4 |
+
+  > The average accepted copy attempts is 261.1. 
+  > 
+  > Note that calculating the acceptance proportion requires also noting down the number of total copy attempts in the respective Monte Carlo Step. Approximately 70% of copy attempts are accepted.
+  >
+  > In terms of runtime, on my machine the simulations took 15.33 seconds, 14.57 seconds, and 14.6 seconds. On average, this makes 14.8 seconds per simulation.
+
+  > ### Explanation of edge list performance improvement
+  > 
+  > In the standard implementation, many copy attempts are made on lattice sites that are completely surrounded by pixels of the same sigma value. These copy attempts will always be rejected as they would not change the configuration. By maintaining an edge list of pairs of neighboring pixels with unlike sigma value, the edge list implementation ensures that every copy attempt has the potential to change the configuration. This not only leads to a much higher acceptance rate, but also completely eliminates unproductive copy attempts. By avoiding wasting time with unproductive copy attempts, the edge list implementation achieves a significant performance improvement.
+  >
+  > Note that the edge list algorithm implemented here is based on the following publication:
+  > @de2024shapes
 
 :::
 
@@ -226,7 +328,55 @@ Thus, we write:
 
 ::: {.content-visible when-meta="params.show_answers"}
 
-  > **Answer** TBD
+  > **Answer** 
+  >
+  > ### Reference simulation with default parameters
+  >
+  > The default parameters in the script ```03_cpm_perimeter.py``` are set such that the cell type with tau = 2 (purple cells) have a higher homeostatic surface area (perimeter in 2D), while still having the same homeostatic volume as the cell type with tau = 1 (red cells). As a result, the purple cells have a ruffled appearance with long "protrusions" and even break apart into pieces, while the red cells stay more compact.
+
+![Simulation Run](images/6.5__0_default_sim.png)
+*Figure:* Final state of a simulation run using the default parameters.
+
+  > ### Changing "surface_weight" from [1, 1] to [1, 5]
+  >
+  > Increasing the surface_weight for tau type 2 cells from 1 to 5 increases the penalty for deviating from the homeostatic surface area for these cells. Since the surface term was already quite dominant for these cells, this change does not impact the final result much.
+
+![Simulation Run](images/6.5__1_sim.png)
+*Figure:* Final state of a simulation run.
+
+  > ### Changing "surface_weight" from [1, 1] to [1, 0.2]
+  > 
+  > Decreasing the surface_weight for tau type 2 cells from 1 to 0.2 decreases the penalty for deviating from the homeostatic surface area for these cells. As a result, these cells are now much more compact, but still show more protrusions than tau type 1 cells.
+
+![Simulation Run](images/6.5__2_sim.png)
+*Figure:* Final state of the simulation run.
+
+  > ### Changing "surface_weight" from [1, 1] to [5, 1]
+  >
+  > Increasing the surface_weight for tau type 1 cells from 1 to 5 increases the penalty for deviating from the homeostatic surface area for these cells. However, the cells hardly change their appearance compared to the default simulation. Probably, the homeostatic surface area is already quite close to the actual surface area, so increasing the weight does not have a big effect.
+
+![Simulation Run](images/6.5__3_sim.png)
+*Figure:* Final state of the simulation run.
+
+  > ### Changing "surface_weight" from [1, 1] to [5, 1] and "surface_ideal" from [20, 80] to [40, 80]
+  > 
+  > Now both the red and purple cells form ruffles. The ruffles of the red cells are less pronounced than those of the purple cells, since their homeostatic surface area is not quite as high as the purple cells'.
+
+![Simulation Run](images/6.5__4_sim.png)
+*Figure:* Final state of the simulation run.
+
+  > ### Changing "surface_ideal" from [20, 80] to [10, 10]
+  > The surface_weight was kept at the default value of [1, 1].
+Reducing the homeostatic surface area for both cell types to a low value of 10 causes both cell types to become very small and compact, with hardly any movement. Note also how the cells take on a square appearance. This is because of the 4-neighborhood that is used in the simulation, which favors straight edges aligned with the grid.
+
+![Simulation Run](images/6.5__5_sim.png)
+*Figure:* Final state of the simulation run.
+
+  > ### Why is the performance worse?
+  > 
+  > Even though script ```03_cpm_perimeter.py``` is based on ```02_cpm_edgelist.py``` and thus uses the efficient edge list implementation of the Monte Carlo algorithm, it runs quite a bit slower.
+The reason for this is that calculating the surface area of a cell involves checking the neighborhood of each pixel of the cell to see how many of its neighbors belong to a different cell (or to the medium). Even though this is only done for non-zero source and target site sigmas (i.e. at most two cells per copy attempt), there are hundreds of copy attempts each Monte Carlo Step, so the calculation time adds up quickly. This computational overhead leads to a slower overall simulation time.
+
 
 :::
 
@@ -251,7 +401,19 @@ Try out the simulation!
 
 ::: {.content-visible when-meta="params.show_answers"}
 
-  > **Answer** TBD
+  > **Answer** 
+  >
+  > ### Advantages & Disadvantages to the two implementations
+  > 
+  > Arguably, it should be possible for a cell to lose fragments. This is in fact frequently observed in cell culture. Physically, this happens when the forces exerted on parts of the cell are sufficient to rip apart the lipid membrane. As long as the "tear" is small enough, the membrane can reseal itself within a matter of milliseconds, so the cell can survive. This is also what allows us to experimentally microinject substances into cells (e.g. microinjections are routinely done in labs when manipulating fish embryos, *C. elegans*, or oocytes of mammals).
+Therefore, if one is aiming for physical realism, then it might be reasonable to enable cells to lose fragments. However, note that in the default CPM implementation, the fragments still "know" which cell they originally belonged to, since they keep their sigma value. A more realistic implementation would require adding additional logic to reassign the sigma value of fragments to new values, effectively creating new cells. This would however also require adding logic to prevent these cells from doing normal biological behavior, since fragments should not have a nucleus or other organelles.
+  > 
+  > The second option completely forbids fragmentation, and is computationally easier to implement, as there is no need to treat fragments in a special way. The fact that this approach ignores the physical reality may not really matter for most models. We are after all simplifying reality anyway, so as long as the model captures the essential biological behavior of interest, it should be fine.
+  > 
+  > ### Why is the performance worse?
+  > 
+  > Again there is a performance drop by adding a new feature. This is because checking for connectivity involves performing a flood-fill algorithm starting from one pixel of the cell and marking all connected pixels. This requires checking the neighborhood of each pixel of the cell, which becomes computationally expensive. Since this check needs to be performed for every copy attempt that involves a non-zero target sigma, the computational overhead accumulates quickly, leading to a slower overall simulation time.
+
 
 :::
 
@@ -287,7 +449,173 @@ cell type 3?
 
 ::: {.content-visible when-meta="params.show_answers"}
 
-  > **Answer** TBD
+  > **Answer** 
+  > ### Reference simulation with default parameters
+  > Note that the way the code of the CPM package is set up, the signs get flipped internally. Therefore, a more positive value implies stronger adhesion, and a more negative value implies repulsion.
+  
+```
+adhesion_table = np.array([
+    [     0,   0,    0], # adhesion medium - partner
+    [   -16,  -2,    0], # adhesion cell type 1 - partner
+    [   -16, -11,  -14], # adhesion cell type 2 - partner
+])
+```
+
+![Simulation Run](images/6.7__0_sim.png)
+*Figure:* Final state of the simulation run using default parameters.
+  >
+  > Cells create a sorted configuration with cell type 2 (magenta) enveloping cell type 1 (blue). Both cells have the same very negative adhesion energy to the medium, which means they try to minimize cell-medium contacts.Cell type 1 has a much stronger adhesion to itself than to cell type 2. Heterotypic adhesion (cell type 1 contacting cell type 2) is also energetically less favourable than cell type 1 sticking to itself. Therefore, cell type 1 clusters together to maximize self-interactions and minimize interactions with cell type 2 and the medium. For cell type 2, the adhesion to itself is actually slightly less favorable than adhesion to cell type 1. Thus, cell type 2 ends up surrounding cell type 1 to minimize contacts with the medium and maximizing contacts with cell type 1.
+
+  > 
+  > ### Setting all cell-cell adhesions equal to -5
+
+```
+adhesion_table = np.array([
+    [     0,   0,    0], # adhesion medium - partner
+    [   -16,  -5,    0], # adhesion cell type 1 - partner
+    [   -16,  -5,   -5], # adhesion cell type 2 - partner
+])
+ ```
+ 
+![Simulation Run](images/6.7__1_sim.png)
+*Figure:* Final state of the simulation.
+
+  > Setting all cell-cell interactions equal (but smaller than cell-medium interactions) leads to a mixed configuration. Both cell types try to minimize contacts with the medium, but since they have equal adhesion to each other, there is no driving force for sorting.
+
+  > ### Setting cell type 1 adhesion to itself very high (-2), and all other adhesions to -16
+
+```
+adhesion_table = np.array([
+    [     0,   0,    0], # adhesion medium - partner
+    [   -16,  -2,    0], # adhesion cell type 1 - partner
+    [   -16, -16,  -16], # adhesion cell type 2 - partner
+])
+ ```
+
+ ![Simulation Run](images/6.7__3_sim.png)
+*Figure:* Final state of the simulation.
+
+  > 
+  > Cell type 1 (blue) is strongly cohesive, and creates clusters. The clusters have a hard time moving through cell type 2 (magenta), since heterotypic adhesion is very unfavorable. As a result, cell type 1 clusters remain more or less where they started.
+Letting the simulation continue for longer will eventually result in cell type 1 clusters merging together, as this minimizes the total interfacial energy.
+  >
+  > ### Setting cell-cell affinities lower than cell-medium affinities
+
+```
+adhesion_table = np.array([
+    [     0,   0,    0], # adhesion medium - partner
+    [    -5, -10,    0], # adhesion cell type 1 - partner
+    [    -5, -10,  -10], # adhesion cell type 2 - partner
+])
+```
+
+![Simulation Run](images/6.7__4_sim.png)
+*Figure:* Final state of the simulation.
+
+```
+adhesion_table = np.array([
+    [    0,    0,    0], # adhesion medium - partner
+    [   -2,  -10,    0], # adhesion cell type 1 - partner
+    [   -2,  -10,  -10], # adhesion cell type 2 - partner
+])
+```
+
+![Simulation Run](images/6.7__8_sim.png)
+*Figure:* Final state of the simulation.
+
+  > Cells now take a highly ruffled appearance as they attempt to maximize cell-medium contacts and minimize cell-cell contacts.
+The stronger the cell-medium adhesion (i.e., the closer to zero the adhesion values get), the more likely it is that cells will individualize and avoid cell-cell contacts.
+
+  > 
+  > ### Making heterotypic affinity most favorable
+
+```
+adhesion_table = np.array([
+    [     0,   0,    0], # adhesion medium - partner
+    [   -16, -10,    0], # adhesion cell type 1 - partner
+    [   -16,  -2,  -10], # adhesion cell type 2 - partner
+])
+```
+
+![Simulation Run](images/6.7__5_sim.png)
+*Figure:* Final state of the simulation.
+
+  >
+  > Cells form a checkerboard-like pattern, maximizing heterotypic contacts and minimizing homotypic contacts as well as cell-medium contacts.
+
+  >
+  > ### Highly cohesive cells
+
+```
+adhesion_table = np.array([
+    [     0,   0,    0], # adhesion medium - partner
+    [   -16,  -2,    0], # adhesion cell type 1 - partner
+    [   -16, -15,   -2], # adhesion cell type 2 - partner
+])
+```
+
+![Simulation Run](images/6.7__6_sim.png)
+*Figure:* Final state of the simulation.
+
+  > Cells form outbulging clusters that attempt to separate.
+  >
+
+  > ### Very high cost to cell-medium contacts
+
+```
+adhesion_table = np.array([
+    [     0,   0,    0], # adhesion medium - partner
+    [   -66,  -2,    0], # adhesion cell type 1 - partner
+    [   -66, -15,   -2], # adhesion cell type 2 - partner
+])
+```
+
+![Simulation Run](images/6.7__7_sim.png)
+*Figure:* Final state of the simulation.
+
+  > Dispropportionally increasing one parameter makes copy attempts involving that parameter (in this case cell-medium adhesion) extremely improbable. This leads to lattice artifacts becoming more pronounced.
+
+  >
+  > ### Highly motile clusters
+
+```
+adhesion_table = np.array([
+    [    0,    0,    0], # adhesion medium - partner
+    [   -2,  -10,    0], # adhesion cell type 1 - partner
+    [   -2,  -10,   -2], # adhesion cell type 2 - partner
+])
+```
+
+![Simulation Run](images/6.7__9_sim.png)
+*Figure:* Final state of the simulation.
+
+  > Cells that are both highly adherent to each other and to the medium can form motile clusters that move through the medium while maintaining their integrity.
+  > 
+  > ## Adding a third cell type and concentric sorting
+  > 
+  > Adding a third cell type is pretty straightforward in this package, as the code is already set up to handle an arbitrary number of cell types. One simply needs to adjust the parameters accordingly, adding values for the third cell type in all the relevant parameter arrays.
+  > 
+  > The following is one example of an adhesion array that results in concentric sorting of three cell types:
+
+```
+adhesion_table = np.array([
+    [    0,    0,    0,   0], # adhesion medium - partner
+    [  -20,   -2,    0,   0], # adhesion cell type 1 - partner
+    [  -20,   -6,   -4,   0], # adhesion cell type 2 - partner
+    [  -10,  -12,   -7,  -5], # adhesion cell type 3 - partner
+])
+```
+
+![Simulation Run](images/6.7__3types_sim.png)
+*Figure:* Final state of the simulation.
+
+  > All other parameters (volume, surface) were kept equal for all three cell types. 
+  
+  > 
+  > The adhesion settings are such that cell type 1 (blue) has the strongest self-adhesion, followed by cell type 2 (magenta), and then cell type 3 (yellow). Heterotypic adhesion is less favorable than homotypic adhesion for all cell types, but cell type 1 prefers sticking to cell type 2, while cell type 2 prefers sticking to cell type 3. Cell type 3 has a pretty favourable interaction with the medium, so cells tend to flatten and envelop the entire aggregate.
+The differences in adhesion energies between cell types should not be too large, otherwise cell motility will be impaired, which makes sorting slower or downright impossible as cells get "frozen" in a local energy minimum configuration.
+  > 
+  > Note that other solutions are possible, especially when also altering other parameters such as volume and surface weights and their respective target values.
 
 :::
 

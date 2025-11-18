@@ -8,7 +8,9 @@ instructors via email at <a href="mailto:modelinglife@uu.nl">Modeling Life email
 
 
 
-![**Teachers:** Kirsten ten Tusscher  [K.H.W.J.tenTusscher@uu.nl](mailto:K.H.W.J.tenTusscher@uu.nl), Erika Tsingos [e.tsingos@uu.nl](mailto:e.tsingos@uu.nl), Monica Garcia Gomez [m.l.garciagomez@uu.nl](mailto:m.l.garciagomez@uu.nl), Bram van Dijk [b.vandijk@uu.nl](mailto:b.vandijk@uu.nl).](images/teachers.png){width=50%}
+![**Teachers:** Kirsten ten Tusscher  [K.H.W.J.tenTusscher@uu.nl](mailto:K.H.W.J.tenTusscher@uu.nl), Erika Tsingos [e.tsingos@uu.nl](mailto:e.tsingos@uu.nl), Monica Garcia Gomez [m.l.garciagomez@uu.nl](mailto:m.l.garciagomez@uu.nl), Bram van Dijk [b.vandijk@uu.nl](mailto:b.vandijk@uu.nl).](images/teachers.png){width=50%} 
+
+This is a test.
 
 We are part of the [Theoretical Biology group of Utrecht University ](https://tbb.bio.uu.nl/aboutus.html)).
 

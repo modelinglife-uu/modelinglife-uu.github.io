@@ -293,7 +293,10 @@ each case. What happens and why? What does an asynchronous update do?
 
 :::{.content-visible when-meta="params.show_answers"}
 
-  > **Answer** The asynchronous updating function introduces a probability of update (95%) to each variable in 
+  > **Answer** The synchronous approach updates all genes every timestep, which may not be realistic as transcription,
+  > translation and protein degradation do not necessarily occur at the same rate for all modelled genes, and these
+  > processes are inherently noisy. Thus, asynchronously updating the variables is a good idea.
+  > The asynchronous updating function introduces a probability of update (95%) to each variable in 
   > the simulation. This means the variables might not be all updated each timestep. The initial condition 
   > converges to a cyclic attractor in the synchronous updating function (`rootNetwork()`), and to a fixed
   > point attractor in the asynchronous function (`rootNetworkAsynchronous()`). This means the cyclic 

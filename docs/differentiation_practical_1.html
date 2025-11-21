@@ -605,11 +605,11 @@ window.Quarto = {
 </section>
 <section id="regulatory-interactions" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="regulatory-interactions"><span class="header-section-number">8.2</span> Regulatory interactions</h2>
-<p>Open Boolean_practical.py and familiarize yourself with the functions <code>ODEgeneRegulation()</code> and <code>logicalRule()</code>. Look at the name of the functions, inputs and outputs.</p>
-<p>Both functions model an <code>AND</code> gate where nodeA and nodeB positively regulate nodeC. This could represent that A and B are transcription factors that form a protein complex, and that it is via this complex that they can regulate the expression of C.</p>
+<p>Open <code>Boolean_practical.py</code> and <code>circuitsfunctions.py</code>. The first file has the main running code, and the second one has only the functions that are used in the main.This is a way to keep the code “simple” and easy to read. First have a look at the functions <code>ODEgeneRegulation()</code> and <code>logicalRule()</code>; look at what each takes as input and returns as output.</p>
+<p>Both functions model an <span class="math inline">\(AND\)</span> gate where the variable <span class="math inline">\(A\)</span> and variable <span class="math inline">\(B\)</span> positively regulate <span class="math inline">\(C\)</span> This could represent that <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are transcription factors that form a protein complex, and that it is via this complex that they can bind the promoter of <span class="math inline">\(C\)</span> to promote its expression.</p>
 <p>While <code>ODEgeneRegulation()</code> encodes this regulation with an ordinary differential equation that requires several parameters, <code>logicalRule()</code> only needs the logical operator relating the input genes.</p>
 <p><strong>ODE implementation</strong></p>
-<p><span class="math inline">\(\frac{dC}{dt}=p\frac{A^n}{K^n+A^n}\frac{B^n}{K^n+B^n}-dC\)</span></p>
+<p><span class="math inline">\(\frac{dC}{dt}=p\frac{A^n}{K^n+A^n}.\frac{B^n}{K^n+B^n}-dC\)</span></p>
 <p>Where <span class="math inline">\(p\)</span> is the production rate, <span class="math inline">\(K\)</span> is the half saturation constant (represents the affinity of a TF to the promoter), <span class="math inline">\(n\)</span> is the cooperativity of transcription factor binding, and is the same for <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, <span class="math inline">\(d\)</span> is the decay rate.</p>
 <p><strong>Logical rule implementation</strong></p>
 <p><span class="math inline">\(C_{t+1}=A_t\)</span> &amp; <span class="math inline">\(B_t\)</span></p>
@@ -618,19 +618,19 @@ window.Quarto = {
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    prod<span class="op">=</span>parameters[<span class="st">'prod'</span>]</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    decay<span class="op">=</span>parameters[<span class="st">'decay'</span>]</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    Ksat<span class="op">=</span>parameters[<span class="st">'Ksat'</span>]</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    nodeA<span class="op">=</span>parameters[<span class="st">'nodeA'</span>]</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    nodeB<span class="op">=</span>parameters[<span class="st">'nodeB'</span>]</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    variableA<span class="op">=</span>parameters[<span class="st">'variableA'</span>]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    variableB<span class="op">=</span>parameters[<span class="st">'variableB'</span>]</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    n<span class="op">=</span>parameters[<span class="st">'n'</span>]</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    outputC<span class="op">=</span>a[<span class="dv">0</span>]</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    doutputC<span class="op">=</span>prod<span class="op">*</span>nodeA<span class="op">**</span>n<span class="op">/</span>(Ksat<span class="op">**</span>n<span class="op">+</span>nodeA<span class="op">**</span>n)<span class="op">*</span>nodeB<span class="op">**</span>n<span class="op">/</span>(Ksat<span class="op">**</span>n<span class="op">+</span>nodeB<span class="op">**</span>n)<span class="op">-</span>decay<span class="op">*</span>outputC <span class="co">#Tip: Change this in exercise 8.3</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    doutputC<span class="op">=</span>prod<span class="op">*</span>variableA<span class="op">**</span>n<span class="op">/</span>(Ksat<span class="op">**</span>n<span class="op">+</span>variableA<span class="op">**</span>n)<span class="op">*</span>variableB<span class="op">**</span>n<span class="op">/</span>(Ksat<span class="op">**</span>n<span class="op">+</span>variableB<span class="op">**</span>n)<span class="op">-</span>decay<span class="op">*</span>outputC <span class="co">#Tip: Change this in exercise 8.3</span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(doutputC)</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> logicalRule(nodeA,nodeB):</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(nodeA <span class="kw">and</span> nodeB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> logicalRule(variableA,variableB):</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(variableA <span class="kw">and</span> variableB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.1 (Mathematical thinking)</strong></span> What is the minimum information you need to encode a regulatory interaction with either function? In what cases would you prefer to use an ODE or a logical rule for a model?</p>
 </div>
-<p>Let’s run the model to simulate what happens if <code>A</code> and <code>B</code> are both active/expressed. Do this using the <code>ODEgeneRegulation()</code> and <code>logicalRule()</code> functions. Create a new python file, import <code>circuitfunctions.py</code> and copy the following lines of code inside the main().</p>
+<p>Let’s run the model to simulate what happens if <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are both active/expressed. Do this using the <code>ODEgeneRegulation()</code> and <code>logicalRule()</code> functions. Create a new python file, import <code>circuitfunctions.py</code> and copy the following lines of code inside the main().</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ODErun has three arguments: model, geneA, geneB</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>A<span class="op">=</span><span class="dv">10</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>B<span class="op">=</span><span class="dv">10</span></span>
@@ -640,30 +640,31 @@ window.Quarto = {
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># look at the text in the terminal for the result:</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>A<span class="op">=</span><span class="dv">1</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>B<span class="op">=</span><span class="dv">1</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"the boolean operation of nodeA "</span>,A,<span class="st">" AND nodeB"</span>,B,<span class="st">" is:"</span>, logicalRule(A,B))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Both implementations of this regulatory interaction produce the same effect, i.e.&nbsp;<code>C</code> is active when both <code>A</code> and <code>B</code> are active. Yet, the ODE version recovers quantitative differences in <code>C</code> activity with values higher than 1.</p>
-<p>Now, let’s explore the output of each function using different values of <code>A</code> and <code>B</code> We are going to use the code below to plot the output of the ODE and the Boolean model in a 2D heatmap. Notice that the exploration values for the ODE model is 11 values (0,1,2,3,4,5,6,7,8,9,10), while for a Boolean model is 2 (0 or 1).</p>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"the boolean operation of variableA "</span>,A,<span class="st">" AND variableB"</span>,B,<span class="st">" is:"</span>, logicalRule(A,B))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Both implementations of this regulatory interaction produce the same effect, i.e.&nbsp;<span class="math inline">\(C\)</span> is active when both <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are active. Yet, the ODE version recovers quantitative differences in <span class="math inline">\(C\)</span> activity with values higher than 1.</p>
+<p>Now, let’s explore the output of each function using different values of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>. We are going to use the code below to plot the output of the ODE and the Boolean model in a 2D heatmap. Notice that the exploration values for the ODE model is 11 values (0,1,2,3,4,5,6,7,8,9,10), while for a Boolean model is 2 (0 or 1). Copy this code inside the <code>main</code> in <code>Boolean_practical.py</code>.</p>
 <p>ODE model simulation - AND gate:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>explorationvalue <span class="op">=</span> <span class="dv">11</span> <span class="co"># an ODE model allows us to explore more values than a Boolean model</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ode_output <span class="op">=</span> np.zeros((explorationvalue, explorationvalue))</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> nodeA <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, explorationvalue):</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> nodeB <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, explorationvalue):</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        parameters <span class="op">=</span> {<span class="st">'prod'</span>: <span class="fl">0.01</span>, <span class="st">'decay'</span>: <span class="fl">0.001</span>,<span class="st">'Ksat'</span>: <span class="dv">4</span>, <span class="st">'n'</span>: <span class="dv">2</span>,<span class="st">'nodeA'</span>:nodeA,<span class="st">'nodeB'</span>:nodeB} <span class="co"># prod, decay, Ksat, n, and initial values for A and B</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> variableA <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, explorationvalue):</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> variableB <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, explorationvalue):</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        parameters <span class="op">=</span> {<span class="st">'prod'</span>: <span class="fl">0.01</span>, <span class="st">'decay'</span>: <span class="fl">0.001</span>,<span class="st">'Ksat'</span>: <span class="dv">4</span>, <span class="st">'n'</span>: <span class="dv">2</span>,<span class="st">'variableA'</span>:variableA,<span class="st">'variableB'</span>:variableB} <span class="co"># prod, decay, Ksat, n, and initial values for A and B</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        cells <span class="op">=</span> odeint(ODEgeneRegulation, <span class="dv">0</span>, np.arange(<span class="dv">0</span>, <span class="fl">1000.1</span> , <span class="fl">0.1</span>), args<span class="op">=</span>(parameters,)) </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        ode_output[nodeA, nodeB] <span class="op">=</span> cells[<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        ode_output[variableA, variableB] <span class="op">=</span> cells[<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Boolean network simulation - AND gate:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>explorationvalue<span class="op">=</span><span class="dv">2</span> <span class="co"># a Boolean model assumes there is only 2 possible states: 0 or 1</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>bool_output <span class="op">=</span> np.zeros((explorationvalue, explorationvalue))</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> nodeA <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, explorationvalue):</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> nodeB <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, explorationvalue):</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        bool_output[nodeA, nodeB] <span class="op">=</span> nodeA <span class="kw">and</span> nodeB <span class="co">#AND #Tip: Change this in exercise 8.3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> variableA <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, explorationvalue):</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> variableB <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, explorationvalue):</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        bool_output[variableA, variableB] <span class="op">=</span> variableA <span class="kw">and</span> variableB <span class="co">#AND #Tip: Change this in exercise 8.3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>After running each, this function plots the ODE and Boolean results side by side:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ODEBooleanPlot(ode_output, bool_output)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Change the running time for the ODE model, and the <span class="math inline">\(K\)</span> of each input, and see what effect that has on <span class="math inline">\(C\)</span>.</p>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.2 (Biology)</strong></span> What similarties and differences in the activity of <span class="math inline">\(C\)</span> do you see using each approach? Why is the activity of <span class="math inline">\(C\)</span> higher in the ODE output than the Boolean one?</p>
 </div>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 8.3 (Altorithmic thinking:)</strong></span> Now let’s compare how ODE and Boolean models represent different regulatory interactions. You can use the same code in the previous box. Remember to modify the logical operator in the Boolean section, and to modify the <span class="math inline">\(doutputC\)</span> equation in the <code>ODEgeneRegulation</code> function:</p>
+<p><span class="theorem-title"><strong>Exercise 8.3 (Altorithmic thinking:)</strong></span> Now let’s compare how ODE and Boolean models represent different regulatory interactions. You can use the same code in the previous box. Remember to modify the logical operator in the Boolean section, and to modify the <span class="math inline">\(doutputC\)</span> equation in the <code>ODEgeneRegulation</code> function in <code>circuitsfunctions.py</code>:</p>
 <ol type="1">
 <li>Either <code>A</code> or <code>B</code> can activate <code>C</code>.</li>
 <li><code>A</code> represses <code>C</code>.</li>
@@ -673,7 +674,7 @@ window.Quarto = {
 <li>any other biological scenario yon can think of!</li>
 </ol>
 <ul>
-<li>See if you can modify the code to include an extra input node, and make a 3-node logical gate.</li>
+<li>See if you can modify the code to include an extra input variable, and make a multi-dimensional logical gate.</li>
 </ul>
 </div>
 <div id="exr-non" class="theorem exercise">
@@ -700,14 +701,14 @@ examples of biological regulatory interactions that can be described with each l
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>plotBooleanTimecourse(matrix,timesteps)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>At the end the function <code>plotBooleanTimecourse()</code> will make a plot to see how each variable in the network changes ts activity throughout the simulated timesteps. 100 timesteps is enough to reach an attractor for this network.</p>
 <ul>
-<li>For the initial condition you can also use that of one of the attractors reported in the paper and check what happens when you update them.</li>
+<li>For the initial condition you can also use any combination of 0 and 1 you like, or one of the attractors reported in the paper and check what happens when you update them.</li>
 </ul>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.5 (Algorithmic thinking)</strong></span> Try this initial condition:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>matrix[<span class="dv">0</span>,:]<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Solve this initial condition using <code>rootNetwork()</code> and <code>rootNetworkAsynchronous()</code>. Compare the output in each case. What happens and why? What does an asynchronous update do?</p>
 </div>
-<p>This network has 18 variables, and then <span class="math inline">\(2^{18}\)</span> = 262,144 possible states. We can solve each of these conditions, or instead explore just a subset of them.</p>
+<p>This network has 18 variables, and then <span class="math inline">\(2^{18}\)</span> = 262,144 possible states. We can solve each of these conditions (and wait…), or instead explore just a subset of them.</p>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.6 (Algorithmic thinking)</strong></span> Using the previous code, add for loop to solve 100 random initial conditions, and then save the final activity configurations (attractors) in the attractors matrix. The attractors matrix should have the dimensions<br>
 (initial_conditions, variables) so that you can plot the results using the <code>plotBooleanAttractors()</code> function.</p>
@@ -722,7 +723,7 @@ examples of biological regulatory interactions that can be described with each l
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>plotBooleanAttractors(attractors) <span class="co"># it takes as argument a matrix of attractors</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>You probably found many different attractors. First, let’s use a multidimensional reduction technique to see how these attractors relate to each other.</p>
+<p>You probably found many different attractors. First, let’s use a multidimensional reduction technique to see how these attractors relate to each other. See how to install packages in <a href="https://modelinglife-uu.github.io/intro_to_python.html">Introduction to python</a>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>UMAPBoolean(attractors)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.7 (Biology / Conceptual thinking)</strong></span> <strong>Q5</strong> Why do you see clearly defined groups and not a continuous distribution of attractors?</p>
@@ -734,7 +735,7 @@ examples of biological regulatory interactions that can be described with each l
 <p><span class="theorem-title"><strong>Exercise 8.8 (Biology / Conceptual thinking)</strong></span> <strong>Q6</strong> Do some attractors occur more frequently than others. Why is this?</p>
 </div>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 8.9 (Biology)</strong></span> Some variables are active (1) in the majority of the attractors, others in half, and others in very few. In how many attractors is the node SHR active? What does this suggest about its regulation?</p>
+<p><span class="theorem-title"><strong>Exercise 8.9 (Biology)</strong></span> Some variables are active (1) in the majority of the attractors, others in half, and others in very few. In how many attractors is the variable SHR active? What does this suggest about its regulation?</p>
 </div>
 <p>Now let’s remove the repeated rows (duplicate attractor states) to see unique attractors using the <code>np.unique()</code> function:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>_, unique_indices <span class="op">=</span> np.unique(attractors, axis<span class="op">=</span><span class="dv">0</span>, return_index<span class="op">=</span><span class="va">True</span>)</span>
@@ -761,12 +762,12 @@ examples of biological regulatory interactions that can be described with each l
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.11 (Modeling choices)</strong></span> Do the attractors match those recovered with the Boolean network?</p>
 </div>
-<p>Now let’s use the model to study cell differentiation. Let’s start in the following initial condition (IC vector), and find a change in a node that produce a jump to another attractor (end). For this you can simply flip the activity of a gene in the initial condition (from 0 -&gt;1 or 1-&gt;0) and see the final attractor matches the desired end state.</p>
+<p>Now let’s use the model to study cell differentiation. Let’s start in the following initial condition (IC vector), and find a change in a variable that produce a jump to another attractor (end). For this you can simply flip the activity of a gene in the initial condition (from 0 -&gt;1 or 1-&gt;0) and see the final attractor matches the desired end state.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We start here: </span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>IC<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>]</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># We want to end here. </span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>end<span class="op">=</span>[<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>]</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># node order</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># variable order</span></span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># CK, ARR1, SHY2, AUXIAAR, ARFR, ARF10, ARF5, XAL1, PLT, AUX, SCR, SHR, MIR165, PHB, JKD, MGP, WOX5, CLE40</span></span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># your code </span></span>
@@ -776,7 +777,7 @@ examples of biological regulatory interactions that can be described with each l
 <p><span class="theorem-title"><strong>Exercise 8.12 (Algorithmic thinking / biology)</strong></span> What regulator causes the transition between these attractors? How many variables change their activity between the initial and final state? what could be the biological meaning of this switch? how would you test this experimentally?</p>
 </div>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 8.13 (Biology)</strong></span> Finally, use the model to predict the rest of the attractor transitions because of single node changes. Are all attractor transitions possible, or are there preferred differentiation routes?</p>
+<p><span class="theorem-title"><strong>Exercise 8.13 (Biology)</strong></span> Finally, use the model to predict the rest of the attractor transitions because of single variable changes. Are all attractor transitions possible, or are there preferred differentiation routes?</p>
 </div>
 </section>
 <section id="references" class="level2" data-number="8.5">

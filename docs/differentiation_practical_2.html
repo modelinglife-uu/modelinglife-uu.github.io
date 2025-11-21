@@ -621,7 +621,7 @@ window.Quarto = {
 <li><p><code>nodeUpdate</code> - function to take the output of the ODE and stored it in the grids.</p></li>
 <li><p><code>plotGrids</code> - plots 6 grids you provide. The labelling assumes you give <code>cellgrid</code>, <code>auxingrid</code>, <code>arf10grid</code>, <code>arf5grid</code>, <code>mgpgrid</code>, <code>wox5grid.</code></p></li>
 </ul>
-<p>2.- <code>Root-model-Auxin.py</code> – code to simulate the <em>in silico</em> root where we use the functions in a specific order. Before the <code>main()</code> we define the dimensions of the grid, the parameters, initialize the grid, and then inside the <code>main()</code> we use a for loop to run the auxin transport and network update for a defined number of time steps. In this loop, the output of the network is plotted every 10 steps. Tip: if the simulation runs too slow, decrease this plotting frequency.</p>
+<p>2.- <code>Root-model-Auxin.py</code> – code to simulate the <em>in silico</em> root where we use the functions in a specific order. Before the <code>main()</code> we define the dimensions of the grid, the parameters, initialize the grid, and then inside the <code>main()</code> we use a for loop to run the auxin transport and network update for a defined number of time steps. In this loop, the output of the network is plotted every 10 steps. <strong>Tip: if the simulation runs too slow, decrease this plotting frequency.</strong></p>
 <p>3.- <code>auxin_grid.npy</code> – initial auxin levels in each cell with the auxin gradient. This is used to initialize auxinGrid in <code>Root-model-Auxin.py</code>.</p>
 </section>
 </section>
@@ -673,7 +673,8 @@ window.Quarto = {
 <p>What is the overall effect of auxin treatments in the root tip? Considering that the root contains mixed cell types, which cells best represent the plotted values?</p>
 </div>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.7 (Biology &amp; algorithmic thinking)</strong></span> Now, let’s compare WOX5 regulation across tissues. Let’s use the model to do an in RT-PCR <em>in silico</em> analysis of only the cells in the QC position, and also the endodermis cells. This has not been done experimentally and thus you will generate a prediction (!). Tip: cell types are stored in <code>cellGrid.</code></p>
+<p><span class="theorem-title"><strong>Exercise 9.7 (Biology &amp; algorithmic thinking)</strong></span> Now, let’s compare WOX5 regulation across tissues. Let’s use the model to do an in RT-PCR <em>in silico</em> analysis of only the cells in the QC position, and also the endodermis cells. This has not been done experimentally and thus you will generate a prediction (!).</p>
+<p>Tip: cell types are stored in <code>cellGrid.</code></p>
 <p>Compare what you see in the root simulation, and what you obtain in the simulated RT-PCR plot. Which case represents better how WOX5 is regulated in the root tip? Why?</p>
 </div>
 <div id="exr-tur" class="theorem exercise">

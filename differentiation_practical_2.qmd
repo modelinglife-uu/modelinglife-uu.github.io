@@ -106,7 +106,7 @@ The file contains the following functions:
 
 - `plotGrids` - plots 6 grids you provide. The labelling assumes you give `cellgrid`, `auxingrid`, `arf10grid`, `arf5grid`, `mgpgrid`, `wox5grid.`
 
-2.- `Root-model-Auxin.py` – code to simulate the *in silico* root where we use the functions in a specific order. Before the `main()` we define the dimensions of the grid, the parameters, initialize the grid, and then inside the `main()` we use a for loop to run the auxin transport and network update for a defined number of time steps. In this loop, the output of the network is plotted every 10 steps. Tip: if the simulation runs too slow, decrease this plotting frequency.
+2.- `Root-model-Auxin.py` – code to simulate the *in silico* root where we use the functions in a specific order. Before the `main()` we define the dimensions of the grid, the parameters, initialize the grid, and then inside the `main()` we use a for loop to run the auxin transport and network update for a defined number of time steps. In this loop, the output of the network is plotted every 10 steps. **Tip: if the simulation runs too slow, decrease this plotting frequency.**
 
 3.- `auxin_grid.npy` – initial auxin levels in each cell with the auxin gradient. This is used to initialize auxinGrid in `Root-model-Auxin.py`.
 
@@ -309,7 +309,9 @@ plotted values?
 Now, let's compare WOX5 regulation across tissues. Let's use the model to do an 
 in RT-PCR *in silico* analysis of only the cells in the QC position, and also the 
 endodermis cells. This has not been done experimentally and thus you will generate
-a prediction (!). Tip: cell types are stored in `cellGrid.`
+a prediction (!). 
+
+Tip: cell types are stored in `cellGrid.`
 
 Compare what you see in the root simulation, and what you obtain in the simulated 
 RT-PCR plot. Which case represents better how WOX5 is regulated in the root tip? Why?

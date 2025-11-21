@@ -570,7 +570,7 @@ window.Quarto = {
 <section id="section" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="section"></h2>
 <center>
-<span style="color: DodgerBlue"> <em>How wonderful that we have met with a paradox. <br> Now we have some hope of making progress – Niehls Bohr</em> </span>
+<span style="color: DodgerBlue"> <strong><em>How wonderful that we have met with a paradox. <br> Now we have some hope of making progress</em></strong> – <em>Niehls Bohr</em> </span>
 </center>
 </section>
 <section id="auxin-does-everything" class="level2" data-number="9.1">
@@ -628,8 +628,9 @@ window.Quarto = {
 <section id="questions" class="level2" data-number="9.4">
 <h2 data-number="9.4" class="anchored" data-anchor-id="questions"><span class="header-section-number">9.4</span> Questions</h2>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.1 (Algorithmic thinking)</strong></span> Familiarize yourself with the model. Examine <code>Rootfunctions.py</code>. What are the algorithmic steps you would take if you want to make a model of the root where cells transport auxin every timestep, and update their networks every 10 steps? Keep in mind that the cell type of the cells define the direction at which they transport auxin to their neighbors. Make a plain-language description.</p>
-<p>Tip: have a look at the code in the <code>Root-model-Auxin.py</code>.</p>
+<p><span class="theorem-title"><strong>Exercise 9.1 (Algorithmic thinking)</strong></span> Familiarize yourself with the model, and run <code>Root-model-Auxin.py</code>. What are the algorithmic steps you would take if you want to make a model of the root where cells transport auxin every timestep, and update their networks every 10 steps? Keep in mind that the network defines the cell type of the cells. which in turn defines the direction at which they transport auxin to their neighbors. Make a plain-language description (dratfing ideas on paper is recommended).</p>
+<p>Tip: have a look at the code in the <code>Root-model-Auxin.py</code> and <code>Rootfunctions.py</code>.</p>
+<p>Let op! If the plotting updates too slow, you can change the frequency of plotting in line 56.</p>
 </div>
 <div id="exr-tur" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 9.2 (Biology)</strong></span> What happens if you update the network more often than the auxin transport? How would you implement this modification in the code?</p>

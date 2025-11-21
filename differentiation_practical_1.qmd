@@ -301,7 +301,7 @@ Using the previous code, add for loop to solve 100 random initial conditions, an
 configurations (attractors) in the attractors matrix. The attractors matrix should have the dimensions  
 (initial_conditions, variables) so that you can plot the results using the `plotBooleanAttractors()` function. 
 
-* Notice here you should save the final state for each initial condition you explore. 
+* Notice here you should save **only the final state** for each initial condition you explore. 
 
 * tip: 100 initial conditions is a good number to explore. 
 

@@ -19,7 +19,7 @@ the code of the functions we use throughout the practical, have a quick look at 
 ### VS Code
 If you have been experiencing problems with Spyder and restarting the kernel, we suggest you 
 install VS Code - this is an integrated development environment where the code runs faster, and
-plotting issues should be resolve. Follow <a href="http://localhost:7715/intro_to_python.html#installing-vs-code">this</a> installation instructions.
+kernel issues should be gone. Follow <a href="http://localhost:7715/intro_to_python.html#installing-vs-code">this</a> installation instructions.
 
 ## Regulatory interactions
 

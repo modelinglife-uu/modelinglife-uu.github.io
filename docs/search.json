@@ -663,7 +663,7 @@
     "href": "differentiation_practical_1.html#introduction",
     "title": "8  Gene regulation in time",
     "section": "",
-    "text": "VS Code\nIf you have been experiencing problems with Spyder and restarting the kernel, we suggest you install VS Code - this is an integrated development environment where the code runs faster, and plotting issues should be resolve. Follow this installation instructions.",
+    "text": "VS Code\nIf you have been experiencing problems with Spyder and restarting the kernel, we suggest you install VS Code - this is an integrated development environment where the code runs faster, and kernel issues should be gone. Follow this installation instructions.",
     "crumbs": [
       "III) Cell differentiation",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Gene regulation in time</span>"

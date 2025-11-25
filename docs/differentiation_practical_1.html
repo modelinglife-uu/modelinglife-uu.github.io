@@ -102,6 +102,9 @@ div.csl-indent {
 <link href="site_libs/bootstrap/bootstrap-0e7c136abd6418639055ad70ade9c940.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark-c2e0d09699c19eeb454aa3ea76728735.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-0e7c136abd6418639055ad70ade9c940.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -634,6 +637,9 @@ window.Quarto = {
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.1 (Mathematical thinking)</strong></span> What is the minimum information you need to encode a regulatory interaction with either function? In what cases would you prefer to use an ODE or a logical rule for a model?</p>
 </div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> To model a regulatory interaction with a logical function we need the information of who is regulating who (direction of interactions), and how (effect of interaction); no parameters needed. To model the same with an ODE we also need several parameters: production rate, decay rate, K, n.&nbsp;</p>
+</blockquote>
 <p>Let’s run the model to simulate what happens if <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are both active/expressed. Do this using the <code>ODEgeneRegulation()</code> and <code>logicalRule()</code> functions. Copy the following lines of code inside the <code>main</code> in <code>Boolean_practical</code>.</p>
 <ul>
 <li>Let op! Running the code may show a <code>NumbaDeprecationWarning</code>, ignore it.</li>
@@ -670,6 +676,15 @@ window.Quarto = {
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.2 (Biology)</strong></span> What similarties and differences in the activity of <span class="math inline">\(C\)</span> do you see using each approach? Why is the activity of <span class="math inline">\(C\)</span> higher in the ODE output than the Boolean one?</p>
 </div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> In both cases <span class="math inline">\(C\)</span> has maximum activity when both <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are active/expressed. Whereas in a Boolean model the activity of the variables can be either 0 or 1 and thus we only see <span class="math inline">\(C\)</span> active when it crosses a threshold, in an ODE the variables can have continuous values with the maximum level determined by the production and the decay rate parameters (<span class="math inline">\(p/d\)</span>). This is the reason <span class="math inline">\(C\)</span> has values close to 5 in the ODE output. According to the parameters we picked &gt; <span class="math inline">\(p/d = 10\)</span>. <span class="math inline">\(C\)</span> reaches this level if you run the simulation longer and reduce <span class="math inline">\(K\)</span> (try!).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/odetegenboolean.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="ODE and Boolean output for the logical gate A AND B, for C regulation."><img src="images/odetegenboolean.png" class="img-fluid figure-img" alt="ODE and Boolean output for the logical gate A AND B, for C regulation."></a></p>
+<figcaption>ODE and Boolean output for the logical gate A AND B, for C regulation.</figcaption>
+</figure>
+</div>
+</blockquote>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.3 (Altorithmic thinking:)</strong></span> Now let’s compare how ODE and Boolean models represent different regulatory interactions. You can use the same code in the previous box. Remember to modify the logical operator in the Boolean section, and to modify the <span class="math inline">\(doutputC\)</span> equation in the <code>ODEgeneRegulation</code> function in <code>circuitsfunctions.py</code>. As before change the parameters in the ODE to see how that changes the activity of <span class="math inline">\(C\)</span>:</p>
 <ol type="1">
@@ -681,10 +696,39 @@ window.Quarto = {
 <li>Include an extra input variable, and make a multi-dimensional logical gate, or try any other biological scenario yon can think of.</li>
 </ol>
 </div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> See <code>Boolean_answered-8.3.py</code> to see an implementation of the regulatory interactions listed above.</p>
+<ol type="1">
+<li><p><span class="math inline">\(OR\)</span> gate: <strong>A</strong> <span class="math inline">\(OR\)</span> <strong>B</strong> <img src="images/0-or.png" id="vegmini1" class="img-fluid"></p></li>
+<li><p><span class="math inline">\(NOT\)</span> gate: <span class="math inline">\(NOT\)</span> <strong>A</strong> <img src="images/0-not.png" id="vegmini1" class="img-fluid"></p></li>
+<li><p>combination of <span class="math inline">\(NOT\)</span> and <span class="math inline">\(AND\)</span> gate: <span class="math inline">\(NOT\)</span> <strong>A</strong> <span class="math inline">\(AND\)</span> <span class="math inline">\(NOT\)</span> <strong>B</strong> <img src="images/0-notAND.png" id="vegmini1" class="img-fluid"></p></li>
+</ol>
+<p>looks quite different if it is an <span class="math inline">\(OR\)</span> gate: <span class="math inline">\(NOT\)</span> <strong>A</strong> <span class="math inline">\(OR\)</span> <span class="math inline">\(NOT\)</span> <strong>B</strong></p>
+<p><a href="images/0-notOR.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/0-notOR.png" id="vegmini1" class="img-fluid"></a></p>
+<ol start="4" type="1">
+<li>There are two possibilities because it is not specified which interaction is “stronger”. Here we show when A is stronger. Option 1: <span class="math inline">\(NOT\)</span> <strong>A</strong> <span class="math inline">\(AND\)</span> <strong>B</strong>.</li>
+</ol>
+<p><a href="images/0-NOTA,B.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="images/0-NOTA,B.png" id="vegmini1" class="img-fluid"></a></p>
+<ol start="5" type="1">
+<li><span class="math inline">\(XOR\)</span> gate (<strong>A</strong> <span class="math inline">\(XOR\)</span> <strong>B</strong>), meaning either but not both at the same time. <img src="images/0-XOR.png" id="vegmini1" class="img-fluid"></li>
+</ol>
+</blockquote>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.4 (Biology and Algorithmic thinking)</strong></span> Is there a logical gate that can be better represented with an ODE than with Boolean logic? Give an<br>
 examples of biological regulatory interactions that can be described with each logical gate?</p>
 </div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> All logical gates can be modelled correctly with either approach. With Boolean models we look quantitative resolution, with ODE we can model many more values than 0 and 1.</p>
+<p>Biological examples that can be modelled with the logical gates:</p>
+<ul>
+<li><p><span class="math inline">\(AND\)</span> gate can be that both genes code for transcription factors that form a protein complex that binds a promoter to regulate gene expression of <span class="math inline">\(X\)</span>. It can also represent that one regulator promotes the expression of <span class="math inline">\(X\)</span>, while the other phosphorylates protein <span class="math inline">\(X\)</span>. As the phosphorylated <span class="math inline">\(X\)</span> is the active form, both regulatory interactions are needed (<span class="math inline">\(AND\)</span>).</p></li>
+<li><p><span class="math inline">\(OR\)</span> is that either TF can bind promoter and activate transcription.</p></li>
+<li><p><span class="math inline">\(NOT\)</span> is that a TF blocks the promoter so that activating TF cannot bind.</p></li>
+<li><p><span class="math inline">\(NOT\)</span> <strong>A</strong> <span class="math inline">\(AND\)</span> <span class="math inline">\(NOT\)</span> <strong>B</strong> is that both TFs are repressors of the same gene.</p></li>
+<li><p><span class="math inline">\(NOT\)</span> <strong>A</strong> <span class="math inline">\(AND\)</span> <strong>B</strong> is that A is a repressor and B is an activator.</p></li>
+<li><p><span class="math inline">\(XOR\)</span> gate can be a promoter where either A or B can bind, the complex AB cannot bind.</p></li>
+</ul>
+</blockquote>
 </section>
 <section id="gene-regulatory-network" class="level2" data-number="8.3">
 <h2 data-number="8.3" class="anchored" data-anchor-id="gene-regulatory-network"><span class="header-section-number">8.3</span> Gene regulatory network</h2>
@@ -705,6 +749,14 @@ examples of biological regulatory interactions that can be described with each l
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>plotBooleanTimecourse(matrix,timesteps)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>At the end the function <code>plotBooleanTimecourse()</code> will make a plot to see how each variable in the network changes ts activity throughout the simulated timesteps. 100 timesteps is enough to reach an attractor for this network.</p>
+<blockquote class="blockquote">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/0-timecourse.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Timecourse simulations"><img src="images/0-timecourse.png" class="img-fluid figure-img" alt="Timecourse simulations"></a></p>
+<figcaption>Timecourse simulations</figcaption>
+</figure>
+</div>
+</blockquote>
 <ul>
 <li>For the initial condition you can also use any combination of 0 and 1 you like, or one of the attractors reported in the paper and check what happens when you update them.</li>
 </ul>
@@ -713,6 +765,9 @@ examples of biological regulatory interactions that can be described with each l
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>matrix[<span class="dv">0</span>,:]<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Solve this initial condition using <code>rootNetwork()</code> and <code>rootNetworkAsynchronous()</code>. Compare the output in each case. What happens and why? What does an asynchronous update do?</p>
 </div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> The synchronous approach updates all genes every timestep, which may not be realistic as transcription, translation and protein degradation do not necessarily occur at the same rate for all modelled genes, and these processes are inherently noisy. Thus, asynchronously updating the variables is a good idea. The asynchronous updating function introduces a probability of update (95%) to each variable in the simulation. This means the variables might not be all updated each timestep. The initial condition converges to a cyclic attractor in the synchronous updating function (<code>rootNetwork()</code>), and to a fixed point attractor in the asynchronous function (<code>rootNetworkAsynchronous()</code>). This means the cyclic behaviour recovered with the synchronous updating scheme was an artifact of updating all the variable at the same time.</p>
+</blockquote>
 <p>This network has 18 variables, and then <span class="math inline">\(2^{18}\)</span> = 262,144 possible states. We can solve each of these conditions (and wait…), or instead explore just a subset of them…</p>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.6 (Algorithmic thinking)</strong></span> Using the previous code, add for loop to solve 100 random initial conditions, and then save the final activity configurations (attractors) in an <code>attractors matrix</code>.</p>
@@ -728,6 +783,15 @@ examples of biological regulatory interactions that can be described with each l
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>plotBooleanAttractors(attractors) <span class="co"># it takes as argument a matrix of attractors</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> See <code>Boolean_answered-8.6.py</code> to see an implementation of this for loop.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/0-100ic.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Attractors reached by 100 random initial conditions"><img src="images/0-100ic.png" class="img-fluid figure-img" alt="Attractors reached by 100 random initial conditions"></a></p>
+<figcaption>Attractors reached by 100 random initial conditions</figcaption>
+</figure>
+</div>
+</blockquote>
 <p>You should have found many different attractors. Let’s use a multidimensional reduction technique to see how these attractors relate to each other. For this you need to install the <code>umap-learn</code> package using this line:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pip install umap<span class="op">-</span>learn</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>More details on how to install packages here: <a href="https://modelinglife-uu.github.io/intro_to_python.html">Introduction to python</a>.</p>
@@ -736,22 +800,62 @@ examples of biological regulatory interactions that can be described with each l
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.7 (Biology / Conceptual thinking)</strong></span> <strong>Q5</strong> Why do you see clearly defined groups and not a continuous distribution of attractors?</p>
 </div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> We see clearly defined groups because we are doing the UMAP with the cells that have already reached an attractor, and not while they are in their trajectory towards the attractor.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/UMAP-10kcells.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Timecourse simulation: state of the variables (columns) through simulated time (rows)."><img src="images/UMAP-10kcells.png" class="img-fluid figure-img" alt="Timecourse simulation: state of the variables (columns) through simulated time (rows)."></a></p>
+<figcaption>Timecourse simulation: state of the variables (columns) through simulated time (rows).</figcaption>
+</figure>
+</div>
+</blockquote>
 <p>Now let’s analyse the attractors you found. First, let’s group similar attractors using the <code>sorted()</code> function:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>attractors_sorted <span class="op">=</span> np.array(<span class="bu">sorted</span>(attractors.tolist()))</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>plotBooleanAttractors(attractors_sorted) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote class="blockquote">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/0-clustered_attractors.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Attractors reached by 100 random initial conditions - clustered"><img src="images/0-clustered_attractors.png" class="img-fluid figure-img" alt="Attractors reached by 100 random initial conditions - clustered"></a></p>
+<figcaption>Attractors reached by 100 random initial conditions - clustered</figcaption>
+</figure>
+</div>
+</blockquote>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.8 (Biology / Conceptual thinking)</strong></span> <strong>Q6</strong> Do some attractors occur more frequently than others. Why is this?</p>
 </div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> Yes, some attractors occur more often than others, and this is a consequence of the regulatory interactions of the model. The number of initial conditions that reached a specific attractor is a reflection of the size of their basin of attraction. The basins of attraction (all variable configurations that converge to an attractor) are shaped by the AND, OR, and NOT gates in each of the modelled variables. Imagine cells are like marbles moving through a landscape, such that the regulatory interactions define the “rolling” direction, until eventually they land in different basins of attraction as they acquire different cell states. Here the landscape is multidimensional (as many dimensions as variables in the model, so 18).</p>
+</blockquote>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.9 (Biology)</strong></span> Some variables are active (1) in the majority of the attractors, others in half, and others in very few. In how many attractors is the variable SHR active? What does this suggest about its regulation?</p>
 </div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> How often a variable is active in the attractors, is defined by their logical rules. For example, SHR logical rule is SHR = SHR. This means that SHR is an input variable, that is not regulated by any other variable. This splits the state space perfectly in two halves: one with SHR active and another with SHR inactive. You can implement this in <code>Boolean_answered-8.3.py</code> to visualize this split.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/0-SHR.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="SHR activity regulated by itself (variable A)"><img src="images/0-SHR.png" class="img-fluid figure-img" alt="SHR activity regulated by itself (variable A)"></a></p>
+<figcaption>SHR activity regulated by itself (variable A)</figcaption>
+</figure>
+</div>
+</blockquote>
 <p>Now let’s remove the repeated rows (duplicate attractor states) to see unique attractors using the <code>np.unique()</code> function:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>_, unique_indices <span class="op">=</span> np.unique(attractors, axis<span class="op">=</span><span class="dv">0</span>, return_index<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>attractors_unique <span class="op">=</span> attractors[np.sort(unique_indices)]</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>plotBooleanAttractors(attractors_unique) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote class="blockquote">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/0-unique_attractors.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Unique attractors reached by random 100 initial conditions"><img src="images/0-unique_attractors.png" class="img-fluid figure-img" alt="Unique attractors reached by random 100 initial conditions"></a></p>
+<figcaption>Unique attractors reached by random 100 initial conditions</figcaption>
+</figure>
+</div>
+</blockquote>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.10 (Biology / conceptual thinking)</strong></span> How many unique attractors did you find? Compare them with the ones reported in the paper. Are they all fixed points?</p>
 </div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> This depends on how many initial conditions you test. The more initial conditions, the more likely you will find the maximum of 6 fixed point attractors this model can produce when solving the network asynchronously.</p>
+</blockquote>
 </section>
 </section>
 <section id="cell-differentiation-jumping-from-one-attractor-to-another" class="level2" data-number="8.4">
@@ -774,6 +878,9 @@ examples of biological regulatory interactions that can be described with each l
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.11 (Modeling choices)</strong></span> Do the attractors match those recovered with the Boolean network?</p>
 </div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> Yes. The ODE model is built with the same regulatory interactions from the Boolean model. The difference is that this model allows us to describe quantitative differences in the activity of the variables.</p>
+</blockquote>
 <p>Now let’s use the model to study cell differentiation routes. Let’s start in the following initial condition (IC vector), and find a change in a variable that produce a jump to another attractor (end). For this you can simply flip the activity of a gene in the initial condition (from <span class="math inline">\(0→1\)</span> or <span class="math inline">\(1→0\)</span>) and see the final attractor matches the desired end state. This simulated change mimics how an environmental signal may impinge in the regulatory network.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We start here: </span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>IC<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>]</span>
@@ -788,9 +895,15 @@ examples of biological regulatory interactions that can be described with each l
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.12 (Algorithmic thinking / biology)</strong></span> What regulator causes the transition between these attractors? How many variables change their activity between the initial and final state? what could be the biological meaning of this switch? how would you test this experimentally?</p>
 </div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> SHR OFF (0) causes the transition between the specified activity configurations. We can interpret this change between attractors as a cell fate change, in which the decrease in SHR activity triggers changes in other variables of the network resulting in the differentiation of the cells. SHR could be a cell differentiation signal. To test this experimentally we can artificially repress SHR in the cells.</p>
+</blockquote>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.13 (Biology)</strong></span> Finally, use the model to predict the rest of the attractor transitions because of single variable changes. Are all attractor transitions possible, or are there preferred differentiation routes? Why do you think this is?</p>
 </div>
+<blockquote class="blockquote">
+<p><strong>Answer</strong> Not all attractor transitions are possible by single variable changes. This is because the regulatory interactions in the model constrain how this perturbation is interpreted, and with it the differentiation trajectories (think of the landscape metaphor).</p>
+</blockquote>
 </section>
 <section id="references" class="level2" data-number="8.5">
 <h2 data-number="8.5" class="anchored" data-anchor-id="references"><span class="header-section-number">8.5</span> References</h2>
@@ -1257,6 +1370,38 @@ Rozum, Jordan C, Colin Campbell, Eli Newby, Fatemeh Sadat Fatemi Nasrollahi, and
 </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

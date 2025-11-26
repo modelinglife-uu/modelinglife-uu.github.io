@@ -523,6 +523,8 @@ initial and final state? what could be the biological meaning of this switch? ho
   > change between attractors as a cell fate change, in which the decrease in SHR activity triggers changes in other 
   > variables of the network resulting in the differentiation of the cells. SHR could be a cell differentiation signal. 
   > To test this experimentally we can artificially repress SHR in the cells.
+  >
+  > ![Turning OFF SHR from the initial condition, causes changes in activity of the other variables, ultimately "landing" in the desired attractor.](images/2-boolean-to-ode-cell-fate-changes-success.png){#vegmini1}
 
 :::
 

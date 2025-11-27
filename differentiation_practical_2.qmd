@@ -41,7 +41,7 @@ this opposite regulation through different ARFs (Figure 2) posing the possibilit
 accounting for how the ARFs themselves are regulated can reconcile the results. Here we 
 will explore this possibility using an *in silico* root model.
 
-![Figure 1. The right panel shows evidence of the positive effect of auxin on WOX5 expression (white arrows). The left panel shows evidence of auxin repression of WOX5 in the root tip (white rectangle), also shown with qPCR measurements of WOX5 mRNA in root-tip cells.](images/0-auxin-paradox.png){#vegmini1 width=130%}
+![Figure 1. The left panel shows evidence of the positive effect of auxin on WOX5 expression (white arrows). The right panel shows evidence of auxin repression of WOX5 in the root tip (white rectangle), also shown with qPCR measurements of WOX5 mRNA in root-tip cells.](images/0-auxin-paradox.png){#vegmini1 width=130%}
 
 The Boolean network we used last week describes the gene and hormonal
 activity configurations of the cells in the root tip (Figure 3 left). This model recovers an 

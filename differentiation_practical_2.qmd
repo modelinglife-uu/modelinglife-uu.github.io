@@ -77,7 +77,7 @@ therefore allowing for WOX5 activity.
 
 Today you will use a multicellular model that simulates the cells of a root tip 
 (Figure 3, right). The tissue is modeled as a grid, where the $x$ position defines 
-the radial direction and the $y$ the longitudinal position ($y=0$ being the cells at the bottom). 
+the radial direction and the $y$ the longitudinal position ($y=0$ being the cells at the TOP). 
 The cells are organized in cell layers (8 layers, so $x$ is 8), each with a gene regulatory 
 network initialized in a different attractor. The model simulates the transport of 
 auxin from cell to cell, where the cell type (the attractor) defines the direction of 

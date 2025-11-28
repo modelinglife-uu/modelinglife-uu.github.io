@@ -21,7 +21,7 @@ Later, you will investigate the adaptive value of this response, as this is stil
 
 
 ## The model
-In `code 00_Environment_and_development.py` we start with a simple two ODE model where leaf area ($L$) grows with rate $G$, which depends on carbon concentration ($C_c$) and leaf area. Carbon ($C$) is produced by photosynthesis ($P$) dependent on leaf area, leaf angle ($\alpha$), and temperature ($T$). Carbon is consumed by growth and respiration ($R$), dependent on temperature and leaf area again:
+In code `00_Environment_and_development.py` we start with a simple two ODE model where leaf area ($L$) grows with rate $G$, which depends on carbon concentration ($C_c$) and leaf area. Carbon ($C$) is produced by photosynthesis ($P$) dependent on leaf area, leaf angle ($\alpha$), and temperature ($T$). Carbon is consumed by growth and respiration ($R$), dependent on temperature and leaf area again:
 
 $\frac{dC}{dt}=P(L,T,\alpha)-R(L,T)-G(C_c,L)$
 
@@ -40,7 +40,7 @@ equation, which describes the temperature dependency of chemical reaction rates.
 Maintenance respiration is a term used in biological systems to describe all energy/carbon 
 consuming processes that a plant must do to survive. Similar to photosynthesis, the rates of 
 these reactions increase with temperature, and as such, carbon costs greatly increase. We model 
-this in the function Respiration_per_m2() using the Q10 equation, that describes how much a rate
+this in the function `Respiration_per_m2()` using the *Q10* equation, that describes how much a rate
 increases for 10 degrees of temperature increase.
 
 ## Exercises

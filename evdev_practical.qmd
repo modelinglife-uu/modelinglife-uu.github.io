@@ -68,7 +68,7 @@ Let us first investigate how photosynthesis and respiration depend on temperatur
 
   > **Answer** 
   >
-  > a. See answer code '01_Environment_and_development_answer.py'
+  > a. See answer code `01_Environment_and_development_answer.py`.
   > You need to do this plotting outside of the plant growth simulation loop by calling the
   > photosynthesis and respiration functions for a range of temperatures (10-40 degrees).
   >
@@ -80,7 +80,7 @@ Let us first investigate how photosynthesis and respiration depend on temperatur
   >
   > $dC/dt=photosynthesis-respiration-growth$
   >
-  > $dC/dt=p*LA-d*LA- Gmax*(C*/(C*+K))*LA$
+  > $dC/dt=p*LA-d*LA - Gmax*(C*/(C*+K))*LA$
   >
   > Solving $dC/dt=0$ we get $LA=0$ (no plant) or
   >
@@ -101,7 +101,7 @@ Let us first investigate how photosynthesis and respiration depend on temperatur
   > c. See answer `code 01_Environment_and_development_answer.py` for running and plotting 
   > the 3 different temperatures.
   > At 15 degrees respiration is low but photosynthesis is far below optimal, so at 25 degrees 
-  > you loose more to respiration but that is overcompensated by the increase in photosynthesis, 
+  > you loose more carbon to respiration but that is overcompensated by the increase in photosynthesis, 
   > at 35 degrees photosynthesis is beyond its optimum while respiration is now very high; as a
   > consequence 25 degrees gives optimum growth and 35 the worst.
 
@@ -115,7 +115,7 @@ Let us first investigate how photosynthesis and respiration depend on temperatur
 ##	Mathematical & Biological thinking - Hyponasty – Leaf angle increase  
 
 Until now we have investigated the effect of temperature on plants that do not respond to their
-environment, but plants do respond to their surroundings.Plants display a variety of responses to
+environment, but plants do respond to their surroundings. Plants display a variety of responses to
 elevated temperature, and one of these is so-called leaf hyponasty in which leaves are positioned 
 in a more upward orientation that is often accompanied by longer leaf stems (petioles) and smaller
 leaves (blades).  Let us extend the model to first simply include the orientation aspect of this
@@ -135,7 +135,7 @@ hyponastic response to high temperature.
 
   > **Answer** 
   > 
-  > a. See answer code '02_Environment_and_development_answer.py' 
+  > a. See answer code `02_Environment_and_development_answer.py` 
   > Under the assumption that light comes from above it holds that effective leaf area=the area
   > projected on the horizontal surface which can be found by taking the cosine of the angle of 
   > the leaf. So the larger the angle the smaller the effective leaf area. This results in an
@@ -143,7 +143,7 @@ hyponastic response to high temperature.
   size could all affect effective leaf area.
   >
   > b. As can be expected from the above, the temperature increase combined with the angle increase
-  >now both reduce photosynthesis and hence carbon and leaf area increase, so it is basically
+  > now both reduce photosynthesis and hence carbon and leaf area increase, so it is basically
   > adding insult to injury rather than helping.
 
 :::
@@ -159,8 +159,7 @@ dissipation and decreasing the area in which direct sunlight hits the leaves.
   have a net positive effect? Simply assume a certain cooling effect and hence apply a lower
   temperature than the environmental one.
   
-  b. 	Hyponasty is shown to lower leaf temperature by only 1-2°C (see the left picture at the
-  beginning of this document), what is the effect of this amount of cooling on plant growth? 
+  b. 	Hyponasty is shown to lower leaf temperature by only 1-2°C (see the left panel in Figure 1), what is the effect of this amount of cooling on plant growth? 
   Would you argue that this hyponastic response is adaptive in the current model (i.e. assuming no
   other factors play a role)?
   
@@ -172,7 +171,7 @@ dissipation and decreasing the area in which direct sunlight hits the leaves.
 
   > **Answer** 
   > 
-  > a. See answer code '03_Environment_and_development_answer.py'
+  > a. See answer code `03_Environment_and_development_answer.py`
   > If the 40 degree angle results in slightly more than 3 degrees of cooling, causing internal
   > leaf temperature to be less then 32 degrees instead of the external 35 degrees, final leaf 
   > area is larger than for 35 degrees and an angle of 20 degrees. Note that if under high
@@ -201,12 +200,12 @@ The cooling down of the leaves through hyponasty is thought to be an important a
 Interestingly, from the simulations we've done so far this adaptive advantage is not very clear. 
 It might therefore very well be that we miss important processes in the current model. In this 
 last question of the practical you will extend the model with additional processes also relevant 
-in plants to see if this may help explain the adaptiveness of hyponasty. This is also an open
+in plants to see if this may help explain the *adaptiveness* of hyponasty. This is also an open
 question in current research, so there is no clear answer and you might actually come up with 
 novel ideas! To help guide your thinking, we have come up with some additional plant processes 
 you can implement and investigate to see how these impact adaptiveness of leaf hyponasty under 
 high temperature. Pick one to work on and investigate if this would render hyponasty more clearly
-adaptive. If you have extra time, see if you can combinethem. If you have other ideas to work on,
+adaptive. If you have extra time, see if you can combine them. If you have other ideas to work on,
 this is also great!
 
   a. *Hypothesis 1 - Day-Night Rhythm *
@@ -227,7 +226,7 @@ this is also great!
   - Growth rate: Counterintuitively in plants often most growth happens during the night, when
   water loss is minimal and hence turgor pressure is high.
   
-  Hint: use sinus functions to describe the daily rhythms and their relative phases. Make sure 
+  Hint: use *sine* functions to describe the daily rhythms and their relative phases. Make sure 
   that light is really zero at night.
   
   **a1.** Analyze how the absence of photosynthesis at night affects carbon balance. Do you think what 
@@ -350,10 +349,6 @@ this is also great!
   > more stomatal aperture, which brings still more cooling.
 
 :::
-
-
-
-
 
 
 

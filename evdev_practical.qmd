@@ -226,12 +226,14 @@ this is also great!
   - Growth rate: Counterintuitively in plants often most growth happens during the night, when
   water loss is minimal and hence turgor pressure is high.
   
-  Hint: use *sine* functions to describe the daily rhythms and their relative phases. Make sure 
+  **Hint**: use *sine* functions to describe the daily rhythms and their relative phases. Make sure 
   that light is really zero at night.
   
-  Hint: use sinus functions to describe the daily rhythms and their relative phases. Make sure that 
+  **Hint**: use sine functions to describe the daily rhythms and their relative phases. Make sure that 
   light is really zero at night . As an example you can write things as:
-  $$Tvar=max(0,3*T/4+T/4*np.sin(2*np.pi*(t-6)/24))$$
+  
+  `Tvar=max(0,3*T/4+T/4*np.sin(2*np.pi*(t-6)/24))`
+  
   which says that the actual variable temperature $Tvar$ is a sine function of the imposed 
   temperature T, has a 24 hour period, is phase shifted 6 hours to have the highest temperature 
   at 12 and not 6 o’ clock during the day. Note that since a sine function has a maximum of 1 
@@ -270,7 +272,7 @@ this is also great!
   - Stomatal opening increases transpiration: Simulate the cooling effect of transpiration on leaf
   temperature. 
   
-  Hint: Now that you have two factors affecting temperature, leaf angle and stomatal aperture, 
+  **Hint**: Now that you have two factors affecting temperature, leaf angle and stomatal aperture, 
   it is a good idea to write a function for leaf temperature in which the combined effect is computed.
 
   

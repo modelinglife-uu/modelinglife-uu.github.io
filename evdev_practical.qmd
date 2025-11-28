@@ -229,6 +229,16 @@ this is also great!
   Hint: use *sine* functions to describe the daily rhythms and their relative phases. Make sure 
   that light is really zero at night.
   
+  Hint: use sinus functions to describe the daily rhythms and their relative phases. Make sure that 
+  light is really zero at night . As an example you can write things as:
+  $$Tvar=max(0,3*T/4+T/4*np.sin(2*np.pi*(t-6)/24))$$
+  which says that the actual variable temperature $Tvar$ is a sine function of the imposed 
+  temperature T, has a 24 hour period, is phase shifted 6 hours to have the highest temperature 
+  at 12 and not 6 o’ clock during the day. Note that since a sine function has a maximum of 1 
+  and a minimum of -1, the ¾ and ¼ fractions serve to make temperature vary between ½ and 1 
+  of the imposed temperature T. The max function serves to ensure that the overall result can 
+  not go below 0. 
+
   **a1.** Analyze how the absence of photosynthesis at night affects carbon balance. Do you think what 
   you see happening is reasonable? How could you repair this?
 
@@ -259,6 +269,10 @@ this is also great!
   temperatures of 10 degrees and 35 degrees.
   - Stomatal opening increases transpiration: Simulate the cooling effect of transpiration on leaf
   temperature. 
+  
+  Hint: Now that you have two factors affecting temperature, leaf angle and stomatal aperture, 
+  it is a good idea to write a function for leaf temperature in which the combined effect is computed.
+
   
   Analyze how stomatal opening affects leaf cooling and photosynthesis under moderate temperature
   conditions. 
@@ -362,4 +376,462 @@ Normal and shade avoidance hyponasty is still large in the dark, and dips around
 For short day conditions it even peaks during the dark and is lower during day: @oskam2023low and @dornbusch2012measuring
 
 
+::: {.callout-note collapse="true"}
+## 01_Environment_and_development_answers.py
 
+``` python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp
+
+"""Parameters""" 
+Pmax = 1     #Max Photosynthesis rate
+R25  = 0.2    #Respiration rate at 25C
+Gmax = 0.25  #Max growth rate
+K_g  = 2     #Value where growth is at half max.
+
+#Three temperatures to test
+T1=15; T2=25;T3=35
+
+""" Functions """
+## Calculate Respiration normalized for a reference temperature of 25C
+def Respiration_per_m2(T,Q10):
+    Resp    = Q10 ** ( (T-25) / 10) 
+    return Resp
+
+## Calculate Realtive Photosynthesis with a reference temperetaure of 25C
+def Photosynthesis_per_m2(T):
+    # This function calculates the temperature dependency of photosynthesis parameter values  
+    def TempDependency(c, dHa,T):
+        R = 8.31e-3
+        T = T + 273
+        return  np.exp(c - dHa/(R*T))
+
+    #This function calculates photosynthesis at temperature T and at 25C and returns A_T/A_25
+    ci = 230; O = 210
+    VcMax  = 98*TempDependency(26.35,65.33,T) 
+    VoMax  = 98*TempDependency(22.98,60.11,T) 
+    Kc     = TempDependency(38.05,79.43,T) 
+    Ko     = TempDependency(20.30,36.38,T) 
+    G_Star = TempDependency(19.02,37.83,T) 
+    R_D    = 1.1*TempDependency(18.72,46.39,T)   
+    
+    VcMax25  = 98*TempDependency(26.35,65.33,25) 
+    VoMax25  = 98*TempDependency(22.98,60.11,25) 
+    Kc25     = TempDependency(38.05,79.43,25) 
+    Ko25     = TempDependency(20.30,36.38,25) 
+    G_Star25 = TempDependency(19.02,37.83,25) 
+    R_D25    = 1.1*TempDependency(18.72,46.39,25)           
+
+    A = (1 - G_Star/ci) *( VcMax * ci / (ci + Kc*(1 + O/Ko))) - R_D #Photosynthesis Rate
+    A25 = (1 - G_Star25/ci) *( VcMax25 * ci / (ci + Kc25*(1 + O/Ko25))) - R_D25 #Photosynthesis Rate at 25C
+
+    return A/A25
+
+def EffectiveLeafArea(LA,angle):
+    """
+    Calculate the effective leaf area based on the leaf area and angle.
+    """
+    return LA
+
+def Photosynthesis(LA, T,angle):
+
+    # Photosynthesis rate depends on leaf Temperature
+    TempPhoto = Photosynthesis_per_m2(T)
+
+    #Photosynthesis goes down with increased leaf angle - assuming light comes from the top
+    LA_eff = EffectiveLeafArea(LA, angle)
+    
+    return Pmax * TempPhoto *  LA_eff
+    
+def Respiration(LA,T,Q10):
+
+    TempResp    = R25 * Respiration_per_m2(T, Q10)
+    
+    return TempResp *  LA
+
+def Growth(C_conc, LA):
+    #LA increase saturates with Carbon concentration in the leaf
+    return Gmax* C_conc/(C_conc+K_g) * LA 
+    
+def ODE_system(t, y, T, angle):
+    C, LA = y;    C_conc=C/LA
+
+    dCdt =  Photosynthesis(LA, T,angle) - Respiration(LA,T,2.5) - Growth(C_conc,LA)
+    dLAdt = Growth(C_conc,LA)
+
+    return [dCdt, dLAdt]
+
+
+"""Investigate how photosynthesis (specificity vs. turnover) and respiration (Q10 principle, assume Q10 =2) depend on Temperature - use functions in HelperFunctions.py
+Photosynthesis can be normalized to 25C by dividing A over A25 """
+
+T = np.linspace(10,40,100); Q10 = 2
+P  = Photosynthesis_per_m2(T)
+R  = Respiration_per_m2(T, Q10)
+
+plt.figure()
+plt.plot(T, P*100, label='Photosynthesis')
+plt.plot(T, R*100, label='Respiration')
+plt.ylim(0,250)
+plt.legend()
+
+plt.ylabel('Rate (% compared to T=25C)')
+plt.xlabel('Temperature (C)')
+plt.tight_layout()
+plt.show()
+
+"""Run simulations of the ODE model for low (15°C), medium (25°C), and high (35°C) temperatures. 
+Which plant performs best? Which plant worst? Why is this?"""
+# Initial conditions
+y0 = [2.5, 2.5]  #Initial LA and C state of the plant
+
+# Time span of the simulation
+tend=24; t_eval = np.linspace(0, tend, 100)
+
+T15 = solve_ivp(ODE_system, (0,tend), y0, t_eval=t_eval, args=(T1,25,))
+T25 = solve_ivp(ODE_system, (0,tend), y0, t_eval=t_eval, args=(T2,25,))
+T35 = solve_ivp(ODE_system, (0,tend), y0, t_eval=t_eval, args=(T3,25,))
+
+# Plot results
+fig,(ax1,ax2) = plt.subplots(1,2)
+ax1.plot(T15.t, T15.y[1],label='T=15')
+ax1.plot(T25.t, T25.y[1],label='T=25')
+ax1.plot(T35.t, T35.y[1],label='T=35')
+ax1.set_xlabel('Time (-)'); ax1.set_ylabel('Leaf Area')
+ax1.legend()
+ax1.set_ylim(0,50)
+
+ax2.plot(T15.t, T15.y[0]/T15.y[1],label='T=15')
+ax2.plot(T25.t, T25.y[0]/T25.y[1],label='T=25')
+ax2.plot(T35.t, T35.y[0]/T35.y[1],label='T=35')
+ax2.set_xlabel('Time (-)'); ax2.set_ylabel('Carbon')
+ax2.legend()
+plt.tight_layout()
+
+plt.savefig('Growth_Q1.png')
+
+plt.show()
+
+```
+:::
+
+
+::: {.callout-note collapse="true"}
+## 02_Environment_and_development_answers.py
+
+``` python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp
+
+"""Parameters""" 
+Pmax = 1     #Max Photosynthesis rate
+R25  = 0.2    #Respiration rate at 25C
+Gmax = 0.25  #Max growth rate
+K_g  = 2     #Value where growth is at half max.
+
+#Three temperatures to test
+T1=15; T2=25;T3=35
+
+
+## Calculate Respiration (1/m2/s) normalized for a reference temperature of 25C
+def Respiration_per_m2(T,Q10):
+    Resp    = Q10 ** ( (T-25) / 10) 
+
+    return Resp
+
+## Calculate Realtive Photosynthesis with a reference temperetaure of 25C
+def Photosynthesis_per_m2(T):
+    # This function calculates the temperature dependency of photosynthesis parameter values  
+    def TempDependency(c, dHa,T):
+        R = 8.31e-3
+        T = T + 273
+        return  np.exp(c - dHa/(R*T))
+
+    #This function calculates photosynthesis at temperature T and at 25C and returns A_T/A_25
+    ci = 230; O = 210
+    VcMax  = 98*TempDependency(26.35,65.33,T) 
+    VoMax  = 98*TempDependency(22.98,60.11,T) 
+    Kc     = TempDependency(38.05,79.43,T) 
+    Ko     = TempDependency(20.30,36.38,T) 
+    G_Star = TempDependency(19.02,37.83,T) 
+    R_D    = 1.1*TempDependency(18.72,46.39,T)   
+    
+    VcMax25  = 98*TempDependency(26.35,65.33,25) 
+    VoMax25  = 98*TempDependency(22.98,60.11,25) 
+    Kc25     = TempDependency(38.05,79.43,25) 
+    Ko25     = TempDependency(20.30,36.38,25) 
+    G_Star25 = TempDependency(19.02,37.83,25) 
+    R_D25    = 1.1*TempDependency(18.72,46.39,25)           
+
+    A = (1 - G_Star/ci) *( VcMax * ci / (ci + Kc*(1 + O/Ko))) - R_D #Photosynthesis Rate
+    A25 = (1 - G_Star25/ci) *( VcMax25 * ci / (ci + Kc25*(1 + O/Ko25))) - R_D25 #Photosynthesis Rate at 25C
+        
+
+    return A/A25
+
+def EffectiveLeafArea(LA,angle):
+    """
+    Calculate the effective leaf area based on the leaf area and angle.
+    """
+    return np.cos(np.radians(angle)) *LA
+
+def Photosynthesis(LA, T,angle):
+
+    # Photosynthesis rate depends on leaf Temperature
+    TempPhoto = Photosynthesis_per_m2(T)
+
+    #Photosynthesis goes down with increased leaf angle - assuming light comes from the top
+    LA_eff = EffectiveLeafArea(LA, angle)
+    
+    #Max Photosynthesis rate
+    Pmax = 1
+    
+    return Pmax * TempPhoto *  LA_eff
+    
+def Respiration(LA,T,Q10):
+    #Respiration rate at 25C
+    R25 = 0.2 
+    TempResp    = R25 * Respiration_per_m2(T, Q10)
+    return TempResp *  LA
+
+    
+def Growth(C_conc, LA):
+    #LA increase saturates with Carbon concentration in the leaf
+    return 0.25 * C_conc/(C_conc+2) * LA 
+    
+def ODE_system(t, y, T, angle):
+    C, LA = y;    C_conc=C/LA
+
+    dCdt =  Photosynthesis(LA, T,angle) - Respiration(LA,T,2.5) - Growth(C_conc,LA)
+    dLAdt = Growth(C_conc,LA)
+
+    return [dCdt, dLAdt]
+
+""""
+Until now, we have looked at the differences between temperatures for plants that do not respond to their environment
+In reality, plants respond to their surroundings. Plants have a so-called thermomorpogenic response, in which it is observed that they lift
+their leaves (leaf hyponasty, increased leaf angle) when temperatures are high. This is thought to be a response to prevent overheating of the leaves.
+"""
+#plot effective leaf area as a function of angle
+plt.figure()
+angle = np.linspace(0, 90, 100)
+plt.plot(angle, EffectiveLeafArea(1,angle))
+plt.xlabel('Leaf Angle (Degrees)')
+plt.ylabel('Effective Leaf Area')
+
+# Initial conditions
+y0 = [2.5, 2.5]  #Initial LA and C state of the plant
+
+# Time span of the simulation
+tend=24; t_eval = np.linspace(0, tend, 100)
+
+#Two temperatures to test
+T2=25;T3=35
+#Two angles to test
+angle1 = 20; angle2 = 40
+
+T25_A20 = solve_ivp(ODE_system, (0,tend), y0, t_eval=t_eval, args=(T2,angle1,))
+T35_A20 = solve_ivp(ODE_system, (0,tend), y0, t_eval=t_eval, args=(T3,angle1,))
+T25_A40 = solve_ivp(ODE_system, (0,tend), y0, t_eval=t_eval, args=(T2,angle2,))
+T35_A40 = solve_ivp(ODE_system, (0,tend), y0, t_eval=t_eval, args=(T3,angle2,))
+
+
+fig,(ax1,ax2) = plt.subplots(1,2)
+ax1.plot(T25_A20.t, T25_A20.y[1],label='T=25, a=20')
+ax1.plot(T35_A20.t, T35_A20.y[1],label='T=25, a=40')
+ax1.plot(T25_A40.t, T25_A40.y[1],label='T=35, a=20')
+ax1.plot(T35_A40.t, T35_A40.y[1],label='T=35, a=40')
+ax1.set_xlabel('Time (-)'); ax1.set_ylabel('Leaf Area')
+ax1.legend()
+ax1.set_ylim(0,50)
+
+ax2.plot(T25_A20.t, T25_A20.y[0]/ T25_A20.y[1],label='T=25, a=20')
+ax2.plot(T35_A20.t, T35_A20.y[0]/ T35_A20.y[1],label='T=25, a=40')
+ax2.plot(T25_A40.t, T25_A40.y[0]/ T25_A40.y[1],label='T=35, a=20')
+ax2.plot(T35_A40.t, T35_A40.y[0]/ T35_A40.y[1],label='T=35, a=40')
+ax2.set_xlabel('Time (-)'); ax2.set_ylabel('Carbon')
+ax2.legend()
+
+# Barplot for final timepoint
+labels = ['T=25, angle=20', 'T=35, angle=20', 'T=25, angle=40', 'T=35, angle=40']
+final_leaf_areas = [
+    T25_A20.y[1, -1],    T35_A20.y[1, -1],    T25_A40.y[1, -1],    T35_A40.y[1, -1]]
+
+plt.figure()
+plt.bar(labels, final_leaf_areas)
+plt.ylabel('Final Leaf Area')
+plt.tick_params(axis='x', rotation=20)
+plt.tight_layout()
+plt.savefig('Growth_Q2.png')
+plt.show()
+
+```
+:::
+
+
+::: {.callout-note collapse="true"}
+## 03_Environment_and_development_answers.py
+
+``` python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp
+
+## Calculate Respiration (1/m2/s) normalized for a reference temperature of 25C
+def Respiration_per_m2(T,Q10):
+    Resp    = Q10 ** ( (T-25) / 10) 
+
+    return Resp
+
+## Calculate Realtive Photosynthesis with a reference temperetaure of 25C
+def Photosynthesis_per_m2(T):
+    # This function calculates the temperature dependency of photosynthesis parameter values  
+    def TempDependency(c, dHa,T):
+        R = 8.31e-3
+        T = T + 273
+        return  np.exp(c - dHa/(R*T))
+
+    #This function calculates photosynthesis at temperature T and at 25C and returns A_T/A_25
+    ci = 230; O = 210
+    VcMax  = 98*TempDependency(26.35,65.33,T) 
+    VoMax  = 98*TempDependency(22.98,60.11,T) 
+    Kc     = TempDependency(38.05,79.43,T) 
+    Ko     = TempDependency(20.30,36.38,T) 
+    G_Star = TempDependency(19.02,37.83,T) 
+    R_D    = 1.1*TempDependency(18.72,46.39,T)   
+    
+    VcMax25  = 98*TempDependency(26.35,65.33,25) 
+    VoMax25  = 98*TempDependency(22.98,60.11,25) 
+    Kc25     = TempDependency(38.05,79.43,25) 
+    Ko25     = TempDependency(20.30,36.38,25) 
+    G_Star25 = TempDependency(19.02,37.83,25) 
+    R_D25    = 1.1*TempDependency(18.72,46.39,25)           
+
+    A = (1 - G_Star/ci) *( VcMax * ci / (ci + Kc*(1 + O/Ko))) - R_D #Photosynthesis Rate
+    A25 = (1 - G_Star25/ci) *( VcMax25 * ci / (ci + Kc25*(1 + O/Ko25))) - R_D25 #Photosynthesis Rate at 25C
+    
+    return A/A25
+
+def EffectiveLeafArea(LA,angle):
+    """
+    Calculate the effective leaf area based on the leaf area and angle.
+    """
+    return np.cos(np.radians(angle)) * LA
+
+def Photosynthesis(LA, T,angle):
+
+    # Photosynthesis rate depends on leaf Temperature
+    TempPhoto = Photosynthesis_per_m2(T)
+
+    #Photosynthesis goes down with increased leaf angle - assuming light comes from the top
+    LA_eff = EffectiveLeafArea(LA, angle)
+    
+    #Max Photosynthesis rate
+    Pmax = 1
+    
+    return Pmax * TempPhoto *  LA_eff
+    
+def Respiration(LA,T,Q10):
+    #Respiration rate at 25C
+    R25 = 0.2 
+
+    TempResp    = R25 * Respiration_per_m2(T, Q10)
+    return TempResp *  LA
+
+    
+def Growth(C_conc, LA):
+    #LA increase saturates with Carbon concentration in the leaf
+    return 0.25 * C_conc/(C_conc+2) * LA 
+    
+def ODE_system(t, y, T, angle):
+    C, LA = y;    C_conc=C/LA
+
+    dCdt =  Photosynthesis(LA, T,angle) - Respiration(LA,T,2.5) - Growth(C_conc,LA)
+    dLAdt = Growth(C_conc,LA)
+
+    return [dCdt, dLAdt]
+
+""""Thee thermomorphogenesis repsonse does also have a positive effect. It is shown to lower leaf temperature, 
+which increases photosynthesis and decreases respiration.Investigate if this can have an effect, 
+i.e. how big is the effect for 3/5/7 degrees cooling down?"""
+
+#Investigate the effect of leaf hyponasty
+y0 = [2.5, 2.5]  #Initial LA and C state of the plant
+# Time span of the simulation
+tend=24; t_eval = np.linspace(0, tend, 100)
+
+#Two temperatures to test
+T2=25;T3=35
+#Two angles to test
+angle1 = 20; angle2 = 40
+
+#plot final LA in a barplot
+#1 to 3 degree cooling bar plot
+
+# Collect final leaf area values for specified temperatures and angles
+sol20_T25 = solve_ivp(ODE_system, (0, tend), y0, t_eval=t_eval, args=(25, 20,))
+sol20_T35 = solve_ivp(ODE_system, (0, tend), y0, t_eval=t_eval, args=(35, 20,))
+sol40_T25 = solve_ivp(ODE_system, (0, tend), y0, t_eval=t_eval, args=(25, 40,))
+sol40_T35 = solve_ivp(ODE_system, (0, tend), y0, t_eval=t_eval, args=(35, 40,))
+sol40_T34 = solve_ivp(ODE_system, (0, tend), y0, t_eval=t_eval, args=(34, 40,))
+sol40_T33 = solve_ivp(ODE_system, (0, tend), y0, t_eval=t_eval, args=(33, 40,))
+sol40_T32 = solve_ivp(ODE_system, (0, tend), y0, t_eval=t_eval, args=(32, 40,))
+sol40_T31 = solve_ivp(ODE_system, (0, tend), y0, t_eval=t_eval, args=(31, 40,))
+sol40_T30 = solve_ivp(ODE_system, (0, tend), y0, t_eval=t_eval, args=(30, 40,))
+
+bar_labels = [
+    'angle20_T25', 'angle20_T35',
+    'angle40_T25', 'angle40_T35',
+    'angle40_T34', 'angle40_T33', 'angle40_T32',
+    'angle40_T31', 'angle40_T30'
+]
+bar_values = [
+    sol20_T25.y[1, -1], sol20_T35.y[1, -1],
+    sol40_T25.y[1, -1], sol40_T35.y[1, -1],
+    sol40_T34.y[1, -1], sol40_T33.y[1, -1], sol40_T32.y[1, -1],
+    sol40_T31.y[1, -1], sol40_T30.y[1, -1]
+]
+
+plt.figure(figsize=(8, 5))
+plt.bar(bar_labels, bar_values)
+plt.ylabel('Final Leaf Area')
+plt.title('Final Leaf Area for Selected Temperatures and Angles')
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+
+
+# Simulate angle 20 and 40 for the temperature range from 20 to 40 C using list comprehension
+temps = np.arange(20, 41, 1)
+final_LA_angle20 = [solve_ivp(ODE_system, (0, tend), y0, t_eval=t_eval, args=(T, 20,)).y[1, -1] for T in temps]
+final_LA_angle40 = [solve_ivp(ODE_system, (0, tend), y0, t_eval=t_eval, args=(T, 40,)).y[1, -1] for T in temps]
+final_LA_angle40_min1 = [solve_ivp(ODE_system, (0, tend), y0, t_eval=t_eval, args=(T-1, 40,)).y[1, -1] for T in temps]
+final_LA_angle40_min2 = [solve_ivp(ODE_system, (0, tend), y0, t_eval=t_eval, args=(T-2, 40,)).y[1, -1] for T in temps]
+final_LA_angle40_min3 = [solve_ivp(ODE_system, (0, tend), y0, t_eval=t_eval, args=(T-3, 40,)).y[1, -1] for T in temps]
+final_LA_angle40_min4 = [solve_ivp(ODE_system, (0, tend), y0, t_eval=t_eval, args=(T-4, 40,)).y[1, -1] for T in temps]
+final_LA_angle40_min5 = [solve_ivp(ODE_system, (0, tend), y0, t_eval=t_eval, args=(T-5, 40,)).y[1, -1] for T in temps]
+
+final_LA_angle35_min3 = [solve_ivp(ODE_system, (0, tend), y0, t_eval=t_eval, args=(T-3, 35,)).y[1, -1] for T in temps]
+
+
+plt.figure(figsize=(8, 5))
+plt.plot(temps, final_LA_angle20, label='angle=20', marker='o')
+plt.plot(temps, final_LA_angle40, label='angle=40', marker='s')
+plt.plot(temps, final_LA_angle40_min1, label='angle=40, T-1', linestyle='--')
+plt.plot(temps, final_LA_angle40_min2, label='angle=40, T-2', linestyle='--')
+plt.plot(temps, final_LA_angle40_min3, label='angle=40, T-3', linestyle='--')
+plt.plot(temps, final_LA_angle40_min4, label='angle=40, T-4', linestyle='--')
+plt.plot(temps, final_LA_angle40_min5, label='angle=40, T-5', linestyle='--')
+plt.plot(temps, final_LA_angle35_min3, label='angle=35, T-3', linestyle='--')
+plt.xlabel('Temperature (C)')
+plt.ylabel('Final Leaf Area')
+plt.legend()
+plt.grid(True)
+plt.xlim(20,40)
+plt.tight_layout()
+
+plt.show()
+```
+:::

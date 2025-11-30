@@ -612,6 +612,7 @@ a. Another line was added to the model. What new information can you obtain from
 b. Study carefully how the other lines (also present in previous models) change over time. What do you observe? Try and capture what you see into words. 
 c. In biology, multiple genotypes can translate to the same phenotype (this is called a many-to-one genotype-phenotype map), or alternatively, one genotype can produce multiple phenotype (this is called phenotypic plasticity, or a one-to-many genotype-phenotype map). Which genotype-phenotype (GP) mapping applies to this model? Why?
 d. **Bonus question for motivated students** modify the code to include a second target protein sequence, and alternate between the two targets. If you see something interesting, please share it with the class!
+e. **Bonus question for motivated students** modify the code to include spatial structure in the population (e.g. proteins on a grid only competing with nearby proteins). 
 :::
 
 :::{.content-visible when-meta="params.show_answers"}

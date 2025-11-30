@@ -993,6 +993,7 @@ Starting code for evolving a protein sequence
 <li>Study carefully how the other lines (also present in previous models) change over time. What do you observe? Try and capture what you see into words.</li>
 <li>In biology, multiple genotypes can translate to the same phenotype (this is called a many-to-one genotype-phenotype map), or alternatively, one genotype can produce multiple phenotype (this is called phenotypic plasticity, or a one-to-many genotype-phenotype map). Which genotype-phenotype (GP) mapping applies to this model? Why?</li>
 <li><strong>Bonus question for motivated students</strong> modify the code to include a second target protein sequence, and alternate between the two targets. If you see something interesting, please share it with the class!</li>
+<li><strong>Bonus question for motivated students</strong> modify the code to include spatial structure in the population (e.g.&nbsp;proteins on a grid only competing with nearby proteins).</li>
 </ol>
 </div>
 
@@ -1603,7 +1604,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","openEffect":"zoom","closeEffect":"zoom","loop":false});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","openEffect":"zoom","loop":false,"descPosition":"bottom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

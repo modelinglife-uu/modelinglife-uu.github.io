@@ -6,7 +6,7 @@ params:
 
 ## Genotypes, phenotypes, and evolutionary algorithms
 
-Near the end of the lecture, we discussed the differences between the genotype (that which mutates) and the phenotype (that which is selected). Although you have likely already heard about these concepts, how can we study them in evolutionary models? During this practical, you will write your own evolutionary algorithms of increasing complexity, in order to learn about these topics. By the end of this practical, you should understand why the translation from genotype to phenotype (often referred to as the genotype-phenotype map) is such an important concept in evolutionary biology.
+During the lecture, we discussed the differences between the genotype (that which mutates) and the phenotype (that which is selected). Although you have likely already heard about these concepts, how can we study them in evolutionary models? During this practical, you will write your own evolutionary algorithms of increasing complexity, in order to learn about these topics. By the end of this practical, you should understand why the translation from genotype to phenotype (often referred to as the genotype-phenotype map) is such an important concept in evolutionary biology.
 
 ## Simple model where fitness as a number
 

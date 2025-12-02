@@ -226,9 +226,6 @@ this is also great!
   - Growth rate: Counterintuitively in plants often most growth happens during the night, when
   water loss is minimal and hence turgor pressure is high.
   
-  **Hint**: use *sine* functions to describe the daily rhythms and their relative phases. Make sure 
-  that light is really zero at night.
-  
   **Hint**: use sine functions to describe the daily rhythms and their relative phases. Make sure that 
   light is really zero at night . As an example you can write things as:
   

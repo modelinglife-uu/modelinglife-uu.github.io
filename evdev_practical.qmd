@@ -206,7 +206,7 @@ novel ideas! To help guide your thinking, we have come up with some additional p
 you can implement and investigate to see how these impact adaptiveness of leaf hyponasty under 
 high temperature. Pick one to work on and investigate if this would render hyponasty more clearly
 adaptive. If you have extra time, see if you can combine them. If you have other ideas to work on,
-this is also great!
+this is also great! You can use the answer code `03_Environment_and_development_answers.py` (at the bottom of this page) as a starting point. 
 
   a. *Hypothesis 1 - Day-Night Rhythm *
   

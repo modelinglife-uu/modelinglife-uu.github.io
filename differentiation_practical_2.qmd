@@ -168,6 +168,38 @@ Then, run `Root-model-Auxin.py`.Let op! If the plotting updates too slow, you ca
   > 
   > The above steps should be inside a for loop to iterate for as many timesteps as we want to simulate.
   
+  > pseudocode: 
+  > 
+  >     Initialize auxinGrid
+  > 
+  >     Initialize cellGrid
+  > 
+  >     Initialize WOX5grid, CKgrid, ...   # all GRN variable grids
+  > 
+  >     For t in Timesteps:
+  > 
+  >        For each cell (i, j) in the grid:
+  > 
+  >         neighbors = findNeighbors(i, j)
+  > 
+  >         auxinGrid = auxinTransport(auxinGrid, cellGrid, i, j, neighbors)
+  > 
+  >         If (t % 10 == 0):    # update every 10 timesteps
+  > 
+  >             For each cell (i, j) in the grid:
+  > 
+  >                 cellState = [WOX5grid[i][j],CKgrid[i][j],...   # add other network components]
+  > 
+  >                 updatedState = rootNetwork(cellState)
+  > 
+  >                 WOX5grid[i][j] = updatedState.WOX5     # Write updated values back into the grids
+  > 
+  >                 CKgrid[i][j]   = updatedState.CK
+  > 
+  >                    ...            # repeat for others
+  > 
+  > 
+  
 :::
 
 :::{#exr-tur}

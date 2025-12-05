@@ -642,6 +642,36 @@ window.Quarto = {
 <p>Next, to update the gene regulatory network we iterate over each cell of the simulation (for <span class="math inline">\(x\)</span>, for <span class="math inline">\(y\)</span>, as these are the dimensions of the grid) and store the value each element of the network (e.g.&nbsp;matrixes <code>WOX5grid</code>, <code>CKgrid</code>, etc.) into a <code>cellState</code> vector. <code>cellState</code> is used to solve the network (<code>rootNetwork</code>), whose output needs to be filled in again in the grids. We need to perform this every 10 timesteps, so we should make this inside a conditional statement (<code>if</code>).</p>
 <p>The above steps should be inside a for loop to iterate for as many timesteps as we want to simulate.</p>
 </blockquote>
+<blockquote class="blockquote">
+<p>pseudocode:</p>
+<pre><code>Initialize auxinGrid
+
+Initialize cellGrid
+
+Initialize WOX5grid, CKgrid, ...   # all GRN variable grids
+
+For t in Timesteps:
+
+   For each cell (i, j) in the grid:
+
+    neighbors = findNeighbors(i, j)
+
+    auxinGrid = auxinTransport(auxinGrid, cellGrid, i, j, neighbors)
+
+    If (t % 10 == 0):    # update every 10 timesteps
+
+        For each cell (i, j) in the grid:
+
+            cellState = [WOX5grid[i][j],CKgrid[i][j],...   # add other network components]
+
+            updatedState = rootNetwork(cellState)
+
+            WOX5grid[i][j] = updatedState.WOX5     # Write updated values back into the grids
+
+            CKgrid[i][j]   = updatedState.CK
+
+               ...            # repeat for others</code></pre>
+</blockquote>
 <div id="exr-tur" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 9.2 (Biology)</strong></span> What happens if you update the network more often than the auxin transport? How would you implement this modification in the code?</p>
 </div>

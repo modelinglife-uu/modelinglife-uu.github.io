@@ -48,6 +48,15 @@ The model will have the following output: a grid that is coloured by the number 
 - Number of public goods (i.e. bitstring length): 10 
 - "No-event" size of roulette wheel: 1
 
+### Structure of code:
+1. Import libraries
+2. Set parameters
+3. Initialize grid
+4. Define simulation functions
+5. Set up interactive plot (and function)
+6. Run simulation (up until T=timesteps)
+7. Show final plot
+
 ![Example of what the simulation could look like](images/evo_pract3_example.png){#fig-examplegrid}
 
 ### Proposed experiments

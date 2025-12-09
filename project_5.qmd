@@ -9,6 +9,7 @@ Here you will explore with a multicelular model what is the relation of differen
 
 - Why? SCN organization is generic, but cycling of cells is different: Basis of model is that mutation probability is constant, and that division frequency is what changes in different tissues (see ref 1 below). 
  
+ <center><iframe width="560" height="315" src="https://www.youtube.com/embed/NlT1VYqMzgc?si=ReVoZsDHz9nfUbq8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></center>
 
 They will receive a line of cells that duplicate with the same probability. They have to implement differences in division and make a measure of cell production. Compare cell production with and without gradient of differentiation. Probabilities: 0.1, 0.7, 0.0.  They should see it is better to have no gradient. 
 

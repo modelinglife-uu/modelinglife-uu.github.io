@@ -88,7 +88,6 @@ plt.grid(True)
 plt.draw()
 
 # --- EVOLUTION LOOP ---
-best_fitness = -1
 found = False
 
 for gen in range(generations):

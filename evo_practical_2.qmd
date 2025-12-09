@@ -177,7 +177,7 @@ the fixed weight that nobody gets to reproduce:
   total = sum(fitness_values)
   # Add a "no reproduction" dummy competitor with fitness = 0
   competitors_with_dummy = competitors + [None]
-  probs = [f / total for f in fitness_values] + [no_reproduction_chance]
+  probs = [f for f in fitness_values] + [no_reproduction_chance]
   winner = random.choices(competitors_with_dummy, weights=probs, k=1)[0]
   if winner is not None:
       # Mutate winner to produce offspring

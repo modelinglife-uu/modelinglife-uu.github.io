@@ -779,7 +779,7 @@ window.Quarto = {
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  total <span class="op">=</span> <span class="bu">sum</span>(fitness_values)</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add a "no reproduction" dummy competitor with fitness = 0</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  competitors_with_dummy <span class="op">=</span> competitors <span class="op">+</span> [<span class="va">None</span>]</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  probs <span class="op">=</span> [f <span class="op">/</span> total <span class="cf">for</span> f <span class="kw">in</span> fitness_values] <span class="op">+</span> [no_reproduction_chance]</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  probs <span class="op">=</span> [f <span class="cf">for</span> f <span class="kw">in</span> fitness_values] <span class="op">+</span> [no_reproduction_chance]</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  winner <span class="op">=</span> random.choices(competitors_with_dummy, weights<span class="op">=</span>probs, k<span class="op">=</span><span class="dv">1</span>)[<span class="dv">0</span>]</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> winner <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Mutate winner to produce offspring</span></span>

@@ -11,6 +11,7 @@ In the root, WOX5 regulation by auxin has been studied using these three strateg
 Look at the code and functions of practical 6, specifically at how auxin is currently represented. Propose how you would modify the model to simulate NAA/IAA/NPA treatment. Which functions should you modify? 
 
 ## Guiding steps
+
 **Increasing auxin levels in the root apex**
 
 1)	Implement the effect of using a synthetic auxin molecule (NAA) whose transport is not universally PIN-dependent and thus it enhanced signal but no change in spatial pattern (@friml2003efflux). Assume NAA enters the root through the epidermis, to mimic that experimentalists add NAA to the medium where the plant grows.

@@ -1,16 +1,24 @@
 # Miniproject: Oncogenic propensity of stem cell niches 
 
 ## Mini description
-Stem cells are present in our bodies, and their activity is important for the renewal of our tissues. For example, the turnover of our skin cells is ~30 days, and ~7 days for the gut epidermis. The spatial organization of stem cell niches is generic (even in plants is the same) such that stem cells are housed in a niche, they divide asymmetrically to produce progeny that divides actively in a transit-amplifying zone, and then differentiates. Therefore, the cells that compose a stem cell niche are organized in compartments, and are different in terms of 1) cell division and 2) differentiation (Figure 1). 
+Stem cells are present in our bodies, and their activity is important for the renewal of our tissues. For example, the turnover of our skin cells is ~30 days, and ~7 days for the gut epidermis, and both are driven by the activity of stem cells housed in microenvironments (stem cell niches). The spatial organization of stem cell niches is generic (even in plants is the same!): stem cells are housed in a niche, they divide asymmetrically to self-renew the stem cell and produce another cell that leaves the niche to divide actively in a transit-amplifying zone, and then differentiates acquiring its functional characteristics. 
+
+Thus, the cells that compose a stem cell niche are organized in compartments, and are different in terms of 1) cell division and 2) differentiation (Figure 1). 
 
 
 ![Figure 1. Generic organization of stem cell niches.](images/minimoni.png){#p7}
 
-In humans, different tissues have a different propensity of developing cancer, and this could be due to a combination of stem cell activity differences (how often local stem cells divide, and with that the chance of acquiring a carcinogenic mutations) and extrinsic factors (UV rays, smoking) that together *"create a 'perfect storm' that ultimately determines organ cancer risk”* (@zhu2016multi).
+In humans, different tissues have a different propensity of developing cancer, and this could be due to a combination of two factors that together *"create a 'perfect storm' that ultimately determines organ cancer risk”* (@zhu2016multi):
 
-In this mini project you will make a model to explore the effect of differences in stem cell activity, and cancer risk. For this, you will develop a multicellular model simulating the different compartments composing a stem cell niche, and will implement in each  what is the relation of differences in stem cell activity, two contrasting mechanisms of asymmetry in stem cell divsions, and cancer risk. 
+- Differences in stem cell activity: that is how often stem cells divide, and with that the chance of acquiring a mutation in a gene that has the potential to cause cancer. We will call this oncogenic mutations. 
+
+- Extrinsic factors: UV radiation, smoking.
+
+In this mini project you will make a model to explore the effect of differences in stem cell activity, and cancer risk. For this, you will develop a multicellular model simulating the different compartments composing a stem cell niche, to study what is the relation of differences in stem cell activity and cancer risk. 
 
 ## Getting started:
+
+- First, think of how you would implement your model: what variables would you use, what functions you need to define, etc. 
 
 - Open the code you got from your supervisor. This code implements a 1D-model of a growing tissue using a grid-based approach. Study the code to see what is implemented, and how.
 
@@ -27,7 +35,7 @@ Once you have a working model simulating a "normal" stem cell niche, try the fol
 
 -	Implement a mutation rate probability (e.g. 0.01 per cell per division). Now run the simulation for $t$ time steps, and quantify how many mutations occur in each compartment of the stem cell niche. Which one gets a higher number of mutations?
 
-- Analyse the fate of the mutations occurring in the stem cells and in the proliferating cells?
+- Analyse the fate of the mutations occurring in the stem cells and in the proliferating cells
 
 -	Simulate different stem cell activities to mimic different tissues cell renewal. Plot stem cell activity vs number of mutations. 
 
@@ -45,9 +53,9 @@ b) Population asymmetry: Stem cells divide symmetrically meaning they produce tw
 
 ![Fig 3. Single and population asymmetry. Credit image <https://kalderonlab.biology.columbia.edu/content/adult-stem-cell-research>](images/kalderonLab.png){#p7}
 
--	Expand the tissue model to a 2D model with three stem cell niche compartments (Figure 1)
+-	Expand the tissue model to a 2D model with the three stem cell niche compartments studied before (Figure 1)
 
-- Implement and compare the two modes of stem cell asymmetric divisions. For the population asymmetry, allow stem cells to replace other stem cells. 
+- Implement and compare the two modes of stem cell asymmetric divisions. For the population asymmetry, allow stem cells to replace other stem cells keeping a constant number of stem cells. 
 
 - Compare cell production and oncogenic mutations in single cell and population asymmetry models. Is one model better at minimizing the risk of mutations in stem cells?
 

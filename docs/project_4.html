@@ -43,6 +43,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -395,6 +398,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="mini-description" class="level2" data-number="19.1">
 <h2 data-number="19.1" class="anchored" data-anchor-id="mini-description"><span class="header-section-number">19.1</span> Mini description</h2>
 <p>In the early <em>C. elegans</em> embryo, the first cell division of the zygote (P0 cell) is asymmetric. The anterior daughter forms the AB cell that gives rise to somatic tissues, while the posterior daughter forms the P1 cell that gives rise to both somatic and germline tissues. These different fates are a result of asymmetric segregation of proteins to the anterior and posterior sides of the P0 cell before division. In fact, at this stage in development, the embryo has no active transcription, but “survives” off of maternally-inherited mRNAs and proteins.</p>
+<p><a href="images/miniproject_zif1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/miniproject_zif1.png" class="img-fluid"></a></p>
 <p>Asymmetric protein distribution is orchestrated by the PAR polarity proteins. One of the affected proteins is <strong>MEX-5</strong> which is phosphorylated by the posterior PAR protein PAR-1 (Griffin et al.&nbsp;2011). Since PAR-1 is present only in the posterior half of the cell while the phosphatase PP2A is ubiquitous, the balance of phosphorylation and dephosphorylation of MEX-5 differs along the anterior-posterior axis. Importantly, phosphorylated MEX-5 diffuses faster. As a result, slow-diffusing unphosphorylated MEX-5 accumulates in the anterior part of the cell. This gradient-formation mechanism was also recapitulated by a mathematical model (Griffin et al.&nbsp;2011).</p>
 <p>The MEX-5 protein binds to the 3’ untranslated region of various mRNAs, thereby activating their translation. One of its targets is <strong>zif-1</strong>, the mRNA encoding for the <strong>ZIF-1</strong> protein, a E3 ubiquitin ligase required to degrade factors that promote germline fate. To perform its function, ZIF-1 protein needs to be enriched anteriorly in the future AB cell, and needs to be excluded posteriorly in the future P1 cell. ZIF-1 is also known to inhibit MEX-5 by binding to it, resulting in a negative feedback on its own translation activation.</p>
 <p>One mechanism for the specific localization of ZIF-1 protein to the future AB cell is local zif-1 mRNA translation in the anterior half of the cell via the action of MEX-5. But what prevents the ZIF-1 protein from simply diffusing into the posterior half of the cell (the future P1 cell)? There are several possible mechanisms, for example:</p>
@@ -1030,6 +1034,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom","loop":false});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

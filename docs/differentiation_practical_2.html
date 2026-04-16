@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>9&nbsp; Gene regulation in space – Modeling Life</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./evdev_intro_text.html" rel="next">
+<link href="./differentiation_practical_1.html" rel="prev">
+<link href="./images/favicon.ico" rel="icon">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-0e7c136abd6418639055ad70ade9c940.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-c2e0d09699c19eeb454aa3ea76728735.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-0e7c136abd6418639055ad70ade9c940.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./differentiation_intro_text.html">III) Cell differentiation</a></li><li class="breadcrumb-item"><a href="./differentiation_practical_2.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Gene regulation in space</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./images/android-chrome-512x512.png" alt="Course website Modeling life" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/android-chrome-512x512.png" alt="Course website Modeling life" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Modeling life</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Course information</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Modeling life</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./general.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">General course info</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Slides</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_to_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">0) Introduction to Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">I) Pattern formation</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pattern_intro_text.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Pattern formation (intro)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pattern_practical_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Gradients and segments</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pattern_practical_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Turing patterns, repetitive patterning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pattern_practical_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Clock-and-wavefront patterning</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">II) Morphogenesis</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./morpho_intro_text.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Introduction to Morphogenesis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./morpho_cpm_practical.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Cell sorting by differential adhesion</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">III) Cell differentiation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./differentiation_intro_text.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Cell differentiation introduction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./differentiation_practical_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Gene regulation in time</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./differentiation_practical_2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Gene regulation in space</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">IV) Environment</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./evdev_intro_text.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Environmental inputs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./evdev_practical.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Modeling Thermomorphogenesis in Plants</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">V) Evolution</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./evo_intro_text.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introduction to evolution</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./evo_practical_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Sticking together</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./evo_practical_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">What gets selected?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./evo_practical_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Public goods</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="-1">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"></a></li>
+  <li><a href="#auxin-does-everything" id="toc-auxin-does-everything" class="nav-link" data-scroll-target="#auxin-does-everything"><span class="header-section-number">9.1</span> Auxin does everything</a></li>
+  <li><a href="#auxin-does-opposite-things-in-the-root" id="toc-auxin-does-opposite-things-in-the-root" class="nav-link" data-scroll-target="#auxin-does-opposite-things-in-the-root"><span class="header-section-number">9.2</span> Auxin does opposite things in the root</a></li>
+  <li><a href="#the-model" id="toc-the-model" class="nav-link" data-scroll-target="#the-model"><span class="header-section-number">9.3</span> The model</a></li>
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">9.4</span> Questions</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">9.5</span> References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./differentiation_intro_text.html">III) Cell differentiation</a></li><li class="breadcrumb-item"><a href="./differentiation_practical_2.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Gene regulation in space</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Gene regulation in space</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="section" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="section"></h2>
+<center>
+<span style="color: DodgerBlue"> <strong><em>How wonderful that we have met with a paradox. <br> Now we have some hope of making progress</em></strong> – <em>Niehls Bohr</em> </span>
+</center>
+</section>
+<section id="auxin-does-everything" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="auxin-does-everything"><span class="header-section-number">9.1</span> Auxin does everything</h2>
+<p>In this practical you will study the effects of auxin, a plant hormone, on gene regulation in the root. Auxin is a hormone that is virtually involved in all developmental processes in plants, from how the plant embryo is patterned, how the organs in flowers are determined, the spatial disposition of leaves, among many many others. In each context, auxin triggers specific responses, posing the question of how is it that the same molecule can trigger so many different responses. This specificity of auxin responses can be explained by the underlying regulatory networks. The auxin signalling pathway activates the auxin response factors, ARFs, which are transcription factors that regulate gene expression in response to auxin. Arabidopsis has 23 genes encoding for ARFs, some regulate gene expression positively and others negatively, and they are expressed in different tissues. It is this diversity in transcription factors activity which in part explains how auxin can regulate so many different things.</p>
+</section>
+<section id="auxin-does-opposite-things-in-the-root" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="auxin-does-opposite-things-in-the-root"><span class="header-section-number">9.2</span> Auxin does opposite things in the root</h2>
+<p>Plant root growth is driven by the activity of stem cells housed in a niche at the root tip. These stem cells self-renew and produce new cells, acting as a “growth engine”. A subset of these cells express <em>WOX5</em>, and maintain the surrounding cells undifferentiated. WOX5 is regulated by several factors, and network models help us understand how. Researchers have found paradoxical results regarding how auxin regulates WOX5: some experiments show that auxin promotes its expression, while others found it is repressed (Figure 1). Auxin does this opposite regulation through different ARFs (Figure 2) posing the possibility that accounting for how the ARFs themselves are regulated can reconcile the results. Here we will explore this possibility using an <em>in silico</em> root model.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/0-auxin-paradox.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure 1. The left panel shows evidence of the positive effect of auxin on WOX5 expression (white arrows). The right panel shows evidence of auxin repression of WOX5 in the root tip (white rectangle), also shown with qPCR measurements of WOX5 mRNA in root-tip cells."><img src="images/0-auxin-paradox.png" class="img-fluid figure-img" style="width:130.0%" alt="Figure 1. The left panel shows evidence of the positive effect of auxin on WOX5 expression (white arrows). The right panel shows evidence of auxin repression of WOX5 in the root tip (white rectangle), also shown with qPCR measurements of WOX5 mRNA in root-tip cells."></a></p>
+<figcaption>Figure 1. The left panel shows evidence of the positive effect of auxin on WOX5 expression (white arrows). The right panel shows evidence of auxin repression of WOX5 in the root tip (white rectangle), also shown with qPCR measurements of WOX5 mRNA in root-tip cells.</figcaption>
+</figure>
+</div>
+<p>The Boolean network we used last week describes the gene and hormonal activity configurations of the cells in the root tip (Figure 3 left). This model recovers an attractor representing the columella, the <strong>QC</strong>, the endodermis, and three types of vascular cells. In this model WOX5 is regulated positively by ARF5, and negatively by ARF10, and also by CLE40. Both ARF5 and ARF10 are auxin response factors, activated by auxin. Moreover, other root transcription factors control ARF5 and ARF10 expression causing them to be expressed in specific cells of the root (see Figure 3). This regulation is included in the Boolean model we studied last week.</p>
+<p>Here you will explore whether this is relevant to understanding the auxin–WOX5 paradox. For this you will use an <em>in silico</em> root model in which each cell carries a copy of the Boolean network initialized in a particular attractor, which allows us to test hypotheses and find an explanation.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/0-unique_attractors-celltypes.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure 2 Auxin regulates WOX5 expression through different auxin response factors. These are expressed in specific cell types of the root"><img src="images/0-unique_attractors-celltypes.png" class="img-fluid figure-img" style="width:100.0%" alt="Figure 2 Auxin regulates WOX5 expression through different auxin response factors. These are expressed in specific cell types of the root"></a></p>
+<figcaption>Figure 2 Auxin regulates WOX5 expression through different auxin response factors. These are expressed in specific cell types of the root</figcaption>
+</figure>
+</div>
+<section id="biology-conceptual-thinking" class="level3">
+<h3 class="anchored" data-anchor-id="biology-conceptual-thinking">Biology / conceptual thinking</h3>
+<p>Notice that the QC is the only attractor with WOX5 activity. This makes sense given that its logical rule is:</p>
+<p><span class="math inline">\(WOX5_{t+1} =NOT\)</span> <span class="math inline">\(ARF10\)</span> <span class="math inline">\(AND\)</span> <span class="math inline">\(ARF5\)</span> <span class="math inline">\(AND\)</span> <span class="math inline">\(NOT\)</span> <span class="math inline">\(CLE40\)</span></p>
+<p>Notice how the other attractors have either ARF10 and/or CLE40 activity (repressors of WOX5), or lack ARF5 activity (activator of WOX5). The QC attractor is the only one with the following combination: ARF5 active, ARF10 inactive, CLE40 inactive; therefore allowing for WOX5 activity.</p>
+</section>
+</section>
+<section id="the-model" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="the-model"><span class="header-section-number">9.3</span> The model</h2>
+<p>Today you will use a multicellular model that simulates the cells of a root tip (Figure 3, right). The tissue is modeled as a grid, where the <span class="math inline">\(x\)</span> position defines the radial direction and the <span class="math inline">\(y\)</span> the longitudinal position (<span class="math inline">\(y=0\)</span> being the cells at the <strong>TOP</strong>). The cells are organized in cell layers (8 layers, so <span class="math inline">\(x\)</span> is 8), each with a gene regulatory network initialized in a different attractor. The model simulates the transport of auxin from cell to cell, where the cell type (the attractor) defines the direction of polar auxin transport. In figure 3 (right) you can see the different properties that the cells have: a cell type, auxin levels, gene expression (in the figure we see only ARF10, ARF5, MGP and WOX5). These properties are stored in individual grids: one grid for the cell type, another for auxin levels, and many others for each of the genes in the network.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/0-new-RAM.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure 3. Ingredients of the in silico root model. 1) gene regulatory network, 2) multi-cellular tissue layout with polar auxin transport in the root tip"><img src="images/0-new-RAM.png" class="img-fluid figure-img" style="width:130.0%" alt="Figure 3. Ingredients of the in silico root model. 1) gene regulatory network, 2) multi-cellular tissue layout with polar auxin transport in the root tip"></a></p>
+<figcaption>Figure 3. Ingredients of the in silico root model. 1) gene regulatory network, 2) multi-cellular tissue layout with polar auxin transport in the root tip</figcaption>
+</figure>
+</div>
+<section id="files" class="level3">
+<h3 class="anchored" data-anchor-id="files">Files</h3>
+<p>1.- <code>Rootfunctions.py</code> – File storing the functions used in <code>Root-model-Auxin.py</code>. For this practical you only need to modify <code>rootNetwork</code>. Yet, have a look at all of them and try to understand what they do (useful for Question 9.1).</p>
+<p>The file contains the following functions:</p>
+<ul>
+<li><p><code>findNeighbors</code> - retrieves the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> coordinates of all the neighbors of a given cell.</p></li>
+<li><p><code>auxinTransport</code> - executes the passive and the polar auxin transport using the levels of auxin in each cell stored in <code>auxinGrid</code>. The direction at which a cell transports auxin is determined by its cell type (<code>cellgrid</code>).</p></li>
+<li><p><code>rootNetwork</code>- stores the interactions of the root network. This file is similar to the one we used in the last practical. A key difference is that the auxin levels are an input that can modify gene expression (<code>auxininput=parameters['auxininput']</code>). You will modify this function in question 9.5.</p></li>
+<li><p><code>initialCondition</code> - Initializes the grids of the model. We have many cells in this simulation, and we have a grid per cell property: cell type (<code>cellgrid</code>), auxin levels (<code>auxinGrid</code>), and a grid per variable of the network (e.g.&nbsp;<code>WOX5grid</code>).</p></li>
+<li><p><code>nodeUpdate</code> - function to take the output of the ODE and stored it in the grids.</p></li>
+<li><p><code>plotGrids</code> - this function plots 6 grids you provide as heatmaps. The labelling assumes you give <code>cellgrid</code>, <code>auxingrid</code>, <code>arf10grid</code>, <code>arf5grid</code>, <code>mgpgrid</code>, <code>wox5grid</code> as input.</p></li>
+</ul>
+<p>2.- <code>Root-model-Auxin.py</code> – code to simulate the <em>in silico</em> root where we use the functions in a specific order. Before the <code>main()</code> we define the dimensions of the grid, the parameters, initialize the grid, and then inside the <code>main()</code> we use a for loop to run the auxin transport and network update for a defined number of time steps. In this loop, the output of the network is plotted every 10 steps.</p>
+<p><strong>Tip: if the simulation runs too slow, decrease this plotting frequency.</strong></p>
+<p>3.- <code>auxin_grid.npy</code> – initial auxin levels in each cell with the auxin gradient. This is used to initialize <code>auxinGrid</code> in <code>Root-model-Auxin.py</code>.</p>
+</section>
+</section>
+<section id="questions" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="questions"><span class="header-section-number">9.4</span> Questions</h2>
+<div id="exr-non" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 9.1 (Algorithmic thinking)</strong></span> What are the algorithmic steps you would take if you want to make a model of the root in which there is transport of auxin between the cells every timestep, and the cells update their regulatory networks every 10 steps? Keep in mind that the network defines the cell type of the cells, which in turn defines the direction at which they transport auxin to their neighbors. Make a plain-language description, pseudocode, or flowchart using pen and paper.</p>
+<p>Tip: have a look at the code in the <code>Root-model-Auxin.py</code> and <code>Rootfunctions.py</code>.</p>
+<p>Then, run <code>Root-model-Auxin.py</code>.Let op! If the plotting updates too slow, you can change the frequency of plotting in line 56.</p>
+</div>
+<div id="exr-tur" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 9.2 (Biology)</strong></span> What happens if you update the network more often than the auxin transport? How would you implement this modification in the code?</p>
+</div>
+<div id="exr-tur" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 9.3 (Biology &amp; algorithmic thinking)</strong></span> Now let’s use the model to simulate the auxin treatments from the experiments in Figure 1. To simulate an auxin treatment change the value of <span class="math inline">\(AuxinTreatment\)</span> in <code>Root-model-Auxin.py</code>. Try values of 10 and 750. This increases auxin levels in all cells by the same amount. You can run one treatment at a time, or make a for loop and run the three in one go.</p>
+<ul>
+<li>How does auxin treatment affect gene expression in the root?</li>
+<li>Does the model output correspond to the transcriptional reporter of WOX5 shown in Figure 1?</li>
+<li>Do you see activation or repression as reported experimentally? (You can visualize different genes by changing the grid provided to <code>plotGrids()</code>, although the labelling will be wrong.)</li>
+</ul>
+<p><strong>Notice the simulation creates an output folder with png images.</strong></p>
+</div>
+<div id="exr-tur" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 9.4 (Biology &amp; algorithmic/mathematical thinking)</strong></span> The model does not yet reproduce the experiments. Yet, we can use this model to test hypotheses and aim to recover such behaviours (Figure 1). Let’s implement the following two hypotheses:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/0-auxin-hypothesis.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Testing two hypothesis: Auxin represses MGP expression. Extremely high auxin levels (easy to apply experimentally, but unrealistic in vivo) repress WOX5 expression."><img src="images/0-auxin-hypothesis.png" class="img-fluid figure-img" style="width:60.0%" alt="Testing two hypothesis: Auxin represses MGP expression. Extremely high auxin levels (easy to apply experimentally, but unrealistic in vivo) repress WOX5 expression."></a></p>
+<figcaption>Testing two hypothesis: <span style="color: magenta;">Auxin represses MGP expression.</span> <span style="color: #32CD32;">Extremely high auxin levels (easy to apply experimentally, but unrealistic <em>in vivo</em>) repress WOX5 expression.</span></figcaption>
+</figure>
+</div>
+<p>Modify the equations for MGP and WOX5 in <code>rootNetwork</code> accordingly.</p>
+<ul>
+<li><p>For MGP, retain its logical rule but multiply its production term by a negative regulatory term of auxin (<span class="math inline">\(Km = 45\)</span>): <span style="color: magenta;"> <span class="math inline">\(\frac{45}{45+auxininput}\)</span> </span></p></li>
+<li><p>Similarly, add a negative regulation by auxin to the WOX5 equation (<span class="math inline">\(Km = 1000\)</span>).</p></li>
+</ul>
+<p>Run control and auxin treatments with (i) updated MGP, (ii) updated WOX5, and (iii) both updates. Use the plotting functions to plot the final timepoint.</p>
+<p>It is also interesting to run the timecourse, by plotting every 10 steps.</p>
+<p>Do you now see the differences reported by experimentalists?</p>
+</div>
+<div id="exr-tur" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 9.5 (Biological interpretation)</strong></span> You should observe that WOX5 expression gradually expands into the endodermis and disappears from QC cells when both equations are updated with the two hypotheses. This matches the experimental microscopy from Figure 1.</p>
+<ul>
+<li>Why do different parts of the root respond differently to auxin?</li>
+<li>Why does auxin regulation of MGP do? (Look at the network…)</li>
+<li>Why does induction of WOX5 occur mainly in “upper” cells and repression in the cells at the bottom?</li>
+</ul>
+</div>
+<div id="exr-tur" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 9.6 (Algorithmic thinking)</strong></span> Experimental repression of WOX5 was detected by RT-PCR at the very tip (Figure 1, right panel). Reproduce this <em>in silico</em> by saving the average WOX5 levels of cells at the tip (<span class="math inline">\(y\)</span> &lt; 40) at the end of the simulation for all three treatments. For comparison, also calculate the average for the whole root. Then plot this average WOX5 expression levels (y axis) for each <code>auxinTreatment</code>= 0, 10 and 750 (x axis).</p>
+<p>Tip: <code>WOX5Grid</code> stores WOX5 levels, and <span class="math inline">\(y\)</span> controls the position of the cells with <span class="math inline">\(y=0\)</span> being the bottom of the root.</p>
+<ul>
+<li>What is the overall effect of auxin treatments in the root tip? Considering that the root is a mixture of many cell types, which cells best represent the plotted values?</li>
+</ul>
+</div>
+<div id="exr-tur" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 9.7 (Biology &amp; algorithmic thinking)</strong></span> Now, let’s compare WOX5 regulation across tissues. Let’s use the model to do an in RT-PCR <em>in silico</em> analysis of only the cells in the QC position, and also the endodermis cells. This has not been done experimentally and thus you will generate a prediction (!).</p>
+<p>Tip: cell types are stored in <code>cellGrid.</code></p>
+<ul>
+<li>Compare what you see in the root simulation, and what you obtain in the simulated RT-PCR plot. Which case represents better how WOX5 is regulated in the root tip? Why?</li>
+</ul>
+</div>
+<div id="exr-tur" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 9.8 (Biology &amp; algorithmic thinking)</strong></span> Changes in WOX5 expression depend on tissue context and auxin dosage. Simulate a range of auxin treatments from 0 to 750.</p>
+<p>Can you now explain the auxin–WOX5 paradox? What mechanism do you propose?</p>
+</div>
+<div id="exr-tur" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 9.9 (Biology &amp; conceptual thinking)</strong></span> &nbsp;</p>
+<ul>
+<li><p>Perform an <em>in silico</em> intervention to alter WOX5 dosage responsiveness to auxin. For example, what would it take to enforce its continuous expression, or block completely its induction in the endodermis.</p></li>
+<li><p>How would you test these model predictions experimentally?</p></li>
+</ul>
+</div>
+<div id="exr-tur" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 9.10 (Biological thinking)</strong></span> All models are wrong, but some are useful. The model we studied today offered us a mechanistic insight into the paradoxical auxin responses. Yet, (to make things more fun), the original experiments used different auxin <em>analogs</em> and other molecules which are transported very differently between cells: NAA (transported independently of PINs), IAA (PIN-transported), and NPA (blocks PINs, increasing auxin in the tip). How does this information change your conclusions? What extensions to the model would you make to account for these differences?</p>
+</div>
+</section>
+<section id="references" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="references"><span class="header-section-number">9.5</span> References</h2>
+<ul>
+<li><span class="citation" data-cites="mahonen2014plethora">Mähönen et al. (<a href="references.html#ref-mahonen2014plethora" role="doc-biblioref">2014</a>)</span></li>
+<li><span class="citation" data-cites="ding2010auxin">Ding and Friml (<a href="references.html#ref-ding2010auxin" role="doc-biblioref">2010</a>)</span></li>
+<li><span class="citation" data-cites="shamir2016snapshot">Shamir et al. (<a href="references.html#ref-shamir2016snapshot" role="doc-biblioref">2016</a>)</span></li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-ding2010auxin" class="csl-entry" role="listitem">
+Ding, Zhaojun, and Jiřı́ Friml. 2010. <span>“Auxin Regulates Distal Stem Cell Differentiation in Arabidopsis Roots.”</span> <em>Proceedings of the National Academy of Sciences</em> 107 (26): 12046–51.
+</div>
+<div id="ref-mahonen2014plethora" class="csl-entry" role="listitem">
+Mähönen, Ari Pekka, Kirsten ten Tusscher, Riccardo Siligato, Ondřej Smetana, Sara Dı́az-Triviño, Jarkko Salojärvi, Guy Wachsman, Kalika Prasad, Renze Heidstra, and Ben Scheres. 2014. <span>“PLETHORA Gradient Formation Mechanism Separates Auxin Responses.”</span> <em>Nature</em> 515 (7525): 125–29.
+</div>
+<div id="ref-shamir2016snapshot" class="csl-entry" role="listitem">
+Shamir, Maya, Yinon Bar-On, Rob Phillips, and Ron Milo. 2016. <span>“SnapShot: Timescales in Cell Biology.”</span> <em>Cell</em> 164 (6): 1302–2.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./differentiation_practical_1.html" class="pagination-link" aria-label="Gene regulation in time">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Gene regulation in time</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./evdev_intro_text.html" class="pagination-link" aria-label="Environmental inputs">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Environmental inputs</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Theoretical Biology, Utrecht University.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>This book was made with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

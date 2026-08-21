@@ -1,5 +1,24 @@
-_book/*
-.Rproj.user
-/.quarto/
+# ---- machine-local ----
+.DS_Store
+.Rhistory
+.RData
+.Rproj.user/
 
+# ---- quarto build ----
+/.quarto/
+_book/
+_freeze/
 **/*.quarto_ipynb
+
+# ---- latex / pdf build artefacts ----
+/index.tex
+/index.log
+/index.aux
+/index.toc
+/index.pdf
+
+# ---- stray render output that landed in the source root ----
+/search.json
+/summary.html
+/env_practical_1.html
+/evo_slides.html

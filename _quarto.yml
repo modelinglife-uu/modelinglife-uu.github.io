@@ -31,7 +31,6 @@ book:
         - index.qmd
         - general.qmd
         - schedule.qmd
-        - slides.qmd
     - intro_to_python.qmd
     - part: "I) Pattern formation"
       chapters:

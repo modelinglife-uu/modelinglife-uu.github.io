@@ -5,7 +5,6 @@
 .Rproj.user/
 
 # ---- quarto build ----
-/.quarto/
 _book/
 _freeze/
 **/*.quarto_ipynb
@@ -22,3 +21,5 @@ _freeze/
 /summary.html
 /env_practical_1.html
 /evo_slides.html
+
+/.quarto/

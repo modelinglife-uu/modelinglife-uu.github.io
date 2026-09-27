@@ -32,9 +32,6 @@ git pull --no-edit || {
   exit 1
 }
 
-# --- clear cache to ensure fresh render
-rm -rf .quarto _book
-
 quarto render --to html
 
 # --- mirror into docs/, don't delete-and-recreate all 140 files

@@ -17,12 +17,12 @@ Anaconda is a free and open-source distribution of Python for scientific computi
 The recommended editor for this course is Visual Studio Code (VS Code). To set it up:
 
 1. Download and install VS Code from [https://code.visualstudio.com/download](https://code.visualstudio.com/download)
-2. Open VS Code and install the **Python extension** (search for ‘Python’ in the extensions tab on the left, and install the one with the blue check mark)
+2. Open VS Code and install the **Python extension** (search for 'Python' in the extensions tab on the left, and install the one with the blue check mark)
 3. Select the Python interpreter from Anaconda:
    - Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac) to open the command palette
-   - Type `Python: Select Interpreter` and choose the one that points to your Anaconda installation (it should have ‘anaconda3’ in the path)
+   - Type `Python: Select Interpreter` and choose the one that points to your Anaconda installation (it should have 'anaconda3' in the path)
 
-Now you’re ready to run Python scripts!
+Now you're ready to run Python scripts!
 
 ## Try Python in your browser
 
@@ -103,7 +103,7 @@ This uses [Pyodide](https://pyodide.org/) to run Python in your browser. For the
 
 ## Testing your setup
 
-Throughout this course you will work with scripts you’ve been given or that you can copy/paste from this website. Let’s test your setup with this script:
+Throughout this course you will work with scripts you've been given or that you can copy/paste from this website. Let's test your setup with this script:
 
 ```python
 import random, matplotlib.pyplot as plt
@@ -112,8 +112,8 @@ plt.ion()
 fig, ax = plt.subplots()
 ax.set_ylim(-2, 2)
 ax.set_xlim(0, 100)
-ax.set_title(“Random Wiggle Test”)
-line, = ax.plot([], [], color=”seagreen”, lw=2)
+ax.set_title("Random Wiggle Test")
+line, = ax.plot([], [], color="seagreen", lw=2)
 
 y = [0]
 for i in range(100):
@@ -122,12 +122,12 @@ for i in range(100):
     ax.set_xlim(0, len(y))
     plt.pause(0.03)
 
-ax.set_title(“Animation works! (you can close this window)”)
+ax.set_title("Animation works! (you can close this window)")
 plt.ioff()
 plt.show()
 ```
 
-Save this as a `.py` file in VS Code and run it by pressing `F5` or using the “Run” button in the top right. Does the animation show up in a separate window and is it animated? Good, you’re ready to go! 
+Save this as a `.py` file in VS Code and run it by pressing `F5` or using the "Run" button in the top right. Does the animation show up in a separate window and is it animated? Good, you're ready to go! 
     
 # Introduction to Python Programming
 

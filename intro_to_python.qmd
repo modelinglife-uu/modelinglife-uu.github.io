@@ -58,16 +58,18 @@ for num in numbers:
 
 ```{pyodide}
 import numpy as np
+import matplotlib.pyplot as plt
 
-data = np.array([1, 2, 3, 4, 5])
-print(f"Data: {data}")
-print(f"Mean: {np.mean(data)}")
-print(f"Std Dev: {np.std(data)}")
-print(f"Sum: {np.sum(data)}")
-
-x = np.linspace(0, 10, 5)
+x = np.linspace(0, 10, 100)
 y = np.sin(x)
-print(f"Sin values: {y}")
+
+plt.figure(figsize=(8, 4))
+plt.plot(x, y, 'b-', linewidth=2)
+plt.title("Sine Wave")
+plt.xlabel("x")
+plt.ylabel("sin(x)")
+plt.grid(True)
+plt.show()
 ```
 
 For the actual course work, simulations, and graphics, you'll use your local Python setup with Anaconda and VS Code.

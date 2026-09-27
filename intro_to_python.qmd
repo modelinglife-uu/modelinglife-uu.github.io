@@ -24,6 +24,34 @@ The recommended editor for this course is Visual Studio Code (VS Code). To set i
 
 Now you’re ready to run Python scripts!
 
+## Try Python in your browser
+
+On this page, however, you can also run Python directly in the browser without installing anything! Try clicking "Run" on the code snippets below to see Python in action:
+
+**Variables and printing:**
+```{pyodide-python}
+name = "Alice"
+age = 25
+print(f"{name} is {age} years old")
+```
+
+**Simple math:**
+```{pyodide-python}
+x = 10
+y = 20
+print(f"Sum: {x + y}")
+print(f"Product: {x * y}")
+```
+
+**Lists and loops:**
+```{pyodide-python}
+numbers = [1, 2, 3, 4, 5]
+for num in numbers:
+    print(f"Number: {num}, Squared: {num**2}")
+```
+
+This browser-based Python uses [Pyodide](https://pyodide.org/) and is great for quick experiments while you’re learning. For the actual course work and simulations, you’ll use your local Python setup with Anaconda and VS Code.
+
 ## Testing your setup
 
 Throughout this course you will work with scripts you’ve been given or that you can copy/paste from this website. Let’s test your setup with this script:

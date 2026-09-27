@@ -228,6 +228,16 @@
     ]
   },
   {
+    "objectID": "intro_to_python.html#try-python-in-your-browser",
+    "href": "intro_to_python.html#try-python-in-your-browser",
+    "title": "0) Introduction to Python",
+    "section": "Try Python in your browser",
+    "text": "Try Python in your browser\nOn this page, however, you can also run Python directly in the browser without installing anything! Try clicking “Run” on the code snippets below to see Python in action:\nVariables and printing:\nname = \"Alice\"\nage = 25\nprint(f\"{name} is {age} years old\")\nSimple math:\nx = 10\ny = 20\nprint(f\"Sum: {x + y}\")\nprint(f\"Product: {x * y}\")\nLists and loops:\nnumbers = [1, 2, 3, 4, 5]\nfor num in numbers:\n    print(f\"Number: {num}, Squared: {num**2}\")\nThis browser-based Python uses Pyodide and is great for quick experiments while you’re learning. For the actual course work and simulations, you’ll use your local Python setup with Anaconda and VS Code.",
+    "crumbs": [
+      "0) Introduction to Python"
+    ]
+  },
+  {
     "objectID": "intro_to_python.html#testing-your-setup",
     "href": "intro_to_python.html#testing-your-setup",
     "title": "0) Introduction to Python",

@@ -98,10 +98,16 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-7d8ad657b878717df1156ab40fed854c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-21773dcadea2beec2b9f71056aa2f0f3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-6ccc5592c1c9ff1613d71d93fc8a4623.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-21773dcadea2beec2b9f71056aa2f0f3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
+<link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -129,6 +135,8 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
@@ -162,7 +170,169 @@ window.Quarto = {
 
 </head>
 
-<body class="nav-sidebar floating quarto-light">
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -191,6 +361,9 @@ window.Quarto = {
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Modeling life</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -392,10 +565,10 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="-1">
     <h2 id="toc-title">Table of contents</h2>
    
-  <ul>
+  <ul class="collapse">
   <li><a href="#goal-of-the-tutorial" id="toc-goal-of-the-tutorial" class="nav-link active" data-scroll-target="#goal-of-the-tutorial"><span class="header-section-number">8.1</span> Goal of the tutorial:</a></li>
   <li><a href="#the-model-system" id="toc-the-model-system" class="nav-link" data-scroll-target="#the-model-system"><span class="header-section-number">8.2</span> The model system</a></li>
   <li><a href="#programming-with-classes" id="toc-programming-with-classes" class="nav-link" data-scroll-target="#programming-with-classes"><span class="header-section-number">8.3</span> Programming with classes</a></li>
@@ -407,6 +580,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pattern_intro_text.html">II) Pattern formation</a></li><li class="breadcrumb-item"><a href="./pattern_practical_3.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Clock-and-wavefront patterning</span></a></li></ol></nav>
 <div class="quarto-title">
@@ -773,27 +947,41 @@ window.Quarto = {
 <section id="relevant-literature" class="level2" data-number="8.5">
 <h2 data-number="8.5" class="anchored" data-anchor-id="relevant-literature"><span class="header-section-number">8.5</span> Relevant literature</h2>
 <p>If you want to know more about the model system and previous models, have a look at the following (after the tutorial):</p>
-<p><span class="citation" data-cites="lewis2003autoinhibition">Lewis (<a href="references.html#ref-lewis2003autoinhibition" role="doc-biblioref">2003</a>)</span> Autoinhibition with transcriptional delay: a simple mechanism for the zebrafish somitogenesis oscillator.</p>
-<p><span class="citation" data-cites="hester2012multi">Hester (<a href="references.html#ref-hester2012multi" role="doc-biblioref">2012</a>)</span> A Multi-cell, Multi-scale Model of Vertebrate Segmentation and Somite Formation.</p>
-<p><span class="citation" data-cites="herrgen2010intercellular">Herrgen et al. (<a href="references.html#ref-herrgen2010intercellular" role="doc-biblioref">2010</a>)</span> Intercellular coupling regulates the period of the segmentation clock.</p>
-<p><span class="citation" data-cites="soroldoni2014doppler">Soroldoni et al. (<a href="references.html#ref-soroldoni2014doppler" role="doc-biblioref">2014</a>)</span> Genetic oscillations. A Doppler effect in embryonic pattern formation.</p>
-<p><span class="citation" data-cites="sonnen2018modulation">Sonnen et al. (<a href="references.html#ref-sonnen2018modulation" role="doc-biblioref">2018</a>)</span> Modulation of Phase Shift between Wnt and Notch Signaling Oscillations Controls Mesoderm Segmentation.</p>
-<p><span class="citation" data-cites="bulusu2017spatiotemporal">Bulusu et al. (<a href="references.html#ref-bulusu2017spatiotemporal" role="doc-biblioref">2017</a>)</span> Spatiotemporal Analysis of a Glycolytic Activity Gradient Linked to Mouse Embryo Mesoderm Development.</p>
-<p><span class="citation" data-cites="van2025scaling">Oostrom et al. (<a href="references.html#ref-van2025scaling" role="doc-biblioref">2025</a>)</span> Coupling of cell proliferation to the segmentation clock ensures robust somite scaling.</p>
+<p><span class="citation" data-cites="lewis2003autoinhibition">Lewis (<a href="#ref-lewis2003autoinhibition" role="doc-biblioref">2003</a>)</span> Autoinhibition with transcriptional delay: a simple mechanism for the zebrafish somitogenesis oscillator.</p>
+<p><span class="citation" data-cites="hester2012multi">Hester (<a href="#ref-hester2012multi" role="doc-biblioref">2012</a>)</span> A Multi-cell, Multi-scale Model of Vertebrate Segmentation and Somite Formation.</p>
+<p><span class="citation" data-cites="herrgen2010intercellular">Herrgen et al. (<a href="#ref-herrgen2010intercellular" role="doc-biblioref">2010</a>)</span> Intercellular coupling regulates the period of the segmentation clock.</p>
+<p><span class="citation" data-cites="soroldoni2014doppler">Soroldoni et al. (<a href="#ref-soroldoni2014doppler" role="doc-biblioref">2014</a>)</span> Genetic oscillations. A Doppler effect in embryonic pattern formation.</p>
+<p><span class="citation" data-cites="sonnen2018modulation">Sonnen et al. (<a href="#ref-sonnen2018modulation" role="doc-biblioref">2018</a>)</span> Modulation of Phase Shift between Wnt and Notch Signaling Oscillations Controls Mesoderm Segmentation.</p>
+<p><span class="citation" data-cites="bulusu2017spatiotemporal">Bulusu et al. (<a href="#ref-bulusu2017spatiotemporal" role="doc-biblioref">2017</a>)</span> Spatiotemporal Analysis of a Glycolytic Activity Gradient Linked to Mouse Embryo Mesoderm Development.</p>
+<p><span class="citation" data-cites="van2025scaling">Oostrom et al. (<a href="#ref-van2025scaling" role="doc-biblioref">2025</a>)</span> Coupling of cell proliferation to the segmentation clock ensures robust somite scaling.</p>
 </section>
 <section id="references-for-biological-parameters" class="level2" data-number="8.6">
 <h2 data-number="8.6" class="anchored" data-anchor-id="references-for-biological-parameters"><span class="header-section-number">8.6</span> References for biological parameters:</h2>
 <ol type="a">
-<li><p><span class="citation" data-cites="stickney2000somite">Stickney et al. (<a href="references.html#ref-stickney2000somite" role="doc-biblioref">2000</a>)</span></p></li>
-<li><p><span class="citation" data-cites="saga2012mechanism">Saga (<a href="references.html#ref-saga2012mechanism" role="doc-biblioref">2012</a>)</span></p></li>
-<li><p><span class="citation" data-cites="tam1981control">Tam (<a href="references.html#ref-tam1981control" role="doc-biblioref">1981</a>)</span></p></li>
-<li><p><span class="citation" data-cites="ishimatsu2018size">Ishimatsu et al. (<a href="references.html#ref-ishimatsu2018size" role="doc-biblioref">2018</a>)</span></p></li>
-<li><p><span class="citation" data-cites="carraco2022vertebrate">Carraco et al. (<a href="references.html#ref-carraco2022vertebrate" role="doc-biblioref">2022</a>)</span></p></li>
-<li><p><span class="citation" data-cites="tomka2018travelling">Tomka et al. (<a href="references.html#ref-tomka2018travelling" role="doc-biblioref">2018</a>)</span></p></li>
+<li><p><span class="citation" data-cites="stickney2000somite">Stickney et al. (<a href="#ref-stickney2000somite" role="doc-biblioref">2000</a>)</span></p></li>
+<li><p><span class="citation" data-cites="saga2012mechanism">Saga (<a href="#ref-saga2012mechanism" role="doc-biblioref">2012</a>)</span></p></li>
+<li><p><span class="citation" data-cites="tam1981control">Tam (<a href="#ref-tam1981control" role="doc-biblioref">1981</a>)</span></p></li>
+<li><p><span class="citation" data-cites="ishimatsu2018size">Ishimatsu et al. (<a href="#ref-ishimatsu2018size" role="doc-biblioref">2018</a>)</span></p></li>
+<li><p><span class="citation" data-cites="carraco2022vertebrate">Carraco et al. (<a href="#ref-carraco2022vertebrate" role="doc-biblioref">2022</a>)</span></p></li>
+<li><p><span class="citation" data-cites="tomka2018travelling">Tomka et al. (<a href="#ref-tomka2018travelling" role="doc-biblioref">2018</a>)</span></p></li>
 </ol>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
+<div id="exercise-loading-status" class="d-flex gap-2">
+
+</div>
+<div class="spinner-grow spinner-grow-sm">
+
+</div>
+</div>
+<script type="vfs-file">
+W10=
+</script>
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-bulusu2017spatiotemporal" class="csl-entry" role="listitem">
 Bulusu, Vinay, Nicole Prior, Marteinn T Snaebjornsson, et al. 2017. <span>“Spatiotemporal Analysis of a Glycolytic Activity Gradient Linked to Mouse Embryo Mesoderm Development.”</span> <em>Developmental Cell</em> 40 (4): 331–41.
 </div>
@@ -837,8 +1025,32 @@ Tomka, Tomas, Dagmar Iber, and Marcelo Boareto. 2018. <span>“Travelling Waves 
 </section>
 
 </main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -924,6 +1136,13 @@ Tomka, Tomas, Dagmar Iber, and Marcelo Boareto. 2018. <span>“Travelling Waves 
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {

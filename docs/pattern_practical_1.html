@@ -98,10 +98,16 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-7d8ad657b878717df1156ab40fed854c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-21773dcadea2beec2b9f71056aa2f0f3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-6ccc5592c1c9ff1613d71d93fc8a4623.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-21773dcadea2beec2b9f71056aa2f0f3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
+<link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -129,6 +135,8 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
@@ -162,7 +170,169 @@ window.Quarto = {
 
 </head>
 
-<body class="nav-sidebar floating quarto-light">
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -191,6 +361,9 @@ window.Quarto = {
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Modeling life</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -392,10 +565,10 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="-1">
     <h2 id="toc-title">Table of contents</h2>
    
-  <ul>
+  <ul class="collapse">
   <li><a href="#morphogen-gradients-and-patterning" id="toc-morphogen-gradients-and-patterning" class="nav-link active" data-scroll-target="#morphogen-gradients-and-patterning"><span class="header-section-number">6.1</span> Morphogen Gradients and Patterning</a></li>
   <li><a href="#mathematical-modeling---integrating-multiple-signals" id="toc-mathematical-modeling---integrating-multiple-signals" class="nav-link" data-scroll-target="#mathematical-modeling---integrating-multiple-signals"><span class="header-section-number">6.2</span> Mathematical modeling - integrating multiple signals</a></li>
   <li><a href="#python-code" id="toc-python-code" class="nav-link" data-scroll-target="#python-code"><span class="header-section-number">6.3</span> Python code</a></li>
@@ -407,6 +580,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pattern_intro_text.html">II) Pattern formation</a></li><li class="breadcrumb-item"><a href="./pattern_practical_1.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Gradients and segments</span></a></li></ol></nav>
 <div class="quarto-title">
@@ -429,8 +603,8 @@ window.Quarto = {
 
 <section id="morphogen-gradients-and-patterning" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="morphogen-gradients-and-patterning"><span class="header-section-number">6.1</span> Morphogen Gradients and Patterning</h2>
-<p>In this practical, we a going to look at how an organism can form segments along its body axis . The mathematical model that we will implement and study is an implementation of the so-called French flag conceptual model first proposed by Lewis Wolpert <span class="citation" data-cites="wolpert1969positional">(<a href="references.html#ref-wolpert1969positional" role="doc-biblioref">Wolpert 1969</a>)</span>. It assumes the spatially graded expression of a morphogen “M” that influences the expression of some downstream genes A, B and C. Their expression is often visualized by red, white and blue and the arising pattern resembles the French flag, hence the name (see the power of visualization).</p>
-<p>One of the most well-studied organisms when it comes to body axis segmentation (although its segmentation mechanism is evolutionary derived and a-typical!) is the development of the fruit fly Drosophila melanogaster. Supporting the ideas of Wolpert, it was found that through tethering maternal Bicoid mRNA to one side of the embryo, Bicoid protein can form a gradient extending along the anterior-posterior axis, with so called gap genes as a first tier in the segmentation hierarchy differentially responding to different Bicoid protein levels <span class="citation" data-cites="driever1988bicoid">(<a href="references.html#ref-driever1988bicoid" role="doc-biblioref">Driever and Nüsslein-Volhard 1988</a>)</span>. Later it was found that often at least two opposing morphogen gradients drive downstream gene expression and genes typically respond to multiple inputs.</p>
+<p>In this practical, we a going to look at how an organism can form segments along its body axis . The mathematical model that we will implement and study is an implementation of the so-called French flag conceptual model first proposed by Lewis Wolpert <span class="citation" data-cites="wolpert1969positional">(<a href="#ref-wolpert1969positional" role="doc-biblioref">Wolpert 1969</a>)</span>. It assumes the spatially graded expression of a morphogen “M” that influences the expression of some downstream genes A, B and C. Their expression is often visualized by red, white and blue and the arising pattern resembles the French flag, hence the name (see the power of visualization).</p>
+<p>One of the most well-studied organisms when it comes to body axis segmentation (although its segmentation mechanism is evolutionary derived and a-typical!) is the development of the fruit fly Drosophila melanogaster. Supporting the ideas of Wolpert, it was found that through tethering maternal Bicoid mRNA to one side of the embryo, Bicoid protein can form a gradient extending along the anterior-posterior axis, with so called gap genes as a first tier in the segmentation hierarchy differentially responding to different Bicoid protein levels <span class="citation" data-cites="driever1988bicoid">(<a href="#ref-driever1988bicoid" role="doc-biblioref">Driever and Nüsslein-Volhard 1988</a>)</span>. Later it was found that often at least two opposing morphogen gradients drive downstream gene expression and genes typically respond to multiple inputs.</p>
 </section>
 <section id="mathematical-modeling---integrating-multiple-signals" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="mathematical-modeling---integrating-multiple-signals"><span class="header-section-number">6.2</span> Mathematical modeling - integrating multiple signals</h2>
@@ -673,14 +847,28 @@ window.Quarto = {
 </section>
 <section id="relevant-literature-further-reading" class="level2" data-number="6.6">
 <h2 data-number="6.6" class="anchored" data-anchor-id="relevant-literature-further-reading"><span class="header-section-number">6.6</span> Relevant literature / further reading</h2>
-<p>Dagmar Iber group, scaling from non-steady state dynamics and uniform growth: <span class="citation" data-cites="fried2014dynamic">Fried and Iber (<a href="references.html#ref-fried2014dynamic" role="doc-biblioref">2014</a>)</span> <a href="https://www.nature.com/articles/ncomms6077" class="uri">https://www.nature.com/articles/ncomms6077</a></p>
-<p><span class="citation" data-cites="cheung2011scaling">Cheung et al. (<a href="references.html#ref-cheung2011scaling" role="doc-biblioref">2011</a>)</span> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3109599/" class="uri">https://pmc.ncbi.nlm.nih.gov/articles/PMC3109599/</a></p>
-<p><span class="citation" data-cites="he2015fundamental">He et al. (<a href="references.html#ref-he2015fundamental" role="doc-biblioref">2015</a>)</span> <a href="https://www.nature.com/articles/ncomms7679" class="uri">https://www.nature.com/articles/ncomms7679</a></p>
-<p>Bicoid gradient: larger eggs get more Bicoid mRNA so higher production rate, when it scales with volume this helps scale the gradient: <span class="citation" data-cites="inomata2017scaling">Inomata (<a href="references.html#ref-inomata2017scaling" role="doc-biblioref">2017</a>)</span> <a href="https://onlinelibrary.wiley.com/doi/10.1111/dgd.12337" class="uri">https://onlinelibrary.wiley.com/doi/10.1111/dgd.12337</a></p>
-<p>Expansion repression model. Players: Chordin, Bmp, Sizzled. Chordin represses Bmp which induces Sizzled (which has low decay rate), yet Sizzled reduces Chordin decay. Chordin is morphogen. Sizzled is expander (by reducing decay of morphogen) <span class="citation" data-cites="ben2010scaling">Ben-Zvi and Barkai (<a href="references.html#ref-ben2010scaling" role="doc-biblioref">2010</a>)</span> <a href="https://www.pnas.org/doi/abs/10.1073/pnas.0912734107" class="uri">https://www.pnas.org/doi/abs/10.1073/pnas.0912734107</a></p>
+<p>Dagmar Iber group, scaling from non-steady state dynamics and uniform growth: <span class="citation" data-cites="fried2014dynamic">Fried and Iber (<a href="#ref-fried2014dynamic" role="doc-biblioref">2014</a>)</span> <a href="https://www.nature.com/articles/ncomms6077" class="uri">https://www.nature.com/articles/ncomms6077</a></p>
+<p><span class="citation" data-cites="cheung2011scaling">Cheung et al. (<a href="#ref-cheung2011scaling" role="doc-biblioref">2011</a>)</span> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3109599/" class="uri">https://pmc.ncbi.nlm.nih.gov/articles/PMC3109599/</a></p>
+<p><span class="citation" data-cites="he2015fundamental">He et al. (<a href="#ref-he2015fundamental" role="doc-biblioref">2015</a>)</span> <a href="https://www.nature.com/articles/ncomms7679" class="uri">https://www.nature.com/articles/ncomms7679</a></p>
+<p>Bicoid gradient: larger eggs get more Bicoid mRNA so higher production rate, when it scales with volume this helps scale the gradient: <span class="citation" data-cites="inomata2017scaling">Inomata (<a href="#ref-inomata2017scaling" role="doc-biblioref">2017</a>)</span> <a href="https://onlinelibrary.wiley.com/doi/10.1111/dgd.12337" class="uri">https://onlinelibrary.wiley.com/doi/10.1111/dgd.12337</a></p>
+<p>Expansion repression model. Players: Chordin, Bmp, Sizzled. Chordin represses Bmp which induces Sizzled (which has low decay rate), yet Sizzled reduces Chordin decay. Chordin is morphogen. Sizzled is expander (by reducing decay of morphogen) <span class="citation" data-cites="ben2010scaling">Ben-Zvi and Barkai (<a href="#ref-ben2010scaling" role="doc-biblioref">2010</a>)</span> <a href="https://www.pnas.org/doi/abs/10.1073/pnas.0912734107" class="uri">https://www.pnas.org/doi/abs/10.1073/pnas.0912734107</a></p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
+<div id="exercise-loading-status" class="d-flex gap-2">
+
+</div>
+<div class="spinner-grow spinner-grow-sm">
+
+</div>
+</div>
+<script type="vfs-file">
+W10=
+</script>
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-ben2010scaling" class="csl-entry" role="listitem">
 Ben-Zvi, Danny, and Naama Barkai. 2010. <span>“Scaling of Morphogen Gradients by an Expansion-Repression Integral Feedback Control.”</span> <em>Proceedings of the National Academy of Sciences</em> 107 (15): 6924–29.
 </div>
@@ -706,8 +894,32 @@ Wolpert, Lewis. 1969. <span>“Positional Information and the Spatial Pattern of
 </section>
 
 </main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -793,6 +1005,13 @@ Wolpert, Lewis. 1969. <span>“Positional Information and the Spatial Pattern of
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {

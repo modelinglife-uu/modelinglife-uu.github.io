@@ -62,10 +62,16 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-7d8ad657b878717df1156ab40fed854c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-21773dcadea2beec2b9f71056aa2f0f3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-6ccc5592c1c9ff1613d71d93fc8a4623.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-21773dcadea2beec2b9f71056aa2f0f3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
+<link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -93,11 +99,175 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
 
 </head>
 
-<body class="nav-sidebar floating quarto-light">
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -126,6 +296,9 @@ div.csl-indent {
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Modeling life</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -332,6 +505,7 @@ div.csl-indent {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">References</h1>
@@ -351,210 +525,53 @@ div.csl-indent {
 </header>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-ben2010scaling" class="csl-entry" role="listitem">
-Ben-Zvi, Danny, and Naama Barkai. 2010. <span>“Scaling of Morphogen
-Gradients by an Expansion-Repression Integral Feedback Control.”</span>
-<em>Proceedings of the National Academy of Sciences</em> 107 (15):
-6924–29.
-</div>
-<div id="ref-bulusu2017spatiotemporal" class="csl-entry" role="listitem">
-Bulusu, Vinay, Nicole Prior, Marteinn T Snaebjornsson, et al. 2017.
-<span>“Spatiotemporal Analysis of a Glycolytic Activity Gradient Linked
-to Mouse Embryo Mesoderm Development.”</span> <em>Developmental
-Cell</em> 40 (4): 331–41.
-</div>
-<div id="ref-carraco2022vertebrate" class="csl-entry" role="listitem">
-Carraco, Gil, Ana P Martins-Jesus, and Raquel P Andrade. 2022.
-<span>“The Vertebrate Embryo Clock: Common Players Dancing to a
-Different Beat.”</span> <em>Frontiers in Cell and Developmental
-Biology</em> 10: 944016.
-</div>
-<div id="ref-cheung2011scaling" class="csl-entry" role="listitem">
-Cheung, David, Cecelia Miles, Martin Kreitman, and Jun Ma. 2011.
-<span>“Scaling of the Bicoid Morphogen Gradient by a Volume-Dependent
-Production Rate.”</span> <em>Development</em> 138 (13): 2741–49.
-</div>
-<div id="ref-collinet2021programmed" class="csl-entry" role="listitem">
-Collinet, Claudio, and Thomas Lecuit. 2021. <span>“Programmed and
-Self-Organized Flow of Information During Morphogenesis.”</span>
-<em>Nature Reviews Molecular Cell Biology</em> 22 (4): 245–65.
-</div>
-<div id="ref-ding2010auxin" class="csl-entry" role="listitem">
-Ding, Zhaojun, and Jiřı́ Friml. 2010. <span>“Auxin Regulates Distal Stem
-Cell Differentiation in Arabidopsis Roots.”</span> <em>Proceedings of
-the National Academy of Sciences</em> 107 (26): 12046–51.
-</div>
-<div id="ref-dornbusch2012measuring" class="csl-entry" role="listitem">
-Dornbusch, Tino, Séverine Lorrain, Dmitry Kuznetsov, et al. 2012.
-<span>“Measuring the Diurnal Pattern of Leaf Hyponasty and Growth in
-Arabidopsis–a Novel Phenotyping Approach Using Laser Scanning.”</span>
-<em>Functional Plant Biology</em> 39 (11): 860–69.
-</div>
-<div id="ref-driever1988bicoid" class="csl-entry" role="listitem">
-Driever, Wolfgang, and Christiane Nüsslein-Volhard. 1988. <span>“The
-Bicoid Protein Determines Position in the Drosophila Embryo in a
-Concentration-Dependent Manner.”</span> <em>Cell</em> 54 (1): 95–104.
-</div>
-<div id="ref-fried2014dynamic" class="csl-entry" role="listitem">
-Fried, Patrick, and Dagmar Iber. 2014. <span>“Dynamic Scaling of
-Morphogen Gradients on Growing Domains.”</span> <em>Nature
-Communications</em> 5 (1): 5077.
-</div>
-<div id="ref-garcia2020system" class="csl-entry" role="listitem">
-Garcı́a-Gómez, Mónica L, Diego Ornelas-Ayala, Adriana Garay-Arroyo,
-Berenice Garcı́a-Ponce, Marı́a de la Paz Sánchez, and Elena R
-Alvarez-Buylla. 2020. <span>“A System-Level Mechanistic Explanation for
-Asymmetric Stem Cell Fates: Arabidopsis Thaliana Root Niche as a Study
-System.”</span> <em>Scientific Reports</em> 10 (1): 3525.
-</div>
-<div id="ref-gilbert2016developmental" class="csl-entry" role="listitem">
-Gilbert, SCOTT F, and MJF Barresi. 2016. <em>Developmental Biology. 11th
-Edn, 372</em>. Sinauer Associates.
-</div>
-<div id="ref-gilmour2017morphogen" class="csl-entry" role="listitem">
-Gilmour, Darren, Martina Rembold, and Maria Leptin. 2017. <span>“From
-Morphogen to Morphogenesis and Back.”</span> <em>Nature</em> 541 (7637):
-311–20.
-</div>
-<div id="ref-graner1992simulation" class="csl-entry" role="listitem">
-Graner, François, and James A Glazier. 1992. <span>“Simulation of
-Biological Cell Sorting Using a Two-Dimensional Extended Potts
-Model.”</span> <em>Physical Review Letters</em> 69 (13): 2013.
-</div>
-<div id="ref-he2015fundamental" class="csl-entry" role="listitem">
-He, Feng, Chuanxian Wei, Honggang Wu, David Cheung, Renjie Jiao, and Jun
-Ma. 2015. <span>“Fundamental Origins and Limits for Scaling a Maternal
-Morphogen Gradient.”</span> <em>Nature Communications</em> 6 (1): 6679.
-</div>
-<div id="ref-herrgen2010intercellular" class="csl-entry" role="listitem">
-Herrgen, Leah, Saúl Ares, Luis G Morelli, Christian Schröter, Frank
-Jülicher, and Andrew C Oates. 2010. <span>“Intercellular Coupling
-Regulates the Period of the Segmentation Clock.”</span> <em>Current
-Biology</em> 20 (14): 1244–53.
-</div>
-<div id="ref-hester2012multi" class="csl-entry" role="listitem">
-Hester, Susan D. 2012. <span>“Multi-Scale Cell-Based Computational
-Models of Vertebrate Segmentation and Somitogenesis Illuminate
-Coordination of Developmental Mechanisms Across Scales.”</span> PhD
-thesis, Indiana University.
-</div>
-<div id="ref-inomata2017scaling" class="csl-entry" role="listitem">
-Inomata, Hidehiko. 2017. <span>“Scaling of Pattern Formations and
-Morphogen Gradients.”</span> <em>Development, Growth &amp;
-Differentiation</em> 59 (1): 41–51.
-</div>
-<div id="ref-ishimatsu2018size" class="csl-entry" role="listitem">
-Ishimatsu, Kana, Tom W Hiscock, Zach M Collins, et al. 2018.
-<span>“Size-Reduced Embryos Reveal a Gradient Scaling-Based Mechanism
-for Zebrafish Somite Formation.”</span> <em>Development</em> 145 (11):
-dev161257.
-</div>
-<div id="ref-lewis2003autoinhibition" class="csl-entry" role="listitem">
-Lewis, Julian. 2003. <span>“Autoinhibition with Transcriptional Delay: A
-Simple Mechanism for the Zebrafish Somitogenesis Oscillator.”</span>
-<em>Current Biology</em> 13 (16): 1398–408.
-</div>
-<div id="ref-mahonen2014plethora" class="csl-entry" role="listitem">
-Mähönen, Ari Pekka, Kirsten ten Tusscher, Riccardo Siligato, et al.
-2014. <span>“PLETHORA Gradient Formation Mechanism Separates Auxin
-Responses.”</span> <em>Nature</em> 515 (7525): 125–29.
-</div>
-<div id="ref-michaud2017local" class="csl-entry" role="listitem">
-Michaud, Olivier, Anne-Sophie Fiorucci, Ioannis Xenarios, and Christian
-Fankhauser. 2017. <span>“Local Auxin Production Underlies a Spatially
-Restricted Neighbor-Detection Response in Arabidopsis.”</span>
-<em>Proceedings of the National Academy of Sciences</em> 114 (28):
-7444–49.
-</div>
-<div id="ref-miguez2006effect" class="csl-entry" role="listitem">
-Mı́guez, David G, Milos Dolnik, Alberto P Munuzuri, and Lorenz Kramer.
-2006. <span>“Effect of Axial Growth on Turing Pattern Formation.”</span>
-<em>Physical Review Letters</em> 96 (4): 048304.
-</div>
-<div id="ref-van2025scaling" class="csl-entry" role="listitem">
-Oostrom, Marek J van, Yuting I Li, Wilke HM Meijer, et al. 2025.
-<span>“Scaling of Mouse Somitogenesis by Coupling of Cell Cycle to
-Segmentation Clock Oscillations.”</span> <em>bioRxiv</em>, 2025–01.
-</div>
-<div id="ref-oskam2023low" class="csl-entry" role="listitem">
-Oskam, Lisa, Basten L Snoek, Chrysoula K Pantazopoulou, et al. 2023.
-<span>“A Low-Cost and Open-Source Imaging Platform Reveals
-Spatiotemporal Insight into Arabidopsis Leaf Elongation and
-Movement.”</span> <em>BioRxiv</em>, 2023–08.
-</div>
-<div id="ref-praat2024using" class="csl-entry" role="listitem">
-Praat, Myrthe, Zhang Jiang, Joe Earle, Sjef Smeekens, and Martijn van
-Zanten. 2024. <span>“Using a Thermal Gradient Table to Study Plant
-Temperature Signalling and Response Across a Temperature
-Spectrum.”</span> <em>Plant Methods</em> 20 (1): 114.
-</div>
-<div id="ref-raspopovic2014digit" class="csl-entry" role="listitem">
-Raspopovic, Jelena, Luciano Marcon, Laura Russo, and James Sharpe. 2014.
-<span>“Digit Patterning Is Controlled by a Bmp-Sox9-Wnt Turing Network
-Modulated by Morphogen Gradients.”</span> <em>Science</em> 345 (6196):
-566–70.
-</div>
-<div id="ref-rozum2023boolean" class="csl-entry" role="listitem">
-Rozum, Jordan C, Colin Campbell, Eli Newby, Fatemeh Sadat Fatemi
-Nasrollahi, and Reka Albert. 2023. <span>“Boolean Networks as Predictive
-Models of Emergent Biological Behaviors.”</span> <em>arXiv Preprint
-arXiv:2310.12901</em>.
-</div>
-<div id="ref-saga2012mechanism" class="csl-entry" role="listitem">
-Saga, Yumiko. 2012. <span>“The Mechanism of Somite Formation in
-Mice.”</span> <em>Current Opinion in Genetics &amp; Development</em> 22
-(4): 331–38.
-</div>
-<div id="ref-shamir2016snapshot" class="csl-entry" role="listitem">
-Shamir, Maya, Yinon Bar-On, Rob Phillips, and Ron Milo. 2016.
-<span>“SnapShot: Timescales in Cell Biology.”</span> <em>Cell</em> 164
-(6): 1302–2.
-</div>
-<div id="ref-sonnen2018modulation" class="csl-entry" role="listitem">
-Sonnen, Katharina F, Volker M Lauschke, Julia Uraji, et al. 2018.
-<span>“Modulation of Phase Shift Between Wnt and Notch Signaling
-Oscillations Controls Mesoderm Segmentation.”</span> <em>Cell</em> 172
-(5): 1079–90.
-</div>
-<div id="ref-soroldoni2014doppler" class="csl-entry" role="listitem">
-Soroldoni, Daniele, David J Jörg, Luis G Morelli, et al. 2014. <span>“A
-Doppler Effect in Embryonic Pattern Formation.”</span> <em>Science</em>
-345 (6193): 222–25.
-</div>
-<div id="ref-stickney2000somite" class="csl-entry" role="listitem">
-Stickney, Heather L, Michael JF Barresi, and Stephen H Devoto. 2000.
-<span>“Somite Development in Zebrafish.”</span> <em>Developmental
-Dynamics: An Official Publication of the American Association of
-Anatomists</em> 219 (3): 287–303.
-</div>
-<div id="ref-tam1981control" class="csl-entry" role="listitem">
-Tam, PPL. 1981. <span>“The Control of Somitogenesis in Mouse
-Embryos.”</span> <em>Development</em> 65 (Supplement): 103–28.
-</div>
-<div id="ref-tomka2018travelling" class="csl-entry" role="listitem">
-Tomka, Tomas, Dagmar Iber, and Marcelo Boareto. 2018. <span>“Travelling
-Waves in Somitogenesis: Collective Cellular Properties Emerge from
-Time-Delayed Juxtacrine Oscillation Coupling.”</span> <em>Progress in
-Biophysics and Molecular Biology</em> 137: 76–87.
-</div>
-<div id="ref-turing1990chemical" class="csl-entry" role="listitem">
-Turing, Alan Mathison. 1990. <span>“The Chemical Basis of
-Morphogenesis.”</span> <em>Bulletin of Mathematical Biology</em> 52 (1):
-153–97.
-</div>
-<div id="ref-wolpert1969positional" class="csl-entry" role="listitem">
-Wolpert, Lewis. 1969. <span>“Positional Information and the Spatial
-Pattern of Cellular Differentiation.”</span> <em>Journal of Theoretical
-Biology</em> 25 (1): 1–47.
-</div>
+<div id="refs" role="list">
+
 </div>
 
 
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
+<div id="exercise-loading-status" class="d-flex gap-2">
+
+</div>
+<div class="spinner-grow spinner-grow-sm">
+
+</div>
+</div>
+<script type="vfs-file">
+W10=
+</script>
 
 </main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -640,6 +657,13 @@ Biology</em> 25 (1): 1–47.
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {

@@ -32,7 +32,8 @@ git pull --no-edit || {
   exit 1
 }
 
-quarto render --to html
+# Render HTML and process dependencies (PDF will fail without LaTeX, but that's OK)
+quarto render 2>&1 | grep -E "^\[|Output created" || true
 
 # --- mirror into docs/, don't delete-and-recreate all 140 files
 # Note: exclude _extensions so quarto-live extension is preserved

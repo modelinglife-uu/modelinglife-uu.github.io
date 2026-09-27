@@ -1,44 +1,32 @@
 # 0) Introduction to Python {.unnumbered}
 
-This introductory page explains how to install Python and Spyder, and provides a brief overview of Python programming. You will also have access codes to a great StudyLens app to quickly get a grasp of Python programming, especially the parts directly relevant to this course.
+This introductory page explains how to install Python via Anaconda and set up Visual Studio Code, and provides a brief overview of Python programming. You will also have access codes to a great StudyLens app to quickly get a grasp of Python programming, especially the parts directly relevant to this course.
 
-## Installing Spyder and Anaconda
+## Installing Python via Anaconda
 
-To best way to install Spyder is to do so via Anaconda, which is a free and open-source distribution of Python for scientific computing. You can [download Anaconda from this page](https://www.anaconda.com/download/success) (note: use the download link on the *left*, and **not** the one called "miniconda" which does not include Spyder). After downloading, follow the installation instructions. 
+Anaconda is a free and open-source distribution of Python for scientific computing. It's the easiest way to get Python set up with all the packages you'll need for this course.
 
-Once done, you now have:
+[Download Anaconda from this page](https://www.anaconda.com/download/success) and follow the installation instructions. After installing, you now have:
 
 -	Python
-- Spyder (our main editor)
 - Most scientific packages like numpy, matplotlib, and pandas
-- Conda and pip (for if you want to install other packages)
+- Conda and pip (for installing additional packages if needed)
 
-## Launching Spyder
+## Setting up Visual Studio Code
 
-You can now launch Spyder via the 'Anaconda Navigator' application. In MacOS you find this under 'Applications' > 'Anaconda-Navigator' (it doesn't always show up in the Spotlight search immediately). In Windows, you can search for 'Anaconda Navigator' in the Start Menu. Once the Anaconda Navigator is open, you can launch Spyder by clicking on the 'Launch' button under the Spyder icon. 
+The recommended editor for this course is Visual Studio Code (VS Code). To set it up:
 
-## Disabling inline plots
+1. Download and install VS Code from [https://code.visualstudio.com/download](https://code.visualstudio.com/download)
+2. Open VS Code and install the **Python extension** (search for ‘Python’ in the extensions tab on the left, and install the one with the blue check mark)
+3. Select the Python interpreter from Anaconda:
+   - Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac) to open the command palette
+   - Type `Python: Select Interpreter` and choose the one that points to your Anaconda installation (it should have ‘anaconda3’ in the path)
 
-By default, Spyder shows figures inside the “Plots” pane, but in this course we 
-typically use plots that update dynamically (animations), which don’t work well in that mode. So we need to change that.
+Now you’re ready to run Python scripts!
 
-Here’s how:
+## Testing your setup
 
-1. Click the 'preferences' icon in the top panel (a wrench icon 🔧).
-2. Go to 'IPython Console' → Graphics → Backend
-3. Choose Qt, Qt5, or Qt6^[on some laptops, Tk may be faster, but DON'T use 'inline']
-4. Click Apply and OK
-5. Restart Spyder may or may not be necessary depending on your operating system. 
-
-Now your plots will open in a separate window and can animate properly!
-
-
-## Testing your setup!
-
-Throughout this course you will either work with scripts you have been handed out, 
-or scripts that you can copy/paste from this website. Let's test your Spyder setup
-with the following script:
-
+Throughout this course you will work with scripts you’ve been given or that you can copy/paste from this website. Let’s test your setup with this script:
 
 ```python
 import random, matplotlib.pyplot as plt
@@ -47,8 +35,8 @@ plt.ion()
 fig, ax = plt.subplots()
 ax.set_ylim(-2, 2)
 ax.set_xlim(0, 100)
-ax.set_title("Random Wiggle Test")
-line, = ax.plot([], [], color='seagreen', lw=2)
+ax.set_title(“Random Wiggle Test”)
+line, = ax.plot([], [], color=’seagreen’, lw=2)
 
 y = [0]
 for i in range(100):
@@ -57,24 +45,12 @@ for i in range(100):
     ax.set_xlim(0, len(y))
     plt.pause(0.03)
 
-ax.set_title("Animation works! (you can close this window)")
+ax.set_title(“Animation works! (you can close this window)”)
 plt.ioff()
 plt.show()
 ```
 
-Paste this into a new script in Spyder and hit the 'play' icon (or press F5). Does
-the animation show up in a seperate window and is it animated? Good, you're ready
-to go! 
-
-## Installing VS code
-
-Instead of Spyder, you may want to use a nicer IDE. The most popular one is currently Visual Studio Code (VS Code). To install VS Code and connect it to your Anaconda3 python installation, do the following:
-
-1. Download and install VS code ([https://code.visualstudio.com/download](https://code.visualstudio.com/download))
-2. Open VS code and install the Python extension (search for 'Python' in the extensions tab on the left, and install the one with the blue check mark)
-3. Select the python interpreter that comes with Anaconda. You can do this by pressing `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac) to open the command palette, then type `Python: Select Interpreter` and choose the one that points to your Anaconda installation (it should have 'anaconda3' in the path).
-
-Now, you should be able to run all the code from the course via VS code as well! While Spyder is nice, it also is a little less stable than VS code, so if you run into issues, consider switching to VS code! :) 
+Save this as a `.py` file in VS Code and run it by pressing `F5` or using the “Run” button in the top right. Does the animation show up in a separate window and is it animated? Good, you’re ready to go! 
     
 # Introduction to Python Programming
 
@@ -142,19 +118,13 @@ include:
 - Matplotlib: For data visualization
 - SciPy: For scientific computing
 
-But if you still wish to install other packages, you can use `pip` or `conda` in the terminal. For example, to install the `html5` library using pip, you would run:
+If you need to install other packages, you can use `pip` or `conda` in the terminal. For example, to install the `html5lib` library, open a terminal (or use the terminal in VS Code) and run:
 
 ```
 pip install html5lib
 ```
 
-From the command line. You can also run this bit of code within the Spyder console by adding an `!` in front of the command, which tells the console to run it as a shell command: 
-
-```python
-!pip install html5lib
-```
-
-But you probably won't have to install a lot of packages during this course. (nearly) All scripts we use only rely on the base packages. 
+But you probably won't need to install many packages during this course—most scripts use only the packages that come with Anaconda. 
 
 ## StudyLens practice
 

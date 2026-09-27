@@ -8,13 +8,17 @@ cd "$(dirname "$0")"
 git config --get merge.keeptheirs.driver >/dev/null 2>&1 \
   || { echo "Run 'bash setup.sh' once on this machine first."; exit 1; }
 
-# --- everyone must build with the same Quarto, or the whole site churns
-want=$(tr -d '[:space:]' < .quarto-version)
+# --- check Quarto version is recent enough (1.8+)
 have=$(quarto --version)
-if [ "$want" != "$have" ]; then
-  echo "This book is built with Quarto $want; you have $have."
-  echo "Upgrade, or edit .quarto-version if the team agreed to move."
+want=$(tr -d '[:space:]' < .quarto-version)
+min_version="1.8.0"
+if [ "$(printf '%s\n' "$min_version" "$have" | sort -V | head -n1)" != "$min_version" ]; then
+  echo "This book requires Quarto $min_version or newer; you have $have."
+  echo "Install or update Quarto via: brew install quarto"
   exit 1
+fi
+if [ "$want" != "$have" ]; then
+  echo "Note: this book was tested with Quarto $want; you have $have."
 fi
 
 # --- start from what is actually on GitHub

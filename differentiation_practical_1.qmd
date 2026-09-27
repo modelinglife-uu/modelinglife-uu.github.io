@@ -1,6 +1,6 @@
 ---
 params:
-  show_answers: true
+  show_answers: false
 ---
 
 # Gene regulation in time 
@@ -16,10 +16,9 @@ Lastly, you will learn how to predict the genes that cause cell fate transitions
 Today we will use the following python file: `circuitsfunctions.py`.  In it you will find 
 the code of the functions we use throughout the practical, have a quick look at it. 
 
-### VS Code
-If you have been experiencing problems with Spyder and restarting the kernel, we suggest you 
-install VS Code - this is an integrated development environment where the code runs faster, and
-kernel issues should be gone. Follow <a href="http://localhost:7715/intro_to_python.html#installing-vs-code">this</a> installation instructions.
+### Running this practical in VS Code
+
+This practical is best run in VS Code. If you haven't set it up yet, follow the [setup instructions](intro_to_python.qmd#setting-up-visual-studio-code).
 
 ## Regulatory interactions
 

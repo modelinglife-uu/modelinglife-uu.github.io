@@ -10,10 +10,26 @@ git config pull.rebase false
 
 echo "Merge driver installed."
 
-want=$(tr -d '[:space:]' < .quarto-version)
-have=$(quarto --version 2>/dev/null || echo "not installed")
-if [ "$want" != "$have" ]; then
+version=$(tr -d '[:space:]' < .quarto-version)
+have=$(quarto --version 2>/dev/null || echo "")
+
+if [ -z "$have" ]; then
   echo
-  echo "NOTE: this book is built with Quarto $want, you have $have."
-  echo "      Install $want before publishing, or update_book.sh will refuse to run."
+  echo "Quarto is not installed."
+  echo
+  echo "To install Quarto, run:"
+  echo "  brew install quarto"
+  echo
+  echo "After installation, run this script again."
+  echo
+elif [ "$version" != "$have" ]; then
+  echo
+  echo "Quarto version: you have $have, and this project uses $version. I don't think minor differences shouldn't matter."
+  echo
+  echo "To update, run:"
+  echo "  brew uninstall quarto"
+  echo "  brew install quarto"
+  echo
+else
+  echo "Quarto version: $version ✓"
 fi

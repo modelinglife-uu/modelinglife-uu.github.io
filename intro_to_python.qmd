@@ -2,7 +2,10 @@
 execute:
   echo: true
   eval: false
+engine: knitr
 ---
+
+{{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
 
 # 0) Introduction to Python {.unnumbered}
 
@@ -32,8 +35,7 @@ Now you're ready to run Python scripts!
 
 ## Try Python in your browser
 
-Although you will mostly be using your own setup to work with Python, we will sometimes share
-short code snippets directly in the browser, like these:
+Although you will mostly be using your own setup to work with Python, we will sometimes share short code snippets directly in the browser, like these:
 
 ```{pyodide-python}
 name = "Alice"

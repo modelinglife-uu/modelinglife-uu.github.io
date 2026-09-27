@@ -32,31 +32,32 @@ book:
         - general.qmd
         - schedule.qmd
     - intro_to_python.qmd
-    - part: "I) Pattern formation"
-      chapters:
-            - pattern_intro_text.qmd
-            - pattern_practical_1.qmd
-            - pattern_practical_2.qmd
-            - pattern_practical_3.qmd
-    - part: "II) Morphogenesis"
-      chapters:
-            - morpho_intro_text.qmd
-            - morpho_cpm_practical.qmd
-    - part: "III) Cell differentiation"
-      chapters:
-            - differentiation_intro_text.qmd
-            - differentiation_practical_1.qmd
-            - differentiation_practical_2.qmd
-    - part: "IV) Environment"
-      chapters:
-            - evdev_intro_text.qmd
-            - evdev_practical.qmd
-    - part: "V) Evolution"
+    - part: "I) Evolution"
       chapters:
             - evo_intro_text.qmd
             - evo_practical_1.qmd
             - evo_practical_2.qmd
             - evo_practical_3.qmd
+    - part: "II) Pattern formation"
+      chapters:
+            - pattern_intro_text.qmd
+            - pattern_practical_1.qmd
+            - pattern_practical_2.qmd
+            - pattern_practical_3.qmd
+    - part: "III) Morphogenesis"
+      chapters:
+            - morpho_intro_text.qmd
+            - morpho_cpm_practical.qmd
+    - part: "IV) Cell differentiation"
+      chapters:
+            - differentiation_intro_text.qmd
+            - differentiation_practical_1.qmd
+            - differentiation_practical_2.qmd
+    - part: "V) Environment"
+      chapters:
+            - evdev_intro_text.qmd
+            - evdev_practical.qmd
+    
 #    - part: "Mini-projects"
 #      chapters:
 #            - project_1.qmd

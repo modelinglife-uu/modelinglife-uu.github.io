@@ -28,7 +28,7 @@ Now you’re ready to run Python scripts!
 
 On this page, you can run Python directly in the browser without installing anything! Edit the code below and click "Run" to see Python in action:
 
-```html
+```{=html}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pyodide@0.23.4/pyodide.css">
 <script defer src="https://cdn.jsdelivr.net/npm/pyodide@0.23.4/pyodide.js"></script>
 
@@ -113,7 +113,7 @@ fig, ax = plt.subplots()
 ax.set_ylim(-2, 2)
 ax.set_xlim(0, 100)
 ax.set_title(“Random Wiggle Test”)
-line, = ax.plot([], [], color=’seagreen’, lw=2)
+line, = ax.plot([], [], color=”seagreen”, lw=2)
 
 y = [0]
 for i in range(100):

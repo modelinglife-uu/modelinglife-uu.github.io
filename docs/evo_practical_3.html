@@ -44,17 +44,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-21773dcadea2beec2b9f71056aa2f0f3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-6ccc5592c1c9ff1613d71d93fc8a4623.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-21773dcadea2beec2b9f71056aa2f0f3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
-<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-7d8ad657b878717df1156ab40fed854c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -115,169 +108,7 @@ window.Quarto = {
 
 </head>
 
-<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
-    const toggleBodyColorMode = (bsSheetEl) => {
-      const mode = bsSheetEl.getAttribute("data-mode");
-      const bodyEl = window.document.querySelector("body");
-      if (mode === "dark") {
-        bodyEl.classList.add("quarto-dark");
-        bodyEl.classList.remove("quarto-light");
-      } else {
-        bodyEl.classList.add("quarto-light");
-        bodyEl.classList.remove("quarto-dark");
-      }
-    }
-    const toggleBodyColorPrimary = () => {
-      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
-      if (bsSheetEl) {
-        toggleBodyColorMode(bsSheetEl);
-      }
-    }
-    const setColorSchemeToggle = (alternate) => {
-      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-      for (let i=0; i < toggles.length; i++) {
-        const toggle = toggles[i];
-        if (toggle) {
-          if (alternate) {
-            toggle.classList.add("alternate");
-          } else {
-            toggle.classList.remove("alternate");
-          }
-        }
-      }
-    };
-    const toggleColorMode = (alternate) => {
-      // Switch the stylesheets
-      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
-      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-      manageTransitions('#quarto-margin-sidebar .nav-link', false);
-      if (alternate) {
-        // note: dark is layered on light, we don't disable primary!
-        enableStylesheet(alternateStylesheets);
-        for (const sheetNode of alternateStylesheets) {
-          if (sheetNode.id === "quarto-bootstrap") {
-            toggleBodyColorMode(sheetNode);
-          }
-        }
-      } else {
-        disableStylesheet(alternateStylesheets);
-        enableStylesheet(primaryStylesheets)
-        toggleBodyColorPrimary();
-      }
-      manageTransitions('#quarto-margin-sidebar .nav-link', true);
-      // Switch the toggles
-      setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
-      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-        manageTransitions("body", false);
-        window.scrollTo(0, 1);
-        setTimeout(() => {
-          window.scrollTo(0, 0);
-          manageTransitions("body", true);
-        }, 40);
-      }
-    }
-    const disableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        stylesheet.rel = 'disabled-stylesheet';
-      }
-    }
-    const enableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
-          stylesheet.rel = 'stylesheet';
-        }
-      }
-    }
-    const manageTransitions = (selector, allowTransitions) => {
-      const els = window.document.querySelectorAll(selector);
-      for (let i=0; i < els.length; i++) {
-        const el = els[i];
-        if (allowTransitions) {
-          el.classList.remove('notransition');
-        } else {
-          el.classList.add('notransition');
-        }
-      }
-    }
-    const isFileUrl = () => {
-      return window.location.protocol === 'file:';
-    }
-    const hasAlternateSentinel = () => {
-      let styleSentinel = getColorSchemeSentinel();
-      if (styleSentinel !== null) {
-        return styleSentinel === "alternate";
-      } else {
-        return false;
-      }
-    }
-    const setStyleSentinel = (alternate) => {
-      const value = alternate ? "alternate" : "default";
-      if (!isFileUrl()) {
-        window.localStorage.setItem("quarto-color-scheme", value);
-      } else {
-        localAlternateSentinel = value;
-      }
-    }
-    const getColorSchemeSentinel = () => {
-      if (!isFileUrl()) {
-        const storageValue = window.localStorage.getItem("quarto-color-scheme");
-        return storageValue != null ? storageValue : localAlternateSentinel;
-      } else {
-        return localAlternateSentinel;
-      }
-    }
-    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-      let newTheme = '';
-      if(authorPrefersDark) {
-        newTheme = isAlternate ? baseTheme : alternateTheme;
-      } else {
-        newTheme = isAlternate ? alternateTheme : baseTheme;
-      }
-      const changeGiscusTheme = () => {
-        // From: https://github.com/giscus/giscus/issues/336
-        const sendMessage = (message) => {
-          const iframe = document.querySelector('iframe.giscus-frame');
-          if (!iframe) return;
-          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-        }
-        sendMessage({
-          setConfig: {
-            theme: newTheme
-          }
-        });
-      }
-      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-      if (isGiscussLoaded) {
-        changeGiscusTheme();
-      }
-    };
-    const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
-      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-    // Dark / light mode switch
-    window.quartoToggleColorScheme = () => {
-      // Read the current dark / light value
-      let toAlternate = !hasAlternateSentinel();
-      toggleColorMode(toAlternate);
-      setStyleSentinel(toAlternate);
-      toggleGiscusIfUsed(toAlternate, darkModeDefault);
-      window.dispatchEvent(new Event('resize'));
-    };
-    // Switch to dark mode if need be
-    if (hasAlternateSentinel()) {
-      toggleColorMode(true);
-    } else {
-      toggleColorMode(false);
-    }
-  </script>
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -306,9 +137,6 @@ window.Quarto = {
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Modeling life</a> 
-        <div class="sidebar-tools-main">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -510,18 +338,24 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="-1">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
-  <ul class="collapse">
+  <ul>
   <li><a href="#building-a-model-from-scratch" id="toc-building-a-model-from-scratch" class="nav-link active" data-scroll-target="#building-a-model-from-scratch"><span class="header-section-number">15.1</span> Building a model from scratch</a></li>
-  <li><a href="#simulating-a-simple-microbial-ecosystem-with-public-goods" id="toc-simulating-a-simple-microbial-ecosystem-with-public-goods" class="nav-link" data-scroll-target="#simulating-a-simple-microbial-ecosystem-with-public-goods"><span class="header-section-number">15.2</span> Simulating a simple microbial ecosystem with “public goods”</a></li>
+  <li><a href="#simulating-a-simple-microbial-ecosystem-with-public-goods" id="toc-simulating-a-simple-microbial-ecosystem-with-public-goods" class="nav-link" data-scroll-target="#simulating-a-simple-microbial-ecosystem-with-public-goods"><span class="header-section-number">15.2</span> Simulating a simple microbial ecosystem with “public goods”</a>
+  <ul class="collapse">
+  <li><a href="#model-description" id="toc-model-description" class="nav-link" data-scroll-target="#model-description"><span class="header-section-number">15.2.1</span> Model description</a></li>
+  <li><a href="#model-output" id="toc-model-output" class="nav-link" data-scroll-target="#model-output"><span class="header-section-number">15.2.2</span> Model output</a></li>
+  <li><a href="#parameters-to-start-out-with" id="toc-parameters-to-start-out-with" class="nav-link" data-scroll-target="#parameters-to-start-out-with"><span class="header-section-number">15.2.3</span> Parameters to start out with</a></li>
+  <li><a href="#structure-of-code" id="toc-structure-of-code" class="nav-link" data-scroll-target="#structure-of-code"><span class="header-section-number">15.2.4</span> Structure of code:</a></li>
+  <li><a href="#proposed-experiments" id="toc-proposed-experiments" class="nav-link" data-scroll-target="#proposed-experiments"><span class="header-section-number">15.2.5</span> Proposed experiments</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./evo_intro_text.html">V) Evolution</a></li><li class="breadcrumb-item"><a href="./evo_practical_3.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Public goods</span></a></li></ol></nav>
 <div class="quarto-title">
@@ -550,8 +384,8 @@ window.Quarto = {
 </section>
 <section id="simulating-a-simple-microbial-ecosystem-with-public-goods" class="level2" data-number="15.2">
 <h2 data-number="15.2" class="anchored" data-anchor-id="simulating-a-simple-microbial-ecosystem-with-public-goods"><span class="header-section-number">15.2</span> Simulating a simple microbial ecosystem with “public goods”</h2>
-<section id="model-description" class="level3">
-<h3 class="anchored" data-anchor-id="model-description">Model description</h3>
+<section id="model-description" class="level3" data-number="15.2.1">
+<h3 data-number="15.2.1" class="anchored" data-anchor-id="model-description"><span class="header-section-number">15.2.1</span> Model description</h3>
 <p>Microbes often produce public goods, from which surrounding microbes can benefit. This can lead to interesting dynamics, such as cooperation and competition. Most models however consider on 1 public good at a time, which leads to limited diversity (a producer, and a non-producer may or may not coexist). Here, we will an ecosystem with many public goods, and simulate them on a grid.</p>
 <p>An individual microbe will carry a “genome” that is represented by a binary string (101010010011). Each position in the string represents a public good, and whether the individual can produce it (1) or not (0). The individual can rely on other individuals to produce public goods.</p>
 <p>We will simulate individuals (microbial cells) reproducing and dying on a grid. A grid point either contains an individual, or it is empty. Every empty point, will be competed for by individuals that are in that neighbourhood. The neighbourhood is defined as the 8 surrounding grid points (this is called the “Moore” neighbourhood). The cells can only replicate if they have all the public goods they need, which means that they can rely on other individuals in their neighbourhood to produce them. If they do not have all public goods available, they cannot replicate. The “winner” from these (max) 8 viable competitors will be determined by a roulette wheel selection, where the relative probability is determined by their fitness:</p>
@@ -562,12 +396,12 @@ F_i = 1 - c \cdot \sum({bitstring})
 <p>The individual that replicates, can undergo mutations in the bitstring (gene loss and gene gain). Assume gene loss is more likely than gene gain (initial parameters to explore are summarised below)</p>
 <p>Finally, implement a function that allows you to mix the grid (all individuals are placed in a random position).</p>
 </section>
-<section id="model-output" class="level3">
-<h3 class="anchored" data-anchor-id="model-output">Model output</h3>
+<section id="model-output" class="level3" data-number="15.2.2">
+<h3 data-number="15.2.2" class="anchored" data-anchor-id="model-output"><span class="header-section-number">15.2.2</span> Model output</h3>
 <p>The model will have the following output: a grid that is coloured by the number of public goods produced (for consistency, let’s all use a ‘viridis’ scale), and a line graph that plots the total population sizes, as well as the population sizes of species producing 0 public goods, 1 public good, 2 public goods, etc. (see <a href="#fig-examplegrid" class="quarto-xref">Figure&nbsp;<span>15.1</span></a>)</p>
 </section>
-<section id="parameters-to-start-out-with" class="level3">
-<h3 class="anchored" data-anchor-id="parameters-to-start-out-with">Parameters to start out with</h3>
+<section id="parameters-to-start-out-with" class="level3" data-number="15.2.3">
+<h3 data-number="15.2.3" class="anchored" data-anchor-id="parameters-to-start-out-with"><span class="header-section-number">15.2.3</span> Parameters to start out with</h3>
 <ul>
 <li>Grid size: 50 x 50</li>
 <li>Initial population: produces all public goods (1111…1)</li>
@@ -579,8 +413,8 @@ F_i = 1 - c \cdot \sum({bitstring})
 <li>“No-event” size of roulette wheel: 1</li>
 </ul>
 </section>
-<section id="structure-of-code" class="level3">
-<h3 class="anchored" data-anchor-id="structure-of-code">Structure of code:</h3>
+<section id="structure-of-code" class="level3" data-number="15.2.4">
+<h3 data-number="15.2.4" class="anchored" data-anchor-id="structure-of-code"><span class="header-section-number">15.2.4</span> Structure of code:</h3>
 <ol type="1">
 <li>Import libraries</li>
 <li>Set parameters</li>
@@ -593,7 +427,7 @@ F_i = 1 - c \cdot \sum({bitstring})
 <div id="fig-examplegrid" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-examplegrid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/evo_pract3_example.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;15.1: Example of what the simulation could look like"><img src="images/evo_pract3_example.png" class="img-fluid figure-img"></a>
+<img src="images/evo_pract3_example.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-examplegrid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;15.1: Example of what the simulation could look like
@@ -601,8 +435,8 @@ Figure&nbsp;15.1: Example of what the simulation could look like
 </figure>
 </div>
 </section>
-<section id="proposed-experiments" class="level3">
-<h3 class="anchored" data-anchor-id="proposed-experiments">Proposed experiments</h3>
+<section id="proposed-experiments" class="level3" data-number="15.2.5">
+<h3 data-number="15.2.5" class="anchored" data-anchor-id="proposed-experiments"><span class="header-section-number">15.2.5</span> Proposed experiments</h3>
 <p>Try investigating how the model behaves with different values of <span class="math inline">\(c\)</span> (the cost of producing public goods). Can you explain what happens at <span class="math inline">\(c=0.0\)</span>?</p>
 <p>Try studying the effect of mixing the whole grid every timestep, such that neighbourhoods are constantly “randomised”. Look at the population size, as well as the distribution of different types. Can you explain the observations in biological terms?</p>
 <p>Try studying what happens at different mutation rates.</p>
@@ -614,19 +448,6 @@ Figure&nbsp;15.1: Example of what the simulation could look like
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
-    // Ensure there is a toggle, if there isn't float one in the top right
-    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-      const i = window.document.createElement("i");
-      i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
-    }
-    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -712,13 +533,6 @@ Figure&nbsp;15.1: Example of what the simulation could look like
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
-            // target, if specified
-            link.setAttribute("target", "_blank");
-            if (link.getAttribute("rel") === null) {
-              link.setAttribute("rel", "noopener");
-            }
-            // default icon
-            link.classList.add("external");
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -1058,38 +872,6 @@ Figure&nbsp;15.1: Example of what the simulation could look like
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
 
 
 

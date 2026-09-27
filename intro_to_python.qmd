@@ -37,26 +37,26 @@ Now you're ready to run Python scripts!
 
 Although you will mostly be using your own setup to work with Python, we will sometimes share short code snippets directly in the browser, like these:
 
-```{pyodide-python}
+```{pyodide}
 name = "Alice"
 age = 25
 print(f"{name} is {age} years old")
 ```
 
-```{pyodide-python}
+```{pyodide}
 x = 10
 y = 20
 print(f"Sum: {x + y}")
 print(f"Product: {x * y}")
 ```
 
-```{pyodide-python}
+```{pyodide}
 numbers = [1, 2, 3, 4, 5]
 for num in numbers:
     print(f"Number: {num}, Squared: {num**2}")
 ```
 
-```{pyodide-python}
+```{pyodide}
 import numpy as np
 
 data = np.array([1, 2, 3, 4, 5])

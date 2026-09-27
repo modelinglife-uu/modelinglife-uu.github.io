@@ -71,7 +71,7 @@ book:
 bibliography: references.bib
 
 format:
-  html:
+  live-html:
     number-depth: 2
     code-line-numbers: false
     code-overflow: wrap

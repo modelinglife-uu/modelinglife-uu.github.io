@@ -1,3 +1,9 @@
+---
+execute:
+  echo: true
+  eval: false
+---
+
 # 0) Introduction to Python {.unnumbered}
 
 This introductory page explains how to install Python via Anaconda and set up Visual Studio Code, and provides a brief overview of Python programming. You will also have access codes to a great StudyLens app to quickly get a grasp of Python programming, especially the parts directly relevant to this course.
@@ -29,26 +35,26 @@ Now you're ready to run Python scripts!
 Although you will mostly be using your own setup to work with Python, we will sometimes share
 short code snippets directly in the browser, like these:
 
-```{python}
+```{pyodide-python}
 name = "Alice"
 age = 25
 print(f"{name} is {age} years old")
 ```
 
-```{python}
+```{pyodide-python}
 x = 10
 y = 20
 print(f"Sum: {x + y}")
 print(f"Product: {x * y}")
 ```
 
-```{python}
+```{pyodide-python}
 numbers = [1, 2, 3, 4, 5]
 for num in numbers:
     print(f"Number: {num}, Squared: {num**2}")
 ```
 
-```{python}
+```{pyodide-python}
 import numpy as np
 
 data = np.array([1, 2, 3, 4, 5])

@@ -583,35 +583,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="try-python-in-your-browser" class="level2">
 <h2 class="anchored" data-anchor-id="try-python-in-your-browser">Try Python in your browser</h2>
 <p>Although you will mostly be using your own setup to work with Python, we will sometimes share short code snippets directly in the browser, like these:</p>
-<div id="11036d15" class="cell" data-execution_count="1">
-<div class="cell-output cell-output-stdout">
-<pre><code>Alice is 25 years old</code></pre>
-</div>
-</div>
-<div id="64a2cd98" class="cell" data-execution_count="2">
-<div class="cell-output cell-output-stdout">
-<pre><code>Sum: 30
-Product: 200</code></pre>
-</div>
-</div>
-<div id="527d4491" class="cell" data-execution_count="3">
-<div class="cell-output cell-output-stdout">
-<pre><code>Number: 1, Squared: 1
-Number: 2, Squared: 4
-Number: 3, Squared: 9
-Number: 4, Squared: 16
-Number: 5, Squared: 25</code></pre>
-</div>
-</div>
-<div id="c06ef5e3" class="cell" data-execution_count="4">
-<div class="cell-output cell-output-stdout">
-<pre><code>Data: [1 2 3 4 5]
-Mean: 3.0
-Std Dev: 1.4142135623730951
-Sum: 15
-Sin values: [ 0.          0.59847214 -0.95892427  0.93799998 -0.54402111]</code></pre>
-</div>
-</div>
+<pre class="{pyodide-python}"><code>name = "Alice"
+age = 25
+print(f"{name} is {age} years old")</code></pre>
+<pre class="{pyodide-python}"><code>x = 10
+y = 20
+print(f"Sum: {x + y}")
+print(f"Product: {x * y}")</code></pre>
+<pre class="{pyodide-python}"><code>numbers = [1, 2, 3, 4, 5]
+for num in numbers:
+    print(f"Number: {num}, Squared: {num**2}")</code></pre>
+<pre class="{pyodide-python}"><code>import numpy as np
+
+data = np.array([1, 2, 3, 4, 5])
+print(f"Data: {data}")
+print(f"Mean: {np.mean(data)}")
+print(f"Std Dev: {np.std(data)}")
+print(f"Sum: {np.sum(data)}")
+
+x = np.linspace(0, 10, 5)
+y = np.sin(x)
+print(f"Sin values: {y}")</code></pre>
 <p>For the actual course work, simulations, and graphics, you’ll use your local Python setup with Anaconda and VS Code.</p>
 </section>
 <section id="testing-your-setup" class="level2">

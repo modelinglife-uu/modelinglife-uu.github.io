@@ -35,7 +35,10 @@ git pull --no-edit || {
 quarto render --to html
 
 # --- mirror into docs/, don't delete-and-recreate all 140 files
-rsync -a --delete _book/ docs/
+# Note: exclude _extensions so quarto-live extension is preserved
+rsync -a --delete --exclude='_extensions' _book/ docs/
+# Ensure _extensions is in docs/ for GitHub Pages
+cp -r _extensions docs/
 
 # --- pin the one line Quarto randomises on every single render
 find docs -name '*.html' -exec perl -pi -e \

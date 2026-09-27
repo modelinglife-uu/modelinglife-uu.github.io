@@ -5,17 +5,7 @@ execute:
 engine: knitr
 ---
 
-```{r echo=FALSE}
-# Setup knitr for handling {pyodide} blocks
-knitr::knit_engines$set(pyodide = function(options) {
-  knitr:::one_string(c(
-    "```{pyodide}",
-    options$yaml.code,
-    options$code,
-    "```"
-  ))
-})
-```
+{{< include _extensions/r-wasm/live/_knitr.qmd >}}
 
 # 0) Introduction to Python {.unnumbered}
 

@@ -582,99 +582,60 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="try-python-in-your-browser" class="level2">
 <h2 class="anchored" data-anchor-id="try-python-in-your-browser">Try Python in your browser</h2>
-<p>On this page, you can run Python directly in the browser without installing anything! Edit the code below and click “Run” to see Python in action:</p>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pyodide@0.23.4/pyodide.css">
-<script defer="" src="https://cdn.jsdelivr.net/npm/pyodide@0.23.4/pyodide.js"></script>
-
-<style>
-  .pyodide-editor { font-family: monospace; background: #f5f5f5; padding: 10px; border: 1px solid #ccc; border-radius: 4px; margin: 10px 0; }
-  .pyodide-editor textarea { width: 100%; height: 120px; font-family: monospace; font-size: 14px; }
-  .pyodide-editor button { background: #4CAF50; color: white; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; margin-top: 8px; }
-  .pyodide-editor button:hover { background: #45a049; }
-  .pyodide-output { background: #f0f0f0; padding: 10px; border-left: 3px solid #4CAF50; margin: 10px 0; }
-  .pyodide-output pre { margin: 0; }
-</style>
-
-<div class="pyodide-editor">
-  <textarea id="code1" class="code-input">name = "Alice"
-age = 25
-print(f"{name} is {age} years old")</textarea>
-  <button onclick="runCode('code1', 'output1')">Run</button>
-  <div id="output1" class="pyodide-output" style="display:none;"></div>
+<p>Although you will mostly be using your own setup to work with Python, we will sometimes share short code snippets directly in the browser, like these:</p>
+<div id="11036d15" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-stdout">
+<pre><code>Alice is 25 years old</code></pre>
 </div>
-
-<div class="pyodide-editor">
-  <textarea id="code2" class="code-input">x = 10
-y = 20
-print(f"Sum: {x + y}")
-print(f"Product: {x * y}")</textarea>
-  <button onclick="runCode('code2', 'output2')">Run</button>
-  <div id="output2" class="pyodide-output" style="display:none;"></div>
 </div>
-
-<div class="pyodide-editor">
-  <textarea id="code3" class="code-input">numbers = [1, 2, 3, 4, 5]
-for num in numbers:
-    print(f"Number: {num}, Squared: {num**2}")</textarea>
-  <button onclick="runCode('code3', 'output3')">Run</button>
-  <div id="output3" class="pyodide-output" style="display:none;"></div>
+<div id="64a2cd98" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-stdout">
+<pre><code>Sum: 30
+Product: 200</code></pre>
 </div>
-
-<script>
-async function runCode(codeId, outputId) {
-  const code = document.getElementById(codeId).value;
-  const output = document.getElementById(outputId);
-
-  try {
-    let pyodide = globalThis.pyodide;
-    if (!pyodide) {
-      output.textContent = "Loading Python...";
-      output.style.display = "block";
-      pyodide = await loadPyodide();
-      globalThis.pyodide = pyodide;
-    }
-
-    const originalLog = console.log;
-    let result = "";
-    console.log = function(...args) {
-      result += args.join(" ") + "\n";
-    };
-
-    pyodide.runPython(code);
-    console.log = originalLog;
-
-    output.innerHTML = result ? `<pre>${result}</pre>` : "<pre>(no output)</pre>";
-    output.style.display = "block";
-  } catch(e) {
-    output.innerHTML = `<pre style="color:red;">Error: ${e.message}</pre>`;
-    output.style.display = "block";
-  }
-}
-</script>
-<p>This uses <a href="https://pyodide.org/">Pyodide</a> to run Python in your browser. For the actual course work and simulations, you’ll use your local Python setup with Anaconda and VS Code.</p>
+</div>
+<div id="527d4491" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-stdout">
+<pre><code>Number: 1, Squared: 1
+Number: 2, Squared: 4
+Number: 3, Squared: 9
+Number: 4, Squared: 16
+Number: 5, Squared: 25</code></pre>
+</div>
+</div>
+<div id="c06ef5e3" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-stdout">
+<pre><code>Data: [1 2 3 4 5]
+Mean: 3.0
+Std Dev: 1.4142135623730951
+Sum: 15
+Sin values: [ 0.          0.59847214 -0.95892427  0.93799998 -0.54402111]</code></pre>
+</div>
+</div>
+<p>For the actual course work, simulations, and graphics, you’ll use your local Python setup with Anaconda and VS Code.</p>
 </section>
 <section id="testing-your-setup" class="level2">
 <h2 class="anchored" data-anchor-id="testing-your-setup">Testing your setup</h2>
 <p>Throughout this course you will work with scripts you’ve been given or that you can copy/paste from this website. Let’s test your setup with this script:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random, matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>plt.ion()</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="dv">100</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Random Wiggle Test"</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>line, <span class="op">=</span> ax.plot([], [], color<span class="op">=</span><span class="st">"seagreen"</span>, lw<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> [<span class="dv">0</span>]</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    y.append(y[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> random.uniform(<span class="op">-</span><span class="fl">0.1</span>, <span class="fl">0.1</span>))  <span class="co"># random wiggle</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    line.set_data(<span class="bu">range</span>(<span class="bu">len</span>(y)), y)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    ax.set_xlim(<span class="dv">0</span>, <span class="bu">len</span>(y))</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    plt.pause(<span class="fl">0.03</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Animation works! (you can close this window)"</span>)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>plt.ioff()</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random, matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plt.ion()</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="dv">100</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Random Wiggle Test"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>line, <span class="op">=</span> ax.plot([], [], color<span class="op">=</span><span class="st">"seagreen"</span>, lw<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> [<span class="dv">0</span>]</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    y.append(y[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> random.uniform(<span class="op">-</span><span class="fl">0.1</span>, <span class="fl">0.1</span>))  <span class="co"># random wiggle</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    line.set_data(<span class="bu">range</span>(<span class="bu">len</span>(y)), y)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    ax.set_xlim(<span class="dv">0</span>, <span class="bu">len</span>(y))</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    plt.pause(<span class="fl">0.03</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Animation works! (you can close this window)"</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>plt.ioff()</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Save this as a <code>.py</code> file in VS Code and run it by pressing <code>F5</code> or using the “Run” button in the top right. Does the animation show up in a separate window and is it animated? Good, you’re ready to go!</p>
 </section>
 <section id="introduction-to-python-programming" class="level1">
@@ -683,8 +644,8 @@ async function runCode(codeId, outputId) {
 <section id="variables-and-data-types" class="level2">
 <h2 class="anchored" data-anchor-id="variables-and-data-types">Variables and Data Types</h2>
 <p>In Python, variables are used to store data. You can create a variable by assigning a value to it using the <code>=</code> operator. For example:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="st">"Hello, World!"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="st">"Hello, World!"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Python has many built-in data types, including:</p>
 <ul>
 <li>Integers (<code>int</code>): Whole numbers, e.g., <code>10</code>, <code>-5</code></li>
@@ -702,29 +663,29 @@ async function runCode(codeId, outputId) {
 <ul>
 <li>Conditional statements (<code>if</code>, <code>elif</code>, <code>else</code>):</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"x is positive"</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> x <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"x is zero"</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"x is negative"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"x is positive"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> x <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"x is zero"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"x is negative"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Loops (<code>for</code>, <code>while</code>):</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> count <span class="op">&lt;</span> <span class="dv">5</span>:</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(count)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    count <span class="op">+=</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> count <span class="op">&lt;</span> <span class="dv">5</span>:</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(count)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    count <span class="op">+=</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="functions" class="level2">
 <h2 class="anchored" data-anchor-id="functions">Functions</h2>
 <p>Functions are reusable blocks of code that perform a specific task. You can define a function using the <code>def</code> keyword:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> greet(name):</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f"Hello, </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">!"</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(greet(<span class="st">"Alice"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> greet(name):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f"Hello, </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">!"</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(greet(<span class="st">"Alice"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="libraries" class="level2">
 <h2 class="anchored" data-anchor-id="libraries">Libraries</h2>

@@ -228,11 +228,11 @@
     ]
   },
   {
-    "objectID": "intro_to_python.html#try-python-in-your-browser",
-    "href": "intro_to_python.html#try-python-in-your-browser",
+    "objectID": "intro_to_python.html#python-snippets-in-the-browser",
+    "href": "intro_to_python.html#python-snippets-in-the-browser",
     "title": "0) Introduction to Python",
-    "section": "Try Python in your browser",
-    "text": "Try Python in your browser\nAlthough you will mostly be using your own setup to work with Python, we will sometimes share short code snippets directly in the browser, like these:\n\nname = \"Alice\"\nage = 25\nprint(f\"{name} is {age} years old\")\n\n\nx = 10\ny = 20\nprint(f\"Sum: {x + y}\")\nprint(f\"Product: {x * y}\")\n\n\nnumbers = [1, 2, 3, 4, 5]\nfor num in numbers:\n    print(f\"Number: {num}, Squared: {num**2}\")\n\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nx = np.linspace(0, 10, 100)\ny = np.sin(x)\n\nplt.figure(figsize=(8, 4))\nplt.plot(x, y, 'b-', linewidth=2)\nplt.title(\"Sine Wave\")\nplt.xlabel(\"x\")\nplt.ylabel(\"sin(x)\")\nplt.grid(True)\nplt.show()\n\nFor the actual course work, simulations, and graphics, you’ll use your local Python setup with Anaconda and VS Code.",
+    "section": "Python-snippets in the browser",
+    "text": "Python-snippets in the browser\nAlthough you will mostly be using your own setup to work with Python, we will sometimes share short code snippets directly in the browser, like the ones below. You can run them, modify them, and get a feeling for the code.\n\nname = \"Alice\"\nage = 25\nprint(f\"{name} is {age} years old\")\n\n\nx = 10\ny = 20\nprint(f\"Sum: {x + y}\")\nprint(f\"Product: {x * y}\")\n\n\nnumbers = [1, 2, 3, 4, 5]\nfor num in numbers:\n    print(f\"Number: {num}, Squared: {num**2}\")\n\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nx = np.linspace(0, 10, 100)\ny = np.sin(x)\n\nplt.figure(figsize=(8, 4))\nplt.plot(x, y, 'b-', linewidth=2)\nplt.title(\"Sine Wave\")\nplt.xlabel(\"x\")\nplt.ylabel(\"sin(x)\")\nplt.grid(True)\nplt.show()\n\nBut as said, for the actual course work, simulations, and graphics, you’ll use your local Python setup with Anaconda and VS Code. It’s a lot more practical for bigger projects.",
     "crumbs": [
       "0) Introduction to Python"
     ]

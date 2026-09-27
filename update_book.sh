@@ -22,9 +22,20 @@ if [ "$want" != "$have" ]; then
 fi
 
 # --- start from what is actually on GitHub
-git pull --no-edit
+git pull --no-edit || {
+  if git status | grep -q "unmerged"; then
+    echo "Merge conflict detected. Aborting merge."
+    git merge --abort
+    echo "Fix the conflicts in your working directory and try again."
+    exit 1
+  fi
+  exit 1
+}
 
-quarto render
+# --- clear cache to ensure fresh render
+rm -rf .quarto _book
+
+quarto render --to html
 
 # --- mirror into docs/, don't delete-and-recreate all 140 files
 rsync -a --delete _book/ docs/

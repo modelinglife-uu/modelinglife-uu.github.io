@@ -58,7 +58,7 @@ After this course the student can:
   instructors, student assistants, or your fellow students, it's very helpful to share them on 
   Teams (General channel) so everyone can benefit.
 
-  Modeling Life 2025 in Microsoft **Teams**. You can sign up as follows:
+  Modeling Life 2026 in Microsoft **Teams**. You can sign up as follows:
   
   - Open MS Teams
   
@@ -69,7 +69,7 @@ After this course the student can:
   
   - Find the tile that says “Join a team with a code”
   
-  - Enter the following code in this field: 6jhv6z5
+  - Enter the following code in this field: xxxxx
   
   - Select “Join team”
   
@@ -79,9 +79,9 @@ After this course the student can:
 To pass this course, a minimum of 5.5 is mandatory. Your grade is calculated by the 
 following components:
 
-Exam:                     70%
+Exam:                     65%
 
-Mini project:           30%
+Mini project:           35%
 
 
 You will find your Final grade on Brightspace.

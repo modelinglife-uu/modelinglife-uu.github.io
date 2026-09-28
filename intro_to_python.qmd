@@ -131,7 +131,8 @@ Python has many built-in data types, including:
 
 Control structures allow you to control the flow of your program. Common control structures in Python include: 
 
-- Conditional statements (`if`, `elif`, `else`):
+### Conditional statements (`if`, `elif`, `else`)
+
 ```python
 if x > 0:
     print("x is positive")
@@ -152,7 +153,7 @@ else:
     print("x is negative")
 ```
 
-- Loops (`for`, `while`):
+### Loops (`for`, `while`):
 ```python
 for i in range(5):
     print(i)

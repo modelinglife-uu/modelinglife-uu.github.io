@@ -141,6 +141,17 @@ else:
     print("x is negative")
 ```
 
+You can run the code given above using the interfact below. What happens? Can you fix that?
+
+```{pyodide}
+if x > 0:
+    print("x is positive")
+elif x == 0:
+    print("x is zero")
+else:
+    print("x is negative")
+```
+
 - Loops (`for`, `while`):
 ```python
 for i in range(5):

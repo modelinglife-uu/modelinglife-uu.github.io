@@ -9,34 +9,11 @@ engine: knitr
 
 # 0) Introduction to Python {.unnumbered}
 
-This introductory page explains how to install Python via Anaconda and set up Visual Studio Code, and provides a brief overview of Python programming. You will also have access codes to a great StudyLens app to quickly get a grasp of Python programming, especially the parts directly relevant to this course.
-
-## Installing Python via Anaconda
-
-Anaconda is a free and open-source distribution of Python for scientific computing. It's the easiest way to get Python set up with all the packages you'll need for this course.
-
-[Download Anaconda from this page](https://www.anaconda.com/download/success) and follow the installation instructions. After installing, you now have:
-
--	Python
-- Most scientific packages like numpy, matplotlib, and pandas
-- Conda and pip (for installing additional packages if needed)
-
-## Setting up Visual Studio Code
-
-The recommended editor for this course is Visual Studio Code (VS Code). To set it up:
-
-1. Download and install VS Code from [https://code.visualstudio.com/download](https://code.visualstudio.com/download)
-2. Open VS Code and install the **Python extension** (search for 'Python' in the extensions tab on the left, and install the one with the blue check mark)
-3. Select the Python interpreter from Anaconda:
-   - Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac) to open the command palette
-   - Type `Python: Select Interpreter` and choose the one that points to your Anaconda installation (it should have 'anaconda3' in the path)
-
-Now you're ready to run Python scripts!
+This introductory page explains how to install Python via Anaconda and set up Visual Studio Code, and provides a brief overview of Python programming. Afterwards, you can follow some basic programming exercises on StudyLens; a great web tool to quickly get a grasp of Python programming. 
 
 ## Python-snippets in the browser
 
-Although you will mostly be using your own setup to work with Python, we will sometimes share short code snippets directly in the browser, like the ones below. You can run them,
-modify them, and get a feeling for the code. 
+Although you will mostly be using your own setup to work with Python (explained below), we will sometimes share short code snippets directly in the browser, like the ones below. You can run them, modify them, and get a feeling for the code. 
 
 ```{pyodide}
 name = "Alice"
@@ -73,11 +50,37 @@ plt.grid(True)
 plt.show()
 ```
 
-But as said, for the actual course work, simulations, and graphics, you'll use your local Python setup with Anaconda and VS Code. It's a lot more practical for bigger projects. 
+But as said, for the actual course work, simulations, and graphics, you'll use your local Python setup with Anaconda and VS Code. It's a lot more practical for bigger projects. So let's get that installed. 
+
+
+## Installing Python via Anaconda
+
+Anaconda is a free and open-source distribution of Python for scientific computing. It's the easiest way to get Python set up with all the packages you'll need for this course.
+
+[Download Anaconda from this page](https://www.anaconda.com/download/success) and follow the installation instructions. After installing, you now have:
+
+-	Python
+- Most scientific packages like numpy, matplotlib, and pandas
+- Conda and pip (for installing additional packages if needed)
+
+## Setting up Visual Studio Code
+
+The recommended editor^[You can of course use whatever you wish if you're an experienced programmer with opinions.] for this course is Visual Studio Code (VS Code). To set it up:
+
+1. Download and install VS Code from [https://code.visualstudio.com/download](https://code.visualstudio.com/download)
+2. Open VS Code and install the **Python extension** (search for 'Python' in the extensions tab on the left, and install the one with the blue check mark) ![](images/extensions.png)
+3. Select the Python interpreter from Anaconda:
+   - Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac) to open the command palette
+   - Search fo `Python: Select Interpreter (you don't need to type in the whole phrase) and choose the python path that points to your Anaconda installation (it should have 'anaconda3' in the path)
+
+
+
+Now you're ready to run Python scripts!
+
 
 ## Testing your setup
 
-Throughout this course you will work with scripts you've been given or that you can copy/paste from this website. Let's test your setup with this script:
+Throughout this course you will work with scripts you've been given or that you can copy/paste from this website. Let's test your setup with the script below. Copy it to your VSC, save it somewhere (e.g. as `myFirstScript.py`), and try to run it by hitting the 'play' button above your script, or by typing `python myFirstScript.py`^[The `python` command calls your Python interpreter. On Windows with Anaconda, this usually works automatically. On Mac/Linux, you may need to use `python3` instead, or add Anaconda to your system PATH during installation.] in a terminal.
 
 ```python
 import random, matplotlib.pyplot as plt

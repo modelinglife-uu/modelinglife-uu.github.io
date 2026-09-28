@@ -521,9 +521,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#installing-python-via-anaconda" id="toc-installing-python-via-anaconda" class="nav-link active" data-scroll-target="#installing-python-via-anaconda">Installing Python via Anaconda</a></li>
+  <li><a href="#python-snippets-in-the-browser" id="toc-python-snippets-in-the-browser" class="nav-link active" data-scroll-target="#python-snippets-in-the-browser">Python-snippets in the browser</a></li>
+  <li><a href="#installing-python-via-anaconda" id="toc-installing-python-via-anaconda" class="nav-link" data-scroll-target="#installing-python-via-anaconda">Installing Python via Anaconda</a></li>
   <li><a href="#setting-up-visual-studio-code" id="toc-setting-up-visual-studio-code" class="nav-link" data-scroll-target="#setting-up-visual-studio-code">Setting up Visual Studio Code</a></li>
-  <li><a href="#python-snippets-in-the-browser" id="toc-python-snippets-in-the-browser" class="nav-link" data-scroll-target="#python-snippets-in-the-browser">Python-snippets in the browser</a></li>
   <li><a href="#testing-your-setup" id="toc-testing-your-setup" class="nav-link" data-scroll-target="#testing-your-setup">Testing your setup</a></li>
   <li><a href="#introduction-to-python-programming" id="toc-introduction-to-python-programming" class="nav-link" data-scroll-target="#introduction-to-python-programming">Introduction to Python Programming</a>
   <ul class="collapse">
@@ -559,34 +559,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This introductory page explains how to install Python via Anaconda and set up Visual Studio Code, and provides a brief overview of Python programming. You will also have access codes to a great StudyLens app to quickly get a grasp of Python programming, especially the parts directly relevant to this course.</p>
-<section id="installing-python-via-anaconda" class="level2">
-<h2 class="anchored" data-anchor-id="installing-python-via-anaconda">Installing Python via Anaconda</h2>
-<p>Anaconda is a free and open-source distribution of Python for scientific computing. It’s the easiest way to get Python set up with all the packages you’ll need for this course.</p>
-<p><a href="https://www.anaconda.com/download/success">Download Anaconda from this page</a> and follow the installation instructions. After installing, you now have:</p>
-<ul>
-<li>Python</li>
-<li>Most scientific packages like numpy, matplotlib, and pandas</li>
-<li>Conda and pip (for installing additional packages if needed)</li>
-</ul>
-</section>
-<section id="setting-up-visual-studio-code" class="level2">
-<h2 class="anchored" data-anchor-id="setting-up-visual-studio-code">Setting up Visual Studio Code</h2>
-<p>The recommended editor for this course is Visual Studio Code (VS Code). To set it up:</p>
-<ol type="1">
-<li>Download and install VS Code from <a href="https://code.visualstudio.com/download">https://code.visualstudio.com/download</a></li>
-<li>Open VS Code and install the <strong>Python extension</strong> (search for ‘Python’ in the extensions tab on the left, and install the one with the blue check mark)</li>
-<li>Select the Python interpreter from Anaconda:
-<ul>
-<li>Press <code>Ctrl+Shift+P</code> (or <code>Cmd+Shift+P</code> on Mac) to open the command palette</li>
-<li>Type <code>Python: Select Interpreter</code> and choose the one that points to your Anaconda installation (it should have ‘anaconda3’ in the path)</li>
-</ul></li>
-</ol>
-<p>Now you’re ready to run Python scripts!</p>
-</section>
+<p>This introductory page explains how to install Python via Anaconda and set up Visual Studio Code, and provides a brief overview of Python programming. Afterwards, you can follow some basic programming exercises on StudyLens; a great web tool to quickly get a grasp of Python programming.</p>
 <section id="python-snippets-in-the-browser" class="level2">
 <h2 class="anchored" data-anchor-id="python-snippets-in-the-browser">Python-snippets in the browser</h2>
-<p>Although you will mostly be using your own setup to work with Python, we will sometimes share short code snippets directly in the browser, like the ones below. You can run them, modify them, and get a feeling for the code.</p>
+<p>Although you will mostly be using your own setup to work with Python (explained below), we will sometimes share short code snippets directly in the browser, like the ones below. You can run them, modify them, and get a feeling for the code.</p>
 <div class="cell">
 <div>
 <div id="pyodide-1" class="exercise-cell">
@@ -627,11 +603,35 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5w
 </script>
 </div>
 </div>
-<p>But as said, for the actual course work, simulations, and graphics, you’ll use your local Python setup with Anaconda and VS Code. It’s a lot more practical for bigger projects.</p>
+<p>But as said, for the actual course work, simulations, and graphics, you’ll use your local Python setup with Anaconda and VS Code. It’s a lot more practical for bigger projects. So let’s get that installed.</p>
+</section>
+<section id="installing-python-via-anaconda" class="level2">
+<h2 class="anchored" data-anchor-id="installing-python-via-anaconda">Installing Python via Anaconda</h2>
+<p>Anaconda is a free and open-source distribution of Python for scientific computing. It’s the easiest way to get Python set up with all the packages you’ll need for this course.</p>
+<p><a href="https://www.anaconda.com/download/success">Download Anaconda from this page</a> and follow the installation instructions. After installing, you now have:</p>
+<ul>
+<li>Python</li>
+<li>Most scientific packages like numpy, matplotlib, and pandas</li>
+<li>Conda and pip (for installing additional packages if needed)</li>
+</ul>
+</section>
+<section id="setting-up-visual-studio-code" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up-visual-studio-code">Setting up Visual Studio Code</h2>
+<p>The recommended editor<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> for this course is Visual Studio Code (VS Code). To set it up:</p>
+<ol type="1">
+<li>Download and install VS Code from <a href="https://code.visualstudio.com/download">https://code.visualstudio.com/download</a></li>
+<li>Open VS Code and install the <strong>Python extension</strong> (search for ‘Python’ in the extensions tab on the left, and install the one with the blue check mark) <img src="images/extensions.png" class="img-fluid"></li>
+<li>Select the Python interpreter from Anaconda:
+<ul>
+<li>Press <code>Ctrl+Shift+P</code> (or <code>Cmd+Shift+P</code> on Mac) to open the command palette</li>
+<li>Search fo `Python: Select Interpreter (you don’t need to type in the whole phrase) and choose the python path that points to your Anaconda installation (it should have ‘anaconda3’ in the path)</li>
+</ul></li>
+</ol>
+<p>Now you’re ready to run Python scripts!</p>
 </section>
 <section id="testing-your-setup" class="level2">
 <h2 class="anchored" data-anchor-id="testing-your-setup">Testing your setup</h2>
-<p>Throughout this course you will work with scripts you’ve been given or that you can copy/paste from this website. Let’s test your setup with this script:</p>
+<p>Throughout this course you will work with scripts you’ve been given or that you can copy/paste from this website. Let’s test your setup with the script below. Copy it to your VSC, save it somewhere (e.g.&nbsp;as <code>myFirstScript.py</code>), and try to run it by hitting the ‘play’ button above your script, or by typing <code>python myFirstScript.py</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> in a terminal.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random, matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>plt.ion()</span>
@@ -738,6 +738,13 @@ eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTQiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2RO
 W10=
 </script>
 </section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>You can of course use whatever you wish if you’re an experienced programmer with opinions.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>The <code>python</code> command calls your Python interpreter. On Windows with Anaconda, this usually works automatically. On Mac/Linux, you may need to use <code>python3</code> instead, or add Anaconda to your system PATH during installation.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->

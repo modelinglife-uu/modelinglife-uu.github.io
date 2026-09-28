@@ -28,9 +28,9 @@ Tuesdays / Thursdays– Lecture and practicals (mandatory)
 
 ### Key dates: 
 
-  - December 18, 2025: Exam
-  - Jan 6, 2026: Mini projects presentations
-  - Jan 29, 2026: Mini symposium
+  - January 7, 2027: Exam
+  - January 11, 2027: Mini projects presentations
+  - February 4, 2027: Mini symposium
 
 ## Learning Goals
 The course aims to provide you with an introductory understanding of computational modeling to 

@@ -80,7 +80,7 @@ Now you're ready to run Python scripts!
 
 ## Testing your setup
 
-Throughout this course you will work with scripts you've been given or that you can copy/paste from this website. Let's test your setup with the script below. Copy it to your VSC, save it somewhere (e.g. as `myFirstScript.py`), and try to run it by hitting the 'play' button above your script, or by typing `python myFirstScript.py`^[The `python` command calls your Python interpreter. On Windows with Anaconda, this usually works automatically. On Mac/Linux, you may need to use `python3` instead, or add Anaconda to your system PATH during installation.] in a terminal.
+Throughout this course you will work with scripts you've been given or that you can copy/paste from this website. Let's test your setup with the script below. Copy it to your VSC, save it somewhere (e.g. as `myFirstScript.py`), and try to run it by hitting the 'play' button above your script, or by typing `python myFirstScript.py`^[The `python` command calls your Python interpreter. On Windows with Anaconda, this usually works automatically. On Mac/Linux, you may need to use `python3` instead. If that doesn't work, you may need to add Anaconda to your system PATH (this tells your terminal where to find Python). During Anaconda installation, there's usually an option to "Add Anaconda to my PATH" — select it. See [this guide](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html) for details.] in a terminal.
 
 ```python
 import random, matplotlib.pyplot as plt

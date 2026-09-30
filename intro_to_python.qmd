@@ -9,7 +9,7 @@ engine: knitr
 
 # 0) Introduction to Python {.unnumbered}
 
-This introductory page explains how to install Python via Anaconda and set up Visual Studio Code, and provides a brief overview of Python programming. Afterwards, you can follow some basic programming exercises on StudyLens; a great web tool to quickly get a grasp of Python programming. 
+This introductory part is about Python; probably the most popular programming language in science. During the course you will be able to interact with code snippets, and copy/paste code from this website into your own setup. Both are briefly explained here. 
 
 ## Python-snippets in the browser
 
@@ -127,6 +127,15 @@ Python has many built-in data types, including:
 - Dictionaries (`dict`): Key-value pairs, e.g., `{'name': 'Alice', 'age': 25}`
 - And many more 
 
+## Using comments 
+
+By using a `#` in your code, you can type 'comments' to explain your code, like this:
+
+```python
+age = 10     # age of rabbit in months
+y = "Brown"  # colour of rabbit
+```
+
 ## Control Structures
 
 Control structures allow you to control the flow of your program. Common control structures in Python include: 
@@ -158,9 +167,16 @@ else:
 for i in range(5):
     print(i)
 count = 0
+
 while count < 5:
     print(count)
     count += 1
+```
+
+For loops repeat within a defined range (above, there are 5 repetitions). While loops will run for however long the conditions are still true, so you needs to make sure the conditions to stop the loop are there, otherwise you'll have defined an infinite loop! With that in mind, look at the script below, which only has a 'count' variable set to 10. Try writing a while loop that counts down from 10, and stops counting at 0.
+
+```{pyodide}
+count = 10
 ```
 
 ## Functions
@@ -170,8 +186,20 @@ Functions are reusable blocks of code that perform a specific task. You can defi
 ```python
 def greet(name):
     return f"Hello, {name}!"
-    
-print(greet("Alice"))
+
+# calling function:    
+greet("Agnes")
+```
+
+Below is an example of a function with multiple arguments, and where a simple calculation happens within the function call. But... it is not yet being called. Try calling the function with your own name and age. 
+
+```{pyodide}
+def greet(name, age):
+    months = age * 12
+    return (f"Hello, {name}! I heard you are {age} years old! "
+            f"That is at least {months} months :)")
+
+# call the function yourself: 
 ```
 
 ## Libraries

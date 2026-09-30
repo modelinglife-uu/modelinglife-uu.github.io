@@ -554,7 +554,8 @@ window.Quarto = {
   <li><a href="#three-ingredients" id="toc-three-ingredients" class="nav-link" data-scroll-target="#three-ingredients"><span class="header-section-number">1.2</span> Three ingredients</a></li>
   <li><a href="#balancing-change-and-stability" id="toc-balancing-change-and-stability" class="nav-link" data-scroll-target="#balancing-change-and-stability"><span class="header-section-number">1.3</span> Balancing change and stability</a></li>
   <li><a href="#a-simple-evolutionary-algorithm" id="toc-a-simple-evolutionary-algorithm" class="nav-link" data-scroll-target="#a-simple-evolutionary-algorithm"><span class="header-section-number">1.4</span> A simple evolutionary algorithm</a></li>
-  <li><a href="#what-this-part-of-the-course-is-about" id="toc-what-this-part-of-the-course-is-about" class="nav-link" data-scroll-target="#what-this-part-of-the-course-is-about"><span class="header-section-number">1.5</span> What this part of the course is about</a></li>
+  <li><a href="#plotting-with-matplotlib" id="toc-plotting-with-matplotlib" class="nav-link" data-scroll-target="#plotting-with-matplotlib"><span class="header-section-number">1.5</span> Plotting with matplotlib</a></li>
+  <li><a href="#what-this-first-part-of-the-course-is-about" id="toc-what-this-first-part-of-the-course-is-about" class="nav-link" data-scroll-target="#what-this-first-part-of-the-course-is-about"><span class="header-section-number">1.6</span> What this first part of the course is about</a></li>
   </ul>
 </nav>
     </div>
@@ -584,7 +585,7 @@ window.Quarto = {
 <section id="evolution-lifes-most-clever-algorithm" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="evolution-lifes-most-clever-algorithm"><span class="header-section-number">1.1</span> Evolution: Life’s most clever algorithm</h2>
 <p>Evolution is the process by which populations change over generations through variation, inheritance, and differential survival. This idea, famously championed by Darwin and Wallace, explains the diversity of life on Earth. It describes how species adapt to their environments, how new species arise, and how complex traits evolve. Today, the concept of evolution has expanded beyond biology, it’s recognised as a powerful algorithm that drives adaptation in systems ranging from bacteria (genes) to ideas (memes), from DNA (nucleotides) to computer code (bits).</p>
-<p>In this part of the course, we’ll bring these ingredients to life by writing our own simulations and watching evolution unfold on the screen. And while our digital creatures aren’t made of flesh and blood, the evolutionary battles they fight, the strategies they discover, and the adaptations they evolve are as real, and often as surprising, as anything found in nature itself.</p>
+<p>In this first part of the course, we’ll bring these ingredients to life by writing our own simulations and watching evolution unfold on the screen. And while our digital creatures aren’t made of flesh and blood, the evolutionary battles they fight, the strategies they discover, and the adaptations they evolve are as real, and often as surprising, as anything found in nature itself.</p>
 </section>
 <section id="three-ingredients" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="three-ingredients"><span class="header-section-number">1.2</span> Three ingredients</h2>
@@ -598,49 +599,32 @@ window.Quarto = {
 </section>
 <section id="balancing-change-and-stability" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="balancing-change-and-stability"><span class="header-section-number">1.3</span> Balancing change and stability</h2>
-<p>To evolve, a system needs enough variation – if everyone is the same, there’s nothing for selection to act on. But this variation can’t just be noise; it needs to be passed on. That means inheritance can’t be perfect – there must be room for change, such as through mutations – but it also can’t be too sloppy. If traits aren’t reliably transmitted to the next generation, then even the best adaptations will vanish before they can take hold. Evolution lives in the sweet spot: not too rigid, not too chaotic, just enough memory and just enough change. To make this a little more tangible, let us make our very first simulation.</p>
+<p>To evolve, a system needs enough variation – if everyone is the same, there’s nothing for selection to act on. But this variation can’t just be noise; it needs to be passed on. That means inheritance can’t be perfect – there must be room for change, such as through mutations – but it also can’t be too sloppy. If traits aren’t reliably transmitted to the next generation, then even the best adaptations will vanish before they can take hold. Evolution therefore acts within a sweet spot: replication must be good enough, but not perfect. Just enough “memory” and just enough “change”. To make this a little more tangible, let us make our very first simulation.</p>
 </section>
 <section id="a-simple-evolutionary-algorithm" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="a-simple-evolutionary-algorithm"><span class="header-section-number">1.4</span> A simple evolutionary algorithm</h2>
 <p>One simple way to simulate evolution is with a Moran process, a classic model from population genetics. Imagine a population of 100 individuals, each with a single gene that determines its fitness. This gene can have all values from 0 to 1 (let’s call this value <span class="math inline">\(\phi\)</span>). At each time step, one individual is chosen to reproduce with a probability proportional to <span class="math inline">\(\phi\)</span>, producing 1 offspring. This offspring inherits their parents gene (so the same <span class="math inline">\(\phi\)</span>), but with a probability <span class="math inline">\(\mu\)</span>, the value changes by a small amount (a mutation). The population size will now be 101, which could be interesting if we want to study population growth. However, in a Moran process we keep it simple: one random individual is removed by the new offspring, so the population size is constant while still allowing fitter individuals to spread over time.</p>
-<p>Here’s a minimal Python example:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">5</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">100</span> <span class="co"># Population size </span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>fitnesses <span class="op">=</span> np.full(N, <span class="fl">0.05</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> <span class="fl">0.01</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Updated parameters</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>steps <span class="op">=</span> <span class="dv">50000</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>avg_fitness <span class="op">=</span> []</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Moran process with mutation (logging every 10 steps)</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> step <span class="kw">in</span> <span class="bu">range</span>(steps):</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    probs <span class="op">=</span> fitnesses <span class="op">/</span> fitnesses.<span class="bu">sum</span>()</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    parent <span class="op">=</span> np.random.choice(N, p<span class="op">=</span>probs)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    dead <span class="op">=</span> np.random.choice(N)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Copy with mutation</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    new_fit <span class="op">=</span> fitnesses[parent]</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> mu:</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        new_fit <span class="op">=</span> np.clip(new_fit <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="fl">0.1</span>), <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    fitnesses[dead] <span class="op">=</span> new_fit</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Save average fitness every 10 steps</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> step <span class="op">%</span> <span class="dv">10</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>        avg_fitness.append(fitnesses.mean())</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>plt.plot(np.arange(<span class="dv">0</span>, steps, <span class="dv">10</span>), avg_fitness)</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Step"</span>)</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Average fitness"</span>)</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Evolution of Fitness in a Moran Process"</span>)</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Below is a minimal Python snippet that does exactly what is described above. Read it carefully, as this is your very first ‘real’ Python script in this course.</p>
+<div>
+<div id="pyodide-1" class="exercise-cell">
+
+</div>
+<script type="pyodide-1-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wICMgcGFja2FnZSB0byBlYXNpbHkgbWFuaXB1bGF0ZSBhcnJheXMgb2YgbnVtYmVyc1xuXG5ucC5yYW5kb20uc2VlZCg1KVxuXG5OID0gMTAwICMgUG9wdWxhdGlvbiBzaXplIFxuZml0bmVzc2VzID0gbnAuZnVsbChOLCAwLjA1KVxubXUgPSAwLjFcbiMgVXBkYXRlZCBwYXJhbWV0ZXJzXG5zdGVwcyA9IDI1MDBcblxuIyBNb3JhbiBwcm9jZXNzIHdpdGggbXV0YXRpb24gKGxvZ2dpbmcgZXZlcnkgMjUwIHN0ZXBzKVxuZm9yIHN0ZXAgaW4gcmFuZ2Uoc3RlcHMpOlxuICAgIHByb2JzID0gZml0bmVzc2VzIC8gZml0bmVzc2VzLnN1bSgpXG4gICAgcGFyZW50ID0gbnAucmFuZG9tLmNob2ljZShOLCBwPXByb2JzKVxuICAgIGRlYWQgPSBucC5yYW5kb20uY2hvaWNlKE4pXG5cbiAgICAjIENvcHkgd2l0aCBtdXRhdGlvblxuICAgIG5ld19maXQgPSBmaXRuZXNzZXNbcGFyZW50XVxuICAgIGlmIG5wLnJhbmRvbS5yYW5kKCkgPCBtdTpcbiAgICAgICAgbmV3X2ZpdCA9IG5wLmNsaXAobmV3X2ZpdCArIG5wLnJhbmRvbS5ub3JtYWwoMCwgMC4xKSwgMCwgMSlcbiAgICAgICAgICAgIFxuICAgIGZpdG5lc3Nlc1tkZWFkXSA9IG5ld19maXRcblxuICAgICMgUmVwb3J0IHRoZSBhdmVyYWdlIGZpdG5lc3MgZXZlcnkgMjUwIHN0ZXBzXG4gICAgaWYgc3RlcCAlIDI1MCA9PSAwOlxuICAgICAgICBwcmludChmXCJGaXRuZXNzIGF0IHRpbWUgc3RlcCB7c3RlcH0gaXMgZXF1YWwgdG8ge2ZpdG5lc3Nlcy5tZWFuKCl9XCIpXG5cbnByaW50KGZcIkZpdG5lc3MgYXQgdGhlIHRoZSBmaW5hbCB0aW1lIHBvaW50ICh7c3RlcHN9KSBpcyBlcXVhbCB0byB7Zml0bmVzc2VzLm1lYW4oKX1cIikifQ==
+</script>
+</div>
+</section>
+<section id="plotting-with-matplotlib" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="plotting-with-matplotlib"><span class="header-section-number">1.5</span> Plotting with matplotlib</h2>
+<p>The code snippet above is a nice introduction: it sets the parameters for your model, performs a short loop, and reports statistics. But with many models in this course, looking at raw statistics is not going to be very informative. Humans are much better at interpreting graphs and other visuals, so for this we will use matplotlib to modify the script above and make a graph instead. Make sure to once gain carefully read through this code, it is very similar to the code above but adds some plotting code. New elements are explained with <code>#</code> comments.</p>
+<div>
+<div id="pyodide-2" class="exercise-cell">
+
+</div>
+<script type="pyodide-2-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5pbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0ICAgIyB0aGUgcGFja2FnZSB1c2VkIGZvciBwbG90dGluZ1xuXG5ucC5yYW5kb20uc2VlZCg1KVxuXG5OID0gMTAwIFxuZml0bmVzc2VzID0gbnAuZnVsbChOLCAwLjA1KVxubXUgPSAwLjAxXG5zdGVwcyA9IDUwMDBcbmF2Z19maXRuZXNzID0gW10gIyBtYWtlIGFuIGVtcHR5IGFycmF5IHRvIHN0b3JlIHRoZSBtZWFuIGZpdG5lc3NlcyBpblxuXG5mb3Igc3RlcCBpbiByYW5nZShzdGVwcyk6XG4gICAgcHJvYnMgPSBmaXRuZXNzZXMgLyBmaXRuZXNzZXMuc3VtKClcbiAgICBwYXJlbnQgPSBucC5yYW5kb20uY2hvaWNlKE4sIHA9cHJvYnMpXG4gICAgZGVhZCA9IG5wLnJhbmRvbS5jaG9pY2UoTilcblxuICAgICMgQ29weSB3aXRoIG11dGF0aW9uXG4gICAgbmV3X2ZpdCA9IGZpdG5lc3Nlc1twYXJlbnRdXG4gICAgaWYgbnAucmFuZG9tLnJhbmQoKSA8IG11OlxuICAgICAgICBuZXdfZml0ID0gbnAuY2xpcChuZXdfZml0ICsgbnAucmFuZG9tLm5vcm1hbCgwLCAwLjEpLCAwLCAxKVxuICAgICAgICAgICAgXG4gICAgZml0bmVzc2VzW2RlYWRdID0gbmV3X2ZpdFxuXG4gICAgIyBJbnN0ZWFkIG9mIHByaW50aW5nIGV2ZXJ5IHNvIG9mdGVuLCBhZGQgbWVhbiB0byB0aGUgYXJyYXlcbiAgICBpZiBzdGVwICUgMTAgPT0gMDpcbiAgICAgICAgYXZnX2ZpdG5lc3MuYXBwZW5kKGZpdG5lc3Nlcy5tZWFuKCkpXG5cbiMgTm93LCBwbG90dGluZy4gV2UgY2FuIGNhbGwgJ3BsdCcgYXMgaW1wb3J0ZWQgYWJvdmUsIGFuZCBncmFkdWFsbHkgYnVpbGQgb3V0IHBsb3Q6XG5cbiMgRmlyc3QsIHNldCB1cCB3aGF0IGlzIHBsb3R0ZWQgb24geCBhbmQgeSBheGVzOlxucGx0LnBsb3QobnAuYXJhbmdlKDAsIHN0ZXBzLCAxMCksIGF2Z19maXRuZXNzKSAgIFxuXG4jIFRoZW4sIGxhYmVsIHRoZSBheGVzL3RpdGxlXG5wbHQueGxhYmVsKFwiU3RlcFwiKSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbnBsdC55bGFiZWwoXCJBdmVyYWdlIGZpdG5lc3NcIikgXG5wbHQudGl0bGUoXCJFdm9sdXRpb24gb2YgRml0bmVzcyBpbiBhIE1vcmFuIFByb2Nlc3NcIikgXG5cbiMgTWF5YmUgc29tZSBvcHRpb25hbCB2aXN1YWwgdGhpbmdzOlxucGx0LmdyaWQoVHJ1ZSkgXG5cbiMgQW5kIGZpbmFsbHksIHNob3cgdGhlIHBsb3Q6XG5wbHQuc2hvdygpICMgc2hvdyB0aGUgcGxvdCJ9
+</script>
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -653,74 +637,78 @@ window.Quarto = {
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">5</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">100</span> <span class="co"># Default population size </span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> <span class="fl">0.001</span> <span class="co"># Default mutation rate</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Updated parameters</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>steps <span class="op">=</span> <span class="dv">50000</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> simulate(N<span class="op">=</span>N,mut<span class="op">=</span>mu): </span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    avg_fitness <span class="op">=</span> []</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    fitnesses <span class="op">=</span> np.full(N, <span class="fl">0.05</span>)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Moran process with mutation (logging every 10 steps)</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> step <span class="kw">in</span> <span class="bu">range</span>(steps):</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        probs <span class="op">=</span> fitnesses <span class="op">/</span> fitnesses.<span class="bu">sum</span>()</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        parent <span class="op">=</span> np.random.choice(N, p<span class="op">=</span>probs)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        dead <span class="op">=</span> np.random.choice(N)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Copy with mutation</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        new_fit <span class="op">=</span> fitnesses[parent]</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> mut:</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>            new_fit <span class="op">=</span> np.clip(new_fit <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="fl">0.1</span>), <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                </span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        fitnesses[dead] <span class="op">=</span> new_fit</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Save average fitness every 10 steps</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> step <span class="op">%</span> <span class="dv">10</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>            avg_fitness.append(fitnesses.mean())</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plotting</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    plt.plot(np.arange(<span class="dv">0</span>, steps, <span class="dv">10</span>), avg_fitness, label<span class="op">=</span><span class="ss">f"mu=</span><span class="sc">{</span>mut<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>simulate(N,<span class="fl">0.0001</span>)</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>simulate(N,<span class="fl">0.001</span>)</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>simulate(N,<span class="fl">0.01</span>)</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>simulate(N,<span class="fl">0.1</span>)</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>simulate(N,<span class="dv">1</span>)</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Step"</span>)</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Average fitness"</span>)</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Evolution of Fitness in a Moran Process"</span>)</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">5</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">100</span> <span class="co"># Default population size </span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> <span class="fl">0.001</span> <span class="co"># Default mutation rate</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Updated parameters</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>steps <span class="op">=</span> <span class="dv">50000</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> simulate(N<span class="op">=</span>N,mut<span class="op">=</span>mu): </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    avg_fitness <span class="op">=</span> []</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    fitnesses <span class="op">=</span> np.full(N, <span class="fl">0.05</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Moran process with mutation (logging every 10 steps)</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> step <span class="kw">in</span> <span class="bu">range</span>(steps):</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        probs <span class="op">=</span> fitnesses <span class="op">/</span> fitnesses.<span class="bu">sum</span>()</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        parent <span class="op">=</span> np.random.choice(N, p<span class="op">=</span>probs)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        dead <span class="op">=</span> np.random.choice(N)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Copy with mutation</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        new_fit <span class="op">=</span> fitnesses[parent]</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> mut:</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>            new_fit <span class="op">=</span> np.clip(new_fit <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="fl">0.1</span>), <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        fitnesses[dead] <span class="op">=</span> new_fit</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Save average fitness every 10 steps</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> step <span class="op">%</span> <span class="dv">10</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>            avg_fitness.append(fitnesses.mean())</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plotting</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    plt.plot(np.arange(<span class="dv">0</span>, steps, <span class="dv">10</span>), avg_fitness, label<span class="op">=</span><span class="ss">f"mu=</span><span class="sc">{</span>mut<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>simulate(N,<span class="fl">0.0001</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>simulate(N,<span class="fl">0.001</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>simulate(N,<span class="fl">0.01</span>)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>simulate(N,<span class="fl">0.1</span>)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>simulate(N,<span class="dv">1</span>)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Step"</span>)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Average fitness"</span>)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Evolution of Fitness in a Moran Process"</span>)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
 <div id="exr-moran" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 1.1 (Moran process simulation)</strong></span> <br></p>
-<p>Study the Python code for the evolutionary algorithm given above. Answer the following questions:</p>
+<p>As you can see, the direct code ‘snippets’ are already getting quite long, and it would be better to get your script on your own laptop. Copy and paste the code to your own machine, and see if you can get it to run. Then answer the following questions:</p>
 <ol type="a">
 <li>How “well adapted” is the initial population?</li>
-<li>How are mutations implemented in the code? Can you think of other ways?</li>
+<li>The population fitness seems to plateau at 5000 time steps. Is that a real result? Investigate!</li>
+<li>Read how the mutations are implemented. Can you think of other ways to implement mutations?</li>
 <li>Can the parent be replaced by its own offspring? Why/why not?</li>
 <li>Try to decreasing/increase value of <span class="math inline">\(\mu\)</span> (mutation rate). Which values makes evolution go <em>faster</em>? Which values make evolution more <em>precise</em>?</li>
 </ol>
 </div>
 </section>
-<section id="what-this-part-of-the-course-is-about" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="what-this-part-of-the-course-is-about"><span class="header-section-number">1.5</span> What this part of the course is about</h2>
-<p>The above simulation is fun, but not really… biologically relevant. While some simplifications are necessary to make models feasible, we will investigate a few evolutionary models that are somewhat more interesting. We will discuss how to model spatial structure and local competition, how genotypes (where mutations happen) get translated into phenotypes (where selection happens), and how the environment can change over time and lead to niche construction and interactions.</p>
+<section id="what-this-first-part-of-the-course-is-about" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="what-this-first-part-of-the-course-is-about"><span class="header-section-number">1.6</span> What this first part of the course is about</h2>
+<p>The above simulation is fun, but not really… biologically exciting. While some simplifications are necessary to make models feasible, we will investigate a few evolutionary models that are somewhat more exciting. We will discuss how to model spatial structure and local competition, how genotypes (where mutations happen) get translated into phenotypes (where selection happens), and how the environment can change over time and lead to niche construction and interactions.</p>
 
 
+<script type="pyodide-data">
+eyJvcHRpb25zIjp7ImVudiI6eyJQTE9UTFlfUkVOREVSRVIiOiJwbG90bHlfbWltZXR5cGUifSwiaW5kZXhVUkwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvcHlvZGlkZS92MC4yOC4xL2Z1bGwvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsicHlvZGlkZV9odHRwIiwibWljcm9waXAiLCJpcHl0aG9uIl19fQ==
+</script>
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W119
+eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTIiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8yID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0yLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzIgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8xID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0xLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzEgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLXByZWx1ZGUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJweW9kaWRlT2pzID0ge1xuICBjb25zdCB7XG4gICAgUHlvZGlkZUV2YWx1YXRvcixcbiAgICBQeW9kaWRlRW52aXJvbm1lbnRNYW5hZ2VyLFxuICAgIHNldHVwUHl0aG9uLFxuICAgIHN0YXJ0UHlvZGlkZVdvcmtlcixcbiAgICBiNjREZWNvZGUsXG4gICAgY29sbGFwc2VQYXRoLFxuICB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzdGF0dXNDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctc3RhdHVzXCIpO1xuICBjb25zdCBpbmRpY2F0b3JDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpbmRpY2F0b3JDb250YWluZXIuY2xhc3NMaXN0LnJlbW92ZShcImQtbm9uZVwiKTtcblxuICBsZXQgc3RhdHVzVGV4dCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIilcbiAgc3RhdHVzVGV4dC5jbGFzc0xpc3QgPSBcImV4ZXJjaXNlLWxvYWRpbmctZGV0YWlsc1wiO1xuICBzdGF0dXNUZXh0ID0gc3RhdHVzQ29udGFpbmVyLmFwcGVuZENoaWxkKHN0YXR1c1RleHQpO1xuICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYEluaXRpYWxpc2VgO1xuXG4gIC8vIEhvaXN0IGluZGljYXRvciBvdXQgZnJvbSBmaW5hbCBzbGlkZSB3aGVuIHJ1bm5pbmcgdW5kZXIgcmV2ZWFsXG4gIGNvbnN0IHJldmVhbFN0YXR1cyA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsIC5leGVyY2lzZS1sb2FkaW5nLWluZGljYXRvclwiKTtcbiAgaWYgKHJldmVhbFN0YXR1cykge1xuICAgIHJldmVhbFN0YXR1cy5yZW1vdmUoKTtcbiAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLnJldmVhbCA+IC5zbGlkZXNcIikuYXBwZW5kQ2hpbGQocmV2ZWFsU3RhdHVzKTtcbiAgfVxuXG4gIC8vIE1ha2UgYW55IHJldmVhbCBzbGlkZXMgd2l0aCBsaXZlIGNlbGxzIHNjcm9sbGFibGVcbiAgZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbChcIi5yZXZlYWwgLmV4ZXJjaXNlLWNlbGxcIikuZm9yRWFjaCgoZWwpID0+IHtcbiAgICBlbC5jbG9zZXN0KCdzZWN0aW9uLnNsaWRlJykuY2xhc3NMaXN0LmFkZChcInNjcm9sbGFibGVcIik7XG4gIH0pXG5cbiAgLy8gUHlvZGlkZSBzdXBwbGVtZW50YWwgZGF0YSBhbmQgb3B0aW9uc1xuICBjb25zdCBkYXRhQ29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLWRhdGFcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBkYXRhID0gSlNPTi5wYXJzZShiNjREZWNvZGUoZGF0YUNvbnRlbnQpKTtcblxuICAvLyBHcmFiIGxpc3Qgb2YgcmVzb3VyY2VzIHRvIGJlIGRvd25sb2FkZWRcbiAgY29uc3QgZmlsZXNDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInZmcy1maWxlXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgZmlsZXMgPSBKU09OLnBhcnNlKGI2NERlY29kZShmaWxlc0NvbnRlbnQpKTtcblxuICBsZXQgcHlvZGlkZVByb21pc2UgPSAoYXN5bmMgKCkgPT4ge1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgUHlvZGlkZWA7XG4gICAgY29uc3QgcHlvZGlkZSA9IGF3YWl0IHN0YXJ0UHlvZGlkZVdvcmtlcihkYXRhLm9wdGlvbnMpO1xuXG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiBtaWNyb3BpcGA7XG4gICAgYXdhaXQgcHlvZGlkZS5sb2FkUGFja2FnZShcIm1pY3JvcGlwXCIpO1xuICAgIGNvbnN0IG1pY3JvcGlwID0gYXdhaXQgcHlvZGlkZS5weWltcG9ydChcIm1pY3JvcGlwXCIpO1xuICAgIGF3YWl0IGRhdGEucGFja2FnZXMucGtncy5tYXAoKHBrZykgPT4gKCkgPT4ge1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiAke3BrZ31gO1xuICAgICAgcmV0dXJuIG1pY3JvcGlwLmluc3RhbGwocGtnKTtcbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcbiAgICBhd2FpdCBtaWNyb3BpcC5kZXN0cm95KCk7XG5cbiAgICAvLyBEb3dubG9hZCBhbmQgaW5zdGFsbCByZXNvdXJjZXNcbiAgICBhd2FpdCBmaWxlcy5tYXAoKGZpbGUpID0+IGFzeW5jICgpID0+IHtcbiAgICAgIGNvbnN0IG5hbWUgPSBmaWxlLnN1YnN0cmluZyhmaWxlLmxhc3RJbmRleE9mKCcvJykgKyAxKTtcbiAgICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgcmVzb3VyY2U6ICR7bmFtZX1gO1xuICAgICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaChmaWxlKTtcbiAgICAgIGlmICghcmVzcG9uc2Uub2spIHtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBDYW4ndCBkb3dubG9hZCBcXGAke2ZpbGV9XFxgLiBFcnJvciAke3Jlc3BvbnNlLnN0YXR1c306IFwiJHtyZXNwb25zZS5zdGF0dXNUZXh0fVwiLmApO1xuICAgICAgfVxuICAgICAgY29uc3QgZGF0YSA9IGF3YWl0IHJlc3BvbnNlLmFycmF5QnVmZmVyKCk7XG5cbiAgICAgIC8vIFN0b3JlIFVSTHMgaW4gdGhlIGN3ZCB3aXRob3V0IGFueSBzdWJkaXJlY3Rvcnkgc3RydWN0dXJlXG4gICAgICBpZiAoZmlsZS5pbmNsdWRlcyhcIjovL1wiKSkge1xuICAgICAgICBmaWxlID0gbmFtZTtcbiAgICAgIH1cblxuICAgICAgLy8gQ29sbGFwc2UgaGlnaGVyIGRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGZpbGUgPSBjb2xsYXBzZVBhdGgoZmlsZSk7XG5cbiAgICAgIC8vIENyZWF0ZSBkaXJlY3RvcnkgdHJlZSwgaWdub3JpbmcgXCJkaXJlY3RvcnkgZXhpc3RzXCIgVkZTIGVycm9yc1xuICAgICAgY29uc3QgcGFydHMgPSBmaWxlLnNwbGl0KCcvJykuc2xpY2UoMCwgLTEpO1xuICAgICAgbGV0IHBhdGggPSAnJztcbiAgICAgIHdoaWxlIChwYXJ0cy5sZW5ndGggPiAwKSB7XG4gICAgICAgIHBhdGggKz0gcGFydHMuc2hpZnQoKSArICcvJztcbiAgICAgICAgdHJ5IHtcbiAgICAgICAgICBhd2FpdCBweW9kaWRlLkZTLm1rZGlyKHBhdGgpO1xuICAgICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgICAgaWYgKGUubmFtZSAhPT0gXCJFcnJub0Vycm9yXCIpIHRocm93IGU7XG4gICAgICAgICAgaWYgKGUuZXJybm8gIT09IDIwKSB7XG4gICAgICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICAgICAgY29uc3QgZXJyb3JUZXh0ID0gYXdhaXQgcHlvZGlkZS5fbW9kdWxlLlVURjhUb1N0cmluZyhlcnJvclRleHRQdHIpO1xuICAgICAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBGaWxlc3lzdGVtIEVycm9yICR7ZS5lcnJub30gXCIke2Vycm9yVGV4dH1cIi5gKTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH1cblxuICAgICAgLy8gV3JpdGUgdGhpcyBmaWxlIHRvIHRoZSBWRlNcbiAgICAgIHRyeSB7XG4gICAgICAgIHJldHVybiBhd2FpdCBweW9kaWRlLkZTLndyaXRlRmlsZShmaWxlLCBuZXcgVWludDhBcnJheShkYXRhKSk7XG4gICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgIGlmIChlLm5hbWUgIT09IFwiRXJybm9FcnJvclwiKSB0aHJvdyBlO1xuICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICBjb25zdCBlcnJvclRleHQgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuVVRGOFRvU3RyaW5nKGVycm9yVGV4dFB0cik7XG4gICAgICAgIHRocm93IG5ldyBFcnJvcihgRmlsZXN5c3RlbSBFcnJvciAke2UuZXJybm99IFwiJHtlcnJvclRleHR9XCIuYCk7XG4gICAgICB9XG4gICAgfSkucmVkdWNlKChjdXIsIG5leHQpID0+IGN1ci50aGVuKG5leHQpLCBQcm9taXNlLnJlc29sdmUoKSk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYFB5b2RpZGUgZW52aXJvbm1lbnQgc2V0dXBgO1xuICAgIGF3YWl0IHNldHVwUHl0aG9uKHB5b2RpZGUpO1xuXG4gICAgc3RhdHVzVGV4dC5yZW1vdmUoKTtcbiAgICBpZiAoc3RhdHVzQ29udGFpbmVyLmNoaWxkcmVuLmxlbmd0aCA9PSAwKSB7XG4gICAgICBzdGF0dXNDb250YWluZXIucGFyZW50Tm9kZS5yZW1vdmUoKTtcbiAgICB9XG4gICAgcmV0dXJuIHB5b2RpZGU7XG4gIH0pKCkuY2F0Y2goKGVycikgPT4ge1xuICAgIHN0YXR1c1RleHQuc3R5bGUuY29sb3IgPSBcInZhcigtLWV4ZXJjaXNlLWVkaXRvci1obC1lciwgI0FEMDAwMClcIjtcbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gZXJyLm1lc3NhZ2U7XG4gICAgLy9pbmRpY2F0b3JDb250YWluZXIucXVlcnlTZWxlY3RvcihcIi5zcGlubmVyLWdyb3dcIikuY2xhc3NMaXN0LmFkZChcImQtbm9uZVwiKTtcbiAgICB0aHJvdyBlcnI7XG4gIH0pO1xuXG4gIC8vIEtlZXAgdHJhY2sgb2YgaW5pdGlhbCBPSlMgYmxvY2sgcmVuZGVyXG4gIGNvbnN0IHJlbmRlcmVkT2pzID0ge307XG5cbiAgY29uc3QgcHJvY2VzcyA9IGFzeW5jIChjb250ZXh0LCBpbnB1dHMpID0+IHtcbiAgICBjb25zdCBweW9kaWRlID0gYXdhaXQgcHlvZGlkZVByb21pc2U7XG4gICAgY29uc3QgZXZhbHVhdG9yID0gbmV3IFB5b2RpZGVFdmFsdWF0b3IocHlvZGlkZSwgY29udGV4dCk7XG4gICAgYXdhaXQgZXZhbHVhdG9yLnByb2Nlc3MoaW5wdXRzKTtcbiAgICByZXR1cm4gZXZhbHVhdG9yLmNvbnRhaW5lcjtcbiAgfVxuXG4gIHJldHVybiB7XG4gICAgcHlvZGlkZVByb21pc2UsXG4gICAgcmVuZGVyZWRPanMsXG4gICAgcHJvY2VzcyxcbiAgfTtcbn1cbiJ9XX0=
 </script>
 <div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
 <div id="exercise-loading-status" class="d-flex gap-2">

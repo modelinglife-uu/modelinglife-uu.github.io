@@ -225,6 +225,8 @@ In nature, individuals don't usually compete "with everyone equally". Instead, o
 
 Below is a complete, working code example. This includes visualization with matplotlib, which is **new for you** — we'll explain it step-by-step!
 
+BLABLABLABLA
+
 :::{.callout-note collapse=false}
 
 ### Complete code: Spatial Moran on a grid with visualization

@@ -37,7 +37,8 @@ quarto render 2>&1 | grep -E "^\[|Output created" || true
 
 # --- mirror into docs/, don't delete-and-recreate all 140 files
 # Note: exclude _extensions so quarto-live extension is preserved
-rsync -a --delete --exclude='_extensions' _book/ docs/
+# Use --checksum to verify content, not just timestamps (prevents timestamp sync issues)
+rsync -a --delete --checksum --exclude='_extensions' _book/ docs/
 # Ensure _extensions is in docs/ for GitHub Pages
 cp -r _extensions docs/
 

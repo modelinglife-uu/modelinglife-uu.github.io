@@ -216,72 +216,159 @@ e. If a grid point is empty (contains no individual), make a list of (up to) 8 i
 
 ## Spatial structure: Local competition on a grid
 
-In nature, individuals don't usually compete "with everyone equally". Instead, organisms occupy physical space, and competition happens locally—between neighbors. A population on a grid is a simple way to model this. Instead of a random subset of individuals (as in the roulette wheel above), we now use the **geographic neighborhood** as our subset of competitors.
+In nature, individuals don't usually compete "with everyone equally". Instead, organisms occupy physical space, and competition happens locally (between nearby individuals). To implement this, we put individuals on a 2D grid rather than as a flat list like before. Then, we could repeat the following algorithm:
 
-**The key insight:** A spatial Moran process is just the roulette wheel algorithm, but where the "subset of individuals" is replaced by the local neighbors of an individual. This captures how, in many real populations, nearby individuals compete more intensely than distant ones.
+1. **Pick a random site ** 
+2. **Collect all local neighbours** (e.g. 8 surrounding cells plus the individual already occupying that site)
+3. **Spin a roulette wheel** among only those individuals
+4. The winner replaces the individual at that site
 
-### How to implement spatial Moran on a grid:
-
-Instead of storing individuals in a flat list, we arrange them in a 2D grid. At each generation:
-
-1. **Pick a random empty location** (or a location to replace)
-2. **Find the local neighbors** (e.g., 8 surrounding cells on a square grid)
-3. **Spin a roulette wheel** among those neighbors to decide who reproduces into that location
-4. This creates **local clusters** of similar individuals, leading to spatial patterns you can actually visualize
-
-Below is a code snippet showing how to implement this (note: this is pseudocode, not a complete working example):
+Below is a complete, working code example. This includes visualization with matplotlib, which is **new for you** — we'll explain it step-by-step!
 
 :::{.callout-note collapse=false}
 
-### Spatial Moran process pseudocode
+### Complete code: Spatial Moran on a grid with visualization
 
 ```python
-# Grid parameters
-side = 20  # 20x20 grid = 400 individuals
-population_size = side * side
+import random
+import math
+import matplotlib.pyplot as plt
+import numpy as np
 
-# Arrange population as 2D grid instead of 1D list
+# Set random seed for reproducibility
+random.seed(42)
+
+# --- PARAMETERS ---
+side = 15                    # Grid is 15x15 = 225 individuals
+initial_fitness = 0.1
+generations = 5000
+mutation_rate = 0.01
+sample_interval = 50         # Update plot every 50 generations
+
+# --- INITIALIZATION ---
+# Create a 2D grid where each cell is an individual with a fitness value
 population = [[initial_fitness for _ in range(side)] for _ in range(side)]
 
-# Helper function to get local neighbors
-def get_neighbors(i, j, radius=1):
-    """Get all neighbors within 'radius' cells (including diagonals)"""
+# Lists to track average fitness over time
+avg_fitness_over_time = []
+
+# --- CORE FUNCTIONS ---
+
+def mutate(fitness, rate=mutation_rate):
+    """Mutate the fitness value with a given probability."""
+    if random.random() < rate:
+        return min(1.0, max(0.0, fitness + random.uniform(-0.1, 0.1)))
+    return fitness
+
+def get_neighbors(i, j):
+    """Get the 8 neighbors of a grid cell (Moore neighborhood with wrapping)."""
     neighbors = []
-    for di in range(-radius, radius + 1):
-        for dj in range(-radius, radius + 1):
+    for di in range(-1, 2):
+        for dj in range(-1, 2):
             if di == 0 and dj == 0:
-                continue  # Don't include self
-            ni, nj = (i + di) % side, (j + dj) % side  # Wrap around edges
+                continue  # Don't include the cell itself
+            ni = (i + di) % side      # % wraps around at edges
+            nj = (j + dj) % side
             neighbors.append((ni, nj))
     return neighbors
 
-# Main evolution loop
+def calculate_average_fitness(population):
+    """Calculate the average fitness across all cells."""
+    total = sum(sum(row) for row in population)
+    return total / (side * side)
+
+# --- PLOTTING SETUP (New visualization!) ---
+# Create a figure with TWO subplots side-by-side
+fig, (ax_grid, ax_fitness) = plt.subplots(1, 2, figsize=(14, 6))
+
+# LEFT PLOT: The 2D grid showing fitness as colors
+# imshow() displays a 2D array as a colored image/heatmap
+im = ax_grid.imshow(population, cmap='RdYlGn', vmin=0, vmax=1)
+ax_grid.set_title("Fitness on the grid\n(Red=Low, Green=High)")
+ax_grid.set_xlabel("Column")
+ax_grid.set_ylabel("Row")
+cbar = fig.colorbar(im, ax=ax_grid, label='Fitness')
+
+# RIGHT PLOT: Line graph tracking average fitness over time
+line, = ax_fitness.plot([], [], color='tab:blue', linewidth=2)
+ax_fitness.set_xlabel("Generation")
+ax_fitness.set_ylabel("Average Fitness")
+ax_fitness.set_ylim(0, 1)
+ax_fitness.set_title("Population average fitness over time")
+ax_fitness.grid(True)
+
+plt.ion()  # Turn on interactive mode (allows real-time updates)
+plt.draw()
+
+# --- EVOLUTION LOOP ---
 for gen in range(generations):
-    # Pick a random location to "replace"
-    dead_i, dead_j = random.randint(0, side-1), random.randint(0, side-1)
+    # Pick a random location to be "replaced" (die)
+    dead_i = random.randint(0, side - 1)
+    dead_j = random.randint(0, side - 1)
 
-    # Get its neighbors (the "subset of individuals")
-    neighbors = get_neighbors(dead_i, dead_j, radius=1)
+    # Get this cell's neighbors (the "subset of individuals")
+    neighbors = get_neighbors(dead_i, dead_j)
 
-    # Extract fitness values from neighbors
+    # Extract fitness values from all neighbors
     fitness_values = [population[ni][nj] for ni, nj in neighbors]
 
-    # Roulette wheel: select a neighbor proportional to fitness
+    # Roulette wheel selection: neighbors with higher fitness are more likely to reproduce
     total_fit = sum(fitness_values)
     if total_fit > 0:
         probs = [f / total_fit for f in fitness_values]
     else:
-        probs = [1/len(neighbors)] * len(neighbors)
+        probs = [1 / len(neighbors)] * len(neighbors)
 
-    # Choose a parent from neighbors
-    parent_idx = random.choices(range(len(neighbors)), weights=probs)[0]
+    # Choose a parent neighbor based on fitness
+    parent_idx = random.choices(range(len(neighbors)), weights=probs, k=1)[0]
     parent_i, parent_j = neighbors[parent_idx]
 
-    # Offspring replaces the individual at (dead_i, dead_j)
+    # Parent reproduces: offspring replaces the dead individual (with mutation)
     population[dead_i][dead_j] = mutate(population[parent_i][parent_j])
+
+    # Update plots at intervals (not every generation, for performance)
+    if gen % sample_interval == 0:
+        avg_fit = calculate_average_fitness(population)
+        avg_fitness_over_time.append(avg_fit)
+
+        # Update the left plot: refresh the grid colors
+        im.set_array(population)
+
+        # Update the right plot: add new point to the line
+        x_vals = [i * sample_interval for i in range(len(avg_fitness_over_time))]
+        line.set_data(x_vals, avg_fitness_over_time)
+        ax_fitness.relim()
+        ax_fitness.autoscale_view()
+
+        # Update title with current generation and fitness
+        fig.suptitle(f"Generation {gen}: Avg Fitness = {avg_fit:.3f}", fontsize=12)
+
+        plt.pause(0.01)  # Brief pause to see the update
+
+print("Simulation complete!")
+input("Press Enter to close the plot window...")
 ```
 
 :::
+
+**Explaining the visualization (bit by bit):**
+
+1. **`fig, (ax_grid, ax_fitness) = plt.subplots(1, 2, figsize=(14, 6))`** — This creates one figure with 2 side-by-side subplots. `ax_grid` is the left plot, `ax_fitness` is the right.
+
+2. **`imshow(population, cmap='RdYlGn', vmin=0, vmax=1)`** — This displays the 2D grid as a heatmap. `cmap='RdYlGn'` means Red-Yellow-Green colors, where red=0 (low fitness) and green=1 (high fitness). Each cell's color shows that cell's fitness value.
+
+3. **`fig.colorbar()`** — Adds the color scale legend (bar) next to the heatmap so you can read what colors mean.
+
+4. **`plt.ion()` and `plt.draw()`** — These enable interactive mode. Instead of showing one static plot at the end, the plot updates while the simulation runs.
+
+5. **`im.set_array(population)` and `line.set_data()`** — During the loop, we update the plot data without redrawing everything from scratch. This is much faster!
+
+6. **`plt.pause(0.01)`** — This gives your screen time to refresh so you can see the updates.
+
+**What to expect when you run this:**
+- Watch the left plot: You'll see green clusters expand across the red background as fit mutants invade locally. This is the spatial pattern!
+- Watch the right plot: Average fitness creeps upward, but more slowly and noisily than the non-spatial version.
+- The title updates to show which generation you're on.
 
 **Why this matters biologically:** In the non-spatial model (everyone competes with everyone), fit mutants spread immediately across the population. But with spatial structure, a fit mutant can only invade if it can compete well with *local* neighbors. This creates distinct spatial clusters and can slow down evolution, or even create new ecological dynamics!
 

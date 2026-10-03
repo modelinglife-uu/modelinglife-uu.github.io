@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; What gets selected? – Modeling Life</title>
+<title>1&nbsp; Mutation and selection – Modeling Life</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -122,35 +122,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -325,7 +296,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./evo_intro_text.html">I) Evolution</a></li><li class="breadcrumb-item"><a href="./evo_practical_1.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">What gets selected?</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./evo_intro_text.html">I) Evolution</a></li><li class="breadcrumb-item"><a href="./evo_practical_1.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Mutation and selection</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -404,25 +375,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./evo_intro_text.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to evolution</span></span></a>
+ <span class="menu-text">Introduction to evolution</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./evo_practical_1.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">What gets selected?</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Mutation and selection</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./evo_practical_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sticking together</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Genotypes and phenotypes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./evo_practical_3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Public goods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sticking together</span></span></a>
   </div>
 </li>
       </ul>
@@ -439,25 +410,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pattern_intro_text.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pattern formation (intro)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Pattern formation (intro)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pattern_practical_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Gradients and segments</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Gradients and segments</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pattern_practical_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Turing patterns, repetitive patterning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Turing patterns, repetitive patterning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pattern_practical_3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Clock-and-wavefront patterning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Clock-and-wavefront patterning</span></span></a>
   </div>
 </li>
       </ul>
@@ -474,13 +445,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./morpho_intro_text.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introduction to Morphogenesis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introduction to Morphogenesis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./morpho_cpm_practical.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Cell sorting by differential adhesion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Cell sorting by differential adhesion</span></span></a>
   </div>
 </li>
       </ul>
@@ -497,19 +468,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./differentiation_intro_text.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Cell differentiation introduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Cell differentiation introduction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./differentiation_practical_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Gene regulation in time</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Gene regulation in time</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./differentiation_practical_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Gene regulation in space</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Gene regulation in space</span></span></a>
   </div>
 </li>
       </ul>
@@ -526,13 +497,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./evdev_intro_text.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Environmental inputs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Environmental inputs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./evdev_practical.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Modeling Thermomorphogenesis in Plants</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Modeling Thermomorphogenesis in Plants</span></span></a>
   </div>
 </li>
       </ul>
@@ -553,14 +524,10 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#genotypes-phenotypes-and-the-rate-of-evolution" id="toc-genotypes-phenotypes-and-the-rate-of-evolution" class="nav-link active" data-scroll-target="#genotypes-phenotypes-and-the-rate-of-evolution"><span class="header-section-number">2.1</span> Genotypes, phenotypes, and the rate of evolution</a></li>
-  <li><a href="#simple-model-where-fitness-as-a-number" id="toc-simple-model-where-fitness-as-a-number" class="nav-link" data-scroll-target="#simple-model-where-fitness-as-a-number"><span class="header-section-number">2.2</span> Simple model where fitness as a number</a></li>
-  <li><a href="#making-a-roulette-wheel-with-everyone-in-it" id="toc-making-a-roulette-wheel-with-everyone-in-it" class="nav-link" data-scroll-target="#making-a-roulette-wheel-with-everyone-in-it"><span class="header-section-number">2.3</span> Making a roulette wheel with everyone in it</a></li>
-  <li><a href="#a-roulette-wheel-of-a-subset-of-individuals" id="toc-a-roulette-wheel-of-a-subset-of-individuals" class="nav-link" data-scroll-target="#a-roulette-wheel-of-a-subset-of-individuals"><span class="header-section-number">2.4</span> A roulette wheel of a subset of individuals</a></li>
-  <li><a href="#spatial-structure-local-competition-on-a-grid" id="toc-spatial-structure-local-competition-on-a-grid" class="nav-link" data-scroll-target="#spatial-structure-local-competition-on-a-grid"><span class="header-section-number">2.5</span> Spatial structure: Local competition on a grid</a></li>
-  <li><a href="#diversity-patterns" id="toc-diversity-patterns" class="nav-link" data-scroll-target="#diversity-patterns"><span class="header-section-number">2.6</span> Diversity patterns</a></li>
-  <li><a href="#evolving-a-dna-sequence" id="toc-evolving-a-dna-sequence" class="nav-link" data-scroll-target="#evolving-a-dna-sequence"><span class="header-section-number">2.7</span> Evolving a DNA sequence</a></li>
-  <li><a href="#evolving-a-protein-sequence" id="toc-evolving-a-protein-sequence" class="nav-link" data-scroll-target="#evolving-a-protein-sequence"><span class="header-section-number">2.8</span> Evolving a protein sequence</a></li>
+  <li><a href="#moran-processes-and-spatial-populations" id="toc-moran-processes-and-spatial-populations" class="nav-link active" data-scroll-target="#moran-processes-and-spatial-populations"><span class="header-section-number">1.1</span> Moran processes and spatial populations</a></li>
+  <li><a href="#simple-model-where-fitness-as-a-number" id="toc-simple-model-where-fitness-as-a-number" class="nav-link" data-scroll-target="#simple-model-where-fitness-as-a-number"><span class="header-section-number">1.2</span> Simple model where fitness as a number</a></li>
+  <li><a href="#a-simple-evolutionary-model-with-a-roulette-wheel" id="toc-a-simple-evolutionary-model-with-a-roulette-wheel" class="nav-link" data-scroll-target="#a-simple-evolutionary-model-with-a-roulette-wheel"><span class="header-section-number">1.3</span> A simple evolutionary model with a roulette wheel</a></li>
+  <li><a href="#spatial-structure-local-competition-on-a-grid" id="toc-spatial-structure-local-competition-on-a-grid" class="nav-link" data-scroll-target="#spatial-structure-local-competition-on-a-grid"><span class="header-section-number">1.4</span> Spatial structure: Local competition on a grid</a></li>
   </ul>
 </nav>
     </div>
@@ -568,9 +535,9 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./evo_intro_text.html">I) Evolution</a></li><li class="breadcrumb-item"><a href="./evo_practical_1.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">What gets selected?</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./evo_intro_text.html">I) Evolution</a></li><li class="breadcrumb-item"><a href="./evo_practical_1.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Mutation and selection</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">What gets selected?</span></h1>
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Mutation and selection</span></h1>
 </div>
 
 
@@ -587,30 +554,58 @@ window.Quarto = {
 </header>
 
 
-<section id="genotypes-phenotypes-and-the-rate-of-evolution" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="genotypes-phenotypes-and-the-rate-of-evolution"><span class="header-section-number">2.1</span> Genotypes, phenotypes, and the rate of evolution</h2>
+<section id="moran-processes-and-spatial-populations" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="moran-processes-and-spatial-populations"><span class="header-section-number">1.1</span> Moran processes and spatial populations</h2>
 <p>During the lecture, we discussed the differences between the genotype (that which mutates) and the phenotype (that which is selected). Although you have likely already heard about these concepts, how can we study them in evolutionary models? During this practical, you will write your own evolutionary algorithms of increasing complexity, in order to learn about these topics. By the end of this practical, you should understand why the translation from genotype to phenotype (often referred to as the genotype-phenotype map) is such an important concept in evolutionary biology.</p>
 </section>
-<section id="simple-model-where-fitness-as-a-number" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="simple-model-where-fitness-as-a-number"><span class="header-section-number">2.2</span> Simple model where fitness as a number</h2>
+<section id="simple-model-where-fitness-as-a-number" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="simple-model-where-fitness-as-a-number"><span class="header-section-number">1.2</span> Simple model where fitness as a number</h2>
 <p>In the introduction of this course part on evolution, we have already looked at as simple “Moran process”:</p>
 <ol type="1">
-<li>Start with a population of individuals, each with a fitness value.</li>
-<li>Select individuals based on their fitness to reproduce.</li>
-<li>Replace a random individual with this newly generate offspring.</li>
-<li>With a small probability, modify the ‘fitness’ value of the newborn.</li>
+<li>Start with a population of individuals, each with a fitness value</li>
+<li>Sample one individual weighted by its fitness (“winner”)</li>
+<li>Replace a random individual (“loser”) with a copy of the “winner”</li>
+<li>With a small probability, modify the fitness value of the newborn</li>
 </ol>
 <p>And so on.</p>
-<p>With a Moran process, competition between individuals is modeled in a very indirect (“implicit”) way. By always selecting fit individuals, and removing a random other, any individual in the populations could be replaced by another individual, which statistically is a fitter individual. One could thus say that “everyone is competing with everyone”. A different method is often applied in spatially structured models, as in this case only nearby individuals are competing. Then, we could sample who wins from an imaginary roulette wheel:</p>
-<p><a href="images/roulette.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/roulette.png" class="img-fluid"></a></p>
-<p>As can be seen, not all individual have the same size on the roulette wheel. That depicts differences in their growth rates, biomass, or other approximations of “fitness”. Also, the roulette wheel contains an area (shown in black) that shapes the chance that nobody reproduces. We will try and implement this rule to let individuals reproduce based on their fitness, but with only 10 competitors at a time. Let’s start with a code where individuals have a “fitness” value, but it not yet used for selection (see below). <strong>Read/test this code thoroughly before you move on to the next section</strong>.</p>
+<p>With a Moran process, competition between individuals is modeled in a very indirect (“implicit”) way. By always selecting fit individuals, and removing a random other, any individual in the populations could be replaced by another individual, which statistically is a fitter individual. One could thus say that “everyone is competing with everyone”. But we could also imagine just a small subset of individuals are competing. For this, imagine a roulette wheel:</p>
+<div id="fig-roulette" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-roulette-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/roulette.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1.1: Visual representation of a roulette wheel algorithm"><img src="images/roulette.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-roulette-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.1: Visual representation of a roulette wheel algorithm
+</figcaption>
+</figure>
+</div>
+<p>Just as before, not all individuals have the same size on the roulette wheel (this represents the weighted sampling), which could represent their growth rates, biomass, or other approximations of “fitness”. Also notice how the wheel only contains a few individuals, plus an extra (black) area which shapes the chance that nobody reproduces. Let’s look at the code for a roulette wheel like this. <strong>Read and test the code below thoroughly before you move on to the next section</strong>.</p>
+<div>
+<div id="pyodide-1" class="exercise-cell">
+
+</div>
+<script type="pyodide-1-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBJbXBvcnQgbmVjZXNzYXJ5IGxpYnJhcmllc1xuaW1wb3J0IHJhbmRvbSBcblxuIyBNYWtlIHVwIHNvbWUgaW5kaXZpZHVhbHMgYW5kIHRoZWlyIGZpdG5lc3MgdmFsdWVzXG5pbmRpdmlkdWFscyA9IFtcIk1hY2FcIiwgXCJNb21vXCIsIFwiTWlmZnlcIiwgXCJNYWRkeVwiLCBcIk1pbmt5XCIsIFwiTW9vYnlcIl1cbmZpdG5lc3NlcyA9IFswLjEsIDAuMDEsIDAuNSwgMC4yLCAxZS0yMCwgMC4yXVxuXG4jIENhbGN1bGF0ZSB0aGUgdG90YWwgZml0bmVzcyBcbnRvdGFsID0gc3VtKGZpdG5lc3NlcylcblxuIyBTYW1wbGUgYSB3aW5uZXIgYW5kIHByaW50IGl0XG53aW5uZXIgPSByYW5kb20uY2hvaWNlcyhpbmRpdmlkdWFscywgd2VpZ2h0cz1maXRuZXNzZXMsIGs9MSlbMF1cbnByaW50KGZcInt3aW5uZXJ9IHJlcHJvZHVjZXMhXCIpIn0=
+</script>
+</div>
+<div id="exr-roulette" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 1.1 (Questions about the roulette wheel - Algorithmic thinking)</strong></span> <br></p>
+<ol type="a">
+<li>Modify the code to make all individuals much less fit (e.g.&nbsp;make all fitnesses 100-fold smaller). Spin the wheel multiple times by using the code above. What happens?</li>
+<li>How can you modify the code to make the code represent <a href="#fig-roulette" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-roulette</span></a> better. Try it!</li>
+</ol>
+</div>
+</section>
+<section id="a-simple-evolutionary-model-with-a-roulette-wheel" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="a-simple-evolutionary-model-with-a-roulette-wheel"><span class="header-section-number">1.3</span> A simple evolutionary model with a roulette wheel</h2>
+<p>Now that you’ve understood the roulette wheel, let’s implement it as part of the evolutionary model. Copy the code<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> below (click to expand) to your Visual Studio code and study it.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>CODE FOR “fitness without fitness”
+<span class="screen-reader-only">Note</span>Code for ‘fitness without fitness’
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -701,8 +696,8 @@ window.Quarto = {
 <span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>    <span class="co"># For each individual, perform a reproduction event</span></span>
 <span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):  <span class="co"># 100 competition events per generation</span></span>
 <span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Select 1 random individual for replication</span></span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>        probs <span class="op">=</span> [<span class="dv">1</span> <span class="cf">for</span> fit <span class="kw">in</span> population] <span class="co"># All probability weights are equal (1.0)</span></span>
-<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>        parent_idx <span class="op">=</span> random.choices(<span class="bu">range</span>(<span class="bu">len</span>(population)), weights<span class="op">=</span>probs)[<span class="dv">0</span>] <span class="co"># Grab one random individual based on an unweighted list...</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>        probs <span class="op">=</span> [<span class="dv">1</span> <span class="cf">for</span> fit <span class="kw">in</span> population] <span class="co"># Store all fitnesses in a list</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>        parent_idx <span class="op">=</span> random.choices(<span class="bu">range</span>(<span class="bu">len</span>(population)), weights<span class="op">=</span>probs)[<span class="dv">0</span>] <span class="co"># Grab one random individual based on fitness.... </span></span>
 <span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Select individual to be replaced (uniform random)</span></span>
 <span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>        dead_idx <span class="op">=</span> random.randrange(<span class="bu">len</span>(population))</span>
 <span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Copy population for next generation</span></span>
@@ -715,634 +710,161 @@ window.Quarto = {
 </div>
 </div>
 </div>
-</section>
-<section id="making-a-roulette-wheel-with-everyone-in-it" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="making-a-roulette-wheel-with-everyone-in-it"><span class="header-section-number">2.3</span> Making a roulette wheel with everyone in it</h2>
-<p>If you have read the code, you will see that we can pass a list of weights to the function <code>random.choices</code>, to determine who is most likely to be sampled. Currently, all the weights are set to 1:</p>
-<p><code>probs = [1 for fit in population] # All probability weights are equal (1.0)</code></p>
+<p>There are two important things to notice from this piece of code.</p>
+<p>One is somewhat technical: instead of just plotting the end-result with plain matplotlib, it uses ‘plt.ion’ to launch matplotlib in so-called ‘interactive mode’. This way, you can more easily update the plot in real time, instead of having to redraw the whole figure. The plotting can be somewhat of a hassle sometimes, so it is okay if you’re still figuring this out. The easiest way to understand it is to play with it yourself: change some of the plotting code and see what happens!</p>
+<p>The second thing you should notice is that fitness does not increase…</p>
 <div id="exr-roulette" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.1 (Running the roulette wheel with fitness values)</strong></span> <br></p>
+<p><span class="theorem-title"><strong>Exercise 1.2 (Fixing the roulette wheel)</strong></span> <br></p>
 <ol type="a">
-<li>Run the code with the current (all equal) weights. What happens?</li>
-<li>Modify this line of code to take the fitness values as the weight, rather than 1. (hint: this is a VERY small change in the code).</li>
+<li>Which line(s) of the code determines how fitness related to the probability of reproduction?</li>
+<li>Modify that piece of code to fix the roulette wheel (hint: this is a VERY small change in the code).</li>
 </ol>
 </div>
 </section>
-<section id="a-roulette-wheel-of-a-subset-of-individuals" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="a-roulette-wheel-of-a-subset-of-individuals"><span class="header-section-number">2.4</span> A roulette wheel of a subset of individuals</h2>
-<p>Instead of letting everyone reproduce, let us modify the code to only sample from a smaller list of ‘competitors’, and spin a virtual roulette wheel to determine who wins. There are many ways to implement this, but here’s how we will do it. We will sample <span class="math inline">\(N\)</span> individuals from the population, and implement the following algorithm:</p>
-<ol type="1">
-<li>Select a random subset of <span class="math inline">\(N\)</span> individuals from the population.</li>
-<li>Take/compute the fitness of each selected individual.</li>
-<li>Add a reproduction-skip option with a fixed weight.</li>
-<li>Choose one individual or the skip option using weighted random selection.</li>
-<li>If an individual was chosen, mutate it and replace a random individual in the population.</li>
-</ol>
-<p>Below, there’s a small snippet of code doing what is explained above<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. The variable <code>no_reproduction_chance</code> is the fixed weight that nobody gets to reproduce:</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Roulette wheel algorithm
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
-<div class="callout-body-container callout-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>  tournament_size <span class="op">=</span> <span class="dv">10</span>  </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  no_reproduction_chance <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  competitors <span class="op">=</span> random.sample(population, tournament_size)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Make a list of their fitness values</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  fitness_values <span class="op">=</span> [fit <span class="cf">for</span> fit <span class="kw">in</span> competitors]</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  total <span class="op">=</span> <span class="bu">sum</span>(fitness_values)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add a "no reproduction" dummy competitor with fitness = 0</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  competitors_with_dummy <span class="op">=</span> competitors <span class="op">+</span> [<span class="va">None</span>]</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  probs <span class="op">=</span> [f <span class="cf">for</span> f <span class="kw">in</span> fitness_values] <span class="op">+</span> [no_reproduction_chance]</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  winner <span class="op">=</span> random.choices(competitors_with_dummy, weights<span class="op">=</span>probs, k<span class="op">=</span><span class="dv">1</span>)[<span class="dv">0</span>]</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> winner <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Mutate winner to produce offspring</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>      offspring <span class="op">=</span> mutate(winner)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>      remove_idx <span class="op">=</span> random.randrange(<span class="bu">len</span>(population))</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>      population[remove_idx] <span class="op">=</span> offspring  </span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</div>
-<p>After you understand the roulette wheel algorithm, do the following exercise:</p>
-<div id="exr-roulette" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.2 (Questions about the roulette wheel - Algorithmic thinking)</strong></span> <br></p>
-<ol type="a">
-<li>Let’s imagine a moment where the roulette wheel contains only 10 highly unfit individuals (e.g.&nbsp;all fitness values are 0.01). What is the chance that someone will reproduce? (you don’t have to calculate it, but give your reasoning)</li>
-<li>Answer the same question as in <strong>a.</strong>, but now imagine that all 10 individuals have a fitness value of 1.</li>
-<li>Answer question b. and c.&nbsp;again, but now assume that <code>no_reproduction_chance</code> is equal to 0.</li>
-<li>Describe what the <code>no_reproduction_chance</code> parameter does in biological terms.</li>
-<li>Spatially structured populations are often placed on a grid. <strong>Describe</strong> how you could implement a roulette wheel to resolve <em>local</em> competition, <em>e.g.</em> when an empty grid point is competed for by the neighbours.</li>
-</ol>
-</div>
-</section>
-<section id="spatial-structure-local-competition-on-a-grid" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="spatial-structure-local-competition-on-a-grid"><span class="header-section-number">2.5</span> Spatial structure: Local competition on a grid</h2>
-<p>In nature, individuals don’t usually compete “with everyone equally”. Instead, organisms occupy physical space, and competition happens locally (between nearby individuals). To implement this, we put individuals on a 2D grid rather than as a flat list like before. Then, we could repeat the following algorithm:</p>
+<section id="spatial-structure-local-competition-on-a-grid" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="spatial-structure-local-competition-on-a-grid"><span class="header-section-number">1.4</span> Spatial structure: Local competition on a grid</h2>
+<p>In nature, individuals don’t usually compete “with everyone equally”. Instead, organisms occupy physical space, and competition happens locally (between nearby individuals). The simplest way to implement this, is a 2D grid, with at most 1 individual in a grid point. Then, we could repeat the following algorithm:</p>
 <ol type="1">
 <li><strong>Pick a random site </strong></li>
 <li><strong>Collect all local neighbours</strong> (e.g.&nbsp;8 surrounding cells plus the individual already occupying that site)</li>
 <li><strong>Spin a roulette wheel</strong> among only those individuals</li>
 <li>The winner replaces the individual at that site</li>
 </ol>
-<p>Below is a complete, working code example. This includes visualization with matplotlib, which is <strong>new for you</strong> — we’ll explain it step-by-step!</p>
-<p>BLABLABLABLA</p>
+<p>Below is a complete, working code example of such a spatial implementation. To compare it with the (non-spatial) Moran process, we also run such a population evolving in parallel. Study the code carefully, and run it a few times on your own laptop.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Complete code: Spatial Moran on a grid with visualization
+<span class="screen-reader-only">Note</span>Complete code: Space vs non-space
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse show">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Set random seed for reproducibility</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">42</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># --- PARAMETERS ---</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>side <span class="op">=</span> <span class="dv">15</span>                    <span class="co"># Grid is 15x15 = 225 individuals</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>initial_fitness <span class="op">=</span> <span class="fl">0.1</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>generations <span class="op">=</span> <span class="dv">5000</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>mutation_rate <span class="op">=</span> <span class="fl">0.01</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>sample_interval <span class="op">=</span> <span class="dv">50</span>         <span class="co"># Update plot every 50 generations</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># --- INITIALIZATION ---</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a 2D grid where each cell is an individual with a fitness value</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>population <span class="op">=</span> [[initial_fitness <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(side)] <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(side)]</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Lists to track average fitness over time</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>avg_fitness_over_time <span class="op">=</span> []</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co"># --- CORE FUNCTIONS ---</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mutate(fitness, rate<span class="op">=</span>mutation_rate):</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Mutate the fitness value with a given probability."""</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> random.random() <span class="op">&lt;</span> rate:</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">min</span>(<span class="fl">1.0</span>, <span class="bu">max</span>(<span class="fl">0.0</span>, fitness <span class="op">+</span> random.uniform(<span class="op">-</span><span class="fl">0.1</span>, <span class="fl">0.1</span>)))</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fitness</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_neighbors(i, j):</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Get the 8 neighbors of a grid cell (Moore neighborhood with wrapping)."""</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    neighbors <span class="op">=</span> []</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> di <span class="kw">in</span> <span class="bu">range</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">2</span>):</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> dj <span class="kw">in</span> <span class="bu">range</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">2</span>):</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> di <span class="op">==</span> <span class="dv">0</span> <span class="kw">and</span> dj <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>                <span class="cf">continue</span>  <span class="co"># Don't include the cell itself</span></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>            ni <span class="op">=</span> (i <span class="op">+</span> di) <span class="op">%</span> side      <span class="co"># % wraps around at edges</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>            nj <span class="op">=</span> (j <span class="op">+</span> dj) <span class="op">%</span> side</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>            neighbors.append((ni, nj))</span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> neighbors</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_average_fitness(population):</span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Calculate the average fitness across all cells."""</span></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> <span class="bu">sum</span>(<span class="bu">sum</span>(row) <span class="cf">for</span> row <span class="kw">in</span> population)</span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> total <span class="op">/</span> (side <span class="op">*</span> side)</span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="co"># --- PLOTTING SETUP (New visualization!) ---</span></span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a figure with TWO subplots side-by-side</span></span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>fig, (ax_grid, ax_fitness) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">6</span>))</span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="co"># LEFT PLOT: The 2D grid showing fitness as colors</span></span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="co"># imshow() displays a 2D array as a colored image/heatmap</span></span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> ax_grid.imshow(population, cmap<span class="op">=</span><span class="st">'RdYlGn'</span>, vmin<span class="op">=</span><span class="dv">0</span>, vmax<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>ax_grid.set_title(<span class="st">"Fitness on the grid</span><span class="ch">\n</span><span class="st">(Red=Low, Green=High)"</span>)</span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>ax_grid.set_xlabel(<span class="st">"Column"</span>)</span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>ax_grid.set_ylabel(<span class="st">"Row"</span>)</span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>cbar <span class="op">=</span> fig.colorbar(im, ax<span class="op">=</span>ax_grid, label<span class="op">=</span><span class="st">'Fitness'</span>)</span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a><span class="co"># RIGHT PLOT: Line graph tracking average fitness over time</span></span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>line, <span class="op">=</span> ax_fitness.plot([], [], color<span class="op">=</span><span class="st">'tab:blue'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>ax_fitness.set_xlabel(<span class="st">"Generation"</span>)</span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>ax_fitness.set_ylabel(<span class="st">"Average Fitness"</span>)</span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>ax_fitness.set_ylim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>ax_fitness.set_title(<span class="st">"Population average fitness over time"</span>)</span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>ax_fitness.grid(<span class="va">True</span>)</span>
-<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>plt.ion()  <span class="co"># Turn on interactive mode (allows real-time updates)</span></span>
-<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>plt.draw()</span>
-<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a><span class="co"># --- EVOLUTION LOOP ---</span></span>
-<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> gen <span class="kw">in</span> <span class="bu">range</span>(generations):</span>
-<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Pick a random location to be "replaced" (die)</span></span>
-<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>    dead_i <span class="op">=</span> random.randint(<span class="dv">0</span>, side <span class="op">-</span> <span class="dv">1</span>)</span>
-<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>    dead_j <span class="op">=</span> random.randint(<span class="dv">0</span>, side <span class="op">-</span> <span class="dv">1</span>)</span>
-<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get this cell's neighbors (the "subset of individuals")</span></span>
-<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>    neighbors <span class="op">=</span> get_neighbors(dead_i, dead_j)</span>
-<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract fitness values from all neighbors</span></span>
-<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>    fitness_values <span class="op">=</span> [population[ni][nj] <span class="cf">for</span> ni, nj <span class="kw">in</span> neighbors]</span>
-<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Roulette wheel selection: neighbors with higher fitness are more likely to reproduce</span></span>
-<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>    total_fit <span class="op">=</span> <span class="bu">sum</span>(fitness_values)</span>
-<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> total_fit <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>        probs <span class="op">=</span> [f <span class="op">/</span> total_fit <span class="cf">for</span> f <span class="kw">in</span> fitness_values]</span>
-<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>        probs <span class="op">=</span> [<span class="dv">1</span> <span class="op">/</span> <span class="bu">len</span>(neighbors)] <span class="op">*</span> <span class="bu">len</span>(neighbors)</span>
-<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Choose a parent neighbor based on fitness</span></span>
-<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>    parent_idx <span class="op">=</span> random.choices(<span class="bu">range</span>(<span class="bu">len</span>(neighbors)), weights<span class="op">=</span>probs, k<span class="op">=</span><span class="dv">1</span>)[<span class="dv">0</span>]</span>
-<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>    parent_i, parent_j <span class="op">=</span> neighbors[parent_idx]</span>
-<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Parent reproduces: offspring replaces the dead individual (with mutation)</span></span>
-<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>    population[dead_i][dead_j] <span class="op">=</span> mutate(population[parent_i][parent_j])</span>
-<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Update plots at intervals (not every generation, for performance)</span></span>
-<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> gen <span class="op">%</span> sample_interval <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>        avg_fit <span class="op">=</span> calculate_average_fitness(population)</span>
-<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>        avg_fitness_over_time.append(avg_fit)</span>
-<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Update the left plot: refresh the grid colors</span></span>
-<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>        im.set_array(population)</span>
-<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Update the right plot: add new point to the line</span></span>
-<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>        x_vals <span class="op">=</span> [i <span class="op">*</span> sample_interval <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(avg_fitness_over_time))]</span>
-<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>        line.set_data(x_vals, avg_fitness_over_time)</span>
-<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>        ax_fitness.relim()</span>
-<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>        ax_fitness.autoscale_view()</span>
-<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Update title with current generation and fitness</span></span>
-<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>        fig.suptitle(<span class="ss">f"Generation </span><span class="sc">{</span>gen<span class="sc">}</span><span class="ss">: Avg Fitness = </span><span class="sc">{</span>avg_fit<span class="sc">:.3f}</span><span class="ss">"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a>        plt.pause(<span class="fl">0.01</span>)  <span class="co"># Brief pause to see the update</span></span>
-<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Simulation complete!"</span>)</span>
-<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a><span class="bu">input</span>(<span class="st">"Press Enter to close the plot window..."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">12</span>) <span class="co"># Ensures reproducability</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>side <span class="op">=</span> <span class="dv">64</span>  <span class="co"># Chessboard sized grid because why not</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>max_time <span class="op">=</span> <span class="dv">250000</span> <span class="co"># Max number of generations</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>mutation_rate <span class="op">=</span> <span class="fl">0.005</span> <span class="co"># Probability of mutation occurring for an individual</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>no_reproduction_chance <span class="op">=</span> <span class="fl">0.1</span>  <span class="co"># Probability of no reproduction event occurring</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>sample_interval <span class="op">=</span> <span class="dv">500</span> <span class="co"># Moran step interval at which the plot is updated (higher = more speed)</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">## To keep the main loop more 'readable', we first defined functions of often-repeated procedures</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># mutate fitness (uniform step +/- 0.2, clipped to [0, 1])</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mutate(fitness):</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> random.random() <span class="op">&lt;</span> mutation_rate:</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        new_fit <span class="op">=</span> fitness <span class="op">+</span> random.uniform(<span class="op">-</span><span class="fl">0.2</span>, <span class="fl">0.2</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">max</span>(<span class="fl">0.0</span>, <span class="bu">min</span>(<span class="fl">1.0</span>, new_fit))</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fitness</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># collect all neighbours of a grid point and return that list</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_neighbors(i, j):</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    neighbors <span class="op">=</span> []</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> di <span class="kw">in</span> [<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>]:</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> dj <span class="kw">in</span> [<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>]:</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>            neighbors.append(((i <span class="op">+</span> di) <span class="op">%</span> side, (j <span class="op">+</span> dj) <span class="op">%</span> side))</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> neighbors</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize two populations one will be on the grid, one will updated 'classic Moran' style</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>spatial_pop <span class="op">=</span> [[<span class="fl">0.1</span>] <span class="op">*</span> side <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(side)]</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>mixed_pop <span class="op">=</span> [<span class="fl">0.1</span>] <span class="op">*</span> (side <span class="op">*</span> side)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup plot with matplotlib </span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>fig, (ax_grid, ax_compare) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">5</span>)) <span class="co"># layout with 2 sub plots</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> ax_grid.imshow(spatial_pop, cmap<span class="op">=</span><span class="st">'viridis'</span>, vmin<span class="op">=</span><span class="dv">0</span>, vmax<span class="op">=</span><span class="dv">1</span>) <span class="co"># heatmap setup</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>ax_grid.set_title(<span class="st">"Spatial"</span>) <span class="co"># title for the spatial population heatmap</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>fig.colorbar(im, ax<span class="op">=</span>ax_grid) <span class="co"># colour bar for fitness</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>line_spatial, <span class="op">=</span> ax_compare.plot([], [], label<span class="op">=</span><span class="st">'Spatial population'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>line_simple, <span class="op">=</span> ax_compare.plot([], [], label<span class="op">=</span><span class="st">'Mixed population'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>ax_compare.set_xlabel(<span class="st">"Generation"</span>) <span class="co"># x-axis label for the comparison plot</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>ax_compare.set_ylabel(<span class="st">"Fitness"</span>) <span class="co"># y-axis label for the comparison plot</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>ax_compare.set_ylim(<span class="dv">0</span>, <span class="dv">1</span>) <span class="co"># set y-axis limits</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>ax_compare.legend() <span class="co"># show legend</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>ax_compare.grid(<span class="va">True</span>) <span class="co"># enable grid for better readability</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>plt.ion() <span class="co"># enable 'interactive mode' for matplotlib to speed up the plotting during the evolution loop</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>avg_spatial, avg_simple <span class="op">=</span> [], [] <span class="co"># keep two lists with averages for the plotting</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Evolution loop</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> gen <span class="kw">in</span> <span class="bu">range</span>(max_time):</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Spatial population on a grid</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    i, j <span class="op">=</span> random.randint(<span class="dv">0</span>, side<span class="op">-</span><span class="dv">1</span>), random.randint(<span class="dv">0</span>, side<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    neighbors <span class="op">=</span> get_neighbors(i, j)</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    fits <span class="op">=</span> [spatial_pop[ni][nj] <span class="cf">for</span> ni, nj <span class="kw">in</span> neighbors]</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add dummy "no reproduction" event</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    neighbors_with_dummy <span class="op">=</span> neighbors <span class="op">+</span> [<span class="va">None</span>]</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    probs <span class="op">=</span> fits <span class="op">+</span> [no_reproduction_chance]</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>    winner <span class="op">=</span> random.choices(neighbors_with_dummy, weights<span class="op">=</span>probs, k<span class="op">=</span><span class="dv">1</span>)[<span class="dv">0</span>]</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> winner <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:  <span class="co"># Only reproduce if winner is not the dummy</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>        new_fitness <span class="op">=</span> mutate(spatial_pop[winner[<span class="dv">0</span>]][winner[<span class="dv">1</span>]])</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>        spatial_pop[i][j] <span class="op">=</span> new_fitness</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Non-spatial (moran) population</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>    fits_moran <span class="op">=</span> mixed_pop.copy()</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>    simple_with_dummy <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="bu">len</span>(mixed_pop))) <span class="op">+</span> [<span class="va">None</span>]</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>    probs_simple <span class="op">=</span> fits_moran <span class="op">+</span> [no_reproduction_chance]</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>    winner_moran <span class="op">=</span> random.choices(simple_with_dummy, weights<span class="op">=</span>probs_simple, k<span class="op">=</span><span class="dv">1</span>)[<span class="dv">0</span>]</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> winner_moran <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>        dead_idx <span class="op">=</span> random.randint(<span class="dv">0</span>, <span class="bu">len</span>(mixed_pop)<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>        mixed_pop[dead_idx] <span class="op">=</span> mutate(mixed_pop[winner_moran])</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Update plot</span></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> gen <span class="op">%</span> sample_interval <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>        avg_spatial.append(<span class="bu">sum</span>(<span class="bu">sum</span>(row) <span class="cf">for</span> row <span class="kw">in</span> spatial_pop) <span class="op">/</span> (side<span class="op">*</span>side))</span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>        avg_simple.append(<span class="bu">sum</span>(mixed_pop) <span class="op">/</span> <span class="bu">len</span>(mixed_pop))</span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> [i<span class="op">*</span>sample_interval <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(avg_spatial))]</span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>        im.set_array(spatial_pop)</span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>        line_spatial.set_data(x, avg_spatial)</span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>        line_simple.set_data(x, avg_simple)</span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>        ax_compare.relim()</span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>        ax_compare.autoscale_view()</span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>        fig.suptitle(<span class="ss">f"Time step </span><span class="sc">{</span>gen<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>        plt.pause(<span class="fl">0.01</span>)</span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
-<p><strong>Explaining the visualization (bit by bit):</strong></p>
+<p><strong>Explaining the plotting with Matplotlib (bit by bit):</strong></p>
+<p>First of all, plotting is not a learning goal of this course. Matplotlib is just one of the many ways to visualise data and simulations, and there’s a lot of different ways to do it. For the code above, here’s what happens:</p>
 <ol type="1">
 <li><p><strong><code>fig, (ax_grid, ax_fitness) = plt.subplots(1, 2, figsize=(14, 6))</code></strong> — This creates one figure with 2 side-by-side subplots. <code>ax_grid</code> is the left plot, <code>ax_fitness</code> is the right.</p></li>
-<li><p><strong><code>imshow(population, cmap='RdYlGn', vmin=0, vmax=1)</code></strong> — This displays the 2D grid as a heatmap. <code>cmap='RdYlGn'</code> means Red-Yellow-Green colors, where red=0 (low fitness) and green=1 (high fitness). Each cell’s color shows that cell’s fitness value.</p></li>
+<li><p><strong><code>im = ax_grid.imshow(spatial_pop, cmap='viridis', vmin=0, vmax=1)</code></strong> — This will show the 2D grid as a heatmap. <code>cmap='viridis'</code> sets the colour gradient for fitness, where the darkblue-ish means low fitness, and bright yellow means high fitness.</p></li>
 <li><p><strong><code>fig.colorbar()</code></strong> — Adds the color scale legend (bar) next to the heatmap so you can read what colors mean.</p></li>
-<li><p><strong><code>plt.ion()</code> and <code>plt.draw()</code></strong> — These enable interactive mode. Instead of showing one static plot at the end, the plot updates while the simulation runs.</p></li>
-<li><p><strong><code>im.set_array(population)</code> and <code>line.set_data()</code></strong> — During the loop, we update the plot data without redrawing everything from scratch. This is much faster!</p></li>
-<li><p><strong><code>plt.pause(0.01)</code></strong> — This gives your screen time to refresh so you can see the updates.</p></li>
+<li><p><strong><code>plt.ion()</code> and <code>plt.draw()</code></strong> — These enable interactive mode. Instead of showing one static plot at the end, the plot updates while the simulation runs.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p></li>
+<li><p><strong><code>im.set_array(population)</code> and <code>line.set_data()</code></strong> — During the loop, we update the plot data without redrawing everything from scratch. This is again a trick to improve speed a bit.</p></li>
+<li><p><strong><code>plt.pause(0.01)</code></strong> — This gives your screen time to refresh so you can see the updates. Without it it will not catch up and you will see no updates of the plot.</p></li>
 </ol>
-<p><strong>What to expect when you run this:</strong> - Watch the left plot: You’ll see green clusters expand across the red background as fit mutants invade locally. This is the spatial pattern! - Watch the right plot: Average fitness creeps upward, but more slowly and noisily than the non-spatial version. - The title updates to show which generation you’re on.</p>
-<p><strong>Why this matters biologically:</strong> In the non-spatial model (everyone competes with everyone), fit mutants spread immediately across the population. But with spatial structure, a fit mutant can only invade if it can compete well with <em>local</em> neighbors. This creates distinct spatial clusters and can slow down evolution, or even create new ecological dynamics!</p>
 <div id="exr-spatial-moran" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.3 (Spatial Moran: Implementation and analysis)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Exercise 1.3 (Comparing mixed and non-mixed populations)</strong></span> In the code, we run a moran process “in space”, and a basic moran process where we assume a mixed population.</p>
 <ol type="a">
-<li><p><strong>Modify your code</strong> to arrange the population on a grid (instead of a flat list). You can use nested lists, a dictionary with (i,j) coordinates, or even numpy arrays. Start with a small grid like 10x10 or 20x20.</p></li>
-<li><p><strong>Implement the <code>get_neighbors()</code> function</strong> to return the 8 neighbors of a grid location (Moore neighborhood). Make sure to handle edge wrapping (a cell at the edge should wrap around to the opposite edge).</p></li>
-<li><p><strong>Modify the evolution loop</strong> to:</p>
-<ul>
-<li>Pick a random location to replace (instead of a random individual)</li>
-<li>Get its neighbors (your subset)</li>
-<li>Use roulette wheel selection <strong>only among those neighbors</strong></li>
-<li>Place the offspring in the dead location</li>
-</ul></li>
-<li><p><strong>Visualization:</strong> After each generation (or every N generations), create a heatmap showing fitness or diversity on the grid. You’ll see <strong>spatial patterns emerge</strong>. Describe what patterns you see.</p></li>
-<li><p><strong>Comparison:</strong> Run the spatial model and the non-spatial model side-by-side with the same parameters. How does the spatial structure change the dynamics of fitness and diversity over time?</p></li>
-</ol>
-</div>
-</section>
-<section id="diversity-patterns" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="diversity-patterns"><span class="header-section-number">2.6</span> Diversity patterns</h2>
-<p>Modify the function <code>calculate_diversity</code> to calculate the diversity of the population as the standard deviation of the fitness values.</p>
-<div id="exr-diversitydynamics" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.4 (The dynamics of diversity - Biology)</strong></span> <br></p>
-<ol type="a">
-<li>Use a low mutation rate and study the dynamics of diversity. Describe the pattern verbally.</li>
-</ol>
-</div>
-</section>
-<section id="evolving-a-dna-sequence" class="level2" data-number="2.7">
-<h2 data-number="2.7" class="anchored" data-anchor-id="evolving-a-dna-sequence"><span class="header-section-number">2.7</span> Evolving a DNA sequence</h2>
-<p>A big problem with the previous model is there is no true distinction between genotype (that which mutates) and phenotype (that which is selected). Let us try and adapt the model to be more biologically meaningful, by making each individual represented by a DNA sequence. Copy the following code:</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Starting code for “evolving a DNA sequence”
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># set the random number seed</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">0</span>)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>plt.ion()  <span class="co"># Enable interactive mode</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>alphabet <span class="op">=</span> <span class="st">"ATCG"</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>target_sequence <span class="op">=</span> <span class="st">"GATGCGCGCTGGATTAAC"</span>  <span class="co"># Example target sequence</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>dna_length <span class="op">=</span> <span class="bu">len</span>(target_sequence)</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>target_length <span class="op">=</span> <span class="bu">len</span>(target_sequence)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation settings</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>population_size <span class="op">=</span> <span class="dv">500</span>  <span class="co"># must be a square number for grid mode</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>generations <span class="op">=</span> <span class="dv">20000</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>mutation_rate <span class="op">=</span> <span class="fl">0.001</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>sample_interval <span class="op">=</span> <span class="dv">5</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>sample_size <span class="op">=</span> population_size</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>no_reproduction_chance <span class="op">=</span> <span class="fl">0.1</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Core functions</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fitness(dna):</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">-</span> <span class="bu">sum</span>(a <span class="op">!=</span> b <span class="cf">for</span> a, b <span class="kw">in</span> <span class="bu">zip</span>(dna, target_sequence)) <span class="op">/</span> target_length</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mutate(dna, rate<span class="op">=</span>mutation_rate):</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">''</span>.join(</span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>        random.choice([b <span class="cf">for</span> b <span class="kw">in</span> alphabet <span class="cf">if</span> b <span class="op">!=</span> base]) <span class="cf">if</span> random.random() <span class="op">&lt;</span> rate <span class="cf">else</span> base</span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> base <span class="kw">in</span> dna</span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> count_beneficial_mutations(dna):</span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    f0 <span class="op">=</span> fitness(dna)</span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(dna)):</span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> b <span class="kw">in</span> alphabet:</span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> b <span class="op">!=</span> dna[i]:</span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>                mutant <span class="op">=</span> dna[:i] <span class="op">+</span> b <span class="op">+</span> dna[i<span class="op">+</span><span class="dv">1</span>:]</span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> fitness(mutant) <span class="op">&gt;</span> f0:</span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>                    count <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> count</span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> diversity(pop):</span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>    counts <span class="op">=</span> {}</span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> ind <span class="kw">in</span> pop:</span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>        counts[ind] <span class="op">=</span> counts.get(ind, <span class="dv">0</span>) <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> <span class="bu">len</span>(pop)</span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span><span class="bu">sum</span>((c<span class="op">/</span>total) <span class="op">*</span> math.log(c<span class="op">/</span>total <span class="op">+</span> <span class="fl">1e-9</span>) <span class="cf">for</span> c <span class="kw">in</span> counts.values()) <span class="cf">if</span> total <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="dv">0</span></span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize population</span></span>
-<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>initial_sequence <span class="op">=</span> <span class="st">"GATAGCGAAGTTTAGCCG"</span> <span class="co"># far from target (only first 3 are correct)</span></span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>population <span class="op">=</span> [initial_sequence <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(population_size)]</span>
-<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>avg_fitness <span class="op">=</span> []</span>
-<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>avg_beneficial <span class="op">=</span> []</span>
-<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>diversity_over_time <span class="op">=</span> []</span>
-<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>best_individuals <span class="op">=</span> []</span>
-<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_neighbors(i, j):</span>
-<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [(x <span class="op">%</span> side, y <span class="op">%</span> side)</span>
-<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(i<span class="op">-</span><span class="dv">1</span>, i<span class="op">+</span><span class="dv">2</span>)</span>
-<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> y <span class="kw">in</span> <span class="bu">range</span>(j<span class="op">-</span><span class="dv">1</span>, j<span class="op">+</span><span class="dv">2</span>)]</span>
-<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize interactive plot</span></span>
-<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>fig, ax1 <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
-<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">"Generation"</span>)</span>
-<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">"Average Fitness"</span>, color<span class="op">=</span><span class="st">'tab:blue'</span>)</span>
-<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>ax1.set_ylim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>line1, <span class="op">=</span> ax1.plot([], [], color<span class="op">=</span><span class="st">'tab:blue'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Fitness'</span>)</span>
-<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>ax1.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelcolor<span class="op">=</span><span class="st">'tab:blue'</span>)</span>
-<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> ax1.twinx()</span>
-<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">"Beneficial Mutations / Diversity"</span>, color<span class="op">=</span><span class="st">'tab:purple'</span>)</span>
-<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>line2, <span class="op">=</span> ax2.plot([], [], color<span class="op">=</span><span class="st">'tab:purple'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Beneficial Mutations'</span>)</span>
-<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>line3, <span class="op">=</span> ax2.plot([], [], color<span class="op">=</span><span class="st">'tab:green'</span>, linestyle<span class="op">=</span><span class="st">':'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Diversity'</span>)</span>
-<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>ax2.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelcolor<span class="op">=</span><span class="st">'tab:purple'</span>)</span>
-<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">"Evolution Toward Target Sequence"</span>)</span>
-<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
-<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>ax2.set_ylim(<span class="dv">0</span>, <span class="dv">20</span>)</span>
-<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>fig.legend(loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
-<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>plt.draw()</span>
-<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>best_seq <span class="op">=</span> <span class="st">""</span></span>
-<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>best_score <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
-<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>found <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a><span class="co"># Evolution loop</span></span>
-<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> gen <span class="kw">in</span> <span class="bu">range</span>(generations):</span>
-<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>    fitnesses <span class="op">=</span> [fitness(ind) <span class="cf">for</span> ind <span class="kw">in</span> population]</span>
-<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>    total_fit <span class="op">=</span> <span class="bu">sum</span>(fitnesses)</span>
-<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>    best <span class="op">=</span> <span class="bu">max</span>(fitnesses)</span>
-<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(best <span class="op">==</span> <span class="dv">1</span> <span class="kw">and</span> <span class="kw">not</span> found):</span>
-<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a>        found <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Found perfect solution at generation"</span>, gen)</span>
-<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> gen <span class="op">%</span> sample_interval <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>        sample <span class="op">=</span> random.sample(population, sample_size)</span>
-<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>        avg_beneficial.append(<span class="bu">sum</span>(count_beneficial_mutations(ind) <span class="cf">for</span> ind <span class="kw">in</span> sample) <span class="op">/</span> sample_size)</span>
-<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>        diversity_over_time.append(diversity(population))</span>
-<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Update plot data</span></span>
-<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a>        line1.set_data(<span class="bu">range</span>(<span class="bu">len</span>(avg_fitness)<span class="op">+</span><span class="dv">1</span>), avg_fitness <span class="op">+</span> [<span class="bu">sum</span>(fitnesses)<span class="op">/</span>population_size])</span>
-<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a>        line2.set_data(<span class="bu">range</span>(<span class="bu">len</span>(avg_beneficial)), avg_beneficial)</span>
-<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a>        line3.set_data(<span class="bu">range</span>(<span class="bu">len</span>(diversity_over_time)), diversity_over_time)</span>
-<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a>        ax1.relim()<span class="op">;</span> ax1.autoscale_view()</span>
-<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a>        ax2.relim()<span class="op">;</span> ax2.autoscale_view()</span>
-<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a>        best <span class="op">=</span> <span class="bu">max</span>(population, key<span class="op">=</span>fitness)</span>
-<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a>        fig.suptitle(<span class="ss">f"Best: </span><span class="sc">{</span>best<span class="sc">}</span><span class="ss"> (target: </span><span class="sc">{</span>target_sequence<span class="sc">}</span><span class="ss">)"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a>        plt.pause(<span class="fl">0.01</span>)</span>
-<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a>        avg_beneficial.append(avg_beneficial[<span class="op">-</span><span class="dv">1</span>])</span>
-<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a>        diversity_over_time.append(diversity_over_time[<span class="op">-</span><span class="dv">1</span>])</span>
-<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Tournament selection (as in evolving_fitness_final.py)</span></span>
-<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a>    new_pop <span class="op">=</span> []</span>
-<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a>    tournament_size <span class="op">=</span> <span class="dv">10</span>  <span class="co"># can be adjusted</span></span>
-<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(population_size):</span>
-<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Select tournament_size individuals randomly</span></span>
-<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a>        competitors <span class="op">=</span> random.sample(population, tournament_size)</span>
-<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Pick the one with highest fitness</span></span>
-<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a>        fitness_values <span class="op">=</span> [fitness(ind) <span class="cf">for</span> ind <span class="kw">in</span> competitors]</span>
-<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a>        total <span class="op">=</span> <span class="bu">sum</span>(fitness_values)</span>
-<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a>        probs <span class="op">=</span> [f <span class="op">/</span> total <span class="cf">for</span> f <span class="kw">in</span> fitness_values]</span>
-<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a>        winner <span class="op">=</span> random.choices(competitors, weights<span class="op">=</span>probs, k<span class="op">=</span><span class="dv">1</span>)[<span class="dv">0</span>]</span>
-<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Mutate winner to produce offspring</span></span>
-<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a>        offspring <span class="op">=</span> mutate(winner)</span>
-<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a>        new_pop.append(offspring)</span>
-<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a>    population <span class="op">=</span> new_pop</span>
-<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a>    avg_fitness.append(<span class="bu">sum</span>(fitness(ind) <span class="cf">for</span> ind <span class="kw">in</span> population) <span class="op">/</span> population_size)</span>
-<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> gen <span class="op">%</span> <span class="dv">250</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a>        best <span class="op">=</span> <span class="bu">max</span>(population, key<span class="op">=</span>fitness)</span>
-<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a>        best_individuals.append((gen, best))</span>
-<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a><span class="bu">input</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Simulation complete. Press Enter to exit plot window..."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</div>
-<p>Answer the following questions using the options available in the model:</p>
-<div id="exr-evolving-dna" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.5 (Evolving DNA - Biology / abstract thinking)</strong></span> &nbsp;</p>
-<ol type="a">
-<li>Run the code. What does the new (dashed blue) line represent? Do you understand how it changes over time?</li>
-</ol>
-<p>The program reports after how many generations it manages to find the target sequence. With default settings this can take a long time… (default: 429 generations)</p>
-<ol start="2" type="a">
-<li>Modify the mutation rate to see how it affects the time to find the target sequence. Try different mutation rates between 0.0001 and 0.1. Keep track of both how long (number of generations) it takes to find the target, and how fit the population is once the target is found. What do you observe?</li>
-<li>Diversity is no longer calculated as the standard deviation in fitness, but as the Shannon diversity of all present sequences (although it is not super complex, you do not need to fully understand this function). Because of this, the exact number (quantities) cannot be compared to our earlier model. Do you see a <em>qualitative</em> differences?</li>
-<li>Study how fitness is calculated in this model. Is there a distinction between genotype en phenotype? Why/why not?</li>
-</ol>
-</div>
-</section>
-<section id="evolving-a-protein-sequence" class="level2" data-number="2.8">
-<h2 data-number="2.8" class="anchored" data-anchor-id="evolving-a-protein-sequence"><span class="header-section-number">2.8</span> Evolving a protein sequence</h2>
-<p>Next we will extend the simulation a little more. The individual genotypes will still be represented as a DNA sequence, but before evaluating fitness this will be translated into a <strong>protein</strong> sequence. To do so, the code first defines the codon table (which we of course all know by heart =)), and then translates the DNA sequence into a protein sequence. The protein sequence is then used to calculate the fitness of the individual, which is based on how well the protein sequence matches a target protein sequence. The code is as follows:</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Starting code for evolving a protein sequence
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># set the random number seed</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">0</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>plt.ion()  <span class="co"># Enable interactive mode</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Codon table</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>codon_table <span class="op">=</span> {</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'TTT'</span>: <span class="st">'F'</span>, <span class="st">'TTC'</span>: <span class="st">'F'</span>, <span class="st">'TTA'</span>: <span class="st">'L'</span>, <span class="st">'TTG'</span>: <span class="st">'L'</span>, <span class="st">'CTT'</span>: <span class="st">'L'</span>, <span class="st">'CTC'</span>: <span class="st">'L'</span>, <span class="st">'CTA'</span>: <span class="st">'L'</span>, <span class="st">'CTG'</span>: <span class="st">'L'</span>,</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ATT'</span>: <span class="st">'I'</span>, <span class="st">'ATC'</span>: <span class="st">'I'</span>, <span class="st">'ATA'</span>: <span class="st">'I'</span>, <span class="st">'ATG'</span>: <span class="st">'M'</span>,</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">'GTT'</span>: <span class="st">'V'</span>, <span class="st">'GTC'</span>: <span class="st">'V'</span>, <span class="st">'GTA'</span>: <span class="st">'V'</span>, <span class="st">'GTG'</span>: <span class="st">'V'</span>,</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">'TCT'</span>: <span class="st">'S'</span>, <span class="st">'TCC'</span>: <span class="st">'S'</span>, <span class="st">'TCA'</span>: <span class="st">'S'</span>, <span class="st">'TCG'</span>: <span class="st">'S'</span>, <span class="st">'AGT'</span>: <span class="st">'S'</span>, <span class="st">'AGC'</span>: <span class="st">'S'</span>,</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">'CCT'</span>: <span class="st">'P'</span>, <span class="st">'CCC'</span>: <span class="st">'P'</span>, <span class="st">'CCA'</span>: <span class="st">'P'</span>, <span class="st">'CCG'</span>: <span class="st">'P'</span>,</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ACT'</span>: <span class="st">'T'</span>, <span class="st">'ACC'</span>: <span class="st">'T'</span>, <span class="st">'ACA'</span>: <span class="st">'T'</span>, <span class="st">'ACG'</span>: <span class="st">'T'</span>,</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">'GCT'</span>: <span class="st">'A'</span>, <span class="st">'GCC'</span>: <span class="st">'A'</span>, <span class="st">'GCA'</span>: <span class="st">'A'</span>, <span class="st">'GCG'</span>: <span class="st">'A'</span>,</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">'TAT'</span>: <span class="st">'Y'</span>, <span class="st">'TAC'</span>: <span class="st">'Y'</span>, <span class="st">'CAT'</span>: <span class="st">'H'</span>, <span class="st">'CAC'</span>: <span class="st">'H'</span>,</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">'CAA'</span>: <span class="st">'Q'</span>, <span class="st">'CAG'</span>: <span class="st">'Q'</span>, <span class="st">'AAT'</span>: <span class="st">'N'</span>, <span class="st">'AAC'</span>: <span class="st">'N'</span>,</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">'AAA'</span>: <span class="st">'K'</span>, <span class="st">'AAG'</span>: <span class="st">'K'</span>, <span class="st">'GAT'</span>: <span class="st">'D'</span>, <span class="st">'GAC'</span>: <span class="st">'D'</span>,</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">'GAA'</span>: <span class="st">'E'</span>, <span class="st">'GAG'</span>: <span class="st">'E'</span>, <span class="st">'TGT'</span>: <span class="st">'C'</span>, <span class="st">'TGC'</span>: <span class="st">'C'</span>,</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">'TGG'</span>: <span class="st">'W'</span>, <span class="st">'CGT'</span>: <span class="st">'R'</span>, <span class="st">'CGC'</span>: <span class="st">'R'</span>, <span class="st">'CGA'</span>: <span class="st">'R'</span>, <span class="st">'CGG'</span>: <span class="st">'R'</span>, <span class="st">'AGA'</span>: <span class="st">'R'</span>, <span class="st">'AGG'</span>: <span class="st">'R'</span>,</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">'GGT'</span>: <span class="st">'G'</span>, <span class="st">'GGC'</span>: <span class="st">'G'</span>, <span class="st">'GGA'</span>: <span class="st">'G'</span>, <span class="st">'GGG'</span>: <span class="st">'G'</span>,</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">'TAA'</span>: <span class="st">'*'</span>, <span class="st">'TAG'</span>: <span class="st">'*'</span>, <span class="st">'TGA'</span>: <span class="st">'*'</span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>alphabet <span class="op">=</span> <span class="st">"ATCG"</span></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>target_protein <span class="op">=</span> <span class="st">"DARWIN"</span></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>dna_length <span class="op">=</span> <span class="bu">len</span>(target_protein)<span class="op">*</span><span class="dv">3</span></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>target_length <span class="op">=</span> <span class="bu">len</span>(target_protein)</span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation settings</span></span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>population_size <span class="op">=</span> <span class="dv">625</span>  <span class="co"># must be a square number for grid mode</span></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>generations <span class="op">=</span> <span class="dv">20000</span></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>mutation_rate <span class="op">=</span> <span class="fl">0.0005</span>   </span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>sample_interval <span class="op">=</span> <span class="dv">5</span></span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>sample_size <span class="op">=</span> population_size</span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>no_reproduction_chance <span class="op">=</span> <span class="fl">0.01</span></span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Core functions</span></span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> translate(dna):</span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">''</span>.join(codon_table.get(dna[i:i<span class="op">+</span><span class="dv">3</span>], <span class="st">'?'</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">len</span>(dna), <span class="dv">3</span>))</span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fitness(dna):</span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>    protein <span class="op">=</span> translate(dna)</span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">-</span> <span class="bu">sum</span>(a <span class="op">!=</span> b <span class="cf">for</span> a, b <span class="kw">in</span> <span class="bu">zip</span>(protein, target_protein)) <span class="op">/</span> target_length</span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mutate(dna, rate<span class="op">=</span>mutation_rate):</span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">''</span>.join(</span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>        random.choice([b <span class="cf">for</span> b <span class="kw">in</span> alphabet <span class="cf">if</span> b <span class="op">!=</span> base]) <span class="cf">if</span> random.random() <span class="op">&lt;</span> rate <span class="cf">else</span> base</span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> base <span class="kw">in</span> dna</span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> count_beneficial_mutations(dna):</span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>    f0 <span class="op">=</span> fitness(dna)</span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(dna)):</span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> b <span class="kw">in</span> alphabet:</span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> b <span class="op">!=</span> dna[i]:</span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>                mutant <span class="op">=</span> dna[:i] <span class="op">+</span> b <span class="op">+</span> dna[i<span class="op">+</span><span class="dv">1</span>:]</span>
-<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> fitness(mutant) <span class="op">&gt;</span> f0:</span>
-<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>                    count <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> count</span>
-<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> diversity(pop):</span>
-<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>    counts <span class="op">=</span> Counter(pop)</span>
-<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> <span class="bu">len</span>(pop)</span>
-<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span><span class="bu">sum</span>((c<span class="op">/</span>total) <span class="op">*</span> math.log(c<span class="op">/</span>total <span class="op">+</span> <span class="fl">1e-9</span>) <span class="cf">for</span> c <span class="kw">in</span> counts.values()) <span class="cf">if</span> total <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="dv">0</span></span>
-<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize population</span></span>
-<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>initial_sequence <span class="op">=</span> <span class="st">''</span>.join(random.choice(alphabet) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(dna_length))</span>
-<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>population <span class="op">=</span> [initial_sequence <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(population_size)]</span>
-<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>avg_fitness <span class="op">=</span> []</span>
-<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>avg_beneficial <span class="op">=</span> []</span>
-<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>diversity_over_time <span class="op">=</span> []</span>
-<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>best_individuals <span class="op">=</span> []</span>
-<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a><span class="co"># Grid setup</span></span>
-<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>side <span class="op">=</span> <span class="bu">int</span>(math.sqrt(population_size))</span>
-<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> side <span class="op">*</span> side <span class="op">==</span> population_size, <span class="st">"Population size must be a square number for grid mode"</span></span>
-<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_neighbors(i, j):</span>
-<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [(x <span class="op">%</span> side, y <span class="op">%</span> side)</span>
-<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(i<span class="op">-</span><span class="dv">1</span>, i<span class="op">+</span><span class="dv">2</span>)</span>
-<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> y <span class="kw">in</span> <span class="bu">range</span>(j<span class="op">-</span><span class="dv">1</span>, j<span class="op">+</span><span class="dv">2</span>)]</span>
-<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize interactive plot</span></span>
-<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>fig, ax1 <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
-<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">"Generation"</span>)</span>
-<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">"Average Fitness"</span>, color<span class="op">=</span><span class="st">'tab:blue'</span>)</span>
-<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a>ax1.set_ylim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a>line0, <span class="op">=</span> ax1.plot([], [], color<span class="op">=</span><span class="st">'black'</span>, linewidth<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">'Max fitness'</span>)</span>
-<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a>line1, <span class="op">=</span> ax1.plot([], [], color<span class="op">=</span><span class="st">'tab:blue'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Fitness'</span>)</span>
-<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a>ax1.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelcolor<span class="op">=</span><span class="st">'tab:blue'</span>)</span>
-<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> ax1.twinx()</span>
-<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">"Beneficial Mutations / Diversity"</span>, color<span class="op">=</span><span class="st">'tab:purple'</span>)</span>
-<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>line2, <span class="op">=</span> ax2.plot([], [], color<span class="op">=</span><span class="st">'tab:purple'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Beneficial Mutations'</span>)</span>
-<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>line3, <span class="op">=</span> ax2.plot([], [], color<span class="op">=</span><span class="st">'tab:green'</span>, linestyle<span class="op">=</span><span class="st">':'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Diversity'</span>)</span>
-<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a>ax2.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelcolor<span class="op">=</span><span class="st">'tab:purple'</span>)</span>
-<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">"Evolution Toward "</span> <span class="op">+</span> <span class="bu">str</span>(target_protein))</span>
-<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
-<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a>ax2.set_ylim(<span class="dv">0</span>, <span class="dv">5</span>)</span>
-<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a>fig.legend(loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
-<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a>plt.draw()</span>
-<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a>best_seq <span class="op">=</span> <span class="st">""</span></span>
-<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a>best_score <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
-<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a>best_fitnesses <span class="op">=</span> []</span>
-<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a>found <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a><span class="co"># Evolution loop</span></span>
-<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> gen <span class="kw">in</span> <span class="bu">range</span>(generations):</span>
-<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a>    fitnesses <span class="op">=</span> [fitness(ind) <span class="cf">for</span> ind <span class="kw">in</span> population]</span>
-<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a>    total_fit <span class="op">=</span> <span class="bu">sum</span>(fitnesses)</span>
-<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a>    best <span class="op">=</span> <span class="bu">max</span>(fitnesses)</span>
-<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>    best_fitnesses.append(best)</span>
-<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(best <span class="op">==</span> <span class="dv">1</span> <span class="kw">and</span> <span class="kw">not</span> found):</span>
-<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a>        found <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Found perfect solution at generation"</span>, gen)</span>
-<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> gen <span class="op">%</span> sample_interval <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a>        sample <span class="op">=</span> random.sample(population, sample_size)</span>
-<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a>        avg_beneficial.append(<span class="bu">sum</span>(count_beneficial_mutations(ind) <span class="cf">for</span> ind <span class="kw">in</span> sample) <span class="op">/</span> sample_size)</span>
-<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a>        diversity_over_time.append(diversity(population))</span>
-<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Update plot data</span></span>
-<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a>        line0.set_data(<span class="bu">range</span>(<span class="bu">len</span>(avg_fitness)<span class="op">+</span><span class="dv">1</span>), best_fitnesses)</span>
-<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a>        line1.set_data(<span class="bu">range</span>(<span class="bu">len</span>(avg_fitness)<span class="op">+</span><span class="dv">1</span>), avg_fitness <span class="op">+</span> [<span class="bu">sum</span>(fitnesses)<span class="op">/</span>population_size])</span>
-<span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a>        line2.set_data(<span class="bu">range</span>(<span class="bu">len</span>(avg_beneficial)), avg_beneficial)</span>
-<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a>        line3.set_data(<span class="bu">range</span>(<span class="bu">len</span>(diversity_over_time)), diversity_over_time)</span>
-<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a>        ax1.relim()<span class="op">;</span> ax1.autoscale_view()</span>
-<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a>        ax2.relim()<span class="op">;</span> ax2.autoscale_view()</span>
-<span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a>        best <span class="op">=</span> <span class="bu">max</span>(population, key<span class="op">=</span>fitness)</span>
-<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a>        fig.suptitle(<span class="ss">f"Best: </span><span class="sc">{</span>translate(best)<span class="sc">}</span><span class="ss"> (target: </span><span class="sc">{</span>target_protein<span class="sc">}</span><span class="ss">)"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a>        plt.pause(<span class="fl">0.01</span>)</span>
-<span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a>        avg_beneficial.append(avg_beneficial[<span class="op">-</span><span class="dv">1</span>])</span>
-<span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a>        diversity_over_time.append(diversity_over_time[<span class="op">-</span><span class="dv">1</span>])</span>
-<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a>    new_pop <span class="op">=</span> []</span>
-<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a>    tournament_size <span class="op">=</span> <span class="dv">10</span>  <span class="co"># can be adjusted</span></span>
-<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(population_size):</span>
-<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Select tournament_size individuals randomly</span></span>
-<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a>        competitors <span class="op">=</span> random.sample(population, tournament_size)</span>
-<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Pick the one with highest fitness</span></span>
-<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a>        fitness_values <span class="op">=</span> [fitness(ind) <span class="cf">for</span> ind <span class="kw">in</span> competitors]</span>
-<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a>        total <span class="op">=</span> <span class="bu">sum</span>(fitness_values)</span>
-<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a>        probs <span class="op">=</span> [f <span class="op">/</span> total <span class="cf">for</span> f <span class="kw">in</span> fitness_values]</span>
-<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a>        winner <span class="op">=</span> random.choices(competitors, weights<span class="op">=</span>probs, k<span class="op">=</span><span class="dv">1</span>)[<span class="dv">0</span>]</span>
-<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Mutate winner to produce offspring</span></span>
-<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a>        offspring <span class="op">=</span> mutate(winner)</span>
-<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a>        new_pop.append(offspring)</span>
-<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a>    population <span class="op">=</span> new_pop</span>
-<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a>    avg_fitness.append(<span class="bu">sum</span>(fitness(ind) <span class="cf">for</span> ind <span class="kw">in</span> population) <span class="op">/</span> population_size)</span>
-<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> gen <span class="op">%</span> <span class="dv">250</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a>        best <span class="op">=</span> <span class="bu">max</span>(population, key<span class="op">=</span>fitness)</span>
-<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a>        best_individuals.append((gen, translate(best)))</span>
-<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a><span class="bu">input</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Simulation complete. Press Enter to exit plot window..."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</div>
-<p>Answer the following question about the model:</p>
-<div id="exr-evolving-proteins" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2.6 (Evolving protein sequences - Biology / abstract thinking)</strong></span> &nbsp;</p>
-<ol type="a">
-<li>Another line was added to the model. What new information can you obtain from analysing this line?</li>
-<li>Study carefully how the other lines (also present in previous models) change over time. What do you observe? Try and capture what you see into words.</li>
-<li>In biology, multiple genotypes can translate to the same phenotype (this is called a many-to-one genotype-phenotype map), or alternatively, one genotype can produce multiple phenotype (this is called phenotypic plasticity, or a one-to-many genotype-phenotype map). Which genotype-phenotype (GP) mapping applies to this model? Why?</li>
-<li><strong>Bonus question for motivated students</strong> modify the code to include a second target protein sequence, and alternate between the two targets. If you see something interesting, please share it with the class!</li>
-<li><strong>Bonus question for motivated students</strong> modify the code to include spatial structure in the population (e.g.&nbsp;proteins on a grid only competing with nearby proteins).</li>
+<li><p>Are both populations improving at the same rate? It this a coincidence? Test and explain your reasoning.</p></li>
+<li><p>How could you modify the spatial population to make it more similar to the standard Moran process? Try it and/or discuss your implementation with the teachers.</p></li>
+<li><p>Do you think a spatial simulation will always make evolution less efficient? Why/why not?</p></li>
 </ol>
 </div>
 
 
+<script type="pyodide-data">
+eyJvcHRpb25zIjp7ImVudiI6eyJQTE9UTFlfUkVOREVSRVIiOiJwbG90bHlfbWltZXR5cGUifSwiaW5kZXhVUkwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvcHlvZGlkZS92MC4yOC4xL2Z1bGwvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsicHlvZGlkZV9odHRwIiwibWljcm9waXAiLCJpcHl0aG9uIl19fQ==
+</script>
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W119
+eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8xID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0xLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzEgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLXByZWx1ZGUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJweW9kaWRlT2pzID0ge1xuICBjb25zdCB7XG4gICAgUHlvZGlkZUV2YWx1YXRvcixcbiAgICBQeW9kaWRlRW52aXJvbm1lbnRNYW5hZ2VyLFxuICAgIHNldHVwUHl0aG9uLFxuICAgIHN0YXJ0UHlvZGlkZVdvcmtlcixcbiAgICBiNjREZWNvZGUsXG4gICAgY29sbGFwc2VQYXRoLFxuICB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzdGF0dXNDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctc3RhdHVzXCIpO1xuICBjb25zdCBpbmRpY2F0b3JDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpbmRpY2F0b3JDb250YWluZXIuY2xhc3NMaXN0LnJlbW92ZShcImQtbm9uZVwiKTtcblxuICBsZXQgc3RhdHVzVGV4dCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIilcbiAgc3RhdHVzVGV4dC5jbGFzc0xpc3QgPSBcImV4ZXJjaXNlLWxvYWRpbmctZGV0YWlsc1wiO1xuICBzdGF0dXNUZXh0ID0gc3RhdHVzQ29udGFpbmVyLmFwcGVuZENoaWxkKHN0YXR1c1RleHQpO1xuICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYEluaXRpYWxpc2VgO1xuXG4gIC8vIEhvaXN0IGluZGljYXRvciBvdXQgZnJvbSBmaW5hbCBzbGlkZSB3aGVuIHJ1bm5pbmcgdW5kZXIgcmV2ZWFsXG4gIGNvbnN0IHJldmVhbFN0YXR1cyA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsIC5leGVyY2lzZS1sb2FkaW5nLWluZGljYXRvclwiKTtcbiAgaWYgKHJldmVhbFN0YXR1cykge1xuICAgIHJldmVhbFN0YXR1cy5yZW1vdmUoKTtcbiAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLnJldmVhbCA+IC5zbGlkZXNcIikuYXBwZW5kQ2hpbGQocmV2ZWFsU3RhdHVzKTtcbiAgfVxuXG4gIC8vIE1ha2UgYW55IHJldmVhbCBzbGlkZXMgd2l0aCBsaXZlIGNlbGxzIHNjcm9sbGFibGVcbiAgZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbChcIi5yZXZlYWwgLmV4ZXJjaXNlLWNlbGxcIikuZm9yRWFjaCgoZWwpID0+IHtcbiAgICBlbC5jbG9zZXN0KCdzZWN0aW9uLnNsaWRlJykuY2xhc3NMaXN0LmFkZChcInNjcm9sbGFibGVcIik7XG4gIH0pXG5cbiAgLy8gUHlvZGlkZSBzdXBwbGVtZW50YWwgZGF0YSBhbmQgb3B0aW9uc1xuICBjb25zdCBkYXRhQ29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLWRhdGFcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBkYXRhID0gSlNPTi5wYXJzZShiNjREZWNvZGUoZGF0YUNvbnRlbnQpKTtcblxuICAvLyBHcmFiIGxpc3Qgb2YgcmVzb3VyY2VzIHRvIGJlIGRvd25sb2FkZWRcbiAgY29uc3QgZmlsZXNDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInZmcy1maWxlXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgZmlsZXMgPSBKU09OLnBhcnNlKGI2NERlY29kZShmaWxlc0NvbnRlbnQpKTtcblxuICBsZXQgcHlvZGlkZVByb21pc2UgPSAoYXN5bmMgKCkgPT4ge1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgUHlvZGlkZWA7XG4gICAgY29uc3QgcHlvZGlkZSA9IGF3YWl0IHN0YXJ0UHlvZGlkZVdvcmtlcihkYXRhLm9wdGlvbnMpO1xuXG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiBtaWNyb3BpcGA7XG4gICAgYXdhaXQgcHlvZGlkZS5sb2FkUGFja2FnZShcIm1pY3JvcGlwXCIpO1xuICAgIGNvbnN0IG1pY3JvcGlwID0gYXdhaXQgcHlvZGlkZS5weWltcG9ydChcIm1pY3JvcGlwXCIpO1xuICAgIGF3YWl0IGRhdGEucGFja2FnZXMucGtncy5tYXAoKHBrZykgPT4gKCkgPT4ge1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiAke3BrZ31gO1xuICAgICAgcmV0dXJuIG1pY3JvcGlwLmluc3RhbGwocGtnKTtcbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcbiAgICBhd2FpdCBtaWNyb3BpcC5kZXN0cm95KCk7XG5cbiAgICAvLyBEb3dubG9hZCBhbmQgaW5zdGFsbCByZXNvdXJjZXNcbiAgICBhd2FpdCBmaWxlcy5tYXAoKGZpbGUpID0+IGFzeW5jICgpID0+IHtcbiAgICAgIGNvbnN0IG5hbWUgPSBmaWxlLnN1YnN0cmluZyhmaWxlLmxhc3RJbmRleE9mKCcvJykgKyAxKTtcbiAgICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgcmVzb3VyY2U6ICR7bmFtZX1gO1xuICAgICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaChmaWxlKTtcbiAgICAgIGlmICghcmVzcG9uc2Uub2spIHtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBDYW4ndCBkb3dubG9hZCBcXGAke2ZpbGV9XFxgLiBFcnJvciAke3Jlc3BvbnNlLnN0YXR1c306IFwiJHtyZXNwb25zZS5zdGF0dXNUZXh0fVwiLmApO1xuICAgICAgfVxuICAgICAgY29uc3QgZGF0YSA9IGF3YWl0IHJlc3BvbnNlLmFycmF5QnVmZmVyKCk7XG5cbiAgICAgIC8vIFN0b3JlIFVSTHMgaW4gdGhlIGN3ZCB3aXRob3V0IGFueSBzdWJkaXJlY3Rvcnkgc3RydWN0dXJlXG4gICAgICBpZiAoZmlsZS5pbmNsdWRlcyhcIjovL1wiKSkge1xuICAgICAgICBmaWxlID0gbmFtZTtcbiAgICAgIH1cblxuICAgICAgLy8gQ29sbGFwc2UgaGlnaGVyIGRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGZpbGUgPSBjb2xsYXBzZVBhdGgoZmlsZSk7XG5cbiAgICAgIC8vIENyZWF0ZSBkaXJlY3RvcnkgdHJlZSwgaWdub3JpbmcgXCJkaXJlY3RvcnkgZXhpc3RzXCIgVkZTIGVycm9yc1xuICAgICAgY29uc3QgcGFydHMgPSBmaWxlLnNwbGl0KCcvJykuc2xpY2UoMCwgLTEpO1xuICAgICAgbGV0IHBhdGggPSAnJztcbiAgICAgIHdoaWxlIChwYXJ0cy5sZW5ndGggPiAwKSB7XG4gICAgICAgIHBhdGggKz0gcGFydHMuc2hpZnQoKSArICcvJztcbiAgICAgICAgdHJ5IHtcbiAgICAgICAgICBhd2FpdCBweW9kaWRlLkZTLm1rZGlyKHBhdGgpO1xuICAgICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgICAgaWYgKGUubmFtZSAhPT0gXCJFcnJub0Vycm9yXCIpIHRocm93IGU7XG4gICAgICAgICAgaWYgKGUuZXJybm8gIT09IDIwKSB7XG4gICAgICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICAgICAgY29uc3QgZXJyb3JUZXh0ID0gYXdhaXQgcHlvZGlkZS5fbW9kdWxlLlVURjhUb1N0cmluZyhlcnJvclRleHRQdHIpO1xuICAgICAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBGaWxlc3lzdGVtIEVycm9yICR7ZS5lcnJub30gXCIke2Vycm9yVGV4dH1cIi5gKTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH1cblxuICAgICAgLy8gV3JpdGUgdGhpcyBmaWxlIHRvIHRoZSBWRlNcbiAgICAgIHRyeSB7XG4gICAgICAgIHJldHVybiBhd2FpdCBweW9kaWRlLkZTLndyaXRlRmlsZShmaWxlLCBuZXcgVWludDhBcnJheShkYXRhKSk7XG4gICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgIGlmIChlLm5hbWUgIT09IFwiRXJybm9FcnJvclwiKSB0aHJvdyBlO1xuICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICBjb25zdCBlcnJvclRleHQgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuVVRGOFRvU3RyaW5nKGVycm9yVGV4dFB0cik7XG4gICAgICAgIHRocm93IG5ldyBFcnJvcihgRmlsZXN5c3RlbSBFcnJvciAke2UuZXJybm99IFwiJHtlcnJvclRleHR9XCIuYCk7XG4gICAgICB9XG4gICAgfSkucmVkdWNlKChjdXIsIG5leHQpID0+IGN1ci50aGVuKG5leHQpLCBQcm9taXNlLnJlc29sdmUoKSk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYFB5b2RpZGUgZW52aXJvbm1lbnQgc2V0dXBgO1xuICAgIGF3YWl0IHNldHVwUHl0aG9uKHB5b2RpZGUpO1xuXG4gICAgc3RhdHVzVGV4dC5yZW1vdmUoKTtcbiAgICBpZiAoc3RhdHVzQ29udGFpbmVyLmNoaWxkcmVuLmxlbmd0aCA9PSAwKSB7XG4gICAgICBzdGF0dXNDb250YWluZXIucGFyZW50Tm9kZS5yZW1vdmUoKTtcbiAgICB9XG4gICAgcmV0dXJuIHB5b2RpZGU7XG4gIH0pKCkuY2F0Y2goKGVycikgPT4ge1xuICAgIHN0YXR1c1RleHQuc3R5bGUuY29sb3IgPSBcInZhcigtLWV4ZXJjaXNlLWVkaXRvci1obC1lciwgI0FEMDAwMClcIjtcbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gZXJyLm1lc3NhZ2U7XG4gICAgLy9pbmRpY2F0b3JDb250YWluZXIucXVlcnlTZWxlY3RvcihcIi5zcGlubmVyLWdyb3dcIikuY2xhc3NMaXN0LmFkZChcImQtbm9uZVwiKTtcbiAgICB0aHJvdyBlcnI7XG4gIH0pO1xuXG4gIC8vIEtlZXAgdHJhY2sgb2YgaW5pdGlhbCBPSlMgYmxvY2sgcmVuZGVyXG4gIGNvbnN0IHJlbmRlcmVkT2pzID0ge307XG5cbiAgY29uc3QgcHJvY2VzcyA9IGFzeW5jIChjb250ZXh0LCBpbnB1dHMpID0+IHtcbiAgICBjb25zdCBweW9kaWRlID0gYXdhaXQgcHlvZGlkZVByb21pc2U7XG4gICAgY29uc3QgZXZhbHVhdG9yID0gbmV3IFB5b2RpZGVFdmFsdWF0b3IocHlvZGlkZSwgY29udGV4dCk7XG4gICAgYXdhaXQgZXZhbHVhdG9yLnByb2Nlc3MoaW5wdXRzKTtcbiAgICByZXR1cm4gZXZhbHVhdG9yLmNvbnRhaW5lcjtcbiAgfVxuXG4gIHJldHVybiB7XG4gICAgcHlvZGlkZVByb21pc2UsXG4gICAgcmVuZGVyZWRPanMsXG4gICAgcHJvY2VzcyxcbiAgfTtcbn1cbiJ9XX0=
 </script>
 <div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
 <div id="exercise-loading-status" class="d-flex gap-2">
@@ -1359,7 +881,8 @@ W10=
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1"><p>Note that this is from the full code, so this code does not work stand-alone<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>hint: there’s a ‘copy all’ button!<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>This can technically be donw without plt.ion too, but it will often be a bit slow<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
@@ -1798,12 +1321,12 @@ window._ojs.runtime.interpretFromScriptTags();
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./evo_intro_text.html" class="pagination-link" aria-label="Introduction to evolution">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to evolution</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction to evolution</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./evo_practical_2.html" class="pagination-link" aria-label="Sticking together">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sticking together</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./evo_practical_2.html" class="pagination-link" aria-label="Genotypes and phenotypes">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Genotypes and phenotypes</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

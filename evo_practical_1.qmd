@@ -2,33 +2,70 @@
 params:
   show_answers: false
 ---
-# What gets selected?
 
-## Genotypes, phenotypes, and the rate of evolution
+# Mutation and selection
 
-During the lecture, we discussed the differences between the genotype (that which mutates) and the phenotype (that which is selected). Although you have likely already heard about these concepts, how can we study them in evolutionary models? During this practical, you will write your own evolutionary algorithms of increasing complexity, in order to learn about these topics. By the end of this practical, you should understand why the translation from genotype to phenotype (often referred to as the genotype-phenotype map) is such an important concept in evolutionary biology.
+## Moran processes and spatial populations
+
+During the lecture, we discussed the differences between the genotype (that which mutates) and the phenotype (that which is selected). Although you have likely already heard about these concepts, how can we study them in  evolutionary models? During this practical, you will write your own evolutionary algorithms of increasing complexity, in order to learn about these topics. By the end of this practical, you should understand why the translation from genotype to phenotype (often referred to as the genotype-phenotype map) is such an important concept in evolutionary biology.
 
 ## Simple model where fitness as a number
 
 In the introduction of this course part on evolution, we have already looked at as simple "Moran process":
 
-1. Start with a population of individuals, each with a fitness value.
-2. Select individuals based on their fitness to reproduce.
-3. Replace a random individual with this newly generate offspring. 
-4. With a small probability, modify the 'fitness' value of the newborn.  
+1. Start with a population of individuals, each with a fitness value
+2. Sample one individual weighted by its fitness ("winner") 
+3. Replace a random individual ("loser") with a copy of the "winner"
+4. With a small probability, modify the fitness value of the newborn
 
 And so on. 
 
-With a Moran process, competition between individuals is modeled in a very indirect ("implicit") way. By always selecting fit individuals, and removing a random other, any individual in the populations could be replaced by another individual, which statistically is a fitter individual. One could thus say that "everyone is competing with everyone". A different method is often applied in spatially structured models, as in this case only nearby individuals are competing. Then, we could sample who wins from an imaginary roulette wheel:
+With a Moran process, competition between individuals is modeled in a very indirect ("implicit") way. By always selecting fit individuals, and removing a random other, any individual in the populations could be replaced by another individual, which statistically is a fitter individual. One could thus say that "everyone is competing with everyone". But we could also imagine just a small subset of individuals are competing. For this, imagine a roulette wheel:
 
-![](images/roulette.png)
+![Visual representation of a roulette wheel algorithm](images/roulette.png){#fig-roulette}
 
-As can be seen, not all individual have the same size on the roulette wheel. That depicts differences in their growth rates, biomass, or other approximations of "fitness". Also, the roulette wheel contains an area (shown in black) that shapes the chance that nobody reproduces. We will try and implement this rule to let individuals reproduce based on their fitness, but with only 10 competitors at a time. Let's start with a code where individuals have a "fitness" value, but it not yet used for selection (see below). **Read/test this code thoroughly before you move on to the next section**.
+Just as before, not all individuals have the same size on the roulette wheel (this represents the weighted sampling), which could represent their growth rates, biomass, or other approximations of "fitness". Also notice how the wheel only contains a few individuals, plus an extra (black) area which shapes the chance that nobody reproduces. Let's look at the code for a roulette wheel like this. **Read and test the code below thoroughly before you move on to the next section**.
+
+```{pyodide}
+# Import necessary libraries
+import random 
+
+# Make up some individuals and their fitness values
+individuals = ["Maca", "Momo", "Miffy", "Maddy", "Minky", "Mooby"]
+fitnesses = [0.1, 0.01, 0.5, 0.2, 1e-20, 0.2]
+
+# Calculate the total fitness 
+total = sum(fitnesses)
+
+# Sample a winner and print it
+winner = random.choices(individuals, weights=fitnesses, k=1)[0]
+print(f"{winner} reproduces!")
+```
+
+
+:::{#exr-roulette}
+
+## Questions about the roulette wheel - Algorithmic thinking
+
+<br>
+
+a. Modify the code to make all individuals much less fit (e.g. make all fitnesses 100-fold smaller). Spin the wheel multiple times by using the code above. What happens?
+b. How can you modify the code to make the code represent @fig-roulette better. Try it!
+:::
+
+
+:::{.content-visible when-meta="params.show_answers"}
+> **Answer**<br>
+a. Nothing really changes, all that has changed is relative fitnesses but it still samples the same individuals with the same chance. 
+b. We would like the odds of nobody reproducing to be represented (the black slice in @fig-roulette). You can do that by extending the list of individuals with an empty 'dummy' `["Maca", "Momo", "Miffy", "Maddy", "Minky", "Mooby", "Nobody"]` and give this a fixed weight in the fitness list `[0.1, 0.01, 0.5, 0.2, 1e-20, 0.2, 0.5]`. If the individual's all have low fitness (`[0.001, 0.001, 0.005, 0.002, 1e-20, 0.002, 0.5]`), this will most likely results in "nothing" happening.
+:::
+
+## A simple evolutionary model with a roulette wheel
+
+Now that you've understood the roulette wheel, let's implement it as part of the evolutionary model. Copy the code^[hint: there's a 'copy all' button!] below (click to expand) to your Visual Studio code and study it. 
 
 :::{.callout-note collapse=true}
-
-## CODE FOR "fitness without fitness"
-
+## Code for 'fitness without fitness'
 ```python
 import random
 import math
@@ -115,8 +152,8 @@ for gen in range(generations):
     # For each individual, perform a reproduction event
     for _ in range(100):  # 100 competition events per generation
         # Select 1 random individual for replication
-        probs = [1 for fit in population] # All probability weights are equal (1.0)
-        parent_idx = random.choices(range(len(population)), weights=probs)[0] # Grab one random individual based on an unweighted list...
+        probs = [1 for fit in population] # Store all fitnesses in a list
+        parent_idx = random.choices(range(len(population)), weights=probs)[0] # Grab one random individual based on fitness.... 
         # Select individual to be replaced (uniform random)
         dead_idx = random.randrange(len(population))
         # Copy population for next generation
@@ -130,681 +167,176 @@ input("\nSimulation complete. Press Enter to exit plot window...")
 ```
 :::
 
-## Making a roulette wheel with everyone in it
+There are two important things to notice from this piece of code. 
 
-If you have read the code, you will see that we can pass a list of weights to the function `random.choices`, to determine who is most likely to be sampled. Currently, all the weights are set to 1:
+One is somewhat technical: instead of just plotting the end-result with plain matplotlib, it uses 'plt.ion' to launch matplotlib in so-called 'interactive mode'. This way, you can more easily update the plot in real time, instead of having to redraw the whole figure. The plotting can be somewhat of a hassle sometimes, so it is okay if you're still figuring this out. The easiest way to understand it is to play with it yourself: change some of the plotting code and see what happens!
 
-`probs = [1 for fit in population] # All probability weights are equal (1.0)`
+The second thing you should notice is that fitness does not increase...
+
 
 :::{#exr-roulette}
-## Running the roulette wheel with fitness values
+## Fixing the roulette wheel
 <br>
 
-a. Run the code with the current (all equal) weights. What happens?
-b. Modify this line of code to take the fitness values as the weight, rather than 1. (hint: this is a VERY small change in the code).
+a. Which line(s) of the code determines how fitness related to the probability of reproduction?
+b. Modify that piece of code to fix the roulette wheel (hint: this is a VERY small change in the code).
 :::
 
 :::{.content-visible when-meta="params.show_answers"}
 > **Answer**<br>
-a. The line starts at 0.1 (the initial value) and then just randomly wiggles around a bit. This is because the "population" is not really evolving, as everyone has the same chance to reproduce (1). Hence, what we called 'fitness' is not yet treated as such, and just drifts. <br>
-b. We change one word in the line `probs = [1 for fit in population] # All probability weights are equal (1.0)`. Instead of `1 for fit` we want `fit for fit`, meaning that all probabilities will be equal to the fitness values in the population. Now the population evolves to increase its fitness value over time.
-:::
-
-
-## A roulette wheel of a subset of individuals
-
-Instead of letting everyone reproduce, let us modify the code to only sample from a smaller list of 'competitors', and spin a virtual roulette wheel to determine who wins. There are many ways to implement this, but here's how we will do it. We will sample $N$ individuals from the population, and implement the following algorithm:
-
-1. Select a random subset of $N$ individuals from the population.
-2. Take/compute the fitness of each selected individual.
-3. Add a reproduction-skip option with a fixed weight.
-4. Choose one individual or the skip option using weighted random selection.
-5. If an individual was chosen, mutate it and replace a random individual in the population.
-
-Below, there's a small snippet of code doing what is explained above^[Note that this is from the full code, so this code does not work stand-alone]. The variable `no_reproduction_chance` is
-the fixed weight that nobody gets to reproduce:
-
-:::{.callout-note collapse=false}
-
-### Roulette wheel algorithm
-```python
-  tournament_size = 10  
-  no_reproduction_chance = 1
-  
-  competitors = random.sample(population, tournament_size)
-  # Make a list of their fitness values
-  fitness_values = [fit for fit in competitors]
-  total = sum(fitness_values)
-  # Add a "no reproduction" dummy competitor with fitness = 0
-  competitors_with_dummy = competitors + [None]
-  probs = [f for f in fitness_values] + [no_reproduction_chance]
-  winner = random.choices(competitors_with_dummy, weights=probs, k=1)[0]
-  if winner is not None:
-      # Mutate winner to produce offspring
-      offspring = mutate(winner)
-      remove_idx = random.randrange(len(population))
-      population[remove_idx] = offspring  
-        
-```
-
-:::
-
-After you understand the roulette wheel algorithm, do the following exercise:
-
-:::{#exr-roulette}
-
-## Questions about the roulette wheel - Algorithmic thinking
-
-<br>
-
-a. Let's imagine a moment where the roulette wheel contains only 10 highly unfit individuals (e.g. all fitness values are 0.01). What is the chance that someone will reproduce? (you don't have to calculate it, but give your reasoning)
-b. Answer the same question as in **a.**, but now imagine that all 10 individuals have a fitness value of 1.
-c. Answer question b. and c. again, but now assume that `no_reproduction_chance` is equal to 0. 
-d. Describe what the `no_reproduction_chance` parameter does in biological terms. 
-e. Spatially structured populations are often placed on a grid. **Describe** how you could implement a roulette wheel to resolve *local* competition, *e.g.* when an empty grid point is competed for by the neighbours.
-:::
-
-
-:::{.content-visible when-meta="params.show_answers"}
-> **Answer**<br>
-a. If we sample 10 unfit individuals, the weight of the `no_reproduction_event` is proportionally high (the black slice of the roulette wheel is big). Hence, there is only a small chance that anyone will reproduce to begin with.<br> 
-b. If we sample 10 fit individuals (fitness 1), the chances are much higher that someone will reproduce.<br>
-c. If the dummy value is 0, the chances that someone will reproduce are the same in both scenarios, as even with very unfit individuals there is no chance that nobody reproduces.<br> 
-d. In nature, if no individual is sufficiently fit, reproduction may not occur at all. For example, if the competing individuals are bacteria with very low glucose uptake rates, they may not yet be physiologically ready to reproduce. In such cases, population size should remain stable or even decline if death is also occurring. The `no_reproduction_event` captures this by ensuring that fitness is not judged solely in relative terms against other individuals, but also in absolute terms against environmental demands.<br>
-e. If a grid point is empty (contains no individual), make a list of (up to) 8 individuals around that grid point. Apply the roulette wheel for those individuals, and place the 'winner' inside the empty grid point. 
+a. The line `probs = [1 for fit in population]` says that for each individual in the population, the probability (probs = probabilities) is 1. So they all have the same fitness. Hence, what we called 'fitness' is not yet treated as such, and the population just drifts. <br>
+b. We change one word in the line `probs = [1 for fit in population]`. Instead of `1 for fit` we want `fit for fit`, meaning that all probabilities will be equal to the fitness values in the population. Now the population evolves to increase its fitness value over time. 
 :::
 
 ## Spatial structure: Local competition on a grid
 
-In nature, individuals don't usually compete "with everyone equally". Instead, organisms occupy physical space, and competition happens locally (between nearby individuals). To implement this, we put individuals on a 2D grid rather than as a flat list like before. Then, we could repeat the following algorithm:
+In nature, individuals don't usually compete "with everyone equally". Instead, organisms occupy physical space, and competition happens locally (between nearby individuals). The simplest way to implement this, is a 2D grid, with at most 1 individual in a grid point. Then, we could repeat the following algorithm:
 
 1. **Pick a random site ** 
 2. **Collect all local neighbours** (e.g. 8 surrounding cells plus the individual already occupying that site)
 3. **Spin a roulette wheel** among only those individuals
 4. The winner replaces the individual at that site
 
-Below is a complete, working code example. This includes visualization with matplotlib, which is **new for you** — we'll explain it step-by-step!
+Below is a complete, working code example of such a spatial implementation. To compare it with the (non-spatial) Moran process, we also run such a population evolving in parallel. Study the code carefully, and run it a few times on your own laptop. 
 
-BLABLABLABLA
+:::{.callout-note collapse=true}
 
-:::{.callout-note collapse=false}
-
-### Complete code: Spatial Moran on a grid with visualization
+### Complete code: Space vs non-space
 
 ```python
 import random
-import math
 import matplotlib.pyplot as plt
-import numpy as np
 
-# Set random seed for reproducibility
-random.seed(42)
+random.seed(12) # Ensures reproducability
 
-# --- PARAMETERS ---
-side = 15                    # Grid is 15x15 = 225 individuals
-initial_fitness = 0.1
-generations = 5000
-mutation_rate = 0.01
-sample_interval = 50         # Update plot every 50 generations
+side = 64  # Chessboard sized grid because why not
+max_time = 250000 # Max number of generations
+mutation_rate = 0.005 # Probability of mutation occurring for an individual
+no_reproduction_chance = 0.1  # Probability of no reproduction event occurring
+sample_interval = 500 # Moran step interval at which the plot is updated (higher = more speed)
 
-# --- INITIALIZATION ---
-# Create a 2D grid where each cell is an individual with a fitness value
-population = [[initial_fitness for _ in range(side)] for _ in range(side)]
-
-# Lists to track average fitness over time
-avg_fitness_over_time = []
-
-# --- CORE FUNCTIONS ---
-
-def mutate(fitness, rate=mutation_rate):
-    """Mutate the fitness value with a given probability."""
-    if random.random() < rate:
-        return min(1.0, max(0.0, fitness + random.uniform(-0.1, 0.1)))
+## To keep the main loop more 'readable', we first defined functions of often-repeated procedures
+# mutate fitness (uniform step +/- 0.2, clipped to [0, 1])
+def mutate(fitness):
+    if random.random() < mutation_rate:
+        new_fit = fitness + random.uniform(-0.2, 0.2)
+        return max(0.0, min(1.0, new_fit))
     return fitness
 
+# collect all neighbours of a grid point and return that list
 def get_neighbors(i, j):
-    """Get the 8 neighbors of a grid cell (Moore neighborhood with wrapping)."""
     neighbors = []
-    for di in range(-1, 2):
-        for dj in range(-1, 2):
-            if di == 0 and dj == 0:
-                continue  # Don't include the cell itself
-            ni = (i + di) % side      # % wraps around at edges
-            nj = (j + dj) % side
-            neighbors.append((ni, nj))
+    for di in [-1, 0, 1]:
+        for dj in [-1, 0, 1]:
+            neighbors.append(((i + di) % side, (j + dj) % side))
     return neighbors
 
-def calculate_average_fitness(population):
-    """Calculate the average fitness across all cells."""
-    total = sum(sum(row) for row in population)
-    return total / (side * side)
+# Initialize two populations one will be on the grid, one will updated 'classic Moran' style
+spatial_pop = [[0.1] * side for _ in range(side)]
+mixed_pop = [0.1] * (side * side)
 
-# --- PLOTTING SETUP (New visualization!) ---
-# Create a figure with TWO subplots side-by-side
-fig, (ax_grid, ax_fitness) = plt.subplots(1, 2, figsize=(14, 6))
+# Setup plot with matplotlib 
+fig, (ax_grid, ax_compare) = plt.subplots(1, 2, figsize=(14, 5)) # layout with 2 sub plots
+im = ax_grid.imshow(spatial_pop, cmap='viridis', vmin=0, vmax=1) # heatmap setup
+ax_grid.set_title("Spatial") # title for the spatial population heatmap
+fig.colorbar(im, ax=ax_grid) # colour bar for fitness
 
-# LEFT PLOT: The 2D grid showing fitness as colors
-# imshow() displays a 2D array as a colored image/heatmap
-im = ax_grid.imshow(population, cmap='RdYlGn', vmin=0, vmax=1)
-ax_grid.set_title("Fitness on the grid\n(Red=Low, Green=High)")
-ax_grid.set_xlabel("Column")
-ax_grid.set_ylabel("Row")
-cbar = fig.colorbar(im, ax=ax_grid, label='Fitness')
+line_spatial, = ax_compare.plot([], [], label='Spatial population', linewidth=2)
+line_simple, = ax_compare.plot([], [], label='Mixed population', linewidth=2, linestyle='--')
+ax_compare.set_xlabel("Generation") # x-axis label for the comparison plot
+ax_compare.set_ylabel("Fitness") # y-axis label for the comparison plot
+ax_compare.set_ylim(0, 1) # set y-axis limits
+ax_compare.legend() # show legend
+ax_compare.grid(True) # enable grid for better readability
 
-# RIGHT PLOT: Line graph tracking average fitness over time
-line, = ax_fitness.plot([], [], color='tab:blue', linewidth=2)
-ax_fitness.set_xlabel("Generation")
-ax_fitness.set_ylabel("Average Fitness")
-ax_fitness.set_ylim(0, 1)
-ax_fitness.set_title("Population average fitness over time")
-ax_fitness.grid(True)
+plt.ion() # enable 'interactive mode' for matplotlib to speed up the plotting during the evolution loop
 
-plt.ion()  # Turn on interactive mode (allows real-time updates)
-plt.draw()
+avg_spatial, avg_simple = [], [] # keep two lists with averages for the plotting
 
-# --- EVOLUTION LOOP ---
-for gen in range(generations):
-    # Pick a random location to be "replaced" (die)
-    dead_i = random.randint(0, side - 1)
-    dead_j = random.randint(0, side - 1)
-
-    # Get this cell's neighbors (the "subset of individuals")
-    neighbors = get_neighbors(dead_i, dead_j)
-
-    # Extract fitness values from all neighbors
-    fitness_values = [population[ni][nj] for ni, nj in neighbors]
-
-    # Roulette wheel selection: neighbors with higher fitness are more likely to reproduce
-    total_fit = sum(fitness_values)
-    if total_fit > 0:
-        probs = [f / total_fit for f in fitness_values]
-    else:
-        probs = [1 / len(neighbors)] * len(neighbors)
-
-    # Choose a parent neighbor based on fitness
-    parent_idx = random.choices(range(len(neighbors)), weights=probs, k=1)[0]
-    parent_i, parent_j = neighbors[parent_idx]
-
-    # Parent reproduces: offspring replaces the dead individual (with mutation)
-    population[dead_i][dead_j] = mutate(population[parent_i][parent_j])
-
-    # Update plots at intervals (not every generation, for performance)
+# Evolution loop
+for gen in range(max_time):
+    # Spatial population on a grid
+    i, j = random.randint(0, side-1), random.randint(0, side-1)
+    neighbors = get_neighbors(i, j)
+    fits = [spatial_pop[ni][nj] for ni, nj in neighbors]
+    
+    # Add dummy "no reproduction" event
+    neighbors_with_dummy = neighbors + [None]
+    probs = fits + [no_reproduction_chance]
+    
+    winner = random.choices(neighbors_with_dummy, weights=probs, k=1)[0]
+    
+    if winner is not None:  # Only reproduce if winner is not the dummy
+        new_fitness = mutate(spatial_pop[winner[0]][winner[1]])
+        spatial_pop[i][j] = new_fitness
+    
+    # Non-spatial (moran) population
+    fits_moran = mixed_pop.copy()
+    
+    simple_with_dummy = list(range(len(mixed_pop))) + [None]
+    probs_simple = fits_moran + [no_reproduction_chance]
+    
+    winner_moran = random.choices(simple_with_dummy, weights=probs_simple, k=1)[0]
+    
+    if winner_moran is not None:
+        dead_idx = random.randint(0, len(mixed_pop)-1)
+        mixed_pop[dead_idx] = mutate(mixed_pop[winner_moran])
+    
+    
+    # Update plot
     if gen % sample_interval == 0:
-        avg_fit = calculate_average_fitness(population)
-        avg_fitness_over_time.append(avg_fit)
+        avg_spatial.append(sum(sum(row) for row in spatial_pop) / (side*side))
+        avg_simple.append(sum(mixed_pop) / len(mixed_pop))
+        x = [i*sample_interval for i in range(len(avg_spatial))]
+        
+        im.set_array(spatial_pop)
+        line_spatial.set_data(x, avg_spatial)
+        line_simple.set_data(x, avg_simple)
+        ax_compare.relim()
+        ax_compare.autoscale_view()
+        fig.suptitle(f"Time step {gen}")
+        plt.pause(0.01)
 
-        # Update the left plot: refresh the grid colors
-        im.set_array(population)
-
-        # Update the right plot: add new point to the line
-        x_vals = [i * sample_interval for i in range(len(avg_fitness_over_time))]
-        line.set_data(x_vals, avg_fitness_over_time)
-        ax_fitness.relim()
-        ax_fitness.autoscale_view()
-
-        # Update title with current generation and fitness
-        fig.suptitle(f"Generation {gen}: Avg Fitness = {avg_fit:.3f}", fontsize=12)
-
-        plt.pause(0.01)  # Brief pause to see the update
-
-print("Simulation complete!")
-input("Press Enter to close the plot window...")
+plt.show()
 ```
 
 :::
 
-**Explaining the visualization (bit by bit):**
+**Explaining the plotting with Matplotlib (bit by bit):**
+
+First of all, plotting is not a learning goal of this course. Matplotlib is just one of the many ways to visualise data and simulations, and there's a lot of different ways to do it. For the code above, here's what happens: 
 
 1. **`fig, (ax_grid, ax_fitness) = plt.subplots(1, 2, figsize=(14, 6))`** — This creates one figure with 2 side-by-side subplots. `ax_grid` is the left plot, `ax_fitness` is the right.
 
-2. **`imshow(population, cmap='RdYlGn', vmin=0, vmax=1)`** — This displays the 2D grid as a heatmap. `cmap='RdYlGn'` means Red-Yellow-Green colors, where red=0 (low fitness) and green=1 (high fitness). Each cell's color shows that cell's fitness value.
+2. **`im = ax_grid.imshow(spatial_pop, cmap='viridis', vmin=0, vmax=1)`** — This will show the 2D grid as a heatmap. `cmap='viridis'` sets the colour gradient for fitness, where the darkblue-ish means low fitness, and bright yellow means high fitness. 
 
 3. **`fig.colorbar()`** — Adds the color scale legend (bar) next to the heatmap so you can read what colors mean.
 
-4. **`plt.ion()` and `plt.draw()`** — These enable interactive mode. Instead of showing one static plot at the end, the plot updates while the simulation runs.
+4. **`plt.ion()` and `plt.draw()`** — These enable interactive mode. Instead of showing one static plot at the end, the plot updates while the simulation runs.^[This can technically be donw without plt.ion too, but it will often be a bit slow]
 
-5. **`im.set_array(population)` and `line.set_data()`** — During the loop, we update the plot data without redrawing everything from scratch. This is much faster!
+5. **`im.set_array(population)` and `line.set_data()`** — During the loop, we update the plot data without redrawing everything from scratch. This is again a trick to improve speed a bit. 
 
-6. **`plt.pause(0.01)`** — This gives your screen time to refresh so you can see the updates.
+6. **`plt.pause(0.01)`** — This gives your screen time to refresh so you can see the updates. Without it it will not catch up and you will see no updates of the plot. 
 
-**What to expect when you run this:**
-- Watch the left plot: You'll see green clusters expand across the red background as fit mutants invade locally. This is the spatial pattern!
-- Watch the right plot: Average fitness creeps upward, but more slowly and noisily than the non-spatial version.
-- The title updates to show which generation you're on.
-
-**Why this matters biologically:** In the non-spatial model (everyone competes with everyone), fit mutants spread immediately across the population. But with spatial structure, a fit mutant can only invade if it can compete well with *local* neighbors. This creates distinct spatial clusters and can slow down evolution, or even create new ecological dynamics!
 
 :::{#exr-spatial-moran}
 
-## Spatial Moran: Implementation and analysis
+## Comparing mixed and non-mixed populations
 
-a. **Modify your code** to arrange the population on a grid (instead of a flat list). You can use nested lists, a dictionary with (i,j) coordinates, or even numpy arrays. Start with a small grid like 10x10 or 20x20.
+In the code, we run a moran process "in space", and a basic moran process where we assume a mixed population. 
 
-b. **Implement the `get_neighbors()` function** to return the 8 neighbors of a grid location (Moore neighborhood). Make sure to handle edge wrapping (a cell at the edge should wrap around to the opposite edge).
+a. Are both populations improving at the same rate? It this a coincidence? Test and explain your reasoning.
 
-c. **Modify the evolution loop** to:
-   - Pick a random location to replace (instead of a random individual)
-   - Get its neighbors (your subset)
-   - Use roulette wheel selection **only among those neighbors**
-   - Place the offspring in the dead location
+b. How could you modify the spatial population to make it more similar to the standard Moran process? Try it and/or discuss your implementation with the teachers. 
 
-d. **Visualization:** After each generation (or every N generations), create a heatmap showing fitness or diversity on the grid. You'll see **spatial patterns emerge**. Describe what patterns you see.
+c. Do you think a spatial simulation will always make evolution less efficient? Why/why not? 
 
-e. **Comparison:** Run the spatial model and the non-spatial model side-by-side with the same parameters. How does the spatial structure change the dynamics of fitness and diversity over time?
 
 :::
 
 :::{.content-visible when-meta="params.show_answers"}
 > **Answer**<br>
-> a-c. The code snippet above shows the key ideas. A full implementation would require careful handling of grid indices and visualization.<br>
-> d. In spatial models, you typically see **expanding clusters** of fit individuals or **patchy** diversity patterns. Fit mutants don't instantly take over the population; instead they grow as "waves" expanding from their point of origin. You may also see long-term **coexistence** of different fitness types due to local stability, which is impossible in the non-spatial model.<br>
-> e. The non-spatial model shows fitness increasing smoothly, with diversity concentrated at moments of invasion. The spatial model often shows more **noisy** fitness dynamics, because a fit mutant has to compete locally rather than globally. Diversity can also be **higher** in the spatial model because clusters of different types can coexist. Finally, evolution may be **slower** in spatial models if a beneficial mutant arises far from the bulk of the population.
-:::
-
-## Diversity patterns
-
-Modify the function `calculate_diversity` to calculate the diversity of the population as the standard deviation of the fitness values.
-
-:::{#exr-diversitydynamics}
-## The dynamics of diversity - Biology
-<br>
-
-a. Use a low mutation rate and study the dynamics of diversity. Describe the pattern verbally. 
-:::
-
-:::{.content-visible when-meta="params.show_answers"}
-> **Answer**<br>
-> A snippet to calculate the standard deviation of a population is shown below. Note that this value is already being plotted, so if you modify this function you ought to be able to see what happens immediately. 
->```python
->def calculate_diversity(population):
->    """Calculate diversity as the standard deviation of fitness values."""
->    mean = sum(population) / len(population)
->    variance = sum((x - mean) ** 2 for x in population) / (len(population) - 1)
->    return math.sqrt(variance)
->```
-> a. The green dotted line is the standard deviation of the values in the population ('diversity'). From this we can see that the population is only briefly diverse whenever a new, fit individual appears. In between these phases, diversity is 0. This makes intuitive (biological) sense, as with a low mutation rate the only moments where there is more than 1 species is during the invasion of a new mutant. During all other phases, there is just a single (fittest) species. 
->![](images/evo_pract2_div.png)
-:::
-
-## Evolving a DNA sequence
-
-A big problem with the previous model is there is no true distinction between genotype (that which mutates) and phenotype (that which is selected). Let us try and adapt the model to be more biologically meaningful, by making each individual represented by a DNA sequence. Copy the following code:
-
-:::{.callout-note collapse=true}
-
-## Starting code for "evolving a DNA sequence"
-
-```python
-import random
-import math
-import matplotlib.pyplot as plt
-from collections import Counter
-
-# set the random number seed
-random.seed(0)
-
-plt.ion()  # Enable interactive mode
-
-# Parameters
-alphabet = "ATCG"
-target_sequence = "GATGCGCGCTGGATTAAC"  # Example target sequence
-dna_length = len(target_sequence)
-target_length = len(target_sequence)
-
-# Simulation settings
-population_size = 500  # must be a square number for grid mode
-generations = 20000
-mutation_rate = 0.001
-sample_interval = 5
-sample_size = population_size
-no_reproduction_chance = 0.1
-
-# Core functions
-def fitness(dna):
-    return 1 - sum(a != b for a, b in zip(dna, target_sequence)) / target_length
-
-def mutate(dna, rate=mutation_rate):
-    return ''.join(
-        random.choice([b for b in alphabet if b != base]) if random.random() < rate else base
-        for base in dna
-    )
-
-def count_beneficial_mutations(dna):
-    f0 = fitness(dna)
-    count = 0
-    for i in range(len(dna)):
-        for b in alphabet:
-            if b != dna[i]:
-                mutant = dna[:i] + b + dna[i+1:]
-                if fitness(mutant) > f0:
-                    count += 1
-    return count
-
-def diversity(pop):
-    counts = {}
-    for ind in pop:
-        counts[ind] = counts.get(ind, 0) + 1
-    total = len(pop)
-    return -sum((c/total) * math.log(c/total + 1e-9) for c in counts.values()) if total > 0 else 0
-
-# Initialize population
-initial_sequence = "GATAGCGAAGTTTAGCCG" # far from target (only first 3 are correct)
-population = [initial_sequence for _ in range(population_size)]
-
-avg_fitness = []
-avg_beneficial = []
-diversity_over_time = []
-best_individuals = []
-
-def get_neighbors(i, j):
-    return [(x % side, y % side)
-            for x in range(i-1, i+2)
-            for y in range(j-1, j+2)]
-
-# Initialize interactive plot
-fig, ax1 = plt.subplots(figsize=(12, 8))
-ax1.set_xlabel("Generation")
-ax1.set_ylabel("Average Fitness", color='tab:blue')
-ax1.set_ylim(0, 1)
-line1, = ax1.plot([], [], color='tab:blue', linewidth=2, label='Fitness')
-ax1.tick_params(axis='y', labelcolor='tab:blue')
-
-ax2 = ax1.twinx()
-ax2.set_ylabel("Beneficial Mutations / Diversity", color='tab:purple')
-line2, = ax2.plot([], [], color='tab:purple', linestyle='--', linewidth=2, label='Beneficial Mutations')
-line3, = ax2.plot([], [], color='tab:green', linestyle=':', linewidth=2, label='Diversity')
-ax2.tick_params(axis='y', labelcolor='tab:purple')
-fig.suptitle("Evolution Toward Target Sequence")
-fig.tight_layout()
-ax2.set_ylim(0, 20)
-fig.legend(loc='upper right')
-plt.grid(True)
-plt.draw()
-
-best_seq = ""
-best_score = -1
-found = False
-
-# Evolution loop
-for gen in range(generations):
-    fitnesses = [fitness(ind) for ind in population]
-    total_fit = sum(fitnesses)
-    best = max(fitnesses)
-    if(best == 1 and not found):
-        found = True
-        print("Found perfect solution at generation", gen)
-        
-    if gen % sample_interval == 0:
-        sample = random.sample(population, sample_size)
-        avg_beneficial.append(sum(count_beneficial_mutations(ind) for ind in sample) / sample_size)
-        diversity_over_time.append(diversity(population))
-
-        # Update plot data
-        line1.set_data(range(len(avg_fitness)+1), avg_fitness + [sum(fitnesses)/population_size])
-        line2.set_data(range(len(avg_beneficial)), avg_beneficial)
-        line3.set_data(range(len(diversity_over_time)), diversity_over_time)
-        ax1.relim(); ax1.autoscale_view()
-        ax2.relim(); ax2.autoscale_view()
-        best = max(population, key=fitness)
-        fig.suptitle(f"Best: {best} (target: {target_sequence})", fontsize=14)
-        plt.pause(0.01)
-
-    else:
-        avg_beneficial.append(avg_beneficial[-1])
-        diversity_over_time.append(diversity_over_time[-1])
-
-    # Tournament selection (as in evolving_fitness_final.py)
-    new_pop = []
-    tournament_size = 10  # can be adjusted
-
-    for _ in range(population_size):
-        # Select tournament_size individuals randomly
-        competitors = random.sample(population, tournament_size)
-        # Pick the one with highest fitness
-        fitness_values = [fitness(ind) for ind in competitors]
-        total = sum(fitness_values)
-        
-        probs = [f / total for f in fitness_values]
-        winner = random.choices(competitors, weights=probs, k=1)[0]
-        # Mutate winner to produce offspring
-        offspring = mutate(winner)
-        new_pop.append(offspring)
-
-    population = new_pop
-
-    avg_fitness.append(sum(fitness(ind) for ind in population) / population_size)
-    if gen % 250 == 0:
-        best = max(population, key=fitness)
-        best_individuals.append((gen, best))
-
-input("\nSimulation complete. Press Enter to exit plot window...")
-```
-:::
-
-Answer the following questions using the options available in the model:
-
-:::{#exr-evolving-dna}
-
-## Evolving DNA - Biology / abstract thinking
-   a. Run the code. What does the new (dashed blue) line represent? Do you understand how it changes over time?
-
-   The program reports after how many generations it manages to find the target sequence. With default settings this can take a long time... (default: 429 generations)
-
-   b. Modify the mutation rate to see how it affects the time to find the target sequence. Try different mutation rates between 0.0001 and 0.1. Keep track of both how long (number of generations) it takes to find the target, and how fit the population is once the target is found. What do you observe?
-   c. Diversity is no longer calculated as the standard deviation in fitness, but as the Shannon diversity of all present sequences (although it is not super complex, you do not need to fully understand this function). Because of this, the exact number (quantities) cannot be compared to our earlier model. Do you see a *qualitative* differences?
-d. Study how fitness is calculated in this model. Is there a distinction between genotype en phenotype? Why/why not?
-
-:::
-
-:::{.content-visible when-meta="params.show_answers"}
-> **Answer**<br>
-a. The new blue dotted line represents how many mutations are beneficial (towards the target). As the population gets closer to the target, the number of beneficial mutations decreases. As such, this line is a mirror image of the fitness in the population. We will look a bit deeper into this line in the next model. <br>
-b. Generally speaking, a higher mutation rate helps to find the target faster. However, with high mutation rates (0.01 or higher), the fitness after the target is found starts to decrease, as individual produce many (unfit) mutants. In fact, if mutation rate is too high (approximately 0.04 or higher), the population fails to find the target at all, as reproduction is too inaccurate! This concept is known as the 'Error Threshold' or the 'Error Catastrophe' in evolutionary biology. <br>
-c. Qualitatively, there is no clear difference to what we saw before: diversity only peaks at moments when there is a new mutant coming in, but otherwise diversity is still 0. 
-d. There is no distinction between genotype and phenotype. Fitness is directly calculated from the DNA sequence, so there is no 'genotype-to-phenotype mapping'. <br>
-:::
-
-## Evolving a protein sequence
-
-Next we will extend the simulation a little more. The individual genotypes will still be represented as a DNA sequence, but before evaluating fitness this will be translated into a **protein** sequence. To do so, the code first defines the codon table (which we of course all know by heart =)), and then translates the DNA sequence into a protein sequence. The protein sequence is then used to calculate the fitness of the individual, which is based on how well the protein sequence matches a target protein sequence. The code is as follows:
-
-:::{.callout-note collapse=true}
-
-## Starting code for evolving a protein sequence
-
-```python
-import random
-import math
-import matplotlib.pyplot as plt
-from collections import Counter
-
-# set the random number seed
-random.seed(0)
-
-plt.ion()  # Enable interactive mode
-
-# Codon table
-codon_table = {
-    'TTT': 'F', 'TTC': 'F', 'TTA': 'L', 'TTG': 'L', 'CTT': 'L', 'CTC': 'L', 'CTA': 'L', 'CTG': 'L',
-    'ATT': 'I', 'ATC': 'I', 'ATA': 'I', 'ATG': 'M',
-    'GTT': 'V', 'GTC': 'V', 'GTA': 'V', 'GTG': 'V',
-    'TCT': 'S', 'TCC': 'S', 'TCA': 'S', 'TCG': 'S', 'AGT': 'S', 'AGC': 'S',
-    'CCT': 'P', 'CCC': 'P', 'CCA': 'P', 'CCG': 'P',
-    'ACT': 'T', 'ACC': 'T', 'ACA': 'T', 'ACG': 'T',
-    'GCT': 'A', 'GCC': 'A', 'GCA': 'A', 'GCG': 'A',
-    'TAT': 'Y', 'TAC': 'Y', 'CAT': 'H', 'CAC': 'H',
-    'CAA': 'Q', 'CAG': 'Q', 'AAT': 'N', 'AAC': 'N',
-    'AAA': 'K', 'AAG': 'K', 'GAT': 'D', 'GAC': 'D',
-    'GAA': 'E', 'GAG': 'E', 'TGT': 'C', 'TGC': 'C',
-    'TGG': 'W', 'CGT': 'R', 'CGC': 'R', 'CGA': 'R', 'CGG': 'R', 'AGA': 'R', 'AGG': 'R',
-    'GGT': 'G', 'GGC': 'G', 'GGA': 'G', 'GGG': 'G',
-    'TAA': '*', 'TAG': '*', 'TGA': '*'
-}
-
-# Parameters
-alphabet = "ATCG"
-target_protein = "DARWIN"
-dna_length = len(target_protein)*3
-target_length = len(target_protein)
-
-# Simulation settings
-population_size = 625  # must be a square number for grid mode
-generations = 20000
-mutation_rate = 0.0005   
-sample_interval = 5
-sample_size = population_size
-no_reproduction_chance = 0.01
-
-# Core functions
-def translate(dna):
-    return ''.join(codon_table.get(dna[i:i+3], '?') for i in range(0, len(dna), 3))
-
-def fitness(dna):
-    protein = translate(dna)
-    return 1 - sum(a != b for a, b in zip(protein, target_protein)) / target_length
-
-def mutate(dna, rate=mutation_rate):
-    return ''.join(
-        random.choice([b for b in alphabet if b != base]) if random.random() < rate else base
-        for base in dna
-    )
-
-def count_beneficial_mutations(dna):
-    f0 = fitness(dna)
-    count = 0
-    for i in range(len(dna)):
-        for b in alphabet:
-            if b != dna[i]:
-                mutant = dna[:i] + b + dna[i+1:]
-                if fitness(mutant) > f0:
-                    count += 1
-    return count
-
-def diversity(pop):
-    counts = Counter(pop)
-    total = len(pop)
-    return -sum((c/total) * math.log(c/total + 1e-9) for c in counts.values()) if total > 0 else 0
-
-# Initialize population
-initial_sequence = ''.join(random.choice(alphabet) for _ in range(dna_length))
-population = [initial_sequence for _ in range(population_size)]
-
-avg_fitness = []
-avg_beneficial = []
-diversity_over_time = []
-best_individuals = []
-
-# Grid setup
-side = int(math.sqrt(population_size))
-assert side * side == population_size, "Population size must be a square number for grid mode"
-
-def get_neighbors(i, j):
-    return [(x % side, y % side)
-            for x in range(i-1, i+2)
-            for y in range(j-1, j+2)]
-
-# Initialize interactive plot
-fig, ax1 = plt.subplots(figsize=(12, 8))
-ax1.set_xlabel("Generation")
-ax1.set_ylabel("Average Fitness", color='tab:blue')
-ax1.set_ylim(0, 1)
-line0, = ax1.plot([], [], color='black', linewidth=1, label='Max fitness')
-line1, = ax1.plot([], [], color='tab:blue', linewidth=2, label='Fitness')
-ax1.tick_params(axis='y', labelcolor='tab:blue')
-
-ax2 = ax1.twinx()
-ax2.set_ylabel("Beneficial Mutations / Diversity", color='tab:purple')
-line2, = ax2.plot([], [], color='tab:purple', linestyle='--', linewidth=2, label='Beneficial Mutations')
-line3, = ax2.plot([], [], color='tab:green', linestyle=':', linewidth=2, label='Diversity')
-ax2.tick_params(axis='y', labelcolor='tab:purple')
-fig.suptitle("Evolution Toward " + str(target_protein))
-fig.tight_layout()
-ax2.set_ylim(0, 5)
-fig.legend(loc='upper right')
-plt.grid(True)
-plt.draw()
-
-best_seq = ""
-best_score = -1
-best_fitnesses = []
-found = False
-
-# Evolution loop
-for gen in range(generations):
-    fitnesses = [fitness(ind) for ind in population]
-    total_fit = sum(fitnesses)
-    best = max(fitnesses)
-    best_fitnesses.append(best)
-    if(best == 1 and not found):
-        found = True
-        print("Found perfect solution at generation", gen)
-        
-    if gen % sample_interval == 0:
-        sample = random.sample(population, sample_size)
-        avg_beneficial.append(sum(count_beneficial_mutations(ind) for ind in sample) / sample_size)
-        diversity_over_time.append(diversity(population))
-
-        # Update plot data
-        line0.set_data(range(len(avg_fitness)+1), best_fitnesses)
-        line1.set_data(range(len(avg_fitness)+1), avg_fitness + [sum(fitnesses)/population_size])
-        line2.set_data(range(len(avg_beneficial)), avg_beneficial)
-        line3.set_data(range(len(diversity_over_time)), diversity_over_time)
-        ax1.relim(); ax1.autoscale_view()
-        ax2.relim(); ax2.autoscale_view()
-        best = max(population, key=fitness)
-        fig.suptitle(f"Best: {translate(best)} (target: {target_protein})", fontsize=14)
-        plt.pause(0.01)
-
-    else:
-        avg_beneficial.append(avg_beneficial[-1])
-        diversity_over_time.append(diversity_over_time[-1])
-
-    new_pop = []
-    tournament_size = 10  # can be adjusted
-    
-    for _ in range(population_size):
-        # Select tournament_size individuals randomly
-        competitors = random.sample(population, tournament_size)
-        # Pick the one with highest fitness
-        fitness_values = [fitness(ind) for ind in competitors]
-        total = sum(fitness_values)
-        
-        probs = [f / total for f in fitness_values]
-        winner = random.choices(competitors, weights=probs, k=1)[0]
-        # Mutate winner to produce offspring
-        offspring = mutate(winner)
-        new_pop.append(offspring)
-
-    population = new_pop
-
-
-    avg_fitness.append(sum(fitness(ind) for ind in population) / population_size)
-    if gen % 250 == 0:
-        best = max(population, key=fitness)
-        best_individuals.append((gen, translate(best)))
-
-input("\nSimulation complete. Press Enter to exit plot window...")
-
-```
-:::
-
-Answer the following question about the model:
-
-:::{#exr-evolving-proteins}
-
-## Evolving protein sequences - Biology / abstract thinking
-
-a. Another line was added to the model. What new information can you obtain from analysing this line?
-b. Study carefully how the other lines (also present in previous models) change over time. What do you observe? Try and capture what you see into words. 
-c. In biology, multiple genotypes can translate to the same phenotype (this is called a many-to-one genotype-phenotype map), or alternatively, one genotype can produce multiple phenotype (this is called phenotypic plasticity, or a one-to-many genotype-phenotype map). Which genotype-phenotype (GP) mapping applies to this model? Why?
-d. **Bonus question for motivated students** modify the code to include a second target protein sequence, and alternate between the two targets. If you see something interesting, please share it with the class!
-e. **Bonus question for motivated students** modify the code to include spatial structure in the population (e.g. proteins on a grid only competing with nearby proteins). 
-:::
-
-:::{.content-visible when-meta="params.show_answers"}
-> **Answer**<br>
-a. The new black line is the maximum fitness in the population. Thanks to this line we can see that, sometimes, an individual is present that is fitter but it does not manage to take over the population. We are dealing with a stochastic process, so this is very natural. <br>
-b. The fitness line once again goes in distinct steps. The diversity line (green dotted) has a distinct behaviour compared to earlier models. Instead of only going up during the discovery of a new mutant, it constantly creeps up during periods where fitness does not change. This is because the codon-table is partially redundant: many different DNA sequences can code for the same amino acid sequence, so diveristy increases. However, when a new "fitter" individual comes in, diversity goes down as that individual clonally takes over the population. Then, diversity slowly increases again. A similar pattern is reflected in the line that represents the "beneficial mutations" (blue dotted line). TLDR; even when fitness is not changing there is still a lot going on in this population!<br>
-c. This model represents a many-to-one mapping between genotype and phenotype. The DNA sequence (genotype) is translated into an amino acid sequence (phenotype), which is then used to calculate fitness. This means that many different genotypes can lead to the same phenotype, and thus the same fitness. Earlier in this course you have learned about development, and those processes often lead to effects where the same genotype can produce many different shapes (phenotypes). <br>
-d. **BONUS:** I have not personally done this, and I do not know the answer to this question yet. However, it is sometimes observed that with many-to-one mapping, populations can because better and better at switching between two alternating targets. This is because the alternating selection pressures make populations move towards genotypes that are "close" to both targets, and because there is some neutrality coding this can be acchieved without losing fitness in either environment. For  cool paper on this principle, see @crombach2008evolution. I suspect however that our current model will not be able to do the same. 
+> a. No. The spatial population is much slower at improving fitness. You can confirm this is not a coincidence by modifying the random seed, and you will see that each time the basic Moran population "wins". The reason is that in a mixed population, a fitter strain can immediately compete with everyone. In a spatial population, it primarily competes with itself, and can only slowly outcompete others! <br>
+> b. There are a few options. Instead of sampling 8 neighbours one could sample 8 random individuals to compete for a grid point. Or one could sample *all* individuals, at which point the whole grid-structure does not matter anymore for competition. Another idea is to implement diffusion / mixing / movement of individuals the grid, such that individuals approach a more mixed state. Any of these modifications will make the grid-based model more similar to the mixed model in terms of rate of evolution. <br>
+> c. As already hinted in a, the fact that newly emerging strains mostly compete with their own kind often slows down the selective sweeps. However, there may be scenarios where a fast selective sweep is a **disadvantages**. Heavy foreshadowing! :)
 :::

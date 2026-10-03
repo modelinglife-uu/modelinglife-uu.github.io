@@ -3,7 +3,7 @@ params:
   show_answers: false
 ---
 
-# Introduction to evolution
+# Introduction to evolution {.unnumbered}
 
 ## Evolution: Life's most clever algorithm 
 
@@ -64,7 +64,7 @@ print(f"Fitness at the the final time point ({steps}) is equal to {fitnesses.mea
 
 ## Plotting with matplotlib 
 
-The code snippet above is a nice introduction: it sets the parameters for your model, performs a short loop, and reports statistics. But with many models in this course, looking at raw statistics is not going to be very informative. Humans are much better at interpreting graphs and other visuals, so for this we will use matplotlib to modify the script above and make a graph instead. Make sure to once gain carefully read through this code, it is very similar to the code above but adds some plotting code. New elements are explained with `#` comments. 
+The code snippet above is a nice introduction: it sets the parameters for your model, performs a short loop, and reports statistics. But with many models in this course, looking at raw statistics is not going to be very informative. Humans are much better at interpreting graphs and other visuals, so for this we will use matplotlib to modify the script above and make a graph instead. Make sure to once again carefully read through this code, it is very similar to the code above but adds some plotting code. New elements are explained with `#` comments. 
 
 ```{pyodide}
 import numpy as np

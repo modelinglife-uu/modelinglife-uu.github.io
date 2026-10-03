@@ -16,7 +16,7 @@ This introductory part is about Python; probably the most popular programming la
 Although you will mostly be using your own setup to work with Python (explained below), we will sometimes share short code snippets directly in the browser, like the ones below. You can run them, modify them, and get a feeling for the code. 
 
 ```{pyodide}
-name = "Alice"
+name = "Tina"
 age = 25
 print(f"{name} is {age} years old")
 ```
@@ -71,7 +71,7 @@ The recommended editor^[You can of course use whatever you wish if you're an exp
 2. Open VS Code and install the **Python extension** (search for 'Python' in the extensions tab on the left, and install the one with the blue check mark) ![](images/extensions.png)
 3. Select the Python interpreter from Anaconda:
    - Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac) to open the command palette
-   - Search fo `Python: Select Interpreter (you don't need to type in the whole phrase) and choose the python path that points to your Anaconda installation (it should have 'anaconda3' in the path)
+   - Search for `Python: Select Interpreter (you don't need to type in the whole phrase) and choose the python path that points to your Anaconda installation (it should have 'anaconda3' in the path)
 
 
 
@@ -124,7 +124,7 @@ Python has many built-in data types, including:
 - Strings (`str`): Text, e.g., `"Hello"`, `'Python'`
 - Booleans (`bool`): True or False values, e.g., `True`, `False`
 - Lists (`list`): Ordered collections of items, e.g., `[1, 2, 3]`, `['a', 'b', 'c']`
-- Dictionaries (`dict`): Key-value pairs, e.g., `{'name': 'Alice', 'age': 25}`
+- Dictionaries (`dict`): Key-value pairs, e.g., `{'name': 'Bram', 'age': 67}`
 - And many more 
 
 ## Using comments 

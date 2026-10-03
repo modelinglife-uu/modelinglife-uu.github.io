@@ -3,7 +3,7 @@ params:
   show_answers: false
 ---
 
-# Sticking together
+# Collective behaviour
 
 ## Sticking together {.unnumbered}
 

@@ -5,16 +5,16 @@
 
 Nov 16, 2026 – Welcome and Intro to Python (**HC** 13:15-17:00). 
 
-Nov 17, 2026 – Evolving populations I: Sticky cells (**HC** 11:00-12:45 and **WC8** 13:15-17:00).
+Nov 17, 2026 – Evolving populations I: Mutation and selection (**HC** 11:00-12:45 and **WC8** 13:15-17:00).
 
-Nov 19, 2026 – Evolving populations II: Genotype-phenotype map (**HC** 11:00-12:45 and **WC9** 13:15-17:00).
+Nov 19, 2026 – Evolving populations II: Genotype-phenotype maps (**HC** 11:00-12:45 and **WC9** 13:15-17:00).
 
 
 ## Week 2 {.unnumbered}
 
 Nov 23, 2026 – Guest lecture: Rutger Hermsen (**HC** 13:15-17:00).
 
-Nov 24, 2026 – Evolving populations III: Microbial communities (**HC** 11:00-12:45 and **WC10** 13:15-17:00). 
+Nov 24, 2026 – Evolving populations III: Collective behaviour (**HC** 11:00-12:45 and **WC10** 13:15-17:00). 
 
 
 Nov 26, 2026 – Pattern formation I: Gradients and segments (**HC** 11:00-12:45 and **WC1** 13:15-17:00).

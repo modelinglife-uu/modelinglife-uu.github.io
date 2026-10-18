@@ -62,52 +62,6 @@ for step in range(steps):
 print(f"Fitness at the the final time point ({steps}) is equal to {fitnesses.mean()}")
 ```
 
-::: {.callout-note collapse="true"}
-## The population genetics models behind Moran processes
-
-The Moran process comes from previous-century population geneticists like Ronald Fisher, John Haldane and Sewall Wright. All of them worked on simple selection equations in the 1920s–30s, with Haldane being the first to write out a generation-by-generation equation. These do not describe individuals, but the frequencies of alleles. 
-
-Take the simplest case: two variants, A and B, where A has a fitness advantage $s$. Imagine a population of 100 with 10 A's and 90 B's, and let $s = 0.5$, so every A produces 1.5 offspring for every 1 offspring a B produces.
-
-The new frequency of A is simply A's offspring divided by all offspring:
-
-- **Numerator (A's offspring):** $10 \times 1.5 = 15$
-- **Denominator (all offspring):** 15 from A plus 90 from B, so 105
-- **New frequency of A:** $15/105 \approx 0.14$, up from 0.10
-
-The general rule is the same calculation with letters instead of numbers. If A has frequency $p$ and B has frequency $1-p$:
-
-- **Numerator (A's offspring):** $p(1+s)$
-- **Denominator (all offspring):** $p(1+s) + (1-p)$, which simplifies to $1+sp$. This is also the average fitness of the population.
-
-$$p' = \frac{\text{A's offspring}}{\text{all offspring}} = \frac{p(1+s)}{1+sp}$$
-
-Subtracting the old frequency gives the change per generation:
-
-$$\Delta p = p' - p = \frac{s\,p(1-p)}{1+sp}$$
-
-```{pyodide}
-import numpy as np
-import matplotlib.pyplot as plt
-
-s = 0.5          # fitness advantage of A
-p = 0.01          # starting frequency of A
-generations = 20
-
-p_values = [p]
-for t in range(generations):
-    p = p * (1 + s) / (1 + s * p)   # A's offspring / all offspring
-    p_values.append(p)
-
-plt.plot(range(generations + 1), p_values, marker="o")
-plt.xlabel("Generation")
-plt.ylabel("Frequency of A (p)")
-plt.title(f"Selection sweep (s = {s})")
-plt.ylim(0, 1)
-plt.grid(True)
-plt.show()
-```
-:::
 
 ## Plotting with matplotlib 
 
@@ -223,6 +177,54 @@ b. The population fitness seems to plateau at 5000 time steps. Is that a real re
 c. Read how the mutations are implemented. Can you think of other ways to implement mutations? 
 d. Can the parent be replaced by its own offspring? Why/why not?
 d. Try to decreasing/increase value of $\mu$ (mutation rate). Which values makes evolution go *faster*? Which values make evolution more *precise*?
+:::
+
+
+::: {.callout-note collapse="true"}
+## **EXTRA MATERIAL: the population genetics models behind Moran processes**
+
+The Moran process comes from previous-century population geneticists like Ronald Fisher, John Haldane and Sewall Wright. All of them worked on simple selection equations in the 1920s–30s, with Haldane being the first to write out a generation-by-generation equation. These do not describe individuals, but the frequencies of alleles. 
+
+Take the simplest case: two variants, A and B, where A has a fitness advantage $s$. Imagine a population of 100 with 10 A's and 90 B's, and let $s = 0.5$, so every A produces 1.5 offspring for every 1 offspring a B produces.
+
+The new frequency of A is simply A's offspring divided by all offspring:
+
+- **Numerator (A's offspring):** $10 \times 1.5 = 15$
+- **Denominator (all offspring):** 15 from A plus 90 from B, so 105
+- **New frequency of A:** $15/105 \approx 0.14$, up from 0.10
+
+The general rule is the same calculation with letters instead of numbers. If A has frequency $p$ and B has frequency $1-p$:
+
+- **Numerator (A's offspring):** $p(1+s)$
+- **Denominator (all offspring):** $p(1+s) + (1-p)$, which simplifies to $1+sp$. This is also the average fitness of the population.
+
+$$p' = \frac{\text{A's offspring}}{\text{all offspring}} = \frac{p(1+s)}{1+sp}$$
+
+Subtracting the old frequency gives the change per generation:
+
+$$\Delta p = p' - p = \frac{s\,p(1-p)}{1+sp}$$
+
+```{pyodide}
+import numpy as np
+import matplotlib.pyplot as plt
+
+s = 0.5          # fitness advantage of A
+p = 0.01          # starting frequency of A
+generations = 25
+
+p_values = [p]
+for t in range(generations):
+    p = p * (1 + s) / (1 + s * p)   # A's offspring / all offspring
+    p_values.append(p)
+
+plt.plot(range(generations + 1), p_values, marker="o")
+plt.xlabel("Generation")
+plt.ylabel("Frequency of A (p)")
+plt.title(f"Selection sweep (s = {s})")
+plt.ylim(0, 1)
+plt.grid(True)
+plt.show()
+```
 :::
 
 ::: {.content-visible when-meta="params.show_answers"}

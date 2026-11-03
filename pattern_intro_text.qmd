@@ -1,3 +1,8 @@
+---
+params:
+  show_answers: true
+---
+
 ## Pattern formation (intro)
 
 The field of pattern formation studies the mechanisms that underly the formation of spatial patterns in biological systems. Patterns may arise at any biological level of organization, from single cells polarizing to decide in which direction to move, grow or divide, to the formation of body axes, different cell types and shapes that set apart complex multi-cellular organisms from amorphous blobs,  to entire ecosystems patterning where e.g. plants do and do not grow.  An important concept in pattern formation is so called “symmetry breaking”, which refers to the destruction of an originally homogeneous or non-patterned state, to a non-homogeneous patterned state (see figure below).   
@@ -19,3 +24,14 @@ Often, initial signals like gradients and clocks are transient, implying that th
 Particularly for animal development, simply breaking symmetry and stably memorizing formed patterns is not enough, scaling of the pattern with body plan size and robustness against noise from gene expression, cell division, cell signalling and other processes is essential for fitness. In contrast, in plants developmental plasticity, the potential to adjust developmental patterning to environmental conditions, plays a key role.  This latter concept will be discussed in **Part IV** of the course on Environment. 
 
 The repeated usage of a limited number of possible symmetry breaking mechanisms also raises interesting *evolutionary* questions (**Part V**). Are there indeed only a limited number of options, or did evolution select for specific mechanisms that are more robust or more evolvable? Or are some mechanisms simply easier to find? This way of evolutionary thinking will be further discussed in **Part V**.  
+
+::: {.content-visible when-meta="params.show_answers"}
+## Key concepts
+- Morphogen gradients can arise from: 1) Local production, overall degradation and diffusion, 2) active directed transport, 3) Local division & production, stability mediated inheritance.
+
+- Turing patterns: Diffusion may generate rather than abolish patterns, patterning may be cellular or mechanical rather than purely chemical, not all repetitive patterns are Turing patterns.
+
+- Clock and wavefront patterning: A clock with sustained oscillations require: 1) Negative feedback, 2) Delay 3) Non-linearity 4) Constrained parameters. The wavefront should transform oscillations to a bistable response to produce a stable spatial pattern.
+
+- Morphogenesis is the result of multi-level interplay between biophysics of cell-cell interactions and forces at the tissue scale, biochemistry of signalling pathways and of gene regulation. Cell-based models are a type of agent-based model where cells are the individual units with internal rules (ODEs, Boolean logic, probabilistic rules). Cell-based models can be coupled to morphogen diffusion fields (PDEs).
+:::

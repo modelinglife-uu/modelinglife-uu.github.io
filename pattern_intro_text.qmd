@@ -1,6 +1,6 @@
 ---
 params:
-  show_answers: true
+  show_answers: false
 ---
 
 ## Pattern formation (intro)
@@ -33,5 +33,4 @@ The repeated usage of a limited number of possible symmetry breaking mechanisms 
 
 - Clock and wavefront patterning: A clock with sustained oscillations require: 1) Negative feedback, 2) Delay 3) Non-linearity 4) Constrained parameters. The wavefront should transform oscillations to a bistable response to produce a stable spatial pattern.
 
-- Morphogenesis is the result of multi-level interplay between biophysics of cell-cell interactions and forces at the tissue scale, biochemistry of signalling pathways and of gene regulation. Cell-based models are a type of agent-based model where cells are the individual units with internal rules (ODEs, Boolean logic, probabilistic rules). Cell-based models can be coupled to morphogen diffusion fields (PDEs).
 :::

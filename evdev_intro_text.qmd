@@ -22,9 +22,13 @@ In addition to developmental processes, also physiology, behavior and evolution 
 ::: {.content-visible when-meta="params.show_answers"}
 ## Key concepts
 Organisms integrate external information into their functioning to: 
+
 1) keep track of time using a circadian clock (multiple interlocked oscillators)
+
 2) have various modes of long-distance information transfer
+
 3) reach integrated decisions through distributed but interconnected computations
+
 4) have long term quantitative memory through bistability.
 
 :::

@@ -1,8 +1,3 @@
----
-params:
-  show_answers: false
----
-
 # Cell differentiation introduction
 
 ![Gene regulation in a bacteria: from genes to networks. Credit: RegulonDB, and DOI: 10.1371/journal.pone.0106479](images/0-ecoli-regulondb_doi.png){#vegmini1 width=150%}
@@ -32,12 +27,3 @@ network that help cells make decisions in response to intrinsic cues and environ
 In this part of the course, you will learn how to use computational models to simulate gene 
 regulatory networks and to understand how their dynamics generate gene expression patterns 
 that establish and maintain different cell types. 
-
-::: {.content-visible when-meta="params.show_answers"}
-## Key concepts
-- Gene regulatory networks are multi-stable, producing different expression patterns (attractors) representing different cell states / types. 
-
-- Biological networks are composed of basic building blocks (regulatory motifs), for specific information processing tasks. 
-
-- Organisms are collections of differentiated cells in which their spatial arrangement influences its identity and higher-level function. 
-:::

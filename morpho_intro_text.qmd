@@ -1,8 +1,3 @@
----
-params:
-  show_answers: false
----
-
 # Introduction to Morphogenesis
 
 Cells collectively organize into higher-order structures, forming tissues and organs. 
@@ -29,10 +24,3 @@ inflated balloon.
 The relatively small number of processes occurring at the cellular level has inspired 
 the development of various computational models that treat cells as the central unit. 
 In this chapter of the course, you'll learn about these cell-based models.
-
-::: {.content-visible when-meta="params.show_answers"}
-## Key concepts
-- Morphogenesis is the result of multi-level interplay between biophysics of cell-cell interactions and forces at the tissue scale, biochemistry of signalling pathways and of gene regulation. 
-
-- Cell-based models are a type of agent-based model where cells are the individual units with internal rules (ODEs, Boolean logic, probabilistic rules). Cell-based models can be coupled to morphogen diffusion fields (PDEs).
-:::

@@ -32,6 +32,7 @@ book:
         - general.qmd
         - schedule.qmd
         - slides.qmd
+        - keyconcepts.qmd
     - intro_to_python.qmd
     - part: "I) Evolution"
       chapters:

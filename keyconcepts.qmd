@@ -1,0 +1,39 @@
+# Key concepts
+
+## Evolution 
+- Evolution follows simple rules (variation,selection, inheritance), making it easy to model.
+
+- But the biological systems that evolve (DNA, proteins, networks, biofilms, body plans) are highly complex.
+
+- Therefore, modern evolutionary models often go beyond basic fitness landscapes to study the evolution of complex, multi-level systems.
+
+
+## Pattern formation
+- Morphogen gradients can arise from: 1) Local production, overall degradation and diffusion, 2) active directed transport, 3) Local division & production, stability mediated inheritance.
+
+- Turing patterns: Diffusion may generate rather than abolish patterns, patterning may be cellular or mechanical rather than purely chemical, not all repetitive patterns are Turing patterns.
+
+- Clock and wavefront patterning: A clock with sustained oscillations require: 1) Negative feedback, 2) Delay 3) Non-linearity 4) Constrained parameters. The wavefront should transform oscillations to a bistable response to produce a stable spatial pattern.
+
+## Cell differentiation
+- Gene regulatory networks are multi-stable, producing different expression patterns (attractors) representing different cell states / types. 
+
+- Biological networks are composed of basic building blocks (regulatory motifs), for specific information processing tasks. 
+
+- Organisms are collections of differentiated cells in which their spatial arrangement influences its identity and higher-level function. 
+
+## Morphogenesis
+- Morphogenesis is the result of multi-level interplay between biophysics of cell-cell interactions and forces at the tissue scale, biochemistry of signalling pathways and of gene regulation. 
+
+- Cell-based models are a type of agent-based model where cells are the individual units with internal rules (ODEs, Boolean logic, probabilistic rules). Cell-based models can be coupled to morphogen diffusion fields (PDEs).
+
+## Environment
+Organisms integrate external information into their functioning to: 
+
+1) keep track of time using a circadian clock (multiple interlocked oscillators)
+
+2) have various modes of long-distance information transfer
+
+3) reach integrated decisions through distributed but interconnected computations
+
+4) have long term quantitative memory through bistability.

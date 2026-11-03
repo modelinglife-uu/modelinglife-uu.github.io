@@ -45,15 +45,15 @@ book:
             - pattern_practical_1.qmd
             - pattern_practical_2.qmd
             - pattern_practical_3.qmd
-    - part: "III) Morphogenesis"
-      chapters:
-            - morpho_intro_text.qmd
-            - morpho_cpm_practical.qmd
-    - part: "IV) Cell differentiation"
+    - part: "III) Cell differentiation"
       chapters:
             - differentiation_intro_text.qmd
             - differentiation_practical_1.qmd
             - differentiation_practical_2.qmd
+    - part: "IV) Morphogenesis"
+      chapters:
+            - morpho_intro_text.qmd
+            - morpho_cpm_practical.qmd
     - part: "V) Environment"
       chapters:
             - evdev_intro_text.qmd

@@ -679,18 +679,12 @@ Figure&nbsp;6.2: Scheme of the BSW model
 <h2 data-number="6.3" class="anchored" data-anchor-id="patterning-in-a-growing-domain-size"><span class="header-section-number">6.3</span> Patterning in a growing domain size</h2>
 <p>Besides parameter values, the pattern that emerges from a Turing system is also strongly influenced by initial conditions, and the size and shape of the domain where reactions and diffusion happen.</p>
 <p>In the script <code>02__digits_growingsquare_PD.py</code> we added tissue growth in the proximo-distal (body to limb) direction. Growth is controlled by a growth rate <span class="math inline">\(vi\)</span>. (To make it easier to see what is new in this code, look for <code>#New</code>)</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Key changes in the code
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
+<div id="exr-tur" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6.3 (Biology)</strong></span> &nbsp;</p>
+<ul>
+<li>Study the code to understand what it does.<br>
+::: {.callout-note collapse=“true”} ## Additions to the code: parameters, new functions, execution: initial condition and simulation loop</li>
+</ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">##############</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># PARAMETERS #</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">##############</span></span>
@@ -924,17 +918,10 @@ Figure&nbsp;6.2: Scheme of the BSW model
 <span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div>
-</div>
-<div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 6.3 (Biology)</strong></span> &nbsp;</p>
 <ul>
-<li>Study the code to understand what it does.<br>
-</li>
 <li>Increase the horizontal growth rate <code>vi</code> in small increments (try: 0.01, 0.05, 0.1, 0.2, 0.5) and study what happens to the pattern. Explain why you think this happens.</li>
 </ul>
-<p><strong>Note:</strong> Increase the <code>totaltime</code> parameter to 5000 when using growth rate of 0.01.</p>
-</div>
+<p><strong>Note:</strong> Increase the <code>totaltime</code> parameter to 5000 when using growth rate of 0.01. :::</p>
 <hr>
 </section>
 <section id="patterning-along-two-growth-axes" class="level2" data-number="6.4">

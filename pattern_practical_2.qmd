@@ -190,8 +190,13 @@ In the script `02__digits_growingsquare_PD.py` we added tissue growth in the
 proximo-distal (body to limb) direction. Growth is controlled by a growth rate $vi$. 
 (To make it easier to see what is new in this code, look for `#New`)
 
+:::{#exr-tur}
+
+## Biology
+
+-   Study the code to understand what it does.\
 ::: {.callout-note collapse="true"}
-## Key additions to the code
+## Additions to the code: parameters, new functions, execution: initial condition and simulation loop
 
 ``` python
 ##############
@@ -428,12 +433,6 @@ for timestep in range(time_steps):
 plt.show()
 ```
 :::
-
-:::{#exr-tur}
-
-## Biology
-
--   Study the code to understand what it does.\
 -   Increase the horizontal growth rate `vi` in small increments (try: 0.01, 0.05, 
 0.1, 0.2, 0.5) and study what happens to the pattern. Explain why you think this happens.
 

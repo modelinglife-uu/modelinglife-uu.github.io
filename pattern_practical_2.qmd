@@ -191,7 +191,7 @@ proximo-distal (body to limb) direction. Growth is controlled by a growth rate $
 (To make it easier to see what is new in this code, look for `#New`)
 
 ::: {.callout-note collapse="true"}
-## Key changes in the code
+## Key additions to the code
 
 ``` python
 ##############
@@ -426,8 +426,9 @@ for timestep in range(time_steps):
         plt.pause(0.000001)  # Pause to refresh the plot
 
 plt.show()
-
 ```
+:::
+
 :::{#exr-tur}
 
 ## Biology

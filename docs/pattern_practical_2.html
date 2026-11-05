@@ -582,6 +582,12 @@ window.Quarto = {
   <li><a href="#equivalence-of-turing-models" id="toc-equivalence-of-turing-models" class="nav-link" data-scroll-target="#equivalence-of-turing-models"><span class="header-section-number">6.1</span> Equivalence of Turing models</a></li>
   <li><a href="#patterning-in-a-fixed-domain-size" id="toc-patterning-in-a-fixed-domain-size" class="nav-link" data-scroll-target="#patterning-in-a-fixed-domain-size"><span class="header-section-number">6.2</span> Patterning in a fixed domain size</a></li>
   <li><a href="#patterning-in-a-growing-domain-size" id="toc-patterning-in-a-growing-domain-size" class="nav-link" data-scroll-target="#patterning-in-a-growing-domain-size"><span class="header-section-number">6.3</span> Patterning in a growing domain size</a></li>
+  <li><a href="#patterning-along-two-growth-axes" id="toc-patterning-along-two-growth-axes" class="nav-link" data-scroll-target="#patterning-along-two-growth-axes"><span class="header-section-number">6.4</span> Patterning along two growth axes</a></li>
+  <li><a href="#making-a-virtual-tissue-grow" id="toc-making-a-virtual-tissue-grow" class="nav-link" data-scroll-target="#making-a-virtual-tissue-grow"><span class="header-section-number">6.5</span> Making a virtual tissue grow</a></li>
+  <li><a href="#spatial-modulation-of-parameters-k4-and-k7" id="toc-spatial-modulation-of-parameters-k4-and-k7" class="nav-link" data-scroll-target="#spatial-modulation-of-parameters-k4-and-k7"><span class="header-section-number">6.6</span> Spatial modulation of parameters k4 and k7</a></li>
+  <li><a href="#hoxd13-and-fgf" id="toc-hoxd13-and-fgf" class="nav-link" data-scroll-target="#hoxd13-and-fgf"><span class="header-section-number">6.7</span> Hoxd13 and FGF</a></li>
+  <li><a href="#shape-makes-the-tissue" id="toc-shape-makes-the-tissue" class="nav-link" data-scroll-target="#shape-makes-the-tissue"><span class="header-section-number">6.8</span> Shape makes the tissue</a></li>
+  <li><a href="#master-students-exercise" id="toc-master-students-exercise" class="nav-link" data-scroll-target="#master-students-exercise"><span class="header-section-number">6.9</span> Master students exercise</a></li>
   </ul>
 </nav>
     </div>
@@ -917,6 +923,9 @@ Figure&nbsp;6.2: Scheme of the BSW model
 <span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a>        plt.pause(<span class="fl">0.000001</span>)  <span class="co"># Pause to refresh the plot</span></span>
 <span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
 <div id="exr-tur" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 6.3 (Biology)</strong></span> &nbsp;</p>
 <ul>
@@ -927,6 +936,7 @@ Figure&nbsp;6.2: Scheme of the BSW model
 <p><strong>Note:</strong> Increase the <code>totaltime</code> parameter to 5000 when using growth rate of 0.01.</p>
 </div>
 <hr>
+</section>
 <section id="patterning-along-two-growth-axes" class="level2" data-number="6.4">
 <h2 data-number="6.4" class="anchored" data-anchor-id="patterning-along-two-growth-axes"><span class="header-section-number">6.4</span> Patterning along two growth axes</h2>
 <p>In reality, the limb bud grows in both the proximo-distal and anterior-posterior direction. In the script <code>03__digits_growingsquare.py</code> this is implemented with growth rates <code>vi</code> for proximo-distal growth and <code>vj</code> for anterior-posterior growth.</p>
@@ -1008,11 +1018,6 @@ k7^* = k7 + k_{HF_{wnt}} * fgf(i,j) * hox(i,j)
 </ol>
 
 
-</section>
-</section>
-</div>
-</div>
-</div>
 <script type="ojs-module-contents">
 eyJjb250ZW50cyI6W119
 </script>
@@ -1038,6 +1043,7 @@ Raspopovic, Jelena, Luciano Marcon, Laura Russo, and James Sharpe. 2014. <span>�
 Turing, Alan Mathison. 1990. <span>“The Chemical Basis of Morphogenesis.”</span> <em>Bulletin of Mathematical Biology</em> 52 (1): 153–97.
 </div>
 </div>
+</section>
 </section>
 
 </main> <!-- /main -->

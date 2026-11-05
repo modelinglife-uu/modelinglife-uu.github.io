@@ -277,6 +277,8 @@ relate to question 2.
 ## Code of the reaction_diffusion_gradient function
 ``` python
 # Let's use a precomputed M gradient
+# TODO, indicates where you need to change the code in Q7 and Q10.
+
 def reaction_diffusion_gradient(t, u, D, dx, decay, switch_time = None, noise = False):
     '''
     Function to create a gradient in the u array that could decay after a certain time.
@@ -371,13 +373,12 @@ def ihill(y, Km, pow):
 :::{#exr-plain}
 ## Biology
 
-At some point in development, the morphogen gradient $M$ 
-will disappear. For example, in the case of Drosophila embryos the Bicoid
-gradient disappear because the maternal mRNA is degraded. Predict what will happen
+At some point in development, the morphogen gradient $M$ may disappear. 
+For example, in the case of Drosophila embryos the Bicoid
+gradient disappears because the maternal mRNA is degraded. Predict what will happen
 to the expression of $A$, $B$ and $C$ (and hence the French flag pattern) if
-the morphogen $M$ gradient disappears over time and assume $A$, $B$, and $C$ are
-regulated by our equations (first try think about this without actually
-simulating this).
+the morphogen $M$ gradient disappears over time (first try think about this 
+without actually simulating this).
 ::: 
 
 ::: {.content-visible when-meta="params.show_answers"}
@@ -390,13 +391,15 @@ simulating this).
 
 ## Algorithmic/mathematical thinking
 
-Now write the code in `reaction_diffusion_gradient` that updates the morphogen $M$ concentration,
-such that after the time point A, B and C have gotten close to
-equilibrium, the gradient gradually disappears. Adapt the
-simulation loop where necessary to implement this, and run your code: 
+Now modify the code in the `reaction_diffusion_gradient` function (updates 
+the morphogen $M$ concentration) to implement that the $M$ gradient gradually
+disappears once $A$, $B$ and $C$ have gotten close to equilibrium. Identify 
+the time point at which this happes, and adapt the simulation loop where 
+necessary, and run your code: 
 
-Was your prediction on $A$, $B$, $C$ from the previous question correct? Why/why not? Hint: you
-might need to increase the duration of your simulation, especially if it
+Was your prediction on $A$, $B$, $C$ from the previous question correct? Why/why not? 
+
+Hint: you might need to increase the duration of your simulation, especially if it
 takes a long time for $A$, $B$ and $C$ to reach equilibrium (or you can change
 the parameters to speed things up by using same production/degradation
 rate ratio yet higher absolute values of the individual parameters).
@@ -409,72 +412,74 @@ rate ratio yet higher absolute values of the individual parameters).
 :::{#exr-plain}
 ## Biological & mathematical thinking
 
-$A$, $B$ and $C$ cannot remain in a
-stable pattern if they are only influenced by $M$. How can we stabilize
-the pattern in absence of M? Test your ideas by creating new update
-functions for $A$, $B$ and $C$ and let these new ‘rules’ kick in at the same
-time when $M$ starts to decline. Again, you may find Hill functions useful
-and perhaps also the before/after switch time structure used in
-reaction_diffusion_gradient for $M$. (Hint: think about how the genes
-should affect each other, and assume that in this new phase, when genes
-have already been initialized in absence of repression the genes will be
-expressed). Can you implement changes that maintain the expression domains of 
-$A$, $B$ and $C$ and does their shape change?
+$A$, $B$ and $C$ cannot remain in a stable pattern if they are only influenced 
+by $M$. How can we stabilize the pattern in absence of $M$? Test your ideas by
+creating new update functions for $A$, $B$ and $C$ and let these new ‘rules’ 
+kick in at the same time when $M$ starts to decline. Again, you may find Hill
+functions useful and perhaps also the before/after switch time structure used 
+in reaction_diffusion_gradient for $M$. 
+
+(Hint: think about how the genes should affect each other, and assume that in 
+this new phase, when genes have already been initialized in absence of repression 
+the genes will be expressed). Can you implement changes that maintain the 
+expression domains of $A$, $B$ and $C$?, Does their expression in space change?
 :::
 
 ::: {.content-visible when-meta="params.show_answers"}
   > **Answer** See `03_answer_morphogengradient_superimposed_quickABC_phase2.py`
-  > As $M$ decays, $A$ and $B$ will no longer be activated and $C$ no longer repressed, 
-  > hence the takeover by C. They will find mutual repression with only your neighbor 
-  > gene is not enough, you need it with both 2 other genes. So A needs to be repressed 
-  > by B and C, B by A and C, and C by A and B. We can maintain A at the beginning, 
-  > B in the middle and C at the end, but the shape of the expression domains becomes 
-  > less gradual and more sharply defined.
-
+  > As $M$ decays, $A$ and $B$ will no longer be activated and $C$ no longer
+  > repressed, hence the takeover by $C$. Therefore, mutual repression with 
+  > your neighboring-expressed gene is not enough to maintain the "French Flag". 
+  > Genes need to mutually repress
+  > both the 2 other genes. So $A$ needs to be repressed by $B$ and $C$; $B$ by 
+  > $A$ and $C$; and $C$ by $A$ and $B$. 
+  > While these changes can maintain the genes organized in space, $A$ at the 
+  > left, $B$ in the middle and $C$ at the right, the shape of their expression
+  > domains becomes less gradual and more sharply defined.
 
 :::
 
 :::{#exr-plain}
 ## Biology & algorithmic/mathematical thinking
 
-A sudden switch
-from phase 1 (stable $M$ gradient) to phase 2 (decaying $M$ gradient)
-resulting in the genes following different differential equations is
+A sudden switch of how the genes are regulated (different equations) from phase 1
+(stable $M$ gradient) to phase 2 (decaying $M$ gradient) is
 biologically implausible. In reality, genes have complex promoters and
 enhancers integrating different inputs that arise in different
 developmental stages. Try to come up with one integrated expression for
 each gene, incorporating simultaneous input from the morphogen $M$ gradient
 and the other genes. Create new update functions for $A$,$B$,$C$ and test your
-ideas. Can you get a stable pattern before and after the decline in $M$? A
-couple of things you could consider: 
+ideas. Can you write equations that produce a stable pattern before and after 
+the decline in $M$? A couple of things you could consider: 
 
-a. Think of how positively and negatively $M$ regulated expression behave once the gradient starts
-declining: what is the best way to combine ($AND/OR$) that with the
-regulation by the genes?
+a. Think of how positively and negatively $M$-regulated expression behave once 
+the gradient starts declining: what is the best way to combine ($AND/OR$) that 
+with the regulation by the genes?
 
-b. Consider splitting up the $M$ regulated expression of middle gene $B$ into a positive 
-and negatively regulated morphogen part before integrating the other genes inputs. 
+b. Consider splitting up the $M$ regulated expression of middle gene $B$ into 
+a positive and negatively regulated morphogen part before integrating the other genes inputs. 
 
 c. It is also possible to give certain genes a bit of a constant boost to prevent
 their takeover by other genes due to timing issues
 :::
 
 ::: {.content-visible when-meta="params.show_answers"}
-  > **Answer** This is not at all easy (or as the professor would say "highly non trivial"). 
-  > It requires that for genes (or part of their input) being positively dependent on $M$ 
-  > that there is an $OR$ gate (sum) (so they stay on once $M$ is absent as long as the 
-  > mutual repressors are absent) while for genes (or part of their input) being negatively 
-  > dependent on $M$ that there is an $AND$ gate (so they do not expand once $M$ is absent 
-  > but require both $M$ absent and mutual repressors absent). See the answer code:
+  > **Answer** This is not at all easy (or as the professor would say "highly non
+  > trivial"). It requires that for genes (or part of their input) being positively
+  > dependent on $M$ that there is an $OR$ gate (sum) (so they stay expressed once 
+  > $M$ is absent, as long as the mutual repressors are absent) while for genes (or
+  > part of their input) being negatively dependent on $M$ that there is an $AND$ 
+  > gate (so they do not expand once $M$ is absent but require both $M$ absent 
+  > and mutual repressors absent). See the answer code:
   > `04_answer_morphogengradient_superimposed_quickABC_phase2_combined`.
 :::
 
 :::{#exr-plain}
 ## Biology & algorithmic/mathematical thinking
 
-Write code to get noise in the morphogen $M$ gradient, both in its steady state and decaying
-phase. During which phase do the expression domains of $A$, $B$ and $C$ suffer
-more from the noise. Explain why? How could we make the system more
+Write code to add noise to the morphogen $M$ gradient, both in its steady state 
+and decaying phase. During which phase do the expression domains of $A$, $B$ and 
+$C$ suffer more from the noise. Explain why? How could we make the system more
 robust in a manner that is also likely occurring in nature?
 
 :::
@@ -483,18 +488,19 @@ robust in a manner that is also likely occurring in nature?
   > **Answer** 
   > 
   > See the answer code: `05_answer_morphogengradient_superimposed_quickABC_phase2_combined_noise`
-  > The noise has more effect in the initial phase when mostly morphogen is driving the expression
-  > domains, as gene expression becomes established and morphogen levels decay the mutual repression
-  > ensures stability against the noise. Diffusion of $A$, $B$ and $C$, in the lateral direction this
-  > evens out differences (not implemented right now)
+  > The noise has more effect in the initial phase when mostly morphogen is 
+  > driving the expression domains, as gene expression becomes established and
+  > morphogen levels decay the mutual repression ensures stability against the 
+  > noise. Diffusion of $A$, $B$ and $C$, in the lateral direction can
+  > even out differences (not implemented right now)
 
 :::
 
 ## [**Extra questions**]{.smallcaps}
 
-If you're done early or a master student, you can make these extra questions. 
-These questions need not be made in the order they are provided, you can choose what 
-you would like to investigate.
+If you're done early, or you are a master student, you can make these extra 
+questions. These questions need not be made in the order they are provided, you 
+can choose what you would like to investigate.
 
 
 :::{#exr-plain}
@@ -507,16 +513,15 @@ domains. What would this mean for an organism?
 ::: {.content-visible when-meta="params.show_answers"}
   >**Answer** You may find that if the domain expands the $C$ domain expands and 
   > that if the domain shrinks the $C$ domain disappears. This would mean having 
-  > either a very large or loosing your “butt” part. 
+  > either a very large or loosing the tail part. 
 :::
 
 :::{#exr-plain}
 ## Biological & algorithmic thinking
 
-Various mechanisms have been
-proposed to ensure that the domains of the morphogen controlled genes
-scale with the size of the domain. One proposed mechanism suggests the
-existence of an also diffusible “expander” molecule which expression is
+Various mechanisms have been proposed to ensure that the domains of the morphogen
+controlled genes scale with the size of the domain. One proposed mechanism suggests
+the existence of an also diffusible “expander” molecule which expression is
 repressed by the morphogen but which itself either represses the
 degradation of the morphogen or enhances its diffusion (see e.g.
 <https://www.pnas.org/doi/full/10.1073/pnas.0912734107> and

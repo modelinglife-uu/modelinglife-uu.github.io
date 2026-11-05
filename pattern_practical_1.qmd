@@ -59,13 +59,18 @@ The code below is also in  `WC04-Pattern_formation_I/01_morphogengradient_to_seg
 ## Starting code for this practical
 
 ``` python
+# Installed modules
 import numpy as np
 import matplotlib.pyplot as plt
 import os
 
 os.makedirs("output", exist_ok=True)
 
-# Parameters
+##############
+# PARAMETERS #
+##############
+
+# Grid and simulation parameters
 Lx = 40.0  # Length of the domain in x in micrometers
 Ly = 10.0  # Length of the domain in y in micrometers
 T = 200  # Total time in seconds
@@ -80,15 +85,11 @@ decayM =0.01 # Decay rate in 1/s
 
 
 # Parameters for A, B, C
-... # TODO create parameters for A, B, C as needed in Q5
+... # TODO define parameters for A, B, C as needed in Q5
 
-# Stability criterion
-if D * dt / dx**2 > 0.5:
-    raise ValueError("Stability criterion not met")
-
-# Initial condition
-u = np.zeros((nx, ny))
-u[0, :] = 100
+#############
+# FUNCTIONS #
+#############
 
 # Reaction-diffusion equation
 def reaction_diffusion_step(u, D, dt, dx, decay):
@@ -113,6 +114,18 @@ def reaction_diffusion_step(u, D, dt, dx, decay):
     u[:, -1] = u[:, -2]
 
     return u
+
+##################
+# EXECUTION CODE #
+##################
+
+# Stability criterion
+if D * dt / dx**2 > 0.5:
+    raise ValueError("Stability criterion not met")
+
+# Initial condition
+u = np.zeros((nx, ny))
+u[0, :] = 100
 
 
 # initilize figure and axes for plotting

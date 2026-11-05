@@ -61,6 +61,9 @@ The code below is also in  `WC04-Pattern_formation_I/01_morphogengradient_to_seg
 ``` python
 import numpy as np
 import matplotlib.pyplot as plt
+import os
+
+os.makedirs("output", exist_ok=True)
 
 # Parameters
 Lx = 40.0  # Length of the domain in x in micrometers
@@ -112,10 +115,9 @@ def reaction_diffusion_step(u, D, dt, dx, decay):
     return u
 
 
-
 # initilize figure and axes for plotting
-fig, (ax_M, ax_lines) = plt.subplots(2, figsize=(10, 8), gridspec_kw={'height_ratios': [3, 1]})  
-# TODO: Make the first graph 3 times the height of the second, and add a new axis for the ABC flag visualization 
+fig, (ax_M, ax_lines) = plt.subplots(2, figsize=(10, 8), gridspec_kw={'height_ratios': [3, 1]})  # Make the first graph 3 times the height of the second
+# TODO: Add a new axis for the ABC flag visualization 
 
 
 # Time-stepping simulation loop
@@ -153,6 +155,7 @@ for n in range(nt):
         line_plot[0].set_ydata(u[:, 2])
         # TODO: Update A, B, C line plots as needed in Q5
 
+        #fig.savefig(f"output/morphogen_simulation_{n:05d}.png", dpi=300) #save png (makes simulation run slower!)
     plt.pause(0.001)  # Pause to refresh the plot
 
 # And keep the last plot open
@@ -208,9 +211,9 @@ is written in a less compact matter.)
 :::{#exr-plain}
 ## Important concept
 
-Play with the morphogen $M$ diffusion rate and the morphogen $M$ decay rate and 
-observe what happens. What happens in terms of dynamics and steady state if you 
-change both, but the ratio stays the same? 
+Play with the value of the morphogen $M$ diffusion rate and the morphogen $M$ 
+decay rate and observe what happens. What happens in terms of dynamics and 
+steady state if you change both, but the ratio stays the same? 
 
 Hint: it might help to draw a horizontal line at a certain height to ease comparison.
 :::
@@ -234,7 +237,7 @@ and tail respectively: so $A$ needs to be expressed on the left, $B$ in the
 middle and $C$ on the right. 
 
 Think of what conditions in terms of $M$ should lead to expression of $A/B/C$. 
-What Hill functions (normal/inverse/any combination) corresponds to those conditions? Write down (pen and paper, not yet in code) full equations for the genes. 
+What Hill functions (normal/inverse/any combination) corresponds to those conditions? Write down (pen and paper, not yet in the code) full equations for the genes. 
 Do we need any other terms than just Hill functions? Would we need specific
 parameter conditions?
 
@@ -263,9 +266,10 @@ parameter conditions?
 
 From hereon we assume that the morphogen $M$ gradient reaches steady state very
 quickly. Thus, we no longer use the numerical implementation of the diffusion equation
-and instead work with a superimposed morphogen profile defined by
+and instead work with a superimposed morphogen profile defined in
 `reaction_diffusion_gradient`. This saves us simulation time. 
 
+Replace `reaction_diffusion_step` with `reaction_diffusion_gradient`.
 (Hint: to not call the `reaction_diffusion_step` function any more use \# in 
 front of where it is called). Change the simulation loop such that it computes 
 the morphogen $M$ gradient once. 
@@ -363,7 +367,7 @@ def ihill(y, Km, pow):
 ```
 :::
 ::: {.content-visible when-meta="params.show_answers"}
-  > **Answer** Look at code `02_answer_morphogengradient_superimposed_quickABC.py`.	
+  > **Answer** Look at code `Question5`.	
   > You will find that gene $C$ needs to be induced by low and repressed by high $M$. 
   > And as explained above: $k_A=k_{B1}>k_{B2}>k_C$.
 
@@ -393,9 +397,9 @@ without actually simulating this).
 
 Now modify the code in the `reaction_diffusion_gradient` function (updates 
 the morphogen $M$ concentration) to implement that the $M$ gradient gradually
-disappears once $A$, $B$ and $C$ have gotten close to equilibrium. Identify 
-the time point at which this happes, and adapt the simulation loop where 
-necessary, and run your code: 
+disappears once $A$, $B$ and $C$ have gotten close to equilibrium (use `switch_time`
+option in `reaction_diffusion_gradient`). Identify the time point at which this
+happens, and adapt the simulation loop where necessary, and run your code: 
 
 Was your prediction on $A$, $B$, $C$ from the previous question correct? Why/why not? 
 
@@ -426,15 +430,15 @@ expression domains of $A$, $B$ and $C$?, Does their expression in space change?
 :::
 
 ::: {.content-visible when-meta="params.show_answers"}
-  > **Answer** See `03_answer_morphogengradient_superimposed_quickABC_phase2.py`
+  > **Answer** See `Question8.py`
   > As $M$ decays, $A$ and $B$ will no longer be activated and $C$ no longer
   > repressed, hence the takeover by $C$. Therefore, mutual repression with 
   > your neighboring-expressed gene is not enough to maintain the "French Flag". 
   > Genes need to mutually repress
   > both the 2 other genes. So $A$ needs to be repressed by $B$ and $C$; $B$ by 
   > $A$ and $C$; and $C$ by $A$ and $B$. 
-  > While these changes can maintain the genes organized in space, $A$ at the 
-  > left, $B$ in the middle and $C$ at the right, the shape of their expression
+  > While these changes can maintain the genes organized in space ($A$ at the 
+  > left, $B$ in the middle and $C$ at the right) the shape of their expression
   > domains becomes less gradual and more sharply defined.
 
 :::
@@ -471,7 +475,7 @@ their takeover by other genes due to timing issues
   > part of their input) being negatively dependent on $M$ that there is an $AND$ 
   > gate (so they do not expand once $M$ is absent but require both $M$ absent 
   > and mutual repressors absent). See the answer code:
-  > `04_answer_morphogengradient_superimposed_quickABC_phase2_combined`.
+  > `Question9.py`.
 :::
 
 :::{#exr-plain}
@@ -487,7 +491,7 @@ robust in a manner that is also likely occurring in nature?
 ::: {.content-visible when-meta="params.show_answers"}
   > **Answer** 
   > 
-  > See the answer code: `05_answer_morphogengradient_superimposed_quickABC_phase2_combined_noise`
+  > See the answer code: `Question10.py`
   > The noise has more effect in the initial phase when mostly morphogen is 
   > driving the expression domains, as gene expression becomes established and
   > morphogen levels decay the mutual repression ensures stability against the 

@@ -64,8 +64,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Parameters
-Lx = 40.0  # Length of the domain in x in microm
-Ly = 10.0  # Length of the domain in y in microm
+Lx = 40.0  # Length of the domain in x in micrometers
+Ly = 10.0  # Length of the domain in y in micrometers
 T = 200  # Total time in seconds
 dx = 0.5  # Grid spacing in x
 dt = 0.1  # Time step
@@ -83,11 +83,6 @@ decayM =0.01 # Decay rate in 1/s
 # Stability criterion
 if D * dt / dx**2 > 0.5:
     raise ValueError("Stability criterion not met")
-
-# A, B and C are required for later exercises.
-A = np.zeros((nx, ny))
-B = np.zeros((nx, ny))
-C = np.zeros((nx, ny))
 
 # Initial condition
 u = np.zeros((nx, ny))
@@ -275,6 +270,14 @@ down (pen and paper, not in code) full equations for the genes, do we
 need any other terms than just Hill functions, would we need specific
 parameter conditions?
 :::
+
+``` python
+# Create a grid (x, y dimensions) for A, B and C 
+A = np.zeros((nx, ny))
+B = np.zeros((nx, ny))
+C = np.zeros((nx, ny))
+
+```
 
 ::: {.content-visible when-meta="params.show_answers"}
   > **Answer** 

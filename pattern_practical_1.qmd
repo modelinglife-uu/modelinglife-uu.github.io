@@ -23,11 +23,11 @@ derived and a-typical!) is the development of the fruit fly Drosophila
 melanogaster. Supporting the ideas of Wolpert, it was found that through
 tethering maternal Bicoid mRNA to one side of the embryo, Bicoid protein
 can form a gradient extending along the anterior-posterior axis, with so
-called gap genes as a first tier in the segmentation hierarchy
-differentially responding to different Bicoid protein levels
-[@driever1988bicoid]. Later it was found that often at least two
-opposing morphogen gradients drive downstream gene expression and genes
-typically respond to multiple inputs.
+called gap genes as a first tier in the segmentation hierarchy 
+responding to different Bicoid protein levels [@driever1988bicoid]. 
+Later it was found that often at least two opposing morphogen gradients 
+drive downstream gene expression and genes typically respond to multiple 
+inputs.
 
 ## Mathematical modeling - integrating multiple signals  
 
@@ -53,8 +53,7 @@ tf1 and tf2 are repressing or activating.
 
 ## Python code
 
-
-The code below is also in `01_morphogengradient_to_segments.py`. 
+The code below is also in  `WC04-Pattern_formation_I/01_morphogengradient_to_segments.py`. 
 
 ::: {.callout-note collapse="true"}
 ## Starting code for this practical
@@ -112,39 +111,11 @@ def reaction_diffusion_step(u, D, dt, dx, decay):
 
     return u
 
-def reaction_diffusion_gradient(t, u, D, dx, decay, switch_time = None, noise = False):
-    '''
-    Function to create a gradient in the u array that could decay after a certain time.
-    t: current time step
-    u: array to create the gradient in
-    D: diffusion coefficient
-    dx: grid spacing
-    decay: decay rate
-    switch_time: time step after which the gradient decays. If no switch is desired, set to None
-    noise: whether to add noise to the gradient
-    '''
-    # TODO for student: write code for the noise and the switch.
-    added_noise = np.zeros_like(u)  # Initialize noise array
-    if noise:
-        ...  # TODO: add noise generation code here for Q10
-    
-    if switch_time is None or t <= switch_time:
-        # define a exponential decay gradient over the array in the x direction with numpy array operations using the index
-        for i in range(u.shape[0]):
-            u[i, :] = np.maximum(100 * np.exp(-i*dx/np.sqrt(D/decay))+added_noise[i, :], 0)
-        return u
-    if t > switch_time:
-        ...# TODO Q7: implement a gradient that decays over time, otherwise return the original u array
-        return u
-    # In all other cases, return the original u array        
-    return u
-
-
 
 
 # initilize figure and axes for plotting
-fig, (ax_M, ax_lines) = plt.subplots(2, figsize=(10, 8), gridspec_kw={'height_ratios': [3, 1]})  # Make the first graph 3 times the height of the second
-# TODO: Add a new axis for the ABC flag visualization 
+fig, (ax_M, ax_lines) = plt.subplots(2, figsize=(10, 8), gridspec_kw={'height_ratios': [3, 1]})  
+# TODO: Make the first graph 3 times the height of the second, and add a new axis for the ABC flag visualization 
 
 
 # Time-stepping simulation loop
@@ -197,10 +168,9 @@ plt.close(fig)
 :::{#exr-test}
 ## Algorithmic thinking 
 
-Have a look at the reaction-diffusion
-equation for the morphogen and the implementation of it in the file
-`01_morphogengradient_to_segments.py` in the `reaction_diffusion_step`
-function, as well as at the initialization of the array $u$. How is this
+Have a look at the reaction-diffusion equation for the morphogen (lecture), 
+and the implementation of it in the `reaction_diffusion_step` function. Also 
+look at the initialization of the array $u$. How is this
 different from the gradient formation modeling we discussed during the
 lecture? What is done at the terminal boundary in the length direction
 and why does this make sense? 
@@ -238,16 +208,18 @@ is written in a less compact matter.)
 :::{#exr-plain}
 ## Important concept
 
-Play with the morphogen $M$ diffusion rate and the morphogen $M$ decay rate and describe 
-what happens. What happens in terms of dynamics and steady state if you change 
-both, but the ratio stays the same? Hint: it might help to draw a horizontal line 
-at a certain height to ease comparison.
+Play with the morphogen $M$ diffusion rate and the morphogen $M$ decay rate and 
+observe what happens. What happens in terms of dynamics and steady state if you 
+change both, but the ratio stays the same? 
+
+Hint: it might help to draw a horizontal line at a certain height to ease comparison.
 :::
 
 ::: {.content-visible when-meta="params.show_answers"}
   >	**Answer** Diffusion length concept $=√(D/d)$, it is the ratio of these factors 
-  > that determines the length scale lambda $\lambda$ over which the morphogen concentration 
-  > decays an e-fold. So with the same ratio, you get the same steady state gradient. 
+  > that determines the length scale lambda $\lambda$ over which the morphogen
+  > concentration decays an e-fold. So with the same ratio, you get the same 
+  > steady state gradient. 
   > However, it will still approach the steady state faster. 
 
 
@@ -257,13 +229,15 @@ at a certain height to ease comparison.
 ## Biology & mathematical thinking
 
 Next, we are going to introduce the genes $A$, $B$ and $C$ in the model. We 
-want these genes to be expressed dependent on $M$, and in the head, trunk 
-and tail respectively, so $A$ on the left, $B$ in the middle and $C$ on the right. 
-Think of what conditions in terms of $M$ should lead to expression of $A/B/C$. What 
-Hill functions (normal/inverse/any combination) corresponds to those conditions? Write
-down (pen and paper, not in code) full equations for the genes, do we
-need any other terms than just Hill functions, would we need specific
+want these genes to be expressed dependent on $M$, to define a head, trunk 
+and tail respectively: so $A$ needs to be expressed on the left, $B$ in the 
+middle and $C$ on the right. 
+
+Think of what conditions in terms of $M$ should lead to expression of $A/B/C$. 
+What Hill functions (normal/inverse/any combination) corresponds to those conditions? Write down (pen and paper, not yet in code) full equations for the genes. 
+Do we need any other terms than just Hill functions? Would we need specific
 parameter conditions?
+
 :::
 
 ::: {.content-visible when-meta="params.show_answers"}
@@ -287,20 +261,22 @@ parameter conditions?
 :::{#exr-plain}
 ## Biology & algorithmic/mathematical thinking
 
-From hereon we assume that the morphogen $M$ gradient reaches steady state very quickly,
-and no longer use the numerical implementation of the diffusion equation
+From hereon we assume that the morphogen $M$ gradient reaches steady state very
+quickly. Thus, we no longer use the numerical implementation of the diffusion equation
 and instead work with a superimposed morphogen profile defined by
-`reaction_diffusion_gradient` to save time. (Hint: to not call the
-function any more use \# in front of where it is called). Change the
-simulation loop such that it computes the morphogen $M$ gradient once. What
-type of function is the superimposed morphogen profile and how does this
+`reaction_diffusion_gradient`. This saves us simulation time. 
+
+(Hint: to not call the `reaction_diffusion_step` function any more use \# in 
+front of where it is called). Change the simulation loop such that it computes 
+the morphogen $M$ gradient once. 
+What type of function is the superimposed morphogen profile and how does this
 relate to question 2.
 :::
 
 ::: {.callout-note collapse="true"}
-## Copy code of the reaction_diffusion_gradient function
+## Code of the reaction_diffusion_gradient function
 ``` python
-# Use precomputed gradient
+# Let's use a precomputed M gradient
 def reaction_diffusion_gradient(t, u, D, dx, decay, switch_time = None, noise = False):
     '''
     Function to create a gradient in the u array that could decay after a certain time.
@@ -312,7 +288,7 @@ def reaction_diffusion_gradient(t, u, D, dx, decay, switch_time = None, noise = 
     switch_time: time step after which the gradient decays. If no switch is desired, set to None
     noise: whether to add noise to the gradient
     '''
-    # TODO: write code for the noise and the switch.
+    # TODO: write code for the noise and the switch. Q7
     added_noise = np.zeros_like(u)  # Initialize noise array
     if noise:
         ...  # TODO: add noise generation code here for Q10
@@ -343,10 +319,10 @@ def reaction_diffusion_gradient(t, u, D, dx, decay, switch_time = None, noise = 
 
 a.  Now create functions to update $A$, $B$ and $C$ according to your
     equations from the previous question. You may use the predefined
-    hill and ihill (inverse) functions that are provided in the code. For
-    simplicity, you may keep most of the parameters the same across
+    hill and ihill (inverse) functions that are provided below. For
+    simplicity, you may keep most of the parameters the same for all
     genes, but some have to be different to ensure the right location of
-    the genes (see your reasoning to the previous question). 
+    the genes (based on your reasoning in Question 3). 
 b.  Also make sure that the levels of $A$, $B$ and $C$ are updated in the
     simulation loop. (Hint: using array properties to update $A$,$B$ and $C$, like
     in the `reaction_diffusion_step` function, makes your code run a lot
@@ -357,11 +333,13 @@ c.  Next, ensure $A$, $B$ and $C$ are visualized in the bottom plot axis (copy
     getting which of the three genes is maximal at each location with
     `np.argmax(np.array(\[A, B, C\])`, axis=0) and turning that into an
     array of RGB colors of choice.
-d.  Do you get the expected “French flag” pattern? If not, think of why
-    not and improve your equations from previous question, parameters or
+d.  Do you get the expected “French flag” pattern? If not, think of how the
+    genes are regulated, and improve your equations (Question 3), parameters or
     your code.
 :::
 
+::: {.callout-note collapse="true"}
+## Code to creat A,B,C arrays; and of Hill functions for their regulation
 ``` python
 # Create a grid (x, y dimensions) for A, B and C 
 A = np.zeros((nx, ny))
@@ -381,7 +359,7 @@ def ihill(y, Km, pow):
 
 
 ```
-
+:::
 ::: {.content-visible when-meta="params.show_answers"}
   > **Answer** Look at code `02_answer_morphogengradient_superimposed_quickABC.py`.	
   > You will find that gene $C$ needs to be induced by low and repressed by high $M$. 

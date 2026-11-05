@@ -788,13 +788,10 @@ window.Quarto = {
 <div id="exr-plain" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 5.3 (Biology &amp; mathematical thinking)</strong></span> Next, we are going to introduce the genes <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> in the model. We want these genes to be expressed dependent on <span class="math inline">\(M\)</span>, and in the head, trunk and tail respectively, so <span class="math inline">\(A\)</span> on the left, <span class="math inline">\(B\)</span> in the middle and <span class="math inline">\(C\)</span> on the right. Think of what conditions in terms of <span class="math inline">\(M\)</span> should lead to expression of <span class="math inline">\(A/B/C\)</span>. What Hill functions (normal/inverse/any combination) corresponds to those conditions? Write down (pen and paper, not in code) full equations for the genes, do we need any other terms than just Hill functions, would we need specific parameter conditions?</p>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a grid (x, y dimensions) for A, B and C </span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.zeros((nx, ny))</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> np.zeros((nx, ny))</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> np.zeros((nx, ny))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="exr-plain" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 5.4 (Biology &amp; algorithmic/mathematical thinking)</strong></span> From hereon we assume that the morphogen <span class="math inline">\(M\)</span> gradient reaches steady state very quickly, and no longer use the numerical implementation of the diffusion equation and instead work with a superimposed morphogen profile defined by <code>reaction_diffusion_gradient</code> to save time. (Hint: to not call the function any more use # in front of where it is called). Change the simulation loop such that it computes the morphogen <span class="math inline">\(M\)</span> gradient once. What type of function is the superimposed morphogen profile and how does this relate to question 2.</p>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use precomputed gradient</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="exr-plain" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 5.5 (Biology &amp; algorithmic/mathematical thinking)</strong></span> &nbsp;</p>
 <ol type="a">
@@ -804,6 +801,22 @@ window.Quarto = {
 <li>Do you get the expected “French flag” pattern? If not, think of why not and improve your equations from previous question, parameters or your code.</li>
 </ol>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a grid (x, y dimensions) for A, B and C </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.zeros((nx, ny))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> np.zeros((nx, ny))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> np.zeros((nx, ny))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Hill functions to implement M,A,B,C mutual regulation</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hill(x, Km, <span class="bu">pow</span>):</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Hill function for the reaction kinetics."""</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x<span class="op">**</span><span class="bu">pow</span>) <span class="op">/</span> (Km<span class="op">**</span><span class="bu">pow</span> <span class="op">+</span> x<span class="op">**</span><span class="bu">pow</span>) </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ihill(y, Km, <span class="bu">pow</span>):</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Inverse Hill function for the reaction kinetics."""</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>( (Km<span class="op">**</span><span class="bu">pow</span>) <span class="op">/</span> (y <span class="op">**</span><span class="bu">pow</span>  <span class="op">+</span> Km<span class="op">**</span><span class="bu">pow</span>))</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># In the code search for "TODO", this indicates where do you have include changes to plot A,B,C.</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="exr-plain" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 5.6 (Biology)</strong></span> At some point in development, the morphogen gradient <span class="math inline">\(M\)</span> will disappear. For example, in the case of Drosophila embryos the Bicoid gradient disappear because the maternal mRNA is degraded. Predict what will happen to the expression of <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> (and hence the French flag pattern) if the morphogen <span class="math inline">\(M\)</span> gradient disappears over time and assume <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, and <span class="math inline">\(C\)</span> are regulated by our equations (first try think about this without actually simulating this).</p>
 </div>

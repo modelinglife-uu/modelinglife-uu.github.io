@@ -271,14 +271,6 @@ need any other terms than just Hill functions, would we need specific
 parameter conditions?
 :::
 
-``` python
-# Create a grid (x, y dimensions) for A, B and C 
-A = np.zeros((nx, ny))
-B = np.zeros((nx, ny))
-C = np.zeros((nx, ny))
-
-```
-
 ::: {.content-visible when-meta="params.show_answers"}
   > **Answer** 
   > Equation for A:
@@ -310,6 +302,9 @@ type of function is the superimposed morphogen profile and how does this
 relate to question 2.
 :::
 
+``` python
+# Use precomputed gradient
+```
 ::: {.content-visible when-meta="params.show_answers"}
   > **Answer** The imposed morphogen $M$ profile is an exponential gradient, 
   > the $–$ indicates it is a declining function, the $i\cdot dx$ is to convert 
@@ -341,6 +336,26 @@ d.  Do you get the expected “French flag” pattern? If not, think of why
     not and improve your equations from previous question, parameters or
     your code.
 :::
+
+``` python
+# Create a grid (x, y dimensions) for A, B and C 
+A = np.zeros((nx, ny))
+B = np.zeros((nx, ny))
+C = np.zeros((nx, ny))
+
+# Hill functions to implement M,A,B,C mutual regulation
+def hill(x, Km, pow):
+    """Hill function for the reaction kinetics."""
+    return (x**pow) / (Km**pow + x**pow) 
+
+def ihill(y, Km, pow):
+    """Inverse Hill function for the reaction kinetics."""
+    return( (Km**pow) / (y **pow  + Km**pow))
+
+# In the code search for "TODO", this indicates where do you have include changes to plot A,B,C.
+
+
+```
 
 ::: {.content-visible when-meta="params.show_answers"}
   > **Answer** Look at code `02_answer_morphogengradient_superimposed_quickABC.py`.	

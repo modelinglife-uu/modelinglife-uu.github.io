@@ -195,6 +195,12 @@ proximo-distal (body to limb) direction. Growth is controlled by a growth rate $
 ## Biology
 
 -   Study the code to understand what it does.\
+-   Increase the horizontal growth rate `vi` in small increments (try: 0.01, 0.05, 
+0.1, 0.2, 0.5) and study what happens to the pattern. Explain why you think this happens.
+
+**Note:** Increase the `totaltime` parameter to 5000 when using growth rate of 0.01.
+:::
+
 ::: {.callout-note collapse="true"}
 ## Additions to the code: parameters, new functions, execution: initial condition and simulation loop
 
@@ -432,11 +438,6 @@ for timestep in range(time_steps):
 
 plt.show()
 ```
-:::
--   Increase the horizontal growth rate `vi` in small increments (try: 0.01, 0.05, 
-0.1, 0.2, 0.5) and study what happens to the pattern. Explain why you think this happens.
-
-**Note:** Increase the `totaltime` parameter to 5000 when using growth rate of 0.01.
 :::
 
 :::{.content-visible when-meta="params.show_answers"}

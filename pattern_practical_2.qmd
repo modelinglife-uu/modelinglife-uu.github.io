@@ -14,7 +14,7 @@ Turing-type patterns emerge when a system exhibits short-ranged activation and l
 
 
 
-::: {.column width="40%"}
+::: {.column width="60%"}
 ![Credit: the internet.](images/0-hamster.png){#vegmini1 width=40%}
 :::
 ::: {.column width="60%"}

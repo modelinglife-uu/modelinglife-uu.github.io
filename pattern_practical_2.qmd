@@ -666,10 +666,9 @@ As mentioned above, the biological factors thought to underlie the variation in
 the $k4$ and $k7$ parameters are Hoxd13 and FGF. Hoxd13 is highly expressed in 
 the distal domain of the paddle and not expressed elsewhere, and this expression 
 domain is growing as the paddle grows. FGF is expressed from the distal edge of 
-the paddle and spreads through diffusion. For an illustration see Fig S8A of the 
-supplement of the Raspopovic paper (page 10 @raspopovic2014digit). Experimental
-data furthermore suggest that Hoxd13 and FGF together affect `k4` and `k7`, which 
-the authors decided to model using the following equations:
+the paddle and **spreads** through diffusion. See [page 10, Fig S8A](https://www.science.org/doi/suppl/10.1126/science.1252960/suppl_file/raspopovic.sm.pdf)). 
+Experimental data suggest that Hoxd13 and FGF together affect $k4$ and $k7$, 
+which the authors decided to model using the following equations:
 
 $$
 k4^* = k4 - k_{HF_{bmp}} * fgf(i,j) * hox(i,j)
@@ -683,44 +682,56 @@ $$
 
 ## Algorithmic and biological thinking 
 
-The script `06__digits_squarehoxdfgf.py` implements how `k4` and `k7` are a function 
-of local FGF and Hox values, but does not yet include Hox and FGF spatial patterns
-and how these develop over time. Adjust the code to incorporate the observed Hoxd13 
-and FGF patterns and study how the digit patterns compare to what you found under 
-question 7. Note that arrays for `hox` and `fgf` are included, and decay and diffusion 
-values for `fgf` are provided already in the code. Also note that `hox` and `fgf` 
-each have a maximum value of 1.
+The script `WC05_digits_square--Question7-hoxdfgf` implements how $k4$ and $k7$ 
+are a function of local FGF and Hox values (line 116 and 117), but does not yet 
+include Hox and FGF spatial patterns and how these develop over time. Adjust the 
+code to incorporate the observed Hoxd13 and FGF patterns, and assess how the digit 
+patterns compare to what you found in the Question 6. 
+
+Note that the code already defines the arrays for `hox` and `fgf`, as well as the
+decay and diffusion values for `fgf` are provided already in the code. Also note 
+that `hox` and `fgf` each have a maximum value of 1.
+
+Hint: (1) Initialize the spatial distribution of Hox and FGF, (2) Model the diffusion 
+of FGF, (3)  model how the expression domain of Hox increases with growth, and (4) update 
+your simulation loop to account for these new processes.
 :::
 
 :::{.content-visible when-meta="params.show_answers"}
-> **Answer** See the script `06_digits_squarehoxdfgf_answer.py` for a solution. 
+> **Answer** 
+> See the script `WC05_digits_square-Question7-hoxdfgf_answer` for a solution. 
+> You can find the important code lines by searching for "Question7)
+>
 > The output may look sometimes like this:
 
 ![](images/spatial_parameter_turing2.png)
   > The Hox domain starts as a narrow vertical band and expands backward. The FGF 
-  > gradient develops from the rightward boundary. Since a certain amount of Hox and 
-  > FGF is needed to result in k4 and k7 values permissive of Turing patterns the 
-  > stripes develop from right to left and because of the wavelength changes induced 
-  > by different Hox and FGF values become closer together towards the left. 
-  > Note that here a nice example run is shown but patterns are variable.
+  > gradient develops from the rightward boundary. Since a certain amount of Hox 
+  > and FGF is needed to result in $k4$ and $k7$ values permissive of Turing patterns, 
+  > the stripes develop from right to left. Also, the different Hox and FGF values 
+  > along the proximo-distal axis cause wavelength changes (notice Fgf gradient...), 
+  > resulting in the stripes becoming closer together towards the left end. 
+  > Here we show a nice example output, but patterns are variable.
 
 :::
 ------------------------------------------------------------------------
 
 ## Shape makes the tissue
 
-Having studied the effects of growth and genetic factors modulating the Turing 
-pattern now it is time for the final step. So far, we’ve approximated the limb bud 
-very crudely with a rectangle. As you probably noticed in your parameter exploration,
-the tissue boundary can bias stripe orientation. Therefore it is interesting to 
-study the interplay between the shape of the “paddle” or limb bud in which the
-digits develop and how it grows with the temporal development of the hox and fgf 
-patterns. In the script `07__digits_growingpaddle.py` we implemented two different 
-tissue geometries: An ellipse and a “paddle” that imitates the shape of the limb bud.
+Having studied the effects of growth and genetic factors modulating the 
+Turing pattern now it is time for the final step: shape!
+
+So far, we’ve approximated the limb bud very crudely with a rectangle. As you 
+probably noticed in your parameter exploration, the tissue boundary can bias 
+stripe orientation. Therefore it is interesting to study the interplay between 
+the shape of the “paddle” or limb bud in which the digits develop, and how it 
+grows with the temporal development of the hox and fgf patterns. In the script `WC05_digits_Question8-growingpaddle.py` we implemented two different tissue 
+geometries: An ellipse and a “paddle” that imitates the shape of the limb bud.
+
 Note that to implement Hox and FGF domains on a complex growing shape, quite a bit 
-of complex code involving masks describing the tissue domain and angles to control 
-the Hox and FGF domains was needed. At first, we are going to ignore these technical 
-details.
+of complex code involving masks was needed (needed to describe the tissue domain 
+and angles to control the Hox and FGF domains). We are going to ignore these 
+technical details (for now).
 
 :::{#exr-tur}
 

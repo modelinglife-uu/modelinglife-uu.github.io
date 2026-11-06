@@ -1,12 +1,18 @@
 ---
 params:
-  show_answers: false
+  show_answers: true
 ---
 
 # Turing patterns, repetitive patterning
   
 ## {.unnumbered}
-A foundational work in Theoretical Biology is Alan Turing's paper *"The Chemical Basis of Morphogenesis"* (@turing1990chemical). In this work, Turing mathematically demonstrates a plausible mechanism whereby a reaction-diffusion system can lead to the formation of a spatially-patterned solution in steady state. Mathematically and conceptually, Turing’s key innovation was considering diffusion-driven instability. That is: A non-patterned steady state solution becomes unstable in the presence of diffusion, leading to the formation of a spatially patterned state.
+A foundational work in Theoretical Biology is Alan Turing's paper *"The Chemical Basis of Morphogenesis"* (@turing1990chemical). In this work, Turing mathematically 
+demonstrates a plausible mechanism whereby a reaction-diffusion system can 
+lead to the formation of a spatially-patterned solution in steady state. 
+Mathematically and conceptually, Turing’s key innovation was considering 
+diffusion-driven instability. That is: A non-patterned steady state solution 
+becomes unstable in the presence of diffusion, leading to the formation of a 
+spatially patterned state.
 
 Turing-type patterns emerge when a system exhibits short-ranged activation and long-ranged inhibition. The most well-known realization of a Turing reaction-diffusion system is the combination of a slow-diffusing activator and fast-diffusing inhibitor. Many more examples exist which can be reduced to a mathematically equivalent form. In this practical, we will explore a 3-component Turing system developed by Raspopovic and coauthors to explain the patterning of fingers on the paws of mice (@raspopovic2014digit).
 
@@ -19,23 +25,36 @@ Turing-type patterns emerge when a system exhibits short-ranged activation and l
 :::
 ::: {.column width="60%"}
 
-In this practical you will work with a total of 6 different python codes. Please note that each code simply differs by an extension or modification from the previous code, so that in the end you will have a long script that performs all the steps in one go.
+In this practical you will work with a total of 3 different python codes. 
+Please note that each code simply differs by an extension or modification 
+from the previous code, so that in the end you will have a long script that 
+performs all the steps in one go.
 :::
 :::
 ------------------------------------------------------------------------
 
 ## Equivalence of Turing models
 
-The model proposed by Raspopovic et al. for generating Turing patterns underlying limb bone modeling consists of 3 instead of 2 interacting variables. We will refer to this model as “BSW” model, as it represents interactions between Bmp, Sox9, and Wnt.
+The model proposed by Raspopovic et al. for generating Turing patterns underlying 
+limb bone modeling consists of 3 instead of 2 interacting variables. We will 
+refer to this model as “BSW” model, as it represents interactions between the genes
+Bmp, Sox9, and Wnt.
 
 :::{#exr-tur}
 
 ## Conceptual thinking 
 
-Study the schemes below. The arrows represent activating or inhibiting interactions, while the wavy lines represent diffusion of components. Simplify this 3-variable model scheme into a 2 variable model scheme (just by drawing the interactions, no need to write equations) and explain how it satisfies the Turing conditions discussed in the lecture. Remember that for Turing patterns we need an activator an inhibitor. 
+Study the schemes below. The arrows represent activating or inhibiting interactions, 
+while the wavy lines represent diffusion of components. Simplify this 3-variable 
+model scheme into a 2-variable model scheme (just by drawing the interactions, 
+no need to write equations) and explain how it satisfies the Turing conditions 
+discussed in the lecture. Remember that for Turing patterns we need an activator 
+an inhibitor. 
 
-In a 2 variable system the activator needs to be a single autoactivating molecule. When we have more variables, the positive feedback can be achieved differently (indirectly). So think which two variables would be logical to combine into one to get a 2 variable model..
-
+Hint: In a 2-variable system the activator needs to be a single autoactivating molecule. 
+When we have more variables, the positive feedback can be achieved differently 
+(indirectly). So think which two variables would be logical to combine into one 
+to get a 2-variable model..
 
 ::: {.columns}
 
@@ -55,10 +74,11 @@ In a 2 variable system the activator needs to be a single autoactivating molecul
 
 
 ::: {.content-visible when-meta="params.show_answers"}
-> **Answer** “fuse” Sox9 and Wnt nodes to get Substrate-Depletion model
-<br>a)	Sox9 inhibits Wnt which inhibits Sox9 -> summarize as self-activation
-<br>b)	Wnt self-inhibition arrow -> part of self-activation in reduced scheme
-<br>c)	Wnt slow diffusion -> Sox9 slow diffusion<br><br>
+> **Answer** “fuse” Sox9 and Wnt nodes to get Substrate-Depletion model <br>Fig. 6.1 Right)	
+> Sox9 inhibits Wnt, which in turn inhibits Sox9 -> this can be summarized as 
+> self-activation <br>b). In this reduced scheme, the Wnt self-inhibition arrow -> 
+> would be part of the self-activation <br>c)	
+> Wnt slow diffusion -> Sox9 slow diffusion<br><br>
 Turing instability requires short-range activation and long-range inhibition. <br><br>
 In the substrate-depletion model, the growth of the slow-diffusing activator A is constrained by the local loss of fast-diffusing substrate S. Around an A-enriched domain a halo of S will form, which will induce nearby A domains to grow, generating the alternating spatial pattern.<br><br>
 In the BSW model, Sox9 indirectly locally self-activates by inhibiting its slow-diffusing inhibitor Wnt, but the growth of Sox9 domains is constrained by depletion of the fast-diffusing Bmp (playing the role of substrate in this model). Around Sox9-enriched domains a halo of Bmp will form and induce the generation of more Sox9 domains in the surroundings.
@@ -188,7 +208,6 @@ where reactions and diffusion happen.
 
 In the script `02__digits_growingsquare_PD.py` we added tissue growth in the 
 proximo-distal (body to limb) direction. Growth is controlled by a growth rate $vi$. 
-(To make it easier to see what is new in this code, look for `#New`)
 
 :::{#exr-tur}
 
@@ -202,7 +221,7 @@ proximo-distal (body to limb) direction. Growth is controlled by a growth rate $
 :::
 
 ::: {.callout-note collapse="true"}
-## Additions to the code: parameters, new functions, execution: initial condition and simulation loop
+## To make it easier to see what is new in this code, here we list the new parameters, new functions, anc changes to the execution code: initial condition and simulation loop
 
 ``` python
 ##############
@@ -625,7 +644,7 @@ wavelength this results in.
 
 ## Hoxd13 and FGF
 
-As mentioned above, the biological factors thought to underly the variation in 
+As mentioned above, the biological factors thought to underlie the variation in 
 the `k4` and `k7` parameters are Hoxd13 and FGF. Hoxd13 is highly expressed in 
 the distal domain of the paddle and not expressed elsewhere, and this expression 
 domain is growing as the paddle grows. FGF is expressed from the distal edge of 

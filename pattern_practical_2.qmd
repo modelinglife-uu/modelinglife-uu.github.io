@@ -236,7 +236,7 @@ we also need to make it smaller. See below how:
 ::: {.callout-note collapse="true"}
 ## Tissue growth implementation
 
-```
+``` python
 # Horizontal growth rate
 vi = 0.0                     # Let op: make it > 0 
 
@@ -428,14 +428,15 @@ the Sox9-Bmp-Wnt patterning module through these parameters.
 ## Biology 
 
 Let us implement exponential gradients of $k4$ and $k7$ across the tissue. 
-We need to add three new functions, initialize $k$ and $k7$ gradients, and update 
+We need to add three new functions, initialize the $k4$ and $k7$ gradients, 
+and change the function used for the reaction-diffusion simulation, and update 
 the plotting to also show $k4$ and $k7$ gradients. Follow the instructions below 
 to make the changes yourself:
 
 ::: {.callout-note collapse="true"}
 ## New functions: copy to the FUNCTIONS section of the code
 
-```
+``` python
 def single_time_step(sox9, bmp, wnt,               # matrices with variables
 
                      Dbmp, Dwnt,                   # diffusion coefficients
@@ -712,7 +713,7 @@ def k7_local_Supp21C(k, xsize, ysize):
 :::
 
 ::: {.callout-note collapse="true"}
-## Changes in EXECUTION code. See comments "Q6" to know where to copy it.
+## Changes in EXECUTION code. See comments "Q6" for instruction of where to copy it.
 
 ```
 # Q6: Replace our previous set up of plots with:

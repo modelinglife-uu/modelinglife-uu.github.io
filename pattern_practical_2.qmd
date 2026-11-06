@@ -74,39 +74,48 @@ to get a 2-variable model..
 
 
 ::: {.content-visible when-meta="params.show_answers"}
-> **Answer** “fuse” Sox9 and Wnt nodes to get Substrate-Depletion model <br>Fig. 6.1 Right)	
-> Sox9 inhibits Wnt, which in turn inhibits Sox9 -> this can be summarized as 
-> self-activation <br>b). In this reduced scheme, the Wnt self-inhibition arrow -> 
-> would be part of the self-activation <br>c)	
-> Wnt slow diffusion -> Sox9 slow diffusion<br><br>
-Turing instability requires short-range activation and long-range inhibition. <br><br>
-In the substrate-depletion model, the growth of the slow-diffusing activator A is constrained by the local loss of fast-diffusing substrate S. Around an A-enriched domain a halo of S will form, which will induce nearby A domains to grow, generating the alternating spatial pattern.<br><br>
-In the BSW model, Sox9 indirectly locally self-activates by inhibiting its slow-diffusing inhibitor Wnt, but the growth of Sox9 domains is constrained by depletion of the fast-diffusing Bmp (playing the role of substrate in this model). Around Sox9-enriched domains a halo of Bmp will form and induce the generation of more Sox9 domains in the surroundings.
+> **Answer** 
+> “Fuse” the Sox9 and Wnt nodes to get Substrate-Depletion model <br>Fig. 6.1 Right).	
+> Sox9 inhibits Wnt, which in turn inhibits Sox9: this can be summarized as a
+> self-activation <br>b). In this reduced scheme, the Wnt self-inhibition arrow  
+> would be part of the self-activation. Then, Wnt slow diffusion -> Sox9 slow 
+diffusion.<br>
+> Turing instability requires short-range activation and long-range inhibition. 
+> In the substrate-depletion model, the increase of the slow-diffusing activator 
+> A is constrained by the local loss of fast-diffusing substrate S. Around an 
+> A-enriched domain a halo of S will form, which will induce nearby A domains 
+> to grow, generating the alternating spatial pattern.<br>
+> In the BSW model, Sox9 indirectly locally self-activates by inhibiting its 
+> slow-diffusing inhibitor Wnt, but the growth of Sox9 domains is constrained 
+> by depletion of the fast-diffusing Bmp (playing the role of substrate in this 
+> model). Around Sox9-enriched domains a halo of Bmp will form and induce the 
+> generation of more Sox9 domains in the surroundings.
 
 :::
 
 
 ## Patterning in a fixed domain size
 
-The code in the script `01__digits_squarehomogeneoustissue.py` simulates the model 
-in a 2D square tissue of constant size. This setup can be considered as a small 
-region of a large Petri dish in which mesenchymal cells have been plated with the 
-correct chemicals to undergo bone formation (Supplementary Figure S3 in the paper).
+The code in the script `WC05_digits-square.py` simulates the BSW model in a 
+2D-square tissue of constant size. This setup can be considered as a small 
+region of a large Petri dish in which mesenchymal cells have been plated with 
+the correct chemicals to undergo morphogenesis (bone formation, FigureS3 @raspopovic2014digit).
 
 :::{#exr-tur}
 
 ## Biology
 
+Play with parameters, for example changing $k4$ (Sox9 effect on BMP), $k7$ (Sox9 
+effect on Wnt), or changing how much faster is Bmp diffusion compared to Wnt 
+diffusion. Change one parameter at a time and observe the effects on the patterning. 
+Change the values in one direction and the other, to confirm it produces the 
+opposite effect. 
 
-Play with parameters $k4$ (Sox9 effect on BMP), $k7$ (Sox9 effect on Wnt), and how 
-much Bmp diffusion is faster than that of Wnt. Change one parameter at a time and 
-realise that changing in one direction is sufficient; change in the other direction 
-can be expected to have the opposite effect. 
+What effects on the pattern wavelength do you find? Are there changes in two 
+parameters that produce the same effect? Why?
 
-What effects on pattern wavelength do you find? 
-
-**Note**: Make sure to use only small changes for $k4$ and $k7$, if things start 
-oscillating wildly or go blank you are watching numerical errors rather than real 
+**Let op!**: Make sure to make small changes for $k4$ and $k7$. If things start 
+blinking wildly, or go blank, you are watching numerical errors rather than real 
 outcomes. When increasing Bmp diffusion you may need to reduce the time step for 
 integration $dt$. 
 
@@ -114,84 +123,90 @@ integration $dt$.
 
 ::: {.content-visible when-meta="params.show_answers"}
 
-> For simplicity I will only show Sox9 patterns:
+> In general, all three components follow similar trends in terms of concentrations 
+> as any impact on one component will affect the others via feedbacks. Then, for 
+> simplicity here we only show Sox9 patterns:
 
 ![](images/sox9.png){#vegmini1 width=40%}
 
 ![](images/sox9sweep.png)
 
-> In general, all three components follow similar trends in terms of concentrations 
-> as any impact on one component will affect the others via feedbacks.<br><br>
-Increasing or decreasing the parameters k2 and k4 has the same effect on the pattern. <br><br>
-> With increased Sox9 activation (high k2) a lower amount of BMP is sufficient to get Sox9 to
-> increase which in turn inhibits both Wnt and Bmp. As a result, the “peaks” are reached 
-> sooner in space resulting in shorter lower amplitude wavelengths. Similarly, when Sox9
-> inhibition of BMP is high (high k4) then BMP peaks are lower, which means there is less 
-> Sox9 activation leading to smaller amplitude peaks and hence shorter wavelength.
+> Increasing or decreasing the parameters $k2$ and $k4$ has the same effect 
+> on the pattern. <br>
+> With increased Sox9 activation (high $k2$) a lower amount of BMP is sufficient 
+> to get Sox9 to increase which in turn inhibits both Wnt and Bmp. As a result, 
+> the “peaks” are reached closer in space resulting in shorter lower amplitude 
+> wavelengths. Similarly, when Sox9 inhibition of BMP is high (high $k4$) then 
+> BMP peaks are lower, which means there is less Sox9 activation leading to 
+> smaller amplitude peaks and hence shorter wavelength.
 > 
-> Conversely, if Sox9 activation by BMP is weak (low k2), then it takes more BMP to build 
-> up to a peak, resulting in longer higher amplitude wavelengths. When Sox9 inhibition of 
-> BMP is weak (low k4), then it takes larger Sox9 domains to deplete BMP, resulting in 
-> longer higher amplitude wavelengths.
+> Conversely, if Sox9 activation by BMP is weak (low $k2$), then it takes more 
+> BMP to build up to a peak, resulting in longer distance between peaks, and thus 
+> longer higher amplitude wavelengths. When Sox9 inhibition of BMP is weak (low $k4$), 
+> then it takes larger Sox9 domains to deplete BMP, resulting in longer higher 
+> amplitude wavelengths.
 > 
-> If Sox9 activation (k2) or BMP inhibition (k4) are extremely strong, Sox9 locally 
-> depletes BMP faster than it can diffuse, which in turn leads to a reduction in Sox9; 
-> this could explain local oscillations and travelling waves, though this result should 
-> be verified with a better numerical scheme.
+> If Sox9 activation ($k2$) or BMP inhibition ($k4$) are extremely strong, Sox9 
+> locally depletes BMP faster than it can diffuse, which in turn leads to a reduction 
+> in Sox9; this could explain local oscillations and travelling waves, though this 
+> result should be verified with a better numerical scheme.
 > 
-> Changing BMP self-inhibition (k5) has the opposite effect as Sox9 activation (k2) 
-> and BMP inhibition (k4). BMP self-inhibition restricts the size of BMP domains. 
-> Stronger self-inhibition (high k5) means small pockets of BMP are destabilized and 
-> Sox9 regions grow until the point that they completely deplete the local BMP, resulting 
-> in larger higher amplitude peaks. Vice-versa, reducing BMP self-inhibition (low k5) 
-> allows BMP peaks to more easily form, leading to shorter pattern wavelengths. Unlike 
-> the other two parameters, this reduction only happens up to a point, as the other 
-> feedback interactions take over. 
+> Changing BMP self-inhibition ($k5$) has the opposite effect as Sox9 activation 
+> ($k2$) and BMP inhibition ($k4$). BMP self-inhibition restricts the size of BMP 
+> domains. Stronger self-inhibition (high $k5$) means small pockets of BMP are 
+> destabilized and Sox9 regions grow until the point that they completely deplete 
+> the local BMP, resulting in larger higher amplitude peaks. Vice-versa, 
+> reducing BMP self-inhibition (low $k5$) allows BMP peaks to more easily form, 
+> leading to shorter pattern wavelengths. Unlike the other two parameters, 
+> this reduction only happens up to a point, as the other feedback interactions 
+> take over. 
 
 ![](images/sox9sweep2.png)
 
->Increasing or decreasing the parameters k3 and k7 has the same effect on the pattern. 
-> When Wnt inhibition of Sox9 is increased (high k3) or Sox9 inhibition of Wnt is 
-> increased (high k7) the cross-inhibition of both variables is stronger, meaning they 
-> will tend to create larger exclusion zones which translates as longer higher amplitude
-> wavelengths. When Wnt inhibition of Sox9 is decreased (low k3) or Sox9 inhibition of 
-> Wnt is decreased (low k7) smaller regions can coexist, reducing the wavelength and
-> the amplitude. Even lower cross-inhibition means the regions overlap, and small time
-> delays could lead to oscillations, although this should be verified with a numerically better scheme.
-> Wnt self-inhibition (k9) limits the growth of Wnt domains. When self-inhibition is 
-> strong (high k9) Wnt domains shrink and therefore the wavelength is shorter with 
-> lower amplitude. Even stronger self-inhibition leads to overlapping domains and similar
-> oscillations as observed for low k3 and low k7. Vice-versa, a decrease of Wnt 
-> self-inhibition (low k9) allows larger patches of Wnt to form, which increases the 
-> wavelength and the amplitude.
+> Increasing or decreasing the parameters $k3$ and $k7$ has the same effect on the 
+> pattern. When Wnt inhibition of Sox9 is increased (high $k3$) or Sox9 inhibition 
+> of Wnt is increased (high $k7$) the cross-inhibition of both variables is stronger, 
+> meaning they will tend to create larger exclusion zones which translates as longer 
+> higher amplitude wavelengths. When Wnt inhibition of Sox9 is decreased (low $k3$) 
+> or Sox9 inhibition of Wnt is decreased (low k7) smaller regions can coexist, 
+> reducing the wavelength and the amplitude. Even lower cross-inhibition means the 
+> regions overlap, and small time delays could lead to oscillations, although this 
+> should be verified with a numerically better scheme.
+> Wnt self-inhibition ($k9$) limits the growth of Wnt domains. When self-inhibition 
+> is strong (high $k9$) Wnt domains shrink and therefore the wavelength is shorter 
+> with lower amplitude. Even stronger self-inhibition leads to overlapping domains 
+> and similar oscillations as observed for low $k3$ and low $k7$. Vice-versa, a 
+> decrease of Wnt self-inhibition (low $k9$) allows larger patches of Wnt to form, 
+which increases the wavelength and the amplitude.
 
 ![](images/sox9sweep3.png)
 
 > The equation for Sox9 includes a “saturation term” in the form of a negative cubic 
-> power of Sox9, which means that effectively there is Sox9 self-inhibition in the model. 
-> The parameter delta multiplies a quadratic Sox9-dependent term in the equation for Sox9,
-> which by default is set to 0. A positive delta effectively means that Sox9 has a
-> self-activation term that counteracts the self-inhibition by the cubic saturation term,
-> whereas a negative delta means the Sox9 self-inhibition is stronger. 
+> power of Sox9, which means that effectively there is Sox9 self-inhibition in the 
+> model. The parameter $delta$ multiplies a quadratic Sox9-dependent term in the 
+> equation for Sox9, which by default is set to 0. A positive delta effectively 
+> means that Sox9 has a self-activation term that counteracts the self-inhibition 
+> by the cubic saturation term, whereas a negative delta means the Sox9 self-inhibition 
+> is stronger. 
 > 
-> Introducing a stronger Sox9 self-activation (delta > 0) increases the amplitude of 
+> Introducing a stronger Sox9 self-activation ($delta$ > 0) increases the amplitude 
 > Sox9 domains. Due to this local strong increase in Sox9, there is also a local strong
 > depletion of BMP which prevents stripes from elongating, resulting in a spot pattern.
 > 
-> Introducing a stronger Sox9 self-inhibition (delta < 0) reduces the amplitude of Sox9 
-> domains. There is thus less BMP depletion which enables stripes to elongate and fuse more
-> easily.<br><br>
+> Introducing a stronger Sox9 self-inhibition ($delta$ < 0) reduces the amplitude 
+> of Sox9 domains. There is thus less BMP depletion which enables stripes to elongate 
+> and fuse more easily.<br>
 > Wnt and Sox9 are cross-inhibitory, and thus their domains will compete. Lower Wnt 
 > diffusion means Wnt domains form locally, leading to a reduced wavelength. Vice-versa a 
 > higher Wnt diffusion means that Wnt spreads away from Sox9 domains enabling them to 
 > expand ultimately resulting in longer wavelengths. Note that since BMP diffusion scales 
-> with Wnt diffusion, both parameters were changed at the same time.<br><br>
+> with Wnt diffusion, both parameters were changed at the same time.<br>
 > The ratio of diffusion speeds defines the size of the Turing space. As the diffusion of 
 > BMP is set equal to that of Wnt, the homogenous solution becomes stable. Reducing the
 > diffusion of BMP further leads to travelling waves or oscillations. This is because a 
 > slow (or stationary) BMP is in a local negative feedback loop with Sox9, which results 
 > in oscillatory behavior. The establishment of Wnt domains around the oscillating Sox9 
-> regions is also oscillatory.<br><br>
+> regions is also oscillatory.<br>
 > Increasing BMP diffusion allows to more effectively “feed” Sox9 domains, which leads 
 > to a subtle increase in the wavelength and amplitude.
 
@@ -206,257 +221,40 @@ Besides parameter values, the pattern that emerges from a Turing system is also
 strongly influenced by initial conditions, and the size and shape of the domain 
 where reactions and diffusion happen.
 
-In the script `02__digits_growingsquare_PD.py` we added tissue growth in the 
-proximo-distal (body to limb) direction. Growth is controlled by a growth rate $vi$. 
+Let's modify the code to add tissue growth in the proximo-distal (body to limb) 
+direction. Growth is controlled by a growth rate $vi$, which is currently set 
+to zero. The tissue is initialized at its maximal size ($nx$, $ny$), so 
+we also need to make it smaller. See below how: 
+
+::: {.callout-note collapse="true"}
+## Tissue growth
+
+```
+# Horizontal growth rate
+vi = 0.0                     # Let op: make it > 0 
+
+# Initial condition parameters for a square tissue domain
+# Horizontal: Start on left side of the nx*ny box
+Lx0 = nx                    # Let op: Tissue is initialized at max size, make it 30
+max_domain_horizontal = nx # Stop growing once this reached
+# Vertical: Start in middle of the nx*ny box
+Ly0 = ny                    # Let op: Tissue is initialized at max size, make it 30
+max_domain_vertical = ny # Stop growing once this reached
+
+```
+:::
+
+
 
 :::{#exr-tur}
 
 ## Biology
 
 -   Study the code to understand what it does.\
--   Increase the horizontal growth rate `vi` in small increments (try: 0.01, 0.05, 
+-   Increase the horizontal growth rate $vi$ in small increments (try: 0.01, 0.05, 
 0.1, 0.2, 0.5) and study what happens to the pattern. Explain why you think this happens.
 
-**Note:** Increase the `totaltime` parameter to 5000 when using growth rate of 0.01.
-:::
-
-::: {.callout-note collapse="true"}
-## To make it easier to see what is new in this code, here we list the new parameters, new functions, anc changes to the execution code: initial condition and simulation loop
-
-``` python
-##############
-# PARAMETERS #
-##############
-# Horizontal growth rate
-vi = 0.0
-
-# Initial condition parameters for a square domain
-# Horizontal: Start on left side of the nx*ny box
-Lx0 = 30
-
-max_domain_horizontal = nx # Stop growing once this reached
-
-# Vertical: Start in middle of the nx*ny box
-Ly0 = 30
-
-#############
-# FUNCTIONS #
-#############
-
-def get_domain_size_horizontal(n):
-    """
-    Calculate the new horizontal domain size.
-    Parameters:
-        n (int) - timestep
-    
-    Global variables:
-        nx (int)   - horizontal grid size
-        Lx0 (int)  - initial horizontal domain size
-        dt (float) - time step
-        vi (float) - horizontal growth velocity
-    """
-    return min( round(Lx0 + dt * vi * n), nx)
-
-
-def single_step_growth(input_matrix, old_bounds, new_bounds):
-    """
-    Wrapper for growth function.
-    """
-
-    if (( old_bounds[1] - old_bounds[0] ) > ( new_bounds[1] - new_bounds[0] )):
-        print("Warning: Domain is shrinking. Growth functions do not support shrinking domain.")
-        sys.exit()
-
-    # Nothing is changed, but different choices can be made, see later exercises
-    output_matrix = input_matrix
-
-    return(output_matrix)
-
-
-def single_step_RD(sox9, bmp, wnt,                # matrices with variables
-                   Dbmp, Dwnt,                    # diffusion coefficients
-                   k2, k3, k4, k5, k7, k9, delta, # reaction parameters
-                   bounds                         # tissue bounds (minx, maxx, miny, maxy)
-                   ):
-    """
-    Solves a single time step of the reaction-diffusion simulation 
-    using explicit forward Euler.
-    The diffusion operator (Laplacian) is solved with a 5-point stencil.
-    See also: 
-    https://en.wikipedia.org/wiki/FTCS_scheme
-    https://en.wikipedia.org/wiki/Five-point_stencil
-    """
-    
-     # Get the bounds of the tissue to reduce the area of calculations
-    minx, maxx, miny, maxy = bounds #(0, Lx, Lymin, Lymax)
-
-    # DIFFUSION OPERATOR
-
-    # Create a bigger matrix with one extra row and column on each side
-    bigL_bmp = np.zeros((bmp.shape[0] + 2, bmp.shape[1] + 2))
-    bigL_wnt = np.zeros((wnt.shape[0] + 2, wnt.shape[1] + 2))
-
-    # Implement no-flux boundary condition
-    # Fill the domain boundaries with the closest inner value using np.pad
-    # -> the gradient is zero -> hence no-flux boundary
-    bigL_bmp[minx:maxx+2, miny:maxy+2] = np.pad(bmp[minx:maxx, miny:maxy], 1, mode='edge')
-    bigL_wnt[minx:maxx+2, miny:maxy+2] = np.pad(wnt[minx:maxx, miny:maxy], 1, mode='edge')
-
-
-    # Calculate the Laplacian
-    # Create empty matrices for laplacians
-    laplacian_bmp = np.zeros_like(bmp)
-    laplacian_wnt = np.zeros_like(wnt)  
-    # all indices shifted by one to account for extra row and column 
-    # so computations are all done on the inner (original) points
-    # the extra rows and columns are only used to implement the no-flux boundary condition
-    # and saves us from having to explicitly handling these boundary points in the calculations 
-    minX = minx + 1
-    maxX = maxx + 1     
-    minY = miny + 1
-    maxY = maxy + 1
-
-    laplacian_bmp[minx:maxx, miny:maxy] = (bigL_bmp[minX+1: maxX+1, minY:maxY] + 
-                                           bigL_bmp[minX-1: maxX-1, minY:maxY] + 
-                                           bigL_bmp[minX  : maxX  , minY+1:maxY+1] + 
-                                           bigL_bmp[minX  : maxX  , minY-1:maxY-1] 
-                                           - 4 * bigL_bmp[minX:maxX, minY:maxY])
-    
-    laplacian_wnt[minx:maxx, miny:maxy] = (bigL_wnt[minX+1: maxX+1, minY:maxY] + 
-                                           bigL_wnt[minX-1: maxX-1, minY:maxY] + 
-                                           bigL_wnt[minX  : maxX  , minY+1:maxY+1] + 
-                                           bigL_wnt[minX  : maxX  , minY-1:maxY-1] 
-                                           - 4 * bigL_wnt[minX:maxX, minY:maxY])
-    
-    # REACTIONS + DIFFUSION
-    # Calculate the change in variables in step dt
-    dsox9 = np.zeros_like(sox9)
-    dbmp  = np.zeros_like(bmp)
-    dwnt  = np.zeros_like(wnt)
-    
-    # Break equations up into multiple lines for readability
-    
-    # Equation for change in sox9
-    dsox9[minx:maxx, miny:maxy] = dt * (k2 * bmp[minx:maxx, miny:maxy] 
-                                        - k3 * wnt[minx:maxx, miny:maxy] 
-                                        - sox9[minx:maxx, miny:maxy]**3 
-                                        + delta * sox9[minx:maxx, miny:maxy]**2)
-    
-    # Equation for change in bmp
-    dbmp[minx:maxx, miny:maxy]  = dt * ((Dbmp / (dx * dx)) * laplacian_bmp[minx:maxx, miny:maxy] 
-                                        - k4 * sox9[minx:maxx, miny:maxy] 
-                                        - k5 * bmp[minx:maxx, miny:maxy])
-
-    # Equation for change in wnt
-    dwnt[minx:maxx, miny:maxy]  = dt * ((Dwnt / (dx * dx)) * laplacian_wnt[minx:maxx, miny:maxy] 
-                                        - k7 * sox9[minx:maxx, miny:maxy] 
-                                        - k9 * wnt[minx:maxx, miny:maxy])
-    
-    # Update the variables
-    sox9[minx:maxx, miny:maxy] += dsox9[minx:maxx, miny:maxy]
-    bmp[minx:maxx, miny:maxy]  += dbmp[minx:maxx, miny:maxy]
-    wnt[minx:maxx, miny:maxy]  += dwnt[minx:maxx, miny:maxy]
-
-    return sox9, bmp, wnt
-
-##################
-# EXECUTION CODE #
-##################
-
-### Define initial condition ###
-# Define the initial tissue domain with non-zero values
-Lx = get_domain_size_horizontal(0)
-Ly = Ly0
-Lymin = int(ny/2 - Ly/2)
-Lymax = int(ny/2 + Ly/2)
-
-# Allocate matrices for simulation
-sox9 = np.zeros((nx, ny))
-bmp  = np.zeros((nx, ny))
-wnt  = np.zeros((nx, ny))
-
-# Initialize a random value to the tissue domain
-sox9[:Lx, Lymin:Lymax] = 0.01 * np.random.randn(Lx, Ly)
-bmp[:Lx , Lymin:Lymax] = 0.01 * np.random.randn(Lx, Ly)
-wnt[:Lx , Lymin:Lymax] = 0.01 * np.random.randn(Lx, Ly)
-
-# Create a mask for plotting tissue domain (so outside tissue all gets white color)
-plot_mask = np.empty((nx, ny))
-plot_mask.fill(np.nan)  
-plot_mask[:Lx, Lymin:Lymax] = 1
-
-### Simulation loop ###
-
-# A simulation step consists of three events:
-#   1. A bigger domain is defined
-#   2. A growth function is called that implements growth from the old to the new domain size
-#   3. Reaction and diffusion is simulated on the new domain
-# The output is plotted every 100 simulation steps.
-
-
-for timestep in range(time_steps):
-    
-     # Stop growing if reached maximum size
-    if (Lx >= max_domain_horizontal):
-        new_bounds = (0, Lx, Lymin, Lymax)
-
-    else:
-        # Step 1 -- define the new domain size
-        old_Lx = Lx
-        Lx = get_domain_size_horizontal(timestep)
-
-        old_bounds = (0, old_Lx, Lymin, Lymax)
-        new_bounds = (0, Lx, Lymin, Lymax)
-
-        # Step 2 -- grow the tissue
-        bmp  = single_step_growth(bmp,  old_bounds, new_bounds)
-        sox9 = single_step_growth(sox9, old_bounds, new_bounds)
-        wnt  = single_step_growth(wnt,  old_bounds, new_bounds)
-
-    # Step 3 -- Simulate reaction and diffusion on the domain
-    sox9, bmp, wnt = single_step_RD(sox9, bmp, wnt, 
-                                    Dbmp, Dwnt, 
-                                    k2, k3, k4, k5, k7, k9, delta,
-                                    new_bounds)
-
-    ### Plotting ###
-    if timestep == 0:  # Initial plot
-
-        current_time = timestep*dt
-        
-        sox9_plot = ax1.imshow(np.rot90(sox9*plot_mask), cmap=red_dark_cmap, vmin=sox9_vmin, vmax=sox9_vmax)
-        ax1.set_title(f'sox9 at step {current_time}')
-
-        bmp_plot = ax2.imshow(np.rot90(bmp*plot_mask), cmap=green_dark_cmap, vmin=bmp_vmin, vmax=bmp_vmax)
-        ax2.set_title(f'bmp at step {current_time}')
-
-        wnt_plot = ax3.imshow(np.rot90(wnt*plot_mask), cmap=blue_dark_cmap, vmin=wnt_vmin, vmax=wnt_vmax)
-        ax3.set_title(f'wnt at step {current_time}')
-
-        plt.pause(0.000001)  # Pause to refresh the plot
-
-    # Update plot every 100 steps    
-    if timestep % 100 == 0:
-
-        # Update the plot mask to the new tissue domain
-        plot_mask.fill(np.nan)           # Reset the mask
-        plot_mask[:Lx, Lymin:Lymax] = 1  # Label tissue domain only
-        
-        current_time = timestep*dt
-
-        sox9_plot.set_data(np.rot90(sox9*plot_mask))
-        ax1.set_title(f'sox9 at step {current_time}')
-
-        bmp_plot.set_data(np.rot90(bmp*plot_mask))
-        ax2.set_title(f'bmp at step {current_time}')
-
-        wnt_plot.set_data(np.rot90(wnt*plot_mask))
-        ax3.set_title(f'wnt at step {current_time}')
-
-        plt.pause(0.000001)  # Pause to refresh the plot
-
-plt.show()
-```
+**Note:** Increase the $totaltime$ parameter to 5000 when using growth rate of 0.01.
 :::
 
 :::{.content-visible when-meta="params.show_answers"}
@@ -483,8 +281,8 @@ plt.show()
 ## Patterning along two growth axes
 
 In reality, the limb bud grows in both the proximo-distal and anterior-posterior 
-direction. In the script `03__digits_growingsquare.py` this is implemented with 
-growth rates `vi` for proximo-distal growth and `vj` for anterior-posterior growth.
+direction. You can implement this by modifying the value of the growth rates 
+$vi$ for proximo-distal growth and $vj$ for anterior-posterior growth.
 
 :::{#exr-tur}
 
@@ -492,29 +290,32 @@ growth rates `vi` for proximo-distal growth and `vj` for anterior-posterior grow
 
 Play with the relative size of these growth rates and study what happens. Compare 
 the order of appearance of stripes to the experimental data in the paper (see 
-Figure 3F in the Raspopovic paper @raspopovic2014digit).
+Figure3F in the Raspopovic paper @raspopovic2014digit).
 
 :::
 
 :::{.content-visible when-meta="params.show_answers"}
 
 > **Answer** 
-> ![Simulations from this practical with domain growth ](images/domaingrowth.png){#vegmini1 width=140%}
->As in the previous question, the rate of growth influences whether stripes grow 
+> ![Simulations with domain growth in two directions ](images/domaingrowth.png){#vegmini1 width=140%}
+> As in the previous question, the rate of growth influences whether stripes grow 
 > parallel to or perpendicular to the growth boundary. Also as before, slow horizontal 
-> growth promotes horizontal stripes (vi<=0.1), and when this becomes faster stripes 
+> growth promotes horizontal stripes ($vi$<=0.1), and when this becomes faster stripes 
 > reorient to become vertical. However now, if we add vertical growth and it is not
-> small enough relative to the horizontal growth, above and below the horizontal stripes
-> we get vertical stripes and these domains are larger the faster vertical growth is 
-> relative to horizontal growth. So to get ok-ish patterns we need horizontal growth 
-> not too fast, and vertical growth to be slower. These results are consistent with 
-> horizontal growth of the “paddle” being faster than vertical growth. Also, we see 
-> that middle horizontal stripes appear earlier than the outer ones (in those situation
-> where not all is vertical), similar to what we see in the paper in Fig 3F.
-> Still interestingly, if you put vj=0.2 and vi=0.1 you promote initially vertical 
-> and later on horizontal stripes, this is an effect of in the vertical direction 
-> hitting the boundaries of the domain first and then still slowly continuing growth in 
-> the horizontal dimension at a not too high rate that was supportive of extending 
+> small enough relative to the horizontal growth ($vi$=0.1, $vj$=0.8), above and below 
+> our horizontal stripes now we get vertical stripes, and these domains are larger 
+> the faster vertical growth is relative to horizontal growth. So to get ok-ish patterns
+> (remember, we want to model fingers!) we need horizontal growth not too fast, and 
+> vertical growth to be slower. These results are consistent with horizontal growth 
+> of the “paddle” being faster than vertical growth. 
+> Another indication that our model represents the actual patterning of the paddle is
+> that the middle horizontal stripes that appear earlier than the outer ones (in our 
+> simulations where we have horizontal and vertical stripes) are similar to what 
+> we see in the paper in Fig 3F. 
+> Still interestingly, if you put $vj$=0.2 and $vi$=0.1 you promote initially vertical 
+> and later on horizontal stripes. This is an effect of the growtn in the vertical 
+> direction hitting the boundaries of the domain first, and then continue to grow 
+> slowly in the horizontal dimension at a rate that allows for the extension of
 > horizontal stripes.
 
 ![](images/horizontal.png){#vegmini1 width=40%}
@@ -524,14 +325,14 @@ Figure 3F in the Raspopovic paper @raspopovic2014digit).
 
 ## Making a virtual tissue grow
 
-Think about how tissue growth is implemented in the script `03__digits_growingsquare.py`.
+Think about how tissue growth is implemented in the model.
 
 :::{#exr-tur}
 
 ## Algorithmic and conceptual thinking 
 
- What is the default value of the newly added tissue when it grows? Is the 
- concentration elsewhere in the tissue changed?
+ What is the default Sox9, Bmp and Wnt value of the newly added tissue when it 
+ grows? Is their concentration elsewhere in the tissue changed?
 
 Do you think this approach is reasonable to model biological growth of a tissue? 
 Explain why/why not.
@@ -543,14 +344,17 @@ the concentration of X?\
 What would be the concentration of X in the two daughter cells if the cell divides?\
 How would the situation change if X is constantly produced and degraded?
 
-In the paper, @@raspopovic2014digit create a “tissue growth map” (see Figure 3A), 
+In the paper, @raspopovic2014digit create a “tissue growth map” (see their Figure 3A), 
 which they use to map concentration values from one timepoint to the next using
 interpolation-based transformations.
 
-Inspired by this approach, the script `04__digits_growingsquare.py` implements a 
-different growth function that uses bilinear interpolation to expand the tissue. 
-Play around with the growth rate parameters and compare the results to what you 
-found earlier. Do the patterns differ? If yes, how do they differ?
+Inspired by this approach, the script `WC05_interpolation-growingsquare.py` 
+implements a different growth function that uses bilinear interpolation to expand 
+the tissue. Search for `# new addition relative to previous code` to help you 
+find what is new in this code. 
+
+Play around with the growth rate parameters and compare the results 
+to what you found earlier. Do the patterns differ? If yes, how do they differ?
 
 *Hint:* Try the supplementary script `supp_g__bilinear_interpolation.py` to understand 
 how interpolation-based growth works.
@@ -572,7 +376,7 @@ neighbors. Implement this alternative growth and see how this affects your resul
 > When growth happens, the tissue domain extends to cover new parts of the matrix 
 > that were not included in the initialization. Extending the edges into 0-valued 
 > territory would be as if new, empty cells appear at the edges of the tissue, which 
-> is not a reasonable approach to model limb bud growth.<br><br>
+> is not a reasonable approach to model limb bud growth.<br>
 > - If a cell increases in volume without producing/degrading molecules “X”, then 
 > the concentration of X will decrease as the cell increases in volume. Daughter 
 > cells would have on average half the concentration of X as the mother cell. 
@@ -585,13 +389,13 @@ neighbors. Implement this alternative growth and see how this affects your resul
 > at the edges, but even there we would expect the newly added “territory” to be made 
 > from previous cells and therefore still inherit their concentrations.)
 
-![Simulations from this practical with domain growth ](images/growth1.png){#vegmini1 width=140%}
+![Simulations with bilinear interpolation to simulate domain growth ](images/growth1.png){#vegmini1 width=140%}
 
-> The different growth appears to affect pattern formation, e.g for vj=0.01 the 
+> The different growth appears to affect pattern formation, e.g for $vj$=0.01 the 
 > pattern is still predominantly horizontal for 0.15, which was less so before. 
-> In constrast for vj=0.05 and vi=0.15 pattern is mostly vertical whereas in other 
+> In constrast for $vj$=0.05 and $vi$=0.15 pattern is mostly vertical whereas in other 
 > growth regime it was still partly horizontal. Seems that transition from horizontal 
-> to vertical stripes is thus modulated. So for low vj it is easier to get horizontal 
+> to vertical stripes is thus modulated. So for low $vj$ it is easier to get horizontal 
 > stripes.
 
 

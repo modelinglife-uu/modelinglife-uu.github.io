@@ -990,7 +990,8 @@ k7^* = k7 + k_{HF_{wnt}} * fgf(i,j) * hox(i,j)
 <p>Now switch to the paddle geometry. Observe the patterns that emerge and compare these to the simulated and experimentally observed patterns in Figure 3E and 3F of the Raspopovic article (<span class="citation" data-cites="raspopovic2014digit">Raspopovic et al. (<a href="#ref-raspopovic2014digit" role="doc-biblioref">2014</a>)</span>).</p>
 <p>What does and what doesn’t the model explain well?</p>
 </div>
-<hr>
+<p><strong>Technical details</strong>: To implement non-square geometries, the script uses “masks”. Try the supplementary script <code>supp_i__geometries.py</code> in the Supp folder, and study how these masks are created in the functions <code>create_ellipse_mask</code> and <code>create_tissue_mask</code>.</p>
+<p><em>Note:</em> For computational convenience, we use the “Class” data structure to implement common functions shared by the masks. This is a somewhat more advanced programming concept, so it’s ok if you don’t understand what it does yet. If you are curious, feel free to check out the supplementary script <code>supp_i__class_data_structure.py</code>. ————————————————————————</p>
 </section>
 <section id="master-students-exercise" class="level2" data-number="6.9">
 <h2 data-number="6.9" class="anchored" data-anchor-id="master-students-exercise"><span class="header-section-number">6.9</span> Master students exercise</h2>

@@ -778,6 +778,11 @@ What does and what doesn’t the model explain well?
   > earlier Turing patterning with a very large wavelength at the wrist.  <br><br>
 
 ![](images/fingers.png)
+
+
+
+:::
+
 **Technical details**: To implement non-square geometries, the script uses “masks”. 
 Try the supplementary script `supp_i__geometries.py` in the Supp folder, and study 
 how these masks are created in the functions `create_ellipse_mask` and `create_tissue_mask`. 
@@ -787,7 +792,6 @@ how these masks are created in the functions `create_ellipse_mask` and `create_t
 common functions shared by the masks. This is a somewhat more advanced programming 
 concept, so it’s ok if you don’t understand what it does yet. If you are curious, feel 
 free to check out the supplementary script `supp_i__class_data_structure.py`.
-:::
 ------------------------------------------------------------------------
 
 ## Master students exercise 

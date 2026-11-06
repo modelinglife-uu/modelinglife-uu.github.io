@@ -105,7 +105,7 @@ the correct chemicals to undergo morphogenesis (bone formation, FigureS3 @raspop
 
 ## Biology
 
-Play with parameters, for example changing $k4$ (Sox9 effect on BMP), $k7$ (Sox9 
+Play with the parameters, for example changing $k4$ (Sox9 effect on BMP), $k7$ (Sox9 
 effect on Wnt), or changing how much faster is Bmp diffusion compared to Wnt 
 diffusion. Change one parameter at a time and observe the effects on the patterning. 
 Change the values in one direction and the other, to confirm it produces the 
@@ -409,10 +409,12 @@ Let us now ignore growth and its role on orienting stripes for a while and explo
 once again the influence of parameters on the patterns. In reality, digits are 
 patterned further apart at the distal end than at the proximal end, where they 
 need to converge on a hand and wrist. This implies that the wavelength of the 
-Turing pattern should not be constant. In a previous question you probably found 
-that the `k7` and `k4` parameters impact the wavelength of the Turing pattern. 
-The authors speculate that the FGF and Hox gene gradients observed in the limb 
-bud exert an effect on the Sox9-BMP-Wnt patterning module through these parameters.
+Turing pattern should not be constant along the proximo-distal axis. 
+
+In a previous question you probably found that the $k4$ and $k7$ parameters 
+impact the wavelength of the Turing pattern. The authors speculate that the 
+gradients formed by two genes (FGF and Hox) in the limb bud exert an effect on 
+the Sox9-BMP-Wnt patterning module through these parameters.
 
 :::{#exr-tur} 
 
@@ -421,7 +423,7 @@ bud exert an effect on the Sox9-BMP-Wnt patterning module through these paramete
 The script `05__digits_squarek4k7gradient.py` allows you to implement exponential 
 gradients of `k4` and `k7` across the tissue. You can set the minimum and maximum 
 values, axis (x=horizontal, y=vertical) and direction (0=decreasing, 1=increasing). 
-Look in the supplement of the Raspopovic paper, page 48 Fig 2C (@raspopovic2014digit),
+Look in the supplement of the Raspopovic paper, [page 48, Fig 2C](https://www.science.org/doi/suppl/10.1126/science.1252960/suppl_file/raspopovic.sm.pdf)),
 left for the estimated change of `k4` and `k7` across the tissue and try to reproduce 
 (not exactly but similarly) Figure 2C, right side, by playing with the parameters 
 affecting the `k4` and `k7` gradients. Describe along which axis, in which direction 

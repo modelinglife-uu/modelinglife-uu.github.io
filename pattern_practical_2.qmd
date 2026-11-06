@@ -103,7 +103,7 @@ diffusion.<br>
 
 ## Patterning in a fixed domain size
 
-The code in the script `WC05_digits-square.py` simulates the BSW model in a 
+The code in the script `WC05_digits-square-START.py` simulates the BSW model in a 
 2D-square tissue of constant size. This setup can be considered as a small 
 region of a large Petri dish in which mesenchymal cells have been plated with 
 the correct chemicals to undergo morphogenesis (bone formation, FigureS3 @raspopovic2014digit).
@@ -355,7 +355,7 @@ In the paper, @raspopovic2014digit create a “tissue growth map” (see their F
 which they use to map concentration values from one timepoint to the next using
 interpolation-based transformations.
 
-Inspired by this approach, the script `WC05_interpolation-growingsquare.py` 
+Inspired by this approach, the script `WC05_digits_square-Question5_interpolation-growing.py` 
 implements a different growth function that uses bilinear interpolation to expand 
 the tissue. Search for `# new addition relative to previous code` to help you 
 find what is new in this code. 
@@ -363,8 +363,8 @@ find what is new in this code.
 Play around with the growth rate parameters and compare the results 
 to what you found earlier. Do the patterns differ? If yes, how do they differ?
 
-*Hint:* Try the supplementary script `supp_g__bilinear_interpolation.py` to understand 
-how interpolation-based growth works.
+*Hint:* Try the supplementary script `supp_g__bilinear_interpolation.py` in the 
+Supp folder to understand how interpolation-based growth works.
 
 **For master students:** yet another way of implementing tissue growth would be 
 to take cell division and inheritance of maternal state by the two daughter cells 
@@ -742,42 +742,51 @@ Switching between geometries is easily done by changing the value of the paramet
 observe with regards to the FGF gradient? What consequences does this have? 
 Why would this be “a smart thing to do”?
 
-Play around with `vi/vj` and `Lx0` to investigate the effect of ellipse shape and 
+Play around with $vi/vj$ and $Lx0$ to investigate the effect of ellipse shape and 
 development over time on the number, shape and robustness of digits that form.
 
 Now switch to the paddle geometry. Observe the patterns that emerge and compare these 
 to the simulated and experimentally observed patterns in Figure 3E and 3F of the 
-Raspopovic article (@raspopovic2014digit). According to you what does and what doesn’t 
-the model explain well?
+Raspopovic article (@raspopovic2014digit). 
 
-To implement non-square geometries, the script uses “masks”. Study how these masks 
-are created in the functions `create_ellipse_mask` and `create_tissue_mask`.
-
-*Hint:* Try the supplementary script `supp_i__geometries.py`.
-
-*Note:* For computational convenience, we use the “Class” data structure to implement 
-common functions shared by the masks. This is a somewhat more advanced programming 
-concept, so it’s ok if you don’t understand what it does yet. For the extra curious 
-and motivated, feel free to check out the supplementary script `supp_i__class_data_structure.py`.
+What does and what doesn’t the model explain well?
 
 :::
 
 :::{.content-visible when-meta="params.show_answers"}
   > **Answer**<br>
   > 
-  > - Fgf gradient forms from bottom to top, as a consequence bottom fingers form 
-  > first, often one of the bottom fingers forms and than splits. While in general 
-  > Turing mechanisms give patterns they are not reproducible in terms of the positioning 
-  > of the stripes. By starting the highest point of the FGF gradient locally it is 
-  > determine where the first digits can arise, generating control over the positioning 
-  > of the digits.<br><br>
-  > - Vi 0.1 goes okay, 0.2 stretched and splitting of digits <br>
-Vj too low too little room so less than 5 digits, vi too high more than 5 fingers, higher rates result in less reproducible patterns
-Below a nice pattern showing 5 fingers, but also showing near splitting of one of the fingers at the end<br><br>
-> - The model explains the formation and positioning of the 4 digits, and how the distance between these digits increases along the limb bud. However, the model clearly does not simulate/explain the formation of the wrist bones that is observed experimentally. Interestingly the experimental data suggest that while digits may form from the “right to the left”, the “leftmost” bones of the wrist are there the earliest, suggesting there locally different conditions apply allowing earlier Turing patterning but with a very large wavelength happening there.  <br><br>
+  > - The Fgf gradient forms from bottom to top. As a consequence the bottom fingers form 
+  > first; often one of the bottom fingers forms and then splits. While in general 
+  > Turing mechanisms give nice patterns, they are not reproducible in terms of the 
+  > positioning of the stripes. Starting the highest point of the FGF gradient 
+  > locally determines where the first digits arise, generating control over 
+  > the positioning of all the digits.<br>
+  > - $Vi$ 0.1 goes okay, 0.2 results in stretched and splitting of digits <br>
+  > $Vj$ too low results in too little room, resulting in less than 5 digits. 
+  > $Vi$ too high results in more than 5 fingers. Notably, higher rates result in 
+  > less reproducible patterns
+  > 
+  > Below a nice pattern showing 5 fingers, but also showing near splitting of one 
+  > of the fingers at the end<br><br>
+  > - The model explains the formation and positioning of the 4 digits, and how the 
+  > distance between these digits increases along the limb bud. However, the model 
+  > clearly does not simulate/explain the formation of the wrist bones that is observed
+  > experimentally. Interestingly the experimental data suggest that while digits may 
+  > form from the “right to the left”, the “leftmost” bones of the wrist are there 
+  > the earliest, suggesting there locally different conditions apply allowing 
+  > earlier Turing patterning with a very large wavelength at the wrist.  <br><br>
 
 ![](images/fingers.png)
+**Technical details**: To implement non-square geometries, the script uses “masks”. 
+Try the supplementary script `supp_i__geometries.py` in the Supp folder, and study 
+how these masks are created in the functions `create_ellipse_mask` and `create_tissue_mask`. 
 
+
+*Note:* For computational convenience, we use the “Class” data structure to implement 
+common functions shared by the masks. This is a somewhat more advanced programming 
+concept, so it’s ok if you don’t understand what it does yet. If you are curious, feel 
+free to check out the supplementary script `supp_i__class_data_structure.py`.
 :::
 ------------------------------------------------------------------------
 
@@ -789,7 +798,7 @@ Below a nice pattern showing 5 fingers, but also showing near splitting of one o
 
 Above we played with ellipse size and growth rates, however in addition to mutations 
 affecting tissue size and growth, also mutations in genes affecting the Hox and FGF 
-morphogens may occur. Play with parameters that determine Hox and FGF expression zones 
+morphogens may occur. Play with the parameters that determine Hox and FGF expression zones 
 on the paddle geometry. Which parameter changes lead to the formation of supernumerary 
 fingers (polydactyly)? Which parameters lead to too few fingers (oligodactyly)?
 
@@ -814,7 +823,9 @@ or shrinking.
 Reference values:
 ![](images/referencevalues.png){#vegmini1 width=140%}
 
-> Decreasing FGF diffusion increases the number of fingers and creates a fin-like appearance. However note that it also creates a shorter finger forming domain. Increasing FGF diffusion decreases the number of fingers.
+> Decreasing FGF diffusion increases the number of fingers and creates a fin-like 
+> appearance. However note that it also creates a shorter finger forming domain. 
+> Increasing FGF diffusion decreases the number of fingers.
 
 ![](images/polydact.png)
 ![](images/growthanswer.png)

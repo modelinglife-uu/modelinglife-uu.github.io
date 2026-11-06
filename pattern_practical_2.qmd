@@ -715,17 +715,18 @@ def k7_local_Supp21C(k, xsize, ysize):
 ::: {.callout-note collapse="true"}
 ## Changes in EXECUTION code. See comments "Q6" for instruction of where to copy it.
 
-```
+``` python
 # Q6: Replace our previous set up of plots with:
 # Set up plots
 fig, axs = plt.subplots(2, 3, figsize=(12, 8))
 ax1, ax2, ax3, ax4, ax5, ax6 = axs.flatten()
-# Q6: Replace our previous set up of plots with:
+
+# Q6: Initialize the k4 and k7 gradients:
 # Call helper functions to create locally varied values of k4 and k7
 k4_local = k4_local_Supp21C(k4, nx, ny)
 k7_local = k7_local_Supp21C(k7, nx, ny)
 
-# Q6! These changes should be added before the simulation loop!
+# Q6! These changes above should be added before the simulation loop!
 
 # Q6: Now, inside the simulation loop we need to change Step 3: reaction and diffusion part
 # Replace single_step_RD with the new function single_time_step function, as shown
@@ -733,8 +734,8 @@ k7_local = k7_local_Supp21C(k7, nx, ny)
     sox9, bmp, wnt = single_time_step(sox9, bmp, wnt, 
                                       Dbmp, Dwnt, 
                                       k2, k3, k4_local, k5, k7_local, k9, delta)
-# Q6: To add k4_local and k7_loca to the plot, we need to add the following lines
-# inside the "timestep==0" conditional, after the wnt_plot
+# Q6: To plot k4_local and k7_local, you need to add the following lines
+# inside the "timestep==0" conditional (after the wnt_plot part...)
 
         minval = min(np.min(k4_local), np.min(k7_local))
         maxval = max(np.max(k4_local), np.max(k7_local))
@@ -752,12 +753,12 @@ k7_local = k7_local_Supp21C(k7, nx, ny)
         ax6.set_position([0.7, 0.2, 0.15, 0.1])
         ax6.yaxis.set_visible(False)
 
+# That is all :)
 ```
 :::
 
 Let op: if you get stuck, open `WC05_digits-square-Question6.py`. This code 
 includes all the changes.
-
 
 
 You can set the minimum and maximum values, axis (x=horizontal, y=vertical) and direction (0=decreasing, 1=increasing). 

@@ -438,274 +438,139 @@ to make the changes yourself:
 
 ``` python
 def single_time_step(sox9, bmp, wnt,               # matrices with variables
-
                      Dbmp, Dwnt,                   # diffusion coefficients
-
                      k2, k3, k4, k5, k7, k9, delta # reaction parameters
-
                      ):
-
     """
-
     Solves a single time step of the reaction-diffusion simulation 
-
     using explicit forward Euler.
-
     The diffusion operator (Laplacian) is solved with a 5-point stencil.
-
     See also: 
-
     https://en.wikipedia.org/wiki/FTCS_scheme
-
     https://en.wikipedia.org/wiki/Five-point_stencil
-
     """
-
     # In this case, the domain boundaries are the full size of the matrix
-
     minx = 0
-
     maxx = sox9.shape[0]
-
     miny = 0
-
     maxy = sox9.shape[1]
-
-
 
     # DIFFUSION OPERATOR
 
-
-
     # Create a bigger matrix with one extra row and column on each side
-
     bigL_bmp = np.zeros((bmp.shape[0] + 2, bmp.shape[1] + 2))
-
     bigL_wnt = np.zeros((wnt.shape[0] + 2, wnt.shape[1] + 2))
 
-
-
     # Implement no-flux boundary condition
-
     # Fill the domain boundaries with the closest inner value
-
     # -> the gradient is zero -> hence no-flux boundary
-
     bigL_bmp[minx:maxx+2, miny:maxy+2] = np.pad(bmp[minx:maxx, miny:maxy], 1, mode='edge')
-
     bigL_wnt[minx:maxx+2, miny:maxy+2] = np.pad(wnt[minx:maxx, miny:maxy], 1, mode='edge')
-
-
-
 
 
     # Calculate the Laplacian
 
-
-
     # Create empty matrices for laplacians
-
     laplacian_bmp = np.zeros_like(bmp)
-
     laplacian_wnt = np.zeros_like(wnt)  
 
-
-
     # all indices shifted by one to account for extra row and column
-
     minX = minx + 1
-
     maxX = maxx + 1     
-
     minY = miny + 1
-
     maxY = maxy + 1
 
-
-
     laplacian_bmp[0:nx, 0:ny] = (bigL_bmp[minX+1: maxX+1, minY:maxY] + 
-
                                  bigL_bmp[minX-1: maxX-1, minY:maxY] + 
-
                                  bigL_bmp[minX  : maxX  , minY+1:maxY+1] + 
-
                                  bigL_bmp[minX  : maxX  , minY-1:maxY-1] 
-
                                  - 4 * bigL_bmp[minX:maxX, minY:maxY])
-
     
-
     laplacian_wnt[0:nx, 0:ny] = (bigL_wnt[minX+1: maxX+1, minY:maxY] + 
-
                                  bigL_wnt[minX-1: maxX-1, minY:maxY] + 
-
                                  bigL_wnt[minX  : maxX  , minY+1:maxY+1] + 
-
                                  bigL_wnt[minX  : maxX  , minY-1:maxY-1] 
-
                                  - 4 * bigL_wnt[minX:maxX, minY:maxY])
-
        
-
     # REACTIONS + DIFFUSION
-
     # Calculate the change in variables in step dt
-
     dsox9 = dt*( k2*bmp - k3*wnt - sox9**3 + delta*sox9**2 )
-
     dbmp  = dt*( (Dbmp/(dx*dx))*laplacian_bmp - k4*sox9 - k5*bmp )  
-
     dwnt  = dt*( (Dwnt/(dx*dx))*laplacian_wnt - k7*sox9 - k9*wnt )
 
-
-
     # Update the variables
-
     sox9 += dsox9
-
     bmp  += dbmp
-
     wnt  += dwnt
-
-
 
     return sox9, bmp, wnt
 
 
-
-
-
 ### Helper functions to create locally varied values of k4 and k7
 
-
-
 def k4_local_Supp21C(k, xsize, ysize):
-
     """
-
     Call this function to reproduce the exponential variation
-
     in k4 parameter values in Supp. Fig. 21 C.
-
     """
-
     
-
     k4local = np.zeros((xsize, ysize))
 
-
-
     # Parameters to reproduce panel C.
-
-    min = 0.8 #minimum value of k4
-
-    max = 1.8 #maximum value of k4
-
-    direction=0 #high to low 1 # low to high gradient
-
-    loop_over='x' # 'x' or 'y' #horizontal or vertical gradient
-
+    min = 1 #minimum value of k4                    Question6
+    max = 1 #maximum value of k4                    Question6
+    direction=0 #high to low 1 # low to high gradient Question6
+    loop_over='x' # 'x' or 'y' #horizontal or vertical gradient Question6
     
-
     if loop_over == 'x':
-
         for xi in range(xsize): 
-
             if(direction==0):
-
                 k4local[xi, :] = max+(max-min)*np.exp(-xi/(0.6*xsize))
-
             if(direction==1):
-
                 k4local[xi, :] = max+(max-min)*np.exp(-(xsize-xi)/(0.6*xsize))
-
             
-
     elif loop_over == 'y':
-
         for yi in range(ysize): 
-
             if(direction==0):
-
                 k4local[:, yi] = max+(max-min)*np.exp(-yi/(0.6*ysize))
-
             if(direction==1):
-
                 k4local[:, yi] = max+(max-min)*np.exp(-(ysize-yi)/(0.6*ysize))
 
-
-
     else:
-
         print("Undefined looping variable, choose 'x' or 'y':", loop_over)
-
-
 
     return(k4local)
 
 
-
-
-
 def k7_local_Supp21C(k, xsize, ysize):
-
     """
-
     Call this function to reproduce the exponential variation
-
     in k7 parameter values in Supp. Fig. 21 C.
-
     """
-
     
-
     k7local = np.zeros((xsize, ysize))
 
-
-
     # Parameters to reproduce panel C
-
-    min = 0.5 #minimum value of k7
-
-    max = 1.3 #maximum value of k7
-
-    direction=1 #0 high to low # 1 low to high gradient
-
-    loop_over='x' # 'x' or 'y' #horizontal or vertical gradient
-
+    min = 1 #minimum value of k7                Question6
+    max = 1 #maximum value of k7                Question6
+    direction=0 #0 high to low # 1 low to high gradient Question6
+    loop_over='y' # 'x' or 'y' #horizontal or vertical gradient Question6
     
-
     if loop_over == 'x':
-
         for xi in range(xsize): 
-
             if(direction==0):
-
                 k7local[xi, :] = max +(max-min)*np.exp(-xi/(0.6*xsize))
-
             if(direction==1):
-
                 k7local[xi, :] = max +(max-min)*np.exp(-(xsize-xi)/(0.6*xsize))
-
             
-
     elif loop_over == 'y':
-
         for yi in range(ysize): 
-
             if(direction==0):
-
                 k7local[:, yi] = max +(max-min)*np.exp(-yi/(0.6*ysize))
-
             if(direction==1):
-
                 k7local[:, yi] = max +(max-min)*np.exp(-(ysize-yi)/(0.6*ysize))
-
     else:
-
         print("Undefined looping variable, choose 'x' or 'y':", loop_over)
-
-
 
     return(k7local)
 
@@ -713,7 +578,7 @@ def k7_local_Supp21C(k, xsize, ysize):
 :::
 
 ::: {.callout-note collapse="true"}
-## Changes in EXECUTION code. See comments "Q6" for instruction of where to copy it.
+## Changes in EXECUTION code. See comments "Q6" for instruction of where to copy it, and make sure the indentation is correct.
 
 ``` python
 # Q6: Replace our previous set up of plots with:

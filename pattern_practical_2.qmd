@@ -1,6 +1,6 @@
 ---
 params:
-  show_answers: true
+  show_answers: false
 ---
 
 # Turing patterns, repetitive patterning
@@ -25,10 +25,10 @@ Turing-type patterns emerge when a system exhibits short-ranged activation and l
 :::
 ::: {.column width="60%"}
 
-In this practical you will work with a total of 3 different python codes. 
+<!-- -In this practical you will work with a total of 3 different python codes. 
 Please note that each code simply differs by an extension or modification 
 from the previous code, so that in the end you will have a long script that 
-performs all the steps in one go.
+performs all the steps in one go.-->
 :::
 :::
 ------------------------------------------------------------------------
@@ -227,7 +227,7 @@ to zero. The tissue is initialized at its maximal size ($nx$, $ny$), so
 we also need to make it smaller. See below how: 
 
 ::: {.callout-note collapse="true"}
-## Tissue growth
+## Tissue growth implementation
 
 ```
 # Horizontal growth rate

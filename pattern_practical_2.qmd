@@ -429,9 +429,9 @@ the Sox9-Bmp-Wnt patterning module through these parameters.
 
 Let us implement exponential gradients of $k4$ and $k7$ across the tissue. 
 We need to add three new functions, initialize the $k4$ and $k7$ gradients, 
-and change the function used for the reaction-diffusion simulation, and update 
-the plotting to also show $k4$ and $k7$ gradients. Follow the instructions below 
-to make the changes yourself:
+change the function used for the reaction-diffusion simulation, and update 
+the plotting to also show $k4$ and $k7$ gradients. Sounds like a lot, but it is 
+not. Follow the instructions below to make the changes yourself:
 
 ::: {.callout-note collapse="true"}
 ## New functions: copy to the FUNCTIONS section of the code
@@ -578,7 +578,7 @@ def k7_local_Supp21C(k, xsize, ysize):
 :::
 
 ::: {.callout-note collapse="true"}
-## Changes in EXECUTION code. See comments "Q6" for instruction of where to copy it, and make sure the indentation is correct.
+## Changes in EXECUTION code. See comments "Q6" for instruction of where to paste it, and triple check that the indentation is correct.
 
 ``` python
 # Q6: Replace our previous set up of plots with:
@@ -592,8 +592,11 @@ k4_local = k4_local_Supp21C(k4, nx, ny)
 k7_local = k7_local_Supp21C(k7, nx, ny)
 
 # Q6! These changes above should be added before the simulation loop!
+##############################################################################
 
-# Q6: Now, inside the simulation loop we need to change Step 3: reaction and diffusion part
+
+
+# Q6: Now, inside the simulation loop we need to change Step 3: the reaction and diffusion part
 # Replace single_step_RD with the new function single_time_step function, as shown
 # below:
     sox9, bmp, wnt = single_time_step(sox9, bmp, wnt, 
@@ -626,25 +629,30 @@ Let op: if you get stuck, open `WC05_digits-square-Question6.py`. This code
 includes all the changes.
 
 
-You can set the minimum and maximum values, axis (x=horizontal, y=vertical) and direction (0=decreasing, 1=increasing). 
-Look in the supplement of the Raspopovic paper, [page 48, Fig 2C](https://www.science.org/doi/suppl/10.1126/science.1252960/suppl_file/raspopovic.sm.pdf)),
-left for the estimated change of `k4` and `k7` across the tissue and try to reproduce 
-(not exactly but similarly) Figure 2C, right side, by playing with the parameters 
-affecting the `k4` and `k7` gradients. Describe along which axis, in which direction 
-and to what extent `k4` and `k7` are changing. Estimate the change in Turing pattern 
-wavelength this results in.
+Now, explore the shape of the $k4$ and $k7$ gradients, and assess their effect
+on the patterning. You can set the minimum and maximum values, axis 
+(x=horizontal, y=vertical) and direction (0=decreasing, 1=increasing). Search for 
+"Question6" in the code to know where you need to make changes. 
+
+Hint: Look in the supplement of the Raspopovic paper, [page 48, Fig 2C](https://www.science.org/doi/suppl/10.1126/science.1252960/suppl_file/raspopovic.sm.pdf)),
+left for the estimated change of $k4$ and $k7$ across the tissue; focus on the 
+Hox and FGF distribution at the very edge of the paddle. Try to reproduce (qualitatively) 
+Figure 2C by playing with the parameters affecting the $k4$ and $k7$ gradients. 
+Describe along which axis (x or y), in which direction (0 or 1) and to what extent
+$k4$ and $k7$ are changing. Estimate the change in Turing pattern wavelength 
+this results in.
 
 :::
 
 :::{.content-visible when-meta="params.show_answers"}
-  > **Answer** See the script `05__digits_squarek4k7gradient_answer.py` 
-  > for a solution. The output may look sometimes like this: ![](images/spatial_parameter_turing.png)
-  >
+  > **Answer** 
   > Parameter values for the gradients should be:
   >
   > $k4_{min}=0.8$, $k4_{max}=1.8$, $direction=0$, $axis ="x"$
   >
   > $k7_{min}=0.5$, $k7_{max}=1.3$, $direction=1$, $axis="x"$
+  >
+  > The output may look sometimes like this: ![](images/spatial_parameter_turing.png)
   >
   > This results in $k4$ decreasing and $k7$ increasing along the x-axis.
   > Wavelength of the Turing pattern increases more than 2-fold
@@ -655,7 +663,7 @@ wavelength this results in.
 ## Hoxd13 and FGF
 
 As mentioned above, the biological factors thought to underlie the variation in 
-the `k4` and `k7` parameters are Hoxd13 and FGF. Hoxd13 is highly expressed in 
+the $k4$ and $k7$ parameters are Hoxd13 and FGF. Hoxd13 is highly expressed in 
 the distal domain of the paddle and not expressed elsewhere, and this expression 
 domain is growing as the paddle grows. FGF is expressed from the distal edge of 
 the paddle and spreads through diffusion. For an illustration see Fig S8A of the 

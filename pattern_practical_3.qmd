@@ -631,3 +631,4 @@ If you want to know more about somitogenesis and how it has been modelled,
 have a look at the following papers (after the practical :): @lewis2003autoinhibition, @hester2012multi, 
 @herrgen2010intercellular, @soroldoni2014doppler, @sonnen2018modulation, @bulusu2017spatiotemporal,
 @van2025scaling.
+---------------------------------------------------------

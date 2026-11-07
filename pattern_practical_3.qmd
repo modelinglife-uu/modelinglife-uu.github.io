@@ -31,6 +31,8 @@ Key players regulating somitogenesis are the protein FGF, and many genes and gen
 products that have an oscillatory behavior that will determine cell fate. 
 However, for this tutorial, we simplify this oscillatory network to a single 
 pair of gene mRNA and product, denoted with $m$ and $p$ for short.
+![From: @miao2024cellular](images/Cellular-and-molecular-control-of-vertebrate-somitogenesis.png){#vegmini1 width=60%}
+
 
 ## Programming with classes
 

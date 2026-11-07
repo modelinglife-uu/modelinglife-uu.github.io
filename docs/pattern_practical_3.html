@@ -579,8 +579,8 @@ window.Quarto = {
   <li><a href="#the-model-system" id="toc-the-model-system" class="nav-link" data-scroll-target="#the-model-system"><span class="header-section-number">7.2</span> The model system</a></li>
   <li><a href="#programming-with-classes" id="toc-programming-with-classes" class="nav-link" data-scroll-target="#programming-with-classes"><span class="header-section-number">7.3</span> Programming with classes</a></li>
   <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">7.4</span> Questions</a></li>
-  <li><a href="#relevant-literature" id="toc-relevant-literature" class="nav-link" data-scroll-target="#relevant-literature"><span class="header-section-number">7.5</span> Relevant literature</a></li>
-  <li><a href="#references-for-biological-parameters" id="toc-references-for-biological-parameters" class="nav-link" data-scroll-target="#references-for-biological-parameters"><span class="header-section-number">7.6</span> References for biological parameters:</a></li>
+  <li><a href="#references-for-biological-parameters" id="toc-references-for-biological-parameters" class="nav-link" data-scroll-target="#references-for-biological-parameters"><span class="header-section-number">7.5</span> References for biological parameters:</a></li>
+  <li><a href="#relevant-literature" id="toc-relevant-literature" class="nav-link" data-scroll-target="#relevant-literature"><span class="header-section-number">7.6</span> Relevant literature</a></li>
   </ul>
 </nav>
     </div>
@@ -658,10 +658,10 @@ window.Quarto = {
 </ol>
 </div>
 <div id="exr-test" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.6 (Biology)</strong></span> Describe how the model behaves and why. Reverse the effect of FGF and see how that affects the patterning? <strong>Do we get stable somites?</strong></p>
+<p><span class="theorem-title"><strong>Exercise 7.6 (Biology)</strong></span> Describe how the model behaves and why. Reverse the effect of FGF and see how that affects the patterning? <strong>Does the model produces stable somites?</strong></p>
 </div>
 <div id="exr-test" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.7 (Biology &amp; Programming)</strong></span> What is still missing is a means to transform the temporal oscillations in the posterior of the tissue into a spatial pattern in the anterior. In the French Flag morphogen gradient lecture we discussed that memory mechanisms are important to stabilize spatial patterns once the start up signal that broke the symmetry and initialized patterning has gone. It turns out that such a memorization/stabilization mechanism is also essential to convert oscillations to stripes.</p>
+<p><span class="theorem-title"><strong>Exercise 7.7 (Biology &amp; Programming)</strong></span> The oscillations slow down, yet they persist… Somitogenesis requires stable somites. What is still missing in the model is a means to transform the temporal oscillations in the right-most end of the tissue (posterior) into a spatial pattern of cells at the left (anterior end). In the French Flag morphogen gradient lecture we discussed that memory mechanisms are important to stabilize spatial patterns. Particularly important when the start up signal that <em>broke the symmetry</em> and initialized patterning is gone. It turns out that such a memorization/stabilization mechanism is also essential to convert oscillations to stripes (somites!).</p>
 <ol type="1">
 <li>In the code <code>05_clockplusfgf.py</code> (available in the Modeling Life Teams channel, and also here in the dropdown text below) we added an extra ‘memory’ molecule <span class="math inline">\(M\)</span> as a new attribute to the Class <code>Cell</code>, which value is inherited from the mother cell upon division. Write your own code to perform its updating inside the function <code>run_clocks</code>. Remember that to create memory we need bistability, which can be easily achieved by having the memory molecule having a non-linear saturating positive feedback on itself. Study what happens (you can see what happens since we already incorporated visualisation of <span class="math inline">\(M\)</span> into the python code). What happens for different initial values of <span class="math inline">\(M\)</span>?</li>
 </ol>
@@ -897,37 +897,37 @@ window.Quarto = {
 <tr class="odd">
 <td>Duration of somitogenesis</td>
 <td>18 h</td>
-<td>(a)</td>
+<td><span class="citation" data-cites="stickney2000somite">Stickney et al. (<a href="#ref-stickney2000somite" role="doc-biblioref">2000</a>)</span></td>
 <td>5 days</td>
-<td>(b)</td>
+<td><span class="citation" data-cites="saga2012mechanism">Saga (<a href="#ref-saga2012mechanism" role="doc-biblioref">2012</a>)</span></td>
 </tr>
 <tr class="even">
 <td>Number of somites</td>
 <td>~30</td>
-<td>(a)</td>
+<td><span class="citation" data-cites="stickney2000somite">Stickney et al. (<a href="#ref-stickney2000somite" role="doc-biblioref">2000</a>)</span></td>
 <td>65</td>
-<td>(c)</td>
+<td><span class="citation" data-cites="tam1981control">Tam (<a href="#ref-tam1981control" role="doc-biblioref">1981</a>)</span></td>
 </tr>
 <tr class="odd">
 <td>Somite size</td>
 <td>50 <span class="math inline">\(\mu\)</span> / 30 <span class="math inline">\(\mu\)</span></td>
-<td>(d) (a)</td>
+<td><span class="citation" data-cites="ishimatsu2018size">Ishimatsu et al. (<a href="#ref-ishimatsu2018size" role="doc-biblioref">2018</a>)</span> <span class="citation" data-cites="stickney2000somite">Stickney et al. (<a href="#ref-stickney2000somite" role="doc-biblioref">2000</a>)</span></td>
 <td>120 <span class="math inline">\(\mu\)</span></td>
-<td>(c)</td>
+<td><span class="citation" data-cites="tam1981control">Tam (<a href="#ref-tam1981control" role="doc-biblioref">1981</a>)</span></td>
 </tr>
 <tr class="even">
 <td>Cells per somite</td>
 <td>~5 cell in diameter</td>
-<td>(a)</td>
+<td><span class="citation" data-cites="stickney2000somite">Stickney et al. (<a href="#ref-stickney2000somite" role="doc-biblioref">2000</a>)</span></td>
 <td>5-11 (estimated from total cell size in 3D, ranging 1 order of magnitude)</td>
-<td>(c)</td>
+<td><span class="citation" data-cites="tam1981control">Tam (<a href="#ref-tam1981control" role="doc-biblioref">1981</a>)</span></td>
 </tr>
 <tr class="odd">
 <td>Clock period</td>
 <td>25 min /30 min</td>
-<td>(d) / (e) / (f)</td>
+<td><span class="citation" data-cites="ishimatsu2018size">Ishimatsu et al. (<a href="#ref-ishimatsu2018size" role="doc-biblioref">2018</a>)</span> / <span class="citation" data-cites="carraco2022vertebrate">Carraco et al. (<a href="#ref-carraco2022vertebrate" role="doc-biblioref">2022</a>)</span> / <span class="citation" data-cites="tomka2018travelling">Tomka et al. (<a href="#ref-tomka2018travelling" role="doc-biblioref">2018</a>)</span></td>
 <td>2-3 h</td>
-<td>(e)</td>
+<td><span class="citation" data-cites="carraco2022vertebrate">Carraco et al. (<a href="#ref-carraco2022vertebrate" role="doc-biblioref">2022</a>)</span></td>
 </tr>
 </tbody>
 </table>
@@ -945,6 +945,17 @@ window.Quarto = {
 <li>You can test the clock parameters separately with the <code>clock.py</code>/<code>rolling_clock.py</code> script. Don’t forget that FGF has an effect on <span class="math inline">\(\tau\)</span> !</li>
 </ul>
 </div>
+</section>
+<section id="references-for-biological-parameters" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="references-for-biological-parameters"><span class="header-section-number">7.5</span> References for biological parameters:</h2>
+<ol type="a">
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
 <div id="exr-test" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 7.9 (Questions for master students)</strong></span> The model currently has a number of assumptions that we can question. Feel free to explore any of these further open questions and study how it effects the outcome of the model:</p>
 <ul>
@@ -955,8 +966,8 @@ window.Quarto = {
 </ul>
 </div>
 </section>
-<section id="relevant-literature" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="relevant-literature"><span class="header-section-number">7.5</span> Relevant literature</h2>
+<section id="relevant-literature" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="relevant-literature"><span class="header-section-number">7.6</span> Relevant literature</h2>
 <p>If you want to know more about the model system and previous models, have a look at the following (after the tutorial):</p>
 <p><span class="citation" data-cites="lewis2003autoinhibition">Lewis (<a href="#ref-lewis2003autoinhibition" role="doc-biblioref">2003</a>)</span> Autoinhibition with transcriptional delay: a simple mechanism for the zebrafish somitogenesis oscillator.</p>
 <p><span class="citation" data-cites="hester2012multi">Hester (<a href="#ref-hester2012multi" role="doc-biblioref">2012</a>)</span> A Multi-cell, Multi-scale Model of Vertebrate Segmentation and Somite Formation.</p>
@@ -965,17 +976,6 @@ window.Quarto = {
 <p><span class="citation" data-cites="sonnen2018modulation">Sonnen et al. (<a href="#ref-sonnen2018modulation" role="doc-biblioref">2018</a>)</span> Modulation of Phase Shift between Wnt and Notch Signaling Oscillations Controls Mesoderm Segmentation.</p>
 <p><span class="citation" data-cites="bulusu2017spatiotemporal">Bulusu et al. (<a href="#ref-bulusu2017spatiotemporal" role="doc-biblioref">2017</a>)</span> Spatiotemporal Analysis of a Glycolytic Activity Gradient Linked to Mouse Embryo Mesoderm Development.</p>
 <p><span class="citation" data-cites="van2025scaling">Oostrom et al. (<a href="#ref-van2025scaling" role="doc-biblioref">2025</a>)</span> Coupling of cell proliferation to the segmentation clock ensures robust somite scaling.</p>
-</section>
-<section id="references-for-biological-parameters" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="references-for-biological-parameters"><span class="header-section-number">7.6</span> References for biological parameters:</h2>
-<ol type="a">
-<li><p><span class="citation" data-cites="stickney2000somite">Stickney et al. (<a href="#ref-stickney2000somite" role="doc-biblioref">2000</a>)</span></p></li>
-<li><p><span class="citation" data-cites="saga2012mechanism">Saga (<a href="#ref-saga2012mechanism" role="doc-biblioref">2012</a>)</span></p></li>
-<li><p><span class="citation" data-cites="tam1981control">Tam (<a href="#ref-tam1981control" role="doc-biblioref">1981</a>)</span></p></li>
-<li><p><span class="citation" data-cites="ishimatsu2018size">Ishimatsu et al. (<a href="#ref-ishimatsu2018size" role="doc-biblioref">2018</a>)</span></p></li>
-<li><p><span class="citation" data-cites="carraco2022vertebrate">Carraco et al. (<a href="#ref-carraco2022vertebrate" role="doc-biblioref">2022</a>)</span></p></li>
-<li><p><span class="citation" data-cites="tomka2018travelling">Tomka et al. (<a href="#ref-tomka2018travelling" role="doc-biblioref">2018</a>)</span></p></li>
-</ol>
 
 
 <script type="ojs-module-contents">

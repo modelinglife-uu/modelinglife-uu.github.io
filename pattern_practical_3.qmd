@@ -76,8 +76,10 @@ FGF from their mother cell. Note that only the mesoderm cell divides.
 
 Open the code of the model for the FGF gradient (`WC06_fgf-gradient-growth.py`).
 First study the code to see how it uses Classes, how they are initialized, and 
-attributes they have. Next, run the model and play with it by varying the 
-decay rate of FGF and the division rate of the cells. 
+attributes they have. 
+
+Run the model and play with it by varying the decay rate of FGF and the 
+division rate of the cells. 
 
 How does this affect the gradient? What happens if divisions are only allowed 
 during the first half of the simulation (put `divisiontime` to 0.5 instead of 1)?
@@ -88,42 +90,49 @@ during the first half of the simulation (put `divisiontime` to 0.5 instead of 1)
 ::: {.content-visible when-meta="params.show_answers"}
 
   > **Answer** 
-  > If FGF decay rate increases, maximum goes down but the gradient become steeper 
-  > and shorter as for same time between divisions more decay takes place.
-  > If the growth rate is increases, cell volumes increase faster, 
-  > resulting in dilution of FGF and hence a lower maximum of the gradient as due to
-  > the stable protein quite some time is needed to compensate for this
-  > decrease by more production, at the same time the gradient is less
-  > steep as cell division follow up faster and hence less time has passed
-  > and less day has taken place. 
+  > The formation of the FGF gradient requires that FGF is stable enough to be 
+  > inherited by the daughter cells of the rightmost cell (mesoderm). 
+  > When we increase the decay rate of FGF, its maximum level goes down and the 
+  > gradient become steeper and shorter. This occurs because for the time between 
+  > divisions more decay takes place, as well as the FGF inherited by the 
+  > daughter cells decays faster.<br>
+  > 
+  > Moreover, the FGF gradient is modified by the growth rate of the mesoderm (rightmost cell). 
+  > If the growth rate increases, then cell size increases faster resulting  
+  > in the dilution of FGF. Hence the gradient is less steep and will have a lower 
+  > maximum. Due to FGF being a stable protein quite some time is needed to 
+  > compensate for this decrease by more production. 
   >
-
-  > If divisions stop halfway the simulation FGF in last cell goes up (no 
-  > longer any loss due to growth-induced dilution) and FGF in all other 
-  > cells goes to zero (no fresh influx from newly divided cells still having FGF).
+  > Lastly, the FGF gradient requires of divisions of the mesoderm (rightmost cell). 
+  > If growth stops halfway the simulation, no more division occurs. This results 
+  > in FGF in rightmost cell increasing (as there is no longer any loss due to 
+  > growth-induced dilution) while FGF the rest of the cells goes to zero due 
+  > to decay. Thus, the FGF gradient depends on the influx of newly divided cells 
+  > having inherited FGF from the proliferating rightmost cell.
   
 :::
 
 :::{#exr-test}
 ## Mathematics
 
-Let us now move to the other half of the clock and
-    wavefront model, the clock part (`02_clock.py`), in which we implemented
-    one of the earliest models for the somitogenesis oscillator from
-    [Lewis (2003)](https://doi.org/10.1016/S0960-9822(03)00534-7) which
-    models a gene that codes for a mRNA ($m$) that encodes a protein ($p$)
-    that acts as a repressive transcription factor of this same gene. In
-    class we discussed how for oscillations negative feedbacks, delays
-    and non-linearity are important. Examine the code to find the
-    differential equations governing this model and determine the
-    negative feedback, delay and non-linearities in them.
+Now, let's look at the other half of the clock and wavefront model: the clock 
+part. In `WC06_clock.py` we implemented one of the first models for the 
+somitogenesis oscillator [Lewis (2003)](https://doi.org/10.1016/S0960-9822(03)00534-7) which models a gene that
+codes for an mRNA ($m$) translated into a protein ($p$) that acts as a repressive 
+transcription factor repressing its own promoter. In class we 
+discussed how negative feedbacks, delays and non-linearity are important for 
+oscillations. Examine the code to find the differential equations governing 
+this oscillator, and determine the negative feedback, delay and non-linearities in them.
 :::
 
 ::: {.content-visible when-meta="params.show_answers"}
 
-  > **Answer** Non-linearity is in saturation function with power n, negative
-  > feedback is because affects own expression negatively, delay is here
-  > modeled explicitly through a special delay type differential equation
+  > **Answer** 
+  > The negative feedback is because this gene affects own expression negatively 
+  > (m -> p --| m), the delay is modeled explicitly through a special delay-type 
+  > differential equation, and the non-linearity is in saturation function with 
+  > power n. 
+  
 :::
 
 :::{#exr-test}
@@ -135,9 +144,10 @@ Play with the parameters of the model. How does the delay
 
 ::: {.content-visible when-meta="params.show_answers"}
 
-   > **Answer** Larger value of $\tau$=delay results in a longer period 
+   > **Answer** 
+   > Larger value of $\tau$=delay results in a longer period 
    > (lower frequency) and higher amplitude. Remember how in class we 
-   >discussed how removing introns reduced delays and affected oscillator 
+   > discussed how removing introns reduced delays and affected oscillator 
    >period.
 :::
 

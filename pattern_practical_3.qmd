@@ -625,21 +625,9 @@ The model currently has a number of assumptions that we can
   > to discuss with us if you find something interesting or have an interesting answer. 
 :::
 
-## Relevant literature
+## Recommended reading material:
 
-If you want to know more about the model system and previous models,
-have a look at the following (after the tutorial):
-
-@lewis2003autoinhibition Autoinhibition with transcriptional delay: a simple mechanism for the zebrafish somitogenesis oscillator. 
-
-@hester2012multi A Multi-cell, Multi-scale Model of Vertebrate Segmentation and Somite Formation. 
-
-@herrgen2010intercellular Intercellular coupling regulates the period of the segmentation clock.
-
-@soroldoni2014doppler Genetic oscillations. A Doppler effect in embryonic pattern formation.
-
-@sonnen2018modulation Modulation of Phase Shift between Wnt and Notch Signaling Oscillations Controls Mesoderm Segmentation. 
-
-@bulusu2017spatiotemporal Spatiotemporal Analysis of a Glycolytic Activity Gradient Linked to Mouse Embryo Mesoderm Development.
-
-@van2025scaling Coupling of cell proliferation to the segmentation clock ensures robust somite scaling.
+If you want to know more about somitogenesis and how it has been modelled,
+have a look at the following papers (after the practical :): @lewis2003autoinhibition, @hester2012multi, 
+@herrgen2010intercellular, @soroldoni2014doppler, @sonnen2018modulation, @bulusu2017spatiotemporal,
+@van2025scaling.

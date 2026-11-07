@@ -632,7 +632,7 @@ window.Quarto = {
 <h2 data-number="7.4" class="anchored" data-anchor-id="questions"><span class="header-section-number">7.4</span> Questions</h2>
 <div id="exr-test" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 7.1 (Biology - An alternative gradient forming mechanism)</strong></span> In practical WC04-Gradients and segments we study how gradients can be created through local production, diffusion and decay. However, other mechanisms for gradient formation are possible, such as cell lineage transport. Important for this mechanism is that the expression of the molecule forming a gradient is constraint spatially. In our model of somitogenesis, the rightmost/posterior cell produces FGF. This cell grows, and upon division the daughter cells inherit FGF from their mother cell. Note that only the mesoderm cell divides.</p>
-<p>Open the code of the model for the FGF gradient (<code>WC06_fgf-gradient-growth.py</code>). First study the code to see how it uses Classes, how they are initialized, and attributes they have.</p>
+<p>Open the code of the model for the FGF gradient (<code>WC06_fgf-gradient-growth-START.py</code>). First study the code to see how it uses Classes, how they are initialized, and attributes they have.</p>
 <p>Run the model and play with it by varying the decay rate of FGF and the division rate of the cells.</p>
 <p>How does this affect the gradient? What happens if divisions are only allowed during the first half of the simulation (put <code>divisiontime</code> to 0.5 instead of 1)?</p>
 </div>
@@ -640,23 +640,25 @@ window.Quarto = {
 <p><span class="theorem-title"><strong>Exercise 7.2 (Mathematics)</strong></span> Now, let’s look at the other half of the clock and wavefront model: the clock part. In <code>WC06_clock.py</code> we implemented one of the first models for the somitogenesis oscillator <a href="https://doi.org/10.1016/S0960-9822(03)00534-7">Lewis (2003)</a> which models a gene that codes for an mRNA (<span class="math inline">\(m\)</span>) translated into a protein (<span class="math inline">\(p\)</span>) that acts as a repressive transcription factor repressing its own promoter. In class we discussed how negative feedbacks, delays and non-linearity are important for oscillations. Examine the code to find the differential equations governing this oscillator, and determine the negative feedback, delay and non-linearities in them.</p>
 </div>
 <div id="exr-test" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.3 (Biology)</strong></span> Play with the parameters of the model. How does the delay (<span class="math inline">\(\tau\)</span>) affect oscillations?</p>
+<p><span class="theorem-title"><strong>Exercise 7.3 (Biology)</strong></span> Play with the parameters of the model. You can see the output of each simulation as a .png image in <code>WC06_Pattern_formation_III/output</code>.</p>
+<p>How does the delay (<span class="math inline">\(\tau\)</span>) affect oscillations?</p>
 </div>
 <div id="exr-test" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.4 (Algorithmic thinking)</strong></span> In the file <code>03_rolling_clock.py</code>, there is a different implementation of the clock. Compare the two files and find out how they differ. What benefits for studying the model does <code>02_clock.py</code> have over <code>03_rolling_clock.py</code> and vice versa? Ignore the added functions <code>__copy__</code> and <code>set_tau</code> in this comparison. Some differences become clearer when you run the code too.</p>
+<p><span class="theorem-title"><strong>Exercise 7.4 (Algorithmic thinking)</strong></span> In the file <code>WC06_rolling_clock.py</code> there is a different implementation of the clock. Compare the two clock models and find out how they differ. Ignore the new functions <code>__copy__</code> and <code>set_tau</code> in this comparison. <strong>Hint</strong>: Some differences become clearer when you run the code too.</p>
+<p>What benefits does <code>WC06_clock.py</code> have over <code>WC06_rolling_clock.py</code> and vice versa?</p>
 </div>
 <div id="exr-test" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.5</strong></span> Next, we will combine the clock and FGF wavefront into a single model.</p>
-<p><strong>Read and interpret existing code:</strong> Read the code of <code>04_clockplusfgf.py</code> and try to understand the assumptions from this model implementation by answering the following questions:</p>
+<p><span class="theorem-title"><strong>Exercise 7.5 (Programming)</strong></span> Now, the fun part starts: we will study the combination of the clock and FGF wavefront into a single model (!!!).</p>
+<p><strong>Read and interpret existing code:</strong> Read the code of <code>WC06_clock_and_FGFgradient.py</code>, see where the clock and the FGF models are, how they are coupled. Next, identify the assumptions of this model implementation by answering the following questions:</p>
 <ol type="1">
-<li><p>Each cell has its own clock. What clock states is the tissue initialized with? And what clock states do newly divided cells get?</p></li>
-<li><p>The FGF wavefront affects <span class="math inline">\(\tau\)</span> : what function is used for that? What are your expectations for the effect of the FGF wavefront on the cells’ clocks?</p></li>
+<li><p>Each cell has its own clock. What clock states is the tissue initialized with? And, what clock states do newly divided cells get?</p></li>
+<li><p>The FGF wavefront affects <span class="math inline">\(\tau\)</span>: what function is used for that? How do you expect the FGF wavefront to affect the cells’ clocks?</p></li>
 <li><p>Does growth affect the clock state?</p></li>
-<li><p>What is your opinion on the assumptions discussed in the three questions?</p></li>
+<li><p>What is your opinion on the assumptions discussed in the three questions? How do you think they impact the observed patterning?</p></li>
 </ol>
 </div>
 <div id="exr-test" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.6 (Biology)</strong></span> Describe how the model behaves and why. Reverse the effect of FGF and see how that affects the patterning? Do we get stable somites?</p>
+<p><span class="theorem-title"><strong>Exercise 7.6 (Biology)</strong></span> Describe how the model behaves and why. Reverse the effect of FGF and see how that affects the patterning? <strong>Do we get stable somites?</strong></p>
 </div>
 <div id="exr-test" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 7.7 (Biology &amp; Programming)</strong></span> What is still missing is a means to transform the temporal oscillations in the posterior of the tissue into a spatial pattern in the anterior. In the French Flag morphogen gradient lecture we discussed that memory mechanisms are important to stabilize spatial patterns once the start up signal that broke the symmetry and initialized patterning has gone. It turns out that such a memorization/stabilization mechanism is also essential to convert oscillations to stripes.</p>

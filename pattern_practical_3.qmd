@@ -74,7 +74,7 @@ constraint spatially. In our model of somitogenesis, the rightmost/posterior
 cell produces FGF. This cell grows, and upon division the daughter cells inherit 
 FGF from their mother cell. Note that only the mesoderm cell divides.
 
-Open the code of the model for the FGF gradient (`WC06_fgf-gradient-growth.py`).
+Open the code of the model for the FGF gradient (`WC06_fgf-gradient-growth-START.py`).
 First study the code to see how it uses Classes, how they are initialized, and 
 attributes they have. 
 
@@ -138,8 +138,12 @@ this oscillator, and determine the negative feedback, delay and non-linearities 
 :::{#exr-test}
 ## Biology
 
-Play with the parameters of the model. How does the delay
-   ($\tau$) affect oscillations?
+Play with the parameters of the model. You can see the output of each simulation 
+as a .png image in `WC06_Pattern_formation_III/output`. 
+
+How does the delay ($\tau$) affect oscillations? 
+   
+
 :::
 
 ::: {.content-visible when-meta="params.show_answers"}
@@ -154,101 +158,115 @@ Play with the parameters of the model. How does the delay
 :::{#exr-test}
 ## Algorithmic thinking
 
-In the file `03_rolling_clock.py`, there is a
-    different implementation of the clock. Compare the two files and
-    find out how they differ. What benefits for studying the model does
-    `02_clock.py` have over `03_rolling_clock.py` and vice versa? Ignore the added
-    functions `__copy__` and `set_tau` in this comparison. Some
-    differences become clearer when you run the code too.
+In the file `WC06_rolling_clock.py` there is a different implementation of the 
+clock. Compare the two clock models and find out how they differ. Ignore the 
+new functions `__copy__` and `set_tau` in this comparison. 
+**Hint**: Some differences become clearer when you run the code too.
+
+What benefits does `WC06_clock.py` have over `WC06_rolling_clock.py` and vice versa? 
 :::
 
 ::: {.content-visible when-meta="params.show_answers"}
 
-  > **Answer** Working with delay functions implies that you need the value 
+  > **Answer** 
+  > Working with delay functions implies that you need the value 
   > of a variable not on the current time but on time-$\tau$. In the previous 
-  > model we simply memorized the entire history of both variables. Here 
-  > instead we only store the variable state for the length of the time delay 
-  > $\tau$. This saves memory and hence runtime. This will become especially 
-  > important when simulating a larger number of individual cells each having 
-  > their own clocks. In the plotting we only plotted stored values, hence 
-  > you only see what happened between current_time-$\tau$ and current_time 
-  > instead of what happened from start of simulation till current time. Of 
-  > course if you want to dynamically change $\tau$ you need to make sure you store 
-  > values over an interval corresponding to the largest possible value of $\tau$ 
-  > and need to know this beforehand.
+  > model (`WC06_rolling_clock.py`) we simply memorized the entire history of 
+  > both variables. In `WC06_rolling_clock.py` we only store the variable state 
+  > for the length of the time delay $\tau$. This saves memory and hence runtime. 
+  > This will become especially important when simulating a larger number of 
+  > individual cells each having their own clocks. <br>
+  > You probably notice this difference in the plotting of each clock model, as 
+  > each shows the stored values. In `WC06_rolling_clock.py` we only see what 
+  > happened between current_time-$\tau$ and current_time, while in `WC06_rolling_clock.py`
+  > we see what happened from start of simulation till current time. <br>
+  > Notice that if you were to dynamically change $\tau$ you will need to make 
+  > sure you store values over an interval corresponding to the largest possible 
+  > value of $\tau$, which you will need to know beforehand.<br>
+  > Tip: look for "self.t_values" in the codes to spot the differences.
 :::
 
 :::{#exr-test}
 
-## 
+## Programming
 
-Next, we will combine the clock and FGF wavefront into a single
-    model. 
+Now, the fun part starts: we will study the combination of the clock and FGF 
+wavefront into a single model (!!!). 
 
-**Read and interpret existing code:** Read the code of
-    `04_clockplusfgf.py` and try to understand the assumptions from this
-    model implementation by answering the following questions:
+**Read and interpret existing code:** Read the code of `WC06_clock_and_FGFgradient.py`, 
+see where the clock and the FGF models are, how they are coupled. Next, identify 
+the assumptions of this model implementation by answering the 
+following questions:
 
   1.  Each cell has its own clock. What clock states is the tissue
-        initialized with? And what clock states do newly divided
+        initialized with? And, what clock states do newly divided
         cells get?
         
-  2.  The FGF wavefront affects $\tau$ : what function is used for
-        that? What are your expectations for the effect of the FGF
-        wavefront on the cells' clocks?
+  2.  The FGF wavefront affects $\tau$: what function is used for
+        that? How do you expect the FGF wavefront to affect the cells' 
+        clocks?
         
   3.  Does growth affect the clock state?
     
   4.  What is your opinion on the assumptions discussed in the three
-        questions?
+      questions? How do you think they impact the observed patterning?
 :::
 
 ::: {.content-visible when-meta="params.show_answers"}
    > **Answer**
+   >  
+   > 1. To see how the clocks are initialized you need to open the code 
+   > `rolling_clock.py`. Remember that each class has its __init__ function, so 
+   > the `Clock` class and the `Cell` class each have their respective __init__. 
+   > Now, the __init__ function of the Class `Clock` is called in the __init__ of 
+   > Class `Cell`: as `self.clock=Clock(..)` receiving $m0$ and $p0$  as arguments.  
+   > The default values are $m=0$ and $p=0$, and newly divided cells inherit clock 
+   > state and and FGF value from their mother cell.
+   > In a sort of inception-like way, the initialization function of Class `Cell` 
+   > is called from the initialize_regular_tissue function of Class `Tissue` 
+   > when the first cell is created. Thus a class `Tissue` is initialized by initializing 
+   > objects of class `Cell`, that initialize objects of class `Clock`. 
    > 
-   > 1. Going to code rolling_clock.py we see that clocks are initialized 
-   > with the __init__ function of the Class Clock, which gets as arguments 
-   > $m0$ and $p0$, this initialization function is called when in Class `Cell`, 
-   > in its respective `__init__`  function `self.clock=Clock(..)` is called. 
-   > It uses default values of $m=0$ and $p=0$ to pass to the `Clock`. (In turn, 
-   > the initialization function of Class `Cell` is called from the
-   > initialize_regular_tissue function of Class `Tissue` when the first cell 
-   > is created). Newly divided cells inherit clock state and and FGF value 
-   > from mother cell.
-   > 
-   > 2. The function is:
-   > $$\tau_\text{cell}=\tau_\text{model}(1+0.5\frac{100-\text{FGF}\_\text{cell}}{100}),$$ 
+   > 2. Look at the function `update_clock_tau` in the Class `Cell`:
+   > $$\tau_\text{cell}=\tau_\text{model}(1+0.5\frac{100-\text{FGF}\_\text{cell}}{100}),$$ <br>
    > So if localfgf=max=100,  $\tau{local}$=$\tau{global}$, and if localfgf=min=0
    > $\tau{local}$=1.5*$\tau{global}$ 
-   > So for lower FGF $\tau$ increases slowing down the oscillations. 
-   > 3. Not directly, growth of cells, leading to volume increase and potential
-   > dilution effects is not affecting m or p levels, however since it is 
-   > affecting FGF levels it is indirectly affecting the clock.
-   > 4. Initialization is somewhat arbitrary, inheritance from mother cells is 
-   > logical although in reality it is of course not perfect but noisy,  FGF 
-   > effect is also reasonable to get the observed slowing and waves, but it 
-   > would be more logical for clock state like FGF to also be diluted if cells 
-   > grow their volume
+   > So for lower FGF, $\tau$ will increase, slowing down the oscillations. 
+   > 
+   > 3. Growth does not affect the clock directly. The growth of cells leads to 
+   > size increase and potential FGF dilution effects, but this does not affect $m$ 
+   > or $p$ levels. However, growth indirectly affects the clock since growth 
+   > affects FGF concentration, and FGF regulates $tau$. 
+   > 
+   > 4. (1) Initialization is somewhat arbitrary, (2) inheritance from mother 
+   > cells is logical although in reality it is noisy and this is not accounted 
+   > for, (3) FGF effect is also reasonable to produce the observed the waves and 
+   > the slowing of the clock. Yet, it would be more logical for the clock state 
+   > to also be diluted by growth. 
 :::
 
 :::{#exr-test}
 
 ## Biology
 
-Describe how the model behaves and why. Reverse the effect of FGF and see how that affects the patterning? Do we get stable somites?
+Describe how the model behaves and why. Reverse the effect of FGF and see how 
+that affects the patterning? **Do we get stable somites?**
 :::
 
 ::: {.content-visible when-meta="params.show_answers"}
 
-  > **Answer** First there is a startup period where we have synchronized 
-  > oscillations in the first formed cells that all still have high FGF. 
-  > Then as the tissue grows and the FGF gradient forms we obtain waves of 
+  > **Answer** 
+  > As the simulation starts from a single mesoderm cell, first there is a 
+  > startup period where we have  synchronized oscillations in the first cells 
+  > produced that have high FGF. <br>
+  > As the tissue grows and the FGF gradient forms, we observe waves of 
   > oscillations moving from right to left with increasing amplitudes. The 
   > right to left movement arises because oscillations are faster on the right 
-  > than on the left, this difference in oscillation frequency arises from the 
-  > impact of FGF on oscillator frequency. However, the oscillations do not 
-  > become halted and transformed into a stable spatial pattern because there 
-  > is no memory mechanism in place.
+  > than on the left (remember the FGF effect over $tau$). This difference in 
+  > oscillation frequency arises from the impact of FGF on oscillator frequency. 
+  > However, the oscillations persist along the tissue... Therefore the model 
+  > does not produce a stable spatial pattern. This is because there is no 
+  > memory mechanism in place.
 :::
 
 :::{#exr-test}

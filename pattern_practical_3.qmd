@@ -7,47 +7,47 @@ params:
 
 ## Goal of the tutorial:
 
-In this tutorial you will look at gradient formation and patterning 
-using different mechanisms than you have seen previously. We will 
-model the so-called clock-and-wavefront pattern, which stems from 
-oscillations in gene expression and gene products and results in a 
+In this tutorial you will look at a new mechanism for gradient formation and 
+patterning, different from what we have seen in previous practicals. We will 
+study the so-called clock-and-wavefront model, in which the patterning stems from 
+oscillations in gene expression and gene products, and results in a 
 regularly striped segmentation pattern in a growing tissue. Note that 
-as compared to the Drosophila French Flag type case, this is thought 
+as compared to the Drosophila French Flag type case (WC04), this is thought 
 to be the evolutionary ancestral model of segmenting animal body axes.
 
 ## The model system
 
-The clock-and-wavefront model is an important model in describing
-somitogenesis. In this process early in embryo development, the somites,
-a precursor tissue for the vertebrae and other tissues later in
-development, are formed from the pre-somitic mesoderm. This mesodorm
-extends on the posterior end by growth, and the somites bud off
-periodically at the anterior end in the order of a couple of weeks (in
-humans).
+The clock-and-wavefront model describes somitogenesis, a process occurring early 
+in embryo development to form somites along the anterior-posterior (head-to-tail) 
+axis of vertebrates. Somites are a precursor tissue for vertebrae (and other 
+tissues) that will form later in development. Somites are formed from the 
+pre-somitic mesoderm, that extends on the posterior end of the embryo 
+by growth, while the somites bud off periodically at the anterior end. This 
+dynamic developmental process is in the order of a couple of weeks (in humans).
 
-Key players in this model system are the protein FGF (fibroblast growth
-factor), and many genes and gene products that have an oscillatory
-pattern that will determine cell fate. However, for this tutorial, we
-simplify this to a single pair of gene mRNA and product, denoted with $m$
-and $p$ for short.
+Key players regulating somitogenesis are the protein FGF, and many genes and gene 
+products that have an oscillatory behavior that will determine cell fate. 
+However, for this tutorial, we simplify this oscillatory network to a single 
+pair of gene mRNA and product, denoted with $m$ and $p$ for short.
 
 ## Programming with classes
 
-Because we are going to make a more complex model with a tissue existing
-of multiple cells, and each cell having its own concentrations of FGF, $m$
-and $p$, we are going to use Classes in our code. You have been using
+In this practical we are going to make a more complex model with a tissue 
+made up of multiple cells, and each cell having its own concentrations of FGF, 
+$m$ and $p$. We are going to use Classes in our code. You have been using
 Classes already: the data types such as `int`, `str` and `bool` have their own
-class, and the `str` class has many *methods* (=functions working on that
-class) defined, such as `"hello world".upper()`, but it is also possible
-to create custom classes. With classes, you can easily make objects,
-which is part of the object-oriented programming paradigm.
+class; moreover the `str` class has many *methods* (=functions working on that
+class) defined, such as `"hello world".upper()`. It is also possible to create 
+custom classes, which is how we will model our genes, cells, and tissue today. 
+With classes, you can easily make objects (an instance of a class), which is 
+part of the object-oriented programming paradigm.
 
 Today, we are going to use classes for the different levels of our
 model: 1) tissue, 2) cell, 3) $m$ & $p$ clock and 4) the plotting. By using
 classes, we can separate things that happen on a tissue/cellular/clock
 scale, and separate the model from the visualization of it. You will
-first work with 1 & 2 & 4, then 3 on its own and then combine all
-four yourself into one model.
+first work with 1 & 2 & 4, then 3 on its own. At the end you will combine the 
+four into one model, to study somitogenesis.
 
 Important concepts when working with classes are
 
@@ -55,11 +55,10 @@ Important concepts when working with classes are
 -   Defining the `__init__` method and other methods
 -   Class attributes and using the keyword `self`
 
-This tutorial should be doable without an extensive knowledge of classes
-as there are plenty of examples to copy-paste from, but feel free to
-read up on these concepts here at [this online
-tutorial](https://www.datacamp.com/tutorial/python-oop-tutorial)
-
+This practical should be doable without an extensive knowledge of classes
+as we provide plenty of examples to copy-paste and run. If you are curious 
+and want to understand better how classes work we recommend you to read 
+[this online tutorial](https://www.datacamp.com/tutorial/python-oop-tutorial)
 
 
 ## Questions
@@ -67,32 +66,38 @@ tutorial](https://www.datacamp.com/tutorial/python-oop-tutorial)
 :::{#exr-test}
 
 ## Biology - An alternative gradient forming mechanism
-In practical 1 we saw how gradients can be created through local 
-production, diffusion and decay. However, other mechanisms for 
-gradient formation are possible, such as cell lineage transport. 
-Here we work with a model for the FGF gradient (`01-fgfgradientfromgrowth.py`)
-where only the rightmost/posterior cell produces FGF and grows, and 
-in which cells upon division inherit this FGF from their mother cell. 
-First study the code to see how it uses Classes and see what happens. 
-Next, play with the model by varying the decay rate of FGF and the 
-division rate of the cells. How does this affect the gradient? What 
-happens if divisions are only allowed during the first half of the 
-simulation (put `divisiontime` to 0.5 instead of 1).
+In practical WC04-Gradients and segments we study how gradients can be created 
+through local production, diffusion and decay. However, other mechanisms for 
+gradient formation are possible, such as cell lineage transport. Important for
+this mechanism is that the expression of the molecule forming a gradient is 
+constraint spatially. In our model of somitogenesis, the rightmost/posterior 
+cell produces FGF. This cell grows, and upon division the daughter cells inherit 
+FGF from their mother cell. Note that only the mesoderm cell divides.
+
+Open the code of the model for the FGF gradient (`WC06_fgf-gradient-growth.py`).
+First study the code to see how it uses Classes, how they are initialized, and 
+attributes they have. Next, run the model and play with it by varying the 
+decay rate of FGF and the division rate of the cells. 
+
+How does this affect the gradient? What happens if divisions are only allowed 
+during the first half of the simulation (put `divisiontime` to 0.5 instead of 1)?
 
 :::
 
 
 ::: {.content-visible when-meta="params.show_answers"}
 
-  > **Answer** If growth rate goes up cell volumes increase faster, causing more
-  > dilution of FGF and hence a lower maximum of the gradient as due to
+  > **Answer** 
+  > If FGF decay rate increases, maximum goes down but the gradient become steeper 
+  > and shorter as for same time between divisions more decay takes place.
+  > If the growth rate is increases, cell volumes increase faster, 
+  > resulting in dilution of FGF and hence a lower maximum of the gradient as due to
   > the stable protein quite some time is needed to compensate for this
   > decrease by more production, at the same time the gradient is less
   > steep as cell division follow up faster and hence less time has passed
   > and less day has taken place. 
   >
-  > If decay rate goes up, maximum goes down but the gradient become steeper 
-  > and shorter as for same time between divisions more decay takes place.
+
   > If divisions stop halfway the simulation FGF in last cell goes up (no 
   > longer any loss due to growth-induced dilution) and FGF in all other 
   > cells goes to zero (no fresh influx from newly divided cells still having FGF).

@@ -108,6 +108,9 @@ div.csl-indent {
 <link href="site_libs/bootstrap/bootstrap-21773dcadea2beec2b9f71056aa2f0f3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -609,6 +612,12 @@ window.Quarto = {
 <section id="goal-of-the-tutorial" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="goal-of-the-tutorial"><span class="header-section-number">7.1</span> Goal of the tutorial:</h2>
 <p>In this tutorial you will look at a new mechanism for gradient formation and patterning, different from what we have seen in previous practicals. We will study the so-called clock-and-wavefront model, in which the patterning stems from oscillations in gene expression and gene products, and results in a regularly striped segmentation pattern in a growing tissue. Note that as compared to the Drosophila French Flag type case (WC04), this is thought to be the evolutionary ancestral model of segmenting animal body axes.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/somitogenesis-credit_to-Oxford-University-Press.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="From: https://www.youtube.com/watch?v=aR0CLyGFrxo"><img src="images/somitogenesis-credit_to-Oxford-University-Press.gif" class="img-fluid figure-img" style="width:60.0%" alt="From: https://www.youtube.com/watch?v=aR0CLyGFrxo"></a></p>
+<figcaption>From: https://www.youtube.com/watch?v=aR0CLyGFrxo</figcaption>
+</figure>
+</div>
 </section>
 <section id="the-model-system" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="the-model-system"><span class="header-section-number">7.2</span> The model system</h2>
@@ -1474,6 +1483,38 @@ window._ojs.runtime.interpretFromScriptTags();
 </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

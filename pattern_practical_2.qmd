@@ -838,6 +838,3 @@ Reference values:
 
 
 ### References
-1.  @turing1990chemical
-2. @raspopovic2014digit
-3. @miguez2006effect

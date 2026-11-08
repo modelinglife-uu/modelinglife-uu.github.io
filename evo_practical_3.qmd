@@ -1,6 +1,6 @@
 ---
 params:
-  show_answers: false
+  show_answers: true
 ---
 
 # Collective behaviour
@@ -11,7 +11,7 @@ Now that you are familiar with simulating evolution, we will slowly transition t
 of this course; modelling **patterns and shapes**. Of course, these things
 are not mutually exclusive: shapes can evolve too! 
 
-In this practical, you will start building a simple individual-basd model with collective behaviour, 
+In this practical, you will start building a simple individual-based model with collective behaviour, 
 based on the one you saw at the end of the lecture:
 
 ```{=html}

@@ -1,6 +1,6 @@
 ---
 params:
-  show_answers: false
+  show_answers: true
 ---
 
 # Clock-and-wavefront patterning
@@ -291,12 +291,12 @@ molecule  $M$ as a new attribute to the Class `Cell`, which value is inherited
 from the mother cell upon division. The code already includes the visualization 
 of $M$. Write your own code to update the function `run_clocks` in the 
 class `Tissue`: define $M$ regulation and how $M$ controls the clock updating. 
-Remember that memory requires bistability, which can be achieved if ++++
-the memory molecule $M$ has a non-linear saturating positive feedback on itself. 
+Remember that memory requires bistability, which can be achieved if the memory 
+molecule $M$ has a non-linear saturating positive feedback on itself. 
 What happens when initializing $M$ with different values (try low and high values)?
 
 ::: {.callout-note collapse="true"}
-## 7.b. Continuation...
+## 7.b. Next question.
 
 7.b.  To make $M$ expression non-homogenous in the tissue we need to make $M$ 
 dependent on the clock. To achieve this, we can initialize the cells with low 
@@ -311,7 +311,7 @@ implemented in the following function:
 :::
 
 ::: {.callout-note collapse="true"}
-## 7.c. Continuation...
+## 7.c. Next question.
 
 7.c.  Since oscillations occur in the posterior end, and stripe formation occurs 
 at the anterior end, we can use $FGF$ as molecular information to define where 
@@ -322,7 +322,7 @@ change $M$ expression in the tissue?
 :::
 
 ::: {.callout-note collapse="true"}
-## 7.d. Continuation...
+## 7.d. Next question.
 
 7.d. So in addition to memorization occurring only below a certain $FGF$ value, 
 it should also occur above another, lower $FGF$ value. This will constrain 
@@ -345,8 +345,8 @@ see if you get stable somite formation. Can you think of another way of achievin
   > does not work...
   > 
   > b. This also doesn't work because despite $M$ being linked to the clock and 
-  > $M$ starting low, $M$ still becomes high everywhere. This is because each 
-  > cell eventually goes through a clock phase with $p$ high...
+  > $M$ starting with low levels, it still becomes high everywhere. This happens
+  > because each cell eventually goes through a clock phase with $p$ high...
   > 
   > c. Now $M$ stays low posteriorly where $FGF$ is still high, however as 
   > $FGF$ drops cells exiting that zone still oscillate, pass through all 
@@ -400,6 +400,33 @@ updates in one simulation.
 
 - You can test the clock parameters separately with the `WC06_clock.py` and 
 `WC06_rolling_clock.py` scripts. And remember that FGF has an effect on $\tau$!
+
+::: {.content-visible when-meta="params.show_answers"}
+## Add these functions in the Class Cell in order to count the somites: 
+``` python
+    def count_somites(self):
+        memory_levels = [cell.memory for cell in self.cells]
+        local_maxima = argrelextrema(np.array(memory_levels), np.greater)
+        if local_maxima[0].size > 1:
+            # average index difference between local maxima:
+            average_number_cells_in_somite = np.mean(np.diff(local_maxima))
+            number_of_somites=len(local_maxima[0])
+        else:
+            local_minima = argrelextrema(np.array(memory_levels), np.less)
+            average_number_cells_in_somite = np.mean(np.diff(local_minima))
+            number_of_somites=len(local_minima[0])
+        return(number_of_somites,average_number_cells_in_somite)
+    
+    def count_somites_2(self):
+        memory_levels = [cell.memory for cell in self.cells]
+        decreasing_levels = [(x>=y, i) for x, y, i in zip(memory_levels, memory_levels[1:],range(len(memory_levels)-1))]
+        decreasing_switch = [(x>y, i) for (x,i), (y,_) in zip(decreasing_levels, decreasing_levels[1:])]
+        number_of_somites = sum([x[0] for x in decreasing_switch])
+        average_number_cells_in_somite =  np.mean(np.diff([x[1] for x in decreasing_switch if x[0]==True]))
+        return(number_of_somites,average_number_cells_in_somite)
+```
+:::
+
 :::
 
 ::: {.content-visible when-meta="params.show_answers"}

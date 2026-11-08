@@ -53,7 +53,7 @@ tf1 and tf2 are repressing or activating.
 
 ## Python code
 
-The code below is also in  `WC04-Pattern_formation_I/01_morphogengradient_to_segments.py`. 
+The code below is also in  `WC04-Pattern_formation_I/WC04_morphogengradient_to_segments.py`. 
 
 ::: {.callout-note collapse="true"}
 ## Starting code for this practical

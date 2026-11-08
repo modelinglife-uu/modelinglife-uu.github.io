@@ -286,59 +286,86 @@ stabilize spatial patterns. Particularly important when the start up signal that
 a memorization/stabilization mechanism is also essential to convert oscillations 
 to stripes (somites!).
 
-1.	In `WC06_clock_and_FGFgradient_memory.py` we added an extra ‘memory’ 
+7.a.	In `WC06_clock_and_FGFgradient_memory.py` we added an extra ‘memory’ 
 molecule  $M$ as a new attribute to the Class `Cell`, which value is inherited 
 from the mother cell upon division. The code already includes the visualization 
-of $M$. 
-
-Write your own code to update $M$ inside the function `run_clocks` in the class
-`Tissue.` Remember that memory requires bistability, which can be achieved if 
+of $M$. Write your own code to update the function `run_clocks` in the 
+class `Tissue`: define $M$ regulation and how $M$ controls the clock updating. 
+Remember that memory requires bistability, which can be achieved if ++++
 the memory molecule $M$ has a non-linear saturating positive feedback on itself. 
 What happens when initializing $M$ with different values (try low and high values)?
 
 ::: {.callout-note collapse="true"}
-## Continuation...
+## 7.b. Continuation...
 
-2.  We need to make $M$ dependent on the clock. To achieve this, we can start 
-    with low values of $M$ (low enough prevent its autoactivation), and then 
-    have $M$ being activated by either $p$ (part of the clock) OR $M$ itself. 
-    This is implemented in the following function: 
+7.b.  To make $M$ expression non-homogenous in the tissue we need to make $M$ 
+dependent on the clock. To achieve this, we can initialize the cells with low 
+values of $M$ (low enough prevent its autoactivation), and then have $M$ being 
+activated by either $p$ (part of the clock) **OR** $M$ itself. This is 
+implemented in the following function: 
             $$\frac{dM}{dt}=c\max\left(\frac{p^4}{h_p^4+p^4}, \frac{M^4}{h_M^4+M^4}\right)-\delta M.$$
     c= production rate, max() is the OR function, $h_M$ and $h_M$ are the half rates,  \delta is the decay rate.
             
-  What happens now?
+  Implement this function in the code. What happens now? How is M expressed in the tissue?
            
 :::
 
-3.  Since oscillations occur in the PSM and stripe formation occurs only more anteriorly we should constrain memorization to occur only below a certain $FGF$ value. Implement this in the code. Did this help?
+::: {.callout-note collapse="true"}
+## 7.c. Continuation...
 
-4. So in addition to have memorization occur only below a certain $FGF$ value it should also occur above another, lower $FGF$ value, constraining it to occur in a limited temporal window that enables cells passing through there with a high  $p$ state to induce a high $M$  state while cells passing through with a low $p$ state to not induce a high  $M$ state. Implement this and see if you get stable somite formation. What would be another way of achieving this?
+7.c.  Since oscillations occur in the posterior end, and stripe formation occurs 
+at the anterior end, we can use $FGF$ as molecular information to define where 
+the memorization occurs. Specifically, we should constrain memorization to occur 
+only below a certain $FGF$ value. Implement this in the code. How does this 
+change $M$ expression in the tissue?
+
+:::
+
+::: {.callout-note collapse="true"}
+## 7.d. Continuation...
+
+7.d. So in addition to memorization occurring only below a certain $FGF$ value, 
+it should also occur above another, lower $FGF$ value. This will constrain 
+memorization to limited temporal window that enables cells passing through 
+with a high  $p$ state to induce a high $M$ state, while cells with a low $p$ 
+state to not induce a high  $M$ state. Implement this lower $FGF$ threshold and 
+see if you get stable somite formation. Can you think of another way of achieving this?
+:::
+
 :::
 ::: {.content-visible when-meta="params.show_answers"}
 
-  > **Answer** See code `05_answers_clockplusfgf_memory.py`
+  > **Answer** 
+  > See code `WC06_clock_and_FGFgradient_memory_answers.py` for the solution.
   >
-  > 1. If initial values are low $M$ will stay low everywhere, if initial values are higher 
-  > autoactivation starts working and $M$ will become high everywhere. So this does not work.
+  > a. If initial values, are low $M$ will remain low everywhere. On the contrary,
+  > if initial values are high, autoactivation starts working and $M$ will 
+  > be high everywhere. This is how the $M$ auto-regulation works. We wish 
+  > to have the memorization at the anterior (left) side of the tissue, so this
+  > does not work...
   > 
-  > 2. Now, despite $M$ being linked to the clock and $M$ starting low, $M$ still becomes high 
-  > everywhere as each cell eventually goes through a clock phase with $p$ high.
+  > b. This also doesn't work because despite $M$ being linked to the clock and 
+  > $M$ starting low, $M$ still becomes high everywhere. This is because each 
+  > cell eventually goes through a clock phase with $p$ high...
   > 
-  > 3. Now $M$ stays low posteriorly where $FGF$ is still high, however as $FGF$ drops cells 
-  > exiting that zone still oscillate, hence pass through all phases, so also the high $p$ one 
-  > and hence anteriorly all cells get a high $M$ level.
+  > c. Now $M$ stays low posteriorly where $FGF$ is still high, however as 
+  > $FGF$ drops cells exiting that zone still oscillate, pass through all 
+  > phases (including the one with high $p$) and hence anteriorly all cells get 
+  > a high $M$ level.
   >
-  > 4. Thresholds should be relatively close to ensure stripes of low and high $M$ forming. 
-  > Restricting only certain cells to have high $M$ can also be achieved by stopping oscillations 
-  > after certain $FGF$ level.
+  > d. The two thresholds should be relatively close to ensure stripes of low 
+  > and high $M$ forming. 
+  > Restricting only certain cells to have high $M$ can also be achieved by 
+  > stopping oscillations after certain $FGF$ level.
 
 :::
 :::{#exr-test}
 
 ## Biology
 
-Both zebrafish and mice are common model organisms, so we know a lot about the biological 
-parameters of their somitogenesis. See the following list:
+Both zebrafish and mice are common model organisms in the life sciences. This means
+we know a lot about the biological parameters regulating their somitogenesis. 
+See the following list:
 
 | Parameter                           | Zebrafish             | Reference                                                                                                                                            | Mouse                                                                     | Reference |
   |----------------------------------------------------------------------------------|----------------------------------|-----------------------------------------------------|---------------------------------------------------------------------------|-----------------------------------------------|
@@ -348,32 +375,32 @@ parameters of their somitogenesis. See the following list:
   | Cells per somite          | ~5 cell in diameter   | @stickney2000somite                                       | 5-11 (estimated from total cell size in 3D, ranging 1 order of magnitude) | @tam1981control |
   | Clock period              | 25 min /30 min        | @ishimatsu2018size / @carraco2022vertebrate / @tomka2018travelling | 2-3 h                                                                     | @carraco2022vertebrate     |
 
-  From these parameters, you can derive a number of desired model
-  inputs/outcomes:
+From these parameters, you can derive a number of features for each specie, 
+that can be used to make a model:
 
-  -   The total size of the tissue at the end of somitogenesis
-  -   The size of a cell
-  -   Speed of division
+-   The total size of the tissue at the end of somitogenesis
+-   The size of a cell
+-   Speed of division
 
-  Use the model and try to find suitable model parameters to recreate the
-  development of both zebrafish and mice: is this model able to describe
-  both of these processes? I.e., is this model able to deal with the scale
-  differences between zebrafish and mice?
+Use the model and try to find suitable model parameters to recreate the 
+somitogenesis development of zebrafish and mice. 
+Is this model able to describe both species? In other words, is this model 
+able to deal with the scale differences between zebrafish and mice?
 
-  A couple of notes:
-
-  -   You don't have to exactly recreate the biological parameter with
-      100% precision, except for the number of segments/somites, although
-      it can be a fun challenge to get a complete match.
-  -   You might want to adapt your plotting timestep to have sufficient
-      but not too many plot updates in one simulation.
-  -   You can test the clock parameters separately with the `clock.py`/`rolling_clock.py`
-      script. Don't forget that FGF has an effect on $\tau$ !
+A couple of notes:
+- You don't have to exactly recreate the biological parameter with 100% precision, 
+but in terms of the number of segments/somites (although it can be a fun 
+challenge to get a complete match).
+- You might want to adapt your plotting timestep to have not too many plot 
+updates in one simulation.
+- You can test the clock parameters separately with the `WC06_clock.py` and 
+`WC06_rolling_clock.py` scripts. And remember that FGF has an effect on $\tau$!
 :::
 
 ::: {.content-visible when-meta="params.show_answers"}
 
-  > **Answer** See codes `06_answers_clockplusfgf_memory_mouse.py` and
+  > **Answer** 
+  > See codes `06_answers_clockplusfgf_memory_mouse.py` and
   `06_answers_clockplusfgf_memory_zebrafish.py`.
   > 
   > **Zebrafish:**

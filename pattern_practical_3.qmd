@@ -296,14 +296,20 @@ Write your own code to update $M$ inside the function `run_clocks` in the class
 the memory molecule $M$ has a non-linear saturating positive feedback on itself. 
 What happens when initializing $M$ with different values (try low and high values)?
 
+::: {.callout-note collapse="true"}
+## Continuation...
 
-2.  Thus, we need to make $M$ dependent on the clock. To achieve this, we can start 
-    with low values of  $M$ that prevent autoactivation, and then have $M$ activated by 
-    either $p$ (part of the clock) or $M$ itself using the following function: 
+2.  We need to make $M$ dependent on the clock. To achieve this, we can start 
+    with low values of $M$ (low enough prevent its autoactivation), and then 
+    have $M$ being activated by either $p$ (part of the clock) OR $M$ itself. 
+    This is implemented in the following function: 
             $$\frac{dM}{dt}=c\max\left(\frac{p^4}{h_p^4+p^4}, \frac{M^4}{h_M^4+M^4}\right)-\delta M.$$
+    c= production rate, max() is the OR function, $h_M$ and $h_M$ are the half rates,  \delta is the decay rate.
             
   What happens now?
-            
+           
+:::
+
 3.  Since oscillations occur in the PSM and stripe formation occurs only more anteriorly we should constrain memorization to occur only below a certain $FGF$ value. Implement this in the code. Did this help?
 
 4. So in addition to have memorization occur only below a certain $FGF$ value it should also occur above another, lower $FGF$ value, constraining it to occur in a limited temporal window that enables cells passing through there with a high  $p$ state to induce a high $M$  state while cells passing through with a low $p$ state to not induce a high  $M$ state. Implement this and see if you get stable somite formation. What would be another way of achieving this?

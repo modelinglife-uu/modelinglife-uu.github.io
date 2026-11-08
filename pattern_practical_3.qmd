@@ -277,29 +277,25 @@ that affects the patterning? **Does the model produces stable somites?**
 ## Biology & Programming
 
 The oscillations slow down, yet they persist... Somitogenesis requires stable 
-somites. What is still missing in the model is a means to transform the 
-temporal oscillations in the right-most end of the tissue (posterior) into a 
-spatial pattern of cells at the left (anterior end). In the French Flag 
+somites, indicating something is still missing in the model. That is a means to 
+transform the temporal oscillations in the right-most end of the tissue (posterior) 
+into a spatial pattern of cells at the left (anterior end). In the French Flag 
 morphogen gradient lecture we discussed that memory mechanisms are important to 
 stabilize spatial patterns. Particularly important when the start up signal that 
 *broke the symmetry* and initialized patterning is gone. It turns out that such 
 a memorization/stabilization mechanism is also essential to convert oscillations 
 to stripes (somites!).
 
-1.	In the code `05_clockplusfgf.py` (available in the Modeling Life Teams channel, and also here in the dropdown text below) we added an extra ‘memory’ molecule  $M$ as a new attribute to the Class `Cell`, which value is inherited from the mother cell upon division. Write your own code to perform its updating inside the function `run_clocks`.  Remember that to create memory we need bistability, which can be easily achieved by having the memory molecule having a non-linear saturating positive feedback on itself. Study what happens (you can see what happens since we already incorporated visualisation of $M$ into the python code). What happens for different initial values of $M$?
+1.	In `WC06_clock_and_FGFgradient_memory.py` we added an extra ‘memory’ 
+molecule  $M$ as a new attribute to the Class `Cell`, which value is inherited 
+from the mother cell upon division. The code already includes the visualization 
+of $M$. 
 
-::: {.callout-note collapse="true"}
+Write your own code to update $M$ inside the function `run_clocks` in the class
+`Tissue.` Remember that memory requires bistability, which can be achieved if 
+the memory molecule $M$ has a non-linear saturating positive feedback on itself. 
+What happens when initializing $M$ with different values (try low and high values)?
 
-## `05_clockplusfgf.py`
-
-``` python
-
-
-
-
-```
-
-:::
 
 2.  Thus, we need to make $M$ dependent on the clock. To achieve this, we can start 
     with low values of  $M$ that prevent autoactivation, and then have $M$ activated by 

@@ -606,4 +606,6 @@ from question 10. Did it work?
 :::
 
 ## Relevant literature / further reading
+@fried2014dynamic, @cheung2011scaling, @he2015fundamental, @inomata2017scaling, @ben2010scaling
+
 

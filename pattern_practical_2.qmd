@@ -835,6 +835,7 @@ Reference values:
 ![](images/growthanswer.png)
 
 :::
+@miguez2006effect
 
 
 ### References

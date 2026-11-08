@@ -375,24 +375,29 @@ See the following list:
   | Cells per somite          | ~5 cell in diameter   | @stickney2000somite                                       | 5-11 (estimated from total cell size in 3D, ranging 1 order of magnitude) | @tam1981control |
   | Clock period              | 25 min /30 min        | @ishimatsu2018size / @carraco2022vertebrate / @tomka2018travelling | 2-3 h                                                                     | @carraco2022vertebrate     |
 
-From these parameters, you can derive a number of features for each specie, 
-that can be used to make a model:
+From these parameters, you can derive a number of properties that can be used to 
+make a somitogenesis model of each species:
 
 -   The total size of the tissue at the end of somitogenesis
 -   The size of a cell
--   Speed of division
+-   Division rate
 
-Use the model and try to find suitable model parameters to recreate the 
-somitogenesis development of zebrafish and mice. 
-Is this model able to describe both species? In other words, is this model 
-able to deal with the scale differences between zebrafish and mice?
+Use your model and find suitable model parameters to recreate the somitogenesis 
+development of zebrafish and mice. Is the model able to describe both species? 
+In other words, is this model able to deal with the scale differences between 
+zebrafish and mice?
+
+Tip: if you got stuck in the previous question, you can find the solution code
+`WC06_clock_and_FGFgradient_memory_answers.py` in the Supp folder.
 
 A couple of notes:
 - You don't have to exactly recreate the biological parameter with 100% precision, 
 but in terms of the number of segments/somites (although it can be a fun 
 challenge to get a complete match).
+
 - You might want to adapt your plotting timestep to have not too many plot 
 updates in one simulation.
+
 - You can test the clock parameters separately with the `WC06_clock.py` and 
 `WC06_rolling_clock.py` scripts. And remember that FGF has an effect on $\tau$!
 :::
@@ -400,54 +405,45 @@ updates in one simulation.
 ::: {.content-visible when-meta="params.show_answers"}
 
   > **Answer** 
-  > See codes `06_answers_clockplusfgf_memory_mouse.py` and
-  `06_answers_clockplusfgf_memory_zebrafish.py`.
+  > See codes `WC06_mouse.py` and `WC06_zebraFish` for the solution.
   > 
   > **Zebrafish:**
-  > 
-  > Totaltime: 18 hours for duration of somitogenesis + 10 hours startup phase.
-  >
-  > Cell width= 30-50 $\mu$ sized somite/5 cells per somite = 6-10 so 8
-  > 
-  > Growthrate: 30 somites x 5 cells x 8$\mu$ / 18 hours = $1200$\mu$/18*3600$s
+  > Simply doing the computations give you: 
+  > Totaltime: 18 hours for duration of somitogenesis + 10 hours startup phase.<br>
+  > Cell width= 30-50 $\mu$ sized somite, 5 cells per somite. Then 6-10 $\mu$ 
+  > is the width of the cell. Let's use 8  $\mu$.<br>
+  > Growth rate ($\mu$ per second): 30 somites x 5 cells x 8$\mu$ / 18 hours = $1200$\mu$/18*3600$s
   > 
   > For clock frequency:
-  > 
-  > $\tau$ times 0.25
-  > 
-  > Fac = 6 (multiplies alpha, beta, mu, v)
+  > $\tau$ times 0.25 <br>
+  > Fac = 6 (multiplies alpha, beta, mu, v) <br>
   >
-  > This gives 32/31 somites with on average 4.9 cells, so perfect.
+  > These parameters produce 32/31 somites with on average 4.9 cells, matching
+  > the zebra case process!
   > 
   >
   > **Mouse:**
-  > 
-  > Simply doing the computations would give you: 
-  >
-  >
-  > Totaltime: 5 days for duration of somitogenesis + 15 hours startup phase
-  >
-  > Cell width = 120$\mu$ sized somite/5-11 cells = $120/8=15$
-  >
-  > Growthrate: 65 somites x 8 cells x 15$\mu$ / 5 days = $7800/5* 24 *3600$s
+  > Totaltime: 5 days for duration of somitogenesis + 15 hours startup phase. <br>
+  > Cell width = 120$\mu$ sized somite/5-11 cells = $120/8=15$$\mu$ <br>
+  > Growth rate ($\mu$ per second): 65 somites x 8 cells x 15$\mu$ / 5 days = $7800/5* 24 *3600$s
   >
   > For clock frequency:
-  >
-  > $\tau$ times 1.4-1.6 is sufficient (Fac=1 (multiplies alpha, beta, mu, v))
+  > $\tau$ times 1.4-1.6 is sufficient 
+  > Fac=1 (multiplies alpha, beta, mu, v) <br>
   > 
-  > Somehow this does not fully work:
-  > 
-  > Too few cells (not $65*8=520$) too short tissue (not $65*8*15=7800$) and only 
-  > 24 segments. First, remember $\tau_{local}=(1+0.5 *(100-localfgf)/100))*\tau_{global}$. 
-  > So $\tau_{local}$ max 1.5 times $\tau_{global}$  so the also increasing $\tau_{global}$ 
-  > 1.4-1.6 times 1.5 makes it really slow. Indeed $\tau$ times 1.2 gives 31 segments, $\tau$ 
-  > times 1 gives   > 36 segments, $\tau$ times 0.7 gives 49 segments
+  > Somehow this does not fully work: These parameter produce too few cells 
+  > (not $65*8=520$) too short tissue (not $65*8*15=7800$) and only 
+  > 24 segments. 
+  > First, remember $\tau_{local}=(1+0.5 *(100-localfgf)/100))*\tau_{global}$. 
+  > So $\tau_{local}$ max 1.5 times $\tau_{global}$  so the also 
+  > increasing $\tau_{global}$ 1.4-1.6 times 1.5 makes it really slow. 
+  > Indeed $\tau$ times 1.2 gives 31 segments, $\tau$ times 1 gives  
+  > more than 36 segments, $\tau$ times 0.7 gives 49 segments
   > 
   > Good to realize that the numbers in the table do not completely add up:
-  > 
   > If it takes 5 days =$5*24=120$ hours, and the period is 2-3 hours this would result 
   > in 40-60 segments but never 65. For a duration of 5.5 days and $\tau$ times 0.6 we 
-  > get to 62 somites of size 9, so quite close.
+  > get to 62 somites of size 9, so quite close. +++
 
 :::
 
@@ -456,9 +452,9 @@ updates in one simulation.
 
 ## Questions for master students
 
-The model currently has a number of assumptions that we can
-  question. Feel free to explore any of these further open questions
-  and study how it effects the outcome of the model:
+The model currently has a number of assumptions that we can question (use the 
+model to assess their importance). Feel free to explore any of the following 
+open questions and study how it affects the outcome of the model:
 
 -   What if the relationship between FGF and $\tau$ is shaped differently?
     For instance, if the clock runs faster on the left/anterior than on
@@ -472,8 +468,10 @@ The model currently has a number of assumptions that we can
 
 ::: {.content-visible when-meta="params.show_answers"}
 
-  > **Answer** These are open questions and do not have a single correct answer. Feel free 
-  > to discuss with us if you find something interesting or have an interesting answer. 
+  > **Answer** 
+  > These are open questions and do not have a single correct answer. Feel free 
+  > to discuss with us if you find something interesting and/or have an 
+  > interesting answer. 
 :::
 
 ## Recommended reading material:

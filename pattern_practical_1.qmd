@@ -443,7 +443,7 @@ expression domains of $A$, $B$ and $C$?, Does their expression in space change?
 :::
 
 ::: {.content-visible when-meta="params.show_answers"}
-  > **Answer** See `Question8.py`
+  > **Answer** See `WC04_Question8.py`
   > As $M$ decays, $A$ and $B$ will no longer be activated and $C$ no longer
   > repressed, hence the takeover by $C$. Therefore, mutual repression with 
   > your neighboring-expressed gene is not enough to maintain the "French Flag". 
@@ -488,7 +488,7 @@ their takeover by other genes due to timing issues
   > part of their input) being negatively dependent on $M$ that there is an $AND$ 
   > gate (so they do not expand once $M$ is absent but require both $M$ absent 
   > and mutual repressors absent). See the answer code:
-  > `Question9.py`.
+  > `WC04_Question9.py`.
 :::
 
 :::{#exr-plain}
@@ -504,7 +504,7 @@ robust in a manner that is also likely occurring in nature?
 ::: {.content-visible when-meta="params.show_answers"}
   > **Answer** 
   > 
-  > See the answer code: `Question10.py`
+  > See the answer code: `WC04_Question10.py`
   > The noise has more effect in the initial phase when mostly morphogen is 
   > driving the expression domains, as gene expression becomes established and
   > morphogen levels decay the mutual repression ensures stability against the 

@@ -601,9 +601,6 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBJbXBvcnQgbmVjZXNzYXJ5
 <li>How can you modify the code to make the code represent <a href="#fig-roulette" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-roulette</span></a> better. Try it!</li>
 </ol>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong><br> a. Nothing really changes, all that has changed is relative fitnesses but it still samples the same individuals with the same chance. b. We would like the odds of nobody reproducing to be represented (the black slice in <a href="#fig-roulette" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-roulette</span></a>). You can do that by extending the list of individuals with an empty ‘dummy’ <code>["Maca", "Momo", "Miffy", "Maddy", "Minky", "Mooby", "Nobody"]</code> and give this a fixed weight in the fitness list <code>[0.1, 0.01, 0.5, 0.2, 1e-20, 0.2, 0.5]</code>. If the individual’s all have low fitness (<code>[0.001, 0.001, 0.005, 0.002, 1e-20, 0.002, 0.5]</code>), this will most likely results in “nothing” happening.</p>
-</blockquote>
 </section>
 <section id="a-simple-evolutionary-model-with-a-roulette-wheel" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="a-simple-evolutionary-model-with-a-roulette-wheel"><span class="header-section-number">1.3</span> A simple evolutionary model with a roulette wheel</h2>
@@ -729,9 +726,6 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBJbXBvcnQgbmVjZXNzYXJ5
 <li>Modify that piece of code to fix the roulette wheel (hint: this is a VERY small change in the code).</li>
 </ol>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong><br> a. The line <code>probs = [1 for fit in population]</code> says that for each individual in the population, the probability (probs = probabilities) is 1. So they all have the same fitness. Hence, what we called ‘fitness’ is not yet treated as such, and the population just drifts. <br> b. We change one word in the line <code>probs = [1 for fit in population]</code>. Instead of <code>1 for fit</code> we want <code>fit for fit</code>, meaning that all probabilities will be equal to the fitness values in the population. Now the population evolves to increase its fitness value over time.</p>
-</blockquote>
 </section>
 <section id="spatial-structure-local-competition-on-a-grid" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="spatial-structure-local-competition-on-a-grid"><span class="header-section-number">1.4</span> Spatial structure: Local competition on a grid</h2>
@@ -870,9 +864,6 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyBJbXBvcnQgbmVjZXNzYXJ5
 <li><p>Do you think a spatial simulation will always make evolution less efficient? Why/why not?</p></li>
 </ol>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong><br> a. No.&nbsp;The spatial population is much slower at improving fitness. You can confirm this is not a coincidence by modifying the random seed, and you will see that each time the basic Moran population “wins”. The reason is that in a mixed population, a fitter strain can immediately compete with everyone. In a spatial population, it primarily competes with itself, and can only slowly outcompete others! <br> b. There are a few options. Instead of sampling 8 neighbours one could sample 8 random individuals to compete for a grid point. Or one could sample <em>all</em> individuals, at which point the whole grid-structure does not matter anymore for competition. Another idea is to implement diffusion / mixing / movement of individuals the grid, such that individuals approach a more mixed state. Any of these modifications will make the grid-based model more similar to the mixed model in terms of rate of evolution. <br> c.&nbsp;As already hinted in a, the fact that newly emerging strains mostly compete with their own kind often slows down the selective sweeps. However, there may be scenarios where a fast selective sweep is a <strong>disadvantages</strong>. Heavy foreshadowing! :)</p>
-</blockquote>
 
 
 <script type="pyodide-data">

@@ -1,4 +1,4 @@
-## Pattern formation (intro)
+## Pattern formation (intro) {.unnumbered}
 
 The field of pattern formation studies the mechanisms that underly the formation of spatial patterns in biological systems. Patterns may arise at any biological level of organization, from single cells polarizing to decide in which direction to move, grow or divide, to the formation of body axes, different cell types and shapes that set apart complex multi-cellular organisms from amorphous blobs,  to entire ecosystems patterning where e.g. plants do and do not grow.  An important concept in pattern formation is so called “symmetry breaking”, which refers to the destruction of an originally homogeneous or non-patterned state, to a non-homogeneous patterned state (see figure below).   
 

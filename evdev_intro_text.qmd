@@ -1,4 +1,4 @@
-# Environmental inputs 
+# Environmental inputs {.unnumbered}
 
 So far we have largely discussed developmental patterning processes as if they are either occurring under constant environmental conditions or as if environmental conditions have no effect. A minor exception to this is the discussion on robustness of patterning under morphogen gradients, where differences in input of maternal resources, which in turn may depend on food conditions, may impact embryo size and hence scaling is required.  
 

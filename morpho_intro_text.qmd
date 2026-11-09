@@ -1,4 +1,4 @@
-# Introduction to Morphogenesis
+# Introduction to Morphogenesis {.unnumbered}
 
 Cells collectively organize into higher-order structures, forming tissues and organs. 
 The process by which tissues are given their shape is called morphogenesis, which is 

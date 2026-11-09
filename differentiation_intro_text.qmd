@@ -1,4 +1,4 @@
-# Cell differentiation introduction
+# Cell differentiation introduction {.unnumbered}
 
 ![Gene regulation in a bacteria: from genes to networks. Credit: RegulonDB, and DOI: 10.1371/journal.pone.0106479](images/0-ecoli-regulondb_doi.png){#vegmini1 width=150%}
 

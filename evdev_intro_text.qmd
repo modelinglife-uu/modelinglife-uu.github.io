@@ -9,6 +9,6 @@ In contrast to our discussion so far, environmental conditions may have a major 
 Apart from the question whether plasticity of a developmental process is adaptive, a major question is how this plasticity can be united with robustness. That is, how certain aspects of development can be adjusted, while other aspects can be maintained (i.e. the plant still makes a leaf, that has still a top, bottom, stomata veins, etc but other things are allowed to vary). Additionally, a question is how the networks that drive developmental patterning and e.g. cell fate decisions (**Part III**) are integrated with networks that sense, process and combine various environmental signals to decide how these developmental processes are to be adjusted. This will be discussed in the lecture. 
 
 
-In addition to developmental processes, also physiology, behavior and evolution of course depend on environmental conditions. Examples of the latter two will be discussed in **Part V**. 
+In addition to developmental processes, also physiology, behavior and evolution of course depend on environmental conditions. Examples of the latter two are discussed in **Part I**. 
 
 ![Environmental cues affect how organisms develop. Credit: WikimediaCommons.](images/Plants.gif){#vegmini1 width=50%}

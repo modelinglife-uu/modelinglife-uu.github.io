@@ -12,7 +12,7 @@ Nov 19, 2026 – Evolving populations II: Genotype-phenotype maps (**HC** 11:00-
 
 ## Week 2 {.unnumbered}
 
-Nov 23, 2026 – Guest lecture: Rutger Hermsen (**HC** 13:15-17:00).
+Nov 23, 2026 – Guest lecture: [Rutger Hermsen](https://sites.google.com/view/hermsen-lab/home) (**HC** 13:15-17:00).
 
 Nov 24, 2026 – Evolving populations III: Collective behaviour (**HC** 11:00-12:45 and **WC3** 13:15-17:00). 
 
@@ -22,7 +22,7 @@ Nov 26, 2026 – Pattern formation I: Gradients and segments (**HC** 11:00-12:45
 
 ## Week 3 {.unnumbered}
 
-Nov 30, 2026 – Guest lecture: Pattern formation (**HC** 13:15-17:00).
+Nov 30, 2026 – Guest lecture: [Yuting Irene Li](https://irene-li.github.io/) (**HC** 13:15-17:00).
 
 
 Dec 1, 2026 – Pattern formation II: Turing patterns (**HC** 11:00-12:45 and **WC5** 13:15-17:00).
@@ -32,7 +32,7 @@ Dec 3, 2026 – Pattern formation III: Clock and Wavefront (**HC** 11:00-12:45 a
 
 ## Week 4 {.unnumbered}
 
-Dec 7, 2026 – Guest lectures: Vivek Bhardwaj and Leo Jo, What is a cell type? (**HC** 13:15-17:00).
+Dec 7, 2026 – Guest lectures: [Vivek Bhardwaj](https://vblab.org/) and [Leo Jo](https://thejolab.org/), What is a cell type? (**HC** 13:15-17:00).
 
 Dec 8, 2026 – Cell differentiation: gene regulation in time (**HC** 11:00-12:45 and **WC7** 13:15-17:00).
 
@@ -42,7 +42,7 @@ Dec 10, 2026 – Cell differentiation: gene regulation in space (**HC** 11:00-12
 
 ## Week 5 {.unnumbered}
 
-Dec 14, 2026 – Guest lecture: Florian Berger (**HC** 13:15-17:00).
+Dec 14, 2026 – Guest lecture: [Florian Berger](https://www.biophyslab.com/) (**HC** 13:15-17:00).
 
 Dec 15, 2026 - Morphogenesis: Cell sorting (**HC** 11:00-12:45 and **WC9** 13:15-17:00).
 

@@ -993,7 +993,7 @@ cell fate change could be happening. You could try:
 
 - If this doesn't work, what would you include in the model to improve its predictive power?
 
-![Vascular cells before the cut, gradually become all the other root cell types. From @efroni2016root.](images/efroni.png){#vegmini1 width=40%}
+![Vascular cells before the cut, gradually become all the other root cell types. From @efroni2016root.](images/efroni.png){#vegmini1 width=70%}
 :::
 
 ::: {.content-visible when-meta="params.show_answers"}

@@ -150,7 +150,7 @@ This model includes many regulatory interactions discovered for the cells of pla
 of experimental research. Here, all this knowledge is encoded as logical rules. 
 
 ::: {.callout-note collapse="true"}
-## Function: Boolean network 1- Root
+## Function: Boolean network - Root
 
 ``` python
 def rootNetwork(parameters): 
@@ -506,7 +506,7 @@ def InitialConditions():
 
 :::{.content-visible when-meta="params.show_answers"}
 
-  > **Answer** See `WC07_Question4.py` to see an implementation of this for loop.
+  > **Answer** See `WC07_Question5.py` to see an implementation of this for loop.
   > 
   > ![Attractors reached by 100 random initial conditions](images/0-100ic.png){#vegmini1}
 
@@ -524,6 +524,56 @@ More details on how to install packages here: <a href="https://modelinglife-uu.g
 
 Now that you have installed `umap-learn`, let's run a UMAP of the attractors you recovered 
 (this takes a bit of time to run, so be patient 😉):
+
+::: {.callout-note collapse="true"}
+## Function: UMAP for the attractors matrix. Remember to call at the end of InitialConditions()
+```python
+def UMAPBoolean(attractors):
+    # 3.1 UMAP dimensionality reduction - for this it is better to increase the number of ICs to 500
+    reducer = umap.UMAP(n_neighbors=10, min_dist=0.1, metric='hamming', random_state=42)
+    attractors_umap = reducer.fit_transform(attractors)
+
+    plt.figure(figsize=(11, 8))
+    # Color cells by their attractor state (e.g., by the sum of active variables)
+    colors = np.sum(attractors, axis=1)
+    # If the second to last position in attractor is 1, color that point purple
+    special_mask = attractors[:, -2] == 1
+    scatter = plt.scatter(attractors_umap[~special_mask, 0], attractors_umap[~special_mask, 1], edgecolor='k')
+    plt.scatter(
+        attractors_umap[(attractors[:, 11] == 1) & (attractors[:, 13] == 1), 0],
+        attractors_umap[(attractors[:, 11] == 1) & (attractors[:, 13] == 1), 1],
+        color='red', edgecolor='k', label='Vascular 1'
+    )
+    plt.scatter(
+        attractors_umap[(attractors[:, 12] == 1) & (attractors[:, 11] == 1), 0],
+        attractors_umap[(attractors[:, 12] == 1) & (attractors[:, 11] == 1), 1],
+        color='yellow', edgecolor='k', label='Vascular 2'
+    )
+    plt.scatter(
+        attractors_umap[(attractors[:, 17] == 1) & (attractors[:, 13] == 1), 0],
+        attractors_umap[(attractors[:, 17] == 1) & (attractors[:, 13] == 1), 1],
+        color='orange', edgecolor='k', label='Vascular 3'
+    )
+    plt.scatter(
+        attractors_umap[(attractors[:, 17] == 1) & (attractors[:, 12] == 1), 0],
+        attractors_umap[(attractors[:, 17] == 1) & (attractors[:, 12] == 1), 1],
+        color='brown', edgecolor='k', label='Columella'
+    )
+    plt.scatter(
+        attractors_umap[(attractors[:, 15] == 1) & (attractors[:, 14] == 1), 0],
+        attractors_umap[(attractors[:, 15] == 1) & (attractors[:, 14] == 1), 1],
+        color='green', edgecolor='k', label='Endodermis'
+    )
+    plt.scatter(attractors_umap[special_mask, 0], attractors_umap[special_mask, 1], color='violet', edgecolor='k', label='QC')
+    plt.legend()
+    plt.xlabel("UMAP 1")
+    plt.ylabel("UMAP 2")
+    plt.title("UMAP projection of attractors")
+    plt.grid(True)
+    plt.savefig("output/1-boolean-UMAP.png", dpi=300, bbox_inches='tight')
+    plt.show()
+```
+:::
 
 ```python
 UMAPBoolean(attractors)
@@ -621,9 +671,6 @@ How many unique attractors did you find? Compare them with the ones reported in 
   > solving the network asynchronously. 
 
 :::
-
-:::{#exr-non}
-
 
 ## Cell differentiation – jumping from one attractor to another
 
@@ -740,7 +787,21 @@ in a sigmoidal function to create a continuous ODE model.
 Use the code below to run a random initial condition for the 18 variables (IC) and see how the system behaves.
 
 ::: {.callout-note collapse="true"}
-## Function: Root Network, ODE version
+## Execution code: Solve ODE version of root model
+```python
+timerunning=10.1 
+times = np.arange(0, timerunning, 0.1)
+
+IC = np.random.randint(0, 2, size=18).tolist() #random initial condition
+parameters = {'decayrate': 1, 'h': 50} 
+cells = odeint(rootNetworkODE, IC, times, args=(parameters,)) 
+
+plotODEroot(cells,times)
+```
+:::
+
+::: {.callout-note collapse="true"}
+## Function: Plotting output of Root model ODE version
 ```python
 def plotODEroot(cells,times):
     """Plot root-network ODE trajectories and final state.
@@ -781,19 +842,7 @@ def plotODEroot(cells,times):
 ````
 :::
 
-::: {.callout-note collapse="true"}
-## Execution code: Solve ODE version of root model
-```python
-timerunning=10.1 
-times = np.arange(0, timerunning, 0.1)
 
-IC = np.random.randint(0, 2, size=18).tolist() #random initial condition
-parameters = {'decayrate': 1, 'h': 50} 
-cells = odeint(rootNetworkODE, IC, times, args=(parameters,)) 
-
-plotODEroot(cells,times)
-```
-:::
 
 :::{#exr-non}
 

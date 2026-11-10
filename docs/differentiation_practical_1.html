@@ -579,7 +579,8 @@ window.Quarto = {
   <li><a href="#regulatory-interactions" id="toc-regulatory-interactions" class="nav-link" data-scroll-target="#regulatory-interactions"><span class="header-section-number">7.2</span> Regulatory interactions</a></li>
   <li><a href="#gene-regulatory-network" id="toc-gene-regulatory-network" class="nav-link" data-scroll-target="#gene-regulatory-network"><span class="header-section-number">7.3</span> Gene regulatory network</a></li>
   <li><a href="#cell-differentiation-jumping-from-one-attractor-to-another" id="toc-cell-differentiation-jumping-from-one-attractor-to-another" class="nav-link" data-scroll-target="#cell-differentiation-jumping-from-one-attractor-to-another"><span class="header-section-number">7.4</span> Cell differentiation – jumping from one attractor to another</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">7.5</span> References</a></li>
+  <li><a href="#question-for-master-students" id="toc-question-for-master-students" class="nav-link" data-scroll-target="#question-for-master-students"><span class="header-section-number">7.5</span> Question for master students</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">7.6</span> References</a></li>
   </ul>
 </nav>
     </div>
@@ -938,7 +939,7 @@ examples of biological regulatory interactions that can be described with each l
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Code for plotting the timecourse simulation
+<span class="screen-reader-only">Note</span>Function: plotting the timecourse simulation
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -1000,58 +1001,59 @@ examples of biological regulatory interactions that can be described with each l
 </div>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> UMAPBoolean(attractors):</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3.1 UMAP dimensionality reduction - for this it is better to increase the number of ICs to 500</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    reducer <span class="op">=</span> umap.UMAP(n_neighbors<span class="op">=</span><span class="dv">10</span>, min_dist<span class="op">=</span><span class="fl">0.1</span>, metric<span class="op">=</span><span class="st">'hamming'</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    attractors_umap <span class="op">=</span> reducer.fit_transform(attractors)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">8</span>))</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Color cells by their attractor state (e.g., by the sum of active variables)</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    colors <span class="op">=</span> np.<span class="bu">sum</span>(attractors, axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># If the second to last position in attractor is 1, color that point purple</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    special_mask <span class="op">=</span> attractors[:, <span class="op">-</span><span class="dv">2</span>] <span class="op">==</span> <span class="dv">1</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    scatter <span class="op">=</span> plt.scatter(attractors_umap[<span class="op">~</span>special_mask, <span class="dv">0</span>], attractors_umap[<span class="op">~</span>special_mask, <span class="dv">1</span>], edgecolor<span class="op">=</span><span class="st">'k'</span>)</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    plt.scatter(</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        attractors_umap[(attractors[:, <span class="dv">11</span>] <span class="op">==</span> <span class="dv">1</span>) <span class="op">&amp;</span> (attractors[:, <span class="dv">13</span>] <span class="op">==</span> <span class="dv">1</span>), <span class="dv">0</span>],</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        attractors_umap[(attractors[:, <span class="dv">11</span>] <span class="op">==</span> <span class="dv">1</span>) <span class="op">&amp;</span> (attractors[:, <span class="dv">13</span>] <span class="op">==</span> <span class="dv">1</span>), <span class="dv">1</span>],</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">'red'</span>, edgecolor<span class="op">=</span><span class="st">'k'</span>, label<span class="op">=</span><span class="st">'Vascular 1'</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    plt.scatter(</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>        attractors_umap[(attractors[:, <span class="dv">12</span>] <span class="op">==</span> <span class="dv">1</span>) <span class="op">&amp;</span> (attractors[:, <span class="dv">11</span>] <span class="op">==</span> <span class="dv">1</span>), <span class="dv">0</span>],</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>        attractors_umap[(attractors[:, <span class="dv">12</span>] <span class="op">==</span> <span class="dv">1</span>) <span class="op">&amp;</span> (attractors[:, <span class="dv">11</span>] <span class="op">==</span> <span class="dv">1</span>), <span class="dv">1</span>],</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">'yellow'</span>, edgecolor<span class="op">=</span><span class="st">'k'</span>, label<span class="op">=</span><span class="st">'Vascular 2'</span></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    plt.scatter(</span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>        attractors_umap[(attractors[:, <span class="dv">17</span>] <span class="op">==</span> <span class="dv">1</span>) <span class="op">&amp;</span> (attractors[:, <span class="dv">13</span>] <span class="op">==</span> <span class="dv">1</span>), <span class="dv">0</span>],</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>        attractors_umap[(attractors[:, <span class="dv">17</span>] <span class="op">==</span> <span class="dv">1</span>) <span class="op">&amp;</span> (attractors[:, <span class="dv">13</span>] <span class="op">==</span> <span class="dv">1</span>), <span class="dv">1</span>],</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">'orange'</span>, edgecolor<span class="op">=</span><span class="st">'k'</span>, label<span class="op">=</span><span class="st">'Vascular 3'</span></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    plt.scatter(</span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>        attractors_umap[(attractors[:, <span class="dv">17</span>] <span class="op">==</span> <span class="dv">1</span>) <span class="op">&amp;</span> (attractors[:, <span class="dv">12</span>] <span class="op">==</span> <span class="dv">1</span>), <span class="dv">0</span>],</span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>        attractors_umap[(attractors[:, <span class="dv">17</span>] <span class="op">==</span> <span class="dv">1</span>) <span class="op">&amp;</span> (attractors[:, <span class="dv">12</span>] <span class="op">==</span> <span class="dv">1</span>), <span class="dv">1</span>],</span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">'brown'</span>, edgecolor<span class="op">=</span><span class="st">'k'</span>, label<span class="op">=</span><span class="st">'Columella'</span></span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>    plt.scatter(</span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>        attractors_umap[(attractors[:, <span class="dv">15</span>] <span class="op">==</span> <span class="dv">1</span>) <span class="op">&amp;</span> (attractors[:, <span class="dv">14</span>] <span class="op">==</span> <span class="dv">1</span>), <span class="dv">0</span>],</span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>        attractors_umap[(attractors[:, <span class="dv">15</span>] <span class="op">==</span> <span class="dv">1</span>) <span class="op">&amp;</span> (attractors[:, <span class="dv">14</span>] <span class="op">==</span> <span class="dv">1</span>), <span class="dv">1</span>],</span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">'green'</span>, edgecolor<span class="op">=</span><span class="st">'k'</span>, label<span class="op">=</span><span class="st">'Endodermis'</span></span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    plt.scatter(attractors_umap[special_mask, <span class="dv">0</span>], attractors_umap[special_mask, <span class="dv">1</span>], color<span class="op">=</span><span class="st">'violet'</span>, edgecolor<span class="op">=</span><span class="st">'k'</span>, label<span class="op">=</span><span class="st">'QC'</span>)</span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    plt.legend()</span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">"UMAP 1"</span>)</span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">"UMAP 2"</span>)</span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">"UMAP projection of attractors"</span>)</span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>    plt.grid(<span class="va">True</span>)</span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>    plt.savefig(<span class="st">"output/1-boolean-UMAP.png"</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> umap</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> UMAPBoolean(attractors):</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3.1 UMAP dimensionality reduction - for this it is better to increase the number of ICs to 500</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    reducer <span class="op">=</span> umap.UMAP(n_neighbors<span class="op">=</span><span class="dv">10</span>, min_dist<span class="op">=</span><span class="fl">0.1</span>, metric<span class="op">=</span><span class="st">'hamming'</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    attractors_umap <span class="op">=</span> reducer.fit_transform(attractors)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">8</span>))</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Color cells by their attractor state (e.g., by the sum of active variables)</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    colors <span class="op">=</span> np.<span class="bu">sum</span>(attractors, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># If the second to last position in attractor is 1, color that point purple</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    special_mask <span class="op">=</span> attractors[:, <span class="op">-</span><span class="dv">2</span>] <span class="op">==</span> <span class="dv">1</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    scatter <span class="op">=</span> plt.scatter(attractors_umap[<span class="op">~</span>special_mask, <span class="dv">0</span>], attractors_umap[<span class="op">~</span>special_mask, <span class="dv">1</span>], edgecolor<span class="op">=</span><span class="st">'k'</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    plt.scatter(</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        attractors_umap[(attractors[:, <span class="dv">11</span>] <span class="op">==</span> <span class="dv">1</span>) <span class="op">&amp;</span> (attractors[:, <span class="dv">13</span>] <span class="op">==</span> <span class="dv">1</span>), <span class="dv">0</span>],</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        attractors_umap[(attractors[:, <span class="dv">11</span>] <span class="op">==</span> <span class="dv">1</span>) <span class="op">&amp;</span> (attractors[:, <span class="dv">13</span>] <span class="op">==</span> <span class="dv">1</span>), <span class="dv">1</span>],</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">'red'</span>, edgecolor<span class="op">=</span><span class="st">'k'</span>, label<span class="op">=</span><span class="st">'Vascular 1'</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    plt.scatter(</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>        attractors_umap[(attractors[:, <span class="dv">12</span>] <span class="op">==</span> <span class="dv">1</span>) <span class="op">&amp;</span> (attractors[:, <span class="dv">11</span>] <span class="op">==</span> <span class="dv">1</span>), <span class="dv">0</span>],</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>        attractors_umap[(attractors[:, <span class="dv">12</span>] <span class="op">==</span> <span class="dv">1</span>) <span class="op">&amp;</span> (attractors[:, <span class="dv">11</span>] <span class="op">==</span> <span class="dv">1</span>), <span class="dv">1</span>],</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">'yellow'</span>, edgecolor<span class="op">=</span><span class="st">'k'</span>, label<span class="op">=</span><span class="st">'Vascular 2'</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    plt.scatter(</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>        attractors_umap[(attractors[:, <span class="dv">17</span>] <span class="op">==</span> <span class="dv">1</span>) <span class="op">&amp;</span> (attractors[:, <span class="dv">13</span>] <span class="op">==</span> <span class="dv">1</span>), <span class="dv">0</span>],</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>        attractors_umap[(attractors[:, <span class="dv">17</span>] <span class="op">==</span> <span class="dv">1</span>) <span class="op">&amp;</span> (attractors[:, <span class="dv">13</span>] <span class="op">==</span> <span class="dv">1</span>), <span class="dv">1</span>],</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">'orange'</span>, edgecolor<span class="op">=</span><span class="st">'k'</span>, label<span class="op">=</span><span class="st">'Vascular 3'</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    plt.scatter(</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>        attractors_umap[(attractors[:, <span class="dv">17</span>] <span class="op">==</span> <span class="dv">1</span>) <span class="op">&amp;</span> (attractors[:, <span class="dv">12</span>] <span class="op">==</span> <span class="dv">1</span>), <span class="dv">0</span>],</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>        attractors_umap[(attractors[:, <span class="dv">17</span>] <span class="op">==</span> <span class="dv">1</span>) <span class="op">&amp;</span> (attractors[:, <span class="dv">12</span>] <span class="op">==</span> <span class="dv">1</span>), <span class="dv">1</span>],</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">'brown'</span>, edgecolor<span class="op">=</span><span class="st">'k'</span>, label<span class="op">=</span><span class="st">'Columella'</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>    plt.scatter(</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>        attractors_umap[(attractors[:, <span class="dv">15</span>] <span class="op">==</span> <span class="dv">1</span>) <span class="op">&amp;</span> (attractors[:, <span class="dv">14</span>] <span class="op">==</span> <span class="dv">1</span>), <span class="dv">0</span>],</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>        attractors_umap[(attractors[:, <span class="dv">15</span>] <span class="op">==</span> <span class="dv">1</span>) <span class="op">&amp;</span> (attractors[:, <span class="dv">14</span>] <span class="op">==</span> <span class="dv">1</span>), <span class="dv">1</span>],</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">'green'</span>, edgecolor<span class="op">=</span><span class="st">'k'</span>, label<span class="op">=</span><span class="st">'Endodermis'</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    plt.scatter(attractors_umap[special_mask, <span class="dv">0</span>], attractors_umap[special_mask, <span class="dv">1</span>], color<span class="op">=</span><span class="st">'violet'</span>, edgecolor<span class="op">=</span><span class="st">'k'</span>, label<span class="op">=</span><span class="st">'QC'</span>)</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>    plt.legend()</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">"UMAP 1"</span>)</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">"UMAP 2"</span>)</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">"UMAP projection of attractors"</span>)</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>    plt.grid(<span class="va">True</span>)</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>    plt.savefig(<span class="st">"output/1-boolean-UMAP.png"</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>UMAPBoolean(attractors)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.6 (Biology / Conceptual thinking)</strong></span> Why do you see clearly defined groups and not a continuous distribution of attractors?</p>
+<p><span class="theorem-title"><strong>Exercise 7.6 (Biology / Conceptual thinking)</strong></span> Why do you see clearly defined groups and not a continuous distribution of the attractors?</p>
 </div>
-<p>Now let’s recover the unique attractors you found. First, let’s group similar attractors using the <code>sorted()</code> function:</p>
+<p>Now let’s list the unique attractors you found. First, let’s group similar attractors using the <code>sorted()</code> function:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>attractors_sorted <span class="op">=</span> np.array(<span class="bu">sorted</span>(attractors.tolist()))</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>plotBooleanAttractors(attractors_sorted) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="exr-non" class="theorem exercise">
@@ -1072,7 +1074,12 @@ examples of biological regulatory interactions that can be described with each l
 <section id="cell-differentiation-jumping-from-one-attractor-to-another" class="level2" data-number="7.4">
 <h2 data-number="7.4" class="anchored" data-anchor-id="cell-differentiation-jumping-from-one-attractor-to-another"><span class="header-section-number">7.4</span> Cell differentiation – jumping from one attractor to another</h2>
 <p>Whether a continuous or a discrete model is better, depends on the question we want to answer. To study the logic of cell differentiation, a Boolean model might be more appropriated particularly if we want to study the role of many genes, but lack details of the parameters underlying each reaction. Alternatively, if we wish to study the role of quantitative information in how cells change from one cell fate to another, a continuous model might be more appropriate.</p>
-<p>Here we will see how we can convert the Boolean model to a continuous one and use it to predict which regulators are able of causing a change in the state of the system (changes in cell fate!)</p>
+<p>Here you will learn how to convert a Boolean model into a continuous one and use it to predict which regulators are able of causing a change in the state of the system (changes in cell fate!)</p>
+<div id="exr-non" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 7.10 (Coding)</strong></span> One approach is to define a sigmoidal function, with a <span class="math inline">\(w_i\)</span> term that represents the logical function of each node:</p>
+<p><span class="math inline">\(\frac{dX_i}{dt}=\frac{-e^{0.5h}+e^{-hw_i}}{(1-e^{0.5h)(1+e^{-h(w_i-0.5)}})}-dX_i\)</span></p>
+<p>To translate the logical functions we replace an <span class="math inline">\(AND\)</span> operator with a <span class="math inline">\(min\)</span>, and <span class="math inline">\(OR\)</span> operator with a <span class="math inline">\(max\)</span>, and a <span class="math inline">\(NOT\)</span> operator with a <span class="math inline">\(1-node\)</span>. See the code below implementing the ODE version of the root network we studied before. For most nodes the logical rule has been translated in <span class="math inline">\(w_node\)</span>. Translate yourself the remaining nodes. Compare the code of the functions <code>rootNetwork()</code> and <code>rootNetworkODE()</code>.</p>
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1090,99 +1097,86 @@ examples of biological regulatory interactions that can be described with each l
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Compute the time derivatives for the root developmental gene regulatory network.</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">    This function evaluates the ODE system used to model interactions among root</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">    cell identity regulators (e.g. CK, ARR1, SHY2, AUX/IAA, ARF, PLT, SCR, SHR,</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">    MIR165, PHB, JKD, MGP, WOX5, CLE40). It combines regulatory weights using</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">    a sigmoid transfer function and subtracts decay terms for each variable.</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Inputs</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">    ------</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">    a : array-like</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">        Current state vector containing the values of all model variables in the</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co">        order: [CK, ARR1, SHY2, AUXIAAR, ARFR, ARF10, ARF5, XAL1, PLT, AUX,</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co">        SCR, SHR, MIR165, PHB, JKD, MGP, WOX5, CLE40].</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co">    t : float</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co">        Time variable for the ODE system. In this autonomous model it is not used</span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co">        explicitly in the equations.</span></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co">    parameters : dict</span></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="co">        Dictionary containing the model parameters, including:</span></span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co">        - 'decayrate': degradation/decay constant for each variable.</span></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co">        - 'h': steepness parameter controlling the sigmoid response.</span></span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="co">    Outputs</span></span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="co">    -------</span></span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="co">    tuple</span></span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="co">        A tuple with the derivatives for each state variable in the same order as</span></span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="co">        the input vector: (dCK, dARR1, dSHY2, dAUXIAAR, dARFR, dARF10, dARF5,</span></span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="co">        dXAL1, dPLT, dAUX, dSCR, dSHR, dMIR165, dPHB, dJKD, dMGP, dWOX5,</span></span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="co">        dCLE40).</span></span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    decayrate <span class="op">=</span> parameters[<span class="st">'decayrate'</span>]  <span class="co"># decay rate</span></span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> parameters[<span class="st">'h'</span>]  <span class="co"># this controls the shape of the sigmoid function</span></span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>    CK<span class="op">=</span>a[<span class="dv">0</span>]</span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>    ARR1<span class="op">=</span>a[<span class="dv">1</span>]</span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>    SHY2<span class="op">=</span>a[<span class="dv">2</span>]</span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>    AUXIAAR<span class="op">=</span>a[<span class="dv">3</span>]</span>
-<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>    ARFR<span class="op">=</span>a[<span class="dv">4</span>]</span>
-<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>    ARF10<span class="op">=</span>a[<span class="dv">5</span>]</span>
-<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>    ARF5<span class="op">=</span>a[<span class="dv">6</span>]</span>
-<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>    XAL1<span class="op">=</span>a[<span class="dv">7</span>]</span>
-<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>    PLT<span class="op">=</span>a[<span class="dv">8</span>]</span>
-<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>    AUX<span class="op">=</span>a[<span class="dv">9</span>]</span>
-<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>    SCR<span class="op">=</span>a[<span class="dv">10</span>]</span>
-<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>    SHR<span class="op">=</span>a[<span class="dv">11</span>]</span>
-<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>    MIR165<span class="op">=</span>a[<span class="dv">12</span>]</span>
-<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>    PHB<span class="op">=</span>a[<span class="dv">13</span>]</span>
-<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>    JKD<span class="op">=</span>a[<span class="dv">14</span>]</span>
-<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a>    MGP<span class="op">=</span>a[<span class="dv">15</span>]</span>
-<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a>    WOX5<span class="op">=</span>a[<span class="dv">16</span>]</span>
-<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a>    CLE40<span class="op">=</span>a[<span class="dv">17</span>]</span>
-<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>    w_CK <span class="op">=</span> <span class="bu">max</span>(<span class="bu">min</span>(PHB,<span class="dv">1</span><span class="op">-</span>ARFR),<span class="dv">1</span><span class="op">-</span>SHR)</span>
-<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a>    w_ARR1 <span class="op">=</span> <span class="bu">min</span>(CK,<span class="dv">1</span><span class="op">-</span>SCR)</span>
-<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a>    w_SHY2 <span class="op">=</span> <span class="bu">min</span>(<span class="dv">1</span><span class="op">-</span>AUX,ARR1)</span>
-<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a>    w_AUXIAAR <span class="op">=</span> <span class="dv">1</span><span class="op">-</span>AUX</span>
-<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a>    w_ARFR <span class="op">=</span> <span class="dv">1</span><span class="op">-</span>AUXIAAR</span>
-<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a>    w_ARF10 <span class="op">=</span> <span class="bu">min</span>(<span class="dv">1</span><span class="op">-</span>AUXIAAR,<span class="dv">1</span><span class="op">-</span><span class="bu">min</span>(JKD,SHR))</span>
-<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a>    w_ARF5 <span class="op">=</span> <span class="bu">min</span>(<span class="bu">max</span>(PHB,PLT),<span class="dv">1</span><span class="op">-</span><span class="bu">min</span>(SHR,MGP),<span class="dv">1</span><span class="op">-</span>AUXIAAR,<span class="dv">1</span><span class="op">-</span>SHY2)</span>
-<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a>    w_XAL1<span class="op">=</span> ARFR</span>
-<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a>    w_PLT<span class="op">=</span> <span class="bu">max</span>(ARF5,XAL1,ARFR,WOX5)</span>
-<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a>    w_AUX <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a>    w_SCR <span class="op">=</span> <span class="bu">min</span>(SHR,SCR,JKD)</span>
-<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a>    w_SHR <span class="op">=</span> SHR</span>
-<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a>    w_MIR165 <span class="op">=</span> <span class="bu">max</span>(<span class="dv">1</span><span class="op">-</span>PHB,<span class="bu">min</span>(SCR,SHR,<span class="dv">1</span><span class="op">-</span>ARR1))</span>
-<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a>    w_PHB <span class="op">=</span> <span class="bu">min</span>(<span class="bu">max</span>(<span class="bu">min</span>(<span class="dv">1</span><span class="op">-</span>ARR1,PLT),PHB),<span class="dv">1</span><span class="op">-</span>MIR165)</span>
-<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a>    w_JKD <span class="op">=</span> <span class="bu">min</span>(<span class="dv">1</span><span class="op">-</span>PHB,SCR,SHR)</span>
-<span id="cb13-67"><a href="#cb13-67" aria-hidden="true" tabindex="-1"></a>    w_MGP <span class="op">=</span> <span class="bu">min</span>(<span class="dv">1</span><span class="op">-</span>ARF5,SCR,SHR)</span>
-<span id="cb13-68"><a href="#cb13-68" aria-hidden="true" tabindex="-1"></a>    w_WOX5 <span class="op">=</span> <span class="bu">min</span>(<span class="dv">1</span><span class="op">-</span>ARF10,ARF5,<span class="dv">1</span><span class="op">-</span>CLE40)</span>
-<span id="cb13-69"><a href="#cb13-69" aria-hidden="true" tabindex="-1"></a>    w_CLE40 <span class="op">=</span> <span class="dv">1</span><span class="op">-</span>SHR</span>
-<span id="cb13-70"><a href="#cb13-70" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> sigmoid(w_variable,h):</span>
-<span id="cb13-71"><a href="#cb13-71" aria-hidden="true" tabindex="-1"></a>        a<span class="op">=</span>((<span class="op">-</span>np.exp(<span class="fl">0.5</span><span class="op">*</span>h)<span class="op">+</span>np.exp(<span class="op">-</span>h<span class="op">*</span>(w_variable)))<span class="op">/</span>((<span class="dv">1</span><span class="op">-</span>np.exp(<span class="fl">0.5</span><span class="op">*</span>h))<span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>np.exp(<span class="op">-</span>h<span class="op">*</span>(w_variable<span class="op">-</span><span class="fl">0.5</span>)))))</span>
-<span id="cb13-72"><a href="#cb13-72" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span>(a)</span>
-<span id="cb13-73"><a href="#cb13-73" aria-hidden="true" tabindex="-1"></a>    dCK <span class="op">=</span> sigmoid(w_CK,h)<span class="op">-</span>(decayrate<span class="op">*</span>CK)</span>
-<span id="cb13-74"><a href="#cb13-74" aria-hidden="true" tabindex="-1"></a>    dARR1 <span class="op">=</span> sigmoid(w_ARR1,h)<span class="op">-</span>(decayrate<span class="op">*</span>ARR1)</span>
-<span id="cb13-75"><a href="#cb13-75" aria-hidden="true" tabindex="-1"></a>    dSHY2 <span class="op">=</span> sigmoid(w_SHY2,h)<span class="op">-</span>(decayrate<span class="op">*</span>SHY2)</span>
-<span id="cb13-76"><a href="#cb13-76" aria-hidden="true" tabindex="-1"></a>    dAUXIAAR <span class="op">=</span> sigmoid(w_AUXIAAR,h)<span class="op">-</span>(decayrate<span class="op">*</span>AUXIAAR)</span>
-<span id="cb13-77"><a href="#cb13-77" aria-hidden="true" tabindex="-1"></a>    dARFR <span class="op">=</span> sigmoid(w_ARFR,h)<span class="op">-</span>(decayrate<span class="op">*</span>ARFR)</span>
-<span id="cb13-78"><a href="#cb13-78" aria-hidden="true" tabindex="-1"></a>    dARF10 <span class="op">=</span> sigmoid(w_ARF10,h)<span class="op">-</span>(decayrate<span class="op">*</span>ARF10)</span>
-<span id="cb13-79"><a href="#cb13-79" aria-hidden="true" tabindex="-1"></a>    dARF5 <span class="op">=</span> sigmoid(w_ARF5,h)<span class="op">-</span>(decayrate<span class="op">*</span>ARF5)</span>
-<span id="cb13-80"><a href="#cb13-80" aria-hidden="true" tabindex="-1"></a>    dXAL1 <span class="op">=</span> sigmoid(w_XAL1,h)<span class="op">-</span>(decayrate<span class="op">*</span>XAL1)</span>
-<span id="cb13-81"><a href="#cb13-81" aria-hidden="true" tabindex="-1"></a>    dPLT <span class="op">=</span> sigmoid(w_PLT,h)<span class="op">-</span>(decayrate<span class="op">*</span>PLT)</span>
-<span id="cb13-82"><a href="#cb13-82" aria-hidden="true" tabindex="-1"></a>    dAUX <span class="op">=</span> sigmoid(w_AUX,h)<span class="op">-</span>(decayrate<span class="op">*</span>AUX)</span>
-<span id="cb13-83"><a href="#cb13-83" aria-hidden="true" tabindex="-1"></a>    dSCR <span class="op">=</span> sigmoid(w_SCR,h)<span class="op">-</span>(decayrate<span class="op">*</span>SCR)</span>
-<span id="cb13-84"><a href="#cb13-84" aria-hidden="true" tabindex="-1"></a>    dSHR <span class="op">=</span> sigmoid(w_SHR,h)<span class="op">-</span>(decayrate<span class="op">*</span>SHR)</span>
-<span id="cb13-85"><a href="#cb13-85" aria-hidden="true" tabindex="-1"></a>    dMIR165 <span class="op">=</span> sigmoid(w_MIR165,h)<span class="op">-</span>(decayrate<span class="op">*</span>MIR165)</span>
-<span id="cb13-86"><a href="#cb13-86" aria-hidden="true" tabindex="-1"></a>    dPHB <span class="op">=</span> sigmoid(w_PHB,h)<span class="op">-</span>(decayrate<span class="op">*</span>PHB)</span>
-<span id="cb13-87"><a href="#cb13-87" aria-hidden="true" tabindex="-1"></a>    dJKD <span class="op">=</span> sigmoid(w_JKD,h)<span class="op">-</span>(decayrate<span class="op">*</span>JKD)</span>
-<span id="cb13-88"><a href="#cb13-88" aria-hidden="true" tabindex="-1"></a>    dMGP <span class="op">=</span> sigmoid(w_MGP,h)<span class="op">-</span>(decayrate<span class="op">*</span>MGP)</span>
-<span id="cb13-89"><a href="#cb13-89" aria-hidden="true" tabindex="-1"></a>    dWOX5 <span class="op">=</span> sigmoid(w_WOX5,h)<span class="op">-</span>(decayrate<span class="op">*</span>WOX5)</span>
-<span id="cb13-90"><a href="#cb13-90" aria-hidden="true" tabindex="-1"></a>    dCLE40 <span class="op">=</span> sigmoid(w_CLE40,h)<span class="op">-</span>(decayrate<span class="op">*</span>CLE40)          </span>
-<span id="cb13-91"><a href="#cb13-91" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(dCK, dARR1, dSHY2, dAUXIAAR, dARFR, dARF10, dARF5, dXAL1, dPLT, dAUX, dSCR, dSHR, dMIR165, dPHB, dJKD, dMGP, dWOX5, dCLE40)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">    cell identity regulators. It combines regulatory weights using</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">    a sigmoid transfer function and subtracts decay terms for each variable.</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Inputs</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">    ------</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">    a : array-like. Current state vector containing the values of all model </span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">        variables in the order: [CK, ARR1, SHY2, AUXIAAR, ARFR, ARF10, ARF5, </span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">        XAL1, PLT, AUX, SCR, SHR, MIR165, PHB, JKD, MGP, WOX5, CLE40].</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co">    parameters : dict</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co">        Dictionary containing the model parameters, including:</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co">        - 'decayrate': degradation/decay constant for each variable.</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co">        - 'h': steepness parameter controlling the sigmoid response.</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co">    Outputs</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co">    -------</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="co">    A tuple with the derivatives for each state variable in the same order as</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co">    the input vector.</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>    decayrate <span class="op">=</span> parameters[<span class="st">'decayrate'</span>]  <span class="co"># decay rate</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> parameters[<span class="st">'h'</span>]  <span class="co"># this controls the shape of the sigmoid function</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    CK<span class="op">=</span>a[<span class="dv">0</span>]</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    ARR1<span class="op">=</span>a[<span class="dv">1</span>]</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    SHY2<span class="op">=</span>a[<span class="dv">2</span>]</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>    AUXIAAR<span class="op">=</span>a[<span class="dv">3</span>]</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    ARFR<span class="op">=</span>a[<span class="dv">4</span>]</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>    ARF10<span class="op">=</span>a[<span class="dv">5</span>]</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    ARF5<span class="op">=</span>a[<span class="dv">6</span>]</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    XAL1<span class="op">=</span>a[<span class="dv">7</span>]</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    PLT<span class="op">=</span>a[<span class="dv">8</span>]</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>    AUX<span class="op">=</span>a[<span class="dv">9</span>]</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>    SCR<span class="op">=</span>a[<span class="dv">10</span>]</span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>    SHR<span class="op">=</span>a[<span class="dv">11</span>]</span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>    MIR165<span class="op">=</span>a[<span class="dv">12</span>]</span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>    PHB<span class="op">=</span>a[<span class="dv">13</span>]</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>    JKD<span class="op">=</span>a[<span class="dv">14</span>]</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>    MGP<span class="op">=</span>a[<span class="dv">15</span>]</span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>    WOX5<span class="op">=</span>a[<span class="dv">16</span>]</span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>    CLE40<span class="op">=</span>a[<span class="dv">17</span>]</span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>    w_CK <span class="op">=</span> <span class="bu">max</span>(<span class="bu">min</span>(PHB,<span class="dv">1</span><span class="op">-</span>ARFR),<span class="dv">1</span><span class="op">-</span>SHR)</span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>    w_ARR1 <span class="op">=</span> <span class="bu">min</span>(CK,<span class="dv">1</span><span class="op">-</span>SCR)</span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>    w_SHY2 <span class="op">=</span> <span class="bu">min</span>(<span class="dv">1</span><span class="op">-</span>AUX,ARR1)</span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>    w_AUXIAAR <span class="op">=</span> <span class="dv">1</span><span class="op">-</span>AUX</span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>    w_ARFR <span class="op">=</span> <span class="dv">1</span><span class="op">-</span>AUXIAAR</span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>    w_ARF10 <span class="op">=</span> <span class="bu">min</span>(<span class="dv">1</span><span class="op">-</span>AUXIAAR,<span class="dv">1</span><span class="op">-</span><span class="bu">min</span>(JKD,SHR))</span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a>    w_ARF5 <span class="op">=</span> <span class="bu">min</span>(<span class="bu">max</span>(PHB,PLT),<span class="dv">1</span><span class="op">-</span><span class="bu">min</span>(SHR,MGP),<span class="dv">1</span><span class="op">-</span>AUXIAAR,<span class="dv">1</span><span class="op">-</span>SHY2)</span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a>    w_XAL1<span class="op">=</span> ARFR</span>
+<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a>    w_PLT<span class="op">=</span> <span class="bu">max</span>(ARF5,XAL1,ARFR,WOX5)</span>
+<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>    w_AUX <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a>    w_SCR <span class="op">=</span> <span class="bu">min</span>(SHR,SCR,JKD)</span>
+<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a>    w_SHR <span class="op">=</span> SHR</span>
+<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a>    w_MIR165 <span class="op">=</span> <span class="bu">max</span>(<span class="dv">1</span><span class="op">-</span>PHB,<span class="bu">min</span>(SCR,SHR,<span class="dv">1</span><span class="op">-</span>ARR1))</span>
+<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a>    w_PHB <span class="op">=</span> <span class="co">#Question10</span></span>
+<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a>    w_JKD <span class="op">=</span> <span class="co">#Question10</span></span>
+<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a>    w_MGP <span class="op">=</span> <span class="co">#Question10</span></span>
+<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a>    w_WOX5 <span class="op">=</span> <span class="co">#Question10</span></span>
+<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a>    w_CLE40 <span class="op">=</span> <span class="co">#Question10</span></span>
+<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> sigmoid(w_variable,h):</span>
+<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a>        a<span class="op">=</span>((<span class="op">-</span>np.exp(<span class="fl">0.5</span><span class="op">*</span>h)<span class="op">+</span>np.exp(<span class="op">-</span>h<span class="op">*</span>(w_variable)))<span class="op">/</span>((<span class="dv">1</span><span class="op">-</span>np.exp(<span class="fl">0.5</span><span class="op">*</span>h))<span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>np.exp(<span class="op">-</span>h<span class="op">*</span>(w_variable<span class="op">-</span><span class="fl">0.5</span>)))))</span>
+<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span>(a)</span>
+<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a>    dCK <span class="op">=</span> sigmoid(w_CK,h)<span class="op">-</span>(decayrate<span class="op">*</span>CK)</span>
+<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a>    dARR1 <span class="op">=</span> sigmoid(w_ARR1,h)<span class="op">-</span>(decayrate<span class="op">*</span>ARR1)</span>
+<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a>    dSHY2 <span class="op">=</span> sigmoid(w_SHY2,h)<span class="op">-</span>(decayrate<span class="op">*</span>SHY2)</span>
+<span id="cb13-67"><a href="#cb13-67" aria-hidden="true" tabindex="-1"></a>    dAUXIAAR <span class="op">=</span> sigmoid(w_AUXIAAR,h)<span class="op">-</span>(decayrate<span class="op">*</span>AUXIAAR)</span>
+<span id="cb13-68"><a href="#cb13-68" aria-hidden="true" tabindex="-1"></a>    dARFR <span class="op">=</span> sigmoid(w_ARFR,h)<span class="op">-</span>(decayrate<span class="op">*</span>ARFR)</span>
+<span id="cb13-69"><a href="#cb13-69" aria-hidden="true" tabindex="-1"></a>    dARF10 <span class="op">=</span> sigmoid(w_ARF10,h)<span class="op">-</span>(decayrate<span class="op">*</span>ARF10)</span>
+<span id="cb13-70"><a href="#cb13-70" aria-hidden="true" tabindex="-1"></a>    dARF5 <span class="op">=</span> sigmoid(w_ARF5,h)<span class="op">-</span>(decayrate<span class="op">*</span>ARF5)</span>
+<span id="cb13-71"><a href="#cb13-71" aria-hidden="true" tabindex="-1"></a>    dXAL1 <span class="op">=</span> sigmoid(w_XAL1,h)<span class="op">-</span>(decayrate<span class="op">*</span>XAL1)</span>
+<span id="cb13-72"><a href="#cb13-72" aria-hidden="true" tabindex="-1"></a>    dPLT <span class="op">=</span> sigmoid(w_PLT,h)<span class="op">-</span>(decayrate<span class="op">*</span>PLT)</span>
+<span id="cb13-73"><a href="#cb13-73" aria-hidden="true" tabindex="-1"></a>    dAUX <span class="op">=</span> sigmoid(w_AUX,h)<span class="op">-</span>(decayrate<span class="op">*</span>AUX)</span>
+<span id="cb13-74"><a href="#cb13-74" aria-hidden="true" tabindex="-1"></a>    dSCR <span class="op">=</span> sigmoid(w_SCR,h)<span class="op">-</span>(decayrate<span class="op">*</span>SCR)</span>
+<span id="cb13-75"><a href="#cb13-75" aria-hidden="true" tabindex="-1"></a>    dSHR <span class="op">=</span> sigmoid(w_SHR,h)<span class="op">-</span>(decayrate<span class="op">*</span>SHR)</span>
+<span id="cb13-76"><a href="#cb13-76" aria-hidden="true" tabindex="-1"></a>    dMIR165 <span class="op">=</span> sigmoid(w_MIR165,h)<span class="op">-</span>(decayrate<span class="op">*</span>MIR165)</span>
+<span id="cb13-77"><a href="#cb13-77" aria-hidden="true" tabindex="-1"></a>    dPHB <span class="op">=</span> sigmoid(w_PHB,h)<span class="op">-</span>(decayrate<span class="op">*</span>PHB)</span>
+<span id="cb13-78"><a href="#cb13-78" aria-hidden="true" tabindex="-1"></a>    dJKD <span class="op">=</span> sigmoid(w_JKD,h)<span class="op">-</span>(decayrate<span class="op">*</span>JKD)</span>
+<span id="cb13-79"><a href="#cb13-79" aria-hidden="true" tabindex="-1"></a>    dMGP <span class="op">=</span> sigmoid(w_MGP,h)<span class="op">-</span>(decayrate<span class="op">*</span>MGP)</span>
+<span id="cb13-80"><a href="#cb13-80" aria-hidden="true" tabindex="-1"></a>    dWOX5 <span class="op">=</span> sigmoid(w_WOX5,h)<span class="op">-</span>(decayrate<span class="op">*</span>WOX5)</span>
+<span id="cb13-81"><a href="#cb13-81" aria-hidden="true" tabindex="-1"></a>    dCLE40 <span class="op">=</span> sigmoid(w_CLE40,h)<span class="op">-</span>(decayrate<span class="op">*</span>CLE40)          </span>
+<span id="cb13-82"><a href="#cb13-82" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(dCK, dARR1, dSHY2, dAUXIAAR, dARFR, dARF10, dARF5, dXAL1, dPLT, dAUX, dSCR, dSHR, dMIR165, dPHB, dJKD, dMGP, dWOX5, dCLE40)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
-<p>Compare the code of the functions <code>rootNetwork()</code> and <code>rootNetworkODE()</code>. Notice how in <code>rootNetworkODE()</code> the logical rules are represented with <span class="math inline">\(min\)</span> and <span class="math inline">\(max\)</span> functions (explained in the lecture), and then used in a sigmoidal function to create a continuous ODE model.</p>
-<ul>
-<li><span class="math inline">\(AND\)</span> operator is a <span class="math inline">\(min\)</span> function, <span class="math inline">\(OR\)</span> operator is a <span class="math inline">\(max\)</span> function, and <span class="math inline">\(NOT\)</span> operator is <span class="math inline">\(1-x\)</span>.</li>
-</ul>
 <p>Use the code below to run a random initial condition for the 18 variables (IC) and see how the system behaves.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
@@ -1258,16 +1252,16 @@ examples of biological regulatory interactions that can be described with each l
 </div>
 </div>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.10 (Modeling choices)</strong></span> Do the attractors match those recovered with the Boolean network?</p>
+<p><span class="theorem-title"><strong>Exercise 7.11 (Modeling choices)</strong></span> Do the attractors match those recovered with the Boolean network?</p>
 </div>
-<p>Now let’s use the model to study cell differentiation routes. Let’s start in the following initial condition (IC vector), and find a change in a variable that produce a jump to another attractor (end). For this you can simply flip the activity of a gene in the initial condition (from <span class="math inline">\(0→1\)</span> or <span class="math inline">\(1→0\)</span>) and see the final attractor matches the desired end state. This simulated change mimics how an environmental signal may impinge in the regulatory network.</p>
+<p>Now let’s use the model to study cell differentiation routes of root cells. Let’s start in the following initial condition (IC vector), and find a change in a variable that produce a jump to another attractor (end). For this you can simply flip the activity of a gene in the initial condition (from <span class="math inline">\(0→1\)</span> or <span class="math inline">\(1→0\)</span>) and see the final attractor matches the desired end state. This simulated change mimics how an environmental signal may impinge in the regulatory network.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Function: Root Network, ODE version
+<span class="screen-reader-only">Note</span>Function: Jumping from one attractor to another
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -1345,14 +1339,24 @@ examples of biological regulatory interactions that can be described with each l
 </div>
 </div>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.11 (Algorithmic thinking / biology)</strong></span> What regulator causes the transition between these attractors? How many variables change their activity between the initial and final state? what could be the biological meaning of this switch? how would you test this experimentally?</p>
+<p><span class="theorem-title"><strong>Exercise 7.12 (Algorithmic thinking / biology)</strong></span> What regulator causes the transition between these attractors? How many variables change their activity between the initial and final state? How would you test this model prediction experimentally?</p>
 </div>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.12 (Biology)</strong></span> Use the model to predict the rest of the attractor transitions because of single variable changes. Are all attractor transitions possible, or are there preferred differentiation routes? Why do you think this is?</p>
+<p><span class="theorem-title"><strong>Exercise 7.13 (Biology)</strong></span> Use the model to predict the rest of the attractor transitions because of single variable changes. Are all attractor transitions possible, or are there preferred differentiation routes? What does this say about the system?</p>
 </div>
 </section>
-<section id="references" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="references"><span class="header-section-number">7.5</span> References</h2>
+<section id="question-for-master-students" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="question-for-master-students"><span class="header-section-number">7.5</span> Question for master students</h2>
+<p>Some cell fate transitions can only be observed in extraordinary conditions, for example, during the regeneration of the root after removal of the tip. Using single cell transcriptomics it was shown that in this conditions, vascular cells become QC cells <span class="citation" data-cites="efroni2016root">Efroni et al. (<a href="#ref-efroni2016root" role="doc-biblioref">2016</a>)</span>. Use the model to predict how this cell fate change could be happening:</p>
+<ul>
+<li><p>Instead of simulating single gene perturbations, try perturbation in multiple genes.</p></li>
+<li><p>Play with the duration of the perturbation.</p></li>
+<li><p>If this doesn’t work, what would you include in the model to improve its predictive power?</p></li>
+</ul>
+<p><a href="images/efroni.png">Vascular cells before the cut, gradually become all the other root cell types. From <span class="citation" data-cites="efroni2016root">Efroni et al. (<span>2016</span>)</span>.</a> :::</p>
+</section>
+<section id="references" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="references"><span class="header-section-number">7.6</span> References</h2>
 
 
 <script type="ojs-module-contents">
@@ -1370,6 +1374,9 @@ eyJjb250ZW50cyI6W119
 W10=
 </script>
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-efroni2016root" class="csl-entry" role="listitem">
+Efroni, Idan, Alison Mello, Tal Nawy, et al. 2016. <span>“Root Regeneration Triggers an Embryo-Like Sequence Guided by Hormonal Interactions.”</span> <em>Cell</em> 165 (7): 1721–33.
+</div>
 <div id="ref-garcia2020system" class="csl-entry" role="listitem">
 Garcı́a-Gómez, Mónica L, Diego Ornelas-Ayala, Adriana Garay-Arroyo, Berenice Garcı́a-Ponce, Marı́a de la Paz Sánchez, and Elena R Alvarez-Buylla. 2020. <span>“A System-Level Mechanistic Explanation for Asymmetric Stem Cell Fates: Arabidopsis Thaliana Root Niche as a Study System.”</span> <em>Scientific Reports</em> 10 (1): 3525.
 </div>

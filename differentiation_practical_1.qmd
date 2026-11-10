@@ -458,7 +458,7 @@ the results using the `plotBooleanAttractors()` function.
 
 
 ::: {.callout-note collapse="true"}
-## Code for plotting the timecourse simulation
+## Function: plotting the timecourse simulation
 ```python
 def plotBooleanAttractors(attractors):
     """Plot the recovered boolean attractors.
@@ -528,6 +528,7 @@ Now that you have installed `umap-learn`, let's run a UMAP of the attractors you
 ::: {.callout-note collapse="true"}
 ## Function: UMAP for the attractors matrix. Remember to call at the end of InitialConditions()
 ```python
+import umap
 def UMAPBoolean(attractors):
     # 3.1 UMAP dimensionality reduction - for this it is better to increase the number of ICs to 500
     reducer = umap.UMAP(n_neighbors=10, min_dist=0.1, metric='hamming', random_state=42)
@@ -582,7 +583,7 @@ UMAPBoolean(attractors)
 :::{#exr-non}
 
 ## Biology / Conceptual thinking
-Why do you see clearly defined groups and not a continuous distribution of attractors? 
+Why do you see clearly defined groups and not a continuous distribution of the attractors? 
 :::
 
 :::{.content-visible when-meta="params.show_answers"}
@@ -594,7 +595,7 @@ Why do you see clearly defined groups and not a continuous distribution of attra
 
 :::
 
-Now let's recover the unique attractors you found. First, let's group similar attractors using the 
+Now let's list the unique attractors you found. First, let's group similar attractors using the 
 `sorted()` function:
 
 ```python
@@ -677,8 +678,18 @@ How many unique attractors did you find? Compare them with the ones reported in 
 Whether a continuous or a discrete model is better, depends on the question we want to answer.
 To study the logic of cell differentiation, a Boolean model might be more appropriated particularly if we want to study the role of many genes, but lack details of the parameters underlying each reaction. Alternatively, if we wish to study the role of quantitative information in how cells change from one cell fate to another, a continuous model might be more appropriate. 
 
-Here we will see how we can convert the Boolean model to a continuous one and use it to predict which 
-regulators are able of causing a change in the state of the system (changes in cell fate!)
+Here you will learn how to convert a Boolean model into a continuous one and use 
+it to predict which regulators are able of causing a change in the state of the 
+system (changes in cell fate!)
+
+:::{#exr-non}
+## Coding 
+One approach is to define a sigmoidal function, with a $w_i$ term that represents the logical function of each node:
+
+$\frac{dX_i}{dt}=\frac{-e^{0.5h}+e^{-hw_i}}{(1-e^{0.5h)(1+e^{-h(w_i-0.5)}})}-dX_i$
+
+To translate the logical functions we replace an $AND$ operator with a $min$, and $OR$ operator with a $max$, and a $NOT$ operator with a $1-node$. See the code below implementing the ODE version of the root network we studied before. For most nodes the logical rule has been translated in $w_node$. Translate yourself the remaining nodes. Compare the code of the functions `rootNetwork()` and `rootNetworkODE()`. 
+:::
 
 ::: {.callout-note collapse="true"}
 ## Function: Root Network, ODE version
@@ -688,31 +699,22 @@ def rootNetworkODE(a, t, parameters):
     Compute the time derivatives for the root developmental gene regulatory network.
 
     This function evaluates the ODE system used to model interactions among root
-    cell identity regulators (e.g. CK, ARR1, SHY2, AUX/IAA, ARF, PLT, SCR, SHR,
-    MIR165, PHB, JKD, MGP, WOX5, CLE40). It combines regulatory weights using
+    cell identity regulators. It combines regulatory weights using
     a sigmoid transfer function and subtracts decay terms for each variable.
 
     Inputs
     ------
-    a : array-like
-        Current state vector containing the values of all model variables in the
-        order: [CK, ARR1, SHY2, AUXIAAR, ARFR, ARF10, ARF5, XAL1, PLT, AUX,
-        SCR, SHR, MIR165, PHB, JKD, MGP, WOX5, CLE40].
-    t : float
-        Time variable for the ODE system. In this autonomous model it is not used
-        explicitly in the equations.
+    a : array-like. Current state vector containing the values of all model 
+        variables in the order: [CK, ARR1, SHY2, AUXIAAR, ARFR, ARF10, ARF5, 
+        XAL1, PLT, AUX, SCR, SHR, MIR165, PHB, JKD, MGP, WOX5, CLE40].
     parameters : dict
         Dictionary containing the model parameters, including:
         - 'decayrate': degradation/decay constant for each variable.
         - 'h': steepness parameter controlling the sigmoid response.
-
     Outputs
     -------
-    tuple
-        A tuple with the derivatives for each state variable in the same order as
-        the input vector: (dCK, dARR1, dSHY2, dAUXIAAR, dARFR, dARF10, dARF5,
-        dXAL1, dPLT, dAUX, dSCR, dSHR, dMIR165, dPHB, dJKD, dMGP, dWOX5,
-        dCLE40).
+    A tuple with the derivatives for each state variable in the same order as
+    the input vector.
     """
     decayrate = parameters['decayrate']  # decay rate
     h = parameters['h']  # this controls the shape of the sigmoid function
@@ -747,11 +749,11 @@ def rootNetworkODE(a, t, parameters):
     w_SCR = min(SHR,SCR,JKD)
     w_SHR = SHR
     w_MIR165 = max(1-PHB,min(SCR,SHR,1-ARR1))
-    w_PHB = min(max(min(1-ARR1,PLT),PHB),1-MIR165)
-    w_JKD = min(1-PHB,SCR,SHR)
-    w_MGP = min(1-ARF5,SCR,SHR)
-    w_WOX5 = min(1-ARF10,ARF5,1-CLE40)
-    w_CLE40 = 1-SHR
+    w_PHB = #Question10
+    w_JKD = #Question10
+    w_MGP = #Question10
+    w_WOX5 = #Question10
+    w_CLE40 = #Question10
     def sigmoid(w_variable,h):
         a=((-np.exp(0.5*h)+np.exp(-h*(w_variable)))/((1-np.exp(0.5*h))*(1+np.exp(-h*(w_variable-0.5)))))
         return(a)
@@ -778,11 +780,16 @@ def rootNetworkODE(a, t, parameters):
 ```
 :::
 
-Compare the code of the functions `rootNetwork()` and `rootNetworkODE()`. Notice how in `rootNetworkODE()` 
-the logical rules are represented with $min$ and $max$ functions (explained in the lecture), and then used 
-in a sigmoidal function to create a continuous ODE model. 
+:::{.content-visible when-meta="params.show_answers"}
 
-* $AND$ operator is a $min$ function, $OR$ operator is a $max$ function, and $NOT$ operator is $1-x$. 
+  > **Answer** 
+  > w_PHB = min(max(min(1-ARR1,PLT),PHB),1-MIR165)
+  > w_JKD = min(1-PHB,SCR,SHR)
+  > w_MGP = min(1-ARF5,SCR,SHR)
+  > w_WOX5 = min(1-ARF10,ARF5,1-CLE40)
+  > w_CLE40 = 1-SHR
+	      
+:::
 
 Use the code below to run a random initial condition for the 18 variables (IC) and see how the system behaves.
 
@@ -842,8 +849,6 @@ def plotODEroot(cells,times):
 ````
 :::
 
-
-
 :::{#exr-non}
 
 ## Modeling choices
@@ -851,19 +856,22 @@ Do the attractors match those recovered with the Boolean network?
 :::
 :::{.content-visible when-meta="params.show_answers"}
 
-  > **Answer** Yes. The ODE model is built with the same regulatory interactions from the Boolean model. 
-  > The difference is that this model allows us to describe quantitative differences in the activity of the variables. 
-
+  > **Answer** 
+  > Yes. The ODE model is built with the same regulatory interactions from the 
+  > Boolean model. The difference is that this model allows us to describe
+  > quantitative differences in the activity of the variables, while the behaviour
+  > remains discrete.. 
 :::
 
-Now let’s use the model to study cell differentiation routes. Let’s start in the following 
-initial condition (IC vector), and find a change in a variable that produce a jump to another 
-attractor (end). For this you can simply flip the activity of a gene in the initial condition 
-(from $0→1$ or $1→0$) and see the final attractor matches the desired end state. This simulated 
-change mimics how an environmental signal may impinge in the regulatory network. 
+Now let’s use the model to study cell differentiation routes of root cells. Let’s 
+start in the following initial condition (IC vector), and find a change in a 
+variable that produce a jump to another attractor (end). For this you can simply 
+flip the activity of a gene in the initial condition (from $0→1$ or $1→0$) and see 
+the final attractor matches the desired end state. This simulated change mimics 
+how an environmental signal may impinge in the regulatory network. 
 
 ::: {.callout-note collapse="true"}
-## Function: Root Network, ODE version
+## Function: Jumping from one attractor to another
 ```python
 def plotODErootTransition(cells,times):
     """Plot ODE trajectories alongside the target root state.
@@ -930,16 +938,19 @@ plotODErootTransition(cells,times) # use this function to plot your result (it a
 :::{#exr-non}
 
 ## Algorithmic thinking / biology
-What regulator causes the transition between these attractors? How many variables change their activity between the 
-initial and final state? what could be the biological meaning of this switch? how would you test this experimentally?
+What regulator causes the transition between these attractors? How many variables 
+change their activity between the initial and final state? How would you test 
+this model prediction experimentally?
 :::
 
 :::{.content-visible when-meta="params.show_answers"}
 
-  > **Answer** SHR OFF (0) causes the transition between the specified activity configurations. We can interpret this
-  > change between attractors as a cell fate change, in which the decrease in SHR activity triggers changes in other 
-  > variables of the network resulting in the differentiation of the cells. SHR could be a cell differentiation signal. 
-  > To test this experimentally we can artificially repress SHR in the cells.
+  > **Answer** SHR OFF (0) causes the transition between the specified activity 
+  > configurations. We can interpret this change between attractors as a cell 
+  > fate change, in which the decrease in SHR activity triggers changes in other 
+  > variables of the network resulting in the differentiation of the cells. SHR 
+  > could be a cell differentiation signal. To test this experimentally we can 
+  > artificially repress SHR in the cells.
   >
   > ![Turning OFF SHR from the initial condition, causes changes in activity of the other variables, ultimately "landing" in the desired attractor.](images/2-boolean-to-ode-cell-fate-changes-success.png){#vegmini1}
 
@@ -948,16 +959,45 @@ initial and final state? what could be the biological meaning of this switch? ho
 :::{#exr-non}
 
 ## Biology
-Use the model to predict the rest of the attractor transitions because of single variable changes. 
-Are all attractor transitions possible, or are there preferred differentiation routes? Why do you think this is?
+Use the model to predict the rest of the attractor transitions because of single 
+variable changes. Are all attractor transitions possible, or are there preferred 
+differentiation routes? What does this say about the system?
 :::
 
 :::{.content-visible when-meta="params.show_answers"}
 
-  > **Answer** Not all attractor transitions are possible by single variable changes. This is because the regulatory
-  > interactions in the model constrain how this perturbation is interpreted, and with it the differentiation 
-  > trajectories (think of the landscape metaphor).
+  > **Answer** 
+  > Not all attractor transitions are possible by single variable changes. 
+  > This is because the regulatory interactions in the model constrain how this 
+  > perturbation is interpreted, and with it the differentiation trajectories 
+  > (think of the landscape metaphor).
 
 :::
+
+## Question for master students
+
+Some cell fate transitions can only be observed in extraordinary conditions, 
+for example, during the regeneration of the root after removal of the tip. Using 
+single cell transcriptomics it was shown that in this conditions, vascular cells 
+become QC cells @efroni2016root. Use the model to predict how this cell fate 
+change could be happening:
+
+- Instead of simulating single gene perturbations, try perturbation in multiple genes. 
+
+- Play with the duration of the perturbation.
+
+- If this doesn't work, what would you include in the model to improve its predictive power?
+
+[Vascular cells before the cut, gradually become all the other root cell types. From @efroni2016root.](images/efroni.png)
+:::
+
+::: {.content-visible when-meta="params.show_answers"}
+
+  > **Answer** 
+  > These is an open question and we don't know the answer. Feel free 
+  > to discuss with us if you find something interesting and/or have an 
+  > interesting answer. 
+:::
+
 
 ## References

@@ -65,11 +65,17 @@ equation in the `ODEgeneRegulation` function. You can also change the parameters
 to see how that changes the activity of $C$: 
 
 **Regulatory functions: **
+
 1. Either `A` or `B` can activate `C`. 
+
 2. `A` represses `C`.
+
 3. `A` and `B` together repress `C`. 
+
 4. `A` represses `C` and `B` activates it.
+
 5. `A` or `B` can activate `C`, but not when both are active at the same time. 
+
 6. Include an extra input variable, and make a multi-dimensional logical gate, or 
 try any other biological scenario yon can think of.
 
@@ -144,7 +150,7 @@ This model includes many regulatory interactions discovered for the cells of pla
 of experimental research. Here, all this knowledge is encoded as logical rules. 
 
 ::: {.callout-note collapse="true"}
-## Tissue growth implementation
+## Boolean network 1- Root
 
 ``` python
 def rootNetwork(parameters): 
@@ -199,33 +205,77 @@ def rootNetwork(parameters):
 ```
 :::
 
-The model consists of 18 variables representing transcription factors, hormones, peptides. Look at the
-`rootNetwork()` function below. This function defines the state of 18 variables (CK, ARR1, SHY2, AUXIAAR, etc.) based on an input stored in `parameters`, then it updates the state of each variable using the logical operators $AND$, $OR$ and $NOT$; the result is stored in `w_variable`. The function returns the update state `w_variable` for each of the 18 variables.  
+The model consists of 18 variables representing transcription factors, hormones, 
+peptides. Look at the `rootNetwork()` function below. This function defines the 
+state of 18 variables (CK, ARR1, SHY2, AUXIAAR, etc.) based on an input stored in 
+`parameters`, then it updates the state of each variable using the logical operators 
+$AND$, $OR$ and $NOT$; the result is stored in `w_variable`. The function returns 
+the update state `w_variable` for each of the 18 variables.  
 
 ### Time course simulation
-Let us define a random initial condition for each of these 18 variables, and the total number of time steps 
-we will solve the network using the logical functions. First, we need to input the initial condition of the 
-variables to `rootNetwork()` using `parameters`. Next, we save the output of this function as the new current 
-state. We repeat this procedure iteratively for as many time steps as we defined, saving in a matrix the 
-time course of the simulation. This can be done using a for loop as shown below: 
+To solve this Boolean network we have to first define an initial condition for each of these 18 variables, and then update their state using the logical functions stored in `rootNetwork`. We will repeat this updating for a given number of time steps (`timesteps`). This network has a total of 2^18 initial conditions, we are going to explore one of them at random by initializing the state of the variables with 0 or 1. 
+First, we need to input the initial condition of the variables to `rootNetwork()` 
+using `parameters`. Next, we save the output of this function as the new current 
+state. We repeat this procedure iteratively for as many time steps as we defined, 
+saving in a matrix the time course of the simulation. This can be done using a 
+for loop as shown below: 
 
+::: {.callout-note collapse="true"}
+## Code for timecourse simulation
 ```python
-timesteps=20
-variables=18
-matrix = np.zeros((timesteps+1, variables), dtype=int) 
-matrix[0,:] = np.random.randint(0, 2, size=variables) #Random initial condition
-for i in range(timesteps):
-    # we pass the current state
-    parameters= {'CK': matrix[i,0], 'ARR1': matrix[i,1], 'SHY2': matrix[i,2], 'AUXIAAR': matrix[i,3], 'ARFR': matrix[i,4], 'ARF10': matrix[i,5], 'ARF5': matrix[i,6], 'XAL1': matrix[i,7], 'PLT': matrix[i,8], 'AUX': matrix[i,9], 'SCR': matrix[i,10], 'SHR': matrix[i,11], 'MIR165': matrix[i,12], 'PHB': matrix[i,13], 'JKD': matrix[i,14], 'MGP': matrix[i,15], 'WOX5': matrix[i,16], 'CLE40': matrix[i,17]}
-    # we save the new state
-    matrix[i+1, :] = rootNetwork(parameters) # we save the output in i+1
+    timesteps=20
+    variables=18
+    # Create the timecourse matrix for the updating of the Boolean network. The first row stores a random 
+    # binary initial state for all 18 variables, and each subsequent row is obtained by updating the
+    # network from the previous state according to the logical rules encoded in rootNetwork().
+    # This simulates how the gene regulatory network evolves over time from a random starting point.
+    matrix = np.zeros((timesteps+1, variables), dtype=int)
+    matrix[0,:] = np.random.randint(0, 2, size=variables) # Random initial condition
+    for i in range(timesteps):
+        # Pass the current state of all variables to the update function so it can compute the next
+        # state of the network based on the Boolean rules.
+        parameters= {'CK': matrix[i,0], 'ARR1': matrix[i,1], 'SHY2': matrix[i,2], 'AUXIAAR': matrix[i,3], 'ARFR': matrix[i,4], 'ARF10': matrix[i,5], 'ARF5': matrix[i,6], 'XAL1': matrix[i,7], 'PLT': matrix[i,8], 'AUX': matrix[i,9], 'SCR': matrix[i,10], 'SHR': matrix[i,11], 'MIR165': matrix[i,12], 'PHB': matrix[i,13], 'JKD': matrix[i,14], 'MGP': matrix[i,15], 'WOX5': matrix[i,16], 'CLE40': matrix[i,17]}
+        # Save the updated Boolean state for the next time step in the matrix.
+        matrix[i+1, :] = rootNetwork(parameters) # Save the output in i+1
 
 plotBooleanTimecourse(matrix,timesteps)
 ```
+:::
 
-At the end the function `plotBooleanTimecourse()` will make a plot to see how each variable in the network 
-changes ts activity throughout the simulated timesteps. 100 timesteps is enough to reach an attractor for 
-this network. 
+Use the function `plotBooleanTimecourse()` to make a heatmap plot of how each variable in the network 
+is updated in the simulated timesteps. 30 timesteps is probably enough for this network to reach an attractor. 
+
+::: {.callout-note collapse="true"}
+## Code for plotting the timecourse simulation
+```python
+def plotBooleanTimecourse(matrix,timesteps):
+    """Plot the boolean network timecourse.
+
+    Input:
+        matrix: 2D array with rows representing time steps and columns representing
+            variables (CK, ARR1, SHY2, ... CLE40); expected values are 0/1.
+        timesteps: number of time steps to plot.
+
+    Output:
+        Saves a heatmap to 'output/1-boolean-IC-timecourse.png' and displays it.
+        Returns nothing.
+    """
+    plt.figure(figsize=(16, 8))
+    variable_names = ['CK', 'ARR1', 'SHY2', 'AUXIAAR', 'ARFR', 'ARF10', 'ARF5', 'XAL1', 
+                  'PLT', 'AUX', 'SCR', 'SHR', 'MIR165', 'PHB', 'JKD', 'MGP', 'WOX5', 'CLE40']
+    sns.heatmap(matrix, cmap="viridis", cbar=True, xticklabels=variable_names, cbar_kws={"ticks": [0, 1]})
+    #sns.heatmap(matrix, cmap=sns.color_palette(["red", "green"], as_cmap=True), cbar=True, xticklabels=variable_names, cbar_kws={"ticks": [0, 1]})
+    plt.grid(visible=True, which='both', axis='both', color='white', linewidth=0.5)
+    plt.xticks(np.arange(len(variable_names)), variable_names, rotation=90)
+    plt.yticks(np.arange(timesteps+1), np.arange(timesteps+1))
+    plt.xlabel("variables")
+    plt.ylabel("Timesteps")
+    plt.title("Boolean Network Timecourse")
+    plt.savefig("output/1-boolean-IC-timecourse.png", dpi=300, bbox_inches='tight')
+    plt.show()
+
+```
+:::
 
 :::{.content-visible when-meta="params.show_answers"}
 

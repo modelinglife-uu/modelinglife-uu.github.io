@@ -578,8 +578,7 @@ window.Quarto = {
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">7.1</span> Introduction</a></li>
   <li><a href="#regulatory-interactions" id="toc-regulatory-interactions" class="nav-link" data-scroll-target="#regulatory-interactions"><span class="header-section-number">7.2</span> Regulatory interactions</a></li>
   <li><a href="#gene-regulatory-network" id="toc-gene-regulatory-network" class="nav-link" data-scroll-target="#gene-regulatory-network"><span class="header-section-number">7.3</span> Gene regulatory network</a></li>
-  <li><a href="#cell-differentiation-jumping-from-one-attractor-to-another" id="toc-cell-differentiation-jumping-from-one-attractor-to-another" class="nav-link" data-scroll-target="#cell-differentiation-jumping-from-one-attractor-to-another"><span class="header-section-number">7.4</span> Cell differentiation – jumping from one attractor to another</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">7.5</span> References</a></li>
+  <li><a href="#algorithmic-thinking" id="toc-algorithmic-thinking" class="nav-link" data-scroll-target="#algorithmic-thinking"><span class="header-section-number">7.4</span> Algorithmic thinking</a></li>
   </ul>
 </nav>
     </div>
@@ -784,89 +783,511 @@ examples of biological regulatory interactions that can be described with each l
 </div>
 </div>
 </div>
-<div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.4 (Algorithmic thinking)</strong></span> Using the previous code, add for loop to solve 100 random initial conditions, and then save the final activity configurations (attractors) in an <code>attractors matrix</code>.</p>
-<p>The <code>attractors matrix</code> should have the dimensions <code>(initial_conditions, variables)</code> so that you can plot the results using the <code>plotBooleanAttractors()</code> function.</p>
-<ul>
-<li><p>Notice here you should save <strong>only the final state</strong> for each initial condition you explore.</p></li>
-<li><p>Tip: 100 initial conditions is a good number to explore.</p></li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ICs<span class="op">=</span><span class="dv">100</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>attractors <span class="op">=</span> np.zeros((ICs, <span class="bu">len</span>(parameters))) </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># your code</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>plotBooleanAttractors(attractors) <span class="co"># it takes as argument a matrix of attractors</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="algorithmic-thinking" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="algorithmic-thinking"><span class="header-section-number">7.4</span> Algorithmic thinking</h2>
+<p>Try this initial condition:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>matrix[<span class="dv">0</span>,:]<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Solve this initial condition using <code>rootNetwork()</code> and the <code>rootNetworkAsynchronous()</code> (see below). Compare the output in each case. What happens and why? What does an asynchronous update do? :::</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>You should have found many different attractors. Let’s use a multidimensional reduction technique to see how these attractors relate to each other. For this you need to install the <code>umap-learn</code> package using this line:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pip install umap<span class="op">-</span>learn</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Root network asynchronous updating
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rootNetworkAsynchronous(parameters):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Perform one probabilistic asynchronous update of the root gene network.</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Each node independently has a 95% chance of being updated according to</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">    its Boolean regulation rule; otherwise, its current value is retained.</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">        parameters: Mapping of current Boolean (0/1) values for CK, ARR1,</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">            SHY2, AUXIAAR, ARFR, ARF10, ARF5, XAL1, PLT, AUX, SCR, SHR,</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">            MIR165, PHB, JKD, MGP, WOX5, and CLE40.</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">        Tuple of updated values, ordered as CK, ARR1, SHY2, AUXIAAR, ARFR,</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">        ARF10, ARF5, XAL1, PLT, AUX, SCR, SHR, MIR165, PHB, JKD, MGP, WOX5,</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">        and CLE40.</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    CK<span class="op">=</span>parameters[<span class="st">'CK'</span>]</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    ARR1<span class="op">=</span>parameters[<span class="st">'ARR1'</span>]</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    SHY2<span class="op">=</span>parameters[<span class="st">'SHY2'</span>]</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    AUXIAAR<span class="op">=</span>parameters[<span class="st">'AUXIAAR'</span>]</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    ARFR<span class="op">=</span>parameters[<span class="st">'ARFR'</span>]</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    ARF10<span class="op">=</span>parameters[<span class="st">'ARF10'</span>]</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    ARF5<span class="op">=</span>parameters[<span class="st">'ARF5'</span>]</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    XAL1<span class="op">=</span>parameters[<span class="st">'XAL1'</span>]</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    PLT<span class="op">=</span>parameters[<span class="st">'PLT'</span>]</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    AUX<span class="op">=</span>parameters[<span class="st">'AUX'</span>]</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    SCR<span class="op">=</span>parameters[<span class="st">'SCR'</span>]</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    SHR<span class="op">=</span>parameters[<span class="st">'SHR'</span>]</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    MIR165<span class="op">=</span>parameters[<span class="st">'MIR165'</span>]</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    PHB<span class="op">=</span>parameters[<span class="st">'PHB'</span>]</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    JKD<span class="op">=</span>parameters[<span class="st">'JKD'</span>]</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    MGP<span class="op">=</span>parameters[<span class="st">'MGP'</span>]</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    WOX5<span class="op">=</span>parameters[<span class="st">'WOX5'</span>]</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    CLE40<span class="op">=</span>parameters[<span class="st">'CLE40'</span>]</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># With 0.5 probability, set w_CK as before, otherwise set to 0</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> <span class="fl">0.95</span>:</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>        w_CK <span class="op">=</span> (PHB <span class="kw">and</span> (<span class="dv">1</span><span class="op">-</span>ARFR) <span class="kw">or</span> (<span class="dv">1</span><span class="op">-</span>SHR))</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>        w_CK <span class="op">=</span> CK</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> <span class="fl">0.95</span>:</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>        w_ARR1 <span class="op">=</span> CK <span class="kw">and</span> (<span class="dv">1</span><span class="op">-</span>SCR)</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>        w_ARR1 <span class="op">=</span> ARR1</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> <span class="fl">0.95</span>:</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>        w_SHY2 <span class="op">=</span> (<span class="dv">1</span><span class="op">-</span>AUX) <span class="kw">and</span> ARR1</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>        w_SHY2 <span class="op">=</span> SHY2</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> <span class="fl">0.95</span>:</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>        w_AUXIAAR <span class="op">=</span> <span class="dv">1</span><span class="op">-</span>AUX</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>        w_AUXIAAR <span class="op">=</span> AUXIAAR</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> <span class="fl">0.95</span>:</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>        w_ARFR <span class="op">=</span> <span class="dv">1</span><span class="op">-</span>AUXIAAR</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>        w_ARFR <span class="op">=</span> ARFR</span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> <span class="fl">0.95</span>:</span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>        w_ARF10 <span class="op">=</span> (<span class="dv">1</span><span class="op">-</span>AUXIAAR) <span class="kw">and</span> (<span class="dv">1</span><span class="op">-</span>(JKD <span class="kw">and</span> SHR))</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>        w_ARF10 <span class="op">=</span> ARF10</span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> <span class="fl">0.95</span>:</span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>        w_ARF5 <span class="op">=</span> (PHB <span class="kw">or</span> PLT) <span class="kw">and</span> (<span class="dv">1</span><span class="op">-</span>(SHR <span class="kw">and</span> MGP)) <span class="kw">and</span> (<span class="dv">1</span><span class="op">-</span>AUXIAAR) <span class="kw">and</span> (<span class="dv">1</span><span class="op">-</span>SHY2)</span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>        w_ARF5 <span class="op">=</span> ARF5</span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> <span class="fl">0.95</span>:</span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>        w_XAL1 <span class="op">=</span> ARFR</span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>        w_XAL1 <span class="op">=</span> XAL1</span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> <span class="fl">0.95</span>:</span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>        w_PLT <span class="op">=</span> ARF5 <span class="kw">or</span> XAL1 <span class="kw">or</span> ARFR <span class="kw">or</span> WOX5</span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>        w_PLT <span class="op">=</span> PLT</span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> <span class="fl">0.95</span>:</span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>        w_AUX <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>        w_AUX <span class="op">=</span> AUX</span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> <span class="fl">0.95</span>:</span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>        w_SCR <span class="op">=</span> SHR <span class="kw">and</span> SCR <span class="kw">and</span> JKD</span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>        w_SCR <span class="op">=</span> SCR</span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> <span class="fl">0.95</span>:</span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>        w_SHR <span class="op">=</span> SHR</span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>        w_SHR <span class="op">=</span> SHR</span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> <span class="fl">0.95</span>:</span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a>        w_MIR165 <span class="op">=</span> (<span class="dv">1</span><span class="op">-</span>PHB) <span class="kw">or</span> (SCR <span class="kw">and</span> SHR <span class="kw">and</span> (<span class="dv">1</span><span class="op">-</span>ARR1))</span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a>        w_MIR165 <span class="op">=</span> MIR165</span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> <span class="fl">0.95</span>:</span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>        w_PHB <span class="op">=</span> (((<span class="dv">1</span><span class="op">-</span>ARR1) <span class="kw">and</span> PLT) <span class="kw">or</span> PHB) <span class="kw">and</span> (<span class="dv">1</span><span class="op">-</span>MIR165)</span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a>        w_PHB <span class="op">=</span> PHB</span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> <span class="fl">0.95</span>:</span>
+<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a>        w_JKD <span class="op">=</span> (<span class="dv">1</span><span class="op">-</span>PHB) <span class="kw">and</span> SCR <span class="kw">and</span> SHR</span>
+<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a>        w_JKD <span class="op">=</span> JKD</span>
+<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> <span class="fl">0.95</span>:</span>
+<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a>        w_MGP <span class="op">=</span> (<span class="dv">1</span><span class="op">-</span>ARF5) <span class="kw">and</span> SCR <span class="kw">and</span> SHR</span>
+<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a>        w_MGP <span class="op">=</span> MGP</span>
+<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> <span class="fl">0.95</span>:</span>
+<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a>        w_WOX5 <span class="op">=</span> (<span class="dv">1</span><span class="op">-</span>ARF10) <span class="kw">and</span> ARF5 <span class="kw">and</span> (<span class="dv">1</span><span class="op">-</span>CLE40)</span>
+<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a>        w_WOX5 <span class="op">=</span> WOX5</span>
+<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> <span class="fl">0.95</span>:</span>
+<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>        w_CLE40 <span class="op">=</span> <span class="dv">1</span><span class="op">-</span>SHR</span>
+<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a>        w_CLE40 <span class="op">=</span> CLE40</span>
+<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(w_CK,w_ARR1,w_SHY2,w_AUXIAAR,w_ARFR,w_ARF10,w_ARF5,w_XAL1,w_PLT,w_AUX,w_SCR,w_SHR,w_MIR165,w_PHB,w_JKD,w_MGP,w_WOX5,w_CLE40)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div id="exr-non" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 7.4 (Algorithmic thinking)</strong></span> From here onwards use the <code>rootNetworkAsynchronous()</code> function. Using the previous code, add for loop to solve 100 random initial conditions, and then save the final activity configurations (attractors) in an <code>attractors matrix</code>.</p>
+<p>The <code>attractors matrix</code> should have the dimensions <code>(initial_conditions, variables)</code> so that you can plot the results using the <code>plotBooleanAttractors()</code> function.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Code for plotting the timecourse simulation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plotBooleanAttractors(attractors):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Plot the recovered boolean attractors.</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Input:</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">        attractors: 2D array where each row is a distinct attractor state and each</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">            column corresponds to a gene or regulatory node.</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">    Output:</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">        Saves a heatmap to 'output/1-boolean-many-ICs.png' and displays it.</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns nothing.</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># here we plot the attractors found</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">8</span>))</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    variable_names <span class="op">=</span> [<span class="st">'CK'</span>, <span class="st">'ARR1'</span>, <span class="st">'SHY2'</span>, <span class="st">'AUXIAAR'</span>, <span class="st">'ARFR'</span>, <span class="st">'ARF10'</span>, <span class="st">'ARF5'</span>, <span class="st">'XAL1'</span>, </span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'PLT'</span>, <span class="st">'AUX'</span>, <span class="st">'SCR'</span>, <span class="st">'SHR'</span>, <span class="st">'MIR165'</span>, <span class="st">'PHB'</span>, <span class="st">'JKD'</span>, <span class="st">'MGP'</span>, <span class="st">'WOX5'</span>, <span class="st">'CLE40'</span>]</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    sns.heatmap(attractors, cmap<span class="op">=</span><span class="st">"viridis"</span>, cbar<span class="op">=</span><span class="va">True</span>, xticklabels<span class="op">=</span>variable_names, cbar_kws<span class="op">=</span>{<span class="st">"ticks"</span>: [<span class="dv">0</span>, <span class="dv">1</span>]})</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">#sns.heatmap(attractors, cmap=sns.color_palette(["red", "green"], as_cmap=True), cbar=True, xticklabels=variable_names,cbar_kws={"ticks": [0, 1]})</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    plt.grid(visible<span class="op">=</span><span class="va">True</span>, which<span class="op">=</span><span class="st">'both'</span>, axis<span class="op">=</span><span class="st">'both'</span>, color<span class="op">=</span><span class="st">'white'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    plt.xticks(np.arange(<span class="bu">len</span>(variable_names)), variable_names, rotation<span class="op">=</span><span class="dv">90</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    ICs <span class="op">=</span> attractors.shape[<span class="dv">0</span>]</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    plt.yticks(np.arange(ICs), )</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">"variables"</span>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">"Attractors"</span>)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">"Recovered Attractors"</span>)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    plt.savefig(<span class="st">"output/1-boolean-many-ICs.png"</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<ul>
+<li>Notice here you should save <strong>only the final state</strong> for each initial condition you explore.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ICs<span class="op">=</span><span class="dv">100</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>attractors <span class="op">=</span> np.zeros((ICs, <span class="bu">len</span>(parameters))) </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># your code</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>plotBooleanAttractors(attractors) <span class="co"># it takes as argument a matrix of attractors</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>You should have found many different attractors. On Monday we learned of the use of multidimensional reduction techniques to study the gene expression patterns of single cell transcriptomics. Let’s use that tecnhique to see how the attractors we recovered relate to each other. For this you need to install the <code>umap-learn</code> package using this line:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pip install umap<span class="op">-</span>learn</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>More details on how to install packages here: <a href="https://modelinglife-uu.github.io/intro_to_python.html">Introduction to python</a>.</p>
 <p>Now that you have installed <code>umap-learn</code>, let’s run a UMAP of the attractors you recovered (this takes a bit of time to run, so be patient 😉):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>UMAPBoolean(attractors)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>UMAPBoolean(attractors)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.5 (Biology / Conceptual thinking)</strong></span> <strong>Q5</strong> Why do you see clearly defined groups and not a continuous distribution of attractors?</p>
+<p><span class="theorem-title"><strong>Exercise 7.5 (Biology / Conceptual thinking)</strong></span> Why do you see clearly defined groups and not a continuous distribution of attractors?</p>
 </div>
-<p>Now let’s analyse the attractors you found. First, let’s group similar attractors using the <code>sorted()</code> function:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>attractors_sorted <span class="op">=</span> np.array(<span class="bu">sorted</span>(attractors.tolist()))</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plotBooleanAttractors(attractors_sorted) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now let’s recover the unique attractors you found. First, let’s group similar attractors using the <code>sorted()</code> function:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>attractors_sorted <span class="op">=</span> np.array(<span class="bu">sorted</span>(attractors.tolist()))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>plotBooleanAttractors(attractors_sorted) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.6 (Biology / Conceptual thinking)</strong></span> <strong>Q6</strong> Do some attractors occur more frequently than others. Why is this?</p>
+<p><span class="theorem-title"><strong>Exercise 7.6 (Biology / Conceptual thinking)</strong></span> Do some attractors occur more frequently than others. Why is this?</p>
 </div>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 7.7 (Biology)</strong></span> Some variables are active (1) in the majority of the attractors, others in half, and others in very few. In how many attractors is the variable SHR active? What does this suggest about its regulation?</p>
 </div>
 <p>Now let’s remove the repeated rows (duplicate attractor states) to see unique attractors using the <code>np.unique()</code> function:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>_, unique_indices <span class="op">=</span> np.unique(attractors, axis<span class="op">=</span><span class="dv">0</span>, return_index<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>attractors_unique <span class="op">=</span> attractors[np.sort(unique_indices)]</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>plotBooleanAttractors(attractors_unique) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>_, unique_indices <span class="op">=</span> np.unique(attractors, axis<span class="op">=</span><span class="dv">0</span>, return_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>attractors_unique <span class="op">=</span> attractors[np.sort(unique_indices)]</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>plotBooleanAttractors(attractors_unique) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 7.8 (Biology / conceptual thinking)</strong></span> How many unique attractors did you find? Compare them with the ones reported in the paper. Are they all fixed points?</p>
 </div>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.9 (Algorithmic thinking)</strong></span> Try this initial condition:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>matrix[<span class="dv">0</span>,:]<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Solve this initial condition using <code>rootNetwork()</code> and <code>rootNetworkAsynchronous()</code>. Compare the output in each case. What happens and why? What does an asynchronous update do?</p>
-</div>
-</section>
-</section>
-<section id="cell-differentiation-jumping-from-one-attractor-to-another" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="cell-differentiation-jumping-from-one-attractor-to-another"><span class="header-section-number">7.4</span> Cell differentiation – jumping from one attractor to another</h2>
-<p>Depending on what we want to answer a continuous or discrete model may be more appropriate for a model. To study the role of many genes in cell differentiation, a Boolean model might be better particularly if we lack details of the parameters underlying each reaction. Then if we want to study how cells jump from one state to another, a continuous model might be more appropriate.</p>
+<p><span class="theorem-title"><strong>Exercise 7.12 (Cell differentiation – jumping from one attractor to another)</strong></span> Whether a continuous or a discrete model is better, depends on the question we want to answer. To study the logic of cell differentiation, a Boolean model might be more appropriated particularly if we want to study the role of many genes, but lack details of the parameters underlying each reaction. Alternatively, if we wish to study the role of quantitative information in how cells change from one cell fate to another, a continuous model might be more appropriate.</p>
 <p>Here we will see how we can convert the Boolean model to a continuous one and use it to predict which regulators are able of causing a change in the state of the system (changes in cell fate!)</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Function: Root Network, ODE version
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rootNetworkODE(a, t, parameters):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Compute the time derivatives for the root developmental gene regulatory network.</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">    This function evaluates the ODE system used to model interactions among root</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">    cell identity regulators (e.g. CK, ARR1, SHY2, AUX/IAA, ARF, PLT, SCR, SHR,</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">    MIR165, PHB, JKD, MGP, WOX5, CLE40). It combines regulatory weights using</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">    a sigmoid transfer function and subtracts decay terms for each variable.</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Inputs</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">    ------</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">    a : array-like</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co">        Current state vector containing the values of all model variables in the</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co">        order: [CK, ARR1, SHY2, AUXIAAR, ARFR, ARF10, ARF5, XAL1, PLT, AUX,</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co">        SCR, SHR, MIR165, PHB, JKD, MGP, WOX5, CLE40].</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co">    t : float</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co">        Time variable for the ODE system. In this autonomous model it is not used</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co">        explicitly in the equations.</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="co">    parameters : dict</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co">        Dictionary containing the model parameters, including:</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="co">        - 'decayrate': degradation/decay constant for each variable.</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="co">        - 'h': steepness parameter controlling the sigmoid response.</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="co">    Outputs</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="co">    -------</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="co">    tuple</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="co">        A tuple with the derivatives for each state variable in the same order as</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="co">        the input vector: (dCK, dARR1, dSHY2, dAUXIAAR, dARFR, dARF10, dARF5,</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="co">        dXAL1, dPLT, dAUX, dSCR, dSHR, dMIR165, dPHB, dJKD, dMGP, dWOX5,</span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="co">        dCLE40).</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    decayrate <span class="op">=</span> parameters[<span class="st">'decayrate'</span>]  <span class="co"># decay rate</span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> parameters[<span class="st">'h'</span>]  <span class="co"># this controls the shape of the sigmoid function</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    CK<span class="op">=</span>a[<span class="dv">0</span>]</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>    ARR1<span class="op">=</span>a[<span class="dv">1</span>]</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>    SHY2<span class="op">=</span>a[<span class="dv">2</span>]</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>    AUXIAAR<span class="op">=</span>a[<span class="dv">3</span>]</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>    ARFR<span class="op">=</span>a[<span class="dv">4</span>]</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>    ARF10<span class="op">=</span>a[<span class="dv">5</span>]</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>    ARF5<span class="op">=</span>a[<span class="dv">6</span>]</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>    XAL1<span class="op">=</span>a[<span class="dv">7</span>]</span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>    PLT<span class="op">=</span>a[<span class="dv">8</span>]</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>    AUX<span class="op">=</span>a[<span class="dv">9</span>]</span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>    SCR<span class="op">=</span>a[<span class="dv">10</span>]</span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>    SHR<span class="op">=</span>a[<span class="dv">11</span>]</span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>    MIR165<span class="op">=</span>a[<span class="dv">12</span>]</span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>    PHB<span class="op">=</span>a[<span class="dv">13</span>]</span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>    JKD<span class="op">=</span>a[<span class="dv">14</span>]</span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>    MGP<span class="op">=</span>a[<span class="dv">15</span>]</span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>    WOX5<span class="op">=</span>a[<span class="dv">16</span>]</span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>    CLE40<span class="op">=</span>a[<span class="dv">17</span>]</span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>    w_CK <span class="op">=</span> <span class="bu">max</span>(<span class="bu">min</span>(PHB,<span class="dv">1</span><span class="op">-</span>ARFR),<span class="dv">1</span><span class="op">-</span>SHR)</span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a>    w_ARR1 <span class="op">=</span> <span class="bu">min</span>(CK,<span class="dv">1</span><span class="op">-</span>SCR)</span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>    w_SHY2 <span class="op">=</span> <span class="bu">min</span>(<span class="dv">1</span><span class="op">-</span>AUX,ARR1)</span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>    w_AUXIAAR <span class="op">=</span> <span class="dv">1</span><span class="op">-</span>AUX</span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>    w_ARFR <span class="op">=</span> <span class="dv">1</span><span class="op">-</span>AUXIAAR</span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a>    w_ARF10 <span class="op">=</span> <span class="bu">min</span>(<span class="dv">1</span><span class="op">-</span>AUXIAAR,<span class="dv">1</span><span class="op">-</span><span class="bu">min</span>(JKD,SHR))</span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a>    w_ARF5 <span class="op">=</span> <span class="bu">min</span>(<span class="bu">max</span>(PHB,PLT),<span class="dv">1</span><span class="op">-</span><span class="bu">min</span>(SHR,MGP),<span class="dv">1</span><span class="op">-</span>AUXIAAR,<span class="dv">1</span><span class="op">-</span>SHY2)</span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a>    w_XAL1<span class="op">=</span> ARFR</span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a>    w_PLT<span class="op">=</span> <span class="bu">max</span>(ARF5,XAL1,ARFR,WOX5)</span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a>    w_AUX <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a>    w_SCR <span class="op">=</span> <span class="bu">min</span>(SHR,SCR,JKD)</span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>    w_SHR <span class="op">=</span> SHR</span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a>    w_MIR165 <span class="op">=</span> <span class="bu">max</span>(<span class="dv">1</span><span class="op">-</span>PHB,<span class="bu">min</span>(SCR,SHR,<span class="dv">1</span><span class="op">-</span>ARR1))</span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a>    w_PHB <span class="op">=</span> <span class="bu">min</span>(<span class="bu">max</span>(<span class="bu">min</span>(<span class="dv">1</span><span class="op">-</span>ARR1,PLT),PHB),<span class="dv">1</span><span class="op">-</span>MIR165)</span>
+<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a>    w_JKD <span class="op">=</span> <span class="bu">min</span>(<span class="dv">1</span><span class="op">-</span>PHB,SCR,SHR)</span>
+<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a>    w_MGP <span class="op">=</span> <span class="bu">min</span>(<span class="dv">1</span><span class="op">-</span>ARF5,SCR,SHR)</span>
+<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a>    w_WOX5 <span class="op">=</span> <span class="bu">min</span>(<span class="dv">1</span><span class="op">-</span>ARF10,ARF5,<span class="dv">1</span><span class="op">-</span>CLE40)</span>
+<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a>    w_CLE40 <span class="op">=</span> <span class="dv">1</span><span class="op">-</span>SHR</span>
+<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> sigmoid(w_variable,h):</span>
+<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a>        a<span class="op">=</span>((<span class="op">-</span>np.exp(<span class="fl">0.5</span><span class="op">*</span>h)<span class="op">+</span>np.exp(<span class="op">-</span>h<span class="op">*</span>(w_variable)))<span class="op">/</span>((<span class="dv">1</span><span class="op">-</span>np.exp(<span class="fl">0.5</span><span class="op">*</span>h))<span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>np.exp(<span class="op">-</span>h<span class="op">*</span>(w_variable<span class="op">-</span><span class="fl">0.5</span>)))))</span>
+<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span>(a)</span>
+<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a>    dCK <span class="op">=</span> sigmoid(w_CK,h)<span class="op">-</span>(decayrate<span class="op">*</span>CK)</span>
+<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a>    dARR1 <span class="op">=</span> sigmoid(w_ARR1,h)<span class="op">-</span>(decayrate<span class="op">*</span>ARR1)</span>
+<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a>    dSHY2 <span class="op">=</span> sigmoid(w_SHY2,h)<span class="op">-</span>(decayrate<span class="op">*</span>SHY2)</span>
+<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a>    dAUXIAAR <span class="op">=</span> sigmoid(w_AUXIAAR,h)<span class="op">-</span>(decayrate<span class="op">*</span>AUXIAAR)</span>
+<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a>    dARFR <span class="op">=</span> sigmoid(w_ARFR,h)<span class="op">-</span>(decayrate<span class="op">*</span>ARFR)</span>
+<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a>    dARF10 <span class="op">=</span> sigmoid(w_ARF10,h)<span class="op">-</span>(decayrate<span class="op">*</span>ARF10)</span>
+<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a>    dARF5 <span class="op">=</span> sigmoid(w_ARF5,h)<span class="op">-</span>(decayrate<span class="op">*</span>ARF5)</span>
+<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a>    dXAL1 <span class="op">=</span> sigmoid(w_XAL1,h)<span class="op">-</span>(decayrate<span class="op">*</span>XAL1)</span>
+<span id="cb12-81"><a href="#cb12-81" aria-hidden="true" tabindex="-1"></a>    dPLT <span class="op">=</span> sigmoid(w_PLT,h)<span class="op">-</span>(decayrate<span class="op">*</span>PLT)</span>
+<span id="cb12-82"><a href="#cb12-82" aria-hidden="true" tabindex="-1"></a>    dAUX <span class="op">=</span> sigmoid(w_AUX,h)<span class="op">-</span>(decayrate<span class="op">*</span>AUX)</span>
+<span id="cb12-83"><a href="#cb12-83" aria-hidden="true" tabindex="-1"></a>    dSCR <span class="op">=</span> sigmoid(w_SCR,h)<span class="op">-</span>(decayrate<span class="op">*</span>SCR)</span>
+<span id="cb12-84"><a href="#cb12-84" aria-hidden="true" tabindex="-1"></a>    dSHR <span class="op">=</span> sigmoid(w_SHR,h)<span class="op">-</span>(decayrate<span class="op">*</span>SHR)</span>
+<span id="cb12-85"><a href="#cb12-85" aria-hidden="true" tabindex="-1"></a>    dMIR165 <span class="op">=</span> sigmoid(w_MIR165,h)<span class="op">-</span>(decayrate<span class="op">*</span>MIR165)</span>
+<span id="cb12-86"><a href="#cb12-86" aria-hidden="true" tabindex="-1"></a>    dPHB <span class="op">=</span> sigmoid(w_PHB,h)<span class="op">-</span>(decayrate<span class="op">*</span>PHB)</span>
+<span id="cb12-87"><a href="#cb12-87" aria-hidden="true" tabindex="-1"></a>    dJKD <span class="op">=</span> sigmoid(w_JKD,h)<span class="op">-</span>(decayrate<span class="op">*</span>JKD)</span>
+<span id="cb12-88"><a href="#cb12-88" aria-hidden="true" tabindex="-1"></a>    dMGP <span class="op">=</span> sigmoid(w_MGP,h)<span class="op">-</span>(decayrate<span class="op">*</span>MGP)</span>
+<span id="cb12-89"><a href="#cb12-89" aria-hidden="true" tabindex="-1"></a>    dWOX5 <span class="op">=</span> sigmoid(w_WOX5,h)<span class="op">-</span>(decayrate<span class="op">*</span>WOX5)</span>
+<span id="cb12-90"><a href="#cb12-90" aria-hidden="true" tabindex="-1"></a>    dCLE40 <span class="op">=</span> sigmoid(w_CLE40,h)<span class="op">-</span>(decayrate<span class="op">*</span>CLE40)          </span>
+<span id="cb12-91"><a href="#cb12-91" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(dCK, dARR1, dSHY2, dAUXIAAR, dARFR, dARF10, dARF5, dXAL1, dPLT, dAUX, dSCR, dSHR, dMIR165, dPHB, dJKD, dMGP, dWOX5, dCLE40)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
 <p>Compare the code of the functions <code>rootNetwork()</code> and <code>rootNetworkODE()</code>. Notice how in <code>rootNetworkODE()</code> the logical rules are represented with <span class="math inline">\(min\)</span> and <span class="math inline">\(max\)</span> functions (explained in the lecture), and then used in a sigmoidal function to create a continuous ODE model.</p>
 <ul>
 <li><span class="math inline">\(AND\)</span> operator is a <span class="math inline">\(min\)</span> function, <span class="math inline">\(OR\)</span> operator is a <span class="math inline">\(max\)</span> function, and <span class="math inline">\(NOT\)</span> operator is <span class="math inline">\(1-x\)</span>.</li>
 </ul>
 <p>Use the code below to run a random initial condition for the 18 variables (IC) and see how the system behaves.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>timerunning<span class="op">=</span><span class="fl">10.1</span> </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> np.arange(<span class="dv">0</span>, timerunning, <span class="fl">0.1</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>IC <span class="op">=</span> np.random.randint(<span class="dv">0</span>, <span class="dv">2</span>, size<span class="op">=</span><span class="dv">18</span>).tolist() <span class="co">#random initial condition</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>parameters <span class="op">=</span> {<span class="st">'decayrate'</span>: <span class="dv">1</span>, <span class="st">'h'</span>: <span class="dv">50</span>} </span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>cells <span class="op">=</span> odeint(rootNetworkODE, IC, times, args<span class="op">=</span>(parameters,)) </span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>plotODEroot(cells,times)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Function: Root Network, ODE version
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plotODEroot(cells,times):</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Plot root-network ODE trajectories and final state.</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Input:</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">        cells (ndarray): time series of gene activities, shape (n_timepoints, n_variables).</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">        times (array-like): simulation time points matching rows in cells.</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">    Output:</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">        None. Shows the trajectory plot and a heatmap of the final state, and saves the result to disk.</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    attractorode <span class="op">=</span> cells[<span class="op">-</span><span class="dv">1</span>, :]  <span class="co"># last value of the ODE simulation</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    variablesNames<span class="op">=</span>[<span class="st">'CK'</span>,<span class="st">'ARR1'</span>,<span class="st">'SHY2'</span>,<span class="st">'AUXIAAR'</span>,<span class="st">'ARFR'</span>,<span class="st">'ARF10'</span>,<span class="st">'ARF5'</span>,<span class="st">'XAL1'</span>,<span class="st">'PLT'</span>,<span class="st">'AUX'</span>,<span class="st">'SCR'</span>,<span class="st">'SHR'</span>,<span class="st">'MIR165'</span>,<span class="st">'PHB'</span>,<span class="st">'JKD'</span>,<span class="st">'MGP'</span>,<span class="st">'WOX5'</span>,<span class="st">'CLE40'</span>]</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">6</span>), gridspec_kw<span class="op">=</span>{<span class="st">'width_ratios'</span>: [<span class="dv">3</span>, <span class="dv">1</span>]})</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Time series plot</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, name <span class="kw">in</span> <span class="bu">enumerate</span>(variablesNames):</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>        ax1.plot(times, cells[:, i], label<span class="op">=</span>name, linewidth<span class="op">=</span><span class="dv">3</span>, color<span class="op">=</span>sns.color_palette(<span class="st">"tab20"</span>, <span class="bu">len</span>(variablesNames))[i])</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    ax1.set_xlabel(<span class="st">'Time'</span>)</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    ax1.set_ylabel(<span class="st">'Gene activity'</span>)</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>    ax1.set_title(<span class="st">'Root model (ODE version)'</span>)</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>    ax1.legend(loc<span class="op">=</span><span class="st">'upper right'</span>, bbox_to_anchor<span class="op">=</span>(<span class="dv">1</span>, <span class="fl">0.9</span>))</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    ax1.grid(<span class="va">True</span>)</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Heatmap of final state</span></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    sns.heatmap(attractorode.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), yticklabels<span class="op">=</span>variablesNames, cmap<span class="op">=</span><span class="st">"viridis"</span>, ax<span class="op">=</span>ax2, cbar<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>    <span class="co">#sns.heatmap(attractorode.reshape(-1, 1), yticklabels=variablesNames, cmap=sns.color_palette(["red", "green"], as_cmap=True), ax=ax2, cbar=False)</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    ax2.set_xticks([])</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>    ax2.set_ylabel(<span class="st">'variables'</span>)</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    ax2.set_title(<span class="st">'Final state'</span>)</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    ax2.set_aspect(<span class="fl">0.7</span>)  <span class="co"># Make the heatmap narrower</span></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    plt.savefig(<span class="st">"output/2-boolean-to-ode-dynamics.png"</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Execution code: Solve ODE version of root model
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>timerunning<span class="op">=</span><span class="fl">10.1</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> np.arange(<span class="dv">0</span>, timerunning, <span class="fl">0.1</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>IC <span class="op">=</span> np.random.randint(<span class="dv">0</span>, <span class="dv">2</span>, size<span class="op">=</span><span class="dv">18</span>).tolist() <span class="co">#random initial condition</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>parameters <span class="op">=</span> {<span class="st">'decayrate'</span>: <span class="dv">1</span>, <span class="st">'h'</span>: <span class="dv">50</span>} </span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>cells <span class="op">=</span> odeint(rootNetworkODE, IC, times, args<span class="op">=</span>(parameters,)) </span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>plotODEroot(cells,times)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.10 (Modeling choices)</strong></span> Do the attractors match those recovered with the Boolean network?</p>
+<p><span class="theorem-title"><strong>Exercise 7.9 (Modeling choices)</strong></span> Do the attractors match those recovered with the Boolean network?</p>
 </div>
 <p>Now let’s use the model to study cell differentiation routes. Let’s start in the following initial condition (IC vector), and find a change in a variable that produce a jump to another attractor (end). For this you can simply flip the activity of a gene in the initial condition (from <span class="math inline">\(0→1\)</span> or <span class="math inline">\(1→0\)</span>) and see the final attractor matches the desired end state. This simulated change mimics how an environmental signal may impinge in the regulatory network.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We start here: </span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>IC<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>]</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># We want to end here. </span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>end<span class="op">=</span>[<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>]</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># variable order</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># CK, ARR1, SHY2, AUXIAAR, ARFR, ARF10, ARF5, XAL1, PLT, AUX, SCR, SHR, MIR165, PHB, JKD, MGP, WOX5, CLE40</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># your code </span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>plotODErootTransition(cells,times) <span class="co"># use this function to plot your result (it already knows the desired end state)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.11 (Algorithmic thinking / biology)</strong></span> What regulator causes the transition between these attractors? How many variables change their activity between the initial and final state? what could be the biological meaning of this switch? how would you test this experimentally?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Function: Root Network, ODE version
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plotODErootTransition(cells,times):</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Plot ODE trajectories alongside the target root state.</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Input:</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">        cells (ndarray): time series of gene activities, shape (n_timepoints, n_variables).</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">        times (array-like): simulation time points matching rows in cells.</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">    Output:</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">        None. Shows the trajectory plot and two heatmaps (final state and target end state), and saves the result to disk.</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    attractorode <span class="op">=</span> cells[<span class="op">-</span><span class="dv">1</span>, :]  <span class="co"># last value of the ODE simulation</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    variablesNames<span class="op">=</span>[<span class="st">'CK'</span>,<span class="st">'ARR1'</span>,<span class="st">'SHY2'</span>,<span class="st">'AUXIAAR'</span>,<span class="st">'ARFR'</span>,<span class="st">'ARF10'</span>,<span class="st">'ARF5'</span>,<span class="st">'XAL1'</span>,<span class="st">'PLT'</span>,<span class="st">'AUX'</span>,<span class="st">'SCR'</span>,<span class="st">'SHR'</span>,<span class="st">'MIR165'</span>,<span class="st">'PHB'</span>,<span class="st">'JKD'</span>,<span class="st">'MGP'</span>,<span class="st">'WOX5'</span>,<span class="st">'CLE40'</span>]</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    end<span class="op">=</span>[<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>]</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    fig, (ax1, ax2, ax3) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">6</span>), gridspec_kw<span class="op">=</span>{<span class="st">'width_ratios'</span>: [<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1</span>]})</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Time series plot</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, name <span class="kw">in</span> <span class="bu">enumerate</span>(variablesNames):</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>        ax1.plot(times, cells[:, i], label<span class="op">=</span>name, linewidth<span class="op">=</span><span class="dv">3</span>, color<span class="op">=</span>sns.color_palette(<span class="st">"tab20"</span>, <span class="bu">len</span>(variablesNames))[i])</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    ax1.set_xlabel(<span class="st">'Time'</span>)</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    ax1.set_ylabel(<span class="st">'Gene activity'</span>)</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    ax1.set_title(<span class="st">'Root model (ODE version)'</span>)</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    ax1.legend(loc<span class="op">=</span><span class="st">'upper right'</span>, bbox_to_anchor<span class="op">=</span>(<span class="dv">1</span>, <span class="fl">0.9</span>))</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    ax1.grid(<span class="va">True</span>)</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Heatmap of final state</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    sns.heatmap(attractorode.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), yticklabels<span class="op">=</span>variablesNames, cmap<span class="op">=</span><span class="st">"viridis"</span>, ax<span class="op">=</span>ax2, cbar<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>    <span class="co">#sns.heatmap(attractorode.reshape(-1, 1), yticklabels=variablesNames, cmap=sns.color_palette(["red", "green"], as_cmap=True), ax=ax2, cbar=False)</span></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>    ax2.set_xticks([])</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>    ax2.set_ylabel(<span class="st">'variables'</span>)</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>    ax2.set_title(<span class="st">'Final state'</span>)</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>    ax2.set_aspect(<span class="fl">0.7</span>)  <span class="co"># Make the heatmap narrower</span></span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Heatmap of desired end state</span></span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>    sns.heatmap(np.array(end).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), yticklabels<span class="op">=</span>variablesNames, cmap<span class="op">=</span><span class="st">"viridis"</span>, ax<span class="op">=</span>ax3, cbar<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>    <span class="co">#sns.heatmap(np.array(end).reshape(-1, 1), yticklabels=variablesNames, cmap=sns.color_palette(["red", "green"], as_cmap=True), ax=ax3, cbar=False)</span></span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>    ax3.set_xticks([])</span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>    ax3.set_ylabel(<span class="st">'variables'</span>)</span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>    ax3.set_title(<span class="st">'Desired end state'</span>)</span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>    ax3.set_aspect(<span class="fl">0.7</span>)</span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>    plt.savefig(<span class="st">"output/2-boolean-to-ode-cell-fate-changes.png"</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Execution code: Cell fate transitions with ODE version of root model
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We start here: </span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>IC<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>]</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># We want to end here. </span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>end<span class="op">=</span>[<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>]</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># variable order</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># CK, ARR1, SHY2, AUXIAAR, ARFR, ARF10, ARF5, XAL1, PLT, AUX, SCR, SHR, MIR165, PHB, JKD, MGP, WOX5, CLE40</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co"># your code </span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>plotODErootTransition(cells,times) <span class="co"># use this function to plot your result (it already knows the desired end state)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
 </div>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.12 (Biology)</strong></span> Finally, use the model to predict the rest of the attractor transitions because of single variable changes. Are all attractor transitions possible, or are there preferred differentiation routes? Why do you think this is?</p>
+<p><span class="theorem-title"><strong>Exercise 7.10 (Algorithmic thinking / biology)</strong></span> What regulator causes the transition between these attractors? How many variables change their activity between the initial and final state? what could be the biological meaning of this switch? how would you test this experimentally?</p>
 </div>
-</section>
+<div id="exr-non" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 7.11 (Biology)</strong></span> Use the model to predict the rest of the attractor transitions because of single variable changes. Are all attractor transitions possible, or are there preferred differentiation routes? Why do you think this is?</p>
+</div>
 <section id="references" class="level2" data-number="7.5">
 <h2 data-number="7.5" class="anchored" data-anchor-id="references"><span class="header-section-number">7.5</span> References</h2>
 <ul>
@@ -875,6 +1296,8 @@ examples of biological regulatory interactions that can be described with each l
 </ul>
 
 
+</section>
+</div>
 <script type="ojs-module-contents">
 eyJjb250ZW50cyI6W119
 </script>

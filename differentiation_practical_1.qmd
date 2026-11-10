@@ -105,7 +105,7 @@ try any other biological scenario yon can think of.
 :::{#exr-non}
 
 
-## Biology and Algorithmic thinking
+## Biology 
 
 Is there a logical gate that can be better represented with an ODE than with Boolean logic? Give an  
 examples of biological regulatory interactions that can be described with each logical gate? 
@@ -115,7 +115,8 @@ examples of biological regulatory interactions that can be described with each l
 :::{.content-visible when-meta="params.show_answers"}
 
   > **Answer** All logical gates can be modelled correctly with either approach. With Boolean models 
-  > we look quantitative resolution, with ODE we can model many more values than 0 and 1. 
+  > we look quantitative resolution, with ODE we can model many more values than 0 and 1. Whether
+  > one or the other is better, depends on what do you want to answer with the model.
   > 
   > Biological examples that can be modelled with the logical gates: 
   > 
@@ -142,11 +143,64 @@ Now let's move to a network model made of many individual regulatory interaction
 This model includes many regulatory interactions discovered for the cells of plant roots through years
 of experimental research. Here, all this knowledge is encoded as logical rules. 
 
+::: {.callout-note collapse="true"}
+## Tissue growth implementation
+
+``` python
+def rootNetwork(parameters): 
+    """Evaluate one synchronous update of the root gene-regulatory network.
+
+    Args:
+        parameters: Mapping of gene names (CK, ARR1, SHY2, AUXIAAR, ARFR,
+            ARF10, ARF5, XAL1, PLT, AUX, SCR, SHR, MIR165, PHB, JKD, MGP,
+            WOX5, and CLE40) to their current Boolean (0/1) values.
+
+    Returns:
+        Tuple of updated Boolean values in the same gene order listed above.
+    """
+    CK=parameters['CK']
+    ARR1=parameters['ARR1']
+    SHY2=parameters['SHY2']
+    AUXIAAR=parameters['AUXIAAR']
+    ARFR=parameters['ARFR']
+    ARF10=parameters['ARF10']
+    ARF5=parameters['ARF5']
+    XAL1=parameters['XAL1']
+    PLT=parameters['PLT']
+    AUX=parameters['AUX']
+    SCR=parameters['SCR']
+    SHR=parameters['SHR']
+    MIR165=parameters['MIR165']
+    PHB=parameters['PHB']
+    JKD=parameters['JKD']
+    MGP=parameters['MGP']
+    WOX5=parameters['WOX5']
+    CLE40=parameters['CLE40']
+    w_CK = (PHB and (1-ARFR) or (1-SHR))
+    w_ARR1 = CK and (1-SCR)
+    w_SHY2 = (1-AUX) and ARR1
+    w_AUXIAAR = 1-AUX
+    w_ARFR = 1-AUXIAAR
+    w_ARF10 = (1-AUXIAAR) and (1-(JKD and SHR))
+    w_ARF5 = (PHB or PLT) and (1-(SHR and MGP)) and (1-AUXIAAR)and (1-SHY2)
+    w_XAL1= ARFR
+    w_PLT= ARF5 or XAL1 or ARFR or WOX5
+    w_AUX = 1
+    w_SCR = SHR and SCR and JKD
+    w_SHR = SHR
+    w_MIR165 = (1-PHB) or (SCR and SHR and (1-ARR1))
+    w_PHB = (((1-ARR1) and PLT) or PHB) and  (1-MIR165)
+    w_JKD = (1-PHB) and SCR and SHR
+    w_MGP = (1-ARF5) and SCR and SHR
+    w_WOX5 = (1-ARF10) and ARF5 and (1-CLE40)
+    w_CLE40 = 1-SHR
+    return(w_CK,w_ARR1,w_SHY2,w_AUXIAAR,w_ARFR,w_ARF10,w_ARF5,w_XAL1,w_PLT,w_AUX,w_SCR,w_SHR,w_MIR165,w_PHB,w_JKD,w_MGP,w_WOX5,w_CLE40)
+
+```
+:::
+
 The model consists of 18 variables representing transcription factors, hormones, peptides. Look at the
-`rootNetwork()` function in the `circuitFunctions.py` file. This function defines the state of 18 variables
-(CK, ARR1, SHY2, AUXIAAR, etc.) based on an input stored in `parameters`, then it updates the state of each 
-variable using the logical operators $AND$, $OR$ and $NOT$; the result is stored in `w_variable`. The 
-function returns the update state `w_variable` for each of the 18 variables.  
+`rootNetwork()` function below. This function defines the state of 18 variables (CK, ARR1, SHY2, AUXIAAR, etc.) based on an input stored in `parameters`, then it updates the state of each variable using the logical operators $AND$, $OR$ and $NOT$; the result is stored in `w_variable`. The function returns the update state `w_variable` for each of the 18 variables.  
 
 ### Time course simulation
 Let us define a random initial condition for each of these 18 variables, and the total number of time steps 

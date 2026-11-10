@@ -629,35 +629,98 @@ window.Quarto = {
 <p><strong>Regulatory functions: </strong> 1. Either <code>A</code> or <code>B</code> can activate <code>C</code>. 2. <code>A</code> represses <code>C</code>. 3. <code>A</code> and <code>B</code> together repress <code>C</code>. 4. <code>A</code> represses <code>C</code> and <code>B</code> activates it. 5. <code>A</code> or <code>B</code> can activate <code>C</code>, but not when both are active at the same time. 6. Include an extra input variable, and make a multi-dimensional logical gate, or try any other biological scenario yon can think of.</p>
 </div>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.3 (Biology and Algorithmic thinking)</strong></span> Is there a logical gate that can be better represented with an ODE than with Boolean logic? Give an<br>
+<p><span class="theorem-title"><strong>Exercise 7.3 (Biology)</strong></span> Is there a logical gate that can be better represented with an ODE than with Boolean logic? Give an<br>
 examples of biological regulatory interactions that can be described with each logical gate?</p>
 </div>
 </section>
 <section id="gene-regulatory-network" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="gene-regulatory-network"><span class="header-section-number">7.3</span> Gene regulatory network</h2>
 <p>Now let’s move to a network model made of many individual regulatory interactions (<span class="citation" data-cites="garcia2020system">Garcı́a-Gómez et al. (<a href="#ref-garcia2020system" role="doc-biblioref">2020</a>)</span>). This model includes many regulatory interactions discovered for the cells of plant roots through years of experimental research. Here, all this knowledge is encoded as logical rules.</p>
-<p>The model consists of 18 variables representing transcription factors, hormones, peptides. Look at the <code>rootNetwork()</code> function in the <code>circuitFunctions.py</code> file. This function defines the state of 18 variables (CK, ARR1, SHY2, AUXIAAR, etc.) based on an input stored in <code>parameters</code>, then it updates the state of each variable using the logical operators <span class="math inline">\(AND\)</span>, <span class="math inline">\(OR\)</span> and <span class="math inline">\(NOT\)</span>; the result is stored in <code>w_variable</code>. The function returns the update state <code>w_variable</code> for each of the 18 variables.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Tissue growth implementation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rootNetwork(parameters): </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Evaluate one synchronous update of the root gene-regulatory network.</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">        parameters: Mapping of gene names (CK, ARR1, SHY2, AUXIAAR, ARFR,</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">            ARF10, ARF5, XAL1, PLT, AUX, SCR, SHR, MIR165, PHB, JKD, MGP,</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">            WOX5, and CLE40) to their current Boolean (0/1) values.</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">        Tuple of updated Boolean values in the same gene order listed above.</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    CK<span class="op">=</span>parameters[<span class="st">'CK'</span>]</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    ARR1<span class="op">=</span>parameters[<span class="st">'ARR1'</span>]</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    SHY2<span class="op">=</span>parameters[<span class="st">'SHY2'</span>]</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    AUXIAAR<span class="op">=</span>parameters[<span class="st">'AUXIAAR'</span>]</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    ARFR<span class="op">=</span>parameters[<span class="st">'ARFR'</span>]</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    ARF10<span class="op">=</span>parameters[<span class="st">'ARF10'</span>]</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    ARF5<span class="op">=</span>parameters[<span class="st">'ARF5'</span>]</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    XAL1<span class="op">=</span>parameters[<span class="st">'XAL1'</span>]</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    PLT<span class="op">=</span>parameters[<span class="st">'PLT'</span>]</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    AUX<span class="op">=</span>parameters[<span class="st">'AUX'</span>]</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    SCR<span class="op">=</span>parameters[<span class="st">'SCR'</span>]</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    SHR<span class="op">=</span>parameters[<span class="st">'SHR'</span>]</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    MIR165<span class="op">=</span>parameters[<span class="st">'MIR165'</span>]</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    PHB<span class="op">=</span>parameters[<span class="st">'PHB'</span>]</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    JKD<span class="op">=</span>parameters[<span class="st">'JKD'</span>]</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    MGP<span class="op">=</span>parameters[<span class="st">'MGP'</span>]</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    WOX5<span class="op">=</span>parameters[<span class="st">'WOX5'</span>]</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    CLE40<span class="op">=</span>parameters[<span class="st">'CLE40'</span>]</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    w_CK <span class="op">=</span> (PHB <span class="kw">and</span> (<span class="dv">1</span><span class="op">-</span>ARFR) <span class="kw">or</span> (<span class="dv">1</span><span class="op">-</span>SHR))</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    w_ARR1 <span class="op">=</span> CK <span class="kw">and</span> (<span class="dv">1</span><span class="op">-</span>SCR)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    w_SHY2 <span class="op">=</span> (<span class="dv">1</span><span class="op">-</span>AUX) <span class="kw">and</span> ARR1</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    w_AUXIAAR <span class="op">=</span> <span class="dv">1</span><span class="op">-</span>AUX</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    w_ARFR <span class="op">=</span> <span class="dv">1</span><span class="op">-</span>AUXIAAR</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    w_ARF10 <span class="op">=</span> (<span class="dv">1</span><span class="op">-</span>AUXIAAR) <span class="kw">and</span> (<span class="dv">1</span><span class="op">-</span>(JKD <span class="kw">and</span> SHR))</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    w_ARF5 <span class="op">=</span> (PHB <span class="kw">or</span> PLT) <span class="kw">and</span> (<span class="dv">1</span><span class="op">-</span>(SHR <span class="kw">and</span> MGP)) <span class="kw">and</span> (<span class="dv">1</span><span class="op">-</span>AUXIAAR)<span class="kw">and</span> (<span class="dv">1</span><span class="op">-</span>SHY2)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    w_XAL1<span class="op">=</span> ARFR</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    w_PLT<span class="op">=</span> ARF5 <span class="kw">or</span> XAL1 <span class="kw">or</span> ARFR <span class="kw">or</span> WOX5</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    w_AUX <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    w_SCR <span class="op">=</span> SHR <span class="kw">and</span> SCR <span class="kw">and</span> JKD</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    w_SHR <span class="op">=</span> SHR</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    w_MIR165 <span class="op">=</span> (<span class="dv">1</span><span class="op">-</span>PHB) <span class="kw">or</span> (SCR <span class="kw">and</span> SHR <span class="kw">and</span> (<span class="dv">1</span><span class="op">-</span>ARR1))</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    w_PHB <span class="op">=</span> (((<span class="dv">1</span><span class="op">-</span>ARR1) <span class="kw">and</span> PLT) <span class="kw">or</span> PHB) <span class="kw">and</span>  (<span class="dv">1</span><span class="op">-</span>MIR165)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    w_JKD <span class="op">=</span> (<span class="dv">1</span><span class="op">-</span>PHB) <span class="kw">and</span> SCR <span class="kw">and</span> SHR</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    w_MGP <span class="op">=</span> (<span class="dv">1</span><span class="op">-</span>ARF5) <span class="kw">and</span> SCR <span class="kw">and</span> SHR</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    w_WOX5 <span class="op">=</span> (<span class="dv">1</span><span class="op">-</span>ARF10) <span class="kw">and</span> ARF5 <span class="kw">and</span> (<span class="dv">1</span><span class="op">-</span>CLE40)</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    w_CLE40 <span class="op">=</span> <span class="dv">1</span><span class="op">-</span>SHR</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(w_CK,w_ARR1,w_SHY2,w_AUXIAAR,w_ARFR,w_ARF10,w_ARF5,w_XAL1,w_PLT,w_AUX,w_SCR,w_SHR,w_MIR165,w_PHB,w_JKD,w_MGP,w_WOX5,w_CLE40)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>The model consists of 18 variables representing transcription factors, hormones, peptides. Look at the <code>rootNetwork()</code> function below. This function defines the state of 18 variables (CK, ARR1, SHY2, AUXIAAR, etc.) based on an input stored in <code>parameters</code>, then it updates the state of each variable using the logical operators <span class="math inline">\(AND\)</span>, <span class="math inline">\(OR\)</span> and <span class="math inline">\(NOT\)</span>; the result is stored in <code>w_variable</code>. The function returns the update state <code>w_variable</code> for each of the 18 variables.</p>
 <section id="time-course-simulation" class="level3">
 <h3 class="anchored" data-anchor-id="time-course-simulation">Time course simulation</h3>
 <p>Let us define a random initial condition for each of these 18 variables, and the total number of time steps we will solve the network using the logical functions. First, we need to input the initial condition of the variables to <code>rootNetwork()</code> using <code>parameters</code>. Next, we save the output of this function as the new current state. We repeat this procedure iteratively for as many time steps as we defined, saving in a matrix the time course of the simulation. This can be done using a for loop as shown below:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>timesteps<span class="op">=</span><span class="dv">20</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>variables<span class="op">=</span><span class="dv">18</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>matrix <span class="op">=</span> np.zeros((timesteps<span class="op">+</span><span class="dv">1</span>, variables), dtype<span class="op">=</span><span class="bu">int</span>) </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>matrix[<span class="dv">0</span>,:] <span class="op">=</span> np.random.randint(<span class="dv">0</span>, <span class="dv">2</span>, size<span class="op">=</span>variables) <span class="co">#Random initial condition</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(timesteps):</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># we pass the current state</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    parameters<span class="op">=</span> {<span class="st">'CK'</span>: matrix[i,<span class="dv">0</span>], <span class="st">'ARR1'</span>: matrix[i,<span class="dv">1</span>], <span class="st">'SHY2'</span>: matrix[i,<span class="dv">2</span>], <span class="st">'AUXIAAR'</span>: matrix[i,<span class="dv">3</span>], <span class="st">'ARFR'</span>: matrix[i,<span class="dv">4</span>], <span class="st">'ARF10'</span>: matrix[i,<span class="dv">5</span>], <span class="st">'ARF5'</span>: matrix[i,<span class="dv">6</span>], <span class="st">'XAL1'</span>: matrix[i,<span class="dv">7</span>], <span class="st">'PLT'</span>: matrix[i,<span class="dv">8</span>], <span class="st">'AUX'</span>: matrix[i,<span class="dv">9</span>], <span class="st">'SCR'</span>: matrix[i,<span class="dv">10</span>], <span class="st">'SHR'</span>: matrix[i,<span class="dv">11</span>], <span class="st">'MIR165'</span>: matrix[i,<span class="dv">12</span>], <span class="st">'PHB'</span>: matrix[i,<span class="dv">13</span>], <span class="st">'JKD'</span>: matrix[i,<span class="dv">14</span>], <span class="st">'MGP'</span>: matrix[i,<span class="dv">15</span>], <span class="st">'WOX5'</span>: matrix[i,<span class="dv">16</span>], <span class="st">'CLE40'</span>: matrix[i,<span class="dv">17</span>]}</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># we save the new state</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    matrix[i<span class="op">+</span><span class="dv">1</span>, :] <span class="op">=</span> rootNetwork(parameters) <span class="co"># we save the output in i+1</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>plotBooleanTimecourse(matrix,timesteps)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>timesteps<span class="op">=</span><span class="dv">20</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>variables<span class="op">=</span><span class="dv">18</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>matrix <span class="op">=</span> np.zeros((timesteps<span class="op">+</span><span class="dv">1</span>, variables), dtype<span class="op">=</span><span class="bu">int</span>) </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>matrix[<span class="dv">0</span>,:] <span class="op">=</span> np.random.randint(<span class="dv">0</span>, <span class="dv">2</span>, size<span class="op">=</span>variables) <span class="co">#Random initial condition</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(timesteps):</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># we pass the current state</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    parameters<span class="op">=</span> {<span class="st">'CK'</span>: matrix[i,<span class="dv">0</span>], <span class="st">'ARR1'</span>: matrix[i,<span class="dv">1</span>], <span class="st">'SHY2'</span>: matrix[i,<span class="dv">2</span>], <span class="st">'AUXIAAR'</span>: matrix[i,<span class="dv">3</span>], <span class="st">'ARFR'</span>: matrix[i,<span class="dv">4</span>], <span class="st">'ARF10'</span>: matrix[i,<span class="dv">5</span>], <span class="st">'ARF5'</span>: matrix[i,<span class="dv">6</span>], <span class="st">'XAL1'</span>: matrix[i,<span class="dv">7</span>], <span class="st">'PLT'</span>: matrix[i,<span class="dv">8</span>], <span class="st">'AUX'</span>: matrix[i,<span class="dv">9</span>], <span class="st">'SCR'</span>: matrix[i,<span class="dv">10</span>], <span class="st">'SHR'</span>: matrix[i,<span class="dv">11</span>], <span class="st">'MIR165'</span>: matrix[i,<span class="dv">12</span>], <span class="st">'PHB'</span>: matrix[i,<span class="dv">13</span>], <span class="st">'JKD'</span>: matrix[i,<span class="dv">14</span>], <span class="st">'MGP'</span>: matrix[i,<span class="dv">15</span>], <span class="st">'WOX5'</span>: matrix[i,<span class="dv">16</span>], <span class="st">'CLE40'</span>: matrix[i,<span class="dv">17</span>]}</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># we save the new state</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    matrix[i<span class="op">+</span><span class="dv">1</span>, :] <span class="op">=</span> rootNetwork(parameters) <span class="co"># we save the output in i+1</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>plotBooleanTimecourse(matrix,timesteps)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>At the end the function <code>plotBooleanTimecourse()</code> will make a plot to see how each variable in the network changes ts activity throughout the simulated timesteps. 100 timesteps is enough to reach an attractor for this network.</p>
 <ul>
 <li>For the initial condition you can also use any combination of 0 and 1 you like, or one of the attractors reported in the paper and check what happens when you update them.</li>
 </ul>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 7.4 (Algorithmic thinking)</strong></span> Try this initial condition:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>matrix[<span class="dv">0</span>,:]<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>matrix[<span class="dv">0</span>,:]<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Solve this initial condition using <code>rootNetwork()</code> and <code>rootNetworkAsynchronous()</code>. Compare the output in each case. What happens and why? What does an asynchronous update do?</p>
 </div>
 <p>This network has 18 variables, and then <span class="math inline">\(2^{18}\)</span> = 262,144 possible states. We can solve each of these conditions (and wait…), or instead explore just a subset of them…</p>
@@ -668,24 +731,24 @@ examples of biological regulatory interactions that can be described with each l
 <li><p>Notice here you should save <strong>only the final state</strong> for each initial condition you explore.</p></li>
 <li><p>Tip: 100 initial conditions is a good number to explore.</p></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ICs<span class="op">=</span><span class="dv">100</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>attractors <span class="op">=</span> np.zeros((ICs, <span class="bu">len</span>(parameters))) </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># your code</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>plotBooleanAttractors(attractors) <span class="co"># it takes as argument a matrix of attractors</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ICs<span class="op">=</span><span class="dv">100</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>attractors <span class="op">=</span> np.zeros((ICs, <span class="bu">len</span>(parameters))) </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># your code</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>plotBooleanAttractors(attractors) <span class="co"># it takes as argument a matrix of attractors</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>You should have found many different attractors. Let’s use a multidimensional reduction technique to see how these attractors relate to each other. For this you need to install the <code>umap-learn</code> package using this line:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pip install umap<span class="op">-</span>learn</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pip install umap<span class="op">-</span>learn</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>More details on how to install packages here: <a href="https://modelinglife-uu.github.io/intro_to_python.html">Introduction to python</a>.</p>
 <p>Now that you have installed <code>umap-learn</code>, let’s run a UMAP of the attractors you recovered (this takes a bit of time to run, so be patient 😉):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>UMAPBoolean(attractors)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>UMAPBoolean(attractors)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 7.6 (Biology / Conceptual thinking)</strong></span> <strong>Q5</strong> Why do you see clearly defined groups and not a continuous distribution of attractors?</p>
 </div>
 <p>Now let’s analyse the attractors you found. First, let’s group similar attractors using the <code>sorted()</code> function:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>attractors_sorted <span class="op">=</span> np.array(<span class="bu">sorted</span>(attractors.tolist()))</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>plotBooleanAttractors(attractors_sorted) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>attractors_sorted <span class="op">=</span> np.array(<span class="bu">sorted</span>(attractors.tolist()))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plotBooleanAttractors(attractors_sorted) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 7.7 (Biology / Conceptual thinking)</strong></span> <strong>Q6</strong> Do some attractors occur more frequently than others. Why is this?</p>
 </div>
@@ -693,9 +756,9 @@ examples of biological regulatory interactions that can be described with each l
 <p><span class="theorem-title"><strong>Exercise 7.8 (Biology)</strong></span> Some variables are active (1) in the majority of the attractors, others in half, and others in very few. In how many attractors is the variable SHR active? What does this suggest about its regulation?</p>
 </div>
 <p>Now let’s remove the repeated rows (duplicate attractor states) to see unique attractors using the <code>np.unique()</code> function:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>_, unique_indices <span class="op">=</span> np.unique(attractors, axis<span class="op">=</span><span class="dv">0</span>, return_index<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>attractors_unique <span class="op">=</span> attractors[np.sort(unique_indices)]</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plotBooleanAttractors(attractors_unique) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>_, unique_indices <span class="op">=</span> np.unique(attractors, axis<span class="op">=</span><span class="dv">0</span>, return_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>attractors_unique <span class="op">=</span> attractors[np.sort(unique_indices)]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>plotBooleanAttractors(attractors_unique) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 7.9 (Biology / conceptual thinking)</strong></span> How many unique attractors did you find? Compare them with the ones reported in the paper. Are they all fixed points?</p>
 </div>
@@ -710,28 +773,28 @@ examples of biological regulatory interactions that can be described with each l
 <li><span class="math inline">\(AND\)</span> operator is a <span class="math inline">\(min\)</span> function, <span class="math inline">\(OR\)</span> operator is a <span class="math inline">\(max\)</span> function, and <span class="math inline">\(NOT\)</span> operator is <span class="math inline">\(1-x\)</span>.</li>
 </ul>
 <p>Use the code below to run a random initial condition for the 18 variables (IC) and see how the system behaves.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>timerunning<span class="op">=</span><span class="fl">10.1</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> np.arange(<span class="dv">0</span>, timerunning, <span class="fl">0.1</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>IC <span class="op">=</span> np.random.randint(<span class="dv">0</span>, <span class="dv">2</span>, size<span class="op">=</span><span class="dv">18</span>).tolist() <span class="co">#random initial condition</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>parameters <span class="op">=</span> {<span class="st">'decayrate'</span>: <span class="dv">1</span>, <span class="st">'h'</span>: <span class="dv">50</span>} </span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>cells <span class="op">=</span> odeint(rootNetworkODE, IC, times, args<span class="op">=</span>(parameters,)) </span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>plotODEroot(cells,times)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>timerunning<span class="op">=</span><span class="fl">10.1</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> np.arange(<span class="dv">0</span>, timerunning, <span class="fl">0.1</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>IC <span class="op">=</span> np.random.randint(<span class="dv">0</span>, <span class="dv">2</span>, size<span class="op">=</span><span class="dv">18</span>).tolist() <span class="co">#random initial condition</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>parameters <span class="op">=</span> {<span class="st">'decayrate'</span>: <span class="dv">1</span>, <span class="st">'h'</span>: <span class="dv">50</span>} </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>cells <span class="op">=</span> odeint(rootNetworkODE, IC, times, args<span class="op">=</span>(parameters,)) </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>plotODEroot(cells,times)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 7.10 (Modeling choices)</strong></span> Do the attractors match those recovered with the Boolean network?</p>
 </div>
 <p>Now let’s use the model to study cell differentiation routes. Let’s start in the following initial condition (IC vector), and find a change in a variable that produce a jump to another attractor (end). For this you can simply flip the activity of a gene in the initial condition (from <span class="math inline">\(0→1\)</span> or <span class="math inline">\(1→0\)</span>) and see the final attractor matches the desired end state. This simulated change mimics how an environmental signal may impinge in the regulatory network.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We start here: </span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>IC<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>]</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># We want to end here. </span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>end<span class="op">=</span>[<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>]</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># variable order</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># CK, ARR1, SHY2, AUXIAAR, ARFR, ARF10, ARF5, XAL1, PLT, AUX, SCR, SHR, MIR165, PHB, JKD, MGP, WOX5, CLE40</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># your code </span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>plotODErootTransition(cells,times) <span class="co"># use this function to plot your result (it already knows the desired end state)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We start here: </span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>IC<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># We want to end here. </span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>end<span class="op">=</span>[<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>]</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># variable order</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># CK, ARR1, SHY2, AUXIAAR, ARFR, ARF10, ARF5, XAL1, PLT, AUX, SCR, SHR, MIR165, PHB, JKD, MGP, WOX5, CLE40</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># your code </span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>plotODErootTransition(cells,times) <span class="co"># use this function to plot your result (it already knows the desired end state)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 7.11 (Algorithmic thinking / biology)</strong></span> What regulator causes the transition between these attractors? How many variables change their activity between the initial and final state? what could be the biological meaning of this switch? how would you test this experimentally?</p>
 </div>

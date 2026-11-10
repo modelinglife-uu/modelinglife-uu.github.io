@@ -780,55 +780,52 @@ examples of biological regulatory interactions that can be described with each l
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">"Boolean Network Timecourse"</span>)</span>
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    plt.savefig(<span class="st">"output/1-boolean-IC-timecourse.png"</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Run the program several times. Does the attractor recovered is always the same? How many different attractors does the model recover?</p>
 </div>
 </div>
 </div>
-<ul>
-<li>For the initial condition you can also use any combination of 0 and 1 you like, or one of the attractors reported in the paper and check what happens when you update them.</li>
-</ul>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.4 (Algorithmic thinking)</strong></span> Try this initial condition:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>matrix[<span class="dv">0</span>,:]<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Solve this initial condition using <code>rootNetwork()</code> and <code>rootNetworkAsynchronous()</code>. Compare the output in each case. What happens and why? What does an asynchronous update do?</p>
-</div>
-<p>This network has 18 variables, and then <span class="math inline">\(2^{18}\)</span> = 262,144 possible states. We can solve each of these conditions (and wait…), or instead explore just a subset of them…</p>
-<div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.5 (Algorithmic thinking)</strong></span> Using the previous code, add for loop to solve 100 random initial conditions, and then save the final activity configurations (attractors) in an <code>attractors matrix</code>.</p>
+<p><span class="theorem-title"><strong>Exercise 7.4 (Algorithmic thinking)</strong></span> Using the previous code, add for loop to solve 100 random initial conditions, and then save the final activity configurations (attractors) in an <code>attractors matrix</code>.</p>
 <p>The <code>attractors matrix</code> should have the dimensions <code>(initial_conditions, variables)</code> so that you can plot the results using the <code>plotBooleanAttractors()</code> function.</p>
 <ul>
 <li><p>Notice here you should save <strong>only the final state</strong> for each initial condition you explore.</p></li>
 <li><p>Tip: 100 initial conditions is a good number to explore.</p></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ICs<span class="op">=</span><span class="dv">100</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>attractors <span class="op">=</span> np.zeros((ICs, <span class="bu">len</span>(parameters))) </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># your code</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>plotBooleanAttractors(attractors) <span class="co"># it takes as argument a matrix of attractors</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ICs<span class="op">=</span><span class="dv">100</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>attractors <span class="op">=</span> np.zeros((ICs, <span class="bu">len</span>(parameters))) </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># your code</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>plotBooleanAttractors(attractors) <span class="co"># it takes as argument a matrix of attractors</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>You should have found many different attractors. Let’s use a multidimensional reduction technique to see how these attractors relate to each other. For this you need to install the <code>umap-learn</code> package using this line:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pip install umap<span class="op">-</span>learn</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pip install umap<span class="op">-</span>learn</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>More details on how to install packages here: <a href="https://modelinglife-uu.github.io/intro_to_python.html">Introduction to python</a>.</p>
 <p>Now that you have installed <code>umap-learn</code>, let’s run a UMAP of the attractors you recovered (this takes a bit of time to run, so be patient 😉):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>UMAPBoolean(attractors)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>UMAPBoolean(attractors)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.6 (Biology / Conceptual thinking)</strong></span> <strong>Q5</strong> Why do you see clearly defined groups and not a continuous distribution of attractors?</p>
+<p><span class="theorem-title"><strong>Exercise 7.5 (Biology / Conceptual thinking)</strong></span> <strong>Q5</strong> Why do you see clearly defined groups and not a continuous distribution of attractors?</p>
 </div>
 <p>Now let’s analyse the attractors you found. First, let’s group similar attractors using the <code>sorted()</code> function:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>attractors_sorted <span class="op">=</span> np.array(<span class="bu">sorted</span>(attractors.tolist()))</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>plotBooleanAttractors(attractors_sorted) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>attractors_sorted <span class="op">=</span> np.array(<span class="bu">sorted</span>(attractors.tolist()))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plotBooleanAttractors(attractors_sorted) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.7 (Biology / Conceptual thinking)</strong></span> <strong>Q6</strong> Do some attractors occur more frequently than others. Why is this?</p>
+<p><span class="theorem-title"><strong>Exercise 7.6 (Biology / Conceptual thinking)</strong></span> <strong>Q6</strong> Do some attractors occur more frequently than others. Why is this?</p>
 </div>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.8 (Biology)</strong></span> Some variables are active (1) in the majority of the attractors, others in half, and others in very few. In how many attractors is the variable SHR active? What does this suggest about its regulation?</p>
+<p><span class="theorem-title"><strong>Exercise 7.7 (Biology)</strong></span> Some variables are active (1) in the majority of the attractors, others in half, and others in very few. In how many attractors is the variable SHR active? What does this suggest about its regulation?</p>
 </div>
 <p>Now let’s remove the repeated rows (duplicate attractor states) to see unique attractors using the <code>np.unique()</code> function:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>_, unique_indices <span class="op">=</span> np.unique(attractors, axis<span class="op">=</span><span class="dv">0</span>, return_index<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>attractors_unique <span class="op">=</span> attractors[np.sort(unique_indices)]</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>plotBooleanAttractors(attractors_unique) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>_, unique_indices <span class="op">=</span> np.unique(attractors, axis<span class="op">=</span><span class="dv">0</span>, return_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>attractors_unique <span class="op">=</span> attractors[np.sort(unique_indices)]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>plotBooleanAttractors(attractors_unique) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.9 (Biology / conceptual thinking)</strong></span> How many unique attractors did you find? Compare them with the ones reported in the paper. Are they all fixed points?</p>
+<p><span class="theorem-title"><strong>Exercise 7.8 (Biology / conceptual thinking)</strong></span> How many unique attractors did you find? Compare them with the ones reported in the paper. Are they all fixed points?</p>
+</div>
+<div id="exr-non" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 7.9 (Algorithmic thinking)</strong></span> Try this initial condition:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>matrix[<span class="dv">0</span>,:]<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Solve this initial condition using <code>rootNetwork()</code> and <code>rootNetworkAsynchronous()</code>. Compare the output in each case. What happens and why? What does an asynchronous update do?</p>
 </div>
 </section>
 </section>

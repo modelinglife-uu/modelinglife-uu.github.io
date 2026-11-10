@@ -275,47 +275,16 @@ def plotBooleanTimecourse(matrix,timesteps):
     plt.show()
 
 ```
+Run the program several times. Does the attractor recovered is always the same? 
+How many different attractors does the model recover?
 :::
+
 
 :::{.content-visible when-meta="params.show_answers"}
 
   > ![Timecourse simulations](images/0-timecourse.png){#vegmini1}
 
 :::
-
-* For the initial condition you can also use any combination of 0 and 1 you like, or one of 
-the attractors reported in the paper and check what happens when you update them.
-
-
-:::{#exr-non}
-
-## Algorithmic thinking
-Try this initial condition: 
-
-```python
-matrix[0,:]=[0,1,1,0,1,1,0,0,1,0,1,1,1,1,1,0,1,0]
-```
-
-Solve this initial condition using `rootNetwork()` and `rootNetworkAsynchronous()`. Compare the output in 
-each case. What happens and why? What does an asynchronous update do?
-:::
-
-:::{.content-visible when-meta="params.show_answers"}
-
-  > **Answer** The synchronous approach updates all genes every timestep, which may not be realistic as transcription,
-  > translation and protein degradation do not necessarily occur at the same rate for all modelled genes, and these
-  > processes are inherently noisy. Thus, asynchronously updating the variables is a good idea.
-  > The asynchronous updating function introduces a probability of update (95%) to each variable in 
-  > the simulation. This means the variables might not be all updated each timestep. The initial condition 
-  > converges to a cyclic attractor in the synchronous updating function (`rootNetwork()`), and to a fixed
-  > point attractor in the asynchronous function (`rootNetworkAsynchronous()`). This means the cyclic 
-  > behaviour recovered with the synchronous updating scheme was an artifact of updating all the variable at 
-  > the same time. 
-
-:::
-
-This network has 18 variables, and then $2^{18}$ = 262,144 possible states. We can solve each of 
-these conditions (and wait...), or instead explore just a subset of them... 
 
 :::{#exr-non}
 
@@ -458,6 +427,51 @@ How many unique attractors did you find? Compare them with the ones reported in 
   > solving the network asynchronously. 
 
 :::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:::{#exr-non}
+
+## Algorithmic thinking
+Try this initial condition: 
+
+```python
+matrix[0,:]=[0,1,1,0,1,1,0,0,1,0,1,1,1,1,1,0,1,0]
+```
+
+Solve this initial condition using `rootNetwork()` and `rootNetworkAsynchronous()`. Compare the output in 
+each case. What happens and why? What does an asynchronous update do?
+:::
+
+:::{.content-visible when-meta="params.show_answers"}
+
+  > **Answer** The synchronous approach updates all genes every timestep, which may not be realistic as transcription,
+  > translation and protein degradation do not necessarily occur at the same rate for all modelled genes, and these
+  > processes are inherently noisy. Thus, asynchronously updating the variables is a good idea.
+  > The asynchronous updating function introduces a probability of update (95%) to each variable in 
+  > the simulation. This means the variables might not be all updated each timestep. The initial condition 
+  > converges to a cyclic attractor in the synchronous updating function (`rootNetwork()`), and to a fixed
+  > point attractor in the asynchronous function (`rootNetworkAsynchronous()`). This means the cyclic 
+  > behaviour recovered with the synchronous updating scheme was an artifact of updating all the variable at 
+  > the same time. 
+
+:::
+
+
+
 
 ## Cell differentiation – jumping from one attractor to another
 

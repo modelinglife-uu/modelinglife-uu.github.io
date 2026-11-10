@@ -1076,7 +1076,7 @@ examples of biological regulatory interactions that can be described with each l
 <p>Whether a continuous or a discrete model is better, depends on the question we want to answer. To study the logic of cell differentiation, a Boolean model might be more appropriated particularly if we want to study the role of many genes, but lack details of the parameters underlying each reaction. Alternatively, if we wish to study the role of quantitative information in how cells change from one cell fate to another, a continuous model might be more appropriate.</p>
 <p>Here you will learn how to convert a Boolean model into a continuous one and use it to predict which regulators are able of causing a change in the state of the system (changes in cell fate!)</p>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.10 (Coding)</strong></span> One approach is to define a sigmoidal function, with a <span class="math inline">\(w_i\)</span> term that represents the logical function of each node:</p>
+<p><span class="theorem-title"><strong>Exercise 7.10 (Coding)</strong></span> One approach to keep the parameters in control is to use a “fuzzy logic” approach. We need to define a sigmoidal function, with a <span class="math inline">\(w_i\)</span> term that represents the logical function of each node:</p>
 <p><span class="math inline">\(\frac{dX_i}{dt}=\frac{-e^{0.5h}+e^{-hw_i}}{(1-e^{0.5h)(1+e^{-h(w_i-0.5)}})}-dX_i\)</span></p>
 <p>To translate the logical functions we replace an <span class="math inline">\(AND\)</span> operator with a <span class="math inline">\(min\)</span>, and <span class="math inline">\(OR\)</span> operator with a <span class="math inline">\(max\)</span>, and a <span class="math inline">\(NOT\)</span> operator with a <span class="math inline">\(1-node\)</span>. See the code below implementing the ODE version of the root network we studied before. For most nodes the logical rule has been translated in <span class="math inline">\(w_node\)</span>. Translate yourself the remaining nodes. Compare the code of the functions <code>rootNetwork()</code> and <code>rootNetworkODE()</code>.</p>
 </div>
@@ -1347,13 +1347,13 @@ examples of biological regulatory interactions that can be described with each l
 </section>
 <section id="question-for-master-students" class="level2" data-number="7.5">
 <h2 data-number="7.5" class="anchored" data-anchor-id="question-for-master-students"><span class="header-section-number">7.5</span> Question for master students</h2>
-<p>Some cell fate transitions can only be observed in extraordinary conditions, for example, during the regeneration of the root after removal of the tip. Using single cell transcriptomics it was shown that in this conditions, vascular cells become QC cells <span class="citation" data-cites="efroni2016root">Efroni et al. (<a href="#ref-efroni2016root" role="doc-biblioref">2016</a>)</span>. Use the model to predict how this cell fate change could be happening:</p>
+<p>Some cell fate transitions can only be observed in extraordinary conditions, for example, during the regeneration of the root after removal of the tip. Using single cell transcriptomics it was shown that in this conditions, vascular cells restore all other root cells <span class="citation" data-cites="efroni2016root">Efroni et al. (<a href="#ref-efroni2016root" role="doc-biblioref">2016</a>)</span>. Use the model to predict how these cell fate change could be happening. You could try:</p>
 <ul>
 <li><p>Instead of simulating single gene perturbations, try perturbation in multiple genes.</p></li>
-<li><p>Play with the duration of the perturbation.</p></li>
+<li><p>Play with the duration of the perturbations.</p></li>
 <li><p>If this doesn’t work, what would you include in the model to improve its predictive power?</p></li>
 </ul>
-<p><a href="images/efroni.png">Vascular cells before the cut, gradually become all the other root cell types. From <span class="citation" data-cites="efroni2016root">Efroni et al. (<span>2016</span>)</span>.</a> :::</p>
+<p><img src="images/efroni.png" id="vegmini1" class="img-fluid" style="width:40.0%" alt="Vascular cells before the cut, gradually become all the other root cell types. From Efroni et al. (2016)."> :::</p>
 </section>
 <section id="references" class="level2" data-number="7.6">
 <h2 data-number="7.6" class="anchored" data-anchor-id="references"><span class="header-section-number">7.6</span> References</h2>

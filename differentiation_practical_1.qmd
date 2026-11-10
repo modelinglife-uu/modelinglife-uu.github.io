@@ -684,7 +684,9 @@ system (changes in cell fate!)
 
 :::{#exr-non}
 ## Coding 
-One approach is to define a sigmoidal function, with a $w_i$ term that represents the logical function of each node:
+One approach to keep the parameters in control is to use a "fuzzy logic" approach. 
+We need to define a sigmoidal function, with a $w_i$ term that represents the 
+logical function of each node:
 
 $\frac{dX_i}{dt}=\frac{-e^{0.5h}+e^{-hw_i}}{(1-e^{0.5h)(1+e^{-h(w_i-0.5)}})}-dX_i$
 
@@ -979,16 +981,16 @@ differentiation routes? What does this say about the system?
 Some cell fate transitions can only be observed in extraordinary conditions, 
 for example, during the regeneration of the root after removal of the tip. Using 
 single cell transcriptomics it was shown that in this conditions, vascular cells 
-become QC cells @efroni2016root. Use the model to predict how this cell fate 
-change could be happening:
+restore all other root cells @efroni2016root. Use the model to predict how these 
+cell fate change could be happening. You could try: 
 
 - Instead of simulating single gene perturbations, try perturbation in multiple genes. 
 
-- Play with the duration of the perturbation.
+- Play with the duration of the perturbations.
 
 - If this doesn't work, what would you include in the model to improve its predictive power?
 
-[Vascular cells before the cut, gradually become all the other root cell types. From @efroni2016root.](images/efroni.png)
+![Vascular cells before the cut, gradually become all the other root cell types. From @efroni2016root.](images/efroni.png){#vegmini1 width=40%}
 :::
 
 ::: {.content-visible when-meta="params.show_answers"}

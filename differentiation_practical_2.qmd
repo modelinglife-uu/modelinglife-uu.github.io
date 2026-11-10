@@ -8,8 +8,8 @@ params:
 ## {.unnumbered}
 <center>
 <span style="color: DodgerBlue">
-***How wonderful that we have met with a paradox. <br>
-Now we have some hope of making progress*** – *Niehls Bohr*
+*How wonderful that we have met with a paradox. <br>
+Now we have some hope of making progress – Niehls Bohr*
 </span>
 </center>
 

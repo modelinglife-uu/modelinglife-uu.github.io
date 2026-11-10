@@ -108,6 +108,9 @@ div.csl-indent {
 <link href="site_libs/bootstrap/bootstrap-21773dcadea2beec2b9f71056aa2f0f3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -575,12 +578,12 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">7.1</span> Introduction</a></li>
-  <li><a href="#regulatory-interactions" id="toc-regulatory-interactions" class="nav-link" data-scroll-target="#regulatory-interactions"><span class="header-section-number">7.2</span> Regulatory interactions</a></li>
-  <li><a href="#gene-regulatory-network" id="toc-gene-regulatory-network" class="nav-link" data-scroll-target="#gene-regulatory-network"><span class="header-section-number">7.3</span> Gene regulatory network</a></li>
-  <li><a href="#cell-differentiation-jumping-from-one-attractor-to-another" id="toc-cell-differentiation-jumping-from-one-attractor-to-another" class="nav-link" data-scroll-target="#cell-differentiation-jumping-from-one-attractor-to-another"><span class="header-section-number">7.4</span> Cell differentiation – jumping from one attractor to another</a></li>
-  <li><a href="#question-for-master-students" id="toc-question-for-master-students" class="nav-link" data-scroll-target="#question-for-master-students"><span class="header-section-number">7.5</span> Question for master students</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">7.6</span> References</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#regulatory-interactions" id="toc-regulatory-interactions" class="nav-link" data-scroll-target="#regulatory-interactions"><span class="header-section-number">7.1</span> Regulatory interactions</a></li>
+  <li><a href="#gene-regulatory-network" id="toc-gene-regulatory-network" class="nav-link" data-scroll-target="#gene-regulatory-network"><span class="header-section-number">7.2</span> Gene regulatory network</a></li>
+  <li><a href="#cell-differentiation-jumping-from-one-attractor-to-another" id="toc-cell-differentiation-jumping-from-one-attractor-to-another" class="nav-link" data-scroll-target="#cell-differentiation-jumping-from-one-attractor-to-another"><span class="header-section-number">7.3</span> Cell differentiation – jumping from one attractor to another</a></li>
+  <li><a href="#question-for-master-students" id="toc-question-for-master-students" class="nav-link" data-scroll-target="#question-for-master-students"><span class="header-section-number">7.4</span> Question for master students</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">7.5</span> References</a></li>
   </ul>
 </nav>
     </div>
@@ -607,13 +610,15 @@ window.Quarto = {
 </header>
 
 
-<section id="introduction" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">7.1</span> Introduction</h2>
+<section id="introduction" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="introduction">Introduction</h2>
 <p>In this practical you will get hands on experience into making gene regulatory networks models. First you will practice how to encode regulatory interactions into ordinary differential equations and logical rules. Next you will use examples of Boolean networks to study their self-sustained activity configurations (attractors) (<span class="citation" data-cites="rozum2023boolean">Rozum et al. (<a href="#ref-rozum2023boolean" role="doc-biblioref">2023</a>)</span>). Lastly, you will learn how to predict the genes that cause cell fate transitions (attractor changes).</p>
 <p>Today we will use the following python file: <code>WC07_Gene_regulatory_networks_I.py</code>. In it you will find the parameters, functions and execution code. First have a look at the functions; look at what each takes as input and returns as output and how they are used in the <code>main</code>.</p>
+<p>Throughout the practical you will see code that you need to add in the #Functions or #Execution part of the python program.</p>
+<p><a href="images/grn.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/grn.png" id="vegmini1" class="img-fluid" style="width:40.0%"></a></p>
 </section>
-<section id="regulatory-interactions" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="regulatory-interactions"><span class="header-section-number">7.2</span> Regulatory interactions</h2>
+<section id="regulatory-interactions" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="regulatory-interactions"><span class="header-section-number">7.1</span> Regulatory interactions</h2>
 <p>In the <code>main</code> you have a Boolean and an ODE model to simulate an <span class="math inline">\(AND\)</span> gate where the variable <span class="math inline">\(A\)</span> and variable <span class="math inline">\(B\)</span> are both needed to positively regulate <span class="math inline">\(C\)</span>. This could represent that <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are transcription factors that form a protein complex, and that it is via this complex that they can bind the promoter of <span class="math inline">\(C\)</span> to promote its expression.</p>
 <p>While <code>ODEgeneRegulation()</code> encodes this regulation with an ordinary differential equation that requires several parameters, <code>logicalRule()</code> only needs the logical operator relating the input genes.</p>
 <p><strong>ODE implementation</strong></p>
@@ -642,8 +647,8 @@ window.Quarto = {
 examples of biological regulatory interactions that can be described with each logical gate?</p>
 </div>
 </section>
-<section id="gene-regulatory-network" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="gene-regulatory-network"><span class="header-section-number">7.3</span> Gene regulatory network</h2>
+<section id="gene-regulatory-network" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="gene-regulatory-network"><span class="header-section-number">7.2</span> Gene regulatory network</h2>
 <p>Now let’s move to a network model made of many individual regulatory interactions (<span class="citation" data-cites="garcia2020system">Garcı́a-Gómez et al. (<a href="#ref-garcia2020system" role="doc-biblioref">2020</a>)</span>). This model includes many regulatory interactions discovered for the cells of plant roots through years of experimental research. Here, all this knowledge is encoded as logical rules.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
@@ -1071,8 +1076,8 @@ examples of biological regulatory interactions that can be described with each l
 </div>
 </section>
 </section>
-<section id="cell-differentiation-jumping-from-one-attractor-to-another" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="cell-differentiation-jumping-from-one-attractor-to-another"><span class="header-section-number">7.4</span> Cell differentiation – jumping from one attractor to another</h2>
+<section id="cell-differentiation-jumping-from-one-attractor-to-another" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="cell-differentiation-jumping-from-one-attractor-to-another"><span class="header-section-number">7.3</span> Cell differentiation – jumping from one attractor to another</h2>
 <p>Whether a continuous or a discrete model is better, depends on the question we want to answer. To study the logic of cell differentiation, a Boolean model might be more appropriated particularly if we want to study the role of many genes, but lack details of the parameters underlying each reaction. Alternatively, if we wish to study the role of quantitative information in how cells change from one cell fate to another, a continuous model might be more appropriate.</p>
 <p>Here you will learn how to convert a Boolean model into a continuous one and use it to predict which regulators are able of causing a change in the state of the system (changes in cell fate!)</p>
 <div id="exr-non" class="theorem exercise">
@@ -1345,8 +1350,8 @@ examples of biological regulatory interactions that can be described with each l
 <p><span class="theorem-title"><strong>Exercise 7.13 (Biology)</strong></span> Use the model to predict the rest of the attractor transitions because of single variable changes. Are all attractor transitions possible, or are there preferred differentiation routes? What does this say about the system?</p>
 </div>
 </section>
-<section id="question-for-master-students" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="question-for-master-students"><span class="header-section-number">7.5</span> Question for master students</h2>
+<section id="question-for-master-students" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="question-for-master-students"><span class="header-section-number">7.4</span> Question for master students</h2>
 <p>Some cell fate transitions can only be observed in extraordinary conditions, for example, during the regeneration of the root after removal of the tip. Using single cell transcriptomics it was shown that in this conditions, vascular cells restore all other root cells <span class="citation" data-cites="efroni2016root">Efroni et al. (<a href="#ref-efroni2016root" role="doc-biblioref">2016</a>)</span>. Use the model to predict how these cell fate change could be happening. You could try:</p>
 <ul>
 <li><p>Instead of simulating single gene perturbations, try perturbation in multiple genes.</p></li>
@@ -1355,8 +1360,8 @@ examples of biological regulatory interactions that can be described with each l
 </ul>
 <p><img src="images/efroni.png" id="vegmini1" class="img-fluid" style="width:40.0%" alt="Vascular cells before the cut, gradually become all the other root cell types. From Efroni et al. (2016)."> :::</p>
 </section>
-<section id="references" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="references"><span class="header-section-number">7.6</span> References</h2>
+<section id="references" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="references"><span class="header-section-number">7.5</span> References</h2>
 
 
 <script type="ojs-module-contents">
@@ -1844,6 +1849,38 @@ window._ojs.runtime.interpretFromScriptTags();
 </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

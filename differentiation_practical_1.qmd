@@ -5,7 +5,7 @@ params:
 
 # Gene regulation in time 
 
-## Introduction
+## Introduction {.unnumbered}
 
 In this practical you will get hands on experience into making gene regulatory networks 
 models. First you will practice how to encode regulatory interactions into ordinary 
@@ -16,6 +16,9 @@ Lastly, you will learn how to predict the genes that cause cell fate transitions
 Today we will use the following python file: `WC07_Gene_regulatory_networks_I.py`.  In it you will find 
 the parameters, functions and execution code. First have a look at the functions; look at what each takes as input and returns as output and how they are used in the `main`. 
 
+Throughout the practical you will see code that you need to add in the #Functions or #Execution part of the python program.
+
+![](images/grn.png){#vegmini1 width=40%}
 
 ## Regulatory interactions
 

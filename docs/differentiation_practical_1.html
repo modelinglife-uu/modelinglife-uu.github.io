@@ -649,7 +649,7 @@ examples of biological regulatory interactions that can be described with each l
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Boolean network 1- Root
+<span class="screen-reader-only">Note</span>Function: Boolean network 1- Root
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -716,73 +716,73 @@ examples of biological regulatory interactions that can be described with each l
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Code for timecourse simulation
+<span class="screen-reader-only">Note</span>Function: plotting the timecourse simulation
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    timesteps<span class="op">=</span><span class="dv">20</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    variables<span class="op">=</span><span class="dv">18</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create the timecourse matrix for the updating of the Boolean network. The first row stores a random </span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># binary initial state for all 18 variables, and each subsequent row is obtained by updating the</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># network from the previous state according to the logical rules encoded in rootNetwork().</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># This simulates how the gene regulatory network evolves over time from a random starting point.</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    matrix <span class="op">=</span> np.zeros((timesteps<span class="op">+</span><span class="dv">1</span>, variables), dtype<span class="op">=</span><span class="bu">int</span>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    matrix[<span class="dv">0</span>,:] <span class="op">=</span> np.random.randint(<span class="dv">0</span>, <span class="dv">2</span>, size<span class="op">=</span>variables) <span class="co"># Random initial condition</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(timesteps):</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Pass the current state of all variables to the update function so it can compute the next</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># state of the network based on the Boolean rules.</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        parameters<span class="op">=</span> {<span class="st">'CK'</span>: matrix[i,<span class="dv">0</span>], <span class="st">'ARR1'</span>: matrix[i,<span class="dv">1</span>], <span class="st">'SHY2'</span>: matrix[i,<span class="dv">2</span>], <span class="st">'AUXIAAR'</span>: matrix[i,<span class="dv">3</span>], <span class="st">'ARFR'</span>: matrix[i,<span class="dv">4</span>], <span class="st">'ARF10'</span>: matrix[i,<span class="dv">5</span>], <span class="st">'ARF5'</span>: matrix[i,<span class="dv">6</span>], <span class="st">'XAL1'</span>: matrix[i,<span class="dv">7</span>], <span class="st">'PLT'</span>: matrix[i,<span class="dv">8</span>], <span class="st">'AUX'</span>: matrix[i,<span class="dv">9</span>], <span class="st">'SCR'</span>: matrix[i,<span class="dv">10</span>], <span class="st">'SHR'</span>: matrix[i,<span class="dv">11</span>], <span class="st">'MIR165'</span>: matrix[i,<span class="dv">12</span>], <span class="st">'PHB'</span>: matrix[i,<span class="dv">13</span>], <span class="st">'JKD'</span>: matrix[i,<span class="dv">14</span>], <span class="st">'MGP'</span>: matrix[i,<span class="dv">15</span>], <span class="st">'WOX5'</span>: matrix[i,<span class="dv">16</span>], <span class="st">'CLE40'</span>: matrix[i,<span class="dv">17</span>]}</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Save the updated Boolean state for the next time step in the matrix.</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        matrix[i<span class="op">+</span><span class="dv">1</span>, :] <span class="op">=</span> rootNetwork(parameters) <span class="co"># Save the output in i+1</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>plotBooleanTimecourse(matrix,timesteps)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plotBooleanTimecourse(matrix,timesteps):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Plot the boolean network timecourse.</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Input:</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">        matrix: 2D array with rows representing time steps and columns representing</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">            variables (CK, ARR1, SHY2, ... CLE40); expected values are 0/1.</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">        timesteps: number of time steps to plot.</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Output:</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">        Saves a heatmap to 'output/1-boolean-IC-timecourse.png' and displays it.</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns nothing.</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">8</span>))</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    variable_names <span class="op">=</span> [<span class="st">'CK'</span>, <span class="st">'ARR1'</span>, <span class="st">'SHY2'</span>, <span class="st">'AUXIAAR'</span>, <span class="st">'ARFR'</span>, <span class="st">'ARF10'</span>, <span class="st">'ARF5'</span>, <span class="st">'XAL1'</span>, </span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'PLT'</span>, <span class="st">'AUX'</span>, <span class="st">'SCR'</span>, <span class="st">'SHR'</span>, <span class="st">'MIR165'</span>, <span class="st">'PHB'</span>, <span class="st">'JKD'</span>, <span class="st">'MGP'</span>, <span class="st">'WOX5'</span>, <span class="st">'CLE40'</span>]</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    sns.heatmap(matrix, cmap<span class="op">=</span><span class="st">"viridis"</span>, cbar<span class="op">=</span><span class="va">True</span>, xticklabels<span class="op">=</span>variable_names, cbar_kws<span class="op">=</span>{<span class="st">"ticks"</span>: [<span class="dv">0</span>, <span class="dv">1</span>]})</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">#sns.heatmap(matrix, cmap=sns.color_palette(["red", "green"], as_cmap=True), cbar=True, xticklabels=variable_names, cbar_kws={"ticks": [0, 1]})</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    plt.grid(visible<span class="op">=</span><span class="va">True</span>, which<span class="op">=</span><span class="st">'both'</span>, axis<span class="op">=</span><span class="st">'both'</span>, color<span class="op">=</span><span class="st">'white'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    plt.xticks(np.arange(<span class="bu">len</span>(variable_names)), variable_names, rotation<span class="op">=</span><span class="dv">90</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    plt.yticks(np.arange(timesteps<span class="op">+</span><span class="dv">1</span>), np.arange(timesteps<span class="op">+</span><span class="dv">1</span>))</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">"variables"</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">"Timesteps"</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">"Boolean Network Timecourse"</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    plt.savefig(<span class="st">"output/1-boolean-IC-timecourse.png"</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Run the program several times. Does the attractor recovered is always the same? How many different attractors does the model recover?</p>
 </div>
 </div>
 </div>
-<p>Use the function <code>plotBooleanTimecourse()</code> to make a heatmap plot of how each variable in the network is updated in the simulated timesteps. 30 timesteps is probably enough for this network to reach an attractor.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Code for plotting the timecourse simulation
+<span class="screen-reader-only">Note</span>Function: timecourse simulation (remember to call it in the Execution part of the code)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plotBooleanTimecourse(matrix,timesteps):</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Plot the boolean network timecourse.</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Input:</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">        matrix: 2D array with rows representing time steps and columns representing</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">            variables (CK, ARR1, SHY2, ... CLE40); expected values are 0/1.</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">        timesteps: number of time steps to plot.</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Output:</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">        Saves a heatmap to 'output/1-boolean-IC-timecourse.png' and displays it.</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns nothing.</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">8</span>))</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    variable_names <span class="op">=</span> [<span class="st">'CK'</span>, <span class="st">'ARR1'</span>, <span class="st">'SHY2'</span>, <span class="st">'AUXIAAR'</span>, <span class="st">'ARFR'</span>, <span class="st">'ARF10'</span>, <span class="st">'ARF5'</span>, <span class="st">'XAL1'</span>, </span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'PLT'</span>, <span class="st">'AUX'</span>, <span class="st">'SCR'</span>, <span class="st">'SHR'</span>, <span class="st">'MIR165'</span>, <span class="st">'PHB'</span>, <span class="st">'JKD'</span>, <span class="st">'MGP'</span>, <span class="st">'WOX5'</span>, <span class="st">'CLE40'</span>]</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    sns.heatmap(matrix, cmap<span class="op">=</span><span class="st">"viridis"</span>, cbar<span class="op">=</span><span class="va">True</span>, xticklabels<span class="op">=</span>variable_names, cbar_kws<span class="op">=</span>{<span class="st">"ticks"</span>: [<span class="dv">0</span>, <span class="dv">1</span>]})</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">#sns.heatmap(matrix, cmap=sns.color_palette(["red", "green"], as_cmap=True), cbar=True, xticklabels=variable_names, cbar_kws={"ticks": [0, 1]})</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    plt.grid(visible<span class="op">=</span><span class="va">True</span>, which<span class="op">=</span><span class="st">'both'</span>, axis<span class="op">=</span><span class="st">'both'</span>, color<span class="op">=</span><span class="st">'white'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    plt.xticks(np.arange(<span class="bu">len</span>(variable_names)), variable_names, rotation<span class="op">=</span><span class="dv">90</span>)</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    plt.yticks(np.arange(timesteps<span class="op">+</span><span class="dv">1</span>), np.arange(timesteps<span class="op">+</span><span class="dv">1</span>))</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">"variables"</span>)</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">"Timesteps"</span>)</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">"Boolean Network Timecourse"</span>)</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    plt.savefig(<span class="st">"output/1-boolean-IC-timecourse.png"</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Run the program several times. Does the attractor recovered is always the same? How many different attractors does the model recover?</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> TimecourseSimulation():</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    timesteps<span class="op">=</span><span class="dv">20</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    variables<span class="op">=</span><span class="dv">18</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create the timecourse matrix for the updating of the Boolean network. The first row stores a random </span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># binary initial state for all 18 variables, and each subsequent row is obtained by updating the</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># network from the previous state according to the logical rules encoded in rootNetwork().</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># This simulates how the gene regulatory network evolves over time from a random starting point.</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    matrix <span class="op">=</span> np.zeros((timesteps<span class="op">+</span><span class="dv">1</span>, variables), dtype<span class="op">=</span><span class="bu">int</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    matrix[<span class="dv">0</span>,:] <span class="op">=</span> np.random.randint(<span class="dv">0</span>, <span class="dv">2</span>, size<span class="op">=</span>variables) <span class="co"># Random initial condition</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(timesteps):</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Pass the current state of all variables to the update function so it can compute the next</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># state of the network based on the Boolean rules.</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        parameters<span class="op">=</span> {<span class="st">'CK'</span>: matrix[i,<span class="dv">0</span>], <span class="st">'ARR1'</span>: matrix[i,<span class="dv">1</span>], <span class="st">'SHY2'</span>: matrix[i,<span class="dv">2</span>], <span class="st">'AUXIAAR'</span>: matrix[i,<span class="dv">3</span>], <span class="st">'ARFR'</span>: matrix[i,<span class="dv">4</span>], <span class="st">'ARF10'</span>: matrix[i,<span class="dv">5</span>], <span class="st">'ARF5'</span>: matrix[i,<span class="dv">6</span>], <span class="st">'XAL1'</span>: matrix[i,<span class="dv">7</span>], <span class="st">'PLT'</span>: matrix[i,<span class="dv">8</span>], <span class="st">'AUX'</span>: matrix[i,<span class="dv">9</span>], <span class="st">'SCR'</span>: matrix[i,<span class="dv">10</span>], <span class="st">'SHR'</span>: matrix[i,<span class="dv">11</span>], <span class="st">'MIR165'</span>: matrix[i,<span class="dv">12</span>], <span class="st">'PHB'</span>: matrix[i,<span class="dv">13</span>], <span class="st">'JKD'</span>: matrix[i,<span class="dv">14</span>], <span class="st">'MGP'</span>: matrix[i,<span class="dv">15</span>], <span class="st">'WOX5'</span>: matrix[i,<span class="dv">16</span>], <span class="st">'CLE40'</span>: matrix[i,<span class="dv">17</span>]}</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Save the updated Boolean state for the next time step in the matrix.</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        matrix[i<span class="op">+</span><span class="dv">1</span>, :] <span class="op">=</span> rootNetwork(parameters) <span class="co"># Save the output in i+1</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    plotBooleanTimecourse(matrix,timesteps)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
+<p>Use the function <code>plotBooleanTimecourse()</code> to make a heatmap plot of how each variable in the network is updated in the simulated timesteps. 30 timesteps is probably enough for this network to reach an attractor.</p>
 </section>
 </section>
 <section id="algorithmic-thinking" class="level2" data-number="7.4">
@@ -1290,10 +1290,6 @@ examples of biological regulatory interactions that can be described with each l
 </div>
 <section id="references" class="level2" data-number="7.5">
 <h2 data-number="7.5" class="anchored" data-anchor-id="references"><span class="header-section-number">7.5</span> References</h2>
-<ul>
-<li><span class="citation" data-cites="rozum2023boolean">Rozum et al. (<a href="#ref-rozum2023boolean" role="doc-biblioref">2023</a>)</span></li>
-<li><span class="citation" data-cites="garcia2020system">Garcı́a-Gómez et al. (<a href="#ref-garcia2020system" role="doc-biblioref">2020</a>)</span></li>
-</ul>
 
 
 </section>

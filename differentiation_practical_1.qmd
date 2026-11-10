@@ -150,7 +150,7 @@ This model includes many regulatory interactions discovered for the cells of pla
 of experimental research. Here, all this knowledge is encoded as logical rules. 
 
 ::: {.callout-note collapse="true"}
-## Boolean network 1- Root
+## Function: Boolean network 1- Root
 
 ``` python
 def rootNetwork(parameters): 
@@ -221,32 +221,7 @@ saving in a matrix the time course of the simulation. This can be done using a
 for loop as shown below: 
 
 ::: {.callout-note collapse="true"}
-## Code for timecourse simulation
-```python
-    timesteps=20
-    variables=18
-    # Create the timecourse matrix for the updating of the Boolean network. The first row stores a random 
-    # binary initial state for all 18 variables, and each subsequent row is obtained by updating the
-    # network from the previous state according to the logical rules encoded in rootNetwork().
-    # This simulates how the gene regulatory network evolves over time from a random starting point.
-    matrix = np.zeros((timesteps+1, variables), dtype=int)
-    matrix[0,:] = np.random.randint(0, 2, size=variables) # Random initial condition
-    for i in range(timesteps):
-        # Pass the current state of all variables to the update function so it can compute the next
-        # state of the network based on the Boolean rules.
-        parameters= {'CK': matrix[i,0], 'ARR1': matrix[i,1], 'SHY2': matrix[i,2], 'AUXIAAR': matrix[i,3], 'ARFR': matrix[i,4], 'ARF10': matrix[i,5], 'ARF5': matrix[i,6], 'XAL1': matrix[i,7], 'PLT': matrix[i,8], 'AUX': matrix[i,9], 'SCR': matrix[i,10], 'SHR': matrix[i,11], 'MIR165': matrix[i,12], 'PHB': matrix[i,13], 'JKD': matrix[i,14], 'MGP': matrix[i,15], 'WOX5': matrix[i,16], 'CLE40': matrix[i,17]}
-        # Save the updated Boolean state for the next time step in the matrix.
-        matrix[i+1, :] = rootNetwork(parameters) # Save the output in i+1
-
-plotBooleanTimecourse(matrix,timesteps)
-```
-:::
-
-Use the function `plotBooleanTimecourse()` to make a heatmap plot of how each variable in the network 
-is updated in the simulated timesteps. 30 timesteps is probably enough for this network to reach an attractor. 
-
-::: {.callout-note collapse="true"}
-## Code for plotting the timecourse simulation
+## Function: plotting the timecourse simulation
 ```python
 def plotBooleanTimecourse(matrix,timesteps):
     """Plot the boolean network timecourse.
@@ -279,6 +254,31 @@ Run the program several times. Does the attractor recovered is always the same?
 How many different attractors does the model recover?
 
 :::
+
+::: {.callout-note collapse="true"}
+## Function: timecourse simulation (remember to call it in the Execution part of the code)
+```python
+def TimecourseSimulation():
+    timesteps=20
+    variables=18
+    # Create the timecourse matrix for the updating of the Boolean network. The first row stores a random 
+    # binary initial state for all 18 variables, and each subsequent row is obtained by updating the
+    # network from the previous state according to the logical rules encoded in rootNetwork().
+    # This simulates how the gene regulatory network evolves over time from a random starting point.
+    matrix = np.zeros((timesteps+1, variables), dtype=int)
+    matrix[0,:] = np.random.randint(0, 2, size=variables) # Random initial condition
+    for i in range(timesteps):
+        # Pass the current state of all variables to the update function so it can compute the next
+        # state of the network based on the Boolean rules.
+        parameters= {'CK': matrix[i,0], 'ARR1': matrix[i,1], 'SHY2': matrix[i,2], 'AUXIAAR': matrix[i,3], 'ARFR': matrix[i,4], 'ARF10': matrix[i,5], 'ARF5': matrix[i,6], 'XAL1': matrix[i,7], 'PLT': matrix[i,8], 'AUX': matrix[i,9], 'SCR': matrix[i,10], 'SHR': matrix[i,11], 'MIR165': matrix[i,12], 'PHB': matrix[i,13], 'JKD': matrix[i,14], 'MGP': matrix[i,15], 'WOX5': matrix[i,16], 'CLE40': matrix[i,17]}
+        # Save the updated Boolean state for the next time step in the matrix.
+        matrix[i+1, :] = rootNetwork(parameters) # Save the output in i+1
+    plotBooleanTimecourse(matrix,timesteps)
+```
+:::
+
+Use the function `plotBooleanTimecourse()` to make a heatmap plot of how each variable in the network 
+is updated in the simulated timesteps. 30 timesteps is probably enough for this network to reach an attractor. 
 
 
 :::{.content-visible when-meta="params.show_answers"}

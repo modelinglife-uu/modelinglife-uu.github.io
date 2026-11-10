@@ -9,27 +9,17 @@ params:
 
 In this practical you will get hands on experience into making gene regulatory networks 
 models. First you will practice how to encode regulatory interactions into ordinary 
-differential equations and logical rules. Next you will study how many interactions produce
-self-sustained activity configurations (attractors) in a Boolean network model (@rozum2023boolean).
+differential equations and logical rules. Next you will use examples of Boolean networks to study 
+their self-sustained activity configurations (attractors) (@rozum2023boolean).
 Lastly, you will learn how to predict the genes that cause cell fate transitions (attractor changes). 
 
-Today we will use the following python file: `circuitsfunctions.py`.  In it you will find 
-the code of the functions we use throughout the practical, have a quick look at it. 
+Today we will use the following python file: `WC07_Gene_regulatory_networks_I.py`.  In it you will find 
+the parameters, functions and execution code. First have a look at the functions; look at what each takes as input and returns as output and how they are used in the `main`. 
 
-### Running this practical in VS Code
-
-This practical is best run in VS Code. If you haven't set it up yet, follow the [setup instructions](intro_to_python.qmd#setting-up-visual-studio-code).
 
 ## Regulatory interactions
 
-Open `Boolean_practical.py` and `circuitsfunctions.py`. The first file has the main running 
-code, and the second one has only the functions that are used in the main.This is a way to 
-keep the code "simple" and easy to read. First have a look at the functions `ODEgeneRegulation()` 
-and `logicalRule()`; look at what each takes as input and returns as output. 
-
-Both functions model an $AND$ gate where the variable $A$ and variable $B$ positively regulate $C$ This 
-could represent that $A$ and $B$ are transcription factors that form a protein complex, and 
-that it is via this complex that they can bind the promoter of $C$ to promote its expression. 
+In the `main` you have a Boolean and an ODE model to simulate an $AND$ gate where the variable $A$ and variable $B$ are both needed to positively regulate $C$. This could represent that $A$ and $B$ are transcription factors that form a protein complex, and that it is via this complex that they can bind the promoter of $C$ to promote its expression. 
 
 While `ODEgeneRegulation()` encodes this regulation with an ordinary differential equation that 
 requires several parameters, `logicalRule()` only needs the logical operator relating the input genes. 
@@ -46,104 +36,21 @@ $B$, $d$ is the decay rate.
 
 $C_{t+1}=A_t$ & $B_t$
 
-
-**Python code for ODE and logical rule**
-```python
-def ODEgeneRegulation(a,t,parameters): 
-    prod=parameters['prod']
-    decay=parameters['decay']
-    Ksat=parameters['Ksat']
-    variableA=parameters['variableA']
-    variableB=parameters['variableB']
-    n=parameters['n']
-    outputC=a[0]
-    doutputC=prod*variableA**n/(Ksat**n+variableA**n)*variableB**n/(Ksat**n+variableB**n)-decay*outputC #Tip: Change this in exercise 8.3
-    return(doutputC)
-
-def logicalRule(variableA,variableB):
-    return(variableA and variableB)
-```
+Running the code will produce a plot showing the value of $C$ for different combination of values of $A$ and $B$. Both implementations of this regulatory interaction produce qualitatively the same effect, i.e. $C$ is active when both $A$ and $B$ are active. Yet, the ODE version recovers quantitative differences in $C$ activity with values higher than 1. Notice that the exploration values for the ODE model is 11 values (0,1,2,3,4,5,6,7,8,9,10), while for a Boolean model is 2 (0 or 1). 
 
 :::{#exr-non}
-## Mathematical thinking
+## Comparing ODEs and Boolean
 
-What is the minimum information you need to encode a regulatory interaction with either function? In what cases would you prefer to use an ODE or a logical rule for a model?
-:::
-
-::: {.content-visible when-meta="params.show_answers"}
-
-  > **Answer** To model a regulatory interaction with a logical function we  need the information of who is
-  > regulating who (direction of interactions), and how (effect of interaction); no parameters needed. To 
-  > model the same with an ODE we also need several parameters: production rate, decay rate, K, n. 
-
-:::
-
-Let's run the model to simulate what happens if $A$ and $B$ are both active/expressed. Do this using the
-`ODEgeneRegulation()` and `logicalRule()` functions. Copy the following lines of code inside the `main` 
-in `Boolean_practical`. 
-
-* Let op! Running the code may show a `NumbaDeprecationWarning`, ignore it.
-
-```python
-# ODErun has three arguments: model, geneA, geneB
-A=10
-B=10
-ODErun(ODEgeneRegulation,A,B) 
-
-# Boolean model
-# look at the text in the terminal for the result:
-A=1
-B=1
-print("the boolean operation of variableA ",A," AND variableB",B," is:", logicalRule(A,B))
-```
-
-Both implementations of this regulatory interaction produce the same effect, i.e. $C$ is active when both
-$A$ and $B$ are active. Yet, the ODE version recovers quantitative differences in $C$ activity with values
-higher than 1.
-
-Now, let’s explore the output of each function using different values of $A$ and $B$. We are going to 
-use the code below to plot the output of the ODE and the Boolean model in a 2D heatmap. Notice that the exploration values for the ODE model is 11 values (0,1,2,3,4,5,6,7,8,9,10), while for a Boolean model is 2 (0 or 1). Copy this code inside the `main` in `Boolean_practical.py`.
-
-ODE model simulation - AND gate:
-```python
-explorationvalue = 11 # an ODE model allows us to explore more values than a Boolean model
-ode_output = np.zeros((explorationvalue, explorationvalue))
-for variableA in range(0, explorationvalue):
-    for variableB in range(0, explorationvalue):
-        parameters = {'prod': 0.01, 'decay': 0.001,'Ksat': 4, 'n': 2,'variableA':variableA,'variableB':variableB} # prod, decay, Ksat, n, and initial values for A and B
-        cells = odeint(ODEgeneRegulation, 0, np.arange(0, 1000.1 , 0.1), args=(parameters,)) 
-        ode_output[variableA, variableB] = cells[-1, 0]
-```
-
-Boolean network simulation - AND gate:
-```python
-explorationvalue=2 # a Boolean model assumes there is only 2 possible states: 0 or 1
-bool_output = np.zeros((explorationvalue, explorationvalue))
-for variableA in range(0, explorationvalue):
-    for variableB in range(0, explorationvalue):
-        bool_output[variableA, variableB] = variableA and variableB #AND #Tip: Change this in exercise 8.3
-```
-
-After running each, this function plots the ODE and Boolean results side by side:
-```python
-ODEBooleanPlot(ode_output, bool_output)
-```
-
-Change the running time for the ODE model, and the $K$ of each input, and see what effect that has on $C$.
-
-:::{#exr-non}
-## Biology
-
- What similarties and differences in the activity of $C$ do you see using each approach? Why is the 
- activity of $C$ higher in the ODE output than the Boolean one? 
+ Why is the activity of $C$ higher in the ODE output than the Boolean one? 
 :::
 
 ::: {.content-visible when-meta="params.show_answers"}
   > **Answer** In both cases $C$ has maximum activity when both $A$ and $B$ are active/expressed. 
   > Whereas in a Boolean model the activity of the variables can be either 0 or 1 and thus we only 
-  > see $C$ active when it crosses a threshold, in an ODE the variables can have continuous values 
-  > with the maximum level determined by the production and the decay rate parameters ($p/d$). 
-  > This is the reason $C$ has values close to 5 in the ODE output. According to the parameters we picked     > $p/d = 10$. $C$ reaches this level if you run the simulation longer and reduce $K$ (try!).
+  > see $C$ =1, in an ODE the variables can have continuous values with the maximum level determined 
+  > by the production and the decay rate parameters ($p/d$). This is the reason $C$ has values close 
+  > to 5 in the ODE output. According to the parameters we picked $p/d = 10$. $C$ reaches this 
+  > level if you run the simulation for longer and reduce $K$.
   > 
   > ![ODE and Boolean output for the logical gate A AND B, for C regulation.](images/odetegenboolean.png){#vegmini1}
 :::
@@ -152,13 +59,12 @@ Change the running time for the ODE model, and the $K$ of each input, and see wh
 
 ## Altorithmic thinking:
 
-Now let's compare how ODE and Boolean models represent different regulatory interactions. 
-You can use the same code in the previous box. Remember to modify the logical operator in 
-the Boolean section, and to modify the $doutputC$ equation in the `ODEgeneRegulation` function
-in `circuitsfunctions.py`. As before change the parameters in the ODE to see how that changes 
-the activity of $C$: 
+Modify the code to implement different regulatory functions with the ODE and Boolean models. 
+You need to modify the logical operator in the Boolean section, and to modify the $doutputC$ 
+equation in the `ODEgeneRegulation` function. You can also change the parameters in the ODE 
+to see how that changes the activity of $C$: 
 
-
+**Regulatory functions: **
 1. Either `A` or `B` can activate `C`. 
 2. `A` represses `C`.
 3. `A` and `B` together repress `C`. 

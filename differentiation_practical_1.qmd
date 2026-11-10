@@ -7,6 +7,8 @@ params:
 
 ## Introduction {.unnumbered}
 
+![](images/grn.png){#vegmini1 fig-align="center" width=60%}
+
 In this practical you will get hands on experience into making gene regulatory networks 
 models. First you will practice how to encode regulatory interactions into ordinary 
 differential equations and logical rules. Next you will use examples of Boolean networks to study 
@@ -18,7 +20,6 @@ the parameters, functions and execution code. First have a look at the functions
 
 Throughout the practical you will see code that you need to add in the #Functions or #Execution part of the python program.
 
-![](images/grn.png){#vegmini1 width=40%}
 
 ## Regulatory interactions
 
@@ -993,7 +994,7 @@ cell fate change could be happening. You could try:
 
 - If this doesn't work, what would you include in the model to improve its predictive power?
 
-![Vascular cells before the cut, gradually become all the other root cell types. From @efroni2016root.](images/efroni.png){#vegmini1 width=70%}
+![Vascular cells before the cut, gradually become all the other root cell types. From @efroni2016root.](images/efroni.png){#vegmini1 fig-align="center" width=70%}
 :::
 
 ::: {.content-visible when-meta="params.show_answers"}

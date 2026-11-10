@@ -290,6 +290,7 @@ is updated in the simulated timesteps. 30 timesteps is probably enough for this 
 
 :::
 
+:::{#exr-non}
 ## Algorithmic thinking
 Try this initial condition: 
 
@@ -450,8 +451,7 @@ def rootNetworkAsynchronous(parameters):
 
 ## Algorithmic thinking
 From here onwards use the `rootNetworkAsynchronous()` function.
-Using the previous code, add for loop to solve 100 random initial conditions, and then save the final activity
-configurations (attractors) in an `attractors matrix`. 
+Make your own function `InitialConditions` to solve 100 random initial conditions, and then save the final activity configurations (attractors) in an `attractors matrix`. 
 
 The `attractors matrix` should have the dimensions `(initial_conditions, variables)` so that you can plot 
 the results using the `plotBooleanAttractors()` function. 
@@ -494,12 +494,13 @@ def plotBooleanAttractors(attractors):
 
 
 ```python
-ICs=100
-attractors = np.zeros((ICs, len(parameters))) 
+def InitialConditions():
+    timesteps=100
+    ICs=100
 
 # your code
 
-plotBooleanAttractors(attractors) # it takes as argument a matrix of attractors
+    plotBooleanAttractors(attractors) # it takes as argument your matrix of attractors
 ```
 :::
 

@@ -578,7 +578,6 @@ window.Quarto = {
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">7.1</span> Introduction</a></li>
   <li><a href="#regulatory-interactions" id="toc-regulatory-interactions" class="nav-link" data-scroll-target="#regulatory-interactions"><span class="header-section-number">7.2</span> Regulatory interactions</a></li>
   <li><a href="#gene-regulatory-network" id="toc-gene-regulatory-network" class="nav-link" data-scroll-target="#gene-regulatory-network"><span class="header-section-number">7.3</span> Gene regulatory network</a></li>
-  <li><a href="#algorithmic-thinking" id="toc-algorithmic-thinking" class="nav-link" data-scroll-target="#algorithmic-thinking"><span class="header-section-number">7.4</span> Algorithmic thinking</a></li>
   </ul>
 </nav>
     </div>
@@ -708,7 +707,7 @@ examples of biological regulatory interactions that can be described with each l
 </div>
 <p>The model consists of 18 variables representing transcription factors, hormones, peptides. Look at the <code>rootNetwork()</code> function below. This function defines the state of 18 variables (CK, ARR1, SHY2, AUXIAAR, etc.) based on an input stored in <code>parameters</code>, then it updates the state of each variable using the logical operators <span class="math inline">\(AND\)</span>, <span class="math inline">\(OR\)</span> and <span class="math inline">\(NOT\)</span>; the result is stored in <code>w_variable</code>. The function returns the update state <code>w_variable</code> for each of the 18 variables.</p>
 <section id="time-course-simulation" class="level3">
-<h3 class="anchored" data-anchor-id="time-course-simulation">Time course simulation</h3>
+<h3 class="anchored">Time course simulation</h3>
 <p>To solve this Boolean network we have to first define an initial condition for each of these 18 variables, and then update their state using the logical functions stored in <code>rootNetwork</code>. We will repeat this updating for a given number of time steps (<code>timesteps</code>). This network has a total of 2^18 initial conditions, we are going to explore one of them at random by initializing the state of the variables with 0 or 1. First, we need to input the initial condition of the variables to <code>rootNetwork()</code> using <code>parameters</code>. Next, we save the output of this function as the new current state. We repeat this procedure iteratively for as many time steps as we defined, saving in a matrix the time course of the simulation. This can be done using a for loop as shown below:</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -783,13 +782,11 @@ examples of biological regulatory interactions that can be described with each l
 </div>
 </div>
 <p>Use the function <code>plotBooleanTimecourse()</code> to make a heatmap plot of how each variable in the network is updated in the simulated timesteps. 30 timesteps is probably enough for this network to reach an attractor.</p>
-</section>
-</section>
-<section id="algorithmic-thinking" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="algorithmic-thinking"><span class="header-section-number">7.4</span> Algorithmic thinking</h2>
-<p>Try this initial condition:</p>
+<div id="exr-non" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 7.4 (Algorithmic thinking)</strong></span> Try this initial condition:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>matrix[<span class="dv">0</span>,:]<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Solve this initial condition using <code>rootNetwork()</code> and the <code>rootNetworkAsynchronous()</code> (see below). Compare the output in each case. What happens and why? What does an asynchronous update do? :::</p>
+<p>Solve this initial condition using <code>rootNetwork()</code> and the <code>rootNetworkAsynchronous()</code> (see below). Compare the output in each case. What happens and why? What does an asynchronous update do?</p>
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -931,7 +928,7 @@ examples of biological regulatory interactions that can be described with each l
 </div>
 </div>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.4 (Algorithmic thinking)</strong></span> From here onwards use the <code>rootNetworkAsynchronous()</code> function. Using the previous code, add for loop to solve 100 random initial conditions, and then save the final activity configurations (attractors) in an <code>attractors matrix</code>.</p>
+<p><span class="theorem-title"><strong>Exercise 7.5 (Algorithmic thinking)</strong></span> From here onwards use the <code>rootNetworkAsynchronous()</code> function. Make your own function <code>InitialConditions</code> to solve 100 random initial conditions, and then save the final activity configurations (attractors) in an <code>attractors matrix</code>.</p>
 <p>The <code>attractors matrix</code> should have the dimensions <code>(initial_conditions, variables)</code> so that you can plot the results using the <code>plotBooleanAttractors()</code> function.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
@@ -977,12 +974,13 @@ examples of biological regulatory interactions that can be described with each l
 <ul>
 <li>Notice here you should save <strong>only the final state</strong> for each initial condition you explore.</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ICs<span class="op">=</span><span class="dv">100</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>attractors <span class="op">=</span> np.zeros((ICs, <span class="bu">len</span>(parameters))) </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># your code</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>plotBooleanAttractors(attractors) <span class="co"># it takes as argument a matrix of attractors</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> InitialConditions():</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    timesteps<span class="op">=</span><span class="dv">100</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    ICs<span class="op">=</span><span class="dv">100</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># your code</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    plotBooleanAttractors(attractors) <span class="co"># it takes as argument your matrix of attractors</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>You should have found many different attractors. On Monday we learned of the use of multidimensional reduction techniques to study the gene expression patterns of single cell transcriptomics. Let’s use that tecnhique to see how the attractors we recovered relate to each other. For this you need to install the <code>umap-learn</code> package using this line:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pip install umap<span class="op">-</span>learn</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -990,26 +988,26 @@ examples of biological regulatory interactions that can be described with each l
 <p>Now that you have installed <code>umap-learn</code>, let’s run a UMAP of the attractors you recovered (this takes a bit of time to run, so be patient 😉):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>UMAPBoolean(attractors)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.5 (Biology / Conceptual thinking)</strong></span> Why do you see clearly defined groups and not a continuous distribution of attractors?</p>
+<p><span class="theorem-title"><strong>Exercise 7.6 (Biology / Conceptual thinking)</strong></span> Why do you see clearly defined groups and not a continuous distribution of attractors?</p>
 </div>
 <p>Now let’s recover the unique attractors you found. First, let’s group similar attractors using the <code>sorted()</code> function:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>attractors_sorted <span class="op">=</span> np.array(<span class="bu">sorted</span>(attractors.tolist()))</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>plotBooleanAttractors(attractors_sorted) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.6 (Biology / Conceptual thinking)</strong></span> Do some attractors occur more frequently than others. Why is this?</p>
+<p><span class="theorem-title"><strong>Exercise 7.7 (Biology / Conceptual thinking)</strong></span> Do some attractors occur more frequently than others. Why is this?</p>
 </div>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.7 (Biology)</strong></span> Some variables are active (1) in the majority of the attractors, others in half, and others in very few. In how many attractors is the variable SHR active? What does this suggest about its regulation?</p>
+<p><span class="theorem-title"><strong>Exercise 7.8 (Biology)</strong></span> Some variables are active (1) in the majority of the attractors, others in half, and others in very few. In how many attractors is the variable SHR active? What does this suggest about its regulation?</p>
 </div>
 <p>Now let’s remove the repeated rows (duplicate attractor states) to see unique attractors using the <code>np.unique()</code> function:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>_, unique_indices <span class="op">=</span> np.unique(attractors, axis<span class="op">=</span><span class="dv">0</span>, return_index<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>attractors_unique <span class="op">=</span> attractors[np.sort(unique_indices)]</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>plotBooleanAttractors(attractors_unique) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.8 (Biology / conceptual thinking)</strong></span> How many unique attractors did you find? Compare them with the ones reported in the paper. Are they all fixed points?</p>
+<p><span class="theorem-title"><strong>Exercise 7.9 (Biology / conceptual thinking)</strong></span> How many unique attractors did you find? Compare them with the ones reported in the paper. Are they all fixed points?</p>
 </div>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.12 (Cell differentiation – jumping from one attractor to another)</strong></span> Whether a continuous or a discrete model is better, depends on the question we want to answer. To study the logic of cell differentiation, a Boolean model might be more appropriated particularly if we want to study the role of many genes, but lack details of the parameters underlying each reaction. Alternatively, if we wish to study the role of quantitative information in how cells change from one cell fate to another, a continuous model might be more appropriate.</p>
+<p><span class="theorem-title"><strong>Exercise 7.13 (Cell differentiation – jumping from one attractor to another)</strong></span> Whether a continuous or a discrete model is better, depends on the question we want to answer. To study the logic of cell differentiation, a Boolean model might be more appropriated particularly if we want to study the role of many genes, but lack details of the parameters underlying each reaction. Alternatively, if we wish to study the role of quantitative information in how cells change from one cell fate to another, a continuous model might be more appropriate.</p>
 <p>Here we will see how we can convert the Boolean model to a continuous one and use it to predict which regulators are able of causing a change in the state of the system (changes in cell fate!)</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
@@ -1196,7 +1194,7 @@ examples of biological regulatory interactions that can be described with each l
 </div>
 </div>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.9 (Modeling choices)</strong></span> Do the attractors match those recovered with the Boolean network?</p>
+<p><span class="theorem-title"><strong>Exercise 7.10 (Modeling choices)</strong></span> Do the attractors match those recovered with the Boolean network?</p>
 </div>
 <p>Now let’s use the model to study cell differentiation routes. Let’s start in the following initial condition (IC vector), and find a change in a variable that produce a jump to another attractor (end). For this you can simply flip the activity of a gene in the initial condition (from <span class="math inline">\(0→1\)</span> or <span class="math inline">\(1→0\)</span>) and see the final attractor matches the desired end state. This simulated change mimics how an environmental signal may impinge in the regulatory network.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -1283,13 +1281,13 @@ examples of biological regulatory interactions that can be described with each l
 </div>
 </div>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.10 (Algorithmic thinking / biology)</strong></span> What regulator causes the transition between these attractors? How many variables change their activity between the initial and final state? what could be the biological meaning of this switch? how would you test this experimentally?</p>
+<p><span class="theorem-title"><strong>Exercise 7.11 (Algorithmic thinking / biology)</strong></span> What regulator causes the transition between these attractors? How many variables change their activity between the initial and final state? what could be the biological meaning of this switch? how would you test this experimentally?</p>
 </div>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.11 (Biology)</strong></span> Use the model to predict the rest of the attractor transitions because of single variable changes. Are all attractor transitions possible, or are there preferred differentiation routes? Why do you think this is?</p>
+<p><span class="theorem-title"><strong>Exercise 7.12 (Biology)</strong></span> Use the model to predict the rest of the attractor transitions because of single variable changes. Are all attractor transitions possible, or are there preferred differentiation routes? Why do you think this is?</p>
 </div>
-<section id="references" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="references"><span class="header-section-number">7.5</span> References</h2>
+<section id="references" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="references"><span class="header-section-number">7.4</span> References</h2>
 
 
 </section>
@@ -1316,6 +1314,7 @@ Garcı́a-Gómez, Mónica L, Diego Ornelas-Ayala, Adriana Garay-Arroyo, Berenice
 Rozum, Jordan C, Colin Campbell, Eli Newby, Fatemeh Sadat Fatemi Nasrollahi, and Reka Albert. 2023. <span>“Boolean Networks as Predictive Models of Emergent Biological Behaviors.”</span> <em>arXiv Preprint arXiv:2310.12901</em>.
 </div>
 </div>
+</section>
 </section>
 
 </main> <!-- /main -->

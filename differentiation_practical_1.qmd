@@ -126,7 +126,8 @@ examples of biological regulatory interactions that can be described with each l
 
 :::{.content-visible when-meta="params.show_answers"}
 
-  > **Answer** All logical gates can be modelled correctly with either approach. With Boolean models 
+  > **Answer** 
+  > All logical gates can be modelled correctly with either approach. With Boolean models 
   > we look quantitative resolution, with ODE we can model many more values than 0 and 1. Whether
   > one or the other is better, depends on what do you want to answer with the model.
   > 
@@ -707,6 +708,14 @@ How many unique attractors did you find? Compare them with the ones reported in 
 
 :::
 
+:::{.content-visible when-meta="params.show_answers"}
+
+  > **Answer** 
+  > See `WC07_Gene_regulatory_networks_I-Question3-9_answers` for the code with the 
+  answers for Question 3-9.
+
+:::
+
 ## Cell differentiation – jumping from one attractor to another
 
 Whether a continuous or a discrete model is better, depends on the question we want to answer.
@@ -830,16 +839,26 @@ def rootNetworkODE(a, t, parameters):
 Use the code below to run a random initial condition for the 18 variables (IC) and see how the system behaves.
 
 ::: {.callout-note collapse="true"}
-## Execution code: Solve ODE version of root model
+## Function: Solve ODE version of root model
 ```python
-timerunning=10.1 
-times = np.arange(0, timerunning, 0.1)
+def runODEroot(timeSimulation, timestep, decayrate=1, h=50, initial_condition=None):
+    """Simulate and plot the root-network ODE from a random or supplied initial state.
 
-IC = np.random.randint(0, 2, size=18).tolist() #random initial condition
-parameters = {'decayrate': 1, 'h': 50} 
-cells = odeint(rootNetworkODE, IC, times, args=(parameters,)) 
+    Inputs: simulation duration and timestep, decay rate, sigmoid steepness, and
+    an optional 18-value initial condition.
+    Output: None; displays and saves plots of the simulated trajectories.
+    """
+    times = np.arange(0, timeSimulation, timestep)
 
-plotODEroot(cells,times)
+    # Pass an 18-value initial_condition to choose it manually, or None for a random one.
+    IC = (np.random.randint(0, 2, size=18).tolist()
+          if initial_condition is None else list(initial_condition))
+    if len(IC) != 18:
+        raise ValueError("initial_condition must contain exactly 18 values")
+    parameters = {'decayrate': decayrate, 'h': h} 
+    cells = odeint(rootNetworkODE, IC, times, args=(parameters,)) 
+
+    plotODEroot(cells,times)
 ```
 :::
 
@@ -900,28 +919,36 @@ Do the attractors match those recovered with the Boolean network?
 :::
 
 Now let’s use the model to study cell differentiation routes of root cells. Let’s 
-start in the following initial condition (IC vector), and find a change in a 
-variable that produce a jump to another attractor (end). For this you can simply 
+start in the following initial condition (`initial_condition`), and find a change in a 
+variable that produce a jump to another attractor (`end_condition`). For this you can simply 
 flip the activity of a gene in the initial condition (from $0→1$ or $1→0$) and see 
 the final attractor matches the desired end state. This simulated change mimics 
 how an environmental signal may impinge in the regulatory network. 
 
+Use the function below that already has a nice plotting to monitor if the initial and
+end attractors match:
+
 ::: {.callout-note collapse="true"}
 ## Function: Jumping from one attractor to another
 ```python
-def plotODErootTransition(cells,times):
-    """Plot ODE trajectories alongside the target root state.
+def ODErootTransition(timeSimulation, timestep, initial_condition, end_condition, decayrate=1, h=50):
+    """Simulate the root-network ODE and compare its final state with a target.
 
-    Input:
-        cells (ndarray): time series of gene activities, shape (n_timepoints, n_variables).
-        times (array-like): simulation time points matching rows in cells.
-
-    Output:
-        None. Shows the trajectory plot and two heatmaps (final state and target end state), and saves the result to disk.
+    Inputs: duration, timestep, 18-value initial and target states, decay rate,
+    and sigmoid steepness. Output: displays and saves plots; returns None.
     """
+    times = np.arange(0, timeSimulation, timestep)
+
+    # Pass an 18-value initial_condition to choose it manually, or None for a random one.
+    if len(initial_condition) != 18:
+        raise ValueError("initial_condition must contain exactly 18 values")
+    if len(end_condition) != 18:
+            raise ValueError("end_condition must contain exactly 18 values")
+    parameters = {'decayrate': decayrate, 'h': h} 
+    cells = odeint(rootNetworkODE, initial_condition, times, args=(parameters,)) 
+
     attractorode = cells[-1, :]  # last value of the ODE simulation
     variablesNames=['CK','ARR1','SHY2','AUXIAAR','ARFR','ARF10','ARF5','XAL1','PLT','AUX','SCR','SHR','MIR165','PHB','JKD','MGP','WOX5','CLE40']
-    end=[1,1,0,0,1,1,1,1,1,1,0,0,1,0,0,0,0,1]
 
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(14, 6), gridspec_kw={'width_ratios': [3, 1, 1]})
 
@@ -943,7 +970,7 @@ def plotODErootTransition(cells,times):
     ax2.set_aspect(0.7)  # Make the heatmap narrower
 
     # Heatmap of desired end state
-    sns.heatmap(np.array(end).reshape(-1, 1), yticklabels=variablesNames, cmap="viridis", ax=ax3, cbar=False)
+    sns.heatmap(np.array(end_condition).reshape(-1, 1), yticklabels=variablesNames, cmap="viridis", ax=ax3, cbar=False)
     #sns.heatmap(np.array(end).reshape(-1, 1), yticklabels=variablesNames, cmap=sns.color_palette(["red", "green"], as_cmap=True), ax=ax3, cbar=False)
     ax3.set_xticks([])
     ax3.set_ylabel('variables')
@@ -955,28 +982,17 @@ def plotODErootTransition(cells,times):
 ```
 :::
 
-::: {.callout-note collapse="true"}
-## Execution code: Cell fate transitions with ODE version of root model
-```python
-# We start here: 
-IC=[0,0,0,0,1,0,1,1,1,1,1,1,1,0,1,0,1,0]
-# We want to end here. 
-end=[1,1,0,0,1,1,1,1,1,1,0,0,1,0,0,0,0,1]
-# variable order
-# CK, ARR1, SHY2, AUXIAAR, ARFR, ARF10, ARF5, XAL1, PLT, AUX, SCR, SHR, MIR165, PHB, JKD, MGP, WOX5, CLE40
-
-# your code 
-
-plotODErootTransition(cells,times) # use this function to plot your result (it already knows the desired end state)
-```
-:::
-
 :::{#exr-non}
 
 ## Algorithmic thinking / biology
-What regulator causes the transition between these attractors? How many variables 
-change their activity between the initial and final state? How would you test 
-this model prediction experimentally?
+Use the following initial and end conditions: 
+
+`initial_condition=[0,0,0,0,1,0,1,1,1,1,1,1,1,0,1,0,1,0] # QC` 
+`end_condition=[1,1,0,0,1,1,1,1,1,1,0,0,1,0,0,0,0,1] # Endodermis`
+
+What regulator causes the transition from the QC to the Endodermis attractors? 
+How many variables change their activity between the initial and final state? 
+How would you test this model prediction experimentally?
 :::
 
 :::{.content-visible when-meta="params.show_answers"}
@@ -1010,6 +1026,14 @@ differentiation routes? What does this say about the system?
 
 :::
 
+:::{.content-visible when-meta="params.show_answers"}
+
+  > **Answer** 
+  > See `WC07_Gene_regulatory_networks_I-Question10-13_answers` for the code with the 
+  answers for Question 3-9.
+
+:::
+
 :::{#exr-non}
 
 ## Question for master students {.unnumbered}
@@ -1032,7 +1056,7 @@ cell fate change could be happening. You could try:
 ::: {.content-visible when-meta="params.show_answers"}
 
   > **Answer** 
-  > These is an open question and we don't know the answer. Feel free 
+  > This is an open question, and we don't know the answer. Feel free 
   > to discuss with us if you find something interesting and/or have an 
   > interesting answer. 
 :::

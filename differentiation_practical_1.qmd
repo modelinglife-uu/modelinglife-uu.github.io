@@ -11,14 +11,15 @@ params:
 
 In this practical you will get hands on experience into making gene regulatory networks 
 models. First you will practice how to encode regulatory interactions into ordinary 
-differential equations and logical rules. Next you will use examples of Boolean networks to study 
-their self-sustained activity configurations (attractors) (@rozum2023boolean).
+differential equations and logical rules. Next you will use an example Boolean network 
+and will recover its self-sustained activity configurations (attractors) (@rozum2023boolean).
 Lastly, you will learn how to predict the genes that cause cell fate transitions (attractor changes). 
 
 Today we will use the following python file: `WC07_Gene_regulatory_networks_I.py`.  In it you will find 
 the parameters, functions and execution code. First have a look at the functions; look at what each takes as input and returns as output and how they are used in the `main`. 
 
-Throughout the practical you will see code that you need to add in the #Functions or #Execution part of the python program.
+Throughout the practical you will see a drop-down menu with code that you need to add 
+either in the #Functions or #Execution part of the python program. 
 
 
 ## Regulatory interactions
@@ -86,8 +87,9 @@ try any other biological scenario yon can think of.
 :::
 
 ::: {.content-visible when-meta="params.show_answers"}
-  > **Answer** See `Boolean_answered-8.3.py` to see an implementation of the regulatory interactions listed
-  > above. 
+  > **Answer** 
+  > See `WC07_Gene_regulatory_networks_I_Question2-answers.py` for the code
+  > implementing the regulatory interactions. 
   > 
   > 1. $OR$ gate: **A** $OR$ **B**
   > ![](images/0-or.png){#vegmini1}  
@@ -222,7 +224,56 @@ First, we need to input the initial condition of the variables to `rootNetwork()
 using `parameters`. Next, we save the output of this function as the new current 
 state. We repeat this procedure iteratively for as many time steps as we defined, 
 saving in a matrix the time course of the simulation. This can be done using a 
-for loop as shown below: 
+for loop as shown in the function `TimecourseSimulation`:
+
+::: {.callout-note collapse="true"}
+## Function: timecourse simulation (remember to call it in the Execution part of the code)
+```python
+def TimecourseSimulation(network="synchronous",initial_condition=None):
+    """Simulate and plot the root gene regulatory network over time.
+    Inputs: network: Update scheme, either "synchronous" or "asynchronous".
+        initial_condition: Optional sequence of 18 binary values specifying
+            the starting state in network-variable order. If None, a random
+            binary initial state is generated.
+    Outputs: Displays the Boolean timecourse heatmap and saves it to
+        'output/1-boolean-IC-timecourse.png'. Returns None.
+    """
+    
+    update_functions = {
+        "synchronous": rootNetwork,
+        "asynchronous": rootNetworkAsynchronous,
+    }
+    if network not in update_functions:
+        raise ValueError('network must be "rootNetwork" or "RootNetworkAsynchronous".')
+    update_network = update_functions[network]
+
+    timesteps=20
+    variables=18
+    # Create the timecourse matrix for the updating of the Boolean network. The first row stores a random 
+    # binary initial state for all 18 variables, and each subsequent row is obtained by updating the
+    # network from the previous state according to the logical rules encoded in rootNetwork().
+    # This simulates how the gene regulatory network evolves over time from a random starting point.
+    matrix = np.zeros((timesteps+1, variables), dtype=int)
+    if initial_condition is None:
+        matrix[0,:] = np.random.randint(0, 2, size=variables)
+    else:
+        initial_condition = np.asarray(initial_condition)
+        if initial_condition.shape != (variables,) or not np.isin(initial_condition, [0, 1]).all():
+            raise ValueError("initial_condition must contain exactly 18 binary values (0 or 1).")
+        matrix[0,:] = initial_condition
+    for i in range(timesteps):
+        # Pass the current state of all variables to the update function so it can compute the next
+        # state of the network based on the Boolean rules.
+        parameters= {'CK': matrix[i,0], 'ARR1': matrix[i,1], 'SHY2': matrix[i,2], 'AUXIAAR': matrix[i,3], 'ARFR': matrix[i,4], 'ARF10': matrix[i,5], 'ARF5': matrix[i,6], 'XAL1': matrix[i,7], 'PLT': matrix[i,8], 'AUX': matrix[i,9], 'SCR': matrix[i,10], 'SHR': matrix[i,11], 'MIR165': matrix[i,12], 'PHB': matrix[i,13], 'JKD': matrix[i,14], 'MGP': matrix[i,15], 'WOX5': matrix[i,16], 'CLE40': matrix[i,17]}
+        # Save the updated Boolean state for the next time step in the matrix.
+        matrix[i+1, :] = update_network(parameters) # Save the output in i+1
+    plotBooleanTimecourse(matrix,timesteps)
+
+```
+:::
+
+Use the function `plotBooleanTimecourse()` to make a heatmap plot of how each variable in the network 
+is updated in the simulated timesteps. 30 timesteps is probably enough for this network to reach an attractor. 
 
 ::: {.callout-note collapse="true"}
 ## Function: plotting the timecourse simulation
@@ -259,31 +310,6 @@ How many different attractors does the model recover?
 
 :::
 
-::: {.callout-note collapse="true"}
-## Function: timecourse simulation (remember to call it in the Execution part of the code)
-```python
-def TimecourseSimulation():
-    timesteps=20
-    variables=18
-    # Create the timecourse matrix for the updating of the Boolean network. The first row stores a random 
-    # binary initial state for all 18 variables, and each subsequent row is obtained by updating the
-    # network from the previous state according to the logical rules encoded in rootNetwork().
-    # This simulates how the gene regulatory network evolves over time from a random starting point.
-    matrix = np.zeros((timesteps+1, variables), dtype=int)
-    matrix[0,:] = np.random.randint(0, 2, size=variables) # Random initial condition
-    for i in range(timesteps):
-        # Pass the current state of all variables to the update function so it can compute the next
-        # state of the network based on the Boolean rules.
-        parameters= {'CK': matrix[i,0], 'ARR1': matrix[i,1], 'SHY2': matrix[i,2], 'AUXIAAR': matrix[i,3], 'ARFR': matrix[i,4], 'ARF10': matrix[i,5], 'ARF5': matrix[i,6], 'XAL1': matrix[i,7], 'PLT': matrix[i,8], 'AUX': matrix[i,9], 'SCR': matrix[i,10], 'SHR': matrix[i,11], 'MIR165': matrix[i,12], 'PHB': matrix[i,13], 'JKD': matrix[i,14], 'MGP': matrix[i,15], 'WOX5': matrix[i,16], 'CLE40': matrix[i,17]}
-        # Save the updated Boolean state for the next time step in the matrix.
-        matrix[i+1, :] = rootNetwork(parameters) # Save the output in i+1
-    plotBooleanTimecourse(matrix,timesteps)
-```
-:::
-
-Use the function `plotBooleanTimecourse()` to make a heatmap plot of how each variable in the network 
-is updated in the simulated timesteps. 30 timesteps is probably enough for this network to reach an attractor. 
-
 
 :::{.content-visible when-meta="params.show_answers"}
 
@@ -296,14 +322,18 @@ is updated in the simulated timesteps. 30 timesteps is probably enough for this 
 
 :::{#exr-non}
 ## Algorithmic thinking
-Try this initial condition: 
+
+Now we are going to test the robustness of the attractors to the updating scheme. 
+Give `TimecourseSimulation` the following as initial condition: 
 
 ```python
-matrix[0,:]=[0,1,1,0,1,1,0,0,1,0,1,1,1,1,1,0,1,0]
+[0,1,1,0,1,1,0,0,1,0,1,1,1,1,1,0,1,0]
 ```
 
-Solve this initial condition using `rootNetwork()` and the `rootNetworkAsynchronous()` (see below). Compare the output in 
-each case. What happens and why? What does an asynchronous update do?
+And solve using "synchronous" and then "asynchronous" option. (copy into your code the
+function below). Compare the output in each case. What happens and why? Look at what 
+the code in the function `rootNetworkAsynchronous` to understand what the asynchronous 
+updating does. 
 :::
 
 ::: {.callout-note collapse="true"}
@@ -444,8 +474,8 @@ def rootNetworkAsynchronous(parameters):
   > processes are inherently noisy. Thus, asynchronously updating the variables is a good idea.
   > The asynchronous updating function introduces a probability of update (95%) to each variable in 
   > the simulation. This means the variables might not be all updated each timestep. The initial condition 
-  > converges to a cyclic attractor in the synchronous updating function (`rootNetwork()`), and to a fixed
-  > point attractor in the asynchronous function (`rootNetworkAsynchronous()`). This means the cyclic 
+  > converges to a cyclic attractor in the synchronous updating scheme, and to a fixed
+  > point attractor in the asynchronous scheme. This means the cyclic 
   > behaviour recovered with the synchronous updating scheme was an artifact of updating all the variable at 
   > the same time. 
 
@@ -454,12 +484,22 @@ def rootNetworkAsynchronous(parameters):
 :::{#exr-non}
 
 ## Algorithmic thinking
-From here onwards use the `rootNetworkAsynchronous()` function.
-Make your own function `InitialConditions` to solve 100 random initial conditions, and then save the final activity configurations (attractors) in an `attractors matrix`. 
+From here onwards use the "asynchronous" option in the `TimecourseSimulation` function.
+Instead of solving one initial condition at a time, now we wish to solve a number of 
+random initial conditions. 
+
+Make your own function `InitialConditions()` to solve 100 random initial conditions, 
+and then save the final activity configurations (attractors) in an `attractors matrix`. 
 
 The `attractors matrix` should have the dimensions `(initial_conditions, variables)` so that you can plot 
-the results using the `plotBooleanAttractors()` function. 
+the results using the `plotBooleanAttractors()` function that you can find below ↓. 
 
+```python
+def InitialConditions(network="synchronous", timesteps=100, ICs=100):
+      # your code
+
+    plotBooleanAttractors(attractors) # it takes as argument your matrix of attractors
+```
 
 ::: {.callout-note collapse="true"}
 ## Function: plotting the timecourse simulation
@@ -496,16 +536,6 @@ def plotBooleanAttractors(attractors):
 
 * Notice here you should save **only the final state** for each initial condition you explore. 
 
-
-```python
-def InitialConditions():
-    timesteps=100
-    ICs=100
-
-# your code
-
-    plotBooleanAttractors(attractors) # it takes as argument your matrix of attractors
-```
 :::
 
 :::{.content-visible when-meta="params.show_answers"}

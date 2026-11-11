@@ -16,6 +16,8 @@ which genes are active, which are repressed, and how a cell responds to its envi
 Importantly, these networks can generate stable states: once a cell adopts a particular 
 identity, regulatory interactions may help maintain that identity over time.
 
+![Gene regulation in a bacteria: from genes to networks. Credit: RegulonDB, and DOI: 10.1371/journal.pone.0106479](images/0-ecoli-regulondb_doi.png){#vegmini1 width=150%}
+
 Transcription factors are master regulators of gene expression. These are DNA-binding 
 proteins that regulate gene transcription by binding to gene promoters, recruit other 
 proteins, or Pol II, ultimately switching gene expression $ON$ or $OFF$. Interestingly,
@@ -28,9 +30,6 @@ do they form netwokrs underlying cell identity and behavior. Using a model we ca
 
 - How can a network produce multiple stable cell identities, and how are these modified by mutations? 
 - What are the information processing motifs that help cells make decisions in response to intrinsic cues and environmental signals?
-
-![Gene regulation in a bacteria: from genes to networks. Credit: RegulonDB, and DOI: 10.1371/journal.pone.0106479](images/0-ecoli-regulondb_doi.png){#vegmini1 width=150%}
-
 
 In Part III you will learn how to use computational models to build and simulate gene 
 regulatory networks, to understand how their dynamics generate gene expression patterns 

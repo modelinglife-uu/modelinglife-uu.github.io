@@ -1042,10 +1042,10 @@ differentiation routes? What does this say about the system?
 
 Some cell fate transitions are only observed in extraordinary conditions, 
 for example, during regeneration. Plant scientists like to damage plants, e.g. 
-burn their cells, cut their roots or leaves, and study how they can regrow the
-missing ends. Root regeneration for example, is triggered when removing the tip 
-of the organ, and within 5 days all the missing root cells are restored. Using 
-single cell transcriptomics @efroni2016root showed that in this 
+burn their cells, cut their roots or leaves, to study the mechanisms that allow 
+them to regrow the missing cells/ends. Root regeneration for example, is triggered 
+when removing the tip of the organ, and within 5 days all the missing root cells 
+are restored. Using single cell transcriptomics @efroni2016root showed that in this 
 conditions, vascular cells restore all other root cells. 
 
 You have been working with a network model that recovers attractors that represent 

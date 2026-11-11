@@ -965,9 +965,10 @@ examples of biological regulatory interactions that can be described with each l
 <p>Make your own function <code>InitialConditions()</code> to solve 100 random initial conditions, and then save the final activity configurations (attractors) in an <code>attractors matrix</code>.</p>
 <p>The <code>attractors matrix</code> should have the dimensions <code>(initial_conditions, variables)</code> so that you can plot the results using the <code>plotBooleanAttractors()</code> function that you can find below ↓.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> InitialConditions(network<span class="op">=</span><span class="st">"synchronous"</span>, timesteps<span class="op">=</span><span class="dv">100</span>, ICs<span class="op">=</span><span class="dv">100</span>):</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>      <span class="co"># your code</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    plotBooleanAttractors(attractors) <span class="co"># it takes as argument your matrix of attractors</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>      <span class="co"># your code</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    plotBooleanAttractors(attractors) <span class="co"># it takes as argument your matrix of attractors</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1023,7 +1024,7 @@ examples of biological regulatory interactions that can be described with each l
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Function: UMAP for the attractors matrix. Remember to call at the end of InitialConditions()
+<span class="screen-reader-only">Note</span>Function: UMAP for the attractors matrix. Remember to call it at the end of InitialConditions()
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -1106,7 +1107,7 @@ examples of biological regulatory interactions that can be described with each l
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 7.10 (Coding)</strong></span> One approach to keep the parameters in control is to use a “fuzzy logic” approach. We need to define a sigmoidal function, with a <span class="math inline">\(w_i\)</span> term that represents the logical function of each node:</p>
 <p><span class="math inline">\(\frac{dX_i}{dt}=\frac{-e^{0.5h}+e^{-hw_i}}{(1-e^{0.5h)(1+e^{-h(w_i-0.5)}})}-dX_i\)</span></p>
-<p>To translate the logical functions we replace an <span class="math inline">\(AND\)</span> operator with a <span class="math inline">\(min\)</span>, and <span class="math inline">\(OR\)</span> operator with a <span class="math inline">\(max\)</span>, and a <span class="math inline">\(NOT\)</span> operator with a <span class="math inline">\(1-node\)</span>. See the code below implementing the ODE version of the root network we studied before. For most nodes the logical rule has been translated in <span class="math inline">\(w_node\)</span>. Translate yourself the remaining nodes. Compare the code of the functions <code>rootNetwork()</code> and <code>rootNetworkODE()</code>.</p>
+<p>To translate the logical functions we replace an <span class="math inline">\(AND\)</span> operator with a <span class="math inline">\(min\)</span>, and <span class="math inline">\(OR\)</span> operator with a <span class="math inline">\(max\)</span>, and a <span class="math inline">\(NOT\)</span> operator with a <span class="math inline">\(1-regulator\)</span>. See the code below implementing the ODE version of the root network we studied before. For most nodes the logical rule has been translated in <span class="math inline">\(w_node\)</span>. Translate yourself the remaining nodes. Compare the code of the functions <code>rootNetwork()</code> and <code>rootNetworkODE()</code>.</p>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
@@ -1359,7 +1360,8 @@ examples of biological regulatory interactions that can be described with each l
 </div>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 7.12 (Algorithmic thinking / biology)</strong></span> Use the following initial and end conditions:</p>
-<p><code>initial_condition=[0,0,0,0,1,0,1,1,1,1,1,1,1,0,1,0,1,0] # QC</code> <code>end_condition=[1,1,0,0,1,1,1,1,1,1,0,0,1,0,0,0,0,1] # Endodermis</code></p>
+<p><code>initial_condition=[0,0,0,0,1,0,1,1,1,1,1,1,1,0,1,0,1,0] # QC</code></p>
+<p><code>end_condition=[1,1,0,0,1,1,1,1,1,1,0,0,1,0,0,0,0,1] # Endodermis</code></p>
 <p>What regulator causes the transition from the QC to the Endodermis attractors? How many variables change their activity between the initial and final state? How would you test this model prediction experimentally?</p>
 </div>
 <div id="exr-non" class="theorem exercise">

@@ -497,6 +497,7 @@ the results using the `plotBooleanAttractors()` function that you can find below
 
 ```python
 def InitialConditions(network="synchronous", timesteps=100, ICs=100):
+      
       # your code
 
     plotBooleanAttractors(attractors) # it takes as argument your matrix of attractors
@@ -561,7 +562,7 @@ Now that you have installed `umap-learn`, let's run a UMAP of the attractors you
 (this takes a bit of time to run, so be patient 😉):
 
 ::: {.callout-note collapse="true"}
-## Function: UMAP for the attractors matrix. Remember to call at the end of InitialConditions()
+## Function: UMAP for the attractors matrix. Remember to call it at the end of InitialConditions()
 ```python
 import umap
 def UMAPBoolean(attractors):
@@ -733,7 +734,7 @@ logical function of each node:
 
 $\frac{dX_i}{dt}=\frac{-e^{0.5h}+e^{-hw_i}}{(1-e^{0.5h)(1+e^{-h(w_i-0.5)}})}-dX_i$
 
-To translate the logical functions we replace an $AND$ operator with a $min$, and $OR$ operator with a $max$, and a $NOT$ operator with a $1-node$. See the code below implementing the ODE version of the root network we studied before. For most nodes the logical rule has been translated in $w_node$. Translate yourself the remaining nodes. Compare the code of the functions `rootNetwork()` and `rootNetworkODE()`. 
+To translate the logical functions we replace an $AND$ operator with a $min$, and $OR$ operator with a $max$, and a $NOT$ operator with a $1-regulator$. See the code below implementing the ODE version of the root network we studied before. For most nodes the logical rule has been translated in $w_node$. Translate yourself the remaining nodes. Compare the code of the functions `rootNetwork()` and `rootNetworkODE()`. 
 :::
 
 ::: {.callout-note collapse="true"}
@@ -988,6 +989,7 @@ def ODErootTransition(timeSimulation, timestep, initial_condition, end_condition
 Use the following initial and end conditions: 
 
 `initial_condition=[0,0,0,0,1,0,1,1,1,1,1,1,1,0,1,0,1,0] # QC` 
+
 `end_condition=[1,1,0,0,1,1,1,1,1,1,0,0,1,0,0,0,0,1] # Endodermis`
 
 What regulator causes the transition from the QC to the Endodermis attractors? 

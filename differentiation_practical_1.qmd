@@ -12,7 +12,7 @@ params:
 In this practical you will get hands on experience into making gene regulatory networks 
 models. First you will practice how to encode regulatory interactions into ordinary 
 differential equations and logical rules. Next you will use an example Boolean network 
-and will recover its self-sustained activity configurations (attractors) (@rozum2023boolean).
+and will recover its self-sustained activity configurations (attractors).
 Lastly, you will learn how to predict the genes that cause cell fate transitions (attractor changes). 
 
 Today we will use the following python file: `WC07_Gene_regulatory_networks_I.py`.  In it 
@@ -1046,7 +1046,7 @@ of the organ, and within 5 days all the missing root cells are restored. Using
 single cell transcriptomics @efroni2016root showed that in this 
 conditions, vascular cells restore all other root cells. 
 
-We have been working with a network model that recovers attractors that represent 
+You have been working with a network model that recovers attractors that represent 
 different root cell types. Use the model to predict how the cell fate change 
 reported by @efroni2016root could be happening. See below some ideas of 
 things you could try: 
@@ -1057,7 +1057,7 @@ things you could try:
 
 - If this doesn't work, what would you include in the model to improve its predictive power?
 
-![Vascular cells before the cut, gradually become all the other root cell types. From @efroni2016root.](images/efroni.png){#vegmini1 fig-align="center" width=70%}
+![Cells that had a vascular cell fate before the cut, gradually become all the other root cell types during regeneration of the root tip. From @efroni2016root.](images/efroni.png){#vegmini1 fig-align="center" width=70%}
 :::
 
 ::: {.content-visible when-meta="params.show_answers"}

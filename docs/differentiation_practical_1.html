@@ -616,7 +616,7 @@ window.Quarto = {
 <p><a href="images/grn.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/grn.png" id="vegmini1" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" style="width:60.0%"></a></p>
 </figure>
 </div>
-<p>In this practical you will get hands on experience into making gene regulatory networks models. First you will practice how to encode regulatory interactions into ordinary differential equations and logical rules. Next you will use an example Boolean network and will recover its self-sustained activity configurations (attractors) (<span class="citation" data-cites="rozum2023boolean">Rozum et al. (<a href="#ref-rozum2023boolean" role="doc-biblioref">2023</a>)</span>). Lastly, you will learn how to predict the genes that cause cell fate transitions (attractor changes).</p>
+<p>In this practical you will get hands on experience into making gene regulatory networks models. First you will practice how to encode regulatory interactions into ordinary differential equations and logical rules. Next you will use an example Boolean network and will recover its self-sustained activity configurations (attractors). Lastly, you will learn how to predict the genes that cause cell fate transitions (attractor changes).</p>
 <p>Today we will use the following python file: <code>WC07_Gene_regulatory_networks_I.py</code>. In it you will find the parameters, functions and execution code. Throughout the practical you will find new code in drop-down menus. Look at what each function takes as input and returns as output. You need to add them in the #Functions part of the code, and remember to use them in the #Execution part.</p>
 </section>
 <section id="regulatory-interactions" class="level2" data-number="7.1">
@@ -1367,7 +1367,7 @@ examples of biological regulatory interactions that can be described with each l
 </div>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 7.14 (Question for master students)</strong></span> Some cell fate transitions are only observed in extraordinary conditions, for example, during regeneration. Plant scientists like to damage plants, e.g.&nbsp; burn their cells, cut their roots or leaves, and study how they can regrow the missing ends. Root regeneration for example, is triggered when removing the tip of the organ, and within 5 days all the missing root cells are restored. Using single cell transcriptomics <span class="citation" data-cites="efroni2016root">Efroni et al. (<a href="#ref-efroni2016root" role="doc-biblioref">2016</a>)</span> showed that in this conditions, vascular cells restore all other root cells.</p>
-<p>We have been working with a network model that recovers attractors that represent different root cell types. Use the model to predict how the cell fate change reported by <span class="citation" data-cites="efroni2016root">Efroni et al. (<a href="#ref-efroni2016root" role="doc-biblioref">2016</a>)</span> could be happening. See below some ideas of things you could try:</p>
+<p>You have been working with a network model that recovers attractors that represent different root cell types. Use the model to predict how the cell fate change reported by <span class="citation" data-cites="efroni2016root">Efroni et al. (<a href="#ref-efroni2016root" role="doc-biblioref">2016</a>)</span> could be happening. See below some ideas of things you could try:</p>
 <ul>
 <li><p>Instead of simulating single gene perturbations, try perturbation in multiple genes.</p></li>
 <li><p>Play with the duration of the perturbations.</p></li>
@@ -1377,10 +1377,10 @@ examples of biological regulatory interactions that can be described with each l
 <figure class="figure">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/efroni.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Vascular cells before the cut, gradually become all the other root cell types. From @efroni2016root."><img src="images/efroni.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Vascular cells before the cut, gradually become all the other root cell types. From Efroni et al. (2016)."></a></p>
+<p><a href="images/efroni.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Cells that had a vascular cell fate before the cut, gradually become all the other root cell types during regeneration of the root tip. From @efroni2016root."><img src="images/efroni.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Cells that had a vascular cell fate before the cut, gradually become all the other root cell types during regeneration of the root tip. From Efroni et al. (2016)."></a></p>
 </figure>
 </div>
-<figcaption>Vascular cells before the cut, gradually become all the other root cell types. From <span class="citation" data-cites="efroni2016root">Efroni et al. (<a href="#ref-efroni2016root" role="doc-biblioref">2016</a>)</span>.</figcaption>
+<figcaption>Cells that had a vascular cell fate before the cut, gradually become all the other root cell types during regeneration of the root tip. From <span class="citation" data-cites="efroni2016root">Efroni et al. (<a href="#ref-efroni2016root" role="doc-biblioref">2016</a>)</span>.</figcaption>
 </figure>
 </div>
 </div>
@@ -1409,9 +1409,6 @@ Efroni, Idan, Alison Mello, Tal Nawy, et al. 2016. <span>“Root Regeneration Tr
 </div>
 <div id="ref-garcia2020system" class="csl-entry" role="listitem">
 Garcı́a-Gómez, Mónica L, Diego Ornelas-Ayala, Adriana Garay-Arroyo, Berenice Garcı́a-Ponce, Marı́a de la Paz Sánchez, and Elena R Alvarez-Buylla. 2020. <span>“A System-Level Mechanistic Explanation for Asymmetric Stem Cell Fates: Arabidopsis Thaliana Root Niche as a Study System.”</span> <em>Scientific Reports</em> 10 (1): 3525.
-</div>
-<div id="ref-rozum2023boolean" class="csl-entry" role="listitem">
-Rozum, Jordan C, Colin Campbell, Eli Newby, Fatemeh Sadat Fatemi Nasrollahi, and Reka Albert. 2023. <span>“Boolean Networks as Predictive Models of Emergent Biological Behaviors.”</span> <em>arXiv Preprint arXiv:2310.12901</em>.
 </div>
 </div>
 </section>

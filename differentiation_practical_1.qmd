@@ -1036,7 +1036,7 @@ differentiation routes? What does this say about the system?
 
 :::{#exr-non}
 
-## Question for master students {.unnumbered}
+### Question for master students {.unnumbered}
 
 Some cell fate transitions can only be observed in extraordinary conditions, 
 for example, during the regeneration of the root after removal of the tip. Using 

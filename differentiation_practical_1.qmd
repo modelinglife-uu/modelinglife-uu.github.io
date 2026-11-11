@@ -1038,11 +1038,17 @@ differentiation routes? What does this say about the system?
 
 ### Question for master students {.unnumbered}
 
-Some cell fate transitions can only be observed in extraordinary conditions, 
-for example, during the regeneration of the root after removal of the tip. Using 
-single cell transcriptomics it was shown that in this conditions, vascular cells 
-restore all other root cells @efroni2016root. Use the model to predict how these 
-cell fate change could be happening. You could try: 
+Some cell fate transitions are only observed in extraordinary conditions, 
+for example, during the regeneration. Plant scientists like to damage plants, 
+burn their cells, cut their roots or leaves, and study how they can regrow the
+missing ends. Root regeneration for example, is triggered when removing the tip 
+of the organ, and within 5 days all the missing root cells are restored. Using 
+single cell transcriptomics Efroni et al. (@efroni2016root) showed that in this 
+conditions, vascular cells restore all other root cells @efroni2016root. 
+We have been working with a network model that recovers attractors that represent 
+different root cell types. Use the model to predict how the cell fate change 
+reported by @efroni2016 root could be happening. See below some ideas of 
+things you could try: 
 
 - Instead of simulating single gene perturbations, try perturbation in multiple genes. 
 

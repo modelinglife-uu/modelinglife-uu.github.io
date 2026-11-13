@@ -178,7 +178,7 @@ The second thing you should notice is that fitness does not increase...
 ## Fixing the roulette wheel
 <br>
 
-a. Which line(s) of the code determines how fitness related to the probability of reproduction?
+a. Which line(s) of the code determines how fitness shapes the probability of reproduction?
 b. Modify that piece of code to fix the roulette wheel (hint: this is a VERY small change in the code).
 :::
 

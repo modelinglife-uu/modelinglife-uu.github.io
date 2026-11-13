@@ -179,6 +179,8 @@ For loops repeat within a defined range (above, there are 5 repetitions). While 
 count = 10
 ```
 
+### Unique to Python
+
 One thing unique to python, is a thing called 'list comprehensions', which allows you to generate a list of
 specific values by writing a for loop in a different order you may be use to:
 

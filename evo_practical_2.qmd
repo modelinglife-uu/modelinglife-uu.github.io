@@ -70,7 +70,7 @@ ax1.tick_params(axis='y', labelcolor='tab:blue')
 # Right axis: diversity
 ax2 = ax1.twinx()
 ax2.set_ylabel("Diversity", color='tab:green')
-line2, = ax2.plot([], [], color='tab:green', linestyle=':', linewidth=2, label='Diversity')
+line2, = ax2.plot([], [], color='tab:green', linestyle=':', linewidth=2, label='Genotype diversity')
 ax2.tick_params(axis='y', labelcolor='tab:green')
 
 fig.suptitle("Evolution of Fitness and Diversity")
@@ -467,7 +467,7 @@ ax1.tick_params(axis='y', labelcolor='tab:blue')
 ax2 = ax1.twinx()
 ax2.set_ylabel("Beneficial Mutations / Diversity", color='tab:purple')
 line2, = ax2.plot([], [], color='tab:purple', linestyle='--', linewidth=2, label='Beneficial Mutations')
-line3, = ax2.plot([], [], color='tab:green', linestyle=':', linewidth=2, label='Diversity')
+line3, = ax2.plot([], [], color='tab:green', linestyle=':', linewidth=2, label='Genotype diversity')
 ax2.tick_params(axis='y', labelcolor='tab:purple')
 fig.suptitle("Evolution Toward " + str(target_protein))
 fig.tight_layout()
@@ -728,8 +728,8 @@ def structure_fitness(rna_seq, target_structure):
 > ax1.grid(True)
 >
 > ax2 = ax1.twinx()
-> ax2.set_ylabel("Diversity", color='tab:green')
-> line_div, = ax2.plot([], [], color='tab:green', linestyle=':', linewidth=2, label='Diversity')
+> ax2.set_ylabel("Genotype diversity", color='tab:green')
+> line_div, = ax2.plot([], [], color='tab:green', linestyle=':', linewidth=2, label='Genotype diversity')
 > ax2.tick_params(axis='y', labelcolor='tab:green')
 >
 > fig.suptitle("RNA Evolution with Alternating Targets\\n(Press SPACE to pause, Q to quit)")

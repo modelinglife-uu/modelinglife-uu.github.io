@@ -162,7 +162,7 @@ else:
     print("x is negative")
 ```
 
-### Loops (`for`, `while`):
+### Loops (`for`, `while`, and list comprehensions):
 ```python
 for i in range(5):
     print(i)
@@ -177,6 +177,14 @@ For loops repeat within a defined range (above, there are 5 repetitions). While 
 
 ```{pyodide}
 count = 10
+```
+
+One thing unique to python, is a thing called 'list comprehensions', which allows you to generate a list of
+specific values by writing a for loop in a different order you may be use to:
+
+```{pyodide}
+squares = [i**2 for i in range(5)]
+print(squares)
 ```
 
 ## Functions

@@ -358,7 +358,6 @@ e.  Do you get the expected “French flag” pattern? If not, think of how the
     genes are regulated, and improve your equations (Question 3), parameters or
     your code.
     
-Let op: If you get stuck in the plotting, or something else, let us know!!!
 :::
 
 ::: {.callout-note collapse="true"}

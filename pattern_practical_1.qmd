@@ -346,12 +346,13 @@ b.  Also make sure that the levels of $A$, $B$ and $C$ are updated in the
     simulation loop. (Hint: using array properties to update $A$,$B$ and $C$, like
     in the `reaction_diffusion_step` function, makes your code run a lot
     faster than using for-loops)
-c.  Next, ensure $A$, $B$ and $C$ are visualized in the bottom plot axis (copy
-    and adapt the code for the visualization of $M$). You can add an extra
-    third axis to the plot to visualize the (French) flag pattern, by
-    getting which of the three genes is maximal at each location with
-    `np.argmax(np.array(\[A, B, C\])`, axis=0) and turning that into an
-    array of RGB colors of choice.
+c.  Next, ensure $A$, $B$ and $C$ are visualized in the bottom plot axis. Change
+    `ABC=True` in the parameters to automatically change the initialization of 
+    the plot, then copy and adapt the code for the visualization 
+    of $M$ (`line_plot[0].set_ydata(u[:, 2]`). Modify the `max_indeces` array to 
+    visualize the (French) flag pattern, by getting which of the three genes is 
+    maximal at each location: with `np.argmax(np.array(\[A, B, C\])`, axis=0) and 
+    turning that into an array of RGB colors of choice.
 d.  Do you get the expected “French flag” pattern? If not, think of how the
     genes are regulated, and improve your equations (Question 3), parameters or
     your code.
@@ -360,10 +361,27 @@ d.  Do you get the expected “French flag” pattern? If not, think of how the
 ::: {.callout-note collapse="true"}
 ## Code to creat A,B,C arrays; and of Hill functions for their regulation
 ``` python
-# Create a grid (x, y dimensions) for A, B and C 
-A = np.zeros((nx, ny))
-B = np.zeros((nx, ny))
-C = np.zeros((nx, ny))
+##### 
+##############
+# PARAMETERS #
+##############
+
+# Parameters for A, B, C
+prodA=10
+decayA=0.1
+KmA=52
+prodB=10
+decayB=0.1
+KmB1=24.5
+KmB2=52
+prodC=10 
+decayC=0.1
+KmC=24.5
+pow=4 #power of Hill fuction
+
+#############
+# FUNCTIONS #
+#############
 
 # Hill functions to implement M,A,B,C mutual regulation
 def hill(x, Km, pow):
@@ -374,7 +392,31 @@ def ihill(y, Km, pow):
     """Inverse Hill function for the reaction kinetics."""
     return( (Km**pow) / (y **pow  + Km**pow))
 
-# In the code search for "TODO", this indicates where do you have include changes to plot A,B,C.
+def update_A(A, u, prodA, decayA, KmA, pow):
+    An = A.copy()
+    A =             # your code
+    return A
+
+def update_B(B, u, prodB, decayB, KmB1, KmB2, pow):
+    Bn = B.copy()
+    B =             # your code
+    return B
+
+def update_C(C, u, prodC, decayC, KmC, pow):
+    Cn = C.copy()
+    C=              # your code
+    return C
+
+##################
+# EXECUTION CODE #
+##################
+
+# Create a grid (x, y dimensions) for A, B and C 
+A = np.zeros((nx, ny))
+B = np.zeros((nx, ny))
+C = np.zeros((nx, ny))
+# In the execution part of the code remember to call the update_A, update_B, and update_C functions. 
+# Also, add the search for "TODO", this indicates where do you have include changes to plot A,B,C.
 
 
 ```

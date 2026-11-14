@@ -824,7 +824,7 @@ window.Quarto = {
 <ol type="a">
 <li>Now create functions to update <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> according to your equations from the previous question. You may use the predefined hill and ihill (inverse) functions that are provided below. For simplicity, you may keep most of the parameters the same for all genes, but some have to be different to ensure the right location of the genes (based on your reasoning in Question 3).</li>
 <li>Also make sure that the levels of <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> are updated in the simulation loop. (Hint: using array properties to update <span class="math inline">\(A\)</span>,<span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span>, like in the <code>reaction_diffusion_step</code> function, makes your code run a lot faster than using for-loops)</li>
-<li>Next, ensure <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> are visualized in the bottom plot axis (copy and adapt the code for the visualization of <span class="math inline">\(M\)</span>). You can add an extra third axis to the plot to visualize the (French) flag pattern, by getting which of the three genes is maximal at each location with <code>np.argmax(np.array(\[A, B, C\])</code>, axis=0) and turning that into an array of RGB colors of choice.</li>
+<li>Next, ensure <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> are visualized in the bottom plot axis. Change <code>ABC=True</code> in the parameters to automatically change the initialization of the plot, then copy and adapt the code for the visualization of <span class="math inline">\(M\)</span> (<code>line_plot[0].set_ydata(u[:, 2]</code>). Modify the <code>max_indeces</code> array to visualize the (French) flag pattern, by getting which of the three genes is maximal at each location: with <code>np.argmax(np.array(\[A, B, C\])</code>, axis=0) and turning that into an array of RGB colors of choice.</li>
 <li>Do you get the expected “French flag” pattern? If not, think of how the genes are regulated, and improve your equations (Question 3), parameters or your code.</li>
 </ol>
 </div>
@@ -840,22 +840,63 @@ window.Quarto = {
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a grid (x, y dimensions) for A, B and C </span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.zeros((nx, ny))</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> np.zeros((nx, ny))</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> np.zeros((nx, ny))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">##### </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">##############</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># PARAMETERS #</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">##############</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Hill functions to implement M,A,B,C mutual regulation</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hill(x, Km, <span class="bu">pow</span>):</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Hill function for the reaction kinetics."""</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x<span class="op">**</span><span class="bu">pow</span>) <span class="op">/</span> (Km<span class="op">**</span><span class="bu">pow</span> <span class="op">+</span> x<span class="op">**</span><span class="bu">pow</span>) </span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ihill(y, Km, <span class="bu">pow</span>):</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Inverse Hill function for the reaction kinetics."""</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>( (Km<span class="op">**</span><span class="bu">pow</span>) <span class="op">/</span> (y <span class="op">**</span><span class="bu">pow</span>  <span class="op">+</span> Km<span class="op">**</span><span class="bu">pow</span>))</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># In the code search for "TODO", this indicates where do you have include changes to plot A,B,C.</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters for A, B, C</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>prodA<span class="op">=</span><span class="dv">10</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>decayA<span class="op">=</span><span class="fl">0.1</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>KmA<span class="op">=</span><span class="dv">52</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>prodB<span class="op">=</span><span class="dv">10</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>decayB<span class="op">=</span><span class="fl">0.1</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>KmB1<span class="op">=</span><span class="fl">24.5</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>KmB2<span class="op">=</span><span class="dv">52</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>prodC<span class="op">=</span><span class="dv">10</span> </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>decayC<span class="op">=</span><span class="fl">0.1</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>KmC<span class="op">=</span><span class="fl">24.5</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="bu">pow</span><span class="op">=</span><span class="dv">4</span> <span class="co">#power of Hill fuction</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co">#############</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># FUNCTIONS #</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co">#############</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Hill functions to implement M,A,B,C mutual regulation</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hill(x, Km, <span class="bu">pow</span>):</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Hill function for the reaction kinetics."""</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x<span class="op">**</span><span class="bu">pow</span>) <span class="op">/</span> (Km<span class="op">**</span><span class="bu">pow</span> <span class="op">+</span> x<span class="op">**</span><span class="bu">pow</span>) </span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ihill(y, Km, <span class="bu">pow</span>):</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Inverse Hill function for the reaction kinetics."""</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>( (Km<span class="op">**</span><span class="bu">pow</span>) <span class="op">/</span> (y <span class="op">**</span><span class="bu">pow</span>  <span class="op">+</span> Km<span class="op">**</span><span class="bu">pow</span>))</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update_A(A, u, prodA, decayA, KmA, <span class="bu">pow</span>):</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    An <span class="op">=</span> A.copy()</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span>             <span class="co"># your code</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> A</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update_B(B, u, prodB, decayB, KmB1, KmB2, <span class="bu">pow</span>):</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    Bn <span class="op">=</span> B.copy()</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span>             <span class="co"># your code</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> B</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update_C(C, u, prodC, decayC, KmC, <span class="bu">pow</span>):</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    Cn <span class="op">=</span> C.copy()</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    C<span class="op">=</span>              <span class="co"># your code</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> C</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="co">##################</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="co"># EXECUTION CODE #</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="co">##################</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a grid (x, y dimensions) for A, B and C </span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.zeros((nx, ny))</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> np.zeros((nx, ny))</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> np.zeros((nx, ny))</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="co"># In the execution part of the code remember to call the update_A, update_B, and update_C functions. </span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Also, add the search for "TODO", this indicates where do you have include changes to plot A,B,C.</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>

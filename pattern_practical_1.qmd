@@ -69,6 +69,7 @@ os.makedirs("output", exist_ok=True)
 ##############
 # PARAMETERS #
 ##############
+ABC=False # Flag to indicate whether to plot A, B, C or not
 
 # Grid and simulation parameters
 Lx = 40.0  # Length of the domain in x in micrometers
@@ -81,7 +82,7 @@ ny = int(Ly/dx)+2  # Number of grid points in y + padding grid points
 # Padding grid points to account for boundary conditions
 nt = int(T/dt)  # Number of time steps
 D = 0.4  # Diffusion coefficient in mm^2/s
-decayM =0.01 # Decay rate in 1/s
+decayM =0.001 # Decay rate in 1/s
 
 
 # Parameters for A, B, C
@@ -129,8 +130,11 @@ u[0, :] = 100
 
 
 # initilize figure and axes for plotting
-fig, (ax_M, ax_lines) = plt.subplots(2, figsize=(10, 8), gridspec_kw={'height_ratios': [3, 1]})  # Make the first graph 3 times the height of the second
-# TODO: Add a new axis for the ABC flag visualization 
+if ABC==False:
+    fig, (ax_M, ax_lines) = plt.subplots(2, figsize=(10, 8), gridspec_kw={'height_ratios': [3, 1]})  # Make the first graph 3 times the height of the second
+else:
+    # initilize figure and axes for plotting
+    fig, (ax_M,ax_ABC, ax_lines) = plt.subplots(3, figsize=(10, 8), gridspec_kw={'height_ratios': [3, 3, 1]})  # Make the first graph 3 times the height of the second
 
 
 # Time-stepping simulation loop
@@ -145,7 +149,18 @@ for n in range(nt):
         ax_M.set_ylabel('y direction')
         ax_M.set_xticks([])
         ax_M.set_yticks([])
-
+        if ABC==True: 
+            max_indices = 0 # TODO Question 5
+            max_indices[0,0]=0
+            max_indices[0,1]=1
+            max_indices[0,2]=2
+            imshow_ABC = ax_ABC.imshow(max_indices.T, origin='lower', aspect='auto')
+            ax_ABC.set_title('Max Concentration Phase')
+            ax_ABC.set_xlabel('x direction')
+            ax_ABC.set_ylabel('y direction')
+            ax_ABC.set_xticks([])
+            ax_ABC.set_yticks([])
+    
         # Plot the concentration at a specific y index (e.g., y=2)    
         line_plot = ax_lines.plot([x*dx for x in range(nx)], u[:, 2], label='M', color='green')
         # TODO: Add lines for A, B, C as needed in Q5
@@ -163,10 +178,13 @@ for n in range(nt):
         #update the imshow M plot with the new data
         imshow_M_plot.set_data(u.T)
         ax_M.set_title(f"Time: {n*dt}")
-            
         # Update the line plots with new data
         line_plot[0].set_ydata(u[:, 2])
-        # TODO: Update A, B, C line plots as needed in Q5
+        if ABC==True: 
+            max_indices = 0 # TODO Question 5
+            imshow_ABC.set_data(max_indices.T)
+            # TODO: Update A, B, C line plots as needed in Q5
+
 
         #fig.savefig(f"output/morphogen_simulation_{n:05d}.png", dpi=300) #save png (makes simulation run slower!)
     plt.pause(0.001)  # Pause to refresh the plot

@@ -349,11 +349,12 @@ b.  Also make sure that the levels of $A$, $B$ and $C$ are updated in the
 c.  Next, ensure $A$, $B$ and $C$ are visualized in the bottom plot axis. Change
     `ABC=True` in the parameters to automatically change the initialization of 
     the plot, then copy and adapt the code for the visualization 
-    of $M$ (`line_plot[0].set_ydata(u[:, 2]`). Modify the `max_indeces` array to 
-    visualize the (French) flag pattern, by getting which of the three genes is 
-    maximal at each location: with `np.argmax(np.array(\[A, B, C\])`, axis=0) and 
-    turning that into an array of RGB colors of choice.
-d.  Do you get the expected “French flag” pattern? If not, think of how the
+    of $M$ (`line_plot[0].set_ydata(u[:, 2]`). 
+d.  Modify the `max_indeces` array to visualize the pattern, by 
+    getting which of the three genes is maximal at each location: with 
+    `np.argmax(np.array(\[A, B, C\])`, axis=0) and turning that into an array of 
+    RGB colors of choice.
+e.  Do you get the expected “French flag” pattern? If not, think of how the
     genes are regulated, and improve your equations (Question 3), parameters or
     your code.
 :::

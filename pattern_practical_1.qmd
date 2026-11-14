@@ -5,7 +5,7 @@ params:
 
 # Gradients and segments 
 
-## Morphogen Gradients and Patterning 
+## Morphogen Gradients and Patterning {.unnumbered}
 
 In this practical, we a going to look at how an organism can form
 segments along its body axis . The mathematical model that we will
@@ -29,7 +29,7 @@ Later it was found that often at least two opposing morphogen gradients
 drive downstream gene expression and genes typically respond to multiple 
 inputs.
 
-## Mathematical modeling - integrating multiple signals  
+## Mathematical modeling - integrating multiple signals {.unnumbered}
 
 Promotors/enhancers driving gene expression frequently make use of so
 called OR and AND gates to integrate inputs from different transcription

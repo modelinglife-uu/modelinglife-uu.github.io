@@ -575,12 +575,12 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#morphogen-gradients-and-patterning" id="toc-morphogen-gradients-and-patterning" class="nav-link active" data-scroll-target="#morphogen-gradients-and-patterning"><span class="header-section-number">4.1</span> Morphogen Gradients and Patterning</a></li>
-  <li><a href="#mathematical-modeling---integrating-multiple-signals" id="toc-mathematical-modeling---integrating-multiple-signals" class="nav-link" data-scroll-target="#mathematical-modeling---integrating-multiple-signals"><span class="header-section-number">4.2</span> Mathematical modeling - integrating multiple signals</a></li>
-  <li><a href="#python-code" id="toc-python-code" class="nav-link" data-scroll-target="#python-code"><span class="header-section-number">4.3</span> Python code</a></li>
-  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">4.4</span> Questions</a></li>
-  <li><a href="#extra-questions" id="toc-extra-questions" class="nav-link" data-scroll-target="#extra-questions"><span class="header-section-number">4.5</span> <span class="smallcaps"><strong>Extra questions</strong></span></a></li>
-  <li><a href="#relevant-literature-further-reading" id="toc-relevant-literature-further-reading" class="nav-link" data-scroll-target="#relevant-literature-further-reading"><span class="header-section-number">4.6</span> Relevant literature / further reading</a></li>
+  <li><a href="#morphogen-gradients-and-patterning" id="toc-morphogen-gradients-and-patterning" class="nav-link active" data-scroll-target="#morphogen-gradients-and-patterning">Morphogen Gradients and Patterning</a></li>
+  <li><a href="#mathematical-modeling---integrating-multiple-signals" id="toc-mathematical-modeling---integrating-multiple-signals" class="nav-link" data-scroll-target="#mathematical-modeling---integrating-multiple-signals">Mathematical modeling - integrating multiple signals</a></li>
+  <li><a href="#python-code" id="toc-python-code" class="nav-link" data-scroll-target="#python-code"><span class="header-section-number">4.1</span> Python code</a></li>
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">4.2</span> Questions</a></li>
+  <li><a href="#extra-questions" id="toc-extra-questions" class="nav-link" data-scroll-target="#extra-questions"><span class="header-section-number">4.3</span> <span class="smallcaps"><strong>Extra questions</strong></span></a></li>
+  <li><a href="#relevant-literature-further-reading" id="toc-relevant-literature-further-reading" class="nav-link" data-scroll-target="#relevant-literature-further-reading"><span class="header-section-number">4.4</span> Relevant literature / further reading</a></li>
   </ul>
 </nav>
     </div>
@@ -607,13 +607,13 @@ window.Quarto = {
 </header>
 
 
-<section id="morphogen-gradients-and-patterning" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="morphogen-gradients-and-patterning"><span class="header-section-number">4.1</span> Morphogen Gradients and Patterning</h2>
+<section id="morphogen-gradients-and-patterning" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="morphogen-gradients-and-patterning">Morphogen Gradients and Patterning</h2>
 <p>In this practical, we a going to look at how an organism can form segments along its body axis . The mathematical model that we will implement and study is an implementation of the so-called French flag conceptual model first proposed by Lewis Wolpert <span class="citation" data-cites="wolpert1969positional">(<a href="#ref-wolpert1969positional" role="doc-biblioref">Wolpert 1969</a>)</span>. It assumes the spatially graded expression of a morphogen “M” that influences the expression of some downstream genes A, B and C. Their expression is often visualized by red, white and blue and the arising pattern resembles the French flag, hence the name (see the power of visualization).</p>
 <p>One of the most well-studied organisms when it comes to body axis segmentation (although its segmentation mechanism is evolutionary derived and a-typical!) is the development of the fruit fly Drosophila melanogaster. Supporting the ideas of Wolpert, it was found that through tethering maternal Bicoid mRNA to one side of the embryo, Bicoid protein can form a gradient extending along the anterior-posterior axis, with so called gap genes as a first tier in the segmentation hierarchy responding to different Bicoid protein levels <span class="citation" data-cites="driever1988bicoid">(<a href="#ref-driever1988bicoid" role="doc-biblioref">Driever and Nüsslein-Volhard 1988</a>)</span>. Later it was found that often at least two opposing morphogen gradients drive downstream gene expression and genes typically respond to multiple inputs.</p>
 </section>
-<section id="mathematical-modeling---integrating-multiple-signals" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="mathematical-modeling---integrating-multiple-signals"><span class="header-section-number">4.2</span> Mathematical modeling - integrating multiple signals</h2>
+<section id="mathematical-modeling---integrating-multiple-signals" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="mathematical-modeling---integrating-multiple-signals">Mathematical modeling - integrating multiple signals</h2>
 <p>Promotors/enhancers driving gene expression frequently make use of so called OR and AND gates to integrate inputs from different transcription factors. An OR gate can be implemented mathematically with a sum of the effect of the transcription factors, while an AND can be implemented mathematically with a product. Some examples:</p>
 <ul>
 <li><p><span class="math inline">\(\frac{dX}{dt} = a(\text{tf1}) + b(\text{tf2})\)</span>: Gene X is induced by transcription factor 1 and 2 in an OR fashion, either <span class="math inline">\(a(\text{tf1})\)</span> or <span class="math inline">\(b(\text{tf2})\)</span> needs to be high to give high transcription of X.</p></li>
@@ -621,8 +621,8 @@ window.Quarto = {
 </ul>
 <p>Note that the shape of <span class="math inline">\(a(\text{tf1})\)</span> and <span class="math inline">\(b(\text{tf2})\)</span> (increasing or decreasing function of the transcription factor) determines whether tf1 and tf2 are repressing or activating.</p>
 </section>
-<section id="python-code" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="python-code"><span class="header-section-number">4.3</span> Python code</h2>
+<section id="python-code" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="python-code"><span class="header-section-number">4.1</span> Python code</h2>
 <p>The code below is also in <code>WC04-Pattern_formation_I/WC04_morphogengradient_to_segments.py</code>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
@@ -775,8 +775,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="questions" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="questions"><span class="header-section-number">4.4</span> Questions</h2>
+<section id="questions" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="questions"><span class="header-section-number">4.2</span> Questions</h2>
 <div id="exr-test" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.1 (Algorithmic thinking)</strong></span> Have a look at the reaction-diffusion equation for the morphogen (lecture), and the implementation of it in the <code>reaction_diffusion_step</code> function. Also look at the initialization of the array <span class="math inline">\(u\)</span>. How is this different from the gradient formation modeling we discussed during the lecture? What is done at the terminal boundary in the length direction and why does this make sense?</p>
 <p>(hint: To help you understand what is happening see the commented code inside the <code>reaction_diffusion_step</code> function. This code does essentially the same, with the difference that it does not use operations with numpy arrays and hence is written in a less compact matter.)</p>
@@ -1050,8 +1050,8 @@ window.Quarto = {
 <p>Modify the code to add noise to the morphogen <span class="math inline">\(M\)</span> gradient, both in its steady state and decaying phase. During which phase do the expression domains of <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> suffer more from the noise. Explain why? How could we make the system more robust in a manner that is also likely occurring in nature?</p>
 </div>
 </section>
-<section id="extra-questions" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="extra-questions"><span class="header-section-number">4.5</span> <span class="smallcaps"><strong>Extra questions</strong></span></h2>
+<section id="extra-questions" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="extra-questions"><span class="header-section-number">4.3</span> <span class="smallcaps"><strong>Extra questions</strong></span></h2>
 <p>If you’re done early, or you are a master student, you can make these extra questions. These questions need not be made in the order they are provided, you can choose what you would like to investigate.</p>
 <div id="exr-plain" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.11 (Biological thinking)</strong></span> Play with the size of the domain to see what happens to the gene expression domains. What would this mean for an organism?</p>
@@ -1074,8 +1074,8 @@ window.Quarto = {
 <p><span class="theorem-title"><strong>Exercise 4.15 (Algorithmic thinking)</strong></span> Implement your solution to make the system more robust for noise from question 10. Did it work?</p>
 </div>
 </section>
-<section id="relevant-literature-further-reading" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="relevant-literature-further-reading"><span class="header-section-number">4.6</span> Relevant literature / further reading</h2>
+<section id="relevant-literature-further-reading" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="relevant-literature-further-reading"><span class="header-section-number">4.4</span> Relevant literature / further reading</h2>
 <p><span class="citation" data-cites="fried2014dynamic">Fried and Iber (<a href="#ref-fried2014dynamic" role="doc-biblioref">2014</a>)</span>, <span class="citation" data-cites="cheung2011scaling">Cheung et al. (<a href="#ref-cheung2011scaling" role="doc-biblioref">2011</a>)</span>, <span class="citation" data-cites="he2015fundamental">He et al. (<a href="#ref-he2015fundamental" role="doc-biblioref">2015</a>)</span>, <span class="citation" data-cites="inomata2017scaling">Inomata (<a href="#ref-inomata2017scaling" role="doc-biblioref">2017</a>)</span>, <span class="citation" data-cites="ben2010scaling">Ben-Zvi and Barkai (<a href="#ref-ben2010scaling" role="doc-biblioref">2010</a>)</span></p>
 
 

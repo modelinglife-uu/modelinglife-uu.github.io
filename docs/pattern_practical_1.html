@@ -1028,7 +1028,9 @@ window.Quarto = {
 </div>
 </div>
 <div id="exr-plain" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 4.10 (Biology &amp; algorithmic/mathematical thinking)</strong></span> Now we are going to study how noise affects the patterning. You need to modify the code inside the function <code>reaction_diffusion_gradient</code> (Search for # TODO). Write code to add noise to the morphogen <span class="math inline">\(M\)</span> gradient, both in its steady state and decaying phase. During which phase do the expression domains of <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> suffer more from the noise. Explain why? How could we make the system more robust in a manner that is also likely occurring in nature?</p>
+<p><span class="theorem-title"><strong>Exercise 4.10 (Biology &amp; algorithmic/mathematical thinking)</strong></span> Now we are going to study how noise affects the patterning. You need to modify the code inside the function <code>reaction_diffusion_gradient</code> (Search for # TODO). Currently, it is initialized as zeros:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>added_noise <span class="op">=</span> np.zeros_like(u)  <span class="co"># Initialize noise array</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Modify the code to add noise to the morphogen <span class="math inline">\(M\)</span> gradient, both in its steady state and decaying phase. During which phase do the expression domains of <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> suffer more from the noise. Explain why? How could we make the system more robust in a manner that is also likely occurring in nature?</p>
 </div>
 </section>
 <section id="extra-questions" class="level2" data-number="4.5">

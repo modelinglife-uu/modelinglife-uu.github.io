@@ -629,8 +629,14 @@ def new_update_C2(C, A,B, u, prodC, decayC, KmC, pow):
 ## Biology & algorithmic/mathematical thinking
 
 Now we are going to study how noise affects the patterning. You need to modify the
-code inside the function `reaction_diffusion_gradient` (Search for # TODO). Write 
-code to add noise to the morphogen $M$ gradient, both in its steady state 
+code inside the function `reaction_diffusion_gradient` (Search for # TODO). Currently, 
+it is initialized as zeros: 
+
+``` python    
+added_noise = np.zeros_like(u)  # Initialize noise array
+```
+
+Modify the code to add noise to the morphogen $M$ gradient, both in its steady state 
 and decaying phase. During which phase do the expression domains of $A$, $B$ and 
 $C$ suffer more from the noise. Explain why? How could we make the system more
 robust in a manner that is also likely occurring in nature?

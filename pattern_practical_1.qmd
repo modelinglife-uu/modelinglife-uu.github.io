@@ -357,12 +357,14 @@ d.  Modify the `max_indeces` array to visualize the pattern, by
 e.  Do you get the expected “French flag” pattern? If not, think of how the
     genes are regulated, and improve your equations (Question 3), parameters or
     your code.
+    
+Let op: If you get stuck in the plotting, or something else, let us know!!!
 :::
 
 ::: {.callout-note collapse="true"}
-## Code to creat A,B,C arrays; and of Hill functions for their regulation
+## Code to create A,B,C arrays; and of Hill functions for their regulation
 ``` python
-##### 
+
 ##############
 # PARAMETERS #
 ##############
@@ -423,7 +425,7 @@ C = np.zeros((nx, ny))
 ```
 :::
 ::: {.content-visible when-meta="params.show_answers"}
-  > **Answer** Look at code `Question5`.	
+  > **Answer** Look at code `WC04_Question5.py`.	
   > You will find that gene $C$ needs to be induced by low and repressed by high $M$. 
   > And as explained above: $k_A=k_{B1}>k_{B2}>k_C$.
 
@@ -485,6 +487,57 @@ the genes will be expressed). Can you implement changes that maintain the
 expression domains of $A$, $B$ and $C$?, Does their expression in space change?
 :::
 
+::: {.callout-note collapse="true"}
+## Answer Question 8: look at it if you are stuck
+``` python
+def update_A(t, A, u, prodA, decayA, KmA, pow, switch_time=None, B=B, C=C):
+    An = A.copy()
+    if switch_time is None or t <= switch_time:
+        A = An + prodA* hill(u, KmA, pow) * dt - decayA * An * dt
+        # for i in range(nx):
+        #     for j in range(ny):
+        #         A[i, j] = An[i, j] + (prodA * u[i, j]**pow / (KmA**pow + u[i, j]**pow)) * dt - decayA * An[i, j] * dt
+        return A
+    if t > switch_time:
+        A = An + prodA * ihill(B, 10, pow) * ihill(C, 10, pow) * dt - decayA * An * dt
+        # for i in range(nx):
+        #     for j in range(ny):
+        #         A[i, j] = An[i, j] + (prodA * KmA**pow / (KmA**pow + u[i, j]**pow)) * dt - decayA * An[i, j] * dt
+        return A
+
+def update_B(t, B, u, prodB, decayB, KmB1, KmB2, pow, switch_time=None, A=A, C=C):
+    Bn = B.copy()
+    if switch_time is None or t <= switch_time:
+        B = Bn + prodB*(hill(u, KmB1, pow) * ihill(u, KmB2, pow)) * dt - decayB * Bn * dt
+        # for i in range(nx):
+        #     for j in range(ny):
+        #         B[i, j] = Bn[i, j] + (prodB * (u[i, j]**pow / (KmB1**pow + u[i, j]**pow)) * (KmB2**pow / (KmB2**pow + u[i, j]**pow))) * dt - decayB * Bn[i, j] * dt
+        return B
+    if t > switch_time:
+        B = Bn + prodB*(ihill(A, 10, pow) * ihill(C, 10, pow)) * dt - decayB * Bn * dt
+        # for i in range(nx):
+        #     for j in range(ny):
+        #         B[i, j] = Bn[i, j] + (prodB * (KmB1**pow / (KmB1**pow + u[i, j]**pow)) * (KmB2**pow / (KmB2**pow + u[i, j]**pow))) * dt - decayB * Bn[i, j] * dt
+        return B
+
+def update_C(t, C, u, prodC, decayC, KmC, pow, switch_time=None, A=A, B=B):
+    Cn = C.copy()
+    if switch_time is None or t <= switch_time:
+        C= Cn + prodC * ihill(u, KmC, pow) * dt - decayC * Cn * dt
+        # for i in range(nx):
+        #     for j in range(ny):
+        #         C[i, j] = Cn[i, j] + (prodC * KmC**pow / (KmC**pow + u[i, j]**pow)) * dt - decayC * Cn[i, j] * dt
+        return C
+    else:
+        C= Cn + prodC * ihill(A, 10, pow) * ihill(B, 10, pow) * dt - decayC * Cn * dt
+        # for i in range(nx):
+        #     for j in range(ny):
+        #         C[i, j] = Cn[i, j] + (prodC * KmC**pow / (KmC**pow + u[i, j]**pow)) * dt - decayC * Cn[i, j] * dt
+        return C
+
+```
+:::
+
 ::: {.content-visible when-meta="params.show_answers"}
   > **Answer** See `WC04_Question8.py`
   > As $M$ decays, $A$ and $B$ will no longer be activated and $C$ no longer
@@ -523,6 +576,44 @@ c. It is also possible to give certain genes a bit of a constant boost to preven
 their takeover by other genes due to timing issues
 :::
 
+::: {.callout-note collapse="true"}
+## Answer Question 9: look at it if you are stuck
+``` python
+# Below you can see the function we found. A worked out in our first attempt
+# B and C did not, so we modified and succeeded in our Attempt 2. 
+
+#Attempt 1
+def new_update_A(A, B,C ,u, prodA, decayA, KmA, pow):
+    An = A.copy()
+    A = An + dt*(prodA*(hill(u, KmA, pow) + ihill(B, 25, pow) * ihill(C, 25, pow)) - decayA * An)
+    return A
+
+def new_update_B(B, A,C, u, prodB, decayB, KmB1, KmB2, pow):
+    Bn = B.copy()
+    B = Bn + dt*(prodB*(hill(u, KmB1, pow) +ihill(A, 25, pow) * ihill(C, 25, pow))*
+                 (ihill(u, KmB2, pow)*(ihill(A, 25, pow) * ihill(C, 25, pow))) +0.02 - decayB * Bn)
+    return B
+
+def new_update_C(C, A,B, u, prodC, decayC, KmC, pow):
+    Cn = C.copy()
+    C= Cn + dt*(prodC*ihill(u,KmC, pow) * (ihill(A, 25, pow) * ihill(B, 25, pow))  +1.5  - decayC * Cn)
+    return C
+
+#Attempt 2 - B and C need finetuning
+def new_update_B2(B, A,C, u, prodB, decayB, KmB1, KmB2, pow):
+    Bn = B.copy()
+    B = Bn + dt*(prodB*(hill(u, KmB1, pow) +ihill(A, 25, pow) * ihill(C, 25, pow))*
+                 (ihill(u, KmB2, pow)*(ihill(A, 25, pow) * (ihill(C, 25, pow)+0.15))) - decayB * Bn) #0.07
+    return B
+
+def new_update_C2(C, A,B, u, prodC, decayC, KmC, pow):
+    Cn = C.copy()
+    C= Cn + dt*(prodC*ihill(u,KmC, pow) * (ihill(A, 25, pow) * ihill(B, 25, pow)+0.1) - decayC * Cn)
+    return C
+
+````
+:::
+
 ::: {.content-visible when-meta="params.show_answers"}
   > **Answer** This is not at all easy (or as the professor would say "highly non
   > trivial"). It requires that for genes (or part of their input) being positively
@@ -537,7 +628,9 @@ their takeover by other genes due to timing issues
 :::{#exr-plain}
 ## Biology & algorithmic/mathematical thinking
 
-Write code to add noise to the morphogen $M$ gradient, both in its steady state 
+Now we are going to study how noise affects the patterning. You need to modify the
+code inside the function `reaction_diffusion_gradient` (Search for # TODO). Write 
+code to add noise to the morphogen $M$ gradient, both in its steady state 
 and decaying phase. During which phase do the expression domains of $A$, $B$ and 
 $C$ suffer more from the noise. Explain why? How could we make the system more
 robust in a manner that is also likely occurring in nature?

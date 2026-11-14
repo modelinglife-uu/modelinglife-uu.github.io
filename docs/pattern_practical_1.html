@@ -828,6 +828,7 @@ window.Quarto = {
 <li>Modify the <code>max_indeces</code> array to visualize the pattern, by getting which of the three genes is maximal at each location: with <code>np.argmax(np.array(\[A, B, C\])</code>, axis=0) and turning that into an array of RGB colors of choice.</li>
 <li>Do you get the expected “French flag” pattern? If not, think of how the genes are regulated, and improve your equations (Question 3), parameters or your code.</li>
 </ol>
+<p>Let op: If you get stuck in the plotting, or something else, let us know!!!</p>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
@@ -835,13 +836,13 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Code to creat A,B,C arrays; and of Hill functions for their regulation
+<span class="screen-reader-only">Note</span>Code to create A,B,C arrays; and of Hill functions for their regulation
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">##### </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">##############</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># PARAMETERS #</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">##############</span></span>
@@ -913,6 +914,65 @@ window.Quarto = {
 <p><span class="theorem-title"><strong>Exercise 4.8 (Biological &amp; mathematical thinking)</strong></span> <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> cannot remain in a stable pattern if they are only influenced by <span class="math inline">\(M\)</span>. How can we stabilize the pattern in absence of <span class="math inline">\(M\)</span>? Test your ideas by creating new update functions for <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> and let these new ‘rules’ kick in at the same time when <span class="math inline">\(M\)</span> starts to decline. Again, you may find Hill functions useful and perhaps also the before/after switch time structure used in reaction_diffusion_gradient for <span class="math inline">\(M\)</span>.</p>
 <p>(Hint: think about how the genes should affect each other, and assume that in this new phase, when genes have already been initialized in absence of repression the genes will be expressed). Can you implement changes that maintain the expression domains of <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span>?, Does their expression in space change?</p>
 </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer Question 8: look at it if you are stuck
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update_A(t, A, u, prodA, decayA, KmA, <span class="bu">pow</span>, switch_time<span class="op">=</span><span class="va">None</span>, B<span class="op">=</span>B, C<span class="op">=</span>C):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    An <span class="op">=</span> A.copy()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> switch_time <span class="kw">is</span> <span class="va">None</span> <span class="kw">or</span> t <span class="op">&lt;=</span> switch_time:</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        A <span class="op">=</span> An <span class="op">+</span> prodA<span class="op">*</span> hill(u, KmA, <span class="bu">pow</span>) <span class="op">*</span> dt <span class="op">-</span> decayA <span class="op">*</span> An <span class="op">*</span> dt</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># for i in range(nx):</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="co">#     for j in range(ny):</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="co">#         A[i, j] = An[i, j] + (prodA * u[i, j]**pow / (KmA**pow + u[i, j]**pow)) * dt - decayA * An[i, j] * dt</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> A</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> t <span class="op">&gt;</span> switch_time:</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        A <span class="op">=</span> An <span class="op">+</span> prodA <span class="op">*</span> ihill(B, <span class="dv">10</span>, <span class="bu">pow</span>) <span class="op">*</span> ihill(C, <span class="dv">10</span>, <span class="bu">pow</span>) <span class="op">*</span> dt <span class="op">-</span> decayA <span class="op">*</span> An <span class="op">*</span> dt</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># for i in range(nx):</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        <span class="co">#     for j in range(ny):</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        <span class="co">#         A[i, j] = An[i, j] + (prodA * KmA**pow / (KmA**pow + u[i, j]**pow)) * dt - decayA * An[i, j] * dt</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> A</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update_B(t, B, u, prodB, decayB, KmB1, KmB2, <span class="bu">pow</span>, switch_time<span class="op">=</span><span class="va">None</span>, A<span class="op">=</span>A, C<span class="op">=</span>C):</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    Bn <span class="op">=</span> B.copy()</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> switch_time <span class="kw">is</span> <span class="va">None</span> <span class="kw">or</span> t <span class="op">&lt;=</span> switch_time:</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        B <span class="op">=</span> Bn <span class="op">+</span> prodB<span class="op">*</span>(hill(u, KmB1, <span class="bu">pow</span>) <span class="op">*</span> ihill(u, KmB2, <span class="bu">pow</span>)) <span class="op">*</span> dt <span class="op">-</span> decayB <span class="op">*</span> Bn <span class="op">*</span> dt</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># for i in range(nx):</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        <span class="co">#     for j in range(ny):</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        <span class="co">#         B[i, j] = Bn[i, j] + (prodB * (u[i, j]**pow / (KmB1**pow + u[i, j]**pow)) * (KmB2**pow / (KmB2**pow + u[i, j]**pow))) * dt - decayB * Bn[i, j] * dt</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> B</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> t <span class="op">&gt;</span> switch_time:</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>        B <span class="op">=</span> Bn <span class="op">+</span> prodB<span class="op">*</span>(ihill(A, <span class="dv">10</span>, <span class="bu">pow</span>) <span class="op">*</span> ihill(C, <span class="dv">10</span>, <span class="bu">pow</span>)) <span class="op">*</span> dt <span class="op">-</span> decayB <span class="op">*</span> Bn <span class="op">*</span> dt</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>        <span class="co"># for i in range(nx):</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>        <span class="co">#     for j in range(ny):</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        <span class="co">#         B[i, j] = Bn[i, j] + (prodB * (KmB1**pow / (KmB1**pow + u[i, j]**pow)) * (KmB2**pow / (KmB2**pow + u[i, j]**pow))) * dt - decayB * Bn[i, j] * dt</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> B</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update_C(t, C, u, prodC, decayC, KmC, <span class="bu">pow</span>, switch_time<span class="op">=</span><span class="va">None</span>, A<span class="op">=</span>A, B<span class="op">=</span>B):</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    Cn <span class="op">=</span> C.copy()</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> switch_time <span class="kw">is</span> <span class="va">None</span> <span class="kw">or</span> t <span class="op">&lt;=</span> switch_time:</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>        C<span class="op">=</span> Cn <span class="op">+</span> prodC <span class="op">*</span> ihill(u, KmC, <span class="bu">pow</span>) <span class="op">*</span> dt <span class="op">-</span> decayC <span class="op">*</span> Cn <span class="op">*</span> dt</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>        <span class="co"># for i in range(nx):</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>        <span class="co">#     for j in range(ny):</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>        <span class="co">#         C[i, j] = Cn[i, j] + (prodC * KmC**pow / (KmC**pow + u[i, j]**pow)) * dt - decayC * Cn[i, j] * dt</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> C</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>        C<span class="op">=</span> Cn <span class="op">+</span> prodC <span class="op">*</span> ihill(A, <span class="dv">10</span>, <span class="bu">pow</span>) <span class="op">*</span> ihill(B, <span class="dv">10</span>, <span class="bu">pow</span>) <span class="op">*</span> dt <span class="op">-</span> decayC <span class="op">*</span> Cn <span class="op">*</span> dt</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>        <span class="co"># for i in range(nx):</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>        <span class="co">#     for j in range(ny):</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>        <span class="co">#         C[i, j] = Cn[i, j] + (prodC * KmC**pow / (KmC**pow + u[i, j]**pow)) * dt - decayC * Cn[i, j] * dt</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> C</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
 <div id="exr-plain" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.9 (Biology &amp; algorithmic/mathematical thinking)</strong></span> A sudden switch of how the genes are regulated (different equations) from phase 1 (stable <span class="math inline">\(M\)</span> gradient) to phase 2 (decaying <span class="math inline">\(M\)</span> gradient) is biologically implausible. In reality, genes have complex promoters and enhancers integrating different inputs that arise in different developmental stages. Try to come up with one integrated expression for each gene, incorporating simultaneous input from the morphogen <span class="math inline">\(M\)</span> gradient and the other genes. Create new update functions for <span class="math inline">\(A\)</span>,<span class="math inline">\(B\)</span>,<span class="math inline">\(C\)</span> and test your ideas. Can you write equations that produce a stable pattern before and after the decline in <span class="math inline">\(M\)</span>? A couple of things you could consider:</p>
 <ol type="a">
@@ -921,8 +981,54 @@ window.Quarto = {
 <li><p>It is also possible to give certain genes a bit of a constant boost to prevent their takeover by other genes due to timing issues</p></li>
 </ol>
 </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer Question 9: look at it if you are stuck
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Below you can see the function we found. A worked out in our first attempt</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># B and C did not, so we modified and succeeded in our Attempt 2. </span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Attempt 1</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> new_update_A(A, B,C ,u, prodA, decayA, KmA, <span class="bu">pow</span>):</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    An <span class="op">=</span> A.copy()</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> An <span class="op">+</span> dt<span class="op">*</span>(prodA<span class="op">*</span>(hill(u, KmA, <span class="bu">pow</span>) <span class="op">+</span> ihill(B, <span class="dv">25</span>, <span class="bu">pow</span>) <span class="op">*</span> ihill(C, <span class="dv">25</span>, <span class="bu">pow</span>)) <span class="op">-</span> decayA <span class="op">*</span> An)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> A</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> new_update_B(B, A,C, u, prodB, decayB, KmB1, KmB2, <span class="bu">pow</span>):</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    Bn <span class="op">=</span> B.copy()</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> Bn <span class="op">+</span> dt<span class="op">*</span>(prodB<span class="op">*</span>(hill(u, KmB1, <span class="bu">pow</span>) <span class="op">+</span>ihill(A, <span class="dv">25</span>, <span class="bu">pow</span>) <span class="op">*</span> ihill(C, <span class="dv">25</span>, <span class="bu">pow</span>))<span class="op">*</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>                 (ihill(u, KmB2, <span class="bu">pow</span>)<span class="op">*</span>(ihill(A, <span class="dv">25</span>, <span class="bu">pow</span>) <span class="op">*</span> ihill(C, <span class="dv">25</span>, <span class="bu">pow</span>))) <span class="op">+</span><span class="fl">0.02</span> <span class="op">-</span> decayB <span class="op">*</span> Bn)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> B</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> new_update_C(C, A,B, u, prodC, decayC, KmC, <span class="bu">pow</span>):</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    Cn <span class="op">=</span> C.copy()</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    C<span class="op">=</span> Cn <span class="op">+</span> dt<span class="op">*</span>(prodC<span class="op">*</span>ihill(u,KmC, <span class="bu">pow</span>) <span class="op">*</span> (ihill(A, <span class="dv">25</span>, <span class="bu">pow</span>) <span class="op">*</span> ihill(B, <span class="dv">25</span>, <span class="bu">pow</span>))  <span class="op">+</span><span class="fl">1.5</span>  <span class="op">-</span> decayC <span class="op">*</span> Cn)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> C</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co">#Attempt 2 - B and C need finetuning</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> new_update_B2(B, A,C, u, prodB, decayB, KmB1, KmB2, <span class="bu">pow</span>):</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    Bn <span class="op">=</span> B.copy()</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> Bn <span class="op">+</span> dt<span class="op">*</span>(prodB<span class="op">*</span>(hill(u, KmB1, <span class="bu">pow</span>) <span class="op">+</span>ihill(A, <span class="dv">25</span>, <span class="bu">pow</span>) <span class="op">*</span> ihill(C, <span class="dv">25</span>, <span class="bu">pow</span>))<span class="op">*</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>                 (ihill(u, KmB2, <span class="bu">pow</span>)<span class="op">*</span>(ihill(A, <span class="dv">25</span>, <span class="bu">pow</span>) <span class="op">*</span> (ihill(C, <span class="dv">25</span>, <span class="bu">pow</span>)<span class="op">+</span><span class="fl">0.15</span>))) <span class="op">-</span> decayB <span class="op">*</span> Bn) <span class="co">#0.07</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> B</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> new_update_C2(C, A,B, u, prodC, decayC, KmC, <span class="bu">pow</span>):</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    Cn <span class="op">=</span> C.copy()</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    C<span class="op">=</span> Cn <span class="op">+</span> dt<span class="op">*</span>(prodC<span class="op">*</span>ihill(u,KmC, <span class="bu">pow</span>) <span class="op">*</span> (ihill(A, <span class="dv">25</span>, <span class="bu">pow</span>) <span class="op">*</span> ihill(B, <span class="dv">25</span>, <span class="bu">pow</span>)<span class="op">+</span><span class="fl">0.1</span>) <span class="op">-</span> decayC <span class="op">*</span> Cn)</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> C</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
 <div id="exr-plain" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 4.10 (Biology &amp; algorithmic/mathematical thinking)</strong></span> Write code to add noise to the morphogen <span class="math inline">\(M\)</span> gradient, both in its steady state and decaying phase. During which phase do the expression domains of <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> suffer more from the noise. Explain why? How could we make the system more robust in a manner that is also likely occurring in nature?</p>
+<p><span class="theorem-title"><strong>Exercise 4.10 (Biology &amp; algorithmic/mathematical thinking)</strong></span> Now we are going to study how noise affects the patterning. You need to modify the code inside the function <code>reaction_diffusion_gradient</code> (Search for # TODO). Write code to add noise to the morphogen <span class="math inline">\(M\)</span> gradient, both in its steady state and decaying phase. During which phase do the expression domains of <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> suffer more from the noise. Explain why? How could we make the system more robust in a manner that is also likely occurring in nature?</p>
 </div>
 </section>
 <section id="extra-questions" class="level2" data-number="4.5">

@@ -68,10 +68,10 @@ book:
 #            - project_4.qmd
 #            - project_5.qmd
 #            - project_6.qmd
-    - references.qmd
+#    - references.qmd
 
 
-#bibliography: references.bib
+bibliography: references.bib
 
 format:
   live-html:

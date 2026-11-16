@@ -26,7 +26,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -479,12 +498,6 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -538,7 +551,7 @@ ul.task-list li input[type="checkbox"] {
 <figcaption>Sorting of aggregates of embryonic cells, based on experiments by Townes and Holftreter in 1955. Image adapted from Gilbert “Developmental Biology” 11th edition.</figcaption>
 </figure>
 </div>
-<p>According to the “differential adhesion hypothesis”, unlike expression levels of cell-cell adhesion molecules is the mechanistic driver of cell sorting. Biophysically, cells form aggregates that minimize the contact energy at interfaces, rearranging into the most thermodynamically stable pattern. In 1992, the cellular Potts model was developed to test this hypothesis using simulations (<span class="citation" data-cites="graner1992simulation">@graner1992simulation</span>).</p>
+<p>According to the “differential adhesion hypothesis”, unlike expression levels of cell-cell adhesion molecules is the mechanistic driver of cell sorting. Biophysically, cells form aggregates that minimize the contact energy at interfaces, rearranging into the most thermodynamically stable pattern. In 1992, the cellular Potts model was developed to test this hypothesis using simulations (<span class="citation" data-cites="graner1992simulation">Graner and Glazier (<a href="#ref-graner1992simulation" role="doc-biblioref">1992</a>)</span>).</p>
 </section>
 <section id="the-cellular-potts-glazier-graner-hogeweg-model" class="level2" data-number="9.3">
 <h2 data-number="9.3" class="anchored" data-anchor-id="the-cellular-potts-glazier-graner-hogeweg-model"><span class="header-section-number">9.3</span> The cellular Potts / Glazier-Graner-Hogeweg model</h2>
@@ -687,8 +700,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <section id="references" class="level4">
 <h4 class="anchored" data-anchor-id="references">References</h4>
-<p>[1] <span class="citation" data-cites="gilbert2016developmental">@gilbert2016developmental</span> (https://utrechtuniversity.on.worldcat.org/oclc/1035852599)</p>
-<p>[2] <span class="citation" data-cites="graner1992simulation">@graner1992simulation</span> (https://doi.org/10.1103/PhysRevLett.69.2013)</p>
+<p>[1] <span class="citation" data-cites="gilbert2016developmental">Gilbert and Barresi (<a href="#ref-gilbert2016developmental" role="doc-biblioref">2016</a>)</span> (https://utrechtuniversity.on.worldcat.org/oclc/1035852599)</p>
+<p>[2] <span class="citation" data-cites="graner1992simulation">Graner and Glazier (<a href="#ref-graner1992simulation" role="doc-biblioref">1992</a>)</span> (https://doi.org/10.1103/PhysRevLett.69.2013)</p>
 
 
 <script type="ojs-module-contents">
@@ -705,6 +718,14 @@ eyJjb250ZW50cyI6W119
 <script type="vfs-file">
 W10=
 </script>
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-gilbert2016developmental" class="csl-entry" role="listitem">
+Gilbert, SCOTT F, and MJF Barresi. 2016. <em>Developmental Biology. 11th Edn, 372</em>. Sinauer Associates.
+</div>
+<div id="ref-graner1992simulation" class="csl-entry" role="listitem">
+Graner, François, and James A Glazier. 1992. <span>“Simulation of Biological Cell Sorting Using a Two-Dimensional Extended Potts Model.”</span> <em>Physical Review Letters</em> 69 (13): 2013.
+</div>
+</div>
 </section>
 </section>
 

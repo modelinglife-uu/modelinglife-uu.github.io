@@ -61,7 +61,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -543,12 +562,6 @@ window.Quarto = {
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -597,8 +610,8 @@ window.Quarto = {
 
 <section id="section" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="section"></h2>
-<p>A foundational work in Theoretical Biology is Alan Turing’s paper <em>“The Chemical Basis of Morphogenesis”</em> (<span class="citation" data-cites="turing1990chemical">@turing1990chemical</span>). In this work, Turing mathematically demonstrates a plausible mechanism whereby a reaction-diffusion system can lead to the formation of a spatially-patterned solution in steady state. Mathematically and conceptually, Turing’s key innovation was considering diffusion-driven instability. That is: A non-patterned steady state solution becomes unstable in the presence of diffusion, leading to the formation of a spatially patterned state.</p>
-<p>Turing-type patterns emerge when a system exhibits short-ranged activation and long-ranged inhibition. The most well-known realization of a Turing reaction-diffusion system is the combination of a slow-diffusing activator and fast-diffusing inhibitor. Many more examples exist which can be reduced to a mathematically equivalent form. In this practical, we will explore a 3-component Turing system developed by Raspopovic and coauthors to explain the patterning of fingers on the paws of mice (<span class="citation" data-cites="raspopovic2014digit">@raspopovic2014digit</span>).</p>
+<p>A foundational work in Theoretical Biology is Alan Turing’s paper <em>“The Chemical Basis of Morphogenesis”</em> (<span class="citation" data-cites="turing1990chemical">Turing (<a href="#ref-turing1990chemical" role="doc-biblioref">1990</a>)</span>). In this work, Turing mathematically demonstrates a plausible mechanism whereby a reaction-diffusion system can lead to the formation of a spatially-patterned solution in steady state. Mathematically and conceptually, Turing’s key innovation was considering diffusion-driven instability. That is: A non-patterned steady state solution becomes unstable in the presence of diffusion, leading to the formation of a spatially patterned state.</p>
+<p>Turing-type patterns emerge when a system exhibits short-ranged activation and long-ranged inhibition. The most well-known realization of a Turing reaction-diffusion system is the combination of a slow-diffusing activator and fast-diffusing inhibitor. Many more examples exist which can be reduced to a mathematically equivalent form. In this practical, we will explore a 3-component Turing system developed by Raspopovic and coauthors to explain the patterning of fingers on the paws of mice (<span class="citation" data-cites="raspopovic2014digit">Raspopovic et al. (<a href="#ref-raspopovic2014digit" role="doc-biblioref">2014</a>)</span>).</p>
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="quarto-figure quarto-figure-center">
@@ -651,7 +664,7 @@ Figure&nbsp;5.2: Scheme of the BSW model
 </section>
 <section id="patterning-in-a-fixed-domain-size" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="patterning-in-a-fixed-domain-size"><span class="header-section-number">5.2</span> Patterning in a fixed domain size</h2>
-<p>The code in the script <code>WC05_digits-square-START.py</code> simulates the BSW model in a 2D-square tissue of constant size. This setup can be considered as a small region of a large Petri dish in which mesenchymal cells have been plated with the correct chemicals to undergo morphogenesis (bone formation, FigureS3 <span class="citation" data-cites="raspopovic2014digit">@raspopovic2014digit</span>).</p>
+<p>The code in the script <code>WC05_digits-square-START.py</code> simulates the BSW model in a 2D-square tissue of constant size. This setup can be considered as a small region of a large Petri dish in which mesenchymal cells have been plated with the correct chemicals to undergo morphogenesis (bone formation, FigureS3 <span class="citation" data-cites="raspopovic2014digit">Raspopovic et al. (<a href="#ref-raspopovic2014digit" role="doc-biblioref">2014</a>)</span>).</p>
 <div id="exr-tur" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 5.2 (Biology)</strong></span> Play with the parameters, for example changing <span class="math inline">\(k4\)</span> (Sox9 effect on BMP), <span class="math inline">\(k7\)</span> (Sox9 effect on Wnt), or changing how much faster is Bmp diffusion compared to Wnt diffusion. Change one parameter at a time and observe the effects on the patterning. Change the values in one direction and the other, to confirm it produces the opposite effect.</p>
 <p>What effects on the pattern wavelength do you find? Are there changes in two parameters that produce the same effect? Why?</p>
@@ -703,7 +716,7 @@ Figure&nbsp;5.2: Scheme of the BSW model
 <h2 data-number="5.4" class="anchored" data-anchor-id="patterning-along-two-growth-axes"><span class="header-section-number">5.4</span> Patterning along two growth axes</h2>
 <p>In reality, the limb bud grows in both the proximo-distal and anterior-posterior direction. You can implement this by modifying the value of the growth rates <span class="math inline">\(vi\)</span> for proximo-distal growth and <span class="math inline">\(vj\)</span> for anterior-posterior growth.</p>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 5.4 (Biology)</strong></span> Play with the relative size of these growth rates and study what happens. Compare the order of appearance of stripes to the experimental data in the paper (see Figure3F in the Raspopovic paper <span class="citation" data-cites="raspopovic2014digit">@raspopovic2014digit</span>).</p>
+<p><span class="theorem-title"><strong>Exercise 5.4 (Biology)</strong></span> Play with the relative size of these growth rates and study what happens. Compare the order of appearance of stripes to the experimental data in the paper (see Figure3F in the Raspopovic paper <span class="citation" data-cites="raspopovic2014digit">Raspopovic et al. (<a href="#ref-raspopovic2014digit" role="doc-biblioref">2014</a>)</span>).</p>
 </div>
 <hr>
 </section>
@@ -717,7 +730,7 @@ Figure&nbsp;5.2: Scheme of the BSW model
 If the cell increases in volume and does not produce/degrade X, what happens to the concentration of X?<br>
 What would be the concentration of X in the two daughter cells if the cell divides?<br>
 How would the situation change if X is constantly produced and degraded?</p>
-<p>In the paper, <span class="citation" data-cites="raspopovic2014digit">@raspopovic2014digit</span> create a “tissue growth map” (see their Figure 3A), which they use to map concentration values from one timepoint to the next using interpolation-based transformations.</p>
+<p>In the paper, <span class="citation" data-cites="raspopovic2014digit">Raspopovic et al. (<a href="#ref-raspopovic2014digit" role="doc-biblioref">2014</a>)</span> create a “tissue growth map” (see their Figure 3A), which they use to map concentration values from one timepoint to the next using interpolation-based transformations.</p>
 <p>Inspired by this approach, the script <code>WC05_digits_square-Question5_interpolation-growing.py</code> implements a different growth function that uses bilinear interpolation to expand the tissue. Search for <code># new addition relative to previous code</code> to help you find what is new in this code.</p>
 <p>Play around with the growth rate parameters and compare the results to what you found earlier. Do the patterns differ? If yes, how do they differ?</p>
 <p><em>Hint:</em> Try the supplementary script <code>supp_g__bilinear_interpolation.py</code> in the Supp folder to understand how interpolation-based growth works.</p>
@@ -968,7 +981,7 @@ k7^* = k7 + k_{HF_{wnt}} * fgf(i,j) * hox(i,j)
 <div id="exr-tur" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 5.8 (Biology)</strong></span> Switching between geometries is easily done by changing the value of the parameter <code>geometry</code> on line 78 of the script. Start with the “ellipse” geometry. What do you observe with regards to the FGF gradient? What consequences does this have? Why would this be “a smart thing to do”?</p>
 <p>Play around with <span class="math inline">\(vi/vj\)</span> and <span class="math inline">\(Lx0\)</span> to investigate the effect of ellipse shape and development over time on the number, shape and robustness of digits that form.</p>
-<p>Now switch to the paddle geometry. Observe the patterns that emerge and compare these to the simulated and experimentally observed patterns in Figure 3E and 3F of the Raspopovic article (<span class="citation" data-cites="raspopovic2014digit">@raspopovic2014digit</span>).</p>
+<p>Now switch to the paddle geometry. Observe the patterns that emerge and compare these to the simulated and experimentally observed patterns in Figure 3E and 3F of the Raspopovic article (<span class="citation" data-cites="raspopovic2014digit">Raspopovic et al. (<a href="#ref-raspopovic2014digit" role="doc-biblioref">2014</a>)</span>).</p>
 <p>What does and what doesn’t the model explain well?</p>
 </div>
 <p><strong>Technical details</strong>: To implement non-square geometries, the script uses “masks”. Try the supplementary script <code>supp_i__geometries.py</code> in the Supp folder, and study how these masks are created in the functions <code>create_ellipse_mask</code> and <code>create_tissue_mask</code>.</p>
@@ -986,7 +999,7 @@ k7^* = k7 + k_{HF_{wnt}} * fgf(i,j) * hox(i,j)
 <li><code>supp_i__maskDifference.py</code> visualizes the difference of masks, which is how the function <code>single_step_growth()</code> checks if the tissue domain is growing or shrinking.</li>
 </ul>
 </div>
-<p><span class="citation" data-cites="miguez2006effect">@miguez2006effect</span></p>
+<p><span class="citation" data-cites="miguez2006effect">Mı́guez et al. (<a href="#ref-miguez2006effect" role="doc-biblioref">2006</a>)</span></p>
 <section id="references" class="level3">
 <h3 class="anchored" data-anchor-id="references">References</h3>
 
@@ -1005,6 +1018,17 @@ eyJjb250ZW50cyI6W119
 <script type="vfs-file">
 W10=
 </script>
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-miguez2006effect" class="csl-entry" role="listitem">
+Mı́guez, David G, Milos Dolnik, Alberto P Munuzuri, and Lorenz Kramer. 2006. <span>“Effect of Axial Growth on Turing Pattern Formation.”</span> <em>Physical Review Letters</em> 96 (4): 048304.
+</div>
+<div id="ref-raspopovic2014digit" class="csl-entry" role="listitem">
+Raspopovic, Jelena, Luciano Marcon, Laura Russo, and James Sharpe. 2014. <span>“Digit Patterning Is Controlled by a Bmp-Sox9-Wnt Turing Network Modulated by Morphogen Gradients.”</span> <em>Science</em> 345 (6196): 566–70.
+</div>
+<div id="ref-turing1990chemical" class="csl-entry" role="listitem">
+Turing, Alan Mathison. 1990. <span>“The Chemical Basis of Morphogenesis.”</span> <em>Bulletin of Mathematical Biology</em> 52 (1): 153–97.
+</div>
+</div>
 </section>
 </section>
 

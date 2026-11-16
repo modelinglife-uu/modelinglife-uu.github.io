@@ -71,7 +71,7 @@ book:
     - references.qmd
 
 
-bibliography: references.bib
+#bibliography: references.bib
 
 format:
   live-html:

@@ -61,26 +61,7 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -651,7 +632,7 @@ examples of biological regulatory interactions that can be described with each l
 </section>
 <section id="gene-regulatory-network" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="gene-regulatory-network"><span class="header-section-number">7.2</span> Gene regulatory network</h2>
-<p>Now let’s move to a network model made of many individual regulatory interactions (<span class="citation" data-cites="garcia2020system">Garcı́a-Gómez et al. (<a href="#ref-garcia2020system" role="doc-biblioref">2020</a>)</span>). This model includes many regulatory interactions discovered for the cells of plant roots through years of experimental research. Here, all this knowledge is encoded as logical rules.</p>
+<p>Now let’s move to a network model made of many individual regulatory interactions (<span class="citation" data-cites="garcia2020system">@garcia2020system</span>). This model includes many regulatory interactions discovered for the cells of plant roots through years of experimental research. Here, all this knowledge is encoded as logical rules.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1368,8 +1349,8 @@ examples of biological regulatory interactions that can be described with each l
 <p><span class="theorem-title"><strong>Exercise 7.13 (Biology)</strong></span> Use the model to predict the rest of the attractor transitions because of single variable changes. Are all attractor transitions possible, or are there preferred differentiation routes? What does this say about the system?</p>
 </div>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.14 (Question for master students)</strong></span> Some cell fate transitions are only observed in extraordinary conditions, for example, during regeneration. Plant scientists like to damage plants, e.g.&nbsp; burn their cells, cut their roots or leaves, to study the mechanisms that allow them to regrow the missing cells/ends. Root regeneration for example, is triggered when removing the tip of the organ, and within 5 days all the missing root cells are restored. Using single cell transcriptomics <span class="citation" data-cites="efroni2016root">Efroni et al. (<a href="#ref-efroni2016root" role="doc-biblioref">2016</a>)</span> showed that in this conditions, vascular cells restore all other root cells.</p>
-<p>You have been working with a network model that recovers attractors that represent different root cell types. Use the model to predict how the cell fate change reported by <span class="citation" data-cites="efroni2016root">Efroni et al. (<a href="#ref-efroni2016root" role="doc-biblioref">2016</a>)</span> could be happening. See below some ideas of things you could try:</p>
+<p><span class="theorem-title"><strong>Exercise 7.14 (Question for master students)</strong></span> Some cell fate transitions are only observed in extraordinary conditions, for example, during regeneration. Plant scientists like to damage plants, e.g.&nbsp; burn their cells, cut their roots or leaves, to study the mechanisms that allow them to regrow the missing cells/ends. Root regeneration for example, is triggered when removing the tip of the organ, and within 5 days all the missing root cells are restored. Using single cell transcriptomics <span class="citation" data-cites="efroni2016root">@efroni2016root</span> showed that in this conditions, vascular cells restore all other root cells.</p>
+<p>You have been working with a network model that recovers attractors that represent different root cell types. Use the model to predict how the cell fate change reported by <span class="citation" data-cites="efroni2016root">@efroni2016root</span> could be happening. See below some ideas of things you could try:</p>
 <ul>
 <li><p>Instead of simulating single gene perturbations, try perturbation in multiple genes.</p></li>
 <li><p>Play with the duration of the perturbations.</p></li>
@@ -1379,10 +1360,10 @@ examples of biological regulatory interactions that can be described with each l
 <figure class="figure">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/efroni.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Cells that had a vascular cell fate before the cut, gradually become all the other root cell types during regeneration of the root tip. From @efroni2016root."><img src="images/efroni.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Cells that had a vascular cell fate before the cut, gradually become all the other root cell types during regeneration of the root tip. From Efroni et al. (2016)."></a></p>
+<p><a href="images/efroni.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Cells that had a vascular cell fate before the cut, gradually become all the other root cell types during regeneration of the root tip. From @efroni2016root."><img src="images/efroni.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Cells that had a vascular cell fate before the cut, gradually become all the other root cell types during regeneration of the root tip. From @efroni2016root."></a></p>
 </figure>
 </div>
-<figcaption>Cells that had a vascular cell fate before the cut, gradually become all the other root cell types during regeneration of the root tip. From <span class="citation" data-cites="efroni2016root">Efroni et al. (<a href="#ref-efroni2016root" role="doc-biblioref">2016</a>)</span>.</figcaption>
+<figcaption>Cells that had a vascular cell fate before the cut, gradually become all the other root cell types during regeneration of the root tip. From <span class="citation" data-cites="efroni2016root">@efroni2016root</span>.</figcaption>
 </figure>
 </div>
 </div>
@@ -1405,14 +1386,6 @@ eyJjb250ZW50cyI6W119
 <script type="vfs-file">
 W10=
 </script>
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-efroni2016root" class="csl-entry" role="listitem">
-Efroni, Idan, Alison Mello, Tal Nawy, et al. 2016. <span>“Root Regeneration Triggers an Embryo-Like Sequence Guided by Hormonal Interactions.”</span> <em>Cell</em> 165 (7): 1721–33.
-</div>
-<div id="ref-garcia2020system" class="csl-entry" role="listitem">
-Garcı́a-Gómez, Mónica L, Diego Ornelas-Ayala, Adriana Garay-Arroyo, Berenice Garcı́a-Ponce, Marı́a de la Paz Sánchez, and Elena R Alvarez-Buylla. 2020. <span>“A System-Level Mechanistic Explanation for Asymmetric Stem Cell Fates: Arabidopsis Thaliana Root Niche as a Study System.”</span> <em>Scientific Reports</em> 10 (1): 3525.
-</div>
-</div>
 </section>
 
 </main> <!-- /main -->

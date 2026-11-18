@@ -53,7 +53,9 @@ tf1 and tf2 are repressing or activating.
 
 ## Python code
 
-The code below is also in  `WC04-Pattern_formation_I/WC04_morphogengradient_to_segments.py`. 
+Download the code for this practical from : <https://github.com/moneralee/UU_Modeling-Life-course>.
+You will find the starting code in `WC04-Pattern_formation_I/WC04_morphogengradient_to_segments.py`. 
+You can also copy the code below and save it in a .py file. 
 
 ::: {.callout-note collapse="true"}
 ## Starting code for this practical

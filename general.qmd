@@ -50,8 +50,6 @@ After this course the student can:
 
   Schedule, slides, practicals: <https://modelinglife-uu.github.io/>
 
-  Code: <https://github.com/moneralee/UU_Modeling-Life-course>
-
   **Brightspace**: is the channel for all official communications (*e.g.* final grades). 
 
 **Teams** is not used to livestream lectures. However, if you have any questions for the

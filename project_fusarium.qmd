@@ -1,0 +1,157 @@
+---
+params:
+  show_answers: false
+---
+
+# Miniproject: why store a gene on a fragile chromosome?
+
+## Mini description
+
+Many fungi that cause diseases in plants carry their **effector genes** (the ones that help them damage and exploit plants) on so-called **accessory chromosomes**. These chromosomes rarely contain essential genes, and can therefore be lost without it being lethal for the fungus. In some species, like *Fusarium oxysporum*, these accessory chromosomes can even be transferred horizontally between strains. This raises a puzzle: why are specifically effector genes encoded on mobile (yet fragile) accessory chromosomes, and not on the stable core chromosome?
+
+![Plant-pathogenic fungi carry effector genes. Where in the genome should such a gene sit? (1) The effector lets the fungus grow better on healthy plants, at a cost. (2) Where carriers are common, nearby plants are damaged and the effector stops paying. (3) The gene can sit on the core chromosome, on the accessory chromosome, or move between the two (translocation). Under what conditions can an accessory chromosome spread, and where does the gene end up?](images/fusarium_question.png){#fig-fusarium-question}
+
+## The project
+
+In this mini project you study why a gene would sit on a mobile accessory chromosome instead of on the (more stable) core chromosome. 
+
+To start, you get an **individual-based model (IBM)** from your supervisor (via Teams): fungi on a grid, each with a core chromosome and an optional accessory chromosome, living on plants that they can damage. First, explore this IBM and figure out what it does. To help with this, we suggest you draw a cartoon of all the players and the interactions between them, and cross-verify that with a teacher. Then, turn this cartoon into a **well-mixed model (ODEs)**, and compare the results with the IBM. 
+
+Note that a single run of the IBM can vary a lot (depending on the parameters), so use at least 3 to 5 random seeds before jumping to conclusions.
+
+:::{.callout-tip}
+## Team up with the *virulence* project
+You get a spatial model from us, but **no ODEs**. The students working on the *evolution of virulence in space* mini project are in the opposite situation: they get a set of ODEs, but have to build a spatial model themselves. Both projects are about a pathogen, a host, and a gene that moves horizontally. Help each other out: show them how your spatial model is organised (grid, neighbourhoods, local reproduction and transfer), and ask them how they set up, integrate and analyse their ODEs. That way we can get to the "fun part" more quickly, and you still learn about modelling this yourself! =)
+:::
+
+## Guiding questions
+
+1. What happens to the plants, the gene and the accessory chromosome? 
+2. What kind of control would you use to contrast effector genes with other types of genes? What kind of control would you use to investigate the effect of spatial structure? 
+3. When can a mobile accessory chromosome maintain itself? Can you derive such a condition from your ODE model? 
+
+## Ideas for additional questions (untested)
+
+* Does an accessory chromosome that carries the gene spread more easily than an empty one? 
+* Should a cell with the gene on both chromosomes pay the effector cost twice? 
+* Do you think your results hold under a broad range of parameters? How could you (in principle, if you had the time) test this? 
+* What if transfer is non-local (between more distant fungi)? 
+* Does the size of the grid matter? 
+
+## Key references
+
+1. A short paper on accessory regions in fungi: <https://journals.plos.org/plospathogens/article?id=10.1371/journal.ppat.1002608>
+2. A somewhat more recent and comprehensive view on "the two-speed genome" in fungi: <https://www.sciencedirect.com/science/article/pii/S1749461320300257>
+3. A model of phages as vehicles of gene transfer in a spatial model of bacteria (focus on the second half of the results): <https://academic.oup.com/gbe/article/18/8/evag181/8734901>
+
+
+:::{.content-visible when-meta="params.show_answers"}
+
+## Notes for teachers
+
+**Student files.** The students receive a Python model (`accessory.py`) that implements fungi interacting with plants in space. The students must first decipher what happens and hopefully find the cartoon below. Students do **not** get the ODE: after they have deciphered the IBM they can write a mean field themselves (with our help). The equations are below. 
+
+The most important finding from the ODE is that you do NOT get enrichment of effector genes on the accessory chromosome in the well-mixed model. You also do NOT find enrichment if you run the IBM with mixing (`MIX = True`). Apparently, spatial structure is responsible for this observation. The exact how/why is not 100% clear yet, but there are various facets:
+
+- The ODE has only "one pool" of hosts, the spatial model has multiple pools of plants: some healthy, some sick.
+- The IBM clusters genotypes in space. Genes on the core chromosome stay with these genotypes, but genes on accessory chromosomes can "travel independently". This allows accessory-encoded genes to escape environments where the plants are already killed.
+
+When run with the parameters given in the code, the IBM shows very different numbers than the mean field (ODE / mixed IBM):
+
+|                                     | ODE  | Mixed IBM | Spatial IBM |
+|-------------------------------------|------|-----------|-------------|
+| Gene on accessory (% of carriers)   | 50   | 53 ± 3    | **78 ± 4**  |
+| Gene on core (% of carriers)        | 61   | 61 ± 3    | 29 ± 5      |
+| Gene carriers (share of fungi)      | 0.36 | 0.44      | 0.52        |
+| Fungi with the chromosome (share)   | 0.83 | 0.83      | 0.75        |
+| Plant health                        | 0.25 | 0.25      | 0.25        |
+
+(The two percentages add up to more than 100% because cells with the gene on both chromosomes count in both.)
+
+**The cartoon "with the players" that they can distill from the IBM:**
+
+![The six kinds of cell and everything that moves cells between them. Black arrows: losses (gene copy lost, $\mu$; whole accessory chromosome lost, $\lambda$). Green arrows: translocation of the gene between the chromosomes of the same cell ($\tau_1$ core to accessory, $\tau_2$ accessory to core). Transfer ($\beta$): a cell with an accessory chromosome donates a copy to a cell without one; what the receiver becomes depends on whether the donated chromosome carries the gene. Growth: each kind grows at its own rate $W$.](images/fusarium_players.png){#fig-fusarium-players}
+
+### The ODE
+
+Note that the model can be run for an effector gene, for a "regular" beneficial gene that does not interact with the host population, or for a neutral gene. These are the controls the students are hinted to go towards in the guiding questions.
+
+Variables are densities of six fungal types, plus the plant: $N_0$ no gene and no chromosome, $N_C$ gene on the core, $N_E$ empty accessory chromosome, $N_A$ gene on the accessory chromosome only, $N_{CE}$ core gene plus empty accessory chromosome, $N_{CA}$ gene on both. $N$ is their sum, so $1 - N$ is the share of empty sites. $P$ is plant health (0 to 1). Write $G = N_A + N_{CA}$ (accessory chromosome carries the gene) and $E = N_E + N_{CE}$ (accessory chromosome is empty). 
+
+Parameters: $b$ max birth, $d$ death, $c$ chromosome cost, $a$ benefit of a good gene, $v$ effector benefit, $g$ fixed effector cost (`gc` in the code), $\rho$ plant regrowth rate, $\kappa$ plant killing rate, $\beta$ transfer, $\lambda$ chromosome loss, $\mu$ gene loss, $\tau_1$ and $\tau_2$ translocation from core to accessory and back.
+
+Growth of each kind of cell, with $B$ set by the kind of gene:
+
+$$
+B = 1 \ \text{(neutral)}, \qquad B = 1+a \ \text{(good gene)}, \qquad B = (1+vP)(1-g) \ \text{(effector)}
+$$
+
+$$
+W_0 = 1, \quad W_C = B, \quad W_E = 1-c, \quad W_A = W_{CE} = W_{CA} = B\,(1-c)
+$$
+
+The six cell kinds. In each equation, the first term is births into the empty sites minus deaths (a kind with a larger $W_i$ fills more of the empty sites), and the rest are the arrows of the cartoon: transfer ($\beta$), chromosome loss ($\lambda$), gene loss ($\mu$) and translocation ($\tau$):
+
+$$
+\frac{dN_0}{dt} = \big(b W_0 (1-N) - d\big) N_0 + \mu N_C + \lambda N_E + \lambda N_A - \beta (G+E)\, N_0
+$$
+
+$$
+\frac{dN_C}{dt} = \big(b W_C (1-N) - d\big) N_C + \lambda N_{CE} + \lambda N_{CA} - \mu N_C - \beta (G+E)\, N_C
+$$
+
+$$
+\frac{dN_E}{dt} = \big(b W_E (1-N) - d\big) N_E + \beta E\, N_0 + \mu N_A + \mu N_{CE} - \lambda N_E
+$$
+
+$$
+\frac{dN_A}{dt} = \big(b W_A (1-N) - d\big) N_A + \beta G\, N_0 + \mu N_{CA} + \tau_1 N_{CE} - (\lambda + \mu + \tau_2)\, N_A
+$$
+
+$$
+\frac{dN_{CE}}{dt} = \big(b W_{CE} (1-N) - d\big) N_{CE} + \beta E\, N_C + \mu N_{CA} + \tau_2 N_A - (\lambda + \mu + \tau_1)\, N_{CE}
+$$
+
+$$
+\frac{dN_{CA}}{dt} = \big(b W_{CA} (1-N) - d\big) N_{CA} + \beta G\, N_C - (\lambda + 2\mu)\, N_{CA}
+$$
+
+The plant (effector only; for the neutral and good gene $P$ plays no role). In the IBM a plant regrows logistically towards full health and is damaged when the fungus on the same site carries the gene, so in the mean field:
+
+$$
+\frac{dP}{dt} = \rho\,(1 - P) - \kappa\, P\, (N_C + N_A + N_{CE} + N_{CA})
+$$
+
+### Results: where does the gene sit?
+
+Especially effector genes get enriched on the accessory chromosome in space. For neutral and beneficial genes (1%, 5%, 10% growth benefit), the gene is more abundant on the core than on the accessory, both in the ODE and in space (with $\beta = 0.04$, $\lambda = 0.005$, $c = 0$, translocation $10^{-4}$ each way):
+
+| Gene type       | ODE: on accessory | ODE: on core | Space: on accessory | Space: on core |
+|-----------------|------|------|------|------|
+| effector        | 52%  | 60%  | **77%** | 36% |
+| neutral         | 48%  | 55%  | 46%  | 61% (lost in 3 of 9 runs) |
+| good gene 1%    | 72%  | 97%  | 61%  | 84% |
+| good gene 5%    | 69%  | 99%  | 62%  | 95% |
+| good gene 10%   | 68%  | 99%  | 62%  | 97% |
+
+The strength of the enrichment depends on the range of HGT (the donor range), and *increases* with a larger transfer range:
+
+| Donor range                    | On accessory | On core   |
+|--------------------------------|--------------|-----------|
+| direct neighbours (base model) | 81% (±1)     | 25% (±1)  |
+| 5×5 neighbourhood              | 78% (±5)     | 29% (±7)  |
+| 9×9 neighbourhood              | 84% (±2)     | 22% (±3)  |
+| 17×17 neighbourhood            | 89% (±2)     | 16% (±3)  |
+| whole grid                     | 92% (±1)     | 13% (±2)  |
+
+Reversely, the enrichment goes *down* the more the fungi themselves spread "globally" (a chance that a newborn is placed at a random site instead of next to its parent):
+
+| Global teleport chance | On accessory | On core   |
+|------------------------|--------------|-----------|
+| 0 (current model)      | 81 ± 1%      | 25 ± 1%   |
+| 0.1%                   | 74 ± 6%      | 33 ± 7%   |
+| 1%                     | 81 ± 2%      | 26 ± 3%   |
+| 5%                     | 76 ± 4%      | 32 ± 5%   |
+| 20%                    | 63 ± 13%     | 47 ± 14%  |
+
+:::

@@ -35,7 +35,7 @@ n_sites = side * side
 # Setup plot with matplotlib
 plt.style.use('seaborn-v0_8-whitegrid')
 fig, (ax_grid, ax_nut, ax_compare) = plt.subplots(
-    1, 3, gridspec_kw={'width_ratios': [1, 1, 1.25]},
+    1, 3, figsize=(17, 5.2), gridspec_kw={'width_ratios': [1, 1, 1.25]},
     constrained_layout=True)
 
 def style_grid(ax, title):

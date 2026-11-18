@@ -1,6 +1,6 @@
 ---
 params:
-  show_answers: false
+  show_answers: true
 ---
 
 # Mutation and selection
@@ -65,7 +65,7 @@ b. We would like the odds of nobody reproducing to be represented (the black sli
 Now that you've understood the roulette wheel, let's implement it as part of the evolutionary model. Copy the code^[hint: there's a 'copy all' button!] below (click to expand) to your Visual Studio code and study it. 
 
 :::{.callout-note collapse=true}
-## Code for 'fitness without fitness'
+## Code for a simple Moran process
 ```python
 import random
 import math
@@ -74,18 +74,22 @@ import matplotlib.pyplot as plt
 # Set the random number seed for reproducibility
 random.seed(0)
 
-plt.ion()  # Enable interactive plotting
-
 # --- PARAMETERS ---
 initial_fitness = 0.1            # Starting fitness for all individuals
-population_size = 500             # Number of individuals (should be a square number for grid mode)
-generations = 20000               # Number of generations to simulate
+population_size = 500            # Number of individuals
+generations = 20000              # Number of generations to simulate
 mutation_rate = 0.005            # Probability of mutation per reproduction event
-sample_interval = 5               # How often to sample and plot data
+sample_interval = 5              # How often to sample and plot data
 
 # --- INITIALIZATION ---
-# Create initial population: all individuals start with the same fitness
-population = [initial_fitness for _ in range(population_size)]
+# Create initial population: each individual has a fitness and a colour 
+population = []
+for _ in range(population_size):
+    individual = {
+        "fitness": initial_fitness,
+        "colour": random.choice(["brown", "white", "grey"]),
+    }
+    population.append(individual)
 
 # Lists to track average fitness and diversity over time
 avg_fitness = []
@@ -93,16 +97,17 @@ diversity_over_time = []
 
 # --- CORE FUNCTIONS ---
 
-def mutate(fitness, rate=mutation_rate):
-    """Mutate the fitness value with a given probability."""
+def mutate(individual, rate=mutation_rate):
+    """Copy an individual; its fitness mutates with a given probability."""
+    child = individual.copy()
     if random.random() < rate:
         # Fitness changes by a random value in [-0.1, 0.1], clipped to [0, 1]
-        return min(1.0, max(0.0, fitness + random.uniform(-0.1, 0.1)))
-    return fitness
+        child["fitness"] = min(1.0, max(0.0, child["fitness"] + random.uniform(-0.1, 0.1)))
+    return child
 
 def calculate_diversity(population):
     """NOT YET IMPLEMENTED! Calculate diversity as the standard deviation of fitness values."""
-    return 0 
+    return 0
 
 # --- PLOTTING SETUP ---
 fig, ax1 = plt.subplots(figsize=(12, 8))
@@ -122,19 +127,26 @@ fig.suptitle("Evolution Toward Fitness 1")
 fig.tight_layout()
 fig.legend(loc='upper right')
 plt.grid(True)
-plt.draw()
+plt.show(block=False)  # Show the window without freezing the simulation
 
 # --- EVOLUTION LOOP ---
 found = False
 
 for gen in range(generations):
-    total_fit = sum(population)
-    best = max(population)
+    total_fit = sum([ind["fitness"] for ind in population])
+    # find the individual with the best fitness
+    
+    best = max([ind["fitness"] for ind in population])
     # Print when a perfect solution is found
     if best == 1 and not found:
+        best_individual = population[0]
+        for ind in population:
+            if ind["fitness"] == 1:
+                best_individual = ind
         found = True
         print("Found perfect solution at generation", gen)
-        
+        print("Best individual:", best_individual)
+
     # Sample and plot data at intervals
     if gen % sample_interval == 0:
         avg_fitness.append(total_fit / population_size)
@@ -145,15 +157,14 @@ for gen in range(generations):
         ax1.relim(); ax1.autoscale_view()
         ax2.relim(); ax2.autoscale_view()
         fig.suptitle(f"Best Fitness: {best:.2f}", fontsize=14)
-        plt.pause(0.01)
-        
+        plt.pause(0.05)
 
     # --- MORAN PROCESS ---
     # For each individual, perform a reproduction event
     for _ in range(100):  # 100 competition events per generation
         # Select 1 random individual for replication
-        probs = [1 for fit in population] # Store all fitnesses in a list
-        parent_idx = random.choices(range(len(population)), weights=probs)[0] # Grab one random individual based on fitness.... 
+        probs = [ind["fitness"] for ind in population] # Store all fitnesses in a list
+        parent_idx = random.choices(range(len(population)), weights=probs)[0] # Grab one random individual based on fitness....
         # Select individual to be replaced (uniform random)
         dead_idx = random.randrange(len(population))
         # Copy population for next generation
@@ -162,30 +173,91 @@ for gen in range(generations):
         new_pop[dead_idx] = mutate(population[parent_idx])
         population = new_pop
 
-input("\nSimulation complete. Press Enter to exit plot window...")
-
+print("\nSimulation complete. Close the plot window to exit.")
+plt.show()
 ```
 :::
 
-There are two important things to notice from this piece of code. 
+There are a few important things to notice in this piece of code. 
 
-One is somewhat technical: instead of just plotting the end-result with plain matplotlib, it uses 'plt.ion' to launch matplotlib in so-called 'interactive mode'. This way, you can more easily update the plot in real time, instead of having to redraw the whole figure. The plotting can be somewhat of a hassle sometimes, so it is okay if you're still figuring this out. The easiest way to understand it is to play with it yourself: change some of the plotting code and see what happens!
+First, each individual is no longer just a number, but a *dictionary* with two properties: a `"fitness"` (which determines its chance of reproducing) and a `"colour"` (which does nothing at all; it is just a label that is passed on to offspring). You access these properties with square brackets, e.g. `ind["fitness"]`. This way of storing individuals makes it easy to add more properties later.
 
-The second thing you should notice is that fitness does not increase...
+Second, something somewhat technical: instead of just plotting the end-result with plain matplotlib, the plot window is opened with `plt.show(block=False)` so that the simulation keeps running, and the lines are updated every `sample_interval` generations with `set_data` and `plt.pause`. Note that the plot also has a *second y-axis* (`ax2 = ax1.twinx()`) for diversity. The plotting can be somewhat of a hassle sometimes, so it is okay if you're not focussing on all these details just yet. The easiest way to understand it is to play with it yourself: change some of the plotting code and see what happens!
 
+Third, you should notice that the green diversity line stays flat at zero. That is because `calculate_diversity` is not implemented yet. We will fix that below.
 
-:::{#exr-roulette}
-## Fixing the roulette wheel
+:::{#exr-moran-code}
+## Understanding the code
 <br>
 
-a. Which line(s) of the code determines how fitness shapes the probability of reproduction?
-b. Modify that piece of code to fix the roulette wheel (hint: this is a VERY small change in the code).
+a. Which line(s) of the code determine how fitness shapes the probability of reproduction? What happens to the evolution of fitness if you replace `ind["fitness"]` in that line by `0.1`? Try it, and explain what you see.
+b. The function `mutate` first makes a copy of the individual (`child = individual.copy()`) before changing its fitness. Why is this necessary? What would go wrong if you mutated `individual` directly?
+c. When the first individual with a fitness of 1 appears, the code prints it. Run the model a few times with different random seeds. Which colour wins?
 :::
 
 :::{.content-visible when-meta="params.show_answers"}
 > **Answer**<br>
-a. The line `probs = [1 for fit in population]` says that for each individual in the population, the probability (probs = probabilities) is 1. So they all have the same fitness. Hence, what we called 'fitness' is not yet treated as such, and the population just drifts. <br>
-b. We change one word in the line `probs = [1 for fit in population]`. Instead of `1 for fit` we want `fit for fit`, meaning that all probabilities will be equal to the fitness values in the population. Now the population evolves to increase its fitness value over time. 
+a. The line `probs = [ind["fitness"] for ind in population]` builds the list of weights for the roulette wheel: the probability of reproducing is proportional to fitness. If you replace it by `probs = [0.1 for ind in population]`, every individual has the same chance of reproducing. "Fitness" is then just a number that is passed on and occasionally mutated, but it is no longer treated as fitness: the population drifts randomly, and the average fitness does not systematically increase. <br>
+b. Dictionaries are what are called *mutable* objects. If you would write `individual["fitness"] = ...` without copying, you would change the parent itself, and the parent and child would now share the same fitness value (meaning that if the child gets a new fitness value through mutation, the parent also gets this mutated fitness value!). Copying first ensures the child is a new object that may start out identical to its parent, but can be changed without affecting the parent. <br>
+c. Bit of a trick question (sorry not sorry). The colour differs between runs (it depends on the random seed), because colour has no effect on fitness. There is no reason for brown, white or grey to be better. The colour of the first "perfect" individual is simply the colour of whichever lineage happened to accumulate the beneficial mutations.
+:::
+
+:::{#exr-diversity}
+## Measuring diversity
+<br>
+
+a. Implement `calculate_diversity` such that it returns the standard deviation of the fitness values in the population (it's already being plotted, so you'll see something automatically when you implement it). First calculate the mean, then the average squared deviation from the mean, then take the square root with `math.sqrt`. How does fitness diversity change over time? When is it highest, and why?
+b. Now change the diversity measure to find the total number of unique *colours*. Hint: if you have a list of colours called 'cols', the code `len(set(cols))` gives you the amount of unique colours. What happens to colour diversity over time, even though colour has no effect on fitness at all? Explain.
+:::
+
+:::{.content-visible when-meta="params.show_answers"}
+> **Answer**<br>
+a. A possible implementation:
+> ```python
+> def calculate_diversity(population):
+>     fits = [ind["fitness"] for ind in population]
+>     mean = sum(fits) / len(fits)
+>     variance = sum([(f - mean) ** 2 for f in fits]) / len(fits)
+>     return math.sqrt(variance)
+> ```
+> Diversity starts at zero (all individuals are identical), then rises and falls in bursts. It is highest *during* a selective sweep: a fitter mutant is spreading, so part of the population has the new fitness and part still has the old one. Once the sweep is complete, everybody is (nearly) identical again and diversity drops. At the end, when fitness is capped at 1, diversity goes to zero (only deleterious mutations remain, and these are quickly removed). <br>
+b. One can change the diversity calculdation to be something like this:
+> ```python
+> def calculate_diversity(population):
+>     colours = [ind["colour"] for ind in population]
+>     return len(set(cols)> 
+> ```
+> Colour diversity is lost over time: eventually a single colour takes over the whole population, even though colour is completely neutral. This happens because every beneficial fitness mutation arises in *one* individual, and when that lineage sweeps through the population, its colour sweeps along with it ("hitchhiking"). <br>
+:::
+
+:::{#exr-nobody}
+## When nobody reproduces
+<br>
+
+In the roulette wheel exercise, you added a "Nobody" slice to the wheel so that sometimes nothing happens. Let's add that to the evolutionary model too. The general trick is to extend both the list of candidates and the list of weights with one extra "dummy" entry:
+
+```python
+probs = fits + [0.5]
+winner = random.choices(individuals + [None], weights=probs, k=1)[0]
+```
+
+a. Try implementing this in the code of the evolving (coloured) individuals. Play with the constant that is added (currently 0.5) and see if you understand its effect. 
+b. This Moran process does not include a 'real' death rate (only replacing by birth). For now, let's not implement thi s yet. But... what would you expect to happen if you now also add a death rate to the simulation?
+:::
+
+:::{.content-visible when-meta="params.show_answers"}
+> **Answer**<br>
+a. We can use the new probs as weights in random.choices. If the winner is `None`, we simply skip the reproduction step. For example:
+> ```python
+> for _ in range(100):
+>     fits = [ind["fitness"] for ind in population]
+>     probs = fits + [0.5]
+>     winner = random.choices(list(range(len(population))) + [None], weights=probs, k=1)[0]
+>     if winner is not None:
+>         dead_idx = random.randrange(len(population))
+>         population[dead_idx] = mutate(population[winner])
+> ```
+> b. With a death rate, the population size may not be constant anymore: if the chances of reproduction are far below the death rate, the population could shrink and go extinct. For this tutorial we are not implementing this, but of course this reveals a strange limitation of the Moran process!
 :::
 
 ## Spatial structure: Local competition on a grid
@@ -331,6 +403,8 @@ b. How could you modify the spatial population to make it more similar to the st
 
 c. Do you think a spatial simulation will always make evolution less efficient? Why/why not? 
 
+d. How could you add a death rate to this spatial model? Discuss with a TA or teacher what kind of consequences this may have. 
+
 
 :::
 
@@ -338,5 +412,18 @@ c. Do you think a spatial simulation will always make evolution less efficient? 
 > **Answer**<br>
 > a. No. The spatial population is much slower at improving fitness. You can confirm this is not a coincidence by modifying the random seed, and you will see that each time the basic Moran population "wins". The reason is that in a mixed population, a fitter strain can immediately compete with everyone. In a spatial population, it primarily competes with itself, and can only slowly outcompete others! <br>
 > b. There are a few options. Instead of sampling 8 neighbours one could sample 8 random individuals to compete for a grid point. Or one could sample *all* individuals, at which point the whole grid-structure does not matter anymore for competition. Another idea is to implement diffusion / mixing / movement of individuals the grid, such that individuals approach a more mixed state. Any of these modifications will make the grid-based model more similar to the mixed model in terms of rate of evolution. <br>
-> c. As already hinted in a, the fact that newly emerging strains mostly compete with their own kind often slows down the selective sweeps. However, there may be scenarios where a fast selective sweep is a **disadvantages**. Heavy foreshadowing! :)
+> c. As already hinted in a, the fact that newly emerging strains mostly compete with their own kind often slows down the selective sweeps. However, there may be scenarios where a fast selective sweep is a **disadvantages** (one is/will be discussed during the lectures):) <br>
+d. Adding a death rate on a grid-based model could entail allowing some grid points to be 'empty' (there is simply no individual in it). We could then also allow only *empty* sites to be available for new births. This would enable the populations sizes to vary.
+:::
+
+## Bonus: Adding nutrients
+
+:::{.callout-tip}
+## Bonus question (only if you have time left)
+
+This question is for those who finished all exercises above and have time to spare. There is no answer; discuss your ideas with the teachers.
+
+So far, "fitness" was just a number that an individual carries around. In reality, how well an individual does depends on its environment. Add **nutrients** to the model: for example, a nutrient concentration that is shared by the whole population (or by each grid point in the spatial model), that is consumed when individuals reproduce, and that is replenished over time.
+
+How would you calculate fitness now? Think about which properties an individual needs, how its reproduction rate should depend on the nutrient level, and what happens to the "nobody reproduces" slice when nutrients run out.
 :::

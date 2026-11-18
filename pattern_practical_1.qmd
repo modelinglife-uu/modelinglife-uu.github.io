@@ -5,7 +5,7 @@ params:
 
 # Gradients and segments 
 
-## Morphogen Gradients and Patterning 
+## Morphogen Gradients and Patterning {.unnumbered}
 
 In this practical, we a going to look at how an organism can form
 segments along its body axis . The mathematical model that we will
@@ -29,7 +29,7 @@ Later it was found that often at least two opposing morphogen gradients
 drive downstream gene expression and genes typically respond to multiple 
 inputs.
 
-## Mathematical modeling - integrating multiple signals  
+## Mathematical modeling - integrating multiple signals {.unnumbered}
 
 Promotors/enhancers driving gene expression frequently make use of so
 called OR and AND gates to integrate inputs from different transcription
@@ -69,6 +69,7 @@ os.makedirs("output", exist_ok=True)
 ##############
 # PARAMETERS #
 ##############
+ABC=False # Flag to indicate whether to plot A, B, C or not
 
 # Grid and simulation parameters
 Lx = 40.0  # Length of the domain in x in micrometers
@@ -81,7 +82,7 @@ ny = int(Ly/dx)+2  # Number of grid points in y + padding grid points
 # Padding grid points to account for boundary conditions
 nt = int(T/dt)  # Number of time steps
 D = 0.4  # Diffusion coefficient in mm^2/s
-decayM =0.01 # Decay rate in 1/s
+decayM =0.001 # Decay rate in 1/s
 
 
 # Parameters for A, B, C
@@ -129,8 +130,11 @@ u[0, :] = 100
 
 
 # initilize figure and axes for plotting
-fig, (ax_M, ax_lines) = plt.subplots(2, figsize=(10, 8), gridspec_kw={'height_ratios': [3, 1]})  # Make the first graph 3 times the height of the second
-# TODO: Add a new axis for the ABC flag visualization 
+if ABC==False:
+    fig, (ax_M, ax_lines) = plt.subplots(2, figsize=(10, 8), gridspec_kw={'height_ratios': [3, 1]})  # Make the first graph 3 times the height of the second
+else:
+    # initilize figure and axes for plotting
+    fig, (ax_M,ax_ABC, ax_lines) = plt.subplots(3, figsize=(10, 8), gridspec_kw={'height_ratios': [3, 3, 1]})  # Make the first graph 3 times the height of the second
 
 
 # Time-stepping simulation loop
@@ -145,7 +149,18 @@ for n in range(nt):
         ax_M.set_ylabel('y direction')
         ax_M.set_xticks([])
         ax_M.set_yticks([])
-
+        if ABC==True: 
+            max_indices = 0 # TODO Question 5
+            max_indices[0,0]=0
+            max_indices[0,1]=1
+            max_indices[0,2]=2
+            imshow_ABC = ax_ABC.imshow(max_indices.T, origin='lower', aspect='auto')
+            ax_ABC.set_title('Max Concentration Phase')
+            ax_ABC.set_xlabel('x direction')
+            ax_ABC.set_ylabel('y direction')
+            ax_ABC.set_xticks([])
+            ax_ABC.set_yticks([])
+    
         # Plot the concentration at a specific y index (e.g., y=2)    
         line_plot = ax_lines.plot([x*dx for x in range(nx)], u[:, 2], label='M', color='green')
         # TODO: Add lines for A, B, C as needed in Q5
@@ -163,10 +178,13 @@ for n in range(nt):
         #update the imshow M plot with the new data
         imshow_M_plot.set_data(u.T)
         ax_M.set_title(f"Time: {n*dt}")
-            
         # Update the line plots with new data
         line_plot[0].set_ydata(u[:, 2])
-        # TODO: Update A, B, C line plots as needed in Q5
+        if ABC==True: 
+            max_indices = 0 # TODO Question 5
+            imshow_ABC.set_data(max_indices.T)
+            # TODO: Update A, B, C line plots as needed in Q5
+
 
         #fig.savefig(f"output/morphogen_simulation_{n:05d}.png", dpi=300) #save png (makes simulation run slower!)
     plt.pause(0.001)  # Pause to refresh the plot
@@ -346,24 +364,44 @@ b.  Also make sure that the levels of $A$, $B$ and $C$ are updated in the
     simulation loop. (Hint: using array properties to update $A$,$B$ and $C$, like
     in the `reaction_diffusion_step` function, makes your code run a lot
     faster than using for-loops)
-c.  Next, ensure $A$, $B$ and $C$ are visualized in the bottom plot axis (copy
-    and adapt the code for the visualization of $M$). You can add an extra
-    third axis to the plot to visualize the (French) flag pattern, by
-    getting which of the three genes is maximal at each location with
-    `np.argmax(np.array(\[A, B, C\])`, axis=0) and turning that into an
-    array of RGB colors of choice.
-d.  Do you get the expected “French flag” pattern? If not, think of how the
+c.  Next, ensure $A$, $B$ and $C$ are visualized in the bottom plot axis. Change
+    `ABC=True` in the parameters to automatically change the initialization of 
+    the plot, then copy and adapt the code for the visualization 
+    of $M$ (`line_plot[0].set_ydata(u[:, 2]`). 
+d.  Modify the `max_indeces` array to visualize the pattern, by 
+    getting which of the three genes is maximal at each location: with 
+    `np.argmax(np.array(\[A, B, C\])`, axis=0) and turning that into an array of 
+    RGB colors of choice.
+e.  Do you get the expected “French flag” pattern? If not, think of how the
     genes are regulated, and improve your equations (Question 3), parameters or
     your code.
+    
 :::
 
 ::: {.callout-note collapse="true"}
-## Code to creat A,B,C arrays; and of Hill functions for their regulation
+## Code to create A,B,C arrays; and of Hill functions for their regulation
 ``` python
-# Create a grid (x, y dimensions) for A, B and C 
-A = np.zeros((nx, ny))
-B = np.zeros((nx, ny))
-C = np.zeros((nx, ny))
+
+##############
+# PARAMETERS #
+##############
+
+# Parameters for A, B, C
+prodA=10
+decayA=0.1
+KmA=52
+prodB=10
+decayB=0.1
+KmB1=24.5
+KmB2=52
+prodC=10 
+decayC=0.1
+KmC=24.5
+pow=4 #power of Hill fuction
+
+#############
+# FUNCTIONS #
+#############
 
 # Hill functions to implement M,A,B,C mutual regulation
 def hill(x, Km, pow):
@@ -374,13 +412,37 @@ def ihill(y, Km, pow):
     """Inverse Hill function for the reaction kinetics."""
     return( (Km**pow) / (y **pow  + Km**pow))
 
-# In the code search for "TODO", this indicates where do you have include changes to plot A,B,C.
+def update_A(A, u, prodA, decayA, KmA, pow):
+    An = A.copy()
+    A =             # your code
+    return A
+
+def update_B(B, u, prodB, decayB, KmB1, KmB2, pow):
+    Bn = B.copy()
+    B =             # your code
+    return B
+
+def update_C(C, u, prodC, decayC, KmC, pow):
+    Cn = C.copy()
+    C=              # your code
+    return C
+
+##################
+# EXECUTION CODE #
+##################
+
+# Create a grid (x, y dimensions) for A, B and C 
+A = np.zeros((nx, ny))
+B = np.zeros((nx, ny))
+C = np.zeros((nx, ny))
+# In the execution part of the code remember to call the update_A, update_B, and update_C functions. 
+# Also, add the search for "TODO", this indicates where do you have include changes to plot A,B,C.
 
 
 ```
 :::
 ::: {.content-visible when-meta="params.show_answers"}
-  > **Answer** Look at code `Question5`.	
+  > **Answer** Look at code `WC04_Question5.py`.	
   > You will find that gene $C$ needs to be induced by low and repressed by high $M$. 
   > And as explained above: $k_A=k_{B1}>k_{B2}>k_C$.
 
@@ -442,6 +504,57 @@ the genes will be expressed). Can you implement changes that maintain the
 expression domains of $A$, $B$ and $C$?, Does their expression in space change?
 :::
 
+::: {.callout-note collapse="true"}
+## Answer Question 8: look at it if you are stuck
+``` python
+def update_A(t, A, u, prodA, decayA, KmA, pow, switch_time=None, B=B, C=C):
+    An = A.copy()
+    if switch_time is None or t <= switch_time:
+        A = An + prodA* hill(u, KmA, pow) * dt - decayA * An * dt
+        # for i in range(nx):
+        #     for j in range(ny):
+        #         A[i, j] = An[i, j] + (prodA * u[i, j]**pow / (KmA**pow + u[i, j]**pow)) * dt - decayA * An[i, j] * dt
+        return A
+    if t > switch_time:
+        A = An + prodA * ihill(B, 10, pow) * ihill(C, 10, pow) * dt - decayA * An * dt
+        # for i in range(nx):
+        #     for j in range(ny):
+        #         A[i, j] = An[i, j] + (prodA * KmA**pow / (KmA**pow + u[i, j]**pow)) * dt - decayA * An[i, j] * dt
+        return A
+
+def update_B(t, B, u, prodB, decayB, KmB1, KmB2, pow, switch_time=None, A=A, C=C):
+    Bn = B.copy()
+    if switch_time is None or t <= switch_time:
+        B = Bn + prodB*(hill(u, KmB1, pow) * ihill(u, KmB2, pow)) * dt - decayB * Bn * dt
+        # for i in range(nx):
+        #     for j in range(ny):
+        #         B[i, j] = Bn[i, j] + (prodB * (u[i, j]**pow / (KmB1**pow + u[i, j]**pow)) * (KmB2**pow / (KmB2**pow + u[i, j]**pow))) * dt - decayB * Bn[i, j] * dt
+        return B
+    if t > switch_time:
+        B = Bn + prodB*(ihill(A, 10, pow) * ihill(C, 10, pow)) * dt - decayB * Bn * dt
+        # for i in range(nx):
+        #     for j in range(ny):
+        #         B[i, j] = Bn[i, j] + (prodB * (KmB1**pow / (KmB1**pow + u[i, j]**pow)) * (KmB2**pow / (KmB2**pow + u[i, j]**pow))) * dt - decayB * Bn[i, j] * dt
+        return B
+
+def update_C(t, C, u, prodC, decayC, KmC, pow, switch_time=None, A=A, B=B):
+    Cn = C.copy()
+    if switch_time is None or t <= switch_time:
+        C= Cn + prodC * ihill(u, KmC, pow) * dt - decayC * Cn * dt
+        # for i in range(nx):
+        #     for j in range(ny):
+        #         C[i, j] = Cn[i, j] + (prodC * KmC**pow / (KmC**pow + u[i, j]**pow)) * dt - decayC * Cn[i, j] * dt
+        return C
+    else:
+        C= Cn + prodC * ihill(A, 10, pow) * ihill(B, 10, pow) * dt - decayC * Cn * dt
+        # for i in range(nx):
+        #     for j in range(ny):
+        #         C[i, j] = Cn[i, j] + (prodC * KmC**pow / (KmC**pow + u[i, j]**pow)) * dt - decayC * Cn[i, j] * dt
+        return C
+
+```
+:::
+
 ::: {.content-visible when-meta="params.show_answers"}
   > **Answer** See `WC04_Question8.py`
   > As $M$ decays, $A$ and $B$ will no longer be activated and $C$ no longer
@@ -480,6 +593,44 @@ c. It is also possible to give certain genes a bit of a constant boost to preven
 their takeover by other genes due to timing issues
 :::
 
+::: {.callout-note collapse="true"}
+## Answer Question 9: look at it if you are stuck
+``` python
+# Below you can see the function we found. A worked out in our first attempt
+# B and C did not, so we modified and succeeded in our Attempt 2. 
+
+#Attempt 1
+def new_update_A(A, B,C ,u, prodA, decayA, KmA, pow):
+    An = A.copy()
+    A = An + dt*(prodA*(hill(u, KmA, pow) + ihill(B, 25, pow) * ihill(C, 25, pow)) - decayA * An)
+    return A
+
+def new_update_B(B, A,C, u, prodB, decayB, KmB1, KmB2, pow):
+    Bn = B.copy()
+    B = Bn + dt*(prodB*(hill(u, KmB1, pow) +ihill(A, 25, pow) * ihill(C, 25, pow))*
+                 (ihill(u, KmB2, pow)*(ihill(A, 25, pow) * ihill(C, 25, pow))) +0.02 - decayB * Bn)
+    return B
+
+def new_update_C(C, A,B, u, prodC, decayC, KmC, pow):
+    Cn = C.copy()
+    C= Cn + dt*(prodC*ihill(u,KmC, pow) * (ihill(A, 25, pow) * ihill(B, 25, pow))  +1.5  - decayC * Cn)
+    return C
+
+#Attempt 2 - B and C need finetuning
+def new_update_B2(B, A,C, u, prodB, decayB, KmB1, KmB2, pow):
+    Bn = B.copy()
+    B = Bn + dt*(prodB*(hill(u, KmB1, pow) +ihill(A, 25, pow) * ihill(C, 25, pow))*
+                 (ihill(u, KmB2, pow)*(ihill(A, 25, pow) * (ihill(C, 25, pow)+0.15))) - decayB * Bn) #0.07
+    return B
+
+def new_update_C2(C, A,B, u, prodC, decayC, KmC, pow):
+    Cn = C.copy()
+    C= Cn + dt*(prodC*ihill(u,KmC, pow) * (ihill(A, 25, pow) * ihill(B, 25, pow)+0.1) - decayC * Cn)
+    return C
+
+````
+:::
+
 ::: {.content-visible when-meta="params.show_answers"}
   > **Answer** This is not at all easy (or as the professor would say "highly non
   > trivial"). It requires that for genes (or part of their input) being positively
@@ -494,7 +645,15 @@ their takeover by other genes due to timing issues
 :::{#exr-plain}
 ## Biology & algorithmic/mathematical thinking
 
-Write code to add noise to the morphogen $M$ gradient, both in its steady state 
+Now we are going to study how noise affects the patterning. You need to modify the
+code inside the function `reaction_diffusion_gradient` (Search for # TODO). Currently, 
+it is initialized as zeros: 
+
+``` python    
+added_noise = np.zeros_like(u)  # Initialize noise array
+```
+
+Modify the code to add noise to the morphogen $M$ gradient, both in its steady state 
 and decaying phase. During which phase do the expression domains of $A$, $B$ and 
 $C$ suffer more from the noise. Explain why? How could we make the system more
 robust in a manner that is also likely occurring in nature?

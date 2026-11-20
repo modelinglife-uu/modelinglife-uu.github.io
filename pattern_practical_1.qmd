@@ -73,7 +73,7 @@ os.makedirs("output", exist_ok=True)
 ##############
 ABC=False # Flag to indicate whether to plot A, B, C or not
 
-# Grid and simulation parameters
+# Grid and simulation parameters Question1
 Lx = 40.0  # Length of the domain in x in micrometers
 Ly = 10.0  # Length of the domain in y in micrometers
 T = 200  # Total time in seconds
@@ -88,7 +88,7 @@ decayM =0.001 # Decay rate in 1/s
 
 
 # Parameters for A, B, C
-... # TODO define parameters for A, B, C as needed in Q5
+... # TODO define parameters for A, B, C as needed in Question5
 
 #############
 # FUNCTIONS #
@@ -100,7 +100,7 @@ def reaction_diffusion_step(u, D, dt, dx, decay):
     u[1:-1, 1:-1] = un[1:-1, 1:-1] +  D *dt / dx**2 * (un[2:, 1:-1] + un[:-2, 1:-1] + \
                     un[1:-1, 2:]  + un[1:-1, :-2] - 4 * un[1:-1, 1:-1]) - \
                     decay * un[1:-1, 1:-1] * dt
-    ## for loop version to understand the equation
+    ## for loop version to understand the equation Question1
     # for i in range(1, nx-1):
     #     for j in range(1, ny-1):
     #         u[i, j] = (un[i, j] +
@@ -126,7 +126,7 @@ def reaction_diffusion_step(u, D, dt, dx, decay):
 if D * dt / dx**2 > 0.5:
     raise ValueError("Stability criterion not met")
 
-# Initial condition
+# Initial condition Question1
 u = np.zeros((nx, ny))
 u[0, :] = 100
 
@@ -152,20 +152,23 @@ for n in range(nt):
         ax_M.set_xticks([])
         ax_M.set_yticks([])
         if ABC==True: 
-            max_indices = 0 # TODO Question 5
+            max_indices = np.argmax(np.array([A, B, C]), axis=0)
             max_indices[0,0]=0
             max_indices[0,1]=1
             max_indices[0,2]=2
-            imshow_ABC = ax_ABC.imshow(max_indices.T, origin='lower', aspect='auto')
+            imshow_ABC = ax_ABC.imshow(max_indices.T, cmap='RdBu_r', vmin=0, vmax=2, origin='lower', aspect='auto')
             ax_ABC.set_title('Max Concentration Phase')
             ax_ABC.set_xlabel('x direction')
             ax_ABC.set_ylabel('y direction')
             ax_ABC.set_xticks([])
             ax_ABC.set_yticks([])
+            Aplot = ax_lines.plot([x*dx for x in range(nx)], A[:, 2], label='A', color='blue')
+            Bplot = ax_lines.plot([x*dx for x in range(nx)], B[:, 2], label='B', color='orange')
+            Cplot = ax_lines.plot([x*dx for x in range(nx)], C[:, 2], label='C', color='red')
+
     
         # Plot the concentration at a specific y index (e.g., y=2)    
         line_plot = ax_lines.plot([x*dx for x in range(nx)], u[:, 2], label='M', color='green')
-        # TODO: Add lines for A, B, C as needed in Q5
 
         
         ax_lines.legend(loc='upper right')
@@ -182,20 +185,24 @@ for n in range(nt):
         ax_M.set_title(f"Time: {n*dt}")
         # Update the line plots with new data
         line_plot[0].set_ydata(u[:, 2])
+
         if ABC==True: 
-            max_indices = 0 # TODO Question 5
-            imshow_ABC.set_data(max_indices.T)
-            # TODO: Update A, B, C line plots as needed in Q5
+            # Get which gene is maximal at each index
+            max_indices = np.argmax(np.array([A, B, C]), axis=0)
+            imshow_ABC.set_data(max_indices.T)        
+            Aplot[0].set_ydata(A[:, 2])
+            Bplot[0].set_ydata(B[:, 2])
+            Cplot[0].set_ydata(C[:, 2])
 
 
         #fig.savefig(f"output/morphogen_simulation_{n:05d}.png", dpi=300) #save png (makes simulation run slower!)
-    plt.pause(0.001)  # Pause to refresh the plot
+    plt.pause(0.01)  # Pause to refresh the plot, make it 0.1 if the plotting freezes
 
 # And keep the last plot open
-# plt.show()
+plt.show()
 
 # Or close the plot window when done
-plt.close(fig)
+#plt.close(fig)
 ```
 :::
 
@@ -206,15 +213,12 @@ plt.close(fig)
 
 Have a look at the reaction-diffusion equation for the morphogen (lecture), 
 and the implementation of it in the `reaction_diffusion_step` function. Also 
-look at the initialization of the array $u$. How is this
-different from the gradient formation modeling we discussed during the
-lecture? What is done at the terminal boundary in the length direction
-and why does this make sense? 
+look at the initialization of the array $u$ (line 67-68), and the parameters 
+(lines 14-24).
 
-(hint: To help you understand what is happening see the commented code inside 
-the `reaction_diffusion_step` function. This code does essentially the same, 
-with the difference that it does not use operations with numpy arrays and hence 
-is written in a less compact matter.)
+How is this different from the gradient formation modeling we discussed during 
+the lecture? 
+
 :::
 
 ::: {.content-visible when-meta="params.show_answers"}
@@ -358,7 +362,7 @@ def reaction_diffusion_gradient(t, u, D, dx, decay, switch_time = None, noise = 
 
 a.  Now create functions to update $A$, $B$ and $C$ according to your
     equations from the previous question. You may use the predefined
-    hill and ihill (inverse) functions that are provided below. For
+    hill and ihill (inverse) functions that are **provided below**. For
     simplicity, you may keep most of the parameters the same for all
     genes, but some have to be different to ensure the right location of
     the genes (based on your reasoning in Question 3). 

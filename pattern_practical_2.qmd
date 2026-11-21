@@ -53,16 +53,12 @@ Bmp, Sox9, and Wnt.
 
 Study the schemes below. The arrows represent activating or inhibiting interactions, 
 while the wavy lines represent diffusion of components. Simplify this 3-variable 
-model scheme into a 2-variable model scheme (just by drawing the interactions, 
-no need to write equations) and explain how it satisfies the Turing conditions 
-discussed in the lecture. Remember that for Turing patterns we need an activator 
-an inhibitor. 
+system into a 2-variable system by fusing the Wnt and Sox9 nodes. Think what does
+the mutual inhibition then converts into. Does this give an activator-inhibitor 
+or a substrate depletion model? What does it imply about the mutual inhibition 
+versus Wnt's own inhibition?
 
-Hint: In a 2-variable system the activator needs to be a single autoactivating molecule. 
-When we have more variables, the positive feedback can be achieved differently 
-(indirectly). So think which two variables would be logical to combine to get a 
-2-variable model..
-
+<!-- Mutual inhibition is activation and should be stronger than the other negative feedback and that is activator inhibitor.-->
 ::: {.columns}
 
 
@@ -112,25 +108,27 @@ the correct chemicals to undergo morphogenesis (bone formation, FigureS3 @raspop
 
 ## Biology
 
-Play with the parameters, for example changing $k4$ (Sox9 effect on BMP), $k7$ (Sox9 
-effect on Wnt), or changing how much faster is Bmp diffusion compared to Wnt 
-diffusion. Change one parameter at a time and observe the effects on the patterning. 
-Change the values in one direction and the other, to confirm it produces the 
-opposite effect. 
+Play with parameters $k4$ and $k7$ of the model, vary them between a value of 0.1 
+and 2. Always vary only one while keeping the other constant. What happens to 
+the patterns in terms of wavelength? Do $k4$ and $k7$ have a similar effect? 
+Why (not)?
 
-What effects on the pattern wavelength do you find? Are there changes in two 
-parameters that produce the same effect? Why?
-
-**Pay attention!**: Make sure to make small changes for $k4$ and $k7$. If things start 
-blinking wildly, or go blank, you are watching numerical errors rather than real 
-outcomes. When increasing Bmp diffusion you may need to reduce the time step for 
-integration $dt$. 
+**Pay attention!**: Make sure to make small changes for $k4$ and $k7$. 
+If things start blinking wildly, or go blank, you are watching numerical errors 
+rather than real outcomes. 
 
 :::
 
 ::: {.content-visible when-meta="params.show_answers"}
 
-> In general, all three components follow similar trends in terms of concentrations 
+> **In a nutshell: **$k4$ and $k7$ have opposite effects on wavelength. On the 
+> one hand increasing $k4$ leads to less BMP, hence less SOX9/Wnt and ultimately
+> smaller peaks (i.e. shorter wavelength). On the other hand, increasing $k7$ 
+> enhances the autoactivation and hence the width of the peaks. 
+> 
+> Below we discuss what happens when modifying the other parameters of the model.
+>
+> In general, all components follow similar trends in terms of concentrations 
 > as any impact on one component will affect the others via feedbacks. Then, for 
 > simplicity here we only show Sox9 patterns:
 

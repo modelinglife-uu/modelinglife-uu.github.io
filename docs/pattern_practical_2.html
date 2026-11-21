@@ -675,18 +675,13 @@ Figure&nbsp;5.2: Scheme of the BSW model
 <section id="patterning-in-a-growing-domain-size" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="patterning-in-a-growing-domain-size"><span class="header-section-number">5.3</span> Patterning in a growing domain size</h2>
 <p>Besides parameter values, the pattern that emerges from a Turing system is also strongly influenced by initial conditions, and the size and shape of the domain where reactions and diffusion happen.</p>
-<p>Let’s modify the code to add tissue growth in the proximo-distal (body to limb) direction. Look for Change for Question3” to find where in the code you need to make the following changes:</p>
-<p><strong>1.-</strong> Growth in the horizontal direction is controlled by a growth rate <span class="math inline">\(vi\)</span>, which is currently set to zero.</p>
-<p><strong>2.-</strong> The tissue dimensions are defined by <span class="math inline">\(Lx0\)</span> and <span class="math inline">\(Ly0\)</span>. Currently they are initialized at its maximal size (<span class="math inline">\(nx\)</span>, <span class="math inline">\(ny\)</span>), so we also need to make it smaller. Make both <span class="math inline">\(Lx0=Ly0=30\)</span>.</p>
-<p>Look at functions <code>get_domain_size_horizontal</code>, <code>get_domain_size_vertical</code> and <code>single_step_growth</code>, and lines 269-284 to see how the simulation of tissue growth works.</p>
+<p>Let’s modify the code to add tissue growth in the proximo-distal (body to limb) direction.</p>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 5.3 (Biology)</strong></span> &nbsp;</p>
-<ul>
-<li>Study the code to understand what it does.<br>
-</li>
-<li>Increase the horizontal growth rate <span class="math inline">\(vi\)</span> in small increments (try: 0.01, 0.05, 0.1, 0.2, 0.5) and study what happens to the pattern. Explain why you think this happens.</li>
-</ul>
+<p><span class="theorem-title"><strong>Exercise 5.3 (Biology)</strong></span> Look at functions <code>get_domain_size_horizontal</code>, <code>get_domain_size_vertical</code> and <code>single_step_growth</code>, and lines 269-284 to see how the simulation of tissue growth works in the code.</p>
+<p>Look for Change for Question3” to find where in the code you need to make the following changes:</p>
+<p><strong>1.-</strong> The tissue dimensions are defined by <span class="math inline">\(Lx0\)</span> and <span class="math inline">\(Ly0\)</span>. Currently they are initialized at its maximal size (<span class="math inline">\(nx\)</span>, <span class="math inline">\(ny\)</span>), so we need to make them smaller. Make both <span class="math inline">\(Lx0=Ly0=30\)</span>.</p>
 <p><strong>Note:</strong> Increase the <span class="math inline">\(totaltime\)</span> parameter to 5000 when using growth rate of 0.01.</p>
+<p><strong>2.-</strong> Growth in the horizontal direction is controlled by a growth rate <span class="math inline">\(vi\)</span>, which is currently set to zero. Modify it in small increments (try: 0.01, 0.05, 0.1, 0.2, 0.5) and study what happens to the pattern. Explain why this happens.</p>
 </div>
 <hr>
 </section>
@@ -708,6 +703,7 @@ Figure&nbsp;5.2: Scheme of the BSW model
 If the cell increases in volume and does not produce/degrade X, what happens to the concentration of X?<br>
 What would be the concentration of X in the two daughter cells if the cell divides?<br>
 How would the situation change if X is constantly produced and degraded?</p>
+<hr>
 <p>In the paper, <span class="citation" data-cites="raspopovic2014digit">Raspopovic et al. (<a href="#ref-raspopovic2014digit" role="doc-biblioref">2014</a>)</span> create a “tissue growth map” (see their Figure 3A), which they use to map concentration values from one timepoint to the next using interpolation-based transformations.</p>
 <p>Inspired by this approach, the script <code>WC05_digits_square-Question5_interpolation-growing.py</code> implements a different growth function that uses bilinear interpolation to expand the tissue. Search for <code># new addition relative to previous code</code> to help you find what is new in this code.</p>
 <p>Play around with the growth rate parameters and compare the results to what you found earlier. Do the patterns differ? If yes, how do they differ?</p>

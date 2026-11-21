@@ -44,7 +44,7 @@ performs all the steps in one go.-->
 
 The model proposed by Raspopovic et al. for generating Turing patterns underlying 
 limb bone modeling consists of 3 instead of 2 interacting variables. We will 
-refer to this model as “BSW” model, as it represents interactions between the genes
+refer to this model as the “BSW” model, as it represents interactions between the genes
 Bmp, Sox9, and Wnt.
 
 :::{#exr-tur}
@@ -60,8 +60,8 @@ an inhibitor.
 
 Hint: In a 2-variable system the activator needs to be a single autoactivating molecule. 
 When we have more variables, the positive feedback can be achieved differently 
-(indirectly). So think which two variables would be logical to combine into one 
-to get a 2-variable model..
+(indirectly). So think which two variables would be logical to combine to get a 
+2-variable model..
 
 ::: {.columns}
 
@@ -121,7 +121,7 @@ opposite effect.
 What effects on the pattern wavelength do you find? Are there changes in two 
 parameters that produce the same effect? Why?
 
-**Let op!**: Make sure to make small changes for $k4$ and $k7$. If things start 
+**Pay attention!**: Make sure to make small changes for $k4$ and $k7$. If things start 
 blinking wildly, or go blank, you are watching numerical errors rather than real 
 outcomes. When increasing Bmp diffusion you may need to reduce the time step for 
 integration $dt$. 
@@ -229,28 +229,19 @@ strongly influenced by initial conditions, and the size and shape of the domain
 where reactions and diffusion happen.
 
 Let's modify the code to add tissue growth in the proximo-distal (body to limb) 
-direction. Growth is controlled by a growth rate $vi$, which is currently set 
-to zero. The tissue is initialized at its maximal size ($nx$, $ny$), so 
-we also need to make it smaller. See below how: 
+direction. Look for Change for Question3" to find where in the code you need to 
+make the following changes: 
 
-::: {.callout-note collapse="true"}
-## Tissue growth implementation
+1.- Growth in the horizontal direction is controlled by a growth rate $vi$, 
+which is currently set to zero. 
+2.- The tissue dimensions are defined by $Lx0$ and $Ly0$. Currently they are
+initialized at its maximal size ($nx$, $ny$), so we also need to make it smaller. 
+Make both $Lx0=Ly0=30$.
 
-``` python
-# Horizontal growth rate
-vi = 0.0                     # Let op: make it > 0 
 
-# Initial condition parameters for a square tissue domain
-# Horizontal: Start on left side of the nx*ny box
-Lx0 = nx                    # Let op: Tissue is initialized at max size, make it 30
-max_domain_horizontal = nx # Stop growing once this reached
-# Vertical: Start in middle of the nx*ny box
-Ly0 = ny                    # Let op: Tissue is initialized at max size, make it 30
-max_domain_vertical = ny # Stop growing once this reached
-
-```
-:::
-
+Look at functions `get_domain_size_horizontal`, `get_domain_size_vertical` and
+`single_step_growth`, and lines 269-284 to see how the simulation of tissue 
+growth works.
 
 
 :::{#exr-tur}
@@ -625,7 +616,7 @@ k7_local = k7_local_Supp21C(k7, nx, ny)
 ```
 :::
 
-Let op: if you get stuck, open `WC05_digits-square-Question6.py`. This code 
+Pay attention: if you get stuck, open `WC05_digits-square-Question6.py`. This code 
 includes all the changes.
 
 

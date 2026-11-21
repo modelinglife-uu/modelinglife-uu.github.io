@@ -232,9 +232,10 @@ Let's modify the code to add tissue growth in the proximo-distal (body to limb)
 direction. Look for Change for Question3" to find where in the code you need to 
 make the following changes: 
 
-1.- Growth in the horizontal direction is controlled by a growth rate $vi$, 
+**1.-** Growth in the horizontal direction is controlled by a growth rate $vi$, 
 which is currently set to zero. 
-2.- The tissue dimensions are defined by $Lx0$ and $Ly0$. Currently they are
+
+**2.-** The tissue dimensions are defined by $Lx0$ and $Ly0$. Currently they are
 initialized at its maximal size ($nx$, $ny$), so we also need to make it smaller. 
 Make both $Lx0=Ly0=30$.
 

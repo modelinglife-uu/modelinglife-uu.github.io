@@ -87,10 +87,16 @@ You will find:
 #### WC08Cell.py {.unnumbered}
 The class `Cell` is defined here.
 
-<u>Attributes:</u> A `Cell` position is defined by `ypos` and `layer`; `auxin` 
-stores the current auxin level and `auxinhelper` is used for the transport simulation;
+<u>Attributes:</u> 
+
+A `Cell` position is defined by `ypos` and `layer`; 
+
+`auxin` stores the current auxin level and `auxinhelper` is used for the transport simulation;
+
 `cell-type` is predefined based on their position (1-QC, 2-Columella, 3-Endodermis, 
-4-Vascular, 5-TD, 6-Epidermis, 7-Cortex); `cell_state` is an array 
+4-Vascular, 5-TD, 6-Epidermis, 7-Cortex); 
+
+`cell_state` is an array 
 with the expression of each node of the network, which are modelled as individual
 attributes: `CK`, `ARR1`, etc. 
 
@@ -124,7 +130,8 @@ the `Tissue` and `Cell` classes to 1) update the cell networks using `tissue.upd
 2) simulate active auxin transport using `Auxin_Active_transport`, 3) simulate passive 
 auxin transport using `Auxin_Passive_Transport`, 4) update auxin input and 
 decay with `tissue.Auxin_Source_Decay`, 5) and uses` tissue.visualize` for the output plot 
-of the model.
+of the model. Run this file, and if the plotting updates too slow increase the value
+in `plt.pause(1)`. 
 
 #### initial_tissue_state.json {.unnumbered}
 This is the initial condition of the model defining how cells are organized in a tissue, 
@@ -135,22 +142,19 @@ their attractors, and the auxin distribution.
 
 :::{.content-visible when-meta="params.show_answers"}
 
-  > **Answer** `Root-model-Auxin_solved.py` and `Rootfunctions.py` contain the answer code :) 
+  > **Answer** Look at `WC08_Root-tissue-model-answers.py` and `WC08Cell_answer.py` for the answer code :) 
   
 :::
 
 :::{#exr-non}
 ## Algorithmic thinking
 
-What are the algorithmic steps you would take if you want to make a model of the root in which 
-there is transport of auxin between the cells every timestep, and the cells update their regulatory networks 
-every 10 steps? Keep in mind that the network defines the cell type of the cells, which in turn 
-defines the direction at which they transport auxin to their neighbors. Make a plain-language 
-description, pseudocode, or flowchart using pen and paper. 
+Study how the model uses the different functions to simulate gene regulation and 
+auxin transport in the root. 
 
-Tip: have a look at the code in the `Root-model-Auxin.py` and `Rootfunctions.py`. 
-
-Then, run `Root-model-Auxin.py`.Let op! If the plotting updates too slow, you can change the frequency of plotting in line 56. 
+Make a plain-language description, pseudocode, or flowchart using pen and paper 
+of how the model works. What are the algorithmic steps you would take if you want 
+to simulate the treatment of roots with auxin? 
 
 :::
 

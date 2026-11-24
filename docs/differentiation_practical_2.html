@@ -629,7 +629,7 @@ You will find:</p>
 </section>
 <section id="wc08_root-tissue-model.py" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="wc08_root-tissue-model.py">WC08_Root-tissue-model.py</h4>
-<p>The main file of the model. It defines the parameters, and the <code>simulate_development</code> function that uses the methods from the <code>Tissue</code> and <code>Cell</code> classes to 1) update the cell networks using <code>tissue.update_networks</code>, 2) simulate active auxin transport using <code>Auxin_Active_transport</code>, 3) simulate passive auxin transport using <code>Auxin_Passive_Transport</code>, 4) update auxin input and decay with <code>tissue.Auxin_Source_Decay</code>, 5) and uses<code>tissue.visualize</code> for the output plot of the model.</p>
+<p>The main file of the model. It defines the parameters, and the <code>simulate_development</code> function that uses the methods from the <code>Tissue</code> and <code>Cell</code> classes to 1) update the cell networks using <code>tissue.update_networks</code>, 2) simulate active auxin transport using <code>Auxin_Active_transport</code>, 3) simulate passive auxin transport using <code>Auxin_Passive_Transport</code>, 4) update auxin input and decay with <code>tissue.Auxin_Source_Decay</code>, 5) and uses<code>tissue.visualize</code> for the output plot of the model. Run this file, and if the plotting updates too slow increase the value in <code>plt.pause(1)</code>.</p>
 </section>
 <section id="initial_tissue_state.json" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="initial_tissue_state.json">initial_tissue_state.json</h4>
@@ -640,9 +640,8 @@ You will find:</p>
 <section id="questions" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="questions"><span class="header-section-number">8.1</span> Questions</h2>
 <div id="exr-non" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 8.1 (Algorithmic thinking)</strong></span> What are the algorithmic steps you would take if you want to make a model of the root in which there is transport of auxin between the cells every timestep, and the cells update their regulatory networks every 10 steps? Keep in mind that the network defines the cell type of the cells, which in turn defines the direction at which they transport auxin to their neighbors. Make a plain-language description, pseudocode, or flowchart using pen and paper.</p>
-<p>Tip: have a look at the code in the <code>Root-model-Auxin.py</code> and <code>Rootfunctions.py</code>.</p>
-<p>Then, run <code>Root-model-Auxin.py</code>.Let op! If the plotting updates too slow, you can change the frequency of plotting in line 56.</p>
+<p><span class="theorem-title"><strong>Exercise 8.1 (Algorithmic thinking)</strong></span> Study how the model uses the different functions to simulate gene regulation and auxin transport in the root.</p>
+<p>Make a plain-language description, pseudocode, or flowchart using pen and paper of how the model works. What are the algorithmic steps you would take if you want to simulate the treatment of roots with auxin?</p>
 </div>
 <div id="exr-tur" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.2 (Biology)</strong></span> What happens if you update the network more often than the auxin transport? How would you implement this modification in the code?</p>

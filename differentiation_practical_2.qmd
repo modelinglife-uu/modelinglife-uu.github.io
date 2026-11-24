@@ -45,12 +45,11 @@ results in Figure 1.
 In the Boolean model WOX5 is regulated positively by ARF5, negatively by ARF10, and 
 negatively by CLE40. Both ARF5 and ARF10 are auxin response factors, activated by auxin.
 
-$WOX5_{t+1} =NOT$ $ARF10$ $AND$ $ARF5$ $AND$ $NOT$ $CLE40$
+<center> $WOX5_{t+1} =NOT$ $ARF10$ $AND$ $ARF5$ $AND$ $NOT$ $CLE40$ </center>
 
 The expression of ARF5 and ARF10 is regulated by other transcription factors, 
-causing them to be expressed in specific cells of the root (see Figure 3). 
-This regulation is included in the Boolean model we studied last
-week. 
+causing them to be expressed in specific cells of the root as described by the
+attractors recovered by the model (see Figure 3). 
 
 Notice that the QC is the only attractor with WOX5 activity. This makes sense given 
 that its logical rule is: 

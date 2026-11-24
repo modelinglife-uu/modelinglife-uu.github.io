@@ -84,7 +84,7 @@ levels (log), the cell types (attractor initialized), and gene expression
 Download the python files from <https://github.com/moneralee/UU_Modeling-Life-course-2026/tree/main/WC08-Cell-differentiation_II>.  
 You will find: 
 
-#### **`WC08Cell.py`**. {.unnumbered}
+#### WC08Cell.py {.unnumbered}
 The class `Cell` is defined here.
 
 <u>Attributes:</u> A `Cell` position is defined by `ypos` and `layer`; `auxin` 
@@ -99,7 +99,7 @@ the ODE network (you will need to change this during the practical);
 `update_network_state` is used to solve the network; `update_cell_state` that updates 
 the value of the genes (`Cell`'s attributes) based on the output of `update_network_state`.
 
-#### **`WC08Tissue.py`**. {.unnumbered}
+#### WC08Tissue.py {.unnumbered}
 The class `Tissue` is defined here. 
 
 <u>Attributes:</u> A `Tissue` is composed of 50 cells in each layer (8). 
@@ -117,7 +117,7 @@ because it checks the cell type of each cell in a cell layer. `Auxin_Source_Deca
 enters the root from the upper central cell, and decays in all cells. `visualize` creates 
 the plot of the tissue. 
 
-#### **`WC08_Root-tissue-model.py`**. {.unnumbered}
+#### WC08_Root-tissue-model.py {.unnumbered}
 The main file of the model. It defines the 
 parameters, and the `simulate_development` function that uses the methods from 
 the `Tissue` and `Cell` classes to 1) update the cell networks using `tissue.update_networks`, 
@@ -126,34 +126,9 @@ auxin transport using `Auxin_Passive_Transport`, 4) update auxin input and
 decay with `tissue.Auxin_Source_Decay`, 5) and uses` tissue.visualize` for the output plot 
 of the model.
 
-- **`initial_tissue_state.json`**: This is the initial condition of the model defining
-how cells are organized in a tissue, their attractors, and the auxin distribution.
-
-
-
-
-- `rootNetwork`- stores the interactions of the root network. This file is similar to the one we 
-used in the last practical. A key difference is that the auxin levels are an input that can modify 
-gene expression (`auxininput=parameters['auxininput']`). You will modify this function in question 9.5. 
-
-- `initialCondition` - Initializes the grids of the model. We have many cells in this simulation, and we 
-have a grid per cell property: cell type (`cellgrid`), auxin levels (`auxinGrid`), and a grid per variable 
-of the network (e.g. `WOX5grid`).
-
-- `nodeUpdate` - function to take the output of the ODE and stored it in the grids. 
-
-- `plotGrids` - this function plots 6 grids you provide as heatmaps. The labelling assumes you give `cellgrid`, 
-`auxingrid`, `arf10grid`, `arf5grid`, `mgpgrid`, `wox5grid` as input.
-
-2.- `Root-model-Auxin.py` – code to simulate the *in silico* root where we use the functions in a specific 
-order. Before the `main()` we define the dimensions of the grid, the parameters, initialize the grid, 
-and then inside the `main()` we use a for loop to run the auxin transport and network update for a defined 
-number of time steps. In this loop, the output of the network is plotted every 10 steps. 
-
-**Tip: if the simulation runs too slow, decrease this plotting frequency.**
-
-3.- `auxin_grid.npy` – initial auxin levels in each cell with the auxin gradient. This is used to initialize 
-`auxinGrid` in `Root-model-Auxin.py`.
+#### initial_tissue_state.json {.unnumbered}
+This is the initial condition of the model defining how cells are organized in a tissue, 
+their attractors, and the auxin distribution.
 
 
 ## Questions 

@@ -32,6 +32,7 @@ patterning of fingers on the paws of mice (@raspopovic2014digit).
 :::
 ::: {.column width="60%"}
 
+Download the python files from <https://github.com/moneralee/UU_Modeling-Life-course-2026/tree/main/WC05-Pattern_formation_II>. 
 <!-- -In this practical you will work with a total of 3 different python codes. 
 Please note that each code simply differs by an extension or modification 
 from the previous code, so that in the end you will have a long script that 
@@ -44,7 +45,7 @@ performs all the steps in one go.-->
 
 The model proposed by Raspopovic et al. for generating Turing patterns underlying 
 limb bone modeling consists of 3 instead of 2 interacting variables. We will 
-refer to this model as “BSW” model, as it represents interactions between the genes
+refer to this model as the “BSW” model, as it represents interactions between the genes
 Bmp, Sox9, and Wnt.
 
 :::{#exr-tur}
@@ -53,16 +54,12 @@ Bmp, Sox9, and Wnt.
 
 Study the schemes below. The arrows represent activating or inhibiting interactions, 
 while the wavy lines represent diffusion of components. Simplify this 3-variable 
-model scheme into a 2-variable model scheme (just by drawing the interactions, 
-no need to write equations) and explain how it satisfies the Turing conditions 
-discussed in the lecture. Remember that for Turing patterns we need an activator 
-an inhibitor. 
+system into a 2-variable system by fusing the Wnt and Sox9 nodes. Think what does
+the mutual inhibition then converts into. Does this give an activator-inhibitor 
+or a substrate depletion model? What does it imply about the mutual inhibition 
+versus Wnt's own inhibition?
 
-Hint: In a 2-variable system the activator needs to be a single autoactivating molecule. 
-When we have more variables, the positive feedback can be achieved differently 
-(indirectly). So think which two variables would be logical to combine into one 
-to get a 2-variable model..
-
+<!-- Mutual inhibition is activation and should be stronger than the other negative feedback and that is activator inhibitor.-->
 ::: {.columns}
 
 
@@ -112,25 +109,27 @@ the correct chemicals to undergo morphogenesis (bone formation, FigureS3 @raspop
 
 ## Biology
 
-Play with the parameters, for example changing $k4$ (Sox9 effect on BMP), $k7$ (Sox9 
-effect on Wnt), or changing how much faster is Bmp diffusion compared to Wnt 
-diffusion. Change one parameter at a time and observe the effects on the patterning. 
-Change the values in one direction and the other, to confirm it produces the 
-opposite effect. 
+Play with parameters $k4$ and $k7$ of the model, vary them between a value of 0.1 
+and 2. Always vary only one while keeping the other constant. What happens to 
+the patterns in terms of wavelength? Do $k4$ and $k7$ have a similar effect? 
+Why (not)?
 
-What effects on the pattern wavelength do you find? Are there changes in two 
-parameters that produce the same effect? Why?
-
-**Let op!**: Make sure to make small changes for $k4$ and $k7$. If things start 
-blinking wildly, or go blank, you are watching numerical errors rather than real 
-outcomes. When increasing Bmp diffusion you may need to reduce the time step for 
-integration $dt$. 
+**Pay attention!**: Make sure to make small changes for $k4$ and $k7$. 
+If things start blinking wildly, or go blank, you are watching numerical errors 
+rather than real outcomes. 
 
 :::
 
 ::: {.content-visible when-meta="params.show_answers"}
 
-> In general, all three components follow similar trends in terms of concentrations 
+> **In a nutshell: **$k4$ and $k7$ have opposite effects on wavelength. On the 
+> one hand increasing $k4$ leads to less BMP, hence less SOX9/Wnt and ultimately
+> smaller peaks (i.e. shorter wavelength). On the other hand, increasing $k7$ 
+> enhances the autoactivation and hence the width of the peaks. 
+> 
+> Below we discuss what happens when modifying the other parameters of the model.
+>
+> In general, all components follow similar trends in terms of concentrations 
 > as any impact on one component will affect the others via feedbacks. Then, for 
 > simplicity here we only show Sox9 patterns:
 
@@ -229,39 +228,30 @@ strongly influenced by initial conditions, and the size and shape of the domain
 where reactions and diffusion happen.
 
 Let's modify the code to add tissue growth in the proximo-distal (body to limb) 
-direction. Growth is controlled by a growth rate $vi$, which is currently set 
-to zero. The tissue is initialized at its maximal size ($nx$, $ny$), so 
-we also need to make it smaller. See below how: 
-
-::: {.callout-note collapse="true"}
-## Tissue growth implementation
-
-``` python
-# Horizontal growth rate
-vi = 0.0                     # Let op: make it > 0 
-
-# Initial condition parameters for a square tissue domain
-# Horizontal: Start on left side of the nx*ny box
-Lx0 = nx                    # Let op: Tissue is initialized at max size, make it 30
-max_domain_horizontal = nx # Stop growing once this reached
-# Vertical: Start in middle of the nx*ny box
-Ly0 = ny                    # Let op: Tissue is initialized at max size, make it 30
-max_domain_vertical = ny # Stop growing once this reached
-
-```
-:::
-
+direction. 
 
 
 :::{#exr-tur}
 
 ## Biology
 
--   Study the code to understand what it does.\
--   Increase the horizontal growth rate $vi$ in small increments (try: 0.01, 0.05, 
-0.1, 0.2, 0.5) and study what happens to the pattern. Explain why you think this happens.
+Look at functions `get_domain_size_horizontal`, `get_domain_size_vertical` and
+`single_step_growth`, and lines 269-284 to see how the simulation of tissue 
+growth works in the code.
+
+"Look for Change for Question3" to find where in the code you need to 
+make the following changes: 
+
+**1.-** The tissue dimensions are defined by $Lx0$ and $Ly0$. Currently they are
+initialized at its maximal size ($nx$, $ny$), so we  need to make them smaller. 
+Make both $Lx0=Ly0=30$.
 
 **Note:** Increase the $totaltime$ parameter to 5000 when using growth rate of 0.01.
+
+**2.-** Growth in the horizontal direction is controlled by a growth rate $vi$, 
+which is currently set to zero. Modify it in small increments (try: 0.01, 0.05, 
+0.1, 0.2, 0.5) and study what happens to the pattern. Explain why this happens.
+
 :::
 
 :::{.content-visible when-meta="params.show_answers"}
@@ -350,6 +340,8 @@ If the cell increases in volume and does not produce/degrade X, what happens to
 the concentration of X?\
 What would be the concentration of X in the two daughter cells if the cell divides?\
 How would the situation change if X is constantly produced and degraded?
+
+----------------------------------------------------------------------------------
 
 In the paper, @raspopovic2014digit create a “tissue growth map” (see their Figure 3A), 
 which they use to map concentration values from one timepoint to the next using
@@ -625,7 +617,7 @@ k7_local = k7_local_Supp21C(k7, nx, ny)
 ```
 :::
 
-Let op: if you get stuck, open `WC05_digits-square-Question6.py`. This code 
+Pay attention: if you get stuck, open `WC05_digits-square-Question6.py`. This code 
 includes all the changes.
 
 

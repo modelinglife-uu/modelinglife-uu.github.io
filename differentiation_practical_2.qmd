@@ -5,98 +5,102 @@ params:
 
 # Gene regulation in space
 
-## {.unnumbered}
-<center>
-<span style="color: DodgerBlue">
-*How wonderful that we have met with a paradox. <br>
-Now we have some hope of making progress – Niehls Bohr*
-</span>
-</center>
-
-## Auxin does everything
+## Auxin regulates *virtually* all aspects of plant development {.unnumbered}
 
 In this practical you will study the effects of auxin, a plant hormone, on gene 
 regulation in the root. Auxin is a hormone that is virtually involved in all 
 developmental processes in plants, from how the plant embryo is patterned, how the 
 organs in flowers are determined, the spatial disposition of leaves, among many 
-many others. In each context, auxin triggers specific responses, posing the question 
+many others. In each context, auxin triggers very specific responses, posing the question 
 of how is it that the same molecule can trigger so many different responses. This 
-specificity of auxin responses can be explained by the underlying regulatory networks. 
-The auxin signalling pathway activates the auxin response factors, ARFs, which are 
-transcription factors that regulate gene expression in response to auxin. Arabidopsis 
-has 23 genes encoding for ARFs, some regulate gene expression positively and others 
-negatively, and they are expressed in different tissues. It is this diversity in 
-transcription factors activity which in part explains how auxin can regulate so many 
-different things.
+specificity can be explained by the underlying regulatory networks. 
 
-## Auxin does opposite things in the root
+The auxin signalling pathway activates transcription factors, the auxin response 
+factors (ARFs), which regulate gene expression in response to auxin. Arabidopsis 
+has 23 genes coding for ARFs, some regulate gene expression positively and others 
+negatively, they can also form protein complexes with other transcription factors, 
+and important for this practical: they **are expressed in different tissues**. It 
+is this diversity in transcription factors activity and expression, which in part 
+explains how auxin regulates so many different aspects of plants
+
+## Auxin activates and represses the expression of WOX5 in the root {.unnumbered}
 
 Plant root growth is driven by the activity of stem cells housed in a niche at the root tip.
 These stem cells self-renew and produce new cells, acting as a "growth engine". 
-A subset of these cells express *WOX5*, and maintain the surrounding cells undifferentiated. 
-WOX5 is regulated by several factors, and network models help us understand how. Researchers 
-have found paradoxical results regarding how auxin regulates WOX5: some experiments show that 
-auxin promotes its expression, while others found it is repressed (Figure 1). Auxin does
-this opposite regulation through different ARFs (Figure 2) posing the possibility that 
-accounting for how the ARFs themselves are regulated can reconcile the results. Here we 
-will explore this possibility using an *in silico* root model.
+A subset of these cells express *WOX5*; these cells are really important as they maintain 
+the stem cell niche. WOX5 is regulated by several factors, and network models help 
+us understand how. Researchers have found paradoxical results regarding how auxin 
+regulates WOX5: some experiments show that auxin promotes its expression, 
+while others found it is repressed (Figure 1). 
 
-![Figure 1. The left panel shows evidence of the positive effect of auxin on WOX5 expression (white arrows). The right panel shows evidence of auxin repression of WOX5 in the root tip (white rectangle), also shown with qPCR measurements of WOX5 mRNA in root-tip cells.](images/0-auxin-paradox.png){#vegmini1 width=130%}
+![Figure 1. The left panel shows the positive effect of auxin on WOX5 expression (white arrows); notice how WOX5 expression gradually expands. The right panel shows evidence of auxin repression of WOX5 in the root tip (white rectangle), also shown with qPCR measurements of WOX5 mRNA in root-tip cells.](images/0-auxin-paradox.png){#vegmini1 width=130%}
 
-The Boolean network we used last week describes the gene and hormonal
-activity configurations of the cells in the root tip (Figure 3 left). This model recovers an 
-attractor representing the columella, the **QC**, the endodermis, and three types of vascular cells. 
-In this model WOX5 is regulated positively by ARF5, and negatively by ARF10, and also by
-CLE40. Both ARF5 and ARF10 are auxin response factors, activated by auxin.
-Moreover, other root transcription factors control ARF5 and ARF10
-expression causing them to be expressed in specific cells of the root (see Figure 3). 
-This regulation is included in the Boolean model we studied last
-week. 
+In the previous practical we studied a Boolean network model of the root, in which
+Auxin does this opposite regulation through different ARFs (Figure 2). Here we are
+going to use this model in an *in silico* root model to explain the strange experimental
+results in Figure 1.
 
-Here you will explore whether this is relevant to understanding the 
-auxin–WOX5 paradox. For this you will use an *in silico* root model in which 
-each cell carries a copy of the Boolean network initialized in a particular 
-attractor, which allows us to test hypotheses and find an explanation.
+## The network model {.unnumbered}
+
+In the Boolean model WOX5 is regulated positively by ARF5, negatively by ARF10, and 
+negatively also by CLE40. Both ARF5 and ARF10 are auxin response factors, activated 
+by auxin.
+
+<center> $WOX5_{t+1} =NOT$ $ARF10$ $AND$ $ARF5$ $AND$ $NOT$ $CLE40$ </center>
+<br>
+The expression of ARF5 and ARF10 is regulated by other transcription factors, 
+causing them to be expressed in specific cells of the root as described by the
+attractors recovered by the model (see Figure 3). 
 
 ![Figure 2 Auxin regulates WOX5 expression through different auxin response factors. These are expressed in specific cell types of the root](images/0-unique_attractors-celltypes.png){#vegmini1 width=100%}
 
-### Biology / conceptual thinking
-
-Notice that the QC is the only attractor with WOX5 activity. This makes sense given 
-that its logical rule is: 
-
-$WOX5_{t+1} =NOT$ $ARF10$ $AND$ $ARF5$ $AND$ $NOT$ $CLE40$
-
-Notice how the other attractors have either ARF10 and/or CLE40 activity (repressors 
-of WOX5), or lack ARF5 activity (activator of WOX5). The QC attractor is the only 
-one with the following combination: ARF5 active, ARF10 inactive, CLE40 inactive; 
-therefore allowing for WOX5 activity.
+Notice how the attractors differ in their expression of ARF10 and ARF5, and how 
+the QC attractor is the only with the following combination: ARF5 active, ARF10 
+inactive, CLE40 inactive; therefore allowing for WOX5 expression
 
 
-## The model 
+Here you will explore whether this is relevant to understanding the 
+auxin–WOX5 experimental paradox. For this you will use an *in silico* root model in which 
+each cell carries a copy of the Boolean network initialized in a particular 
+attractor
+
+## The root model {.unnumbered}
 
 Today you will use a multicellular model that simulates the cells of a root tip 
-(Figure 3, right). The tissue is modeled as a grid, where the $x$ position defines 
-the radial direction and the $y$ the longitudinal position ($y=0$ being the cells at the **TOP**). 
-The cells are organized in cell layers (8 layers, so $x$ is 8), each with a gene regulatory 
-network initialized in a different attractor. The model simulates the transport of 
-auxin from cell to cell, where the cell type (the attractor) defines the direction of 
-polar auxin transport. In figure 3 (right) you can see the different properties that 
-the cells have: a cell type, auxin levels, gene expression (in the figure we see only 
-ARF10, ARF5, MGP and WOX5). These properties are stored in individual grids: one grid 
-for the cell type, another for auxin levels, and many others for each of the genes in the network. 
+(Figure 3, right). To build this model we use classes. We create a class `Cell` 
+and `Tissue` made up of `Cells`. The `Cells` are arranged in layers to model the 
+8 tissue layers of the root, and initialized in the attractor corresponding to their position.The model simulates the transport of auxin from cell to cell, where 
+their cell type defines the direction of polar auxin transport. 
+
+In figure 3 (right) you can see the output of the model showing the distribution
+of auxin in the middle cell layer, and different properties of `Cells``: auxin 
+levels (log), the cell types (attractor initialized), and gene expression 
+(in the figure we see only ARF10, ARF5, MGP and WOX5). 
 
 ![Figure 3. Ingredients of the in silico root model. 1) gene regulatory network, 2) multi-cellular tissue layout with polar auxin transport in the root tip](images/0-new-RAM.png){#vegmini1 width=130%}
 
-
 ### Files 
+Download the python files from <https://github.com/moneralee/UU_Modeling-Life-course-2026/tree/main/WC08-Cell-differentiation_II>.  
+You will find: 
 
-1.- `Rootfunctions.py` – File storing the functions used in `Root-model-Auxin.py`. For this practical you 
-only need to modify `rootNetwork`. Yet, have a look at all of them and try to understand what they do (useful 
-for Question 9.1). 
+- **`WC08_Root-tissue-model.py`**. The main file of the model. It defines the 
+parameters, and a `simulate_development` function that uses the methods from 
+the `Tissue` and `Cell` classes to update the cell networks, simulate active
+auxin transport, passive auxin transport, auxin production and decay, and to
+create the outout plot of the model.
 
+- **`WC08Cell.py`**. The class `Cell` is defined here. Study the properties of 
+this class, and its methods to initialize the cells (`__init__`), the ODE network
+(**`root_ode`**, you will need to change this during the practical) that is used 
+to solve the network (`update_network_state`). The result is used to update the 
+cell's state (`update_cell_state`)
 
-The file contains the following functions: 
+- **`WC08Tissue.py`**. The class `Tissue` is defined here. Study the properties of this class, 
+and its methods. 
+
+- **`initial_tissue_state.json`**: This is the initial condition of the model defining
+how cells are organized in a tissue, their attractors, and the auxin distribution.
+
 
 - `findNeighbors` - retrieves the $x$ and $y$ coordinates of all the neighbors of a given cell.
 

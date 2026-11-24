@@ -731,47 +731,49 @@ You will find:</p>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Auxin regulates MGP. These has an indirect positive effect on ARF5. </span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>        dMGP <span class="op">=</span> (<span class="dv">20</span><span class="op">/</span>(<span class="dv">20</span><span class="op">+</span>(auxininput<span class="op">+</span>AUXIN)))<span class="op">*</span>sigmoid(w_MGP,h) <span class="op">-</span> (decayrate <span class="op">*</span> MGP)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>        dMGP <span class="op">=</span> (<span class="dv">200</span><span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">200</span><span class="op">**</span><span class="dv">2</span><span class="op">+</span>(auxininput<span class="op">+</span>AUXIN)<span class="op">**</span><span class="dv">2</span>))<span class="op">*</span>sigmoid(w_MGP,h) <span class="op">-</span> (decayrate <span class="op">*</span> MGP)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Auxin represses WOX5 at *very* high levels - most hormones exhibit this dosage dependent effect.</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        dWOX5 <span class="op">=</span> (<span class="dv">500</span><span class="op">/</span>(<span class="dv">500</span><span class="op">+</span>(auxininput<span class="op">+</span>AUXIN)))<span class="op">*</span>sigmoid(w_WOX5,h) <span class="op">-</span> decayrate<span class="op">*</span>WOX5  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        dWOX5 <span class="op">=</span> (<span class="dv">700</span><span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">700</span><span class="op">**</span><span class="dv">2</span><span class="op">+</span>(auxininput<span class="op">+</span>AUXIN)<span class="op">**</span><span class="dv">2</span>))<span class="op">*</span>sigmoid(w_WOX5,h) <span class="op">-</span> decayrate<span class="op">*</span>WOX5  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
 </div>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 8.4 (Biological interpretation)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Exercise 8.4 (Biological interpretation)</strong></span> Regarding the auxin treatment = 20:</p>
 <ul>
 <li>Why do different cells of the root respond differently to auxin treatments?</li>
 <li>Why does auxin regulation of MGP do? (Look at the network…)</li>
+<li>Why does expression of WOX5 occur mainly in “upper” cells and repression in the cells at the bottom?</li>
 </ul>
 </div>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 8.5 (Algorithmic thinking)</strong></span> Experimental repression of WOX5 was detected by RT-PCR at the very tip (Figure 1, right panel). Reproduce this <em>in silico</em> by saving the average WOX5 levels of cells at the tip (<span class="math inline">\(y\)</span> &lt; 40) at the end of the simulation for all three treatments. For comparison, also calculate the average for the whole root. Then plot this average WOX5 expression levels (y axis) for each <code>auxinTreatment</code>= 0, 10 and 750 (x axis).</p>
-<p>Tip: <code>WOX5Grid</code> stores WOX5 levels, and <span class="math inline">\(y\)</span> controls the position of the cells with <span class="math inline">\(y=0\)</span> being the bottom of the root.</p>
+<p><span class="theorem-title"><strong>Exercise 8.5 (Algorithmic thinking)</strong></span> Experimental repression of WOX5 was detected by RT-PCR at the very tip (Figure 1, right panel). Reproduce this <em>in silico</em> by saving the average WOX5 levels of cells at the tip (<span class="math inline">\(ypos\)</span> &lt; 6) at the end of the simulation for all three treatments. For comparison, also calculate the average for all the cells in the root. Then plot this average WOX5 expression levels (y axis) for each <code>auxinTreatment</code>= 0, 100 and 1000 (x axis). #monki</p>
 <ul>
 <li>What is the overall effect of auxin treatments in the root tip? Considering that the root is a mixture of many cell types, which cells best represent the plotted values?</li>
 </ul>
 </div>
 <div id="exr-tur" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.6 (Biology &amp; algorithmic thinking)</strong></span> Now, let’s compare WOX5 regulation across tissues. Let’s use the model to do an in RT-PCR <em>in silico</em> analysis of only the cells in the QC position, and also the endodermis cells. This has not been done experimentally and thus you will generate a prediction (!).</p>
-<p>Tip: cell types are stored in <code>cellGrid.</code></p>
+<p>Tip: cell types are a <code>Cell</code> attribute.</p>
 <ul>
 <li>Compare what you see in the root simulation, and what you obtain in the simulated RT-PCR plot. Which case represents better how WOX5 is regulated in the root tip? Why?</li>
 </ul>
 </div>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 8.7 (Biology &amp; algorithmic thinking)</strong></span> Changes in WOX5 expression depend on tissue context and auxin dosage. Simulate a range of auxin treatments from 0 to 750.</p>
+<p><span class="theorem-title"><strong>Exercise 8.7 (Biology &amp; algorithmic thinking)</strong></span> Changes in WOX5 expression depend on tissue context and auxin dosage. Simulate a range of auxin treatments from 0 to 750, and save only an image for the final timestep (this will make the simulation faster, and you don’t need to see every timestep).</p>
 <p>Can you now explain the auxin–WOX5 paradox? What mechanism do you propose?</p>
 </div>
 <div id="exr-tur" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.8 (Biology &amp; conceptual thinking)</strong></span> &nbsp;</p>
 <ul>
-<li><p>Perform an <em>in silico</em> intervention to alter WOX5 dosage responsiveness to auxin. For example, what would it take to enforce its continuous expression, or block completely its induction in the endodermis.</p></li>
+<li><p>Perform an <em>in silico</em> intervention to alter WOX5 dosage responsiveness to auxin. For example, what would it take to enforce its continuous expression, or to block completely its induction in the endodermis.</p></li>
 <li><p>How would you test these model predictions experimentally?</p></li>
 </ul>
 </div>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 8.9 (Biological thinking)</strong></span> All models are wrong, but some are useful. The model we studied today offered us a mechanistic insight into the paradoxical auxin responses. Yet, (to make things more fun), the original experiments used different auxin <em>analogs</em> and other molecules which are transported very differently between cells: NAA (transported independently of PINs), IAA (PIN-transported), and NPA (blocks PINs, increasing auxin in the tip). How does this information change your conclusions? What extensions to the model would you make to account for these differences?</p>
+<p><span class="theorem-title"><strong>Exercise 8.9 (Biological thinking)</strong></span> All models are wrong, but some are useful. The model we studied today offered us a mechanistic insight into the paradoxical auxin responses. Yet, (to make things more fun), the original experiments used different auxin <em>analogs</em> and other molecules which are transported very differently between cells: NAA (transported independently of PINs), IAA (PIN-transported), and NPA (blocks PINs, increasing auxin in the tip).</p>
+<p>How does this information change your conclusions?</p>
+<p>How would you modify the model to account for these differences?</p>
 </div>
 </section>
 <section id="references" class="level2" data-number="8.2">

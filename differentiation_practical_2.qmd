@@ -289,9 +289,9 @@ Do you now see the differences reported by experimentalists?
 ## Answer: look if you are stuck
 ``` python
     # Auxin regulates MGP. These has an indirect positive effect on ARF5. 
-        dMGP = (20/(20+(auxininput+AUXIN)))*sigmoid(w_MGP,h) - (decayrate * MGP)
+        dMGP = (200**2/(200**2+(auxininput+AUXIN)**2))*sigmoid(w_MGP,h) - (decayrate * MGP)
     # Auxin represses WOX5 at *very* high levels - most hormones exhibit this dosage dependent effect.
-        dWOX5 = (500/(500+(auxininput+AUXIN)))*sigmoid(w_WOX5,h) - decayrate*WOX5  
+        dWOX5 = (700**2/(700**2+(auxininput+AUXIN)**2))*sigmoid(w_WOX5,h) - decayrate*WOX5  
 ````
 :::
 :::
@@ -322,8 +322,11 @@ Do you now see the differences reported by experimentalists?
 
 ## Biological interpretation
 
+Regarding the auxin treatment = 20: 
+
 - Why do different cells of the root respond differently to auxin treatments? 
 - Why does auxin regulation of MGP do? (Look at the network...)
+- Why does expression of WOX5 occur mainly in "upper" cells and repression in the cells at the bottom?
 
 :::
 
@@ -332,11 +335,12 @@ Do you now see the differences reported by experimentalists?
   > **Answer** 
   > 
   > - Cell differentiation causes the differences in ARF10 and ARF5 gene expression 
-  > in specific cells. This results in only some cells in the root being 
+  > in specific cells of the root. This results in only some cells in the root being 
   > competent to express WOX5. 
   >
   > - MGP represses ARF5, enabling WOX5 expression in the endodermal cells,
   >
+  > - Because auxin is distributed in a gradient so the cells at the tip will reach the repressive levels before the "upper" cells.
 
 :::
 
@@ -345,13 +349,10 @@ Do you now see the differences reported by experimentalists?
 ## Algorithmic thinking
 
 Experimental repression of WOX5 was detected by RT-PCR at the very
-tip (Figure 1, right panel). Reproduce this *in silico* by saving the average WOX5 levels of
-cells at the tip ($y$ < 40) at the end of the simulation for all three
-treatments. For comparison, also calculate the average for the whole root. 
+tip (Figure 1, right panel). Reproduce this *in silico* by saving the average WOX5 levels of cells at the tip ($ypos$ < 6) at the end of the simulation for all three
+treatments. For comparison, also calculate the average for all the cells in the root. 
 Then plot this average WOX5 expression levels (y axis) for each `auxinTreatment`= 0, 
-10 and 750 (x axis). 
-
-Tip: `WOX5Grid` stores WOX5 levels, and $y$ controls the position of the cells with $y=0$ being the bottom of the root. 
+100 and 1000 (x axis). #monki
 
 - What is the overall effect of auxin treatments in the root tip? Considering that
 the root is a mixture of many cell types, which cells best represent the
@@ -363,7 +364,7 @@ plotted values?
 
   > **Answer** What portion of the root we sample changes completely our perception 
   > of how auxin regulates WOX5. If we sample the whole root we get the impression 
-  > that WOX5 is induced (and it is true for the endodermis cells). Yet, if we sample 
+  > that WOX5 is induced (and that is true for the endodermis cells). Yet, if we sample 
   > the very tip of the root, we are sampling a smaller proportion of endodermal 
   > cells, allowing us to detect that auxin is also repressing WOX5 expression in the QC 
   > cells. The latter is similar to the qPCR experiment in Figure 1 (right panel).
@@ -381,7 +382,7 @@ in RT-PCR *in silico* analysis of only the cells in the QC position, and also th
 endodermis cells. This has not been done experimentally and thus you will generate
 a prediction (!). 
 
-Tip: cell types are stored in `cellGrid.`
+Tip: cell types are a `Cell` attribute.
 
 - Compare what you see in the root simulation, and what you obtain in the simulated 
 RT-PCR plot. Which case represents better how WOX5 is regulated in the root tip? Why?
@@ -411,7 +412,9 @@ RT-PCR plot. Which case represents better how WOX5 is regulated in the root tip?
 ## Biology & algorithmic thinking
 
 Changes in WOX5 expression depend on tissue context and auxin dosage.
-Simulate a range of auxin treatments from 0 to 750.
+Simulate a range of auxin treatments from 0 to 750, and save only an image
+for the final timestep (this will make the simulation faster, and you don't
+need to see every timestep).
 
 Can you now explain the auxin–WOX5 paradox? What mechanism do you
 propose?
@@ -432,8 +435,8 @@ propose?
 ## Biology & conceptual thinking
 
 - Perform an *in silico* intervention to alter WOX5 dosage responsiveness to auxin. 
-For example, what would it take to enforce its continuous expression, or block completely its 
-induction in the endodermis. 
+For example, what would it take to enforce its continuous expression, or to block 
+completely its induction in the endodermis. 
 
 - How would you test these model predictions experimentally?
 :::
@@ -451,11 +454,14 @@ induction in the endodermis.
 
 All models are wrong, but some are useful. The model we studied today offered us a 
 mechanistic insight into the paradoxical auxin responses. Yet, (to make things more 
-fun), the original experiments used different auxin *analogs* and other molecules which are transported 
-very differently between cells: NAA (transported independently of PINs), 
-IAA (PIN-transported), and NPA (blocks PINs, increasing auxin in the 
-tip). How does this information change your conclusions? What extensions to the 
-model would you make to account for these differences?
+fun), the original experiments used different auxin *analogs* and other molecules 
+which are transported very differently between cells: NAA (transported independently 
+of PINs), IAA (PIN-transported), and NPA (blocks PINs, increasing auxin in the 
+tip). 
+
+How does this information change your conclusions? 
+
+How would you modify the model to account for these differences?
 :::
 
 :::{.content-visible when-meta="params.show_answers"}

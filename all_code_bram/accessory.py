@@ -19,6 +19,7 @@ Simulation steps (every generation, for every site in turn):
 
 """
 import random
+import matplotlib
 import numpy as np
 
 # ======= SETTINGS =======
@@ -54,6 +55,8 @@ PLOT = True            # live plot (needs matplotlib); False = only print
 if PLOT:
     import matplotlib.pyplot as plt
     from matplotlib.colors import ListedColormap
+    import matplotlib
+    matplotlib.use("WebAgg")
 
 random.seed(SEED)
 

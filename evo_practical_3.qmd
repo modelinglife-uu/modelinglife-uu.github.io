@@ -678,7 +678,7 @@ def main():
             vis.update_plot(sim) 
             vis.ax.set_title(f"Timestep: {t}")
             vis.fig.canvas.draw_idle()
-            plt.pause(10e-20)        
+            plt.pause(0.01)        
         if(sim.redraw):
             # When more has changes (e.g. number of cells or target position), redraw the plot
             vis.redraw_plot(sim) 
@@ -917,7 +917,7 @@ class Visualisation:
         self.grid_im = self.ax.imshow(sim.grid.T, extent=(0, WORLD_SIZE, 0, WORLD_SIZE), origin='lower', cmap='viridis', alpha=1.0)
         self.target_point.remove()
         self.target_point=self.ax.scatter(sim.target_position[0], sim.target_position[1], c='purple', s=100, edgecolor='red')
-        plt.pause(10e-20)
+        plt.pause(0.01)
             
             
 # 4. Execute the main loop
@@ -946,15 +946,17 @@ If you run the code, you will see a purple dot (with a red outline). This may re
 To help you on your way, first answer the following questions for yourself:
 
 a. How can you calculate the distance between an individual and the orange dot?
-b. When is an individual close enough to the orange dot?
-c. How can we assign a random position to the dot?
+b. How can you move the individual towards the dot?
+c. When is an individual close enough to the orange dot?
+d. Once an individual found the target, how can we assign a random position to the dot?
 :::
+
+*Implemented what you came up above with in the function `move_towards_dot`. First try it yourself. If you get stuck, ask Bram for help.*
+ 
+:::{.content-visible when-meta="params.show_answers"}
 
 A working code to steer the individuals towards the target is shown below. Note that the acceleration that is applied is only small, otherwise the individuals will move in a straight line towards the target very rapidly. 
 
-*First try it yourself. If you get stuck, ask Bram for help.*
- 
-:::{.content-visible when-meta="params.show_answers"}
 > **Answer**<br>
    > ```python
 > def move_towards_dot(self, cell):
@@ -970,7 +972,7 @@ A working code to steer the individuals towards the target is shown below. Note 
 >     dy /= distance
 >     # Apply a small force towards the target
 >     cell.ax += dx * 0.01
->     cell.ay += dy * 0.01
+>     cell.ay += dy * 0.01  
 > ```
 :::
 
@@ -1258,7 +1260,7 @@ def main():
             vis.update_plot(sim)
             vis.ax.set_title(f"Timestep: {t}")
             vis.fig.canvas.draw_idle()
-            plt.pause(10e-20)
+            plt.pause(0.01)
         if(t % SEASON_DURATION==0):
             sim.fill_grid(sim.grid, 0.2+np.random.uniform(0,0.6), 0.2+np.random.uniform(0,0.6), 0.1, NOISE)
             vis.redraw_plot(sim)# Create Gaussian grid

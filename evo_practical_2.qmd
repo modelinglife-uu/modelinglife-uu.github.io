@@ -108,7 +108,7 @@ for gen in range(generations):
         ax2.autoscale_view()
 
         fig.suptitle(f"Generation {gen}: Best Fitness = {best:.3f}")
-        plt.pause(0.001)
+        plt.pause(0.01)
 
 plt.show()
 ```
@@ -296,7 +296,7 @@ for gen in range(generations):
         ax2.relim(); ax2.autoscale_view()
         best = max(population, key=fitness)
         fig.suptitle(f"Best: {best} (target: {target_sequence})\n(Press SPACE to pause, Q to quit)", fontsize=10)
-        plt.pause(0.001)
+        plt.pause(0.01)
 
     # Tournament selection (as in evolving_fitness_final.py)
     new_pop = []
@@ -571,7 +571,7 @@ Answer the following question about the model:
 
 ## Evolving protein sequences - Biology / abstract thinking
 
-a. Another line was added to the model. What new information can you obtain from analysing this line?
+a. Another line is being plotted in the graph. What new information can you obtain from analysing this line?
 b. Study carefully how the other lines (also present in previous models) change over time. What do you observe? Try and capture what you see into words. 
 c. In biology, multiple genotypes can translate to the same phenotype (this is called a many-to-one genotype-phenotype map), or alternatively, one genotype can produce multiple phenotype (this is called phenotypic plasticity, or a one-to-many genotype-phenotype map). Which genotype-phenotype (GP) mapping applies to this model? Why?
 :::
@@ -591,7 +591,7 @@ First, you need to install the ViennaRNA package. This is a real bioinformatics 
 
 ### Installing ViennaRNA
 
-**What is pip?** Pip is the Python package manager, it downloads and installs Python libraries. You already have it if you have Python.
+**What is pip?** Pip is the Python package manager, it downloads and installs Python libraries. You already have it if you have Python. On Mac, you can type the code below into a regular terminal (for example in VSC). If you're instead on Windows, open Anaconda Prompt (hit the windows key and look for this) and type the command below into that terminal instead. 
 
 **Install ViennaRNA:**
 Open a terminal and run:
@@ -811,7 +811,7 @@ def structure_fitness(rna_seq, target_structure):
 >
 >         current_target = target_1 if (gen // switch_interval) % 2 == 0 else target_2
 >         fig.suptitle(f"Gen {gen}: Target = {current_target}\\n(Press SPACE to pause, Q to quit)")
->         plt.pause(0.001)
+>         plt.pause(0.01)
 >
 > plt.show()
 > ```

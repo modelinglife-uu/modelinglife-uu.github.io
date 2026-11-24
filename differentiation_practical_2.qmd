@@ -100,38 +100,55 @@ A `Cell` position is defined by `ypos` and `layer`;
 with the expression of each node of the network, which are modelled as individual
 attributes: `CK`, `ARR1`, etc. 
 
-<u>Methods:</u> `__init__` is used to initialize the cells; **`root_ode`** defines
-the ODE network (you will need to change this during the practical); 
-`update_network_state` is used to solve the network; `update_cell_state` that updates 
-the value of the genes (`Cell`'s attributes) based on the output of `update_network_state`.
+
+<u>Methods:</u> 
+
+`__init__` is used to initialize the cells; 
+
+**`root_ode`** defines the ODE network (you will need to change this during the practical); 
+
+`update_network_state` is used to solve the network; 
+
+`update_cell_state` that updates the value of the genes (`Cell`'s attributes) based on the output of `update_network_state`.
 
 #### WC08Tissue.py {.unnumbered}
 The class `Tissue` is defined here. 
 
 <u>Attributes:</u> A `Tissue` is composed of 50 cells in each layer (8). 
 
-<u>Methods:</u> `load_state` reads a file with an initial condition (`initial_tissue_state.json`)
+<u>Methods:</u> 
+
+`load_state` reads a file with an initial condition (`initial_tissue_state.json`)
 with cells arranged in cell files and rows, and their attractors are predefined based on how 
-these cell types are organized in a root. `add_cell` adds cells objects to tissue. `get_cell`
-finds the cell in a given position in the matrix (useful to find the immediate neighbors
-of a cell). `update_networks` updates the networks in each cell of the tissue (by 
-calling the method `cell.update_network_state`). `Auxin_Passive_Transport` simulates 
+these cell types are organized in a root. 
+
+`add_cell` adds cells objects to tissue. 
+
+`get_cell` finds the cell in a given position in the matrix (useful to find the immediate neighbors
+of a cell). 
+
+`update_networks` updates the networks in each cell of the tissue (by 
+calling the method `cell.update_network_state`). 
+
+`Auxin_Passive_Transport` simulates 
 the passive diffusion of auxin between neighboring cells (using the `get_cell` function). 
+
 `Auxin_Active_Transport` simulates the active transport of auxin taking into account their 
 cell type that determines the direction of the transport; This is a very large function 
-because it checks the cell type of each cell in a cell layer. `Auxin_Source_Decay` auxin 
-enters the root from the upper central cell, and decays in all cells. `visualize` creates 
+because it checks the cell type of each cell in a cell layer. 
+
+`Auxin_Source_Decay` auxin enters the root from the upper central cell, and decays 
+in all cells. `visualize` creates 
 the plot of the tissue. 
 
 #### WC08_Root-tissue-model.py {.unnumbered}
-The main file of the model. It defines the 
-parameters, and the `simulate_development` function that uses the methods from 
-the `Tissue` and `Cell` classes to 1) update the cell networks using `tissue.update_networks`, 
-2) simulate active auxin transport using `Auxin_Active_transport`, 3) simulate passive 
-auxin transport using `Auxin_Passive_Transport`, 4) update auxin input and 
-decay with `tissue.Auxin_Source_Decay`, 5) and uses` tissue.visualize` for the output plot 
-of the model. Run this file, and if the plotting updates too slow increase the value
-in `plt.pause(1)`. 
+The main file of the model. It defines the parameters, and the `simulate_development` 
+function that uses the methods from the `Tissue` and `Cell` classes to 1) update the 
+cell networks using `tissue.update_networks`, 2) simulate active auxin transport using 
+`Auxin_Active_transport`, 3) simulate passive auxin transport using `Auxin_Passive_Transport`, 
+4) update auxin input and decay with `tissue.Auxin_Source_Decay`, 5) and uses
+`tissue.visualize` for the output plot of the model. Run this file, and if the 
+plotting updates too slow increase the value in `plt.pause(1)`. 
 
 #### initial_tissue_state.json {.unnumbered}
 This is the initial condition of the model defining how cells are organized in a tissue, 
@@ -206,29 +223,6 @@ to simulate the treatment of roots with auxin?
   >                    ...            # repeat for others
   > 
   > 
-  
-:::
-
-:::{#exr-tur}
-
-## Biology
-
-What happens if you update the network more often than the auxin transport? How would you implement 
-this modification in the code?
-
-:::
-
-:::{.content-visible when-meta="params.show_answers"}
-
-  > **Answer** It is possible to make this change in the code, and the model will still run (try). 
-  > Nevertheless, it does not make biological sense because the transport of molecules from cell to cell
-  > ocurr in the range of seconds, while gene expression changes can take from minutes to hours. 
-  >
-  >  ![@shamir2016snapshot](images/timescales.png){#vegmini1 width=60%}
-  >
-  > This change can be implemented by putting both `auxinTransport` and the chunk of code for the
-  > network update inside conditionals with different values (`if step % x == 0:`) where $x$ is larger 
-  > for auxin transport than for gene regulation. 
   
 :::
 

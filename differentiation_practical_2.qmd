@@ -289,9 +289,9 @@ Do you now see the differences reported by experimentalists?
 ## Answer: look if you are stuck
 ``` python
     # Auxin regulates MGP. These has an indirect positive effect on ARF5. 
-        dMGP = (45/(45+auxininput))*sigmoid(w_MGP,h) - (decayrate * MGP)
+        dMGP = (20/(20+(auxininput+AUXIN)))*sigmoid(w_MGP,h) - (decayrate * MGP)
     # Auxin represses WOX5 at *very* high levels - most hormones exhibit this dosage dependent effect.
-        dWOX5 = (1000/(1000+auxininput))*sigmoid(w_WOX5,h)-decayrate*WOX5  
+        dWOX5 = (500/(500+(auxininput+AUXIN)))*sigmoid(w_WOX5,h) - decayrate*WOX5  
 ````
 :::
 :::
@@ -299,20 +299,21 @@ Do you now see the differences reported by experimentalists?
 :::{.content-visible when-meta="params.show_answers"}
 
   > **Answer** Yes, the model with both hypothesis can reproduce the experimental 
-  > observations. It reveals that the effects of auxin on WOX5 expression might 
-  > depend on the **cell type** and on the **time** of the treatment. If we focus on the 
-  > QC we can see that the expression of WOX5 is reduced gradually until it is not 
-  > expressed at all. In contrast, in the endodermis it is gradually induced 
-  > from the bottom of the tip to the rest of the cells. In the long run, this expression 
-  > also disappears. This matches the experiments in Figure 1. Indeed in the left 
-  > panel we can see WOX5 expressed in the endodermis, and already reduced in the QC. 
-  > 
+  > observations. 
   > The hypothesis regarding MGP regulation enables ectopic ARF5 expression in the 
   > endodermis, needed to allow for WOX5 expression in these cells. The second 
   > hypothesis is to shut down expression in the QC cell, and gradually in the 
   > rest of the cells.
-  >
-    ![](images/0-final_grids_run750_100.png){#vegmini1 width=100%}
+  > The model suggests that the effects of auxin on WOX5 expression might 
+  > depend on the **cell type** and on the **dosage** of the treatment. 
+  > Auxin treatment = 100 induces WOX5 expression in the endodermis.
+  > Then, for auxin treatment = 1000 this incremeber still takes place, albeit  
+  > reduced. If we focus on the QC we can see that the expression of WOX5 is gradually 
+  > reduced.
+    >
+    ![Ectopic WOX5 expression in Auxin treatment = 100](images/0-final_grids_run_100.png){#vegmini1 width=100%}
+    
+    ![Reduced WOX5 expression in Auxin treatment = 1000](images/0-final_grids_run_1000.png){#vegmini1 width=100%}
   
 :::
 
@@ -321,27 +322,22 @@ Do you now see the differences reported by experimentalists?
 
 ## Biological interpretation
 
-You should observe that WOX5 expression gradually expands into the
-endodermis and disappears from QC cells when both equations are updated
-with the two hypotheses. This matches the experimental microscopy from Figure 1. 
-
-- Why do different parts of the root respond differently to auxin? 
+- Why do different cells of the root respond differently to auxin treatments? 
 - Why does auxin regulation of MGP do? (Look at the network...)
-- Why does induction of WOX5 occur mainly in "upper" cells and repression 
-in the cells at the bottom?
+
 :::
 
 :::{.content-visible when-meta="params.show_answers"}
 
   > **Answer** 
   > 
-  > - Because of cell differentiation, which causes the differences in ARF10 and 
-  > ARF5 gene expression in specific cells 
+  > - Cell differentiation causes the differences in ARF10 and ARF5 gene expression 
+  > in specific cells. This results in only some cells in the root being 
+  > competent to express WOX5. 
   >
   > - MGP represses ARF5, enabling WOX5 expression in the endodermal cells,
   >
-  > - Because auxin is distributed in a gradient so the cells at the tip will reach the repressive levels before the "upper" cells. 
-  
+
 :::
 
 :::{#exr-tur}

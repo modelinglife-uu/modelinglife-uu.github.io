@@ -731,19 +731,18 @@ You will find:</p>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Auxin regulates MGP. These has an indirect positive effect on ARF5. </span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>        dMGP <span class="op">=</span> (<span class="dv">45</span><span class="op">/</span>(<span class="dv">45</span><span class="op">+</span>auxininput))<span class="op">*</span>sigmoid(w_MGP,h) <span class="op">-</span> (decayrate <span class="op">*</span> MGP)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>        dMGP <span class="op">=</span> (<span class="dv">20</span><span class="op">/</span>(<span class="dv">20</span><span class="op">+</span>(auxininput<span class="op">+</span>AUXIN)))<span class="op">*</span>sigmoid(w_MGP,h) <span class="op">-</span> (decayrate <span class="op">*</span> MGP)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Auxin represses WOX5 at *very* high levels - most hormones exhibit this dosage dependent effect.</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        dWOX5 <span class="op">=</span> (<span class="dv">1000</span><span class="op">/</span>(<span class="dv">1000</span><span class="op">+</span>auxininput))<span class="op">*</span>sigmoid(w_WOX5,h)<span class="op">-</span>decayrate<span class="op">*</span>WOX5  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        dWOX5 <span class="op">=</span> (<span class="dv">500</span><span class="op">/</span>(<span class="dv">500</span><span class="op">+</span>(auxininput<span class="op">+</span>AUXIN)))<span class="op">*</span>sigmoid(w_WOX5,h) <span class="op">-</span> decayrate<span class="op">*</span>WOX5  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
 </div>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 8.4 (Biological interpretation)</strong></span> You should observe that WOX5 expression gradually expands into the endodermis and disappears from QC cells when both equations are updated with the two hypotheses. This matches the experimental microscopy from Figure 1.</p>
+<p><span class="theorem-title"><strong>Exercise 8.4 (Biological interpretation)</strong></span> &nbsp;</p>
 <ul>
-<li>Why do different parts of the root respond differently to auxin?</li>
+<li>Why do different cells of the root respond differently to auxin treatments?</li>
 <li>Why does auxin regulation of MGP do? (Look at the network…)</li>
-<li>Why does induction of WOX5 occur mainly in “upper” cells and repression in the cells at the bottom?</li>
 </ul>
 </div>
 <div id="exr-tur" class="theorem exercise">

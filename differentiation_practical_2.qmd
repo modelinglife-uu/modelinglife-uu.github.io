@@ -83,12 +83,6 @@ levels (log), the cell types (attractor initialized), and gene expression
 Download the python files from <https://github.com/moneralee/UU_Modeling-Life-course-2026/tree/main/WC08-Cell-differentiation_II>.  
 You will find: 
 
-- **`WC08_Root-tissue-model.py`**. The main file of the model. It defines the 
-parameters, and the `simulate_development` function that uses the methods from 
-the `Tissue` and `Cell` classes to 1) update the cell networks, 2) simulate active
-auxin transport, 3) simulate passive auxin transport, 4) update auxin input and 
-decay, and to create the output plot of the model.
-
 - **`WC08Cell.py`**. The class `Cell` is defined here. Study the properties of 
 this class, and its methods. 
 
@@ -107,17 +101,34 @@ the value of the genes (`Cell`'s attributes) based on the output of `update_netw
 - **`WC08Tissue.py`**. The class `Tissue` is defined here. Study the properties of this class, 
 and its methods. 
 
-<u>Attributes:</u> A `Tissue` has 
+<u>Attributes:</u> A `Tissue` is composed of 50 cells in each layer (8). 
+
+<u>Methods:</u> `load_state` reads a file with an initial condition (`initial_tissue_state.json`)
+with cells arranged in cell files and rows, and their attractors are predefined based on how 
+these cell types are organized in a root. `add_cell` adds cells objects to tissue. `get_cell`
+finds the cell in a given position in the matrix (useful to find the immediate neighbors
+of a cell). `update_networks` updates the networks in each cell of the tissue (by 
+calling the method `cell.update_network_state`). `Auxin_Passive_Transport` simulates 
+the passive diffusion of auxin between neighboring cells (using the `get_cell` function). 
+`Auxin_Active_Transport` simulates the active transport of auxin taking into account their 
+cell type that determines the direction of the transport; This is a very large function 
+because it checks the cell type of each cell in a cell layer. `Auxin_Source_Decay` auxin 
+enters the root from the upper central cell, and decays in all cells. `visualize` creates 
+the plot of the tissue. 
+
+- **`WC08_Root-tissue-model.py`**. The main file of the model. It defines the 
+parameters, and the `simulate_development` function that uses the methods from 
+the `Tissue` and `Cell` classes to 1) update the cell networks using `tissue.update_networks`, 
+2) simulate active auxin transport using `Auxin_Active_transport`, 3) simulate passive 
+auxin transport using `Auxin_Passive_Transport`, 4) update auxin input and 
+decay with `tissue.Auxin_Source_Decay`, 5) and uses` tissue.visualize` for the output plot 
+of the model.
 
 - **`initial_tissue_state.json`**: This is the initial condition of the model defining
 how cells are organized in a tissue, their attractors, and the auxin distribution.
 
 
-- `findNeighbors` - retrieves the $x$ and $y$ coordinates of all the neighbors of a given cell.
 
-- `auxinTransport` - executes the passive and the polar auxin transport using the levels of auxin 
-in each cell stored in `auxinGrid`. The direction at which a cell transports auxin is determined 
-by its cell type (`cellgrid`). 
 
 - `rootNetwork`- stores the interactions of the root network. This file is similar to the one we 
 used in the last practical. A key difference is that the auxin levels are an input that can modify 

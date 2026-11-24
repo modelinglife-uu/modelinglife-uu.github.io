@@ -231,16 +231,18 @@ to simulate the treatment of roots with auxin?
 ## Biology & algorithmic thinking
 
 Now let's use the model to simulate the auxin treatments from the experiments in Figure 1. 
-To simulate an auxin treatment change the value of $AuxinTreatment$ in `Root-model-Auxin.py`. 
-Try values of 10 and 750. This increases auxin levels in all cells by the same amount. 
-You can run one treatment at a time, or make a for loop and run the three in one go. 
+To simulate an auxin treatment change the value of $auxininput$ in `Root-model-Auxin.py`. 
+Try values of 10, and 100 and 1000 (nM). This increases auxin levels in all cells by the 
+same amount. You can run one treatment at a time, or make a for loop and run the three 
+in one go. 
 
-- How does auxin treatment affect gene expression in the root? 
+- How does auxin treatment affect WOX5 gene expression in the root? 
+
 - Does the model output correspond to the transcriptional reporter of WOX5 
 shown in Figure 1? 
+
 - Do you see activation or repression as reported experimentally? (You can
-visualize different genes by changing the grid provided to
-`plotGrids()`, although the labelling will be wrong.)
+visualize different genes by changing the genes in `tissue.visualize`.
 
 **Notice the simulation creates an output folder with png images.**
 
@@ -268,9 +270,10 @@ hypotheses and aim to recover such behaviours (Figure 1). Let's implement the fo
 
 ![Testing two hypothesis: <span style="color: magenta;">Auxin represses MGP expression.</span> <span style="color: #32CD32;">Extremely high auxin levels (easy to apply experimentally, but unrealistic *in vivo*) repress WOX5 expression.</span>](images/0-auxin-hypothesis.png){#vegmini1 width=60%}
 
-Modify the equations for MGP and WOX5 in `rootNetwork` accordingly.
+Modify the equations for MGP and WOX5 in the `root_ode` method of the `Cell` class. 
 
-- For MGP, retain its logical rule but multiply its production term by a negative regulatory term of auxin ($Km = 45$): <span style="color: magenta;"> $\frac{45}{45+auxininput}$ </span>
+- For MGP, multiply its production term, that implements its logical rule, by an inverse 
+sigmoid of auxin ($Km = 45$): <span style="color: magenta;"> $\frac{45}{45+auxininput}$ </span>
 
 - Similarly, add a negative regulation by auxin to the WOX5 equation
 ($Km = 1000$).
@@ -282,6 +285,15 @@ It is also interesting to run the timecourse, by plotting every 10 steps.
 
 Do you now see the differences reported by experimentalists?
 
+::: {.callout-note collapse="true"}
+## Answer: look if you are stuck
+``` python
+    # Auxin regulates MGP. These has an indirect positive effect on ARF5. 
+        dMGP = (45/(45+auxininput))*sigmoid(w_MGP,h) - (decayrate * MGP)
+    # Auxin represses WOX5 at *very* high levels - most hormones exhibit this dosage dependent effect.
+        dWOX5 = (1000/(1000+auxininput))*sigmoid(w_WOX5,h)-decayrate*WOX5  
+````
+:::
 :::
 
 :::{.content-visible when-meta="params.show_answers"}

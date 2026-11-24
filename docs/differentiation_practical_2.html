@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -659,36 +694,52 @@ You will find:</p>
 <p>Make a plain-language description, pseudocode, or flowchart using pen and paper of how the model works. What are the algorithmic steps you would take if you want to simulate the treatment of roots with auxin?</p>
 </div>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 8.2 (Biology)</strong></span> What happens if you update the network more often than the auxin transport? How would you implement this modification in the code?</p>
-</div>
-<div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 8.3 (Biology &amp; algorithmic thinking)</strong></span> Now let’s use the model to simulate the auxin treatments from the experiments in Figure 1. To simulate an auxin treatment change the value of <span class="math inline">\(AuxinTreatment\)</span> in <code>Root-model-Auxin.py</code>. Try values of 10 and 750. This increases auxin levels in all cells by the same amount. You can run one treatment at a time, or make a for loop and run the three in one go.</p>
+<p><span class="theorem-title"><strong>Exercise 8.2 (Biology &amp; algorithmic thinking)</strong></span> Now let’s use the model to simulate the auxin treatments from the experiments in Figure 1. To simulate an auxin treatment change the value of <span class="math inline">\(auxininput\)</span> in <code>Root-model-Auxin.py</code>. Try values of 10, and 100 and 1000 (nM). This increases auxin levels in all cells by the same amount. You can run one treatment at a time, or make a for loop and run the three in one go.</p>
 <ul>
-<li>How does auxin treatment affect gene expression in the root?</li>
-<li>Does the model output correspond to the transcriptional reporter of WOX5 shown in Figure 1?</li>
-<li>Do you see activation or repression as reported experimentally? (You can visualize different genes by changing the grid provided to <code>plotGrids()</code>, although the labelling will be wrong.)</li>
+<li><p>How does auxin treatment affect WOX5 gene expression in the root?</p></li>
+<li><p>Does the model output correspond to the transcriptional reporter of WOX5 shown in Figure 1?</p></li>
+<li><p>Do you see activation or repression as reported experimentally? (You can visualize different genes by changing the genes in <code>tissue.visualize</code>.</p></li>
 </ul>
 <p><strong>Notice the simulation creates an output folder with png images.</strong></p>
 </div>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 8.4 (Biology &amp; algorithmic/mathematical thinking)</strong></span> The model does not yet reproduce the experiments. Yet, we can use this model to test hypotheses and aim to recover such behaviours (Figure 1). Let’s implement the following two hypotheses:</p>
+<p><span class="theorem-title"><strong>Exercise 8.3 (Biology &amp; algorithmic/mathematical thinking)</strong></span> The model does not yet reproduce the experiments. Yet, we can use this model to test hypotheses and aim to recover such behaviours (Figure 1). Let’s implement the following two hypotheses:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="images/0-auxin-hypothesis.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Testing two hypothesis: Auxin represses MGP expression. Extremely high auxin levels (easy to apply experimentally, but unrealistic in vivo) repress WOX5 expression."><img src="images/0-auxin-hypothesis.png" class="img-fluid figure-img" style="width:60.0%" alt="Testing two hypothesis: Auxin represses MGP expression. Extremely high auxin levels (easy to apply experimentally, but unrealistic in vivo) repress WOX5 expression."></a></p>
 <figcaption>Testing two hypothesis: <span style="color: magenta;">Auxin represses MGP expression.</span> <span style="color: #32CD32;">Extremely high auxin levels (easy to apply experimentally, but unrealistic <em>in vivo</em>) repress WOX5 expression.</span></figcaption>
 </figure>
 </div>
-<p>Modify the equations for MGP and WOX5 in <code>rootNetwork</code> accordingly.</p>
+<p>Modify the equations for MGP and WOX5 in the <code>root_ode</code> method of the <code>Cell</code> class.</p>
 <ul>
-<li><p>For MGP, retain its logical rule but multiply its production term by a negative regulatory term of auxin (<span class="math inline">\(Km = 45\)</span>): <span style="color: magenta;"> <span class="math inline">\(\frac{45}{45+auxininput}\)</span> </span></p></li>
+<li><p>For MGP, multiply its production term, that implements its logical rule, by an inverse sigmoid of auxin (<span class="math inline">\(Km = 45\)</span>): <span style="color: magenta;"> <span class="math inline">\(\frac{45}{45+auxininput}\)</span> </span></p></li>
 <li><p>Similarly, add a negative regulation by auxin to the WOX5 equation (<span class="math inline">\(Km = 1000\)</span>).</p></li>
 </ul>
 <p>Run control and auxin treatments with (i) updated MGP, (ii) updated WOX5, and (iii) both updates. Use the plotting functions to plot the final timepoint.</p>
 <p>It is also interesting to run the timecourse, by plotting every 10 steps.</p>
 <p>Do you now see the differences reported by experimentalists?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Answer: look if you are stuck
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Auxin regulates MGP. These has an indirect positive effect on ARF5. </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>        dMGP <span class="op">=</span> (<span class="dv">45</span><span class="op">/</span>(<span class="dv">45</span><span class="op">+</span>auxininput))<span class="op">*</span>sigmoid(w_MGP,h) <span class="op">-</span> (decayrate <span class="op">*</span> MGP)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Auxin represses WOX5 at *very* high levels - most hormones exhibit this dosage dependent effect.</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        dWOX5 <span class="op">=</span> (<span class="dv">1000</span><span class="op">/</span>(<span class="dv">1000</span><span class="op">+</span>auxininput))<span class="op">*</span>sigmoid(w_WOX5,h)<span class="op">-</span>decayrate<span class="op">*</span>WOX5  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
 </div>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 8.5 (Biological interpretation)</strong></span> You should observe that WOX5 expression gradually expands into the endodermis and disappears from QC cells when both equations are updated with the two hypotheses. This matches the experimental microscopy from Figure 1.</p>
+<p><span class="theorem-title"><strong>Exercise 8.4 (Biological interpretation)</strong></span> You should observe that WOX5 expression gradually expands into the endodermis and disappears from QC cells when both equations are updated with the two hypotheses. This matches the experimental microscopy from Figure 1.</p>
 <ul>
 <li>Why do different parts of the root respond differently to auxin?</li>
 <li>Why does auxin regulation of MGP do? (Look at the network…)</li>
@@ -696,32 +747,32 @@ You will find:</p>
 </ul>
 </div>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 8.6 (Algorithmic thinking)</strong></span> Experimental repression of WOX5 was detected by RT-PCR at the very tip (Figure 1, right panel). Reproduce this <em>in silico</em> by saving the average WOX5 levels of cells at the tip (<span class="math inline">\(y\)</span> &lt; 40) at the end of the simulation for all three treatments. For comparison, also calculate the average for the whole root. Then plot this average WOX5 expression levels (y axis) for each <code>auxinTreatment</code>= 0, 10 and 750 (x axis).</p>
+<p><span class="theorem-title"><strong>Exercise 8.5 (Algorithmic thinking)</strong></span> Experimental repression of WOX5 was detected by RT-PCR at the very tip (Figure 1, right panel). Reproduce this <em>in silico</em> by saving the average WOX5 levels of cells at the tip (<span class="math inline">\(y\)</span> &lt; 40) at the end of the simulation for all three treatments. For comparison, also calculate the average for the whole root. Then plot this average WOX5 expression levels (y axis) for each <code>auxinTreatment</code>= 0, 10 and 750 (x axis).</p>
 <p>Tip: <code>WOX5Grid</code> stores WOX5 levels, and <span class="math inline">\(y\)</span> controls the position of the cells with <span class="math inline">\(y=0\)</span> being the bottom of the root.</p>
 <ul>
 <li>What is the overall effect of auxin treatments in the root tip? Considering that the root is a mixture of many cell types, which cells best represent the plotted values?</li>
 </ul>
 </div>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 8.7 (Biology &amp; algorithmic thinking)</strong></span> Now, let’s compare WOX5 regulation across tissues. Let’s use the model to do an in RT-PCR <em>in silico</em> analysis of only the cells in the QC position, and also the endodermis cells. This has not been done experimentally and thus you will generate a prediction (!).</p>
+<p><span class="theorem-title"><strong>Exercise 8.6 (Biology &amp; algorithmic thinking)</strong></span> Now, let’s compare WOX5 regulation across tissues. Let’s use the model to do an in RT-PCR <em>in silico</em> analysis of only the cells in the QC position, and also the endodermis cells. This has not been done experimentally and thus you will generate a prediction (!).</p>
 <p>Tip: cell types are stored in <code>cellGrid.</code></p>
 <ul>
 <li>Compare what you see in the root simulation, and what you obtain in the simulated RT-PCR plot. Which case represents better how WOX5 is regulated in the root tip? Why?</li>
 </ul>
 </div>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 8.8 (Biology &amp; algorithmic thinking)</strong></span> Changes in WOX5 expression depend on tissue context and auxin dosage. Simulate a range of auxin treatments from 0 to 750.</p>
+<p><span class="theorem-title"><strong>Exercise 8.7 (Biology &amp; algorithmic thinking)</strong></span> Changes in WOX5 expression depend on tissue context and auxin dosage. Simulate a range of auxin treatments from 0 to 750.</p>
 <p>Can you now explain the auxin–WOX5 paradox? What mechanism do you propose?</p>
 </div>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 8.9 (Biology &amp; conceptual thinking)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Exercise 8.8 (Biology &amp; conceptual thinking)</strong></span> &nbsp;</p>
 <ul>
 <li><p>Perform an <em>in silico</em> intervention to alter WOX5 dosage responsiveness to auxin. For example, what would it take to enforce its continuous expression, or block completely its induction in the endodermis.</p></li>
 <li><p>How would you test these model predictions experimentally?</p></li>
 </ul>
 </div>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 8.10 (Biological thinking)</strong></span> All models are wrong, but some are useful. The model we studied today offered us a mechanistic insight into the paradoxical auxin responses. Yet, (to make things more fun), the original experiments used different auxin <em>analogs</em> and other molecules which are transported very differently between cells: NAA (transported independently of PINs), IAA (PIN-transported), and NPA (blocks PINs, increasing auxin in the tip). How does this information change your conclusions? What extensions to the model would you make to account for these differences?</p>
+<p><span class="theorem-title"><strong>Exercise 8.9 (Biological thinking)</strong></span> All models are wrong, but some are useful. The model we studied today offered us a mechanistic insight into the paradoxical auxin responses. Yet, (to make things more fun), the original experiments used different auxin <em>analogs</em> and other molecules which are transported very differently between cells: NAA (transported independently of PINs), IAA (PIN-transported), and NPA (blocks PINs, increasing auxin in the tip). How does this information change your conclusions? What extensions to the model would you make to account for these differences?</p>
 </div>
 </section>
 <section id="references" class="level2" data-number="8.2">

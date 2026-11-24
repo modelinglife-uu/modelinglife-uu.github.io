@@ -238,7 +238,7 @@ Look at functions `get_domain_size_horizontal`, `get_domain_size_vertical` and
 `single_step_growth`, and lines 269-284 to see how the simulation of tissue 
 growth works in the code.
 
-Look for Change for Question3" to find where in the code you need to 
+"Look for Change for Question3" to find where in the code you need to 
 make the following changes: 
 
 **1.-** The tissue dimensions are defined by $Lx0$ and $Ly0$. Currently they are

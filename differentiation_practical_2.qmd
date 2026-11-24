@@ -5,53 +5,62 @@ params:
 
 # Gene regulation in space
 
-## {.unnumbered}
-<center>
-<span style="color: DodgerBlue">
-*How wonderful that we have met with a paradox. <br>
-Now we have some hope of making progress – Niehls Bohr*
-</span>
-</center>
-
-## Auxin does everything
+## Auxin regulates *virtually* all aspects of plant development {.unnumbered}
 
 In this practical you will study the effects of auxin, a plant hormone, on gene 
 regulation in the root. Auxin is a hormone that is virtually involved in all 
 developmental processes in plants, from how the plant embryo is patterned, how the 
 organs in flowers are determined, the spatial disposition of leaves, among many 
-many others. In each context, auxin triggers specific responses, posing the question 
+many others. In each context, auxin triggers very specific responses, posing the question 
 of how is it that the same molecule can trigger so many different responses. This 
-specificity of auxin responses can be explained by the underlying regulatory networks. 
-The auxin signalling pathway activates the auxin response factors, ARFs, which are 
-transcription factors that regulate gene expression in response to auxin. Arabidopsis 
-has 23 genes encoding for ARFs, some regulate gene expression positively and others 
-negatively, and they are expressed in different tissues. It is this diversity in 
-transcription factors activity which in part explains how auxin can regulate so many 
-different things.
+specificity can be explained by the underlying regulatory networks. 
 
-## Auxin does opposite things in the root
+The auxin signalling pathway activates transcription factors, the auxin response 
+factors (ARFs), which regulate gene expression in response to auxin. Arabidopsis 
+has 23 genes coding for ARFs, some regulate gene expression positively and others 
+negatively, they can also form protein complexes with other transcription factors, 
+and important for this practical: they **are expressed in different tissues**. It 
+is this diversity in transcription factors activity and expression, which in part 
+explains how auxin regulates so many different aspects of plants
+
+## Auxin activates and represses the expression of WOX5 in the root {.unnumbered}
 
 Plant root growth is driven by the activity of stem cells housed in a niche at the root tip.
 These stem cells self-renew and produce new cells, acting as a "growth engine". 
-A subset of these cells express *WOX5*, and maintain the surrounding cells undifferentiated. 
-WOX5 is regulated by several factors, and network models help us understand how. Researchers 
-have found paradoxical results regarding how auxin regulates WOX5: some experiments show that 
-auxin promotes its expression, while others found it is repressed (Figure 1). Auxin does
-this opposite regulation through different ARFs (Figure 2) posing the possibility that 
-accounting for how the ARFs themselves are regulated can reconcile the results. Here we 
-will explore this possibility using an *in silico* root model.
+A subset of these cells express *WOX5*; these cells are really important as they maintain 
+the stem cell niche. WOX5 is regulated by several factors, and network models help 
+us understand how. Researchers have found paradoxical results regarding how auxin 
+regulates WOX5: some experiments show that auxin promotes its expression, 
+while others found it is repressed (Figure 1). 
 
-![Figure 1. The left panel shows evidence of the positive effect of auxin on WOX5 expression (white arrows). The right panel shows evidence of auxin repression of WOX5 in the root tip (white rectangle), also shown with qPCR measurements of WOX5 mRNA in root-tip cells.](images/0-auxin-paradox.png){#vegmini1 width=130%}
+![Figure 1. The left panel shows the positive effect of auxin on WOX5 expression (white arrows); notice how WOX5 expression gradually expands. The right panel shows evidence of auxin repression of WOX5 in the root tip (white rectangle), also shown with qPCR measurements of WOX5 mRNA in root-tip cells.](images/0-auxin-paradox.png){#vegmini1 width=130%}
 
-The Boolean network we used last week describes the gene and hormonal
-activity configurations of the cells in the root tip (Figure 3 left). This model recovers an 
-attractor representing the columella, the **QC**, the endodermis, and three types of vascular cells. 
-In this model WOX5 is regulated positively by ARF5, and negatively by ARF10, and also by
-CLE40. Both ARF5 and ARF10 are auxin response factors, activated by auxin.
-Moreover, other root transcription factors control ARF5 and ARF10
-expression causing them to be expressed in specific cells of the root (see Figure 3). 
+In the previous practical we studied a Boolean network model of the root, in which
+Auxin does this opposite regulation through different ARFs (Figure 2). Here we are
+going to use this model in an *in silico* root model to explain the strange experimental
+results in Figure 1.
+
+## The model {.unnumbered}
+
+In the Boolean model WOX5 is regulated positively by ARF5, negatively by ARF10, and 
+negatively by CLE40. Both ARF5 and ARF10 are auxin response factors, activated by auxin.
+
+$WOX5_{t+1} =NOT$ $ARF10$ $AND$ $ARF5$ $AND$ $NOT$ $CLE40$
+
+The expression of ARF5 and ARF10 is regulated by other transcription factors, 
+causing them to be expressed in specific cells of the root (see Figure 3). 
 This regulation is included in the Boolean model we studied last
 week. 
+
+Notice that the QC is the only attractor with WOX5 activity. This makes sense given 
+that its logical rule is: 
+
+
+Notice how the other attractors have either ARF10 and/or CLE40 activity (repressors 
+of WOX5), or lack ARF5 activity (activator of WOX5). The QC attractor is the only 
+one with the following combination: ARF5 active, ARF10 inactive, CLE40 inactive; 
+therefore allowing for WOX5 activity.
+
 
 Here you will explore whether this is relevant to understanding the 
 auxin–WOX5 paradox. For this you will use an *in silico* root model in which 
@@ -62,18 +71,8 @@ attractor, which allows us to test hypotheses and find an explanation.
 
 ### Biology / conceptual thinking
 
-Notice that the QC is the only attractor with WOX5 activity. This makes sense given 
-that its logical rule is: 
-
-$WOX5_{t+1} =NOT$ $ARF10$ $AND$ $ARF5$ $AND$ $NOT$ $CLE40$
-
-Notice how the other attractors have either ARF10 and/or CLE40 activity (repressors 
-of WOX5), or lack ARF5 activity (activator of WOX5). The QC attractor is the only 
-one with the following combination: ARF5 active, ARF10 inactive, CLE40 inactive; 
-therefore allowing for WOX5 activity.
 
 
-## The model 
 
 Today you will use a multicellular model that simulates the cells of a root tip 
 (Figure 3, right). The tissue is modeled as a grid, where the $x$ position defines 

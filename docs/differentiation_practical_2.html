@@ -537,12 +537,11 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"></a></li>
-  <li><a href="#auxin-does-everything" id="toc-auxin-does-everything" class="nav-link" data-scroll-target="#auxin-does-everything"><span class="header-section-number">8.1</span> Auxin does everything</a></li>
-  <li><a href="#auxin-does-opposite-things-in-the-root" id="toc-auxin-does-opposite-things-in-the-root" class="nav-link" data-scroll-target="#auxin-does-opposite-things-in-the-root"><span class="header-section-number">8.2</span> Auxin does opposite things in the root</a></li>
-  <li><a href="#the-model" id="toc-the-model" class="nav-link" data-scroll-target="#the-model"><span class="header-section-number">8.3</span> The model</a></li>
-  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">8.4</span> Questions</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">8.5</span> References</a></li>
+  <li><a href="#auxin-regulates-virtually-all-aspects-of-plant-development" id="toc-auxin-regulates-virtually-all-aspects-of-plant-development" class="nav-link active" data-scroll-target="#auxin-regulates-virtually-all-aspects-of-plant-development">Auxin regulates <em>virtually</em> all aspects of plant development</a></li>
+  <li><a href="#auxin-activates-and-represses-the-expression-of-wox5-in-the-root" id="toc-auxin-activates-and-represses-the-expression-of-wox5-in-the-root" class="nav-link" data-scroll-target="#auxin-activates-and-represses-the-expression-of-wox5-in-the-root">Auxin activates and represses the expression of WOX5 in the root</a></li>
+  <li><a href="#the-model" id="toc-the-model" class="nav-link" data-scroll-target="#the-model">The model</a></li>
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">8.1</span> Questions</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">8.2</span> References</a></li>
   </ul>
 </nav>
     </div>
@@ -569,26 +568,29 @@ window.Quarto = {
 </header>
 
 
-<section id="section" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="section"></h2>
-<center>
-<span style="color: DodgerBlue"> <em>How wonderful that we have met with a paradox. <br> Now we have some hope of making progress – Niehls Bohr</em> </span>
-</center>
+<section id="auxin-regulates-virtually-all-aspects-of-plant-development" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="auxin-regulates-virtually-all-aspects-of-plant-development">Auxin regulates <em>virtually</em> all aspects of plant development</h2>
+<p>In this practical you will study the effects of auxin, a plant hormone, on gene regulation in the root. Auxin is a hormone that is virtually involved in all developmental processes in plants, from how the plant embryo is patterned, how the organs in flowers are determined, the spatial disposition of leaves, among many many others. In each context, auxin triggers very specific responses, posing the question of how is it that the same molecule can trigger so many different responses. This specificity can be explained by the underlying regulatory networks.</p>
+<p>The auxin signalling pathway activates transcription factors, the auxin response factors (ARFs), which regulate gene expression in response to auxin. Arabidopsis has 23 genes coding for ARFs, some regulate gene expression positively and others negatively, they can also form protein complexes with other transcription factors, and important for this practical: they <strong>are expressed in different tissues</strong>. It is this diversity in transcription factors activity and expression, which in part explains how auxin regulates so many different aspects of plants</p>
 </section>
-<section id="auxin-does-everything" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="auxin-does-everything"><span class="header-section-number">8.1</span> Auxin does everything</h2>
-<p>In this practical you will study the effects of auxin, a plant hormone, on gene regulation in the root. Auxin is a hormone that is virtually involved in all developmental processes in plants, from how the plant embryo is patterned, how the organs in flowers are determined, the spatial disposition of leaves, among many many others. In each context, auxin triggers specific responses, posing the question of how is it that the same molecule can trigger so many different responses. This specificity of auxin responses can be explained by the underlying regulatory networks. The auxin signalling pathway activates the auxin response factors, ARFs, which are transcription factors that regulate gene expression in response to auxin. Arabidopsis has 23 genes encoding for ARFs, some regulate gene expression positively and others negatively, and they are expressed in different tissues. It is this diversity in transcription factors activity which in part explains how auxin can regulate so many different things.</p>
-</section>
-<section id="auxin-does-opposite-things-in-the-root" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="auxin-does-opposite-things-in-the-root"><span class="header-section-number">8.2</span> Auxin does opposite things in the root</h2>
-<p>Plant root growth is driven by the activity of stem cells housed in a niche at the root tip. These stem cells self-renew and produce new cells, acting as a “growth engine”. A subset of these cells express <em>WOX5</em>, and maintain the surrounding cells undifferentiated. WOX5 is regulated by several factors, and network models help us understand how. Researchers have found paradoxical results regarding how auxin regulates WOX5: some experiments show that auxin promotes its expression, while others found it is repressed (Figure 1). Auxin does this opposite regulation through different ARFs (Figure 2) posing the possibility that accounting for how the ARFs themselves are regulated can reconcile the results. Here we will explore this possibility using an <em>in silico</em> root model.</p>
+<section id="auxin-activates-and-represses-the-expression-of-wox5-in-the-root" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="auxin-activates-and-represses-the-expression-of-wox5-in-the-root">Auxin activates and represses the expression of WOX5 in the root</h2>
+<p>Plant root growth is driven by the activity of stem cells housed in a niche at the root tip. These stem cells self-renew and produce new cells, acting as a “growth engine”. A subset of these cells express <em>WOX5</em>; these cells are really important as they maintain the stem cell niche. WOX5 is regulated by several factors, and network models help us understand how. Researchers have found paradoxical results regarding how auxin regulates WOX5: some experiments show that auxin promotes its expression, while others found it is repressed (Figure 1).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/0-auxin-paradox.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure 1. The left panel shows evidence of the positive effect of auxin on WOX5 expression (white arrows). The right panel shows evidence of auxin repression of WOX5 in the root tip (white rectangle), also shown with qPCR measurements of WOX5 mRNA in root-tip cells."><img src="images/0-auxin-paradox.png" class="img-fluid figure-img" style="width:130.0%" alt="Figure 1. The left panel shows evidence of the positive effect of auxin on WOX5 expression (white arrows). The right panel shows evidence of auxin repression of WOX5 in the root tip (white rectangle), also shown with qPCR measurements of WOX5 mRNA in root-tip cells."></a></p>
-<figcaption>Figure 1. The left panel shows evidence of the positive effect of auxin on WOX5 expression (white arrows). The right panel shows evidence of auxin repression of WOX5 in the root tip (white rectangle), also shown with qPCR measurements of WOX5 mRNA in root-tip cells.</figcaption>
+<p><a href="images/0-auxin-paradox.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure 1. The left panel shows the positive effect of auxin on WOX5 expression (white arrows); notice how WOX5 expression gradually expands. The right panel shows evidence of auxin repression of WOX5 in the root tip (white rectangle), also shown with qPCR measurements of WOX5 mRNA in root-tip cells."><img src="images/0-auxin-paradox.png" class="img-fluid figure-img" style="width:130.0%" alt="Figure 1. The left panel shows the positive effect of auxin on WOX5 expression (white arrows); notice how WOX5 expression gradually expands. The right panel shows evidence of auxin repression of WOX5 in the root tip (white rectangle), also shown with qPCR measurements of WOX5 mRNA in root-tip cells."></a></p>
+<figcaption>Figure 1. The left panel shows the positive effect of auxin on WOX5 expression (white arrows); notice how WOX5 expression gradually expands. The right panel shows evidence of auxin repression of WOX5 in the root tip (white rectangle), also shown with qPCR measurements of WOX5 mRNA in root-tip cells.</figcaption>
 </figure>
 </div>
-<p>The Boolean network we used last week describes the gene and hormonal activity configurations of the cells in the root tip (Figure 3 left). This model recovers an attractor representing the columella, the <strong>QC</strong>, the endodermis, and three types of vascular cells. In this model WOX5 is regulated positively by ARF5, and negatively by ARF10, and also by CLE40. Both ARF5 and ARF10 are auxin response factors, activated by auxin. Moreover, other root transcription factors control ARF5 and ARF10 expression causing them to be expressed in specific cells of the root (see Figure 3). This regulation is included in the Boolean model we studied last week.</p>
+<p>In the previous practical we studied a Boolean network model of the root, in which Auxin does this opposite regulation through different ARFs (Figure 2). Here we are going to use this model in an <em>in silico</em> root model to explain the strange experimental results in Figure 1.</p>
+</section>
+<section id="the-model" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="the-model">The model</h2>
+<p>In the Boolean model WOX5 is regulated positively by ARF5, negatively by ARF10, and negatively by CLE40. Both ARF5 and ARF10 are auxin response factors, activated by auxin.</p>
+<p><span class="math inline">\(WOX5_{t+1} =NOT\)</span> <span class="math inline">\(ARF10\)</span> <span class="math inline">\(AND\)</span> <span class="math inline">\(ARF5\)</span> <span class="math inline">\(AND\)</span> <span class="math inline">\(NOT\)</span> <span class="math inline">\(CLE40\)</span></p>
+<p>The expression of ARF5 and ARF10 is regulated by other transcription factors, causing them to be expressed in specific cells of the root (see Figure 3). This regulation is included in the Boolean model we studied last week.</p>
+<p>Notice that the QC is the only attractor with WOX5 activity. This makes sense given that its logical rule is:</p>
+<p>Notice how the other attractors have either ARF10 and/or CLE40 activity (repressors of WOX5), or lack ARF5 activity (activator of WOX5). The QC attractor is the only one with the following combination: ARF5 active, ARF10 inactive, CLE40 inactive; therefore allowing for WOX5 activity.</p>
 <p>Here you will explore whether this is relevant to understanding the auxin–WOX5 paradox. For this you will use an <em>in silico</em> root model in which each cell carries a copy of the Boolean network initialized in a particular attractor, which allows us to test hypotheses and find an explanation.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -598,13 +600,6 @@ window.Quarto = {
 </div>
 <section id="biology-conceptual-thinking" class="level3">
 <h3 class="anchored" data-anchor-id="biology-conceptual-thinking">Biology / conceptual thinking</h3>
-<p>Notice that the QC is the only attractor with WOX5 activity. This makes sense given that its logical rule is:</p>
-<p><span class="math inline">\(WOX5_{t+1} =NOT\)</span> <span class="math inline">\(ARF10\)</span> <span class="math inline">\(AND\)</span> <span class="math inline">\(ARF5\)</span> <span class="math inline">\(AND\)</span> <span class="math inline">\(NOT\)</span> <span class="math inline">\(CLE40\)</span></p>
-<p>Notice how the other attractors have either ARF10 and/or CLE40 activity (repressors of WOX5), or lack ARF5 activity (activator of WOX5). The QC attractor is the only one with the following combination: ARF5 active, ARF10 inactive, CLE40 inactive; therefore allowing for WOX5 activity.</p>
-</section>
-</section>
-<section id="the-model" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="the-model"><span class="header-section-number">8.3</span> The model</h2>
 <p>Today you will use a multicellular model that simulates the cells of a root tip (Figure 3, right). The tissue is modeled as a grid, where the <span class="math inline">\(x\)</span> position defines the radial direction and the <span class="math inline">\(y\)</span> the longitudinal position (<span class="math inline">\(y=0\)</span> being the cells at the <strong>TOP</strong>). The cells are organized in cell layers (8 layers, so <span class="math inline">\(x\)</span> is 8), each with a gene regulatory network initialized in a different attractor. The model simulates the transport of auxin from cell to cell, where the cell type (the attractor) defines the direction of polar auxin transport. In figure 3 (right) you can see the different properties that the cells have: a cell type, auxin levels, gene expression (in the figure we see only ARF10, ARF5, MGP and WOX5). These properties are stored in individual grids: one grid for the cell type, another for auxin levels, and many others for each of the genes in the network.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -612,6 +607,7 @@ window.Quarto = {
 <figcaption>Figure 3. Ingredients of the in silico root model. 1) gene regulatory network, 2) multi-cellular tissue layout with polar auxin transport in the root tip</figcaption>
 </figure>
 </div>
+</section>
 <section id="files" class="level3">
 <h3 class="anchored" data-anchor-id="files">Files</h3>
 <p>1.- <code>Rootfunctions.py</code> – File storing the functions used in <code>Root-model-Auxin.py</code>. For this practical you only need to modify <code>rootNetwork</code>. Yet, have a look at all of them and try to understand what they do (useful for Question 9.1).</p>
@@ -629,8 +625,8 @@ window.Quarto = {
 <p>3.- <code>auxin_grid.npy</code> – initial auxin levels in each cell with the auxin gradient. This is used to initialize <code>auxinGrid</code> in <code>Root-model-Auxin.py</code>.</p>
 </section>
 </section>
-<section id="questions" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="questions"><span class="header-section-number">8.4</span> Questions</h2>
+<section id="questions" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="questions"><span class="header-section-number">8.1</span> Questions</h2>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.1 (Algorithmic thinking)</strong></span> What are the algorithmic steps you would take if you want to make a model of the root in which there is transport of auxin between the cells every timestep, and the cells update their regulatory networks every 10 steps? Keep in mind that the network defines the cell type of the cells, which in turn defines the direction at which they transport auxin to their neighbors. Make a plain-language description, pseudocode, or flowchart using pen and paper.</p>
 <p>Tip: have a look at the code in the <code>Root-model-Auxin.py</code> and <code>Rootfunctions.py</code>.</p>
@@ -702,8 +698,8 @@ window.Quarto = {
 <p><span class="theorem-title"><strong>Exercise 8.10 (Biological thinking)</strong></span> All models are wrong, but some are useful. The model we studied today offered us a mechanistic insight into the paradoxical auxin responses. Yet, (to make things more fun), the original experiments used different auxin <em>analogs</em> and other molecules which are transported very differently between cells: NAA (transported independently of PINs), IAA (PIN-transported), and NPA (blocks PINs, increasing auxin in the tip). How does this information change your conclusions? What extensions to the model would you make to account for these differences?</p>
 </div>
 </section>
-<section id="references" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="references"><span class="header-section-number">8.5</span> References</h2>
+<section id="references" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="references"><span class="header-section-number">8.2</span> References</h2>
 <ul>
 <li><span class="citation" data-cites="mahonen2014plethora">Mähönen et al. (<a href="#ref-mahonen2014plethora" role="doc-biblioref">2014</a>)</span></li>
 <li><span class="citation" data-cites="ding2010auxin">Ding and Friml (<a href="#ref-ding2010auxin" role="doc-biblioref">2010</a>)</span></li>

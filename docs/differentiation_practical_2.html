@@ -615,18 +615,20 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="files">Files</h3>
 <p>Download the python files from <a href="https://github.com/moneralee/UU_Modeling-Life-course-2026/tree/main/WC08-Cell-differentiation_II" class="uri">https://github.com/moneralee/UU_Modeling-Life-course-2026/tree/main/WC08-Cell-differentiation_II</a>.<br>
 You will find:</p>
-<ul>
-<li><p><strong><code>WC08Cell.py</code></strong>. The class <code>Cell</code> is defined here. Study the properties of this class, and its methods. <u>Attributes:</u> A <code>Cell</code> position is defined by <code>ypos</code> and <code>layer</code>; <code>auxin</code> stores the current auxin level and <code>auxinhelper</code> is used for the transport simulation; <code>cell-type</code> is predefined based on their position (1-QC, 2-Columella, 3-Endodermis, 4-Vascular, 5-TD, 6-Epidermis, 7-Cortex); <code>cell_state</code> is an array with the expression of each node of the network, which are modelled as individual attributes: <code>CK</code>, <code>ARR1</code>, etc. <u>Methods:</u> <code>__init__</code> is used to initialize the cells; <strong><code>root_ode</code></strong> defines the ODE network (you will need to change this during the practical); <code>update_network_state</code> is used to solve the network; <code>update_cell_state</code> that updates the value of the genes (<code>Cell</code>’s attributes) based on the output of <code>update_network_state</code>.</p></li>
-<li><p><strong><code>WC08Tissue.py</code></strong>. The class <code>Tissue</code> is defined here. Study the properties of this class, and its methods.</p></li>
-</ul>
+<section id="wc08cell.py." class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="wc08cell.py."><strong><code>WC08Cell.py</code></strong>.</h4>
+<p>The class <code>Cell</code> is defined here.</p>
+<p><u>Attributes:</u> A <code>Cell</code> position is defined by <code>ypos</code> and <code>layer</code>; <code>auxin</code> stores the current auxin level and <code>auxinhelper</code> is used for the transport simulation; <code>cell-type</code> is predefined based on their position (1-QC, 2-Columella, 3-Endodermis, 4-Vascular, 5-TD, 6-Epidermis, 7-Cortex); <code>cell_state</code> is an array with the expression of each node of the network, which are modelled as individual attributes: <code>CK</code>, <code>ARR1</code>, etc. <u>Methods:</u> <code>__init__</code> is used to initialize the cells; <strong><code>root_ode</code></strong> defines the ODE network (you will need to change this during the practical); <code>update_network_state</code> is used to solve the network; <code>update_cell_state</code> that updates the value of the genes (<code>Cell</code>’s attributes) based on the output of <code>update_network_state</code>.</p>
+</section>
+<section id="wc08tissue.py." class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="wc08tissue.py."><strong><code>WC08Tissue.py</code></strong>.</h4>
+<p>The class <code>Tissue</code> is defined here.</p>
 <p><u>Attributes:</u> A <code>Tissue</code> is composed of 50 cells in each layer (8).</p>
 <p><u>Methods:</u> <code>load_state</code> reads a file with an initial condition (<code>initial_tissue_state.json</code>) with cells arranged in cell files and rows, and their attractors are predefined based on how these cell types are organized in a root. <code>add_cell</code> adds cells objects to tissue. <code>get_cell</code> finds the cell in a given position in the matrix (useful to find the immediate neighbors of a cell). <code>update_networks</code> updates the networks in each cell of the tissue (by calling the method <code>cell.update_network_state</code>). <code>Auxin_Passive_Transport</code> simulates the passive diffusion of auxin between neighboring cells (using the <code>get_cell</code> function). <code>Auxin_Active_Transport</code> simulates the active transport of auxin taking into account their cell type that determines the direction of the transport; This is a very large function because it checks the cell type of each cell in a cell layer. <code>Auxin_Source_Decay</code> auxin enters the root from the upper central cell, and decays in all cells. <code>visualize</code> creates the plot of the tissue.</p>
-<ul>
-<li><strong><code>WC08_Root-tissue-model.py</code></strong>. The main file of the model. It defines the parameters, and the <code>simulate_development</code> function that uses the methods from the <code>Tissue</code> and <code>Cell</code> classes to 1) update the cell networks using <code>tissue.update_networks</code>,</li>
-</ul>
-<ol start="2" type="1">
-<li>simulate active auxin transport using <code>Auxin_Active_transport</code>, 3) simulate passive auxin transport using <code>Auxin_Passive_Transport</code>, 4) update auxin input and decay with <code>tissue.Auxin_Source_Decay</code>, 5) and uses<code>tissue.visualize</code> for the output plot of the model.</li>
-</ol>
+</section>
+<section id="wc08_root-tissue-model.py." class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="wc08_root-tissue-model.py."><strong><code>WC08_Root-tissue-model.py</code></strong>.</h4>
+<p>The main file of the model. It defines the parameters, and the <code>simulate_development</code> function that uses the methods from the <code>Tissue</code> and <code>Cell</code> classes to 1) update the cell networks using <code>tissue.update_networks</code>, 2) simulate active auxin transport using <code>Auxin_Active_transport</code>, 3) simulate passive auxin transport using <code>Auxin_Passive_Transport</code>, 4) update auxin input and decay with <code>tissue.Auxin_Source_Decay</code>, 5) and uses<code>tissue.visualize</code> for the output plot of the model.</p>
 <ul>
 <li><p><strong><code>initial_tissue_state.json</code></strong>: This is the initial condition of the model defining how cells are organized in a tissue, their attractors, and the auxin distribution.</p></li>
 <li><p><code>rootNetwork</code>- stores the interactions of the root network. This file is similar to the one we used in the last practical. A key difference is that the auxin levels are an input that can modify gene expression (<code>auxininput=parameters['auxininput']</code>). You will modify this function in question 9.5.</p></li>
@@ -637,6 +639,7 @@ You will find:</p>
 <p>2.- <code>Root-model-Auxin.py</code> – code to simulate the <em>in silico</em> root where we use the functions in a specific order. Before the <code>main()</code> we define the dimensions of the grid, the parameters, initialize the grid, and then inside the <code>main()</code> we use a for loop to run the auxin transport and network update for a defined number of time steps. In this loop, the output of the network is plotted every 10 steps.</p>
 <p><strong>Tip: if the simulation runs too slow, decrease this plotting frequency.</strong></p>
 <p>3.- <code>auxin_grid.npy</code> – initial auxin levels in each cell with the auxin gradient. This is used to initialize <code>auxinGrid</code> in <code>Root-model-Auxin.py</code>.</p>
+</section>
 </section>
 </section>
 <section id="questions" class="level2" data-number="8.1">

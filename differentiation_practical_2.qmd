@@ -84,22 +84,23 @@ levels (log), the cell types (attractor initialized), and gene expression
 Download the python files from <https://github.com/moneralee/UU_Modeling-Life-course-2026/tree/main/WC08-Cell-differentiation_II>.  
 You will find: 
 
-###**`WC08Cell.py`**. 
-The class `Cell` is defined here. Study the properties of 
-this class, and its methods. 
+#### **`WC08Cell.py`**. {.unnumbered}
+The class `Cell` is defined here.
+
 <u>Attributes:</u> A `Cell` position is defined by `ypos` and `layer`; `auxin` 
 stores the current auxin level and `auxinhelper` is used for the transport simulation;
 `cell-type` is predefined based on their position (1-QC, 2-Columella, 3-Endodermis, 
 4-Vascular, 5-TD, 6-Epidermis, 7-Cortex); `cell_state` is an array 
 with the expression of each node of the network, which are modelled as individual
 attributes: `CK`, `ARR1`, etc. 
+
 <u>Methods:</u> `__init__` is used to initialize the cells; **`root_ode`** defines
 the ODE network (you will need to change this during the practical); 
 `update_network_state` is used to solve the network; `update_cell_state` that updates 
 the value of the genes (`Cell`'s attributes) based on the output of `update_network_state`.
 
-- **`WC08Tissue.py`**. The class `Tissue` is defined here. Study the properties of this class, 
-and its methods. 
+#### **`WC08Tissue.py`**. {.unnumbered}
+The class `Tissue` is defined here. 
 
 <u>Attributes:</u> A `Tissue` is composed of 50 cells in each layer (8). 
 
@@ -116,7 +117,8 @@ because it checks the cell type of each cell in a cell layer. `Auxin_Source_Deca
 enters the root from the upper central cell, and decays in all cells. `visualize` creates 
 the plot of the tissue. 
 
-- **`WC08_Root-tissue-model.py`**. The main file of the model. It defines the 
+#### **`WC08_Root-tissue-model.py`**. {.unnumbered}
+The main file of the model. It defines the 
 parameters, and the `simulate_development` function that uses the methods from 
 the `Tissue` and `Cell` classes to 1) update the cell networks using `tissue.update_networks`, 
 2) simulate active auxin transport using `Auxin_Active_transport`, 3) simulate passive 

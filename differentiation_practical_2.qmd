@@ -67,10 +67,11 @@ attractor
 ## The root model {.unnumbered}
 
 Today you will use a multicellular model that simulates the cells of a root tip 
-(Figure 3, right). To build this model we use classes. We create a class `Cell` 
-and `Tissue` made up of `Cells`. The `Cells` are arranged in layers to model the 
-8 tissue layers of the root, and initialized in the attractor corresponding to their position.The model simulates the transport of auxin from cell to cell, where 
-their cell type defines the direction of polar auxin transport. 
+(Figure 3, right). To build this model we use classes. We create a class `Cell`, 
+and a class `Tissue` that is made up of `Cells`. The `Cells` are arranged in 
+layers to model the 8 tissue layers of the root, and initialized in the attractor 
+corresponding to their position.The model simulates the transport of auxin from 
+cell to cell, where their cell type defines the direction of polar auxin transport. 
 
 In figure 3 (right) you can see the output of the model showing the distribution
 of auxin in the middle cell layer, and different properties of `Cells``: auxin 
@@ -83,16 +84,15 @@ levels (log), the cell types (attractor initialized), and gene expression
 Download the python files from <https://github.com/moneralee/UU_Modeling-Life-course-2026/tree/main/WC08-Cell-differentiation_II>.  
 You will find: 
 
-- **`WC08Cell.py`**. The class `Cell` is defined here. Study the properties of 
+###**`WC08Cell.py`**. 
+The class `Cell` is defined here. Study the properties of 
 this class, and its methods. 
-
 <u>Attributes:</u> A `Cell` position is defined by `ypos` and `layer`; `auxin` 
 stores the current auxin level and `auxinhelper` is used for the transport simulation;
 `cell-type` is predefined based on their position (1-QC, 2-Columella, 3-Endodermis, 
 4-Vascular, 5-TD, 6-Epidermis, 7-Cortex); `cell_state` is an array 
 with the expression of each node of the network, which are modelled as individual
 attributes: `CK`, `ARR1`, etc. 
-
 <u>Methods:</u> `__init__` is used to initialize the cells; **`root_ode`** defines
 the ODE network (you will need to change this during the practical); 
 `update_network_state` is used to solve the network; `update_cell_state` that updates 

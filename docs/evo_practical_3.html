@@ -1216,7 +1216,7 @@ y_{new} = x \cdot \sin(\theta) + y \cdot \cos(\theta)
 <span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>            vis.update_plot(sim) </span>
 <span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>            vis.ax.set_title(<span class="ss">f"Timestep: </span><span class="sc">{</span>t<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>            vis.fig.canvas.draw_idle()</span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>            plt.pause(<span class="fl">10e-20</span>)        </span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>            plt.pause(<span class="fl">0.01</span>)        </span>
 <span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span>(sim.redraw):</span>
 <span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>            <span class="co"># When more has changes (e.g. number of cells or target position), redraw the plot</span></span>
 <span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>            vis.redraw_plot(sim) </span>
@@ -1455,7 +1455,7 @@ y_{new} = x \cdot \sin(\theta) + y \cdot \cos(\theta)
 <span id="cb2-300"><a href="#cb2-300" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.grid_im <span class="op">=</span> <span class="va">self</span>.ax.imshow(sim.grid.T, extent<span class="op">=</span>(<span class="dv">0</span>, WORLD_SIZE, <span class="dv">0</span>, WORLD_SIZE), origin<span class="op">=</span><span class="st">'lower'</span>, cmap<span class="op">=</span><span class="st">'viridis'</span>, alpha<span class="op">=</span><span class="fl">1.0</span>)</span>
 <span id="cb2-301"><a href="#cb2-301" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.target_point.remove()</span>
 <span id="cb2-302"><a href="#cb2-302" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.target_point<span class="op">=</span><span class="va">self</span>.ax.scatter(sim.target_position[<span class="dv">0</span>], sim.target_position[<span class="dv">1</span>], c<span class="op">=</span><span class="st">'purple'</span>, s<span class="op">=</span><span class="dv">100</span>, edgecolor<span class="op">=</span><span class="st">'red'</span>)</span>
-<span id="cb2-303"><a href="#cb2-303" aria-hidden="true" tabindex="-1"></a>        plt.pause(<span class="fl">10e-20</span>)</span>
+<span id="cb2-303"><a href="#cb2-303" aria-hidden="true" tabindex="-1"></a>        plt.pause(<span class="fl">0.01</span>)</span>
 <span id="cb2-304"><a href="#cb2-304" aria-hidden="true" tabindex="-1"></a>            </span>
 <span id="cb2-305"><a href="#cb2-305" aria-hidden="true" tabindex="-1"></a>            </span>
 <span id="cb2-306"><a href="#cb2-306" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Execute the main loop</span></span>
@@ -1478,12 +1478,12 @@ y_{new} = x \cdot \sin(\theta) + y \cdot \cos(\theta)
 <p><span class="theorem-title"><strong>Exercise 3.2 (Playing with steering arrows - Algorithmic/mathematical thinking)</strong></span> To help you on your way, first answer the following questions for yourself:</p>
 <ol type="a">
 <li>How can you calculate the distance between an individual and the orange dot?</li>
+<li>How can you move the individual towards the dot?</li>
 <li>When is an individual close enough to the orange dot?</li>
-<li>How can we assign a random position to the dot?</li>
+<li>Once an individual found the target, how can we assign a random position to the dot?</li>
 </ol>
 </div>
-<p>A working code to steer the individuals towards the target is shown below. Note that the acceleration that is applied is only small, otherwise the individuals will move in a straight line towards the target very rapidly.</p>
-<p><em>First try it yourself. If you get stuck, ask Bram for help.</em></p>
+<p><em>Implemented what you came up above with in the function <code>move_towards_dot</code>. First try it yourself. If you get stuck, ask Bram for help.</em></p>
 </section>
 <section id="sec-reproduction" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="sec-reproduction"><span class="header-section-number">3.3</span> Reproduction</h2>
@@ -1659,7 +1659,7 @@ v_y' = v_x \cdot sin(\theta) + v_y \cdot cos(\theta)
 <span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>            vis.update_plot(sim)</span>
 <span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>            vis.ax.set_title(<span class="ss">f"Timestep: </span><span class="sc">{</span>t<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>            vis.fig.canvas.draw_idle()</span>
-<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>            plt.pause(<span class="fl">10e-20</span>)</span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>            plt.pause(<span class="fl">0.01</span>)</span>
 <span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span>(t <span class="op">%</span> SEASON_DURATION<span class="op">==</span><span class="dv">0</span>):</span>
 <span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>            sim.fill_grid(sim.grid, <span class="fl">0.2</span><span class="op">+</span>np.random.uniform(<span class="dv">0</span>,<span class="fl">0.6</span>), <span class="fl">0.2</span><span class="op">+</span>np.random.uniform(<span class="dv">0</span>,<span class="fl">0.6</span>), <span class="fl">0.1</span>, NOISE)</span>
 <span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>            vis.redraw_plot(sim)<span class="co"># Create Gaussian grid</span></span>

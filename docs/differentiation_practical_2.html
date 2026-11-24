@@ -614,9 +614,12 @@ window.Quarto = {
 <section id="files" class="level3">
 <h3 class="anchored" data-anchor-id="files">Files</h3>
 <p>Download the python files from <a href="https://github.com/moneralee/UU_Modeling-Life-course-2026/tree/main/WC08-Cell-differentiation_II" class="uri">https://github.com/moneralee/UU_Modeling-Life-course-2026/tree/main/WC08-Cell-differentiation_II</a>.<br>
-<code>WC08_Root-tissue-model.py</code> WC08Tissue.py WC08Cell.py initial_tissue_state.json 1.- <code>Rootfunctions.py</code> – File storing the functions used in <code>Root-model-Auxin.py</code>. For this practical you only need to modify <code>rootNetwork</code>. Yet, have a look at all of them and try to understand what they do (useful for Question 9.1).</p>
-<p>The file contains the following functions:</p>
+You will find:</p>
 <ul>
+<li><p><strong><code>WC08_Root-tissue-model.py</code></strong>. The main file of the model. It defines the parameters, and a <code>simulate_development</code> function that uses the methods from the <code>Tissue</code> and <code>Cell</code> classes to update the cell networks, simulate active auxin transport, passive auxin transport, auxin production and decay, and to create the outout plot of the model.</p></li>
+<li><p><strong><code>WC08Cell.py</code></strong>. The class <code>Cell</code> is defined here. Study the properties of this class, and its methods to initialize the cells (<code>__init__</code>), the ODE network (<strong><code>root_ode</code></strong>, you will need to change this during the practical) that is used to solve the network (<code>update_network_state</code>). The result is used to update the cell’s state (<code>update_cell_state</code>)</p></li>
+<li><p><strong><code>WC08Tissue.py</code></strong>. The class <code>Tissue</code> is defined here. Study the properties of this class, and its methods.</p></li>
+<li><p><strong><code>initial_tissue_state.json</code></strong>: This is the initial condition of the model defining how cells are organized in a tissue, their attractors, and the auxin distribution.</p></li>
 <li><p><code>findNeighbors</code> - retrieves the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> coordinates of all the neighbors of a given cell.</p></li>
 <li><p><code>auxinTransport</code> - executes the passive and the polar auxin transport using the levels of auxin in each cell stored in <code>auxinGrid</code>. The direction at which a cell transports auxin is determined by its cell type (<code>cellgrid</code>).</p></li>
 <li><p><code>rootNetwork</code>- stores the interactions of the root network. This file is similar to the one we used in the last practical. A key difference is that the auxin levels are an input that can modify gene expression (<code>auxininput=parameters['auxininput']</code>). You will modify this function in question 9.5.</p></li>

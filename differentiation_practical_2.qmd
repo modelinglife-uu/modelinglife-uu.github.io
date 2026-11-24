@@ -79,19 +79,28 @@ levels (log), the cell types (attractor initialized), and gene expression
 
 ![Figure 3. Ingredients of the in silico root model. 1) gene regulatory network, 2) multi-cellular tissue layout with polar auxin transport in the root tip](images/0-new-RAM.png){#vegmini1 width=130%}
 
-
 ### Files 
 Download the python files from <https://github.com/moneralee/UU_Modeling-Life-course-2026/tree/main/WC08-Cell-differentiation_II>.  
-`WC08_Root-tissue-model.py`
-WC08Tissue.py
-WC08Cell.py
-initial_tissue_state.json
-1.- `Rootfunctions.py` – File storing the functions used in `Root-model-Auxin.py`. For this practical you 
-only need to modify `rootNetwork`. Yet, have a look at all of them and try to understand what they do (useful 
-for Question 9.1). 
+You will find: 
 
+- **`WC08_Root-tissue-model.py`**. The main file of the model. It defines the 
+parameters, and a `simulate_development` function that uses the methods from 
+the `Tissue` and `Cell` classes to update the cell networks, simulate active
+auxin transport, passive auxin transport, auxin production and decay, and to
+create the outout plot of the model.
 
-The file contains the following functions: 
+- **`WC08Cell.py`**. The class `Cell` is defined here. Study the properties of 
+this class, and its methods to initialize the cells (`__init__`), the ODE network
+(**`root_ode`**, you will need to change this during the practical) that is used 
+to solve the network (`update_network_state`). The result is used to update the 
+cell's state (`update_cell_state`)
+
+- **`WC08Tissue.py`**. The class `Tissue` is defined here. Study the properties of this class, 
+and its methods. 
+
+- **`initial_tissue_state.json`**: This is the initial condition of the model defining
+how cells are organized in a tissue, their attractors, and the auxin distribution.
+
 
 - `findNeighbors` - retrieves the $x$ and $y$ coordinates of all the neighbors of a given cell.
 

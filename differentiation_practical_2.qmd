@@ -40,46 +40,40 @@ Auxin does this opposite regulation through different ARFs (Figure 2). Here we a
 going to use this model in an *in silico* root model to explain the strange experimental
 results in Figure 1.
 
-## The model {.unnumbered}
+## The network model {.unnumbered}
 
 In the Boolean model WOX5 is regulated positively by ARF5, negatively by ARF10, and 
-negatively by CLE40. Both ARF5 and ARF10 are auxin response factors, activated by auxin.
+negatively also by CLE40. Both ARF5 and ARF10 are auxin response factors, activated 
+by auxin.
 
 <center> $WOX5_{t+1} =NOT$ $ARF10$ $AND$ $ARF5$ $AND$ $NOT$ $CLE40$ </center>
-
+<br>
 The expression of ARF5 and ARF10 is regulated by other transcription factors, 
 causing them to be expressed in specific cells of the root as described by the
 attractors recovered by the model (see Figure 3). 
 
-Notice that the QC is the only attractor with WOX5 activity. This makes sense given 
-that its logical rule is: 
+![Figure 2 Auxin regulates WOX5 expression through different auxin response factors. These are expressed in specific cell types of the root](images/0-unique_attractors-celltypes.png){#vegmini1 width=100%}
 
-
-Notice how the other attractors have either ARF10 and/or CLE40 activity (repressors 
-of WOX5), or lack ARF5 activity (activator of WOX5). The QC attractor is the only 
-one with the following combination: ARF5 active, ARF10 inactive, CLE40 inactive; 
-therefore allowing for WOX5 activity.
+Notice how the attractors differ in their expression of ARF10 and ARF5, and how 
+the QC attractor is the only with the following combination: ARF5 active, ARF10 
+inactive, CLE40 inactive; therefore allowing for WOX5 expression
 
 
 Here you will explore whether this is relevant to understanding the 
-auxin–WOX5 paradox. For this you will use an *in silico* root model in which 
+auxin–WOX5 experimental paradox. For this you will use an *in silico* root model in which 
 each cell carries a copy of the Boolean network initialized in a particular 
-attractor, which allows us to test hypotheses and find an explanation.
+attractor
 
-![Figure 2 Auxin regulates WOX5 expression through different auxin response factors. These are expressed in specific cell types of the root](images/0-unique_attractors-celltypes.png){#vegmini1 width=100%}
-
-### Biology / conceptual thinking
-
-
-
+## The root model {.unnumbered}
 
 Today you will use a multicellular model that simulates the cells of a root tip 
-(Figure 3, right). The tissue is modeled as a grid, where the $x$ position defines 
-the radial direction and the $y$ the longitudinal position ($y=0$ being the cells at the **TOP**). 
-The cells are organized in cell layers (8 layers, so $x$ is 8), each with a gene regulatory 
-network initialized in a different attractor. The model simulates the transport of 
-auxin from cell to cell, where the cell type (the attractor) defines the direction of 
-polar auxin transport. In figure 3 (right) you can see the different properties that 
+(Figure 3, right). To build this model we use classes. We create a class `Cell` 
+and `Tissue` made up of `Cells`. The `Cells` are arranged in layers to model the 
+8 tissue layers of the root, and initialized in the attractor corresponding to their position.The model simulates the transport of auxin from cell to cell, where their cell type 
+defines the direction of polar auxin transport. 
+
+In figure 3 (right) you can see the output of the model showing the distribution
+of auxin in the middle cell layer, 
 the cells have: a cell type, auxin levels, gene expression (in the figure we see only 
 ARF10, ARF5, MGP and WOX5). These properties are stored in individual grids: one grid 
 for the cell type, another for auxin levels, and many others for each of the genes in the network. 
@@ -88,7 +82,11 @@ for the cell type, another for auxin levels, and many others for each of the gen
 
 
 ### Files 
-
+Download the python files from <https://github.com/moneralee/UU_Modeling-Life-course-2026/tree/main/WC08-Cell-differentiation_II>.  
+`WC08_Root-tissue-model.py`
+WC08Tissue.py
+WC08Cell.py
+initial_tissue_state.json
 1.- `Rootfunctions.py` – File storing the functions used in `Root-model-Auxin.py`. For this practical you 
 only need to modify `rootNetwork`. Yet, have a look at all of them and try to understand what they do (useful 
 for Question 9.1). 

@@ -15,6 +15,7 @@ differential equations and logical rules. Next you will use an example Boolean n
 and will recover its self-sustained activity configurations (attractors).
 Lastly, you will learn how to predict the genes that cause cell fate transitions (attractor changes). 
 
+Download the python files from <https://github.com/moneralee/UU_Modeling-Life-course-2026/tree/main/WC07-Cell-differentiation_I>.
 Today we will use the following python file: `WC07_Gene_regulatory_networks_I.py`.  In it 
 you will find the parameters, functions and execution code. Throughout the practical you will 
 find new code in drop-down menus. Look at what each function takes as input and returns as 

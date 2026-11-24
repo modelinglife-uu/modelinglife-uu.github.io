@@ -17,6 +17,8 @@ to be the evolutionary ancestral model of segmenting animal body axes.
 
 ![From: https://www.youtube.com/watch?v=aR0CLyGFrxo](images/somitogenesis-credit_to-Oxford-University-Press.gif){#vegmini1 width=60%}
 
+Download the python files from <https://github.com/moneralee/UU_Modeling-Life-course-2026/tree/main/WC06-Pattern_formation_III>. 
+
 ## The model system
 
 The clock-and-wavefront model describes somitogenesis, a process occurring early 

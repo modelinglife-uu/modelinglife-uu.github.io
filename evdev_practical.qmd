@@ -16,6 +16,9 @@ so how this actually improves plant growth. In this practical, we will use an OD
 growth. You'll simulate different temperature conditions and analyze how traits like leaf angle and size
 of the leaf blade affect photosynthesis and carbon respiration rate, and how this affects overall plant growth. 
 Later, you will investigate the adaptive value of this response, as this is still an open question.
+
+<!-- Bas: Models to learn what we dont know -->
+
   
 ![Fig 1. Taken from Quint et al., Nat. Plants 2016; Taken from Bridge et al., Interface 2013.](images/practical7.png){#p7}
 

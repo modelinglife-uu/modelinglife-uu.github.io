@@ -1,6 +1,6 @@
 ---
 params:
-  show_answers: false
+  show_answers: true
 ---
 
 # Gene regulation in space
@@ -350,11 +350,17 @@ Regarding the auxin treatment = 400:
 
 ## Algorithmic thinking
 
-Experimental repression of WOX5 was detected by RT-PCR at the very
-tip (Figure 1, right panel). Reproduce this *in silico* by saving the average WOX5 levels of cells at the tip ($ypos$ < 6) at the end of the simulation for all three
-treatments. For comparison, also calculate the average for all the cells in the root. 
-Then plot this average WOX5 expression levels (y axis) for each `auxinTreatment`= 0, 
-100 and 1000 (x axis). #monki
+Experimentally scientist perform RT-PCR experiments of the whole root and check gene 
+expression changes. Here, we are going to compare how our interpretation of auxin
+changes if we check gene expression in wht whole root and in specific tissues. 
+
+Let's use the model to do an in RT-PCR *in silico* analysis. Run the auxin treatments
+0, 400 and 2000, and in each case calculate 1) the average WOX5 expression for all the
+cells in root, for only the cells in the QC position, and only the endodermis cells. 
+
+Tip: types are a `Cell` attribute.
+
+- Which case represents better how WOX5 is regulated in the root tip? Why?
 
 - What is the overall effect of auxin treatments in the root tip? Considering that
 the root is a mixture of many cell types, which cells best represent the
@@ -367,48 +373,25 @@ plotted values?
   > **Answer** What portion of the root we sample changes completely our perception 
   > of how auxin regulates WOX5. If we sample the whole root we get the impression 
   > that WOX5 is induced (and that is true for the endodermis cells). Yet, if we sample 
-  > the very tip of the root, we are sampling a smaller proportion of endodermal 
-  > cells, allowing us to detect that auxin is also repressing WOX5 expression in the QC 
-  > cells. The latter is similar to the qPCR experiment in Figure 1 (right panel).
-   ![](images/0-insilico-RT-PCR_plots.png){#vegmini1 width=100%}
-  
-  
-:::
-
-:::{#exr-tur}
-
-## Biology & algorithmic thinking
-
-Now, let's compare WOX5 regulation across tissues. Let's use the model to do an 
-in RT-PCR *in silico* analysis of only the cells in the QC position, and also the 
-endodermis cells. This has not been done experimentally and thus you will generate
-a prediction (!). 
-
-Tip: cell types are a `Cell` attribute.
-
-- Compare what you see in the root simulation, and what you obtain in the simulated 
-RT-PCR plot. Which case represents better how WOX5 is regulated in the root tip? Why?
-
-:::
-
-:::{.content-visible when-meta="params.show_answers"}
-
-  > **Answer** The repression of WOX5 expression is much more clear if we sample 
-  > individual QC cells, while sampling only endodermal cells only shows activation. 
-  > In a way both results are correct, and reveal how dependent on spatial context 
-  > the effects of auxin are. Moreover it shows how difficult it is to draw conclusions 
-  > from this sort of experiments when taking a sample that contains a mixture of 
+  > the QC cells we notice auxin represses WOX5 expression, while sampling only 
+  > endodermal cells only shows activation. 
+  >
+  > In a way, both results are correct, and reveal how the effects of auxin are 
+  > dependent on the spatial context. Moreover it shows how difficult it is to draw conclusions 
+  > from this sort of experiments when sampling an organ that contains a mixture of 
   > cell types. Nowadays experimentalists can isolate individual cells (with 
   > FACS cell sorting, or with tools like laser capture microdissection microscopy)
   > but this is very laborious. Thus, sampling the whole tissue is the easier option, 
   > but we have to be aware that tissues are composed of many cell types, and each 
   > may respond differently!
   > 
-  > See the plot below in the output file where you are running the simulation. 
 
-![*In silico* RTPCR showing that auxin regulation of *WOX5* expression are dependent on the tissue and time of treatment](images/0-insilico-RT-PCR_plots copy.png){#vegmini1 width=100%}
-::: 
+   ![](images/WC08_wox5_expression.png){#vegmini1 width=100%}
   
+  
+:::
+
+
 :::{#exr-tur}
 
 ## Biology & algorithmic thinking
@@ -425,7 +408,7 @@ propose?
 
 :::{.content-visible when-meta="params.show_answers"}
 
-  > **Answer** It is clearly dependent on levels of auxin and the cell type. 
+  > **Answer** It is clearly dependent on the auxin dosage and the cell type. 
   > Which aligns with the fact that this hormone is implicated in so many different 
   > processes in plants. The underlying gene regulatory networks, and cell 
   > differentiation, enables a diversity of responses.   
@@ -438,7 +421,8 @@ propose?
 
 - Perform an *in silico* intervention to alter WOX5 dosage responsiveness to auxin. 
 For example, what would it take to enforce its continuous expression, or to block 
-completely its induction in the endodermis. 
+completely its induction in the endodermis. Check the feasibility of your intervention 
+with the model. 
 
 - How would you test these model predictions experimentally?
 :::

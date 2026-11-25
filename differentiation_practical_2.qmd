@@ -310,7 +310,8 @@ Do you now see the differences reported by experimentalists?
   > Then, for auxin treatment = 1000 this incremeber still takes place, albeit  
   > reduced. If we focus on the QC we can see that the expression of WOX5 is gradually 
   > reduced.
-    >
+  >
+  
     ![Ectopic WOX5 expression in Auxin treatment = 400 (and... reduction in QC)](images/0-final_grids_run_400.png){#vegmini1 width=100%}
     
     ![Reduced WOX5 expression in Auxin treatment = 2000](images/0-final_grids_run_2000.png){#vegmini1 width=100%}
@@ -439,15 +440,18 @@ with the model.
 ## Biological thinking 
 
 All models are wrong, but some are useful. The model we studied today offered us a 
-mechanistic insight into the paradoxical auxin responses. Yet, (to make things more 
-fun), the original experiments used different auxin *analogs* and other molecules 
-which are transported very differently between cells: NAA (transported independently 
-of PINs), IAA (PIN-transported), and NPA (blocks PINs, increasing auxin in the 
-tip). 
+mechanistic insight into the paradoxical auxin responses. Yet, we simply increased
+the auxin levels in all cells. This is a simplifying assumption as NAA is a type of
+auxin that is transported independently of the PINs, and plant scientists use it to
+increase auxin levels in all cells of the root (Figure 1, right panel). 
+
+Yet, in one of the experiments mentioned in the introduction scientists used IAA 
+(PIN-transported) and NPA (blocks PINs, increasing auxin in the tip). 
 
 How does this information change your conclusions? 
 
 How would you modify the model to account for these differences?
+
 :::
 
 :::{.content-visible when-meta="params.show_answers"}

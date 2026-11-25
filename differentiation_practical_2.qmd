@@ -311,9 +311,9 @@ Do you now see the differences reported by experimentalists?
   > reduced. If we focus on the QC we can see that the expression of WOX5 is gradually 
   > reduced.
     >
-    ![Ectopic WOX5 expression in Auxin treatment = 100](images/0-final_grids_run_100.png){#vegmini1 width=100%}
+    ![Ectopic WOX5 expression in Auxin treatment = 400 (and... reduction in QC)](images/0-final_grids_run_400.png){#vegmini1 width=100%}
     
-    ![Reduced WOX5 expression in Auxin treatment = 1000](images/0-final_grids_run_1000.png){#vegmini1 width=100%}
+    ![Reduced WOX5 expression in Auxin treatment = 2000](images/0-final_grids_run_2000.png){#vegmini1 width=100%}
   
 :::
 
@@ -322,10 +322,12 @@ Do you now see the differences reported by experimentalists?
 
 ## Biological interpretation
 
-Regarding the auxin treatment = 20: 
+Regarding the auxin treatment = 400: 
 
 - Why do different cells of the root respond differently to auxin treatments? 
+
 - Why does auxin regulation of MGP do? (Look at the network...)
+
 - Why does expression of WOX5 occur mainly in "upper" cells and repression in the cells at the bottom?
 
 :::

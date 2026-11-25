@@ -105,7 +105,7 @@ def reaction_diffusion_step(u, D, dt, dx, decay):
     # for i in range(1, nx-1):
     #     for j in range(1, ny-1):
     #         u[i, j] = (un[i, j] +
-    #                    D * dt / dx**2 * (un[i+1, j] + un[i-1, j] - 2 * un[i, j] +
+    #                    D * dt / dx**2 * (un[i+1, j] + un[i-1, j] +
     #                    un[i, j+1] + un[i, j-1] - 4 * un[i, j]) - decay * un[i, j] * dt)
     #boundary conditions
     u[-1, :] = (u[-2, :]/u[-3, :])*u[-2, :]  if sum(u[-3, :]) != 0 else np.zeros(ny)
@@ -446,7 +446,7 @@ C = np.zeros((nx, ny))
 ::: {.content-visible when-meta="params.show_answers"}
   > **Answer** Look at code `WC04_Question5.py`.	
   > You will find that gene $C$ needs to be induced by low and repressed by high $M$. 
-  > And as explained above: $k_A=k_{B1}>k_{B2}>k_C$.
+  > And as explained above: $k_A=>k_{B1}>k_{B2}>=k_C$.
 
 
 :::
@@ -474,9 +474,9 @@ without actually simulating this).
 
 Now modify the code in the `reaction_diffusion_gradient` function (updates 
 the morphogen $M$ concentration) to implement that the $M$ gradient gradually
-disappears once $A$, $B$ and $C$ have gotten close to equilibrium (use `switch_time`
-option in `reaction_diffusion_gradient`). Identify the time point at which this
-happens, and adapt the simulation loop where necessary, and run your code: 
+disappears once $A$, $B$ and $C$ expression is at equilibrium. For that, identify the time 
+point at which they don't seem to change, and use the `switch_time`
+option in the `reaction_diffusion_gradient` function to implement M disappearance.
 
 Was your prediction on $A$, $B$, $C$ from the previous question correct? Why/why not? 
 

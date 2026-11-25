@@ -689,48 +689,10 @@ You will find:</p>
 </section>
 <section id="questions" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="questions"><span class="header-section-number">8.1</span> Questions</h2>
-<blockquote class="blockquote">
-<p><strong>Answer</strong> Look at <code>WC08_Root-tissue-model-answers.py</code> and <code>WC08Cell_answer.py</code> for the answer code :)</p>
-</blockquote>
 <div id="exr-non" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.1 (Algorithmic thinking)</strong></span> Study how the model uses the different functions to simulate gene regulation and auxin transport in the root.</p>
 <p>Make a plain-language description, pseudocode, or flowchart using pen and paper of how the model works. What are the algorithmic steps you would take if you want to simulate the treatment of roots with auxin?</p>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong> To simulate the auxin transport first we need to find the neighbors of a given cell (function <code>findNeighbors</code>), and then calculate how much auxin should they exchange based on how much auxin they have (matrix <code>auxinGrid</code>) and what are their cell types (matrix <code>cellGrid</code>). The function <code>auxinTransport</code> does this; this function is called every timestep.</p>
-<p>Next, to update the gene regulatory network we iterate over each cell of the simulation (for <span class="math inline">\(x\)</span>, for <span class="math inline">\(y\)</span>, as these are the dimensions of the grid) and store the value each element of the network (e.g.&nbsp;matrixes <code>WOX5grid</code>, <code>CKgrid</code>, etc.) into a <code>cellState</code> vector. <code>cellState</code> is used to solve the network (<code>rootNetwork</code>), whose output needs to be filled in again in the grids. We need to perform this every 10 timesteps, so we should make this inside a conditional statement (<code>if</code>).</p>
-<p>The above steps should be inside a for loop to iterate for as many timesteps as we want to simulate.</p>
-</blockquote>
-<blockquote class="blockquote">
-<p>pseudocode:</p>
-<pre><code>Initialize auxinGrid
-
-Initialize cellGrid
-
-Initialize WOX5grid, CKgrid, ...   # all GRN variable grids
-
-For t in Timesteps:
-
-   For each cell (i, j) in the grid:
-
-    neighbors = findNeighbors(i, j)
-
-    auxinGrid = auxinTransport(auxinGrid, cellGrid, i, j, neighbors)
-
-    If (t % 10 == 0):    # update every 10 timesteps
-
-        For each cell (i, j) in the grid:
-
-            cellState = [WOX5grid[i][j],CKgrid[i][j],...   # add other network components]
-
-            updatedState = rootNetwork(cellState)
-
-            WOX5grid[i][j] = updatedState.WOX5     # Write updated values back into the grids
-
-            CKgrid[i][j]   = updatedState.CK
-
-               ...            # repeat for others</code></pre>
-</blockquote>
 <div id="exr-tur" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.2 (Biology &amp; algorithmic thinking)</strong></span> Now let’s use the model to simulate the auxin treatments from the experiments in Figure 1. To simulate an auxin treatment change the value of <span class="math inline">\(auxininput\)</span> in <code>Root-model-Auxin.py</code>. Try values of 10, and 100 and 1000 (nM). This increases auxin levels in all cells by the same amount. You can run one treatment at a time, or make a for loop and run the three in one go.</p>
 <ul>
@@ -740,20 +702,11 @@ For t in Timesteps:
 </ul>
 <p><strong>Notice the simulation creates an output folder with png images.</strong></p>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong> The levels of auxin increase in the cells of the root model (as visualized with the plotting function), but the expression of WOX5 remains the same. This means, the model in its current form, cannot explain the observations from the experiments. Yet, we can use this model to test hypotheses and test how we can recover such behaviours (Figure 1).</p>
-</blockquote>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/0-model-incomplete.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Auxin treatmens have no effect on WOX5 expression"><img src="images/0-model-incomplete.png" class="img-fluid figure-img" style="width:100.0%" alt="Auxin treatmens have no effect on WOX5 expression"></a></p>
-<figcaption>Auxin treatmens have no effect on WOX5 expression</figcaption>
-</figure>
-</div>
 <div id="exr-tur" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.3 (Biology &amp; algorithmic/mathematical thinking)</strong></span> The model does not yet reproduce the experiments. Yet, we can use this model to test hypotheses and aim to recover such behaviours (Figure 1). Let’s implement the following two hypotheses:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/0-auxin-hypothesis.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Testing two hypothesis: Auxin represses MGP expression. Extremely high auxin levels (easy to apply experimentally, but unrealistic in vivo) repress WOX5 expression."><img src="images/0-auxin-hypothesis.png" class="img-fluid figure-img" style="width:60.0%" alt="Testing two hypothesis: Auxin represses MGP expression. Extremely high auxin levels (easy to apply experimentally, but unrealistic in vivo) repress WOX5 expression."></a></p>
+<p><a href="images/0-auxin-hypothesis.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Testing two hypothesis: Auxin represses MGP expression. Extremely high auxin levels (easy to apply experimentally, but unrealistic in vivo) repress WOX5 expression."><img src="images/0-auxin-hypothesis.png" class="img-fluid figure-img" style="width:60.0%" alt="Testing two hypothesis: Auxin represses MGP expression. Extremely high auxin levels (easy to apply experimentally, but unrealistic in vivo) repress WOX5 expression."></a></p>
 <figcaption>Testing two hypothesis: <span style="color: magenta;">Auxin represses MGP expression.</span> <span style="color: #32CD32;">Extremely high auxin levels (easy to apply experimentally, but unrealistic <em>in vivo</em>) repress WOX5 expression.</span></figcaption>
 </figure>
 </div>
@@ -777,22 +730,14 @@ For t in Timesteps:
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Auxin regulates MGP. These has an indirect positive effect on ARF5. </span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>        dMGP <span class="op">=</span> (<span class="dv">200</span><span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">200</span><span class="op">**</span><span class="dv">2</span><span class="op">+</span>(auxininput<span class="op">+</span>AUXIN)<span class="op">**</span><span class="dv">2</span>))<span class="op">*</span>sigmoid(w_MGP,h) <span class="op">-</span> (decayrate <span class="op">*</span> MGP)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Auxin represses WOX5 at *very* high levels - most hormones exhibit this dosage dependent effect.</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        dWOX5 <span class="op">=</span> (<span class="dv">700</span><span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">700</span><span class="op">**</span><span class="dv">2</span><span class="op">+</span>(auxininput<span class="op">+</span>AUXIN)<span class="op">**</span><span class="dv">2</span>))<span class="op">*</span>sigmoid(w_WOX5,h) <span class="op">-</span> decayrate<span class="op">*</span>WOX5  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Auxin regulates MGP. These has an indirect positive effect on ARF5. </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>        dMGP <span class="op">=</span> (<span class="dv">200</span><span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">200</span><span class="op">**</span><span class="dv">2</span><span class="op">+</span>(auxininput<span class="op">+</span>AUXIN)<span class="op">**</span><span class="dv">2</span>))<span class="op">*</span>sigmoid(w_MGP,h) <span class="op">-</span> (decayrate <span class="op">*</span> MGP)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Auxin represses WOX5 at *very* high levels - most hormones exhibit this dosage dependent effect.</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        dWOX5 <span class="op">=</span> (<span class="dv">700</span><span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">700</span><span class="op">**</span><span class="dv">2</span><span class="op">+</span>(auxininput<span class="op">+</span>AUXIN)<span class="op">**</span><span class="dv">2</span>))<span class="op">*</span>sigmoid(w_WOX5,h) <span class="op">-</span> decayrate<span class="op">*</span>WOX5  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong> Yes, the model with both hypothesis can reproduce the experimental observations. The hypothesis regarding MGP regulation enables ectopic ARF5 expression in the endodermis, needed to allow for WOX5 expression in these cells. The second hypothesis is to shut down expression in the QC cell, and gradually in the rest of the cells. The model suggests that the effects of auxin on WOX5 expression might depend on the <strong>cell type</strong> and on the <strong>dosage</strong> of the treatment. Auxin treatment = 100 induces WOX5 expression in the endodermis. Then, for auxin treatment = 1000 this incremeber still takes place, albeit<br>
-reduced. If we focus on the QC we can see that the expression of WOX5 is gradually reduced.</p>
-</blockquote>
-<pre><code>&gt;
-![Ectopic WOX5 expression in Auxin treatment = 400 (and... reduction in QC)](images/0-final_grids_run_400.png){#vegmini1 width=100%}
-
-![Reduced WOX5 expression in Auxin treatment = 2000](images/0-final_grids_run_2000.png){#vegmini1 width=100%}</code></pre>
 <div id="exr-tur" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.4 (Biological interpretation)</strong></span> Regarding the auxin treatment = 400:</p>
 <ul>
@@ -801,14 +746,6 @@ reduced. If we focus on the QC we can see that the expression of WOX5 is gradual
 <li><p>Why does expression of WOX5 occur mainly in “upper” cells and repression in the cells at the bottom?</p></li>
 </ul>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong></p>
-<ul>
-<li><p>Cell differentiation causes the differences in ARF10 and ARF5 gene expression in specific cells of the root. This results in only some cells in the root being competent to express WOX5.</p></li>
-<li><p>MGP represses ARF5, enabling WOX5 expression in the endodermal cells,</p></li>
-<li><p>Because auxin is distributed in a gradient so the cells at the tip will reach the repressive levels before the “upper” cells.</p></li>
-</ul>
-</blockquote>
 <div id="exr-tur" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.5 (Algorithmic thinking)</strong></span> Experimentally scientist perform RT-PCR experiments of the whole root and check gene expression changes. Here, we are going to compare how our interpretation of auxin changes if we check gene expression in wht whole root and in specific tissues.</p>
 <p>Let’s use the model to do an in RT-PCR <em>in silico</em> analysis. Run the auxin treatments 0, 400 and 2000, and in each case calculate 1) the average WOX5 expression for all the cells in root, for only the cells in the QC position, and only the endodermis cells.</p>
@@ -818,18 +755,10 @@ reduced. If we focus on the QC we can see that the expression of WOX5 is gradual
 <li><p>What is the overall effect of auxin treatments in the root tip? Considering that the root is a mixture of many cell types, which cells best represent the plotted values?</p></li>
 </ul>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong> What portion of the root we sample changes completely our perception of how auxin regulates WOX5. If we sample the whole root we get the impression that WOX5 is induced (and that is true for the endodermis cells). Yet, if we sample the QC cells we notice auxin represses WOX5 expression, while sampling only endodermal cells only shows activation.</p>
-<p>In a way, both results are correct, and reveal how the effects of auxin are dependent on the spatial context. Moreover it shows how difficult it is to draw conclusions from this sort of experiments when sampling an organ that contains a mixture of cell types. Nowadays experimentalists can isolate individual cells (with FACS cell sorting, or with tools like laser capture microdissection microscopy) but this is very laborious. Thus, sampling the whole tissue is the easier option, but we have to be aware that tissues are composed of many cell types, and each may respond differently!</p>
-</blockquote>
-<p><a href="images/WC08_wox5_expression.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="images/WC08_wox5_expression.png" id="vegmini1" class="img-fluid" style="width:100.0%"></a></p>
 <div id="exr-tur" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.6 (Biology &amp; algorithmic thinking)</strong></span> Changes in WOX5 expression depend on tissue context and auxin dosage. Simulate a range of auxin treatments from 0 to 750, and save only an image for the final timestep (this will make the simulation faster, and you don’t need to see every timestep).</p>
 <p>Can you now explain the auxin–WOX5 paradox? What mechanism do you propose?</p>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong> It is clearly dependent on the auxin dosage and the cell type. Which aligns with the fact that this hormone is implicated in so many different processes in plants. The underlying gene regulatory networks, and cell differentiation, enables a diversity of responses.</p>
-</blockquote>
 <div id="exr-tur" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.7 (Biology &amp; conceptual thinking)</strong></span> &nbsp;</p>
 <ul>
@@ -837,17 +766,11 @@ reduced. If we focus on the QC we can see that the expression of WOX5 is gradual
 <li><p>How would you test these model predictions experimentally?</p></li>
 </ul>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong> This is an open question. Feel free to test your ideas with the model and discuss with us your results :)</p>
-</blockquote>
 <div id="exr-tur" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.8 (Biological thinking)</strong></span> All models are wrong, but some are useful. The model we studied today offered us a mechanistic insight into the paradoxical auxin responses. Yet, (to make things more fun), the original experiments used different auxin <em>analogs</em> and other molecules which are transported very differently between cells: NAA (transported independently of PINs), IAA (PIN-transported), and NPA (blocks PINs, increasing auxin in the tip).</p>
 <p>How does this information change your conclusions?</p>
 <p>How would you modify the model to account for these differences?</p>
 </div>
-<blockquote class="blockquote">
-<p><strong>Answer</strong> Open question. This will be a mini project! 🌱</p>
-</blockquote>
 </section>
 <section id="references" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="references"><span class="header-section-number">8.2</span> References</h2>

@@ -1,6 +1,6 @@
 ---
 params:
-  show_answers: false
+  show_answers: true
 ---
 
 # Gene regulation in space
@@ -386,7 +386,7 @@ plotted values?
   > may respond differently!
   > 
 
-   ![](images/WC08_wox5_expression.png){#vegmini1 width=100%}
+   ![](images/WC08_wox5_expression.png){#vegmini1 width=70%}
   
   
 :::

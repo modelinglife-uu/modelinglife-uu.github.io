@@ -314,9 +314,9 @@ Do you now see the differences reported by experimentalists?
   
   
   
-    ![Ectopic WOX5 expression in Auxin treatment = 400 (and... reduction in QC)](images/0-final_grids_run_400.png){#vegmini1 width=100%}
+![Ectopic WOX5 expression in Auxin treatment = 400 (and... reduction in QC)](images/0-final_grids_run_400.png){#vegmini1 width=100%}
     
-    ![Reduced WOX5 expression in Auxin treatment = 2000](images/0-final_grids_run_2000.png){#vegmini1 width=100%}
+![Reduced WOX5 expression in Auxin treatment = 2000](images/0-final_grids_run_2000.png){#vegmini1 width=100%}
   
 :::
 

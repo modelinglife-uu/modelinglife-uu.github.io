@@ -789,9 +789,18 @@ For t in Timesteps:
 <p><strong>Answer</strong> Yes, the model with both hypothesis can reproduce the experimental observations. The hypothesis regarding MGP regulation enables ectopic ARF5 expression in the endodermis, needed to allow for WOX5 expression in these cells. The second hypothesis is to shut down expression in the QC cell, and gradually in the rest of the cells. The model suggests that the effects of auxin on WOX5 expression might depend on the <strong>cell type</strong> and on the <strong>dosage</strong> of the treatment. Auxin treatment = 100 induces WOX5 expression in the endodermis. Then, for auxin treatment = 1000 this incremeber still takes place, albeit<br>
 reduced. If we focus on the QC we can see that the expression of WOX5 is gradually reduced.</p>
 </blockquote>
-<pre><code>![Ectopic WOX5 expression in Auxin treatment = 400 (and... reduction in QC)](images/0-final_grids_run_400.png){#vegmini1 width=100%}
-
-![Reduced WOX5 expression in Auxin treatment = 2000](images/0-final_grids_run_2000.png){#vegmini1 width=100%}</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/0-final_grids_run_400.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Ectopic WOX5 expression in Auxin treatment = 400 (and… reduction in QC)"><img src="images/0-final_grids_run_400.png" class="img-fluid figure-img" style="width:100.0%" alt="Ectopic WOX5 expression in Auxin treatment = 400 (and… reduction in QC)"></a></p>
+<figcaption>Ectopic WOX5 expression in Auxin treatment = 400 (and… reduction in QC)</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/0-final_grids_run_2000.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Reduced WOX5 expression in Auxin treatment = 2000"><img src="images/0-final_grids_run_2000.png" class="img-fluid figure-img" style="width:100.0%" alt="Reduced WOX5 expression in Auxin treatment = 2000"></a></p>
+<figcaption>Reduced WOX5 expression in Auxin treatment = 2000</figcaption>
+</figure>
+</div>
 <div id="exr-tur" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.4 (Biological interpretation)</strong></span> Regarding the auxin treatment = 400:</p>
 <ul>
@@ -821,7 +830,7 @@ reduced. If we focus on the QC we can see that the expression of WOX5 is gradual
 <p><strong>Answer</strong> What portion of the root we sample changes completely our perception of how auxin regulates WOX5. If we sample the whole root we get the impression that WOX5 is induced (and that is true for the endodermis cells). Yet, if we sample the QC cells we notice auxin represses WOX5 expression, while sampling only endodermal cells only shows activation.</p>
 <p>In a way, both results are correct, and reveal how the effects of auxin are dependent on the spatial context. Moreover it shows how difficult it is to draw conclusions from this sort of experiments when sampling an organ that contains a mixture of cell types. Nowadays experimentalists can isolate individual cells (with FACS cell sorting, or with tools like laser capture microdissection microscopy) but this is very laborious. Thus, sampling the whole tissue is the easier option, but we have to be aware that tissues are composed of many cell types, and each may respond differently!</p>
 </blockquote>
-<p><a href="images/WC08_wox5_expression.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="images/WC08_wox5_expression.png" id="vegmini1" class="img-fluid" style="width:70.0%"></a></p>
+<p><a href="images/WC08_wox5_expression.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="images/WC08_wox5_expression.png" id="vegmini1" class="img-fluid" style="width:70.0%"></a></p>
 <div id="exr-tur" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.6 (Biology &amp; algorithmic thinking)</strong></span> Changes in WOX5 expression depend on tissue context and auxin dosage. Simulate a range of auxin treatments from 0 to 750, and save only an image for the final timestep (this will make the simulation faster, and you don’t need to see every timestep).</p>
 <p>Can you now explain the auxin–WOX5 paradox? What mechanism do you propose?</p>

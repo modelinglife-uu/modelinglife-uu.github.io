@@ -72,7 +72,7 @@ and a class `Tissue` that is made up of `Cells`. The `Cells` are arranged in
 layers to model the 8 tissue layers of the root, and initialized in the attractor 
 corresponding to their position.The model simulates the transport of auxin from 
 cell to cell, where their cell type defines the direction of polar auxin transport
-(you learn about the PINs and the reverse fountain on the Pattern formation I lecture). 
+(you learned about the PINs and the auxin reverse fountain on the Pattern formation I lecture). 
 
 In figure 3 (right) you can see the output of the model showing the distribution
 of auxin in the middle cell layer, and different properties of `Cells``: auxin 

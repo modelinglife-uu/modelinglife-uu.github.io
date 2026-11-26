@@ -76,7 +76,7 @@ In practical WC04-Gradients and segments we study how gradients can be created
 through local production, diffusion and decay. However, other mechanisms for 
 gradient formation are possible, such as cell lineage transport. Important for
 this mechanism is that the expression of the molecule forming a gradient is 
-constraint spatially. In our model of somitogenesis, the rightmost/posterior 
+constrained spatially. In our model of somitogenesis, the rightmost/posterior 
 cell produces FGF. This cell grows, and upon division the daughter cells inherit 
 FGF from their mother cell. Note that only the mesoderm cell divides.
 

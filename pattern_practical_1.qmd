@@ -368,9 +368,9 @@ a.  Now create functions to update $A$, $B$ and $C$ according to your
     genes, but some have to be different to ensure the right location of
     the genes (based on your reasoning in Question 3). 
 b.  Also make sure that the levels of $A$, $B$ and $C$ are updated in the
-    simulation loop. (Hint: using array properties to update $A$,$B$ and $C$, like
-    in the `reaction_diffusion_step` function, makes your code run a lot
-    faster than using for-loops)
+    simulation loop. (Hint: using array properties to update $A$,$B$ and $C$, 
+    instead of a for loop iterating over each x, y position. Makes your code run a lot
+    faster than using for-loops.
 c.  Next, ensure $A$, $B$ and $C$ are visualized. Change `ABC=True` in the 
     parameter section of the code to automatically change the initialization of 
     the plot. 

@@ -420,17 +420,83 @@ the Sox9-Bmp-Wnt patterning module through these parameters.
 
 ## Biology 
 
-Use the `WC05_digits-square-START.py` code and implement exponential gradients 
-of $k4$ and $k7$ across the tissue. We need to add three new functions, 
-initialize the $k4$ and $k7$ gradients, change the function used for the 
-reaction-diffusion simulation, and update the plotting to also show $k4$ and 
-$k7$ gradients. Sounds like a lot, but it is not. Follow the instructions 
-below to make the changes yourself:
+Use the `WC05_digits-square-Question6.py` code. Here the tissue is at its maximum 
+size $Lx=Ly=nx$, and the `k4_local_Supp21C` and `k7_local_Supp21C` can be used to 
+implement exponential gradients of $k4$ and $k7$ across the tissue. 
 
 ::: {.callout-note collapse="true"}
-## New functions: copy to the FUNCTIONS section of the code
+## Functions to implement k4 and k7 exponential gradients: 
 
 ``` python
+
+### Helper functions to create locally varied values of k4 and k7
+
+def k4_local_Supp21C(k, xsize, ysize):
+    """
+    Call this function to reproduce the exponential variation
+    in k4 parameter values in Supp. Fig. 21 C.
+    """
+    
+    k4local = np.zeros((xsize, ysize))
+
+    # Parameters to reproduce panel C.
+    min = 1 #minimum value of k4                    Question6
+    max = 1 #maximum value of k4                    Question6
+    direction=0 #high to low 1 # low to high gradient Question6
+    loop_over='x' # 'x' or 'y' #horizontal or vertical gradient Question6
+    
+    if loop_over == 'x':
+        for xi in range(xsize): 
+            if(direction==0):
+                k4local[xi, :] = max+(max-min)*np.exp(-xi/(0.6*xsize))
+            if(direction==1):
+                k4local[xi, :] = max+(max-min)*np.exp(-(xsize-xi)/(0.6*xsize))
+            
+    elif loop_over == 'y':
+        for yi in range(ysize): 
+            if(direction==0):
+                k4local[:, yi] = max+(max-min)*np.exp(-yi/(0.6*ysize))
+            if(direction==1):
+                k4local[:, yi] = max+(max-min)*np.exp(-(ysize-yi)/(0.6*ysize))
+
+    else:
+        print("Undefined looping variable, choose 'x' or 'y':", loop_over)
+
+    return(k4local)
+
+
+def k7_local_Supp21C(k, xsize, ysize):
+    """
+    Call this function to reproduce the exponential variation
+    in k7 parameter values in Supp. Fig. 21 C.
+    """
+    
+    k7local = np.zeros((xsize, ysize))
+
+    # Parameters to reproduce panel C
+    min = 1 #minimum value of k7                Question6
+    max = 1 #maximum value of k7                Question6
+    direction=0 #0 high to low # 1 low to high gradient Question6
+    loop_over='y' # 'x' or 'y' #horizontal or vertical gradient Question6
+    
+    if loop_over == 'x':
+        for xi in range(xsize): 
+            if(direction==0):
+                k7local[xi, :] = max +(max-min)*np.exp(-xi/(0.6*xsize))
+            if(direction==1):
+                k7local[xi, :] = max +(max-min)*np.exp(-(xsize-xi)/(0.6*xsize))
+            
+    elif loop_over == 'y':
+        for yi in range(ysize): 
+            if(direction==0):
+                k7local[:, yi] = max +(max-min)*np.exp(-yi/(0.6*ysize))
+            if(direction==1):
+                k7local[:, yi] = max +(max-min)*np.exp(-(ysize-yi)/(0.6*ysize))
+    else:
+        print("Undefined looping variable, choose 'x' or 'y':", loop_over)
+
+    return(k7local)
+    
 def single_time_step(sox9, bmp, wnt,               # matrices with variables
                      Dbmp, Dwnt,                   # diffusion coefficients
                      k2, k3, k4, k5, k7, k9, delta # reaction parameters
@@ -500,128 +566,9 @@ def single_time_step(sox9, bmp, wnt,               # matrices with variables
     return sox9, bmp, wnt
 
 
-### Helper functions to create locally varied values of k4 and k7
-
-def k4_local_Supp21C(k, xsize, ysize):
-    """
-    Call this function to reproduce the exponential variation
-    in k4 parameter values in Supp. Fig. 21 C.
-    """
-    
-    k4local = np.zeros((xsize, ysize))
-
-    # Parameters to reproduce panel C.
-    min = 1 #minimum value of k4                    Question6
-    max = 1 #maximum value of k4                    Question6
-    direction=0 #high to low 1 # low to high gradient Question6
-    loop_over='x' # 'x' or 'y' #horizontal or vertical gradient Question6
-    
-    if loop_over == 'x':
-        for xi in range(xsize): 
-            if(direction==0):
-                k4local[xi, :] = max+(max-min)*np.exp(-xi/(0.6*xsize))
-            if(direction==1):
-                k4local[xi, :] = max+(max-min)*np.exp(-(xsize-xi)/(0.6*xsize))
-            
-    elif loop_over == 'y':
-        for yi in range(ysize): 
-            if(direction==0):
-                k4local[:, yi] = max+(max-min)*np.exp(-yi/(0.6*ysize))
-            if(direction==1):
-                k4local[:, yi] = max+(max-min)*np.exp(-(ysize-yi)/(0.6*ysize))
-
-    else:
-        print("Undefined looping variable, choose 'x' or 'y':", loop_over)
-
-    return(k4local)
-
-
-def k7_local_Supp21C(k, xsize, ysize):
-    """
-    Call this function to reproduce the exponential variation
-    in k7 parameter values in Supp. Fig. 21 C.
-    """
-    
-    k7local = np.zeros((xsize, ysize))
-
-    # Parameters to reproduce panel C
-    min = 1 #minimum value of k7                Question6
-    max = 1 #maximum value of k7                Question6
-    direction=0 #0 high to low # 1 low to high gradient Question6
-    loop_over='y' # 'x' or 'y' #horizontal or vertical gradient Question6
-    
-    if loop_over == 'x':
-        for xi in range(xsize): 
-            if(direction==0):
-                k7local[xi, :] = max +(max-min)*np.exp(-xi/(0.6*xsize))
-            if(direction==1):
-                k7local[xi, :] = max +(max-min)*np.exp(-(xsize-xi)/(0.6*xsize))
-            
-    elif loop_over == 'y':
-        for yi in range(ysize): 
-            if(direction==0):
-                k7local[:, yi] = max +(max-min)*np.exp(-yi/(0.6*ysize))
-            if(direction==1):
-                k7local[:, yi] = max +(max-min)*np.exp(-(ysize-yi)/(0.6*ysize))
-    else:
-        print("Undefined looping variable, choose 'x' or 'y':", loop_over)
-
-    return(k7local)
 
 ```
 :::
-
-::: {.callout-note collapse="true"}
-## Changes in EXECUTION code. See comments "Q6" for instruction of where to paste it, and triple check that the indentation is correct.
-
-``` python
-# Q6: Replace our previous set up of plots with:
-# Set up plots
-fig, axs = plt.subplots(2, 3, figsize=(12, 8))
-ax1, ax2, ax3, ax4, ax5, ax6 = axs.flatten()
-
-# Q6: Initialize the k4 and k7 gradients:
-# Call helper functions to create locally varied values of k4 and k7
-k4_local = k4_local_Supp21C(k4, nx, ny)
-k7_local = k7_local_Supp21C(k7, nx, ny)
-
-# Q6! These changes above should be added before the simulation loop!
-##############################################################################
-
-
-
-# Q6: Now, inside the simulation loop we need to change Step 3: the reaction and diffusion part
-# Replace single_step_RD with the new function single_time_step function, as shown
-# below:
-    sox9, bmp, wnt = single_time_step(sox9, bmp, wnt, 
-                                      Dbmp, Dwnt, 
-                                      k2, k3, k4_local, k5, k7_local, k9, delta)
-# Q6: To plot k4_local and k7_local, you need to add the following lines
-# inside the "timestep==0" conditional (after the wnt_plot part...)
-
-        minval = min(np.min(k4_local), np.min(k7_local))
-        maxval = max(np.max(k4_local), np.max(k7_local))
-
-        k4_plot = ax4.imshow(np.rot90(k4_local), cmap='viridis', vmin = minval, vmax = maxval)
-        ax4.set_title(f'local values of k4')
-
-        k7_plot = ax5.imshow(np.rot90(k7_local), cmap='viridis', vmin = minval, vmax = maxval)
-        ax5.set_title(f'local values of k7')
-
-        # Use the last axis for a colorbar
-        plt.colorbar(k7_plot, cax=ax6, orientation='horizontal')
-        ax6.set_title('k4 / k7 colorbar')
-        ax6.xaxis.set_ticks_position('bottom')
-        ax6.set_position([0.7, 0.2, 0.15, 0.1])
-        ax6.yaxis.set_visible(False)
-
-# That is all :)
-```
-:::
-
-Pay attention: if you get stuck, open `WC05_digits-square-Question6.py`. This code 
-includes all the changes.
-
 
 Now, explore the shape of the $k4$ and $k7$ gradients, and assess their effect
 on the patterning. You can set the minimum and maximum values, axis 
@@ -636,6 +583,28 @@ Describe along which axis (x or y), in which direction (0 or 1) and to what exte
 $k4$ and $k7$ are changing. Estimate the change in Turing pattern wavelength 
 this results in.
 
+
+::: {.callout-note collapse="true"}
+``` python
+
+# Answer for k4
+   # Parameters to reproduce panel C.
+    min = 0.8 #minimum value of k4
+    max = 1.8 #maximum value of k4
+    direction=0 #high to low 1 # low to high gradient
+    loop_over='x' # 'x' or 'y' #horizontal or vertical gradient
+```
+:::
+
+::: {.callout-note collapse="true"}
+``` python
+# Answer for k7
+    # Parameters to reproduce panel C
+    min = 0.5 #minimum value of k7
+    max = 1.3 #maximum value of k7
+    direction=1 #0 high to low # 1 low to high gradient
+    loop_over='x' # 'x' or 'y' #horizontal or vertical gradient
+```    
 :::
 
 :::{.content-visible when-meta="params.show_answers"}

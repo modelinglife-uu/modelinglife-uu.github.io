@@ -32,7 +32,7 @@ patterning of fingers on the paws of mice (@raspopovic2014digit).
 :::
 ::: {.column width="60%"}
 
-Download the python files from <https://github.com/moneralee/UU_Modeling-Life-course-2026/tree/main/WC05-Pattern_formation_II>. 
+Download the python files from <https://github.com/moneralee/UU_Modeling-Life-course-2026/tree/main/WC05_Pattern_formation_II>. 
 <!-- -In this practical you will work with a total of 3 different python codes. 
 Please note that each code simply differs by an extension or modification 
 from the previous code, so that in the end you will have a long script that 

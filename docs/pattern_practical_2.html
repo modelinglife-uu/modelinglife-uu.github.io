@@ -579,6 +579,9 @@ window.Quarto = {
   <li><a href="#patterning-along-two-growth-axes" id="toc-patterning-along-two-growth-axes" class="nav-link" data-scroll-target="#patterning-along-two-growth-axes"><span class="header-section-number">5.4</span> Patterning along two growth axes</a></li>
   <li><a href="#making-a-virtual-tissue-grow" id="toc-making-a-virtual-tissue-grow" class="nav-link" data-scroll-target="#making-a-virtual-tissue-grow"><span class="header-section-number">5.5</span> Making a virtual tissue grow</a></li>
   <li><a href="#spatial-modulation-of-parameters-k4-and-k7" id="toc-spatial-modulation-of-parameters-k4-and-k7" class="nav-link" data-scroll-target="#spatial-modulation-of-parameters-k4-and-k7"><span class="header-section-number">5.6</span> Spatial modulation of parameters k4 and k7</a></li>
+  <li><a href="#hoxd13-and-fgf" id="toc-hoxd13-and-fgf" class="nav-link" data-scroll-target="#hoxd13-and-fgf"><span class="header-section-number">5.7</span> Hoxd13 and FGF</a></li>
+  <li><a href="#shape-makes-the-tissue" id="toc-shape-makes-the-tissue" class="nav-link" data-scroll-target="#shape-makes-the-tissue"><span class="header-section-number">5.8</span> Shape makes the tissue</a></li>
+  <li><a href="#master-students-exercise" id="toc-master-students-exercise" class="nav-link" data-scroll-target="#master-students-exercise"><span class="header-section-number">5.9</span> Master students exercise</a></li>
   </ul>
 </nav>
     </div>
@@ -713,7 +716,7 @@ How would the situation change if X is constantly produced and degraded?</p>
 <p>Let us now ignore growth and its role on orienting stripes for a while, and explore again the influence of parameters on the patterns. In reality, digits are patterned further apart at the distal end than at the proximal end, where they need to converge on a hand and wrist. This implies that the wavelength of the Turing pattern should not be constant along the proximo-distal axis.</p>
 <p>In Question 2 you probably found that the <span class="math inline">\(k4\)</span> and <span class="math inline">\(k7\)</span> parameters impact the wavelength of the Turing pattern. The authors speculate that the gradients formed by two genes (FGF and Hox) in the limb bud exert an effect on the Sox9-Bmp-Wnt patterning module through these parameters.</p>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 5.9 (Biology)</strong></span> Use the <code>WC05_digits-square-Question6.py</code> code. Here the tissue is at its maximum size <span class="math inline">\(Lx=Ly=nx\)</span>, and the <code>k4_local_Supp21C</code> and <code>k7_local_Supp21C</code> can be used to implement exponential gradients of <span class="math inline">\(k4\)</span> and <span class="math inline">\(k7\)</span> across the tissue.</p>
+<p><span class="theorem-title"><strong>Exercise 5.6 (Biology)</strong></span> Use the <code>WC05_digits-square-Question6.py</code> code. Here the tissue is at its maximum size <span class="math inline">\(Lx=Ly=nx\)</span>, and the <code>k4_local_Supp21C</code> and <code>k7_local_Supp21C</code> can be used to implement exponential gradients of <span class="math inline">\(k4\)</span> and <span class="math inline">\(k7\)</span> across the tissue.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -886,6 +889,7 @@ Note
 </div>
 </div>
 </div>
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -916,6 +920,7 @@ Note
 </div>
 </div>
 <hr>
+</section>
 <section id="hoxd13-and-fgf" class="level2" data-number="5.7">
 <h2 data-number="5.7" class="anchored" data-anchor-id="hoxd13-and-fgf"><span class="header-section-number">5.7</span> Hoxd13 and FGF</h2>
 <p>As mentioned above, the biological factors thought to underlie the variation in the <span class="math inline">\(k4\)</span> and <span class="math inline">\(k7\)</span> parameters are Hoxd13 and FGF. Hoxd13 is highly expressed in the distal domain of the paddle and not expressed elsewhere, and this expression domain is growing as the paddle grows. FGF is expressed from the distal edge of the paddle and <strong>spreads</strong> through diffusion. See <a href="https://www.science.org/doi/suppl/10.1126/science.1252960/suppl_file/raspopovic.sm.pdf">page 10, Fig S8A</a>). Experimental data suggest that Hoxd13 and FGF together affect <span class="math inline">\(k4\)</span> and <span class="math inline">\(k7\)</span>, which the authors decided to model using the following equations:</p>
@@ -926,7 +931,7 @@ k4^* = k4 - k_{HF_{bmp}} * fgf(i,j) * hox(i,j)
 k7^* = k7 + k_{HF_{wnt}} * fgf(i,j) * hox(i,j)
 \]</span></p>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 5.6 (Algorithmic and biological thinking)</strong></span> The script <code>WC05_digits_square--Question7-hoxdfgf</code> implements how <span class="math inline">\(k4\)</span> and <span class="math inline">\(k7\)</span> are a function of local FGF and Hox values (line 116 and 117), but does not yet include Hox and FGF spatial patterns and how these develop over time. Adjust the code to incorporate the observed Hoxd13 and FGF patterns, and assess how the digit patterns compare to what you found in the Question 6.</p>
+<p><span class="theorem-title"><strong>Exercise 5.7 (Algorithmic and biological thinking)</strong></span> The script <code>WC05_digits_square--Question7-hoxdfgf</code> implements how <span class="math inline">\(k4\)</span> and <span class="math inline">\(k7\)</span> are a function of local FGF and Hox values (line 116 and 117), but does not yet include Hox and FGF spatial patterns and how these develop over time. Adjust the code to incorporate the observed Hoxd13 and FGF patterns, and assess how the digit patterns compare to what you found in the Question 6.</p>
 <p>Note that the code already defines the arrays for <code>hox</code> and <code>fgf</code>, as well as the decay and diffusion values for <code>fgf</code> are provided already in the code. Also note that <code>hox</code> and <code>fgf</code> each have a maximum value of 1.</p>
 <p>Hint: (1) Initialize the spatial distribution of Hox and FGF, (2) Model the diffusion of FGF, (3) model how the expression domain of Hox increases with growth, and (4) update your simulation loop to account for these new processes.</p>
 </div>
@@ -938,7 +943,7 @@ k7^* = k7 + k_{HF_{wnt}} * fgf(i,j) * hox(i,j)
 <p>So far, we’ve approximated the limb bud very crudely with a rectangle. As you probably noticed in your parameter exploration, the tissue boundary can bias stripe orientation. Therefore it is interesting to study the interplay between the shape of the “paddle” or limb bud in which the digits develop, and how it grows with the temporal development of the hox and fgf patterns. In the script <code>WC05_digits_Question8-growingpaddle.py</code> we implemented two different tissue geometries: An ellipse and a “paddle” that imitates the shape of the limb bud.</p>
 <p>Note that to implement Hox and FGF domains on a complex growing shape, quite a bit of complex code involving masks was needed (needed to describe the tissue domain and angles to control the Hox and FGF domains). We are going to ignore these technical details (for now).</p>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 5.7 (Biology)</strong></span> Switching between geometries is easily done by changing the value of the parameter <code>geometry</code> on line 78 of the script. Start with the “ellipse” geometry. What do you observe with regards to the FGF gradient? What consequences does this have? Why would this be “a smart thing to do”?</p>
+<p><span class="theorem-title"><strong>Exercise 5.8 (Biology)</strong></span> Switching between geometries is easily done by changing the value of the parameter <code>geometry</code> on line 78 of the script. Start with the “ellipse” geometry. What do you observe with regards to the FGF gradient? What consequences does this have? Why would this be “a smart thing to do”?</p>
 <p>Play around with <span class="math inline">\(vi/vj\)</span> and <span class="math inline">\(Lx0\)</span> to investigate the effect of ellipse shape and development over time on the number, shape and robustness of digits that form.</p>
 <p>Now switch to the paddle geometry. Observe the patterns that emerge and compare these to the simulated and experimentally observed patterns in Figure 3E and 3F of the Raspopovic article (<span class="citation" data-cites="raspopovic2014digit">Raspopovic et al. (<a href="#ref-raspopovic2014digit" role="doc-biblioref">2014</a>)</span>).</p>
 <p>What does and what doesn’t the model explain well?</p>
@@ -949,7 +954,7 @@ k7^* = k7 + k_{HF_{wnt}} * fgf(i,j) * hox(i,j)
 <section id="master-students-exercise" class="level2" data-number="5.9">
 <h2 data-number="5.9" class="anchored" data-anchor-id="master-students-exercise"><span class="header-section-number">5.9</span> Master students exercise</h2>
 <div id="exr-tur" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 5.8 (Poly and oligodactyly)</strong></span> Above we played with ellipse size and growth rates, however in addition to mutations affecting tissue size and growth, also mutations in genes affecting the Hox and FGF morphogens may occur. Play with the parameters that determine Hox and FGF expression zones on the paddle geometry. Which parameter changes lead to the formation of supernumerary fingers (polydactyly)? Which parameters lead to too few fingers (oligodactyly)?</p>
+<p><span class="theorem-title"><strong>Exercise 5.9 (Poly and oligodactyly)</strong></span> Above we played with ellipse size and growth rates, however in addition to mutations affecting tissue size and growth, also mutations in genes affecting the Hox and FGF morphogens may occur. Play with the parameters that determine Hox and FGF expression zones on the paddle geometry. Which parameter changes lead to the formation of supernumerary fingers (polydactyly)? Which parameters lead to too few fingers (oligodactyly)?</p>
 <p><em>Hint:</em> The following supplementary scripts will be helpful to understand how the FGF and Hox domains were coded:</p>
 <ul>
 <li><code>supp_i__ellipse_slice.py</code> visualizes the usefulness of masks based on the example of selecting a slice of an ellipse;</li>
@@ -963,9 +968,6 @@ k7^* = k7 + k_{HF_{wnt}} * fgf(i,j) * hox(i,j)
 <h3 class="anchored" data-anchor-id="references">References</h3>
 
 
-</section>
-</section>
-</div>
 <script type="ojs-module-contents">
 eyJjb250ZW50cyI6W119
 </script>
@@ -991,6 +993,7 @@ Raspopovic, Jelena, Luciano Marcon, Laura Russo, and James Sharpe. 2014. <span>�
 Turing, Alan Mathison. 1990. <span>“The Chemical Basis of Morphogenesis.”</span> <em>Bulletin of Mathematical Biology</em> 52 (1): 153–97.
 </div>
 </div>
+</section>
 </section>
 
 </main> <!-- /main -->

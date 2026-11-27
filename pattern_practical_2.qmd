@@ -588,6 +588,8 @@ $k4$ and $k7$ are changing. Estimate the change in Turing pattern wavelength
 this results in.
 :::
 
+:::
+
 ::: {.callout-note collapse="true"}
 ### Answer k4 and k7
 ``` python

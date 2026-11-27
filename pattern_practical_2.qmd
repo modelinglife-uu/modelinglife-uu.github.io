@@ -579,7 +579,8 @@ Hint: Look in the supplement of the Raspopovic paper, [page 48, Fig 21 C](https:
 left for the estimated change of $k4$ and $k7$ across the tissue. 
 
 ::: {.callout-note collapse="true"}
-![Supplementary Fig 21 C. Credit: Raspopovic et al., 2014](images/raspopovic.png)
+### Supplementary Fig 21 C. Credit: Raspopovic et al., 2014
+![](images/raspopovic.png)
 :::
 Try to reproduce (qualitatively) Figure C by playing with the parameters affecting the 
 $k4$ and $k7$ gradients. 
@@ -636,7 +637,8 @@ domain is growing as the paddle grows. FGF is expressed from the distal edge of
 the paddle and **spreads** through diffusion. See [page 10, Fig S8A](https://www.science.org/doi/suppl/10.1126/science.1252960/suppl_file/raspopovic.sm.pdf)). 
 
 ::: {.callout-note collapse="true"}
-![Supplementary Fig 8 A. Credit: Raspopovic et al., 2014](images/raspopovic2.png)
+### Supplementary Fig 8 A. Credit: Raspopovic et al., 2014
+![](images/raspopovic2.png)
 :::
 
 Experimental data suggest that Hoxd13 and FGF together affect $k4$ and $k7$, 

@@ -1,6 +1,6 @@
 ---
 params:
-  show_answers: false
+  show_answers: true
 ---
 
 # Turing patterns, repetitive patterning
@@ -187,7 +187,7 @@ rather than real outcomes.
 which increases the wavelength and the amplitude.
 
 ![](images/sox9sweep3.png)
-
+<!--
 > The equation for Sox9 includes a “saturation term” in the form of a negative cubic 
 > power of Sox9, which means that effectively there is Sox9 self-inhibition in the 
 > model. The parameter $delta$ multiplies a quadratic Sox9-dependent term in the 
@@ -217,6 +217,7 @@ which increases the wavelength and the amplitude.
 > Increasing BMP diffusion allows to more effectively “feed” Sox9 domains, which leads 
 > to a subtle increase in the wavelength and amplitude.
 
+-->
 :::
 
 

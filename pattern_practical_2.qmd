@@ -616,7 +616,8 @@ this results in.
   >
   > $k7_{min}=0.5$, $k7_{max}=1.3$, $direction=1$, $axis="x"$
   >
-  > The output may look sometimes like this: ![](images/spatial_parameter_turing.png)
+  > The output may look sometimes like this: 
+![](images/spatial_parameter_turing.png)
   >
   > This results in $k4$ decreasing and $k7$ increasing along the x-axis.
   > Wavelength of the Turing pattern increases more than 2-fold

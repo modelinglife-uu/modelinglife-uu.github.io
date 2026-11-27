@@ -411,7 +411,7 @@ patterned further apart at the distal end than at the proximal end, where they
 need to converge on a hand and wrist. This implies that the wavelength of the 
 Turing pattern should not be constant along the proximo-distal axis. 
 
-In Question 2 you probably found that the $k4$ and $k7$ parameters 
+In Question 2 you found that the $k4$ and $k7$ parameters 
 impact the wavelength of the Turing pattern. The authors speculate that the 
 gradients formed by two genes (FGF and Hox) in the limb bud exert an effect on 
 the Sox9-Bmp-Wnt patterning module through these parameters.

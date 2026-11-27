@@ -571,7 +571,7 @@ def single_time_step(sox9, bmp, wnt,               # matrices with variables
 ```
 ::: -->
 
-Now, explore the shape of the $k4$ and $k7$ gradients, and assess their effect
+Change the shape of the $k4$ and $k7$ gradients, and assess their effect
 on the patterning. You can set the minimum and maximum values, axis 
 (x=horizontal, y=vertical) and direction (0=decreasing, 1=increasing). Search for 
 "Question6" in the code to know where you need to make changes. 
@@ -663,6 +663,18 @@ include Hox and FGF spatial patterns and how these develop over time. Adjust the
 code to incorporate the observed Hoxd13 and FGF patterns, and assess how the digit 
 patterns compare to what you found in the Question 6. 
 
+::: {.callout-note collapse="true"}
+### Compare k4 and k7 regulation for Bmp and Wnt regulation 
+``` python
+### Before
+    dbmp  = dt*( (Dbmp/(dx*dx))*laplacian_bmp - k4*sox9 - k5*bmp )  
+    dwnt  = dt*( (Dwnt/(dx*dx))*laplacian_wnt - k7*sox9 - k9*wnt )
+    
+### After 
+    dbmp  = dt*( (Dbmp/(dx*dx))*laplacian_bmp - (k4 - k_HF_bmp*fgf*hox)*sox9 - k5*bmp )  
+    dwnt  = dt*( (Dwnt/(dx*dx))*laplacian_wnt - (k7 + k_HF_wnt*fgf*hox)*sox9 - k9*wnt )
+```
+:::
 Note that the code already defines the arrays for `hox` and `fgf`, as well as the
 decay and diffusion values for `fgf` are provided already in the code. Also note 
 that `hox` and `fgf` each have a maximum value of 1.

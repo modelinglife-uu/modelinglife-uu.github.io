@@ -144,12 +144,12 @@ this oscillator, and determine the negative feedback, delay and non-linearities 
 :::{#exr-test}
 ## Biology
 
-Play with the parameters of the model. If you would like to look at the plot carefully, 
-the code creates an output folder, and saves as a png the output of each simulation. 
-To find this output folder, make sure to know the path from which you are running the model. 
+Play with the parameters of the model. How does the delay ($\tau$) affect oscillations? 
 
-How does the delay ($\tau$) affect oscillations? 
-   
+
+Tip: If you would like to look at the output carefully, the code creates an output 
+folder, and saves as a png the output of each simulation. To find this output folder, 
+make sure to know the path from which you are running the model.  
 
 :::
 
@@ -257,8 +257,7 @@ following questions:
 ## Biology
 
 Describe how the model behaves and why. Reverse the effect of FGF and see how 
-that affects the patterning? How do you see the effect of FGF on the clock in 
-the simulation?
+that affects the patterning? What is the effect of FGF on the clock?
 :::
 
 ::: {.content-visible when-meta="params.show_answers"}
@@ -286,7 +285,7 @@ transform the temporal oscillations in the right-most end of the tissue (posteri
 into a spatial pattern of cells at the left (anterior end). In the French Flag 
 morphogen gradient lecture we discussed that memory mechanisms are important to 
 stabilize spatial patterns. Particularly important when the start up signal that 
-*broke the symmetry* and initialized patterning is gone. It turns out that such 
+broke the symmetry and initialized patterning is gone. It turns out that such 
 a memorization/stabilization mechanism is also essential to convert oscillations 
 to stripes (somites!).
 

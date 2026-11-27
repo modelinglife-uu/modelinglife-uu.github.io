@@ -1,6 +1,6 @@
 ---
 params:
-  show_answers: false
+  show_answers: true
 ---
 
 # Turing patterns, repetitive patterning
@@ -123,7 +123,7 @@ rather than real outcomes.
 
 ::: {.content-visible when-meta="params.show_answers"}
 
-> **In a nutshell: **$k4$ and $k7$ have opposite effects on wavelength. On the 
+> You should have found that **$k4$ and $k7$ have opposite effects on wavelength. On the 
 > one hand increasing $k4$ leads to less BMP, hence less SOX9/Wnt and ultimately
 > smaller peaks (i.e. shorter wavelength). On the other hand, increasing $k7$ 
 > enhances the autoactivation and hence the width of the peaks. 
@@ -664,8 +664,17 @@ include Hox and FGF spatial patterns and how these develop over time. Adjust the
 code to incorporate the observed Hoxd13 and FGF patterns, and assess how the digit 
 patterns compare to what you found in the Question 6. 
 
+Note that the code already defines the arrays for `hox` and `fgf`, as well as the
+decay and diffusion values for `fgf` are provided already in the code. Also note 
+that `hox` and `fgf` each have a maximum value of 1.
+
+Hint: (1) Initialize the spatial distribution of Hox and FGF, (2) Model the diffusion 
+of FGF, (3)  model how the expression domain of Hox increases with growth, and (4) update 
+your simulation loop to account for these new processes. Search for "Question 7: TODO" to 
+know where in the code you need to implement changes.
+
 ::: {.callout-note collapse="true"}
-### Compare k4 and k7 regulation for Bmp and Wnt regulation 
+### lines 116-117, Compare k4 and k7 regulation for Bmp and Wnt regulation 
 ``` python
 ### Before
     dbmp  = dt*( (Dbmp/(dx*dx))*laplacian_bmp - k4*sox9 - k5*bmp )  
@@ -676,13 +685,6 @@ patterns compare to what you found in the Question 6.
     dwnt  = dt*( (Dwnt/(dx*dx))*laplacian_wnt - (k7 + k_HF_wnt*fgf*hox)*sox9 - k9*wnt )
 ```
 :::
-Note that the code already defines the arrays for `hox` and `fgf`, as well as the
-decay and diffusion values for `fgf` are provided already in the code. Also note 
-that `hox` and `fgf` each have a maximum value of 1.
-
-Hint: (1) Initialize the spatial distribution of Hox and FGF, (2) Model the diffusion 
-of FGF, (3)  model how the expression domain of Hox increases with growth, and (4) update 
-your simulation loop to account for these new processes.
 :::
 
 :::{.content-visible when-meta="params.show_answers"}

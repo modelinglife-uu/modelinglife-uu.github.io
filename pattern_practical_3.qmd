@@ -84,8 +84,8 @@ Open the code of the model for the FGF gradient (`WC06_fgf-gradient-growth-START
 First study the code to see how it uses Classes, how they are initialized, and 
 attributes they have. 
 
-Run the model and play with it by varying the decay rate of FGF and the 
-division rate of the cells. 
+Run the model and change the decay rate of FGF and the division rate (set by the 
+$growth_rate$ parameter) of the cells. 
 
 How does this affect the gradient? What happens if divisions are only allowed 
 during the first half of the simulation (put `divisiontime` to 0.5 instead of 1)?

@@ -123,7 +123,7 @@ rather than real outcomes.
 
 ::: {.content-visible when-meta="params.show_answers"}
 
-> You should have found that **$k4$ and $k7$ have opposite effects on wavelength. On the 
+> You should have found that $k4$ and $k7$ have opposite effects on wavelength. On the 
 > one hand increasing $k4$ leads to less BMP, hence less SOX9/Wnt and ultimately
 > smaller peaks (i.e. shorter wavelength). On the other hand, increasing $k7$ 
 > enhances the autoactivation and hence the width of the peaks. 
@@ -594,7 +594,7 @@ this results in.
 :::
 
 ::: {.callout-note collapse="true"}
-### Answer of k4 and k7 (Look if you're stuck...)
+### Answer of k4 and k7 (Look at the answer if you're stuck...)
 ``` python
 
 # Answer for k4

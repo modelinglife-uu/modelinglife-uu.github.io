@@ -1,6 +1,6 @@
 ---
 params:
-  show_answers: true
+  show_answers: false
 ---
 
 # Turing patterns, repetitive patterning

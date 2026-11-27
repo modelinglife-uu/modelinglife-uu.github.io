@@ -240,7 +240,7 @@ Look at functions `get_domain_size_horizontal`, `get_domain_size_vertical` and
 `single_step_growth`, and lines 269-284 to see how the simulation of tissue 
 growth works in the code.
 
-"Look for Change for Question3" to find where in the code you need to 
+Look for "Question3" to find where in the code you need to 
 make the following changes: 
 
 **1.-** The tissue dimensions are defined by $Lx0$ and $Ly0$. Currently they are
@@ -420,11 +420,12 @@ the Sox9-Bmp-Wnt patterning module through these parameters.
 
 ## Biology 
 
-Let us implement exponential gradients of $k4$ and $k7$ across the tissue. 
-We need to add three new functions, initialize the $k4$ and $k7$ gradients, 
-change the function used for the reaction-diffusion simulation, and update 
-the plotting to also show $k4$ and $k7$ gradients. Sounds like a lot, but it is 
-not. Follow the instructions below to make the changes yourself:
+Use the `WC05_digits-square-START.py` code and implement exponential gradients 
+of $k4$ and $k7$ across the tissue. We need to add three new functions, 
+initialize the $k4$ and $k7$ gradients, change the function used for the 
+reaction-diffusion simulation, and update the plotting to also show $k4$ and 
+$k7$ gradients. Sounds like a lot, but it is not. Follow the instructions 
+below to make the changes yourself:
 
 ::: {.callout-note collapse="true"}
 ## New functions: copy to the FUNCTIONS section of the code

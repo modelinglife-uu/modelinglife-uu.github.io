@@ -575,16 +575,21 @@ on the patterning. You can set the minimum and maximum values, axis
 (x=horizontal, y=vertical) and direction (0=decreasing, 1=increasing). Search for 
 "Question6" in the code to know where you need to make changes. 
 
-Hint: Look in the supplement of the Raspopovic paper, [page 48, Fig 2C](https://www.science.org/doi/suppl/10.1126/science.1252960/suppl_file/raspopovic.sm.pdf)),
-left for the estimated change of $k4$ and $k7$ across the tissue; focus on the 
-Hox and FGF distribution at the very edge of the paddle. Try to reproduce (qualitatively) 
-Figure 2C by playing with the parameters affecting the $k4$ and $k7$ gradients. 
+Hint: Look in the supplement of the Raspopovic paper, [page 48, Fig 21 C](https://www.science.org/doi/suppl/10.1126/science.1252960/suppl_file/raspopovic.sm.pdf)),
+left for the estimated change of $k4$ and $k7$ across the tissue. 
+
+::: {.callout-note collapse="true"}
+![Supplementary Fig 21 C. Credit: Raspopovic et al., 2014](images/raspopovic.png)
+Try to reproduce (qualitatively) Figure C by playing with the parameters affecting the 
+$k4$ and $k7$ gradients. 
+
 Describe along which axis (x or y), in which direction (0 or 1) and to what extent
 $k4$ and $k7$ are changing. Estimate the change in Turing pattern wavelength 
 this results in.
-
+:::
 
 ::: {.callout-note collapse="true"}
+### Answer k4 and k7
 ``` python
 
 # Answer for k4
@@ -593,11 +598,7 @@ this results in.
     max = 1.8 #maximum value of k4
     direction=0 #high to low 1 # low to high gradient
     loop_over='x' # 'x' or 'y' #horizontal or vertical gradient
-```
-:::
 
-::: {.callout-note collapse="true"}
-``` python
 # Answer for k7
     # Parameters to reproduce panel C
     min = 0.5 #minimum value of k7

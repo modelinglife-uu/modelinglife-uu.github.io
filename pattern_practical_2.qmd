@@ -424,6 +424,7 @@ Use the `WC05_digits-square-Question6.py` code. Here the tissue is at its maximu
 size $Lx=Ly=nx$, and the `k4_local_Supp21C` and `k7_local_Supp21C` can be used to 
 implement exponential gradients of $k4$ and $k7$ across the tissue. 
 
+<!--
 ::: {.callout-note collapse="true"}
 ## Functions to implement k4 and k7 exponential gradients: 
 
@@ -568,7 +569,7 @@ def single_time_step(sox9, bmp, wnt,               # matrices with variables
 
 
 ```
-:::
+::: -->
 
 Now, explore the shape of the $k4$ and $k7$ gradients, and assess their effect
 on the patterning. You can set the minimum and maximum values, axis 

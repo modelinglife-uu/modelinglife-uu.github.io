@@ -593,7 +593,7 @@ this results in.
 :::
 
 ::: {.callout-note collapse="true"}
-### Answer k4 and k7
+### Answer of k4 and k7 (Look if you're stuck...)
 ``` python
 
 # Answer for k4
@@ -635,7 +635,8 @@ As mentioned above, the biological factors thought to underlie the variation in
 the $k4$ and $k7$ parameters are Hoxd13 and FGF. Hoxd13 is highly expressed in 
 the distal domain of the paddle and not expressed elsewhere, and this expression 
 domain is growing as the paddle grows. FGF is expressed from the distal edge of 
-the paddle and **spreads** through diffusion. See [page 10, Fig S8A](https://www.science.org/doi/suppl/10.1126/science.1252960/suppl_file/raspopovic.sm.pdf)). 
+the paddle and **spreads** through diffusion. See [page 10, Fig S8A](https://www.science.org/doi/suppl/10.1126/science.1252960/suppl_file/raspopovic.sm.pdf));
+FGF is shown in green and Hoxd13 in red. 
 
 ::: {.callout-note collapse="true"}
 ### Supplementary Fig 8 A. Credit: Raspopovic et al., 2014

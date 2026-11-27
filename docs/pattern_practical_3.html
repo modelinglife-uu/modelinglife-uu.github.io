@@ -608,7 +608,7 @@ window.Quarto = {
 <p><span class="theorem-title"><strong>Exercise 6.2 (Mathematics)</strong></span> Now, let’s look at the other half of the clock and wavefront model: the clock part. In <code>WC06_clock.py</code> we implemented one of the first models for the somitogenesis oscillator <a href="https://doi.org/10.1016/S0960-9822(03)00534-7">Lewis (2003)</a> which models a gene that codes for an mRNA (<span class="math inline">\(m\)</span>) translated into a protein (<span class="math inline">\(p\)</span>) that acts as a repressive transcription factor repressing its own promoter. In class we discussed how negative feedbacks, delays and non-linearity are important for oscillations. Examine the code to find the differential equations governing this oscillator, and determine the negative feedback, delay and non-linearities in them.</p>
 </div>
 <div id="exr-test" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 6.3 (Biology)</strong></span> Play with the parameters of the model. You can see the output of each simulation as a .png image in <code>WC06_Pattern_formation_III/output</code>.</p>
+<p><span class="theorem-title"><strong>Exercise 6.3 (Biology)</strong></span> Play with the parameters of the model. If you would like to look at the plot carefully, the code creates an output folder, and saves as a png the output of each simulation. To find this output folder, make sure to know the path from which you are running the model.</p>
 <p>How does the delay (<span class="math inline">\(\tau\)</span>) affect oscillations?</p>
 </div>
 <div id="exr-test" class="theorem exercise">
@@ -626,7 +626,7 @@ window.Quarto = {
 </ol>
 </div>
 <div id="exr-test" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 6.6 (Biology)</strong></span> Describe how the model behaves and why. Reverse the effect of FGF and see how that affects the patterning? <strong>Does the model produces stable somites?</strong></p>
+<p><span class="theorem-title"><strong>Exercise 6.6 (Biology)</strong></span> Describe how the model behaves and why. Reverse the effect of FGF and see how that affects the patterning? How do you see the effect of FGF on the clock in the simulation?</p>
 </div>
 <div id="exr-test" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 6.7 (Biology &amp; Programming)</strong></span> The oscillations slow down, yet they persist… Somitogenesis requires stable somites, indicating something is still missing in the model. That is a means to transform the temporal oscillations in the right-most end of the tissue (posterior) into a spatial pattern of cells at the left (anterior end). In the French Flag morphogen gradient lecture we discussed that memory mechanisms are important to stabilize spatial patterns. Particularly important when the start up signal that <em>broke the symmetry</em> and initialized patterning is gone. It turns out that such a memorization/stabilization mechanism is also essential to convert oscillations to stripes (somites!).</p>

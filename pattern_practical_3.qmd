@@ -144,8 +144,9 @@ this oscillator, and determine the negative feedback, delay and non-linearities 
 :::{#exr-test}
 ## Biology
 
-Play with the parameters of the model. You can see the output of each simulation 
-as a .png image in `WC06_Pattern_formation_III/output`. 
+Play with the parameters of the model. If you would like to look at the plot carefully, 
+the code creates an output folder, and saves as a png the output of each simulation. 
+To find this output folder, make sure to know the path from which you are running the model. 
 
 How does the delay ($\tau$) affect oscillations? 
    
@@ -256,7 +257,8 @@ following questions:
 ## Biology
 
 Describe how the model behaves and why. Reverse the effect of FGF and see how 
-that affects the patterning? **Does the model produces stable somites?**
+that affects the patterning? How do you see the effect of FGF on the clock in 
+the simulation?
 :::
 
 ::: {.content-visible when-meta="params.show_answers"}
